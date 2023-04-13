@@ -1,25 +1,20 @@
-# base image
-FROM node:16-alpine
+# Используем образ Node.js версии 16.0.0-alpine в качестве базового образа
+FROM node:16.0.0-alpine
 
-# set working directory
+# Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
 
-# install app dependencies
-COPY package.json ./
-COPY yarn.lock ./
-RUN yarn install --production=false
+# Копируем файлы package.json и package-lock.json внутрь контейнера
+COPY package*.json ./
 
-# copy app files
+# Устанавливаем зависимости
+RUN npm install
+
+# Копируем остальные файлы проекта внутрь контейнера
 COPY . .
 
-# build the app
-RUN yarn build
+# Собираем приложение в production-режиме
+RUN npm run build
 
-# set environment variables
-ENV NODE_ENV production
-
-# expose port
-EXPOSE 3000
-
-# start the app
-CMD ["yarn", "start"]
+# Запускаем приложение при запуске контейнера
+CMD ["npm", "start"]

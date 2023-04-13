@@ -1,0 +1,32 @@
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.input {
+    border: none;
+    border-bottom: 2px solid #ccc;
+    padding: 0.5rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.button[type="submit"] {
+    background-color: #0070f3;
+    color: #fff;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button[type="submit"]:hover {
+    background-color: #0053b3;
+}

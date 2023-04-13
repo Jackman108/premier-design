@@ -1,0 +1,43 @@
+.mobileMenu {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 999;
+    }
+    
+    .mobileMenu ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    
+    .mobileMenu li {
+    margin-bottom: 20px;
+    }
+    
+    .mobileMenu a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #333;
+    }
+    
+    .mobileMenu a:hover {
+    color: #8e6eef;
+    }
+    
+    .mobileMenu.open {
+    transform: translateX(0);
+    }
