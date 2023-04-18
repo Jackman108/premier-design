@@ -1,0 +1,13 @@
+.menuIcon {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .menuIcon {
+        display: grid;
+        grid-column: 5 / 6;
+        margin: 0 20px;
+        align-items: center;
+        cursor: pointer;
+    }    
+}

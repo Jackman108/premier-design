@@ -17,146 +17,16 @@
     max-width: 1440px;
 }
 
-.logo {
-    grid-column: 1 / 2;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #000;
-    max-height: 60px;
-}
-.logo img{
-    max-height: 60px;
-}
-.nav {
-    grid-column: 2 / 3;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.nav a {
-    color: #333333;
-    text-decoration: none;
-}
-
-.nav a:hover {
-    color: #666666;
-}
-
-.menu {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.menuItem {
-    margin: 0 10px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #665c2b;
-    cursor: pointer;
-}
-
-.menuItem:hover {
-    color: #ccc;
-}
-
-.phone {
-    grid-column: 3 / 4;
-    margin:  0 20px;   
-}
-
-.phone a {
-    color: #bcaa4c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    white-space: nowrap;
-}
-
-.phone svg {
-    color: #665c2b;
-    height: 24px;
-}
-
-.socialIcons {
-    display: flex;
-    grid-column: 4 / 5;
-    justify-content: center;
-    white-space: nowrap;
-}
-
-.socialIcons a {
-    color: #bcaa4c;
-    margin: 0 10px;
-
-
-}
-
-.socialIcons svg {
-    width: 24px;
-    height: 24px;
-}
-
-.themeButton {
-    grid-column: 5 / 6;
-    background-color: transparent;
-    border: none;
-    color: #665c2b;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1rem;
-    font-weight: bold;
-    padding: 0;
-    margin: 0;
-    transition: color 0.3s ease;
-    white-space: nowrap;
-
-}
-
-.themeButton:hover {
-    color: #8e6eef;
-}
-
 .menuIcon {
     display: none;
 }
 
 @media (max-width: 768px) {
     .container {
-
-
         grid-template-rows: 50px 1fr;
         align-items: center;
         justify-content: center;
         background-color: #F2F1EF;
-    }
-
-
-    .nav {
-        display: none;
-    }
-
-    .phone {
-        grid-column: 2 / 3;
-    }
-
-    .socialIcons {
-        grid-column: 3 / 4;
-
-    }
-
-    .socialIcons svg {
-        width: 16px;
-        height: 16px;
-    }
-
-    .themeButton {
-        grid-column: 4 / 5;
     }
 
     .menuIcon {
@@ -165,15 +35,5 @@
         margin: 0 20px;
         align-items: center;
         cursor: pointer;
-    }
-    .mobileMenu {
-        height: 0;
-        overflow: hidden;
-        transition: height 0.3s ease;
-    }
-
-    .open {
-        height: auto;
-    }
-
+    }    
 }

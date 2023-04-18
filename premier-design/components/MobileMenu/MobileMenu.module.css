@@ -38,6 +38,17 @@
     color: #8e6eef;
     }
     
-    .mobileMenu.open {
+.open {
     transform: translateX(0);
+    }
+    @media (max-width: 768px) {
+        .mobileMenu {
+            height: 0;
+            overflow: auto;
+            transition: height 0.3s ease;
+        }
+    
+.open {
+            height: 100%;
+        }
     }

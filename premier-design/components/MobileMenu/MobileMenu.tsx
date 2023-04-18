@@ -3,15 +3,15 @@ import MenuItems from '../MenuItems/MenuItems';
 import styles from './MobileMenu.module.css';
 import Link from 'next/link';
 
-interface MobileMenuProps {
+interface MenuProps {
     MenuItems: typeof MenuItems;
     isMobileMenuOpen: boolean;
     toggleMobileMenu: () => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ MenuItems, isMobileMenuOpen, toggleMobileMenu }) => {
+const MobileMenu: React.FC<MenuProps> = ({ MenuItems, isMobileMenuOpen, toggleMobileMenu }) => {
     return (
-        <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ''}`}>
+        <nav className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ''}`}>
             <ul>
                 {MenuItems.map((menuItem, index) => (
                     <li key={index}>
@@ -21,7 +21,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ MenuItems, isMobileMenuOpen, to
                     </li>
                 ))}
             </ul>
-        </div>
+        </nav>
     );
 };
 

@@ -1,0 +1,24 @@
+.phone {
+    grid-column: 3 / 4;
+    margin:  0 20px;   
+}
+
+.phone a {
+    color: #bcaa4c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.phone svg {
+    color: #665c2b;
+    height: 24px;
+}
+
+@media (max-width: 768px) {
+    .phone {
+        grid-column: 2 / 3;
+    }
+}

@@ -1,0 +1,40 @@
+.nav {
+    grid-column: 2 / 3;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.nav a {
+    color: #333333;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    color: #666666;
+}
+
+.menu {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.menuItem {
+    margin: 0 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #665c2b;
+    cursor: pointer;
+}
+
+.menuItem:hover {
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    .nav {
+        display: none;
+    }
+}
