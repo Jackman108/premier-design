@@ -1,3 +1,1 @@
-interface FooterProps { }
-
-export type {FooterProps};
+export interface FooterProps { }

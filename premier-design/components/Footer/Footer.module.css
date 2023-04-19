@@ -1,6 +1,36 @@
-.footer {
+.footerContainer {
     background-color: #222;
     color: #fff;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 20px;
     text-align: center;
-    padding: 1rem;
+    margin: 0 auto;
+    max-width: 1440px;
+    padding: 40px 20px;
+
+}
+
+.footerTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footerContents {
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.footerContent img {
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
 }

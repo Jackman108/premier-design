@@ -1,13 +1,9 @@
 import React from 'react';
-import MenuItems from '../MenuItems/MenuItems';
+import { MenuProps } from '../MenuItems/MenuItems.props';
 import styles from './MobileMenu.module.css';
 import Link from 'next/link';
 
-interface MenuProps {
-    MenuItems: typeof MenuItems;
-    isMobileMenuOpen: boolean;
-    toggleMobileMenu: () => void;
-}
+
 
 const MobileMenu: React.FC<MenuProps> = ({ MenuItems, isMobileMenuOpen, toggleMobileMenu }) => {
     return (

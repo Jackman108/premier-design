@@ -1,7 +1,7 @@
 .nav {
-    grid-column: 2 / 3;
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns:  1fr;
+    justify-content: center;
     align-items: center;
 }
 
@@ -15,18 +15,20 @@
 }
 
 .menu {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     margin: 0;
     padding: 0;
+    gap: 16px;
     list-style: none;
 }
 
 .menuItem {
-    margin: 0 10px;
     font-size: 1.2rem;
     font-weight: bold;
     color: #665c2b;
     cursor: pointer;
+    
 }
 
 .menuItem:hover {
@@ -34,7 +36,5 @@
 }
 
 @media (max-width: 768px) {
-    .nav {
-        display: none;
-    }
+
 }

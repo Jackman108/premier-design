@@ -1,11 +1,7 @@
 import React from 'react';
-import MenuItems from '../MenuItems/MenuItems';
 import styles from './DesktopMenu.module.css';
 import Link from 'next/link';
-
-interface MenuProps {
-    MenuItems: typeof MenuItems;   
-}
+import { MenuProps } from '../MenuItems/MenuItems.props';
 
 const DesktopMenu: React.FC<MenuProps> = ({ MenuItems }) => {
     return (

@@ -1,15 +1,11 @@
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
-import Header from '../components/Header/Header';
-import Footer from '../components/Footer/Footer';
-import '@styles/globals.css';
+import '../styles/globals.css'
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
         <ThemeProvider defaultTheme="light" attribute="class">
-            <Header />
             <Component {...pageProps} />
-            <Footer />
         </ThemeProvider>
     );
 }

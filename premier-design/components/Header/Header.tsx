@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Header.module.css';
-import MenuItems from '../MenuItems/MenuItems';
-import MobileMenu from '../MobileMenu/MobileMenu';
-import DesktopMenu from '../DesktopMenu/DesktopMenu';
+import MenuItems from '../Menu/MenuItems/MenuItems';
+import MobileMenu from '../Menu/MobileMenu/MobileMenu';
+import DesktopMenu from '../Menu/DesktopMenu/DesktopMenu';
 import Logo from '../Logo/Logo';
 import Phone from '../Phone/Phone';
 import SocialIcons from '../SocialIcons/SocialIcons';
@@ -14,6 +14,7 @@ import MenuButton from '../UX/MenuButton/MenuButton';
 function Header(): JSX.Element { 
     const { currentTheme, toggleTheme } = useHeaderEffects();
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);
+    
     return (
         <header className={styles.header}>
             <div className={`${styles.container} container`}>
