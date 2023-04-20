@@ -1,0 +1,28 @@
+.footerContacts {
+    display: grid;
+    min-height: 220px;
+    align-content: space-around;
+}
+
+.footerLogo {
+    display: grid;
+    justify-content: center;
+}
+
+.footerSocialIcons svg {
+    width: 36px;
+    height: 36px;
+}
+
+.footerCopy {
+    font-size: 0.8rem;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+    .footerContacts {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+    }
+}
