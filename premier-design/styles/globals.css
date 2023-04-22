@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
 /* Указываем box sizing */
 *,
 *::before,
@@ -35,6 +37,7 @@ body {
   scroll-behavior: smooth;
   text-rendering: optimizeSpeed;
   line-height: 1.5;
+  font-family: Inter, sans-serif;
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
@@ -75,4 +78,19 @@ select {
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+:root {
+	--black: #3B434E;
+	--gray: #A4A4A4;
+	--gray-light: #EBEBEB;
+	--gray-dark: #6C7077;
+	--white: white;
+	--primary: #7351F5;
+	--primary-hover: #6344DF;
+	--red: #FC836D;
+	--red-light: #FEA291;
+	--green: #007B48;
+	--green-light: #C8F8E4;
+	--font-family: "Noto Sans KR", sans-serif;
 }

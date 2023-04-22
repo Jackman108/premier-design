@@ -1,0 +1,21 @@
+.button {
+    width: 10vw;
+    height: 3vw;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: transparent;
+    color: white;
+    font-size: 0.8vw;
+    overflow: hidden;
+    white-space:nowrap;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
+    }
+    
+    .button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+

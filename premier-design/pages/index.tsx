@@ -8,19 +8,16 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Premium Repair - ремонт и дизайн интерьеров</title>
+        <title>Pro Ремонт - Ремонт и дизайн интерьеров в Беларуси</title>
         <meta
           name="description"
-          content="Premium Repair - ремонт и дизайн интерьеров в Москве и МО"
+          content="Pro Ремонт - ремонт и дизайн интерьеров в Беларуси"
         />
       </Head>
       <Layout>
         <main>
           <section>
-            <Banner
-              title="Premium Repair"
-              description="Мы занимаемся ремонтом и дизайном интерьеров в Москве и Московской области"
-            />
+          <Banner title="Ремонт и дизайн интерьеров в Беларуси" description="Уникальные авторские и индивидуальные дизайны, проектируем и делаем ремонт под ключ" />
             <Features />
           </section>
         </main>

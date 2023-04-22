@@ -2,19 +2,20 @@ import { FeatureProps } from "./Features.props";
 
 const featuresList: FeatureProps[] = [
     {
-        title: "Большой опыт работы",
-        description: "Мы уже более 10 лет работаем на рынке ремонта и дизайна интерьеров",
-        icon: "/icons/experience.svg",
+        title: "Оптимальные сроки",
+        icon: "/logo.png",
     },
     {
-        title: "Квалифицированные специалисты",
-        description: "Наша команда состоит из профессионалов с большим опытом работы",
-        icon: "/icons/team.svg",
+        title: "Разумные цены",
+        icon: "/logo.png",
     },
     {
-        title: "Индивидуальный подход к каждому клиенту",
-        description: "Мы всегда учитываем пожелания и требования наших клиентов",
-        icon: "/icons/approach.svg",
+        title: "Ответсвенные мастера",
+        icon: "/logo.png",
+    },
+    {
+        title: "Гарантия 2 года",
+        icon: "/logo.png",
     },
 ];
 
