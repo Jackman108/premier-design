@@ -1,7 +1,7 @@
 import { DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
 
 interface OrderButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-    children: React.ReactNode;
+    onClick?: () => void;
 }
 
 export type { OrderButtonProps };

@@ -6,12 +6,14 @@
     .features__container {
         background-color: #f5f5f5;
         border-radius: 0.7vh;
-        max-width: 80%;
+        max-width: 89vw;
         position: relative;
-        bottom: 1.4vh;
+        bottom: 3vh;
         box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
         margin: 0 auto;
-        height: 3hv;
+        height: 6vh;
+        display: grid;
+
     }
 
     .features__list {
@@ -21,6 +23,7 @@
         justify-items: center;
         align-items: center;
         margin: 0 0.2vw;
+        
 
     }
 
@@ -32,19 +35,19 @@
         grid-template-columns: 1fr 1fr;
         border-right: 2px solid rgba(207, 211, 214, 0.8);
         padding: 0 1.2vw;
+        height: 5vh;
     }
 
     .features__title {
         color: #2C3A61;
         font-weight: 600;
-        font-size: 1.2vw;
-        width: 16%;
+        font-size: 1.3vw;
         white-space: nowrap;
     }
 
     .features__icon {
-        max-width: 4vw;
-        max-height: 4vw;
+        max-width: 3vw;
+        max-height: 3vw;
         object-fit:cover;
     }
 

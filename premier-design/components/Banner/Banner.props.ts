@@ -1,5 +1,5 @@
 interface BannerProps {
-    title: string;
+    content: string;
     description: string;
 }
 

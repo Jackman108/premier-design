@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Layout from '../components/Layout/Layout';
 import Banner from '../components/Banner/Banner';
 import Features from '../components/Features/Features';
+import Services from '../components/Services/Services';
 
 const Home: NextPage = () => {
   return (
@@ -17,8 +18,9 @@ const Home: NextPage = () => {
       <Layout>
         <main>
           <section>
-          <Banner title="Ремонт и дизайн интерьеров в Беларуси" description="Уникальные авторские и индивидуальные дизайны, проектируем и делаем ремонт под ключ" />
+            <Banner />
             <Features />
+            <Services/>
           </section>
         </main>
       </Layout>

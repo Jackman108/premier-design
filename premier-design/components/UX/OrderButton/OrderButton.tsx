@@ -4,10 +4,10 @@ import { OrderButtonProps } from './OrderButton.props';
 
 
 
-const OrderButton: React.FC<OrderButtonProps> = ({ type, children }) => {
+const OrderButton: React.FC<OrderButtonProps> = ({ type,  onClick }) => {
     return (
-        <button className={styles.button} type={type}>
-            {children}
+        <button className={styles.button} type={type} onClick={onClick}>
+            Оставить заявку
         </button>
     );
 };

@@ -1,11 +1,11 @@
 .button {
-    width: 10vw;
-    height: 3vw;
+    width: 16vw;
+    height: 4vw;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 4px;
     background: transparent;
     color: white;
-    font-size: 0.8vw;
+    font-size: 1.2vw;
     overflow: hidden;
     white-space:nowrap;
     transition: all 0.3s ease-in-out;
