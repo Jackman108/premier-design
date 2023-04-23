@@ -5,6 +5,7 @@
 }
 
 .approach__container {
+    margin: 0 auto;
     max-width: 1440px;
     display: grid;
     justify-content: center;

@@ -1,18 +1,23 @@
 .banner {
     position: inherit;
     max-width: 100%;
-
     background-image: url("../assets/background.jpg");
     padding: 10% 0;
-    }
-    
-    .banner__container {
-    max-width: 1440px;
-    height: 50vh;
+}
+
+.banner__container {
     display: grid;
     justify-items: center;
     justify-content: center;
     grid-gap: 20%;
+    max-width: 1440px;
+    height: 50vh;
     margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .banner__container {
+        height: 20vh;
+        grid-gap: 10%;
     }
-    
+}

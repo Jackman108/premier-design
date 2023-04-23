@@ -3,14 +3,14 @@ import styles from './FooterMenu.module.css';
 import Link from 'next/link';
 import { MenuProps } from '../MenuItems/MenuItems.props';
 
-const FooterMenu: React.FC<MenuProps> = ({ MenuItems }) => {
+const FooterMenu = ({MenuItems}: MenuProps): JSX.Element => {
     return (
-        <nav className={`${styles.nav} nav`}>
-            <ul className={styles.menu}>
+        <nav className={`${styles.navigation} nav`}>
+            <ul className={styles.navigation__menu}>
                 {MenuItems.map((menuItem, index) => (
                     <li key={index}>
                         <Link href={`/${menuItem.title == 'Home' ? "" : menuItem.title.toLowerCase()}`}>
-                            <div className={styles.menuItem}>{menuItem.title}</div>
+                            <div className={styles.menu__item}>{menuItem.title}</div>
                         </Link>
                     </li>
                 ))}

@@ -8,13 +8,15 @@ import Contacts from "../Contacts/Contacts";
 
 function Footer(): JSX.Element {
     return (
-        <div className={styles.footerContainer}>
-            <footer className={styles.footer}>
+
+        <footer className={styles.footer}>
+            <div className={styles.footer__container}>
                 <Contacts />
-                <FooterMenu MenuItems={menuItems} />
                 <News news={newsData} />
-            </footer>
-        </div>
+                <FooterMenu MenuItems={menuItems} />                
+            </div>
+        </footer >
+
     );
 };
 

@@ -7,19 +7,17 @@ import { format } from "date-fns";
 
 function Contacts(): JSX.Element {
     return (
-        <div className={styles.footerContacts}>
-            <div className={styles.footerLogo}>
+        <div className={styles.footer__contacts}>
+            <div className={styles.footer__logo}>
                 <Logo />
             </div>
-            <div className={styles.footerSocialIcons}>
-                <SocialIcons />
+            <div className={styles.footer__copy}>
+                &copy; Premier Design, 2012 - {format(new Date(), 'yyyy')}.
+                <br />
+                Все права защищены
             </div>
-            <div className={styles.footerCopy}>
-                <div>
-                    &copy; Premier Design, 2012 - {format(new Date(), 'yyyy')}.
-                    <br />
-                    Все права защищены
-                </div>
+            <div className={styles.footer__socialIcons}>
+                <SocialIcons />
             </div>
         </div>
     );

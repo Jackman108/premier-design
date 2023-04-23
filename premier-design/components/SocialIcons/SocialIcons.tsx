@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { FaTelegram, FaInstagram } from 'react-icons/fa';
+import { TfiEmail } from 'react-icons/tfi';
 import { SlSocialVkontakte } from 'react-icons/sl';
 import styles from './SocialIcons.module.css';
 
@@ -15,6 +16,9 @@ function SocialIcons(): JSX.Element {
             </Link>
             <Link href="#">
                 <FaInstagram />
+            </Link>
+            <Link href="#">
+                <TfiEmail />
             </Link>
         </div>
     );

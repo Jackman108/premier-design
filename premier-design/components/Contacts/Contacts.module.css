@@ -1,28 +1,22 @@
-.footerContacts {
+.footer__contacts {
     display: grid;
-    min-height: 220px;
-    align-content: space-around;
+    grid-template-columns: auto;
+    grid-gap: 2vh;
+    align-content: space-evenly;
 }
 
-.footerLogo {
+.footer__logo {
     display: grid;
     justify-content: center;
 }
 
-.footerSocialIcons svg {
-    width: 36px;
-    height: 36px;
+.footer__socialIcons svg {
+    width: 4vh;
+    height: 4vh;
 }
 
-.footerCopy {
+.footer__copy {
     font-size: 0.8rem;
     text-align: center;
-}
-
-
-@media screen and (max-width: 768px) {
-    .footerContacts {
-        display: grid;
-        grid-template-columns: repeat(2, auto);
-    }
+    color: #c4c1b0;;
 }

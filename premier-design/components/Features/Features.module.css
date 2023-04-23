@@ -1,57 +1,51 @@
-    .features {
-        max-width: 100%;
+.features {
+    max-width: 100%;
+}
 
-    }
+.features__container {
+    position: relative;
+    display: grid;
+    max-width: 89vw;
+    height: 8vw;
+    margin: 0 auto;
+    bottom: 4vw;
+    border-radius: 0.7vh;
+    box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+    background-color: #f5f5f5;
+}
 
-    .features__container {
-        background-color: #f5f5f5;
-        border-radius: 0.7vh;
-        max-width: 89vw;
-        position: relative;
-        bottom: 3vh;
-        box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-        margin: 0 auto;
-        height: 6vh;
-        display: grid;
+.features__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin: 0 0.2vw;
+    align-items: center;
+    justify-items: start;
+}
 
-    }
+.features__item {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 5vw;
+    padding: 0 2vw;
+    align-items: center;
+    justify-content: stretch;
+    text-align: center;
+    border-right: 1px solid rgba(207, 211, 214, 0.8);
+}
 
-    .features__list {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        justify-content: space-around;
-        justify-items: center;
-        align-items: center;
-        margin: 0 0.2vw;
-        
+.features__title {
+    font-size: 1.3vw;
+    font-weight: 600;
+    color: #2C3A61;
+    white-space: nowrap;
+}
 
-    }
+.features__icon {
+    max-width: 3vw;
+    max-height: 3vw;
+    object-fit: cover;
+}
 
-    .features__item {
-        display: grid;
-        align-items: center;
-        justify-content: stretch;
-        text-align: center;
-        grid-template-columns: 1fr 1fr;
-        border-right: 2px solid rgba(207, 211, 214, 0.8);
-        padding: 0 1.2vw;
-        height: 5vh;
-    }
-
-    .features__title {
-        color: #2C3A61;
-        font-weight: 600;
-        font-size: 1.3vw;
-        white-space: nowrap;
-    }
-
-    .features__icon {
-        max-width: 3vw;
-        max-height: 3vw;
-        object-fit:cover;
-    }
-
-
-    .features__item:last-child {
-        border-right: none;
-    }
+.features__item:last-child {
+    border-right: none;
+}

@@ -6,18 +6,24 @@ import NewsProps from "./News.props";
 
 function News({ news }: NewsProps): JSX.Element {
     return (
-        <div className={styles.wrapperNews}>
-            <div className={styles.footerTitle}>
-                <h2>Новости</h2>
-            </div>
-            <div className={styles.footerContents}>
-                {news.map((item, index) => (
-                    <div className={styles.footerContent} key={index}>
-                        <img src={item.image} alt="Logo" />
-                        <div >
-                            {item.date}
-                            <br />
-                            {item.title}
+        <div className={styles.news}>
+            <div className={styles.news__container}>
+                <div className={styles.news__title}>
+                    <h2>Новости</h2>
+                </div>
+                {news.map((news, index) => (
+                    <div className={styles.news__content} key={index}>
+
+                        <div className={styles.content__image}>
+                            <img src={news.image} alt={news.title} />
+                        </div>
+                        <div className={styles.content__wrapper}>
+                            <div className={styles.content__title}>
+                                {news.title}
+                            </div>
+                            <div className={styles.content__date}>
+                                {news.date}
+                            </div>
                         </div>
                     </div>
                 ))}
