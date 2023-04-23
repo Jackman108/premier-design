@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Services.module.css';
 import { titleList } from '../Title/TitleList';
 import OrderButton from '../UX/OrderButton/OrderButton';
-import ServicesCards from '../ServicesCards/ServicesCards';
+import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../Title/Title';
 
 const Services = (): JSX.Element => {

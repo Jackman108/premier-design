@@ -1,0 +1,36 @@
+.approach__cards {
+    margin: 0 30vw;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 2vw;
+    justify-content: space-evenly;
+}
+
+.approach__card {
+    display: grid;
+    grid-gap: 1vw;
+    padding: 1vw;
+    width: 16vw;
+    height: 16vw;
+    background-color: white;
+    justify-items: center;
+}
+
+.card__title {
+    text-align: center;
+    font-size: 1.2vw;
+    font-weight: 600;
+    color: #1E2640;
+}
+
+.card__description {
+    text-align: center;
+    font-size: 1vw;
+    line-height: 1.2;
+    font-weight: 400;
+    color: #889099;
+}
+
+.card__image {
+    max-width: 30%;
+}

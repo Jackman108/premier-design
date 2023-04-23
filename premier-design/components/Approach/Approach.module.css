@@ -1,0 +1,13 @@
+.approach {
+    max-width: 100vw; 
+    background-color: rgb(217, 217, 217);
+    padding: 5vw 0;
+}
+
+.approach__container {
+    max-width: 1440px;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    grid-gap: 4vh;
+}

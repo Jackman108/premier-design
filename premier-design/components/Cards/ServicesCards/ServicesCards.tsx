@@ -7,15 +7,15 @@ import { servicesList } from './ServicesCardsList';
 const ServicesCards = (): JSX.Element => {
     return (
         <div className={styles.services__cards}>
-            {servicesList.map((serviceItem, index) => (
+            {servicesList.map((serviceCard, index) => (
                 <div className={styles.services__card} key={index}>
-                    <div className={styles.title__card}>
-                        {serviceItem.text}
+                    <div className={styles.card__title}>
+                        {serviceCard.text}
                     </div>
-                    <div className={styles.image__card}>
+                    <div className={styles.card__image}>
                         <img
-                            src={serviceItem.image}
-                            alt={serviceItem.text}
+                            src={serviceCard.image}
+                            alt={serviceCard.text}
                             className={styles.image__background}
                         />
                     </div>

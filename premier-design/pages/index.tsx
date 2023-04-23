@@ -4,6 +4,7 @@ import Layout from '../components/Layout/Layout';
 import Banner from '../components/Banner/Banner';
 import Features from '../components/Features/Features';
 import Services from '../components/Services/Services';
+import Approach from '../components/Approach/Approach';
 
 const Home: NextPage = () => {
   return (
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
             <Banner />
             <Features />
             <Services/>
+            <Approach/>
           </section>
         </main>
       </Layout>
