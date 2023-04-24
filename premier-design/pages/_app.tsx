@@ -4,7 +4,10 @@ import '../styles/globals.css'
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (
-        <ThemeProvider defaultTheme="light" attribute="class">
+        <ThemeProvider 
+        defaultTheme="light"
+        themes={['light', 'dark']} 
+        attribute="class">
             <Component {...pageProps} />
         </ThemeProvider>
     );

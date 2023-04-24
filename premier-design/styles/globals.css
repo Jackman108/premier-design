@@ -84,11 +84,14 @@ select {
 
 :root {
 	--black: #222;
+	--blue: #1E2640;
+	--blue-light: #4A60A1;
   --gold: #948e68;
 	--gold-light: #c4c1b0;
 	--gold-dark: #665c2b;
-  --clear: transparent
-	--gray: #A4A4A4;
+  --clear: transparent;
+	--gray: #889099;
+
 	--gray-light: #EBEBEB;
 	--gray-dark: #6C7077;
 	--white: white;

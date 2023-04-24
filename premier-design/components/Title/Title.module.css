@@ -34,7 +34,7 @@
     font-size: 3.4vw;
     font-weight: 600;
     text-align: center;
-    color: #1E2640;
+    color: var(--blue);
 }
 
 
@@ -44,5 +44,5 @@
     line-height: 1.5;
     max-width: 50vw;
     text-align: center;
-    color: #889099;
+    color: var(--gray);
 }

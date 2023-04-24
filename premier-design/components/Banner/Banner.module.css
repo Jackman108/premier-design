@@ -15,7 +15,7 @@
     margin: 0 auto;
 }
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .banner__container {
         height: 20vh;
         grid-gap: 10%;
