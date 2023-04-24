@@ -1,10 +1,14 @@
 .logo {
     grid-column: 1 / 2;
-    font-size: 2rem;
-    font-weight: bold;
-    color: #000;
-    max-height: 60px;
 }
-.logo img{
-    max-height: 60px;
+
+.logo__image img {
+    max-width: 6vh;
+    max-height: 6vh;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        display: none;
+    }
 }

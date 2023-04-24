@@ -1,10 +1,9 @@
 .footer {
-    background-color: #222;
-    color: #fff;
-    width: 100%;
+    background-color: var(--black);
+    color: var(--white);
+    max-width: 100%;
     bottom: 0;
     padding: 6vh;
-
 }
 
 .footer__container {
@@ -20,5 +19,6 @@
 @media screen and (max-width: 768px) {
     .footer__container {
         grid-template-columns: auto;
+        height: 100%;
     }
 }

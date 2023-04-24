@@ -48,6 +48,8 @@
     background-size: cover;
     transform: scale(1);
     transition: transform 0.5s ease-in-out;
+    border: 1px solid rgb(171, 170, 170);
+    border-radius: 1.2vh;
     z-index: 1;
     }
     

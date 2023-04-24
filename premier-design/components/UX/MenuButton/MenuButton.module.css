@@ -1,13 +1,17 @@
-.menuIcon {
+.menu__icon {
     display: none;
 }
 
 @media (max-width: 768px) {
-    .menuIcon {
+    .menu__icon {
         display: grid;
         grid-column: 5 / 6;
-        margin: 0 20px;
         align-items: center;
+        color: var(--gold-dark);
+        font-size: 1.2rem;
+    }    
+    .menu__icon:hover :active {
         cursor: pointer;
+        color: var(--gold);
     }    
 }

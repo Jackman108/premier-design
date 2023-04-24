@@ -32,6 +32,8 @@ dd {
 }
 
 /* Выставляем основные настройки по-умолчанию для body */
+html, 
+#next,
 body {
   min-height: 100vh;
   scroll-behavior: smooth;
@@ -81,7 +83,11 @@ select {
 }
 
 :root {
-	--black: #3B434E;
+	--black: #222;
+  --gold: #948e68;
+	--gold-light: #c4c1b0;
+	--gold-dark: #665c2b;
+  --clear: transparent
 	--gray: #A4A4A4;
 	--gray-light: #EBEBEB;
 	--gray-dark: #6C7077;

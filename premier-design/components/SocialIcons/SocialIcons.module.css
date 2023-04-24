@@ -1,27 +1,25 @@
 .socialIcons {
-    display: flex;
-    grid-column: 4 / 5;
-    justify-content: center;
-    white-space: nowrap;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 0.5vw;
+    grid-column: 4 / 5; 
+    font-size: 1.2rem;
 }
 
 .socialIcons a {
-    color: #665c2b;
-    margin: 0 10px;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    color: var(--gold-dark);   
 }
 
-.socialIcons svg {
-    width: 24px;
-    height: 24px;
+.socialIcons a:hover {
+    color: var(--gold);   
 }
 
 @media (max-width: 768px) {
     .socialIcons {
         grid-column: 3 / 4;
-    }
-
-    .socialIcons svg {
-        width: 16px;
-        height: 16px;
-    }
+        grid-gap: 2vw;
+    }    
 }

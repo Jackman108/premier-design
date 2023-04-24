@@ -7,7 +7,7 @@ import { MenuButtonProps } from './MenuButton.props';
 
 const MenuButton: React.FC<MenuButtonProps> = ({ toggleMobileMenu }) => {
     return (
-        <div className={`${styles.menuIcon} menuIcon`} onClick={toggleMobileMenu}>
+        <div className={styles.menu__icon} onClick={toggleMobileMenu}>
             <FaBars />
         </div>
     );

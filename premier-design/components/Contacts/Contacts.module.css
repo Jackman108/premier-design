@@ -18,5 +18,5 @@
 .footer__copy {
     font-size: 0.8rem;
     text-align: center;
-    color: #c4c1b0;;
+    color: var(--gold-light);
 }

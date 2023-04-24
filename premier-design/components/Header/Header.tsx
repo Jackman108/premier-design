@@ -17,14 +17,15 @@ function Header(): JSX.Element {
     
     return (
         <header className={styles.header}>
-            <div className={`${styles.container} container`}>
+            <div className={`${styles.header__container} container`}>
                 <Logo />
-                <MobileMenu MenuItems={MenuItems} isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
                 <DesktopMenu MenuItems={MenuItems} />               
                 <Phone/>
                 <SocialIcons />
                 <ThemeButton currentTheme={currentTheme} toggleTheme={toggleTheme} />
                 <MenuButton toggleMobileMenu={toggleMobileMenu} />
+                <MobileMenu MenuItems={MenuItems} isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
+
             </div>
         </header>
     );

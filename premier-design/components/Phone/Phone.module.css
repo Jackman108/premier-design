@@ -1,24 +1,45 @@
 .phone {
     grid-column: 3 / 4;
-    margin:  0 20px;   
 }
 
-.phone a {
-    color: #bcaa4c;
-    display: flex;
-    align-items: center;
+.phone__container {
+    display: grid;
+    color: var(--gold-dark);
+    grid-template-columns:  auto 1fr;
+    grid-gap: 1vh;
     justify-content: center;
-    gap: 10px;
-    white-space: nowrap;
+    text-decoration: none;
 }
 
-.phone svg {
-    color: #665c2b;
-    height: 24px;
+.phone__container:hover {
+    color: var(--gold);
+}
+
+.phone__logo {
+    display: grid;
+    font-size: 1.2rem;
+    align-items: center;
+    margin: 0;
+}
+
+.phone__number {
+    white-space: nowrap;
+    font-size: 1.2rem;
 }
 
 @media (max-width: 768px) {
     .phone {
         grid-column: 2 / 3;
+    }
+    .phone__container {
+        grid-gap: 0
+    }
+
+    .phone__number {       
+        font-size: 1rem;
+    }
+
+    .phone__logo {
+        font-size: 1rem;      
     }
 }

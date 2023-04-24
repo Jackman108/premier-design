@@ -5,12 +5,12 @@ import { MenuProps } from '../MenuItems/MenuItems.props';
 
 const DesktopMenu: React.FC<MenuProps> = ({ MenuItems }) => {
     return (
-        <nav className={`${styles.nav} nav`}>
-            <ul className={styles.menu}>
+        <nav className={`${styles.menu} nav`}>
+            <ul className={styles.menu__container}>
                 {MenuItems.map((menuItem, index) => (
-                    <li key={index}>
-                        <Link href={`/${menuItem.title == 'Home' ? "" : menuItem.title.toLowerCase()}`}>
-                            <div className={styles.menuItem}>{menuItem.title}</div>
+                    <li key={index} className={styles.menu__links}>
+                        <Link className={styles.menu__link} href={`/${menuItem.title == 'Home' ? "" : menuItem.title.toLowerCase()}`}>
+                            <div className={styles.menu__item}>{menuItem.title}</div>
                         </Link>
                     </li>
                 ))}

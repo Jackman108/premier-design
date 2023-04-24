@@ -8,7 +8,7 @@
 
 .news__title {
     font-size: 1.2rem;
-    color: #665c2b;
+    color: var(--gold-dark);
     padding-bottom: 1vh;
 }
 
@@ -32,20 +32,24 @@
 }
 
 .content__date {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     text-align: start;
-    color: #c4c1b0;
+    color: var(--gold-light);
 
 }
 
 .content__title {
-    color: #948e68;
+    max-width: 25vw;
+    font-size: 0.9rem;
+    color: var(--gold);
     text-align: start;
+}
+.content__title:hover {
+    color: var(--gold-light);
+    cursor: pointer;;
 }
 
 @media (max-width: 768px) {
-
-
     .content__title {
         max-width: 400px;
     }

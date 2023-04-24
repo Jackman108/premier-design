@@ -1,5 +1,5 @@
 .navigation {
-    max-width: 20vw;
+    max-width: 20vw;   
     display: grid;
 }
 
@@ -17,13 +17,13 @@
 .menu__item {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #665c2b;
+    color: var(--gold);
     cursor: pointer;
     display: grid;
 }
 
 .menu__item:hover {
-    color: #ccc;
+    color: var(--gold-light);
 }
 
 @media (max-width: 768px) {
