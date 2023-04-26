@@ -52,6 +52,7 @@
     border: 1px solid rgb(171, 170, 170);
     border-radius: 1.2vh;
     z-index: 1;
+    background-color: white;
     }
     
     .services__card:hover .image__background {

@@ -3,7 +3,6 @@ import styles from './Costing.module.css';
 import { titleList } from '../Title/TitleList';
 import CostingCards from '../Cards/CostingCards/CostingCards';
 import Title from '../Title/Title';
-import ArrowButton from '../UX/ArrowButton/ArrowButton';
 
 const Costing = (): JSX.Element => {
     const { title, description } = titleList[4];

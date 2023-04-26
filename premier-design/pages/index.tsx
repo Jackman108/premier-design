@@ -8,6 +8,7 @@ import Approach from '../components/Approach/Approach';
 import Examples from '../components/Examples/Examples';
 import Costing from '../components/Costing/Costing';
 import Preloader from '../components/UX/Preloader/Preloader';
+import Appeal from '../components/Appeal/Appeal';
 
 const Home: NextPage = () => {
   return (
@@ -29,6 +30,7 @@ const Home: NextPage = () => {
             <Examples/>
             <Costing/>
             <Preloader/>
+            <Appeal/>
           </section>
         </main>
       </Layout>
