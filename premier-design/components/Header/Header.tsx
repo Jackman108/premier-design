@@ -11,16 +11,18 @@ import useMobileMenu from '../hooks/useMobileMenu';
 import ThemeButton from '../UX/ThemeButton/ThemeButton';
 import MenuButton from '../UX/MenuButton/MenuButton';
 
-function Header(): JSX.Element { 
+function Header(): JSX.Element {
     const { currentTheme, toggleTheme } = useHeaderEffects();
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);
-    
+
     return (
         <header className={styles.header}>
-            <div className={`${styles.header__container} container`}>
-                <Logo />
-                <DesktopMenu MenuItems={MenuItems} />               
-                <Phone/>
+            <div className={styles.header__container}>
+                <div className={styles.header__logo}>
+                    <Logo />
+                </div>
+                <DesktopMenu MenuItems={MenuItems} />
+                <Phone />
                 <SocialIcons />
                 <ThemeButton currentTheme={currentTheme} toggleTheme={toggleTheme} />
                 <MenuButton toggleMobileMenu={toggleMobileMenu} />

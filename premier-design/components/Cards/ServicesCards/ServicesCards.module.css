@@ -26,7 +26,8 @@
     line-height: 5vw;
     letter-spacing: 0.002em;
     white-space: nowrap;
-    color: #FFFFFF;
+    color: var(--brown-light);
+    text-shadow: 1px 1px 1px var(--beige-dark);
     transition: all 0.5s ease-out;
     z-index: 2;
     padding: 1vh;
@@ -34,13 +35,13 @@
     
     .services__card:hover .card__title {
     font-size: 1.8vw;
-    color: #d5d2d2;
     padding-top: 3vh;
     cursor: pointer;
     text-decoration: underline;
-    text-shadow: 0 0 2px rgba(4, 4, 4, 0.4);
+    text-shadow: 1px 1px 1px var(--brown-dark);
     z-index: 2;
     transition: all 0.5s ease-in-out;
+    opacity: 0.9;
     }
     
     .image__background {

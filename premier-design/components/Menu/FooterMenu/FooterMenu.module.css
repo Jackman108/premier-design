@@ -17,13 +17,13 @@
 .menu__item {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--gold);
+    color: var(--brown-light);
     cursor: pointer;
     display: grid;
 }
 
 .menu__item:hover {
-    color: var(--gold-light);
+    color: var(--brown-white);
 }
 
 @media (max-width: 768px) {

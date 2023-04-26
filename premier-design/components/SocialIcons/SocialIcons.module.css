@@ -1,4 +1,4 @@
-.socialIcons {
+.social__icons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 0.5vw;
@@ -6,19 +6,19 @@
     font-size: 1.2rem;
 }
 
-.socialIcons a {
+.icons {
     display: grid;
     justify-content: center;
     align-content: center;
-    color: var(--gold-dark);   
+    color: var(--brown);   
 }
 
-.socialIcons a:hover {
-    color: var(--gold);   
+.icons:hover {
+    color: var(--brown-light);   
 }
 
 @media (max-width: 768px) {
-    .socialIcons {
+    .social__icons {
         grid-column: 3 / 4;
         grid-gap: 2vw;
     }    

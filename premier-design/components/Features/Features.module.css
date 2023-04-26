@@ -30,13 +30,13 @@
     align-items: center;
     justify-content: stretch;
     text-align: center;
-    border-right: 1px solid rgba(207, 211, 214, 0.8);
+    border-right: 1px solid var(--brown-white);
 }
 
 .features__title {
     font-size: 1.3vw;
     font-weight: 600;
-    color: #2C3A61;
+    color: var(--brown);
     white-space: nowrap;
 }
 

@@ -1,8 +1,8 @@
-.themeButton {
+.theme__button {
     grid-column: 5 / 6;
     background-color: transparent;
     border: none;
-    color: var(--gold-dark);
+    color: var(--brown);
     display: grid;
     align-items: center;
     justify-content: end;
@@ -14,17 +14,17 @@
     white-space: nowrap;
 }
 
-.themeButton:hover {
-    color: var(--gold);
+.theme__button:hover {
+    color: var(--brown-light);
     cursor: pointer;
 }
 
-.themeButton svg{
+.theme__button svg{
     width: 1.2rem;
     height: 1.2rem;
 }
 @media (max-width: 768px) {
-    .themeButton {
+    .theme__button {
         grid-column: 4 / 5;
     }
 }

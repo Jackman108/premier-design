@@ -7,11 +7,11 @@ import Link from 'next/link';
 
 const MobileMenu: React.FC<MenuProps> = ({ MenuItems, isMobileMenuOpen, toggleMobileMenu }) => {
     return (
-        <nav className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.open : ''}`}>
-            <ul>
+        <nav className={`${styles.mobile__menu} ${isMobileMenuOpen ? styles.open : ''}`}>
+            <ul className={styles.menu__items}>
                 {MenuItems.map((menuItem, index) => (
-                    <li key={index}>
-                        <Link href={`/${menuItem.title == 'Home' ? "" : menuItem.title.toLowerCase()}`} onClick={toggleMobileMenu}>
+                    <li key={index} className={styles.menu__item}>
+                        <Link href={`/${menuItem.title == 'Home' ? "" : menuItem.title.toLowerCase()}`} onClick={toggleMobileMenu} className={styles.item}>
                             {menuItem.title}
                         </Link>
                     </li>

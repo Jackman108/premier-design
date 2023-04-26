@@ -19,14 +19,14 @@
 .menu__item {
     font-size: 1.2rem;
     font-weight: bold;
-    color: var(--gold-dark);
+    color: var(--brown);
     text-align: center;
     cursor: pointer;
     white-space: nowrap;
 }
 
 .menu__item:hover {
-    color: var(--gold);
+    color: var(--brown-light);
 }
 
 @media (max-width: 768px) {

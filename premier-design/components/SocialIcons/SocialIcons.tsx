@@ -7,18 +7,18 @@ import styles from './SocialIcons.module.css';
 
 function SocialIcons(): JSX.Element {
     return (
-        <div className={`${styles.socialIcons} socialIcons`}>
+        <div className={styles.social__icons}>
             <Link href="#">
-                <FaTelegram />
+                <FaTelegram className={styles.icons}/>
             </Link>
             <Link href="#">
-                <SlSocialVkontakte />
+                <SlSocialVkontakte className={styles.icons}/>
             </Link>
             <Link href="#">
-                <FaInstagram />
+                <FaInstagram className={styles.icons}/>
             </Link>
             <Link href="#">
-                <TfiEmail />
+                <TfiEmail className={styles.icons}/>
             </Link>
         </div>
     );

@@ -6,7 +6,7 @@ import { ThemeButtonProps } from './ThemeButton.props';
 
 const ThemeButton: React.FC<ThemeButtonProps> = ({ currentTheme, toggleTheme }) => {
     return (
-        <button className={styles.themeButton} onClick={toggleTheme}>
+        <button className={styles.theme__button} onClick={toggleTheme}>
             {currentTheme === 'light' ? <FaMoon /> : <FaSun />}
         </button>
     );

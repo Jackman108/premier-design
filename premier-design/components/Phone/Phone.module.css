@@ -4,7 +4,7 @@
 
 .phone__container {
     display: grid;
-    color: var(--gold-dark);
+    color: var(--brown);
     grid-template-columns:  auto 1fr;
     grid-gap: 1vh;
     justify-content: center;
@@ -12,7 +12,7 @@
 }
 
 .phone__container:hover {
-    color: var(--gold);
+    color: var(--brown-light);
 }
 
 .phone__logo {

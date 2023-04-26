@@ -2,13 +2,11 @@
     grid-column: 1 / 2;
 }
 
-.logo__image img {
-    max-width: 6vh;
-    max-height: 6vh;
+.image {
+    max-width: 14vh;
+    max-height: 14vh;
 }
 
-@media (max-width: 768px) {
-    .logo {
-        display: none;
-    }
+.image:hover {
+    opacity: 0.8;
 }

@@ -12,7 +12,7 @@
     padding: 1vw;
     width: 16vw;
     height: 16vw;
-    background-color: white;
+    background-color: var(--beige);
     justify-items: center;
 }
 
@@ -20,7 +20,7 @@
     text-align: center;
     font-size: 1.2vw;
     font-weight: 600;
-    color: #1E2640;
+    color: var(--brown);
 }
 
 .card__description {
@@ -28,7 +28,7 @@
     font-size: 1vw;
     line-height: 1.2;
     font-weight: 400;
-    color: #889099;
+    color: var(--brown-light);
 }
 
 .card__image {
