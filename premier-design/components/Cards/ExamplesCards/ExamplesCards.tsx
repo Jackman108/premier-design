@@ -19,7 +19,6 @@ const ExamplesCards = (): JSX.Element => {
                         <div className={styles.card__deadlines}>
                             {exampleCard.deadlines}
                         </div>
-
                         <div className={styles.card__option}>
                             <div className={styles.card__bathroom}>
                                 <div className={styles.bathroom__icon}>
@@ -29,7 +28,6 @@ const ExamplesCards = (): JSX.Element => {
                                     {exampleCard.bathroomOption}
                                 </div>
                             </div>
-
                             <div className={styles.card__area}>
                                 <div className={styles.area__icon}>
                                     <img src={exampleCard.areaIcon} alt='bathroom' />
@@ -41,12 +39,13 @@ const ExamplesCards = (): JSX.Element => {
                                     {exampleCard.areaSquare}
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
             ))}
         </div>
+
+
     );
 };
 export default ExamplesCards;

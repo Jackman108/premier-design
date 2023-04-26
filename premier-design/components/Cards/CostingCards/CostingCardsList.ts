@@ -1,6 +1,6 @@
 import { CostingCardsProps } from "./CostingCards.props";
 
-export const сostingList: CostingCardsProps[] = [
+export const costingList: CostingCardsProps[] = [
     {
         title: 'Косметический ремонт',
         image: '/costing/costing01.png',              

@@ -16,7 +16,6 @@ const Costing = (): JSX.Element => {
                     title={title}
                     description={description} />
                 <CostingCards /> 
-                <ArrowButton/>               
             </div>
         </section>
     );

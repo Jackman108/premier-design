@@ -7,6 +7,7 @@ import Services from '../components/Services/Services';
 import Approach from '../components/Approach/Approach';
 import Examples from '../components/Examples/Examples';
 import Costing from '../components/Costing/Costing';
+import Preloader from '../components/UX/Preloader/Preloader';
 
 const Home: NextPage = () => {
   return (
@@ -27,6 +28,7 @@ const Home: NextPage = () => {
             <Approach/>
             <Examples/>
             <Costing/>
+            <Preloader/>
           </section>
         </main>
       </Layout>

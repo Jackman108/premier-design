@@ -28,7 +28,6 @@
     "emitDeclarationOnly": true,
     "declarationDir": "./types",
     "incremental": true,
-    "noEmit": true
   },
   "include": [
     "next-env.d.ts",
