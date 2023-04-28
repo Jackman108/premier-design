@@ -14,10 +14,10 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Pro Ремонт - Ремонт и дизайн интерьеров в Беларуси</title>
+        <title>Premium Interior - Ремонт и дизайн интерьеров в Беларуси</title>
         <meta
           name="description"
-          content="Pro Ремонт - ремонт и дизайн интерьеров в Беларуси"
+          content="Premium Interior - ремонт и дизайн интерьеров в Беларуси"
         />
       </Head>
       <Layout>

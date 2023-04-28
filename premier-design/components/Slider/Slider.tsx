@@ -1,14 +1,10 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
+import { SliderProps } from './Slider.props';
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 
-interface Props {
-    children: ReactNode;
-    slidesPerView: number;
-    isMobile: boolean;
-}
 
-const Slider = ({ children, slidesPerView, isMobile }: Props): JSX.Element => {
+const Slider = ({ children, slidesPerView, isMobile }: SliderProps): JSX.Element => {
 
     const [ref] = useKeenSlider<HTMLDivElement>({
         loop: true,

@@ -3,6 +3,7 @@
     max-width: 100%;
     height: 54vh;
     background-image: url("/appeal.png");
+    background-size: cover;
     padding: 6% 0;
 }
 

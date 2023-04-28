@@ -1,5 +1,5 @@
 .costing__cards {
-    margin: 0 5%;  
+    margin: 0 5%;
     display: grid;
     padding: 2vh 0;
 }
@@ -14,21 +14,21 @@
     border-radius: 2%;
     grid-gap: 4vh;
     cursor: pointer;
-    box-shadow: 5px 5px 20px var(--brown-white);
+    box-shadow: 0px 0px 10px var(--brown-white),inset -2px -2px 10px var(--brown-white);;
     transition: transform 0.5s ease, opacity 0.3s ease;
     opacity: 1;
     transform: translateY(20px);
 }
 
 .costing__card:hover {
-    box-shadow: 10px 10px 20px var(--brown-white);
+    box-shadow: 0px 0px 5px var(--brown-white),inset -2px -2px 5px var(--brown-white);;
     opacity: 0.9;
     transform: translateY(0);
 }
 
 .card__background {
     position: relative;
-  overflow: hidden;
+    overflow: hidden;
     width: 100%;
     height: 100%;
 }
@@ -52,16 +52,12 @@
 }
 
 @media screen and (max-width: 768px) {
-    .costing__cards {       
+    .costing__cards {
         padding: 0;
     }
 
-    .costing__card {
-
-    }
-
     .card__title {
-        font-size: 1.6vh;
+        font-size: 1.6rem;
         margin: 2% 0;
     }
 }
