@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import styles from './Title.module.css';
-import { TitleProps } from './Title.props';
+import  TitleProps from './Title.props';
 
-const Title:React.FC<TitleProps> = ({ title, description, titleStyle, descriptionStyle }) => {
+const Title = ({ title, description, titleStyle, descriptionStyle }: TitleProps): JSX.Element => {
     const [titleClass, setTitleClass] = useState(titleStyle === 'title-black' ? styles['title-black'] : styles['title-white']);
     const [descriptionClass, setDescriptionClass] = useState(descriptionStyle === 'description-black' ? styles['description-black'] : styles['description-white']);
     return (

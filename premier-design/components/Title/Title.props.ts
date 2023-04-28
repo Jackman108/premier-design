@@ -1,8 +1,9 @@
 interface TitleProps {
+    id: number;
     title: string;
     description: string;
-    titleStyle?: 'title-white' | 'title-black';
-    descriptionStyle?: 'description-white' | 'description-black';
+    titleStyle: 'title-white' | 'title-black';
+    descriptionStyle: 'description-white' | 'description-black';
 }
 
-export type {TitleProps};
+export default TitleProps;
