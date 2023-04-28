@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./Footer.module.css";
-import FooterMenu from "../Menu/FooterMenu/FooterMenu";
-import menuItems from "../Menu/MenuItems/MenuItems";
-import News from "../News/News";
-import Data from "../../data/data.json";
-import Contacts from "../Contacts/Contacts";
+import FooterMenu from "../../Menu/FooterMenu/FooterMenu";
+import menuItems from "../../Menu/MenuItems/MenuItems";
+import News from "../../News/News";
+import Data from "../../../data/data.json";
+import Contacts from "../../Contacts/Contacts";
 
 
 function Footer(): JSX.Element {

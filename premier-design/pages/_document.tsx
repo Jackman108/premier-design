@@ -13,10 +13,10 @@ class MyDocument extends Document {
         return (
             <Html lang='ru'>
                 <Head>
-                    <title>Премиальный интерьер - Ремонт и дизайн интерьеров в Беларуси</title>
+                    <title>Premium Interior - Ремонт и дизайн интерьеров в Беларуси</title>
                     <meta
                         name="description"
-                        content="Премиальный интерьер - ремонт и дизайн интерьеров в Беларуси"
+                        content="Premium Interior - ремонт и дизайн интерьеров в Беларуси"
 					/>
 					<meta 
                     name="viewport" 
