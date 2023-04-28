@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
-import '../styles/globals.css'
+import '../styles/globals.css';
+import "keen-slider/keen-slider.min.css";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     return (

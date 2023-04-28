@@ -1,22 +1,26 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useMobileMenu from './useMobileMenu';
 import useThemeToggle from './useThemeToggle';
 
-function useHeaderEffects() {
+function useResizeEffects() {
     const { currentTheme, toggleTheme } = useThemeToggle();
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);
+    const [isMobile, setIsMobile] = useState<boolean>(false);
 
     useEffect(() => {
         const handleResize = () => {
             if (window.innerWidth > 768) {
+                setIsMobile(false);
                 toggleMobileMenu();
+            } else {
+                setIsMobile(true);
             }
         };
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    return { currentTheme, toggleTheme, isMobileMenuOpen, toggleMobileMenu };
+    return { currentTheme, toggleTheme, isMobileMenuOpen, toggleMobileMenu, isMobile };
 }
 
-export default useHeaderEffects;
+export default useResizeEffects;
