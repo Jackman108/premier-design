@@ -10,8 +10,9 @@ import useResizeEffects from '../../hooks/useHeaderEffects';
 import useMobileMenu from '../../hooks/useMobileMenu';
 import ThemeButton from '../../UX/ThemeButton/ThemeButton';
 import MenuButton from '../../UX/MenuButton/MenuButton';
+import { HeaderProps } from './Header.props';
 
-function Header(): JSX.Element {
+function Header({}: HeaderProps): JSX.Element {
     const { currentTheme, toggleTheme } = useResizeEffects();
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);
 
@@ -27,7 +28,6 @@ function Header(): JSX.Element {
                 <ThemeButton currentTheme={currentTheme} toggleTheme={toggleTheme} />
                 <MenuButton toggleMobileMenu={toggleMobileMenu} />
                 <MobileMenu MenuItems={MenuItems} isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
-
             </div>
         </header>
     );

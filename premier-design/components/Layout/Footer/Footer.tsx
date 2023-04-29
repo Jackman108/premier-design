@@ -5,9 +5,10 @@ import menuItems from "../../Menu/MenuItems/MenuItems";
 import News from "../../News/News";
 import Data from "../../../data/data.json";
 import Contacts from "../../Contacts/Contacts";
+import { FooterProps } from "./Footer.props";
 
 
-function Footer(): JSX.Element {
+function Footer({}: FooterProps): JSX.Element {
     return (
         <footer className={styles.footer}>
             <div className={styles.footer__container}>

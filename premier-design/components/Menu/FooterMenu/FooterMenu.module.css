@@ -1,13 +1,13 @@
-.navigation {
+.menu {
     max-width: 20vw;   
     display: grid;
 }
 
-.navigation a {
+.menu__link {
     text-decoration: none;
 }
 
-.navigation__menu {
+.menu__container {
     display: grid;
     grid-template-columns: 1fr;
     gap: 3vh;

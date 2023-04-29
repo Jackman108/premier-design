@@ -1,20 +1,20 @@
 import React from 'react';
 import styles from './ApproachCards.module.css';
-import { ApproachList } from './ApproachCardsList';
+import { ApproachCardsProps } from './ApproachCards.props';
 
-const ApproachCards = (): JSX.Element => {
+const ApproachCards: React.FC<{ data: ApproachCardsProps[] }> = ({ data }): JSX.Element => {
     return (
         <div className={styles.approach__cards}>
-            {ApproachList.map((approachCard, index) => (
-                <div className={styles.approach__card} key={index}>
+            {data.map(({id, image, title, description}) => (
+                <div className={styles.approach__card} key={id}>
                     <div className={styles.card__image}>
-                        <img src={approachCard.image} alt={approachCard.image} />
+                        <img src={image} alt={image} />
                     </div>
                     <div className={styles.card__title}>
-                        {approachCard.title}
+                        {title}
                     </div>
                     <div className={styles.card__description}>
-                        {approachCard.description}
+                        {description}
                     </div>
                 </div>
             ))}

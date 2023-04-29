@@ -3,22 +3,22 @@ import styles from './Services.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../Title/Title';
-import Data from '../../data/data.json';
+import data from '../../data/data.json';
 
-const Services = (): JSX.Element => {
-    const findData = Data.title.find((item) => item.id === 2);
-    const title = findData ? findData.title : '';
-    const description = findData ? findData.description : '';
+const Services: React.FC = (): JSX.Element => {
+    const foundTitle = data.title.find((item: { id: number }): boolean => item.id === 2);
+    const title = foundTitle?.title ?? '';
+    const description = foundTitle?.description ?? '';
     return (
         <section className={styles.services}>
             <div className={styles.services__container}>
-                <Title 
-                id={2}
-                titleStyle='title-black' 
-                descriptionStyle='description-black' 
-                title={title} 
-                description={description} />
-                <ServicesCards />
+                <Title
+                    id={foundTitle?.id ?? 2}
+                    titleStyle='title-black'
+                    descriptionStyle='description-black'
+                    title={title}
+                    description={description} />
+                <ServicesCards data={data.list.services} />
                 <OrderButton buttonStyle='button-black' />
             </div>
         </section>

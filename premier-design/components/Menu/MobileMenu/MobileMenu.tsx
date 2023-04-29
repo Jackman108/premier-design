@@ -4,8 +4,7 @@ import styles from './MobileMenu.module.css';
 import Link from 'next/link';
 
 
-
-const MobileMenu: React.FC<MenuProps> = ({ MenuItems, isMobileMenuOpen, toggleMobileMenu }) => {
+const MobileMenu = ({ MenuItems, isMobileMenuOpen, toggleMobileMenu }: MenuProps): JSX.Element => {
     return (
         <nav className={`${styles.mobile__menu} ${isMobileMenuOpen ? styles.open : ''}`}>
             <ul className={styles.menu__items}>

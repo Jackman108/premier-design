@@ -3,7 +3,7 @@ import styles from './DesktopMenu.module.css';
 import Link from 'next/link';
 import { MenuProps } from '../MenuItems/MenuItems.props';
 
-const DesktopMenu: React.FC<MenuProps> = ({ MenuItems }) => {
+const DesktopMenu = ({ MenuItems }: MenuProps): JSX.Element => {
     return (
         <nav className={`${styles.menu} nav`}>
             <ul className={styles.menu__container}>

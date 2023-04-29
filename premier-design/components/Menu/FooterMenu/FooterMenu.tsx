@@ -5,11 +5,11 @@ import { MenuProps } from '../MenuItems/MenuItems.props';
 
 const FooterMenu = ({MenuItems}: MenuProps): JSX.Element => {
     return (
-        <nav className={`${styles.navigation} nav`}>
-            <ul className={styles.navigation__menu}>
+        <nav className={styles.menu}>
+            <ul className={styles.menu__container}>
                 {MenuItems.map((menuItem, index) => (
-                    <li key={index}>
-                        <Link href={`/${menuItem.title == 'Home' ? "" : menuItem.title.toLowerCase()}`}>
+                    <li key={index} className={styles.menu__links}>
+                        <Link className={styles.menu__link} href={`/${menuItem.title == 'Home' ? "" : menuItem.title.toLowerCase()}`}>
                             <div className={styles.menu__item}>{menuItem.title}</div>
                         </Link>
                     </li>

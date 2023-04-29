@@ -5,7 +5,7 @@ import Title from '../Title/Title';
 import Data from '../../data/data.json';
 
 const Appeal = (): JSX.Element => {
-    const findData = Data.title.find((item) => item.id === 2);
+    const findData = Data.title.find((item) => item.id === 6);
     const title = findData ? findData.title : '';
     const description = findData ? findData.description : '';
     return (

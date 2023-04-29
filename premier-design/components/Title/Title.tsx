@@ -1,10 +1,16 @@
-import React, {useState} from 'react';
+import React from 'react';
 import styles from './Title.module.css';
-import  TitleProps from './Title.props';
+import { TitleProps } from './Title.props';
 
-const Title = ({ title, description, titleStyle, descriptionStyle }: TitleProps): JSX.Element => {
-    const [titleClass, setTitleClass] = useState(titleStyle === 'title-black' ? styles['title-black'] : styles['title-white']);
-    const [descriptionClass, setDescriptionClass] = useState(descriptionStyle === 'description-black' ? styles['description-black'] : styles['description-white']);
+
+const Title = ({
+    title,
+    description,
+    titleStyle,
+    descriptionStyle,
+}: TitleProps): JSX.Element => {
+    const titleClass = `${styles[titleStyle]} ${styles.title}`;
+    const descriptionClass = `${styles[descriptionStyle]} ${styles.description}`;
     return (
         <>
             <h1 className={titleClass}>{title}</h1>

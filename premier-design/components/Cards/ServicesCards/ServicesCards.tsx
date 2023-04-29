@@ -1,21 +1,19 @@
 import React from 'react';
 import styles from './ServicesCards.module.css';
-import { servicesList } from './ServicesCardsList';
+import { ServicesCardsProps } from './ServicesCards.props';
 
-
-
-const ServicesCards = (): JSX.Element => {
+const ServicesCards: React.FC<{ data: ServicesCardsProps[] }> = ({ data }): JSX.Element => {
     return (
         <div className={styles.services__cards}>
-            {servicesList.map((serviceCard, index) => (
-                <div className={styles.services__card} key={index}>
+            {data.map(({ id, text, image }: ServicesCardsProps) => (
+                <div className={styles.services__card} key={id}>
                     <div className={styles.card__title}>
-                        {serviceCard.text}
+                        {text}
                     </div>
                     <div className={styles.card__image}>
                         <img
-                            src={serviceCard.image}
-                            alt={serviceCard.text}
+                            src={image}
+                            alt={text}
                             className={styles.image__background}
                         />
                     </div>

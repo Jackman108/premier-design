@@ -1,9 +1,10 @@
-interface TitleProps {
-    id: number;
-    title: string;
-    description: string;
-    titleStyle: 'title-white' | 'title-black';
-    descriptionStyle: 'description-white' | 'description-black';
-}
+import { HTMLAttributes } from 'react';
 
-export default TitleProps;
+export interface TitleProps 
+extends Omit<HTMLAttributes<HTMLDivElement>, 'id'> {
+id: number;
+title: string;
+description: string;
+titleStyle: 'title-white' | 'title-black';
+descriptionStyle: 'description-white' | 'description-black';
+}

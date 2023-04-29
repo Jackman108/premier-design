@@ -72,5 +72,155 @@
             "title": "Создайте лучшее место для жизни",
             "description": "Оставьте заявку сегодня, и новоселье станет на один шаг ближе."
         }
-    ]
+    ],
+    "list": {
+        "approach": [
+            {
+                "id": 1,
+                "image": "/approach/approach01.svg",
+                "title": "Выезд оценщика",
+                "description": "Любые консультации и составление сметы – БЕСПЛАТНО"
+            },
+            {
+                "id": 2,
+                "image": "/approach/approach02.svg",
+                "title": "Помощь с материалами",
+                "description": "Помощь в выборе и закупке чистовых материалов – БЕСПЛАТНО!"
+            },
+            {
+                "id": 3,
+                "image": "/approach/approach03.svg",
+                "title": "Дизайн-проект",
+                "description": "Базовый дизайн-проект, экономит Вам до 25% стоимости - БЕСПЛАТНО."
+            },
+            {
+                "id": 4,
+                "image": "/approach/approach04.svg",
+                "title": "Минимизация расходов",
+                "description": "Качественный ремонт дешевле чем Вы думаете!"
+            }
+        ],
+        "costing": [
+            {
+                "id": 1,
+                "title": "Косметический ремонт",
+                "image": "/costing/costing01.png"
+            },
+            {
+                "id": 2,
+                "title": "Капитальный ремонт",
+                "image": "/costing/costing02.png"
+            },
+            {
+                "id": 3,
+                "title": "Премиальный ремонт",
+                "image": "/costing/costing03.png"
+            },
+            {
+                "id": 4,
+                "title": "Ремонт ресторанов",
+                "image": "/costing/costing04.png"
+            },
+            {
+                "id": 5,
+                "title": "Ремонт офисов",
+                "image": "/costing/costing05.png"
+            }
+        ],
+        "examples": [
+            {
+                "id": 1,
+                "background": "/examples/example01.png",
+                "address": "Ремонт квартиры. г.Жлобин",
+                "deadlines": "Срок выполнения 5,5 мес.",
+                "bathroomIcon": "/examples/bathroomIcon.svg",
+                "bathroomOption": 1,
+                "areaIcon": "/examples/areaIcon.svg",
+                "areaOption": 49,
+                "areaSquare": "m2"
+            },
+            {
+                "id": 2,
+                "background": "/examples/example02.png",
+                "address": "Ремонт дома. п.Сейбит",
+                "deadlines": "Срок выполнения 4 мес.",
+                "bathroomIcon": "/examples/bathroomIcon.svg",
+                "bathroomOption": 1,
+                "areaIcon": "/examples/areaIcon.svg",
+                "areaOption": 42,
+                "areaSquare": "m2"
+            },
+            {
+                "id": 3,
+                "background": "/examples/example03.png",
+                "address": "Ремонт дома. д.Малые Роги",
+                "deadlines": "Срок выполнения 1 мес.",
+                "bathroomIcon": "/examples/bathroomIcon.svg",
+                "bathroomOption": 1,
+                "areaIcon": "/examples/areaIcon.svg",
+                "areaOption": 80,
+                "areaSquare": "m2"
+            },
+            {
+                "id": 4,
+                "background": "/examples/example04.png",
+                "address": "Ремонт магазина IMPERIAL",
+                "deadlines": "Срок выполнения 2 мес.",
+                "bathroomIcon": "/examples/bathroomIcon.svg",
+                "bathroomOption": 0,
+                "areaIcon": "/examples/areaIcon.svg",
+                "areaOption": 108,
+                "areaSquare": "m2"
+            },
+            {
+                "id": 5,
+                "background": "/examples/example05.png",
+                "address": "Ремонт павильона IQOS",
+                "deadlines": "Срок выполнения 1,5 мес.",
+                "bathroomIcon": "/examples/bathroomIcon.svg",
+                "bathroomOption": 1,
+                "areaIcon": "/examples/areaIcon.svg",
+                "areaOption": 70,
+                "areaSquare": "m2"
+            },
+            {
+                "id": 6,
+                "background": "/examples/example06.png",
+                "address": "Ремонт ресторана Колбасный Цех",
+                "deadlines": "Срок выполнения 2 мес.",
+                "bathroomIcon": "/examples/bathroomIcon.svg",
+                "bathroomOption": 2,
+                "areaIcon": "/examples/areaIcon.svg",
+                "areaOption": 150,
+                "areaSquare": "m2"
+            }
+        ],
+        "services": [
+            {
+                "id": 1,
+                "text": "Дизайн интерьеров",
+                "image": "/services/service01.png"
+            },
+            {
+                "id": 2,
+                "text": "Ремонт квартир",
+                "image": "/services/service02.png"
+            },
+            {
+                "id": 3,
+                "text": "Сопутствующие услуги",
+                "image": "/services/service03.png"
+            },
+            {
+                "id": 4,
+                "text": "Акции",
+                "image": "/services/service05.png"
+            },
+            {
+                "id": 5,
+                "text": "Ремонт общественных знаний и сооружений",
+                "image": "/services/service04.png"
+            }
+        ]
+    }
 }
