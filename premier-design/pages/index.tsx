@@ -10,8 +10,20 @@ import Costing from '../components/Costing/Costing';
 import Preloader from '../components/UX/Preloader/Preloader';
 import Appeal from '../components/Appeal/Appeal';
 import data from "../data/data.json";
+import bannerImg from '../public/banner.png';
 
 const Home: NextPage = () => {
+  const findTitle = data.title.find((item) => item.id === 1);
+  const { title = '', description = '' } = findTitle || {};
+
+  const findButton = data.button[0] ?? { buttonHeader: '' };
+  const { buttonHeader: buttonTitle = '' } = findButton;
+
+  const bannerImageProps = {
+    src: bannerImg,
+    alt: 'Banner Image',
+    quality: 100,
+  };
   return (
     <>
       <Head>
@@ -22,17 +34,25 @@ const Home: NextPage = () => {
         />
       </Head>
       <Layout>
-        <main>
-          <section>
-            <Banner />
-            <Features  data={data} />
-            <Services />
-            <Approach/>
-            <Examples/>
-            <Costing/>
-            <Preloader/>
-            <Appeal/>
-          </section>
+        <main>          
+            <Banner             
+              title={title}
+              description={description}
+              titleStyle='title-white'
+              descriptionStyle='description-white'
+              buttonHeader={buttonTitle}
+              bannerImg={bannerImageProps}
+              buttonStyle='button-white'
+            />
+            <Features data={data} />
+            <Services
+            buttonStyle='button-black'
+            />
+            <Approach />
+            <Examples />
+            <Costing />
+            <Preloader />
+            <Appeal />         
         </main>
       </Layout>
     </>

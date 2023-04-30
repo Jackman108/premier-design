@@ -10,7 +10,7 @@ const MobileMenu = ({ data, isMobileMenuOpen, toggleMobileMenu }: MenuProps): JS
             <ul className={styles.menu__items}>
             {data?.menu?.map(({id, title, ruTitle}: MenuItem) => (
                     <li key={id} className={styles.menu__item}>
-                        <Link href={`/${ title.toLowerCase()}`} onClick={toggleMobileMenu} className={styles.item}>
+                        <Link href={`/${title === 'Home' ? '' : title.toLowerCase()}`} onClick={toggleMobileMenu} className={styles.item}>
                             {ruTitle}
                         </Link>
                     </li>

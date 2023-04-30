@@ -9,8 +9,8 @@ const Title = ({
     titleStyle,
     descriptionStyle,
 }: TitleProps): JSX.Element => {
-    const titleClass = `${styles[titleStyle]} ${styles.title}`;
-    const descriptionClass = `${styles[descriptionStyle]} ${styles.description}`;
+    const titleClass = `${styles[titleStyle!]} ${styles.title}`;
+    const descriptionClass = `${styles[descriptionStyle!]} ${styles.description}`;
     return (
         <>
             <h1 className={titleClass}>{title}</h1>

@@ -17,7 +17,7 @@ const Appeal = (): JSX.Element => {
                     descriptionStyle='description-white'
                     title={title}
                     description={description} />
-                <OrderButton buttonStyle='button-white' />
+                <OrderButton buttonHeader={'Оставить заявку'} buttonStyle='button-white' />
             </div>
         </section>
     );

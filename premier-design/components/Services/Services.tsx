@@ -4,8 +4,10 @@ import OrderButton from '../UX/OrderButton/OrderButton';
 import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../Title/Title';
 import data from '../../data/data.json';
+import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
 
-const Services: FC = (): JSX.Element => {
+
+const Services: FC<OrderButtonProps> = (): JSX.Element => {
     const foundTitle = data.title.find((item: { id: number }): boolean => item.id === 2);
     const title = foundTitle?.title ?? '';
     const description = foundTitle?.description ?? '';
@@ -19,7 +21,7 @@ const Services: FC = (): JSX.Element => {
                     title={title}
                     description={description} />
                 <ServicesCards data={data.list.services} />
-                <OrderButton buttonStyle='button-black' />
+                <OrderButton  buttonHeader={'Оставить заявку'} buttonStyle='button-black' />
             </div>
         </section>
     );

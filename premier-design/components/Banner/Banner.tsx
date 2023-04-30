@@ -1,18 +1,40 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './Banner.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../Title/Title';
-import Data from '../../data/data.json';
+import { TitleProps } from '../Title/Title.props';
+import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
+import Image, { ImageProps } from 'next/image';
 
-const Banner = (): JSX.Element => {
-    const findData = Data.title.find((item) => item.id === 1);
-    const title = findData ? findData.title : '';
-    const description = findData ? findData.description : '';
+type BannerProps = TitleProps & OrderButtonProps & {
+    bannerImg: ImageProps
+}
+
+const Banner: FC<BannerProps> = ({
+    title,
+    description,
+    titleStyle,
+    descriptionStyle,
+    buttonHeader,
+    buttonStyle,
+    bannerImg
+}): JSX.Element => {
     return (
         <section className={styles.banner}>
+            <div className={`${styles.banner__background} banner__background`}>
+                <Image priority={true} {...bannerImg} className={styles.banner__background} />
+            </div>
             <div className={styles.banner__container}>
-                <Title id={1} titleStyle='title-white' descriptionStyle='description-white' title={title} description={description} />
-                <OrderButton buttonStyle='button-white' />
+                <Title
+                    titleStyle={titleStyle}
+                    descriptionStyle={descriptionStyle}
+                    title={title}
+                    description={description}
+                />
+                <OrderButton
+                    buttonHeader={buttonHeader}
+                    buttonStyle={buttonStyle}
+                />
             </div>
         </section>
     );

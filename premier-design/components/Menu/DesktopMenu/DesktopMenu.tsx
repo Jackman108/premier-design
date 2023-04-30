@@ -9,7 +9,7 @@ const DesktopMenu = ({ data }: MenuProps): JSX.Element => {
             <ul className={styles.menu__container}>
                 {data?.menu?.map(({id, title, ruTitle}: MenuItem) => (
                     <li key={id} className={styles.menu__links}>
-                        <Link className={styles.menu__link} href={`/${title.toLowerCase()}`}>
+                        <Link className={styles.menu__link} href={`/${title === 'Home' ? '' : title.toLowerCase()}`}>
                             <div className={styles.menu__item}>{ruTitle}</div>
                         </Link>
                     </li>
