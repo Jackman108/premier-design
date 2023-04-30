@@ -1,33 +1,31 @@
 import React from 'react';
-import styles from './Header.module.css';
-import MenuItems from '../../Menu/MenuItems/MenuItems';
-import MobileMenu from '../../Menu/MobileMenu/MobileMenu';
-import DesktopMenu from '../../Menu/DesktopMenu/DesktopMenu';
 import Logo from '../../Logo/Logo';
 import Phone from '../../Phone/Phone';
 import SocialIcons from '../../SocialIcons/SocialIcons';
-import useResizeEffects from '../../hooks/useHeaderEffects';
+import useResizeEffects from '../../hooks/useResizeEffects';
 import useMobileMenu from '../../hooks/useMobileMenu';
-import ThemeButton from '../../UX/ThemeButton/ThemeButton';
+import DesktopMenu from '../../Menu/DesktopMenu/DesktopMenu';
+import MobileMenu from '../../Menu/MobileMenu/MobileMenu';
 import MenuButton from '../../UX/MenuButton/MenuButton';
+import ThemeButton from '../../UX/ThemeButton/ThemeButton';
+import data from '../../../data/data.json';
+import styles from './Header.module.css';
 import { HeaderProps } from './Header.props';
+
 
 function Header({}: HeaderProps): JSX.Element {
     const { currentTheme, toggleTheme } = useResizeEffects();
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);
-
     return (
         <header className={styles.header}>
             <div className={styles.header__container}>
-                <div className={styles.header__logo}>
-                    <Logo />
-                </div>
-                <DesktopMenu MenuItems={MenuItems} />
+                <Logo />
+                <DesktopMenu data={data} />
                 <Phone />
                 <SocialIcons />
                 <ThemeButton currentTheme={currentTheme} toggleTheme={toggleTheme} />
                 <MenuButton toggleMobileMenu={toggleMobileMenu} />
-                <MobileMenu MenuItems={MenuItems} isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
+                <MobileMenu data={data} isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
             </div>
         </header>
     );

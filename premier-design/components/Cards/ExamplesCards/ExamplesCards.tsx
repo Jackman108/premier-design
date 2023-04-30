@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ExamplesCards.module.css';
 import SliderComponent from '../../Slider/Slider';
-import useResizeEffects from '../../hooks/useHeaderEffects';
+import useResizeEffects from '../../hooks/useResizeEffects';
 import Link from 'next/link';
 import { ExamplesCardsProps } from './ExamplesCards.props';
 

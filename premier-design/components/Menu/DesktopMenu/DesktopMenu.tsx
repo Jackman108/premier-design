@@ -1,16 +1,16 @@
 import React from 'react';
 import styles from './DesktopMenu.module.css';
 import Link from 'next/link';
-import { MenuProps } from '../MenuItems/MenuItems.props';
+import { MenuItem, MenuProps } from '../MenuItems/MenuItems.props';
 
-const DesktopMenu = ({ MenuItems }: MenuProps): JSX.Element => {
+const DesktopMenu = ({ data }: MenuProps): JSX.Element => {
     return (
-        <nav className={`${styles.menu} nav`}>
+        <nav className={styles.menu}>
             <ul className={styles.menu__container}>
-                {MenuItems.map((menuItem, index) => (
-                    <li key={index} className={styles.menu__links}>
-                        <Link className={styles.menu__link} href={`/${menuItem.title == 'Home' ? "" : menuItem.title.toLowerCase()}`}>
-                            <div className={styles.menu__item}>{menuItem.title}</div>
+                {data?.menu?.map(({id, title, ruTitle}: MenuItem) => (
+                    <li key={id} className={styles.menu__links}>
+                        <Link className={styles.menu__link} href={`/${title.toLowerCase()}`}>
+                            <div className={styles.menu__item}>{ruTitle}</div>
                         </Link>
                     </li>
                 ))}

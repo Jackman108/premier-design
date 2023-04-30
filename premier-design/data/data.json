@@ -1,4 +1,31 @@
 {
+    "menu": [
+        {
+            "id": 1,
+            "title": "Home",
+            "ruTitle": "Главная"
+        },
+        {
+            "id": 2,
+            "title": "Repairs",
+            "ruTitle": "Ремонт"
+        },
+        {
+            "id": 3,
+            "title": "Design",
+            "ruTitle": "Дизайн"
+        },
+        {
+            "id": 4,
+            "title": "About",
+            "ruTitle": "О компании"
+        },
+        {
+            "id": 5,
+            "title": "Contacts",
+            "ruTitle": "Контакты"
+        }
+    ],
     "news": [
         {
             "id": 1,

@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "./Footer.module.css";
 import FooterMenu from "../../Menu/FooterMenu/FooterMenu";
-import menuItems from "../../Menu/MenuItems/MenuItems";
 import News from "../../News/News";
-import Data from "../../../data/data.json";
+import data from "../../../data/data.json";
 import Contacts from "../../Contacts/Contacts";
 import { FooterProps } from "./Footer.props";
 
@@ -13,8 +12,8 @@ function Footer({}: FooterProps): JSX.Element {
         <footer className={styles.footer}>
             <div className={styles.footer__container}>
                 <Contacts />
-                <News data={Data} />
-                <FooterMenu MenuItems={menuItems} />                
+                <News data={data} />
+                <FooterMenu data={data} />                
             </div>
         </footer>
     );

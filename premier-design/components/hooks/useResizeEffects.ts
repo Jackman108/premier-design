@@ -11,11 +11,12 @@ function useResizeEffects() {
         const handleResize = () => {
             if (window.innerWidth > 768) {
                 setIsMobile(false);
-                toggleMobileMenu();
+                toggleMobileMenu && toggleMobileMenu();
             } else {
                 setIsMobile(true);
             }
         };
+
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);

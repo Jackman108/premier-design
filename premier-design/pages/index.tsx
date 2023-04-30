@@ -9,7 +9,7 @@ import Examples from '../components/Examples/Examples';
 import Costing from '../components/Costing/Costing';
 import Preloader from '../components/UX/Preloader/Preloader';
 import Appeal from '../components/Appeal/Appeal';
-import Data from "../data/data.json";
+import data from "../data/data.json";
 
 const Home: NextPage = () => {
   return (
@@ -25,8 +25,8 @@ const Home: NextPage = () => {
         <main>
           <section>
             <Banner />
-            <Features  data={Data} />
-            <Services/>
+            <Features  data={data} />
+            <Services />
             <Approach/>
             <Examples/>
             <Costing/>

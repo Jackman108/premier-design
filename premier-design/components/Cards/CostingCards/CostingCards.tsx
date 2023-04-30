@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './CostingCards.module.css';
 import { CostingCardsProps } from './CostingCards.props';
 import SliderComponent from '../../Slider/Slider';
-import useResizeEffects from '../../hooks/useHeaderEffects';
+import useResizeEffects from '../../hooks/useResizeEffects';
 import Link from 'next/link';
 
 const CostingCards: React.FC<{ data: CostingCardsProps[] }> = ({ data }): JSX.Element => {

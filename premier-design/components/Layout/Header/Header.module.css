@@ -17,16 +17,9 @@
     max-width: 1440px;   
 }
 
-.header__logo:hover {
-    color: var(--gold);
-}
-
 @media (max-width: 768px) {
     .header__container {
         grid-template-columns: repeat(4, auto);
         grid-gap: 4vw;
-    }
-    .header__logo{
-        display: none;
     }
 }

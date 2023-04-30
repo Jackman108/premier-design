@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styles from './Services.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../Title/Title';
 import data from '../../data/data.json';
 
-const Services: React.FC = (): JSX.Element => {
+const Services: FC = (): JSX.Element => {
     const foundTitle = data.title.find((item: { id: number }): boolean => item.id === 2);
     const title = foundTitle?.title ?? '';
     const description = foundTitle?.description ?? '';
