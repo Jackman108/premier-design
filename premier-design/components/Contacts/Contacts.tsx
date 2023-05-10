@@ -4,8 +4,7 @@ import Logo from "../Logo/Logo";
 import SocialIcons from "../SocialIcons/SocialIcons";
 import { format } from "date-fns";
 
-
-function Contacts(): JSX.Element {
+const Contacts: React.FC = (): JSX.Element => {
     return (
         <div className={styles.footer__contacts}>
             <div className={styles.footer__logo}>

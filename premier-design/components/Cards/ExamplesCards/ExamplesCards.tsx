@@ -3,11 +3,10 @@ import styles from './ExamplesCards.module.css';
 import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../hooks/useResizeEffects';
 import Link from 'next/link';
-import { ExamplesCardsProps } from './ExamplesCards.props';
 
-const ExamplesCards: React.FC<{ data: ExamplesCardsProps[] }> = ({ data }): JSX.Element => {
+const ExamplesCards: React.FC<{ data: ExampleProps[] }> = ({ data }): JSX.Element => {
     const { isMobile } = useResizeEffects();
-    const slidesPerView = 3; 
+    const slidesPerView = 3;
     return (
         <div className={styles.examples__cards}>
             <SliderComponent slidesPerView={slidesPerView} isMobile={isMobile}>

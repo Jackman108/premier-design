@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Layout from '../components/Layout/Layout';
 
-const About: NextPage = () => {
+const About: React.FC<NextPage & DataProps> = (): JSX.Element => {
     return (
         <>
             <Head>

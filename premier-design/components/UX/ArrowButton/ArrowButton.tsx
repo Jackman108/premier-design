@@ -1,8 +1,11 @@
 import React from 'react';
 import styles from './ArrowButton.module.css';
-import { ArrowButtonProps } from './ArrowButton.props';
 import costingButton from '../../../public/arrow.svg';
+import { DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
 
+interface ArrowButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
+    onClick?: () => void;
+}
 
 const ArrowButton: React.FC<ArrowButtonProps> = () => {
     return (

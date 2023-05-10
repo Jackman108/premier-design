@@ -2,15 +2,16 @@ import React, { FC } from 'react';
 import styles from './Banner.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../Title/Title';
-import { TitleProps } from '../Title/Title.props';
 import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
 import Image, { ImageProps } from 'next/image';
+import { TitleStyleProps } from '../Title/TitleStyle.props';
 
-type BannerProps = TitleProps & OrderButtonProps & {
+type BannerProps = TitleStyleProps & OrderButtonProps & {
     bannerImg: ImageProps
 }
 
 const Banner: FC<BannerProps> = ({
+    id,
     title,
     description,
     titleStyle,
@@ -26,6 +27,7 @@ const Banner: FC<BannerProps> = ({
             </div>
             <div className={styles.banner__container}>
                 <Title
+                    id={id}
                     titleStyle={titleStyle}
                     descriptionStyle={descriptionStyle}
                     title={title}

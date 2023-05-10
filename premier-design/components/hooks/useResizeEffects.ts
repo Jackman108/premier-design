@@ -1,15 +1,17 @@
 import { useEffect, useState } from 'react';
 import useMobileMenu from './useMobileMenu';
 import useThemeToggle from './useThemeToggle';
+import { UseResizeEffectsReturnType } from '../Menu/MenuData/MenuData.props';
 
-function useResizeEffects() {
+function useResizeEffects(): UseResizeEffectsReturnType {
     const { currentTheme, toggleTheme } = useThemeToggle();
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);
     const [isMobile, setIsMobile] = useState<boolean>(false);
 
     useEffect(() => {
         const handleResize = () => {
-            if (window.innerWidth > 768) {
+            const MOBILE_BREAKPOINT = 768;
+            if (window.innerWidth > MOBILE_BREAKPOINT) {
                 setIsMobile(false);
                 toggleMobileMenu && toggleMobileMenu();
             } else {

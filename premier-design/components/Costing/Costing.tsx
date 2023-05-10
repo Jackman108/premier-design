@@ -1,11 +1,11 @@
-import React from 'react';
 import styles from './Costing.module.css';
 import CostingCards from '../Cards/CostingCards/CostingCards';
 import Title from '../Title/Title';
 import data from '../../data/data.json';
 
-const Costing = (): JSX.Element => {
-    const foundTitle = data.title.find((item: { id: number }): boolean => 
+
+const Costing: React.FC = (): JSX.Element => {
+    const foundTitle: TitleProps | undefined = data.title.find((item: TitleProps): boolean => 
     item.id === 5);
     const title = foundTitle?.title ?? '';
     const description = foundTitle?.description ?? '';

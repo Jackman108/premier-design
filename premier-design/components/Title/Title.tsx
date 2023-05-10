@@ -1,14 +1,13 @@
 import React from 'react';
 import styles from './Title.module.css';
-import { TitleProps } from './Title.props';
-
+import { TitleStyleProps } from './TitleStyle.props';
 
 const Title = ({
     title,
     description,
     titleStyle,
     descriptionStyle,
-}: TitleProps): JSX.Element => {
+}: TitleStyleProps): JSX.Element => {
     const titleClass = `${styles[titleStyle!]} ${styles.title}`;
     const descriptionClass = `${styles[descriptionStyle!]} ${styles.description}`;
     return (

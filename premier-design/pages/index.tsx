@@ -12,7 +12,7 @@ import Appeal from '../components/Appeal/Appeal';
 import data from "../data/data.json";
 import bannerImg from '../public/banner.png';
 
-const Home: NextPage = () => {
+const Home: React.FC<NextPage & DataProps> = (): JSX.Element => {
   const findTitle = data.title.find((item) => item.id === 1);
   const { title = '', description = '' } = findTitle || {};
 
@@ -34,25 +34,25 @@ const Home: NextPage = () => {
         />
       </Head>
       <Layout>
-        <main>          
-            <Banner             
-              title={title}
-              description={description}
-              titleStyle='title-white'
-              descriptionStyle='description-white'
-              buttonHeader={buttonTitle}
-              bannerImg={bannerImageProps}
-              buttonStyle='button-white'
-            />
-            <Features data={data} />
-            <Services
+        <main>
+          <Banner
+            title={title}
+            description={description}
+            titleStyle='title-white'
+            descriptionStyle='description-white'
+            buttonHeader={buttonTitle}
+            bannerImg={bannerImageProps}
+            buttonStyle='button-white'
+          />
+          <Features data={data} />
+          <Services
             buttonStyle='button-black'
-            />
-            <Approach />
-            <Examples />
-            <Costing />
-            <Preloader />
-            <Appeal />         
+          />
+          <Approach />
+          <Examples />
+          <Costing />
+          <Preloader />
+          <Appeal />
         </main>
       </Layout>
     </>

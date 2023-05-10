@@ -6,8 +6,7 @@ import data from "../data/data.json";
 import bannerImg from '../public/banner-design.png';
 
 
-
-const Design: NextPage = () => {
+const Design: React.FC<NextPage & DataProps> = (): JSX.Element => {
     const findTitle = data.title.find((item) => item.id === 7);
     const { title = '', description = '' } = findTitle || {};
 

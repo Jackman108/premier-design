@@ -1,11 +1,9 @@
 import React from 'react';
 import { FaBars } from 'react-icons/fa';
 import styles from './MenuButton.module.css';
-import { MenuProps } from '../../Menu/MenuItems/MenuItems.props';
+import { MenuDataProps } from '../../Menu/MenuData/MenuData.props';
 
-
-
-const MenuButton: React.FC<MenuProps> = ({ toggleMobileMenu }) => {
+const MenuButton: React.FC<MenuDataProps> = ({ toggleMobileMenu }) => {
     const handleClick = () => {
         if (toggleMobileMenu) {
             toggleMobileMenu();

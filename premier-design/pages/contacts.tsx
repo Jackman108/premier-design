@@ -1,11 +1,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Layout from '../components/Layout/Layout';
-import Form from '../components/Form/Form';
-import type { FormProps } from '../components/Form/Form.props';
+import FeedbackForm from '../components/FeedbackForm/FeedbackForm';
+import { FeedbackFormProps } from '../components/FeedbackForm/FeedbackForm.props';
 
-const Contacts: NextPage = () => {
-    const handleSubmit: FormProps['onSubmit'] = (e) => {
+const Contacts: React.FC<NextPage & DataProps> = (): JSX.Element => {
+    const handleSubmit: FeedbackFormProps['onSubmit'] = (e) => {
         e.preventDefault();
         console.log('Form submitted!');
     };
@@ -20,7 +20,7 @@ const Contacts: NextPage = () => {
                 <h1>Контакты</h1>
                 <p>Наш адрес: г. Москва, ул. Ленина, д. 10, офис 123</p>
                 <p>Телефон: +7 (999) 123-45-67</p>
-                <Form onSubmit={handleSubmit}/>
+                <FeedbackForm onSubmit={handleSubmit} />
             </Layout>
         </>
     );

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import LogoImage from '../../public/logo.svg';
 import styles from './Logo.module.css';
 
-function Logo(): JSX.Element {
+const Logo = (): JSX.Element => {
     return (
         <div className={styles.logo}>
             <Link href="/" className={styles.logo__image}>

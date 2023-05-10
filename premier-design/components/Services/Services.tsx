@@ -1,4 +1,3 @@
-import React, { FC } from 'react';
 import styles from './Services.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import ServicesCards from '../Cards/ServicesCards/ServicesCards';
@@ -7,8 +6,8 @@ import data from '../../data/data.json';
 import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
 
 
-const Services: FC<OrderButtonProps> = (): JSX.Element => {
-    const foundTitle = data.title.find((item: { id: number }): boolean => item.id === 2);
+const Services: React.FC<OrderButtonProps> = (): JSX.Element => {
+    const foundTitle: TitleProps | undefined = data.title.find((item: TitleProps): boolean => item.id === 2);
     const title = foundTitle?.title ?? '';
     const description = foundTitle?.description ?? '';
     return (
@@ -21,7 +20,7 @@ const Services: FC<OrderButtonProps> = (): JSX.Element => {
                     title={title}
                     description={description} />
                 <ServicesCards data={data.list.services} />
-                <OrderButton  buttonHeader={'Оставить заявку'} buttonStyle='button-black' />
+                <OrderButton buttonHeader={'Оставить заявку'} buttonStyle='button-black' />
             </div>
         </section>
     );

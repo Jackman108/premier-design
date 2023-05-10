@@ -1,14 +1,13 @@
-import React from 'react';
 import Link from 'next/link';
 import { FaPhoneVolume } from 'react-icons/fa';
 import styles from './Phone.module.css';
 
-function Phone(): JSX.Element {
+const Phone = (): JSX.Element => {
     return (
         <div className={styles.phone}>
-            <Link 
-            href="tel:+375291942881" 
-            className={styles.phone__container}>
+            <Link
+                href="tel:+375291942881"
+                className={styles.phone__container}>
                 <div className={styles.phone__logo}>
                     <FaPhoneVolume />
                 </div>

@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useTheme } from 'next-themes';
+import { ThemeButtonProps } from '../Menu/MenuData/MenuData.props';
 
-function useThemeToggle(initialTheme: string = 'light') {
-    const { theme, setTheme } = useTheme();
+function useThemeToggle(initialTheme: string = 'light'): ThemeButtonProps {
+    const { setTheme } = useTheme();
     const [currentTheme, setCurrentTheme] = useState(initialTheme);
 
-    function toggleTheme() {
+    function toggleTheme(): void {
         const newTheme = currentTheme === 'light' ? 'dark' : 'light';
         setTheme(newTheme);
         setCurrentTheme(newTheme);

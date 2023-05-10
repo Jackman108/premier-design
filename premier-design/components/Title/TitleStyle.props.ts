@@ -1,7 +1,4 @@
-export interface TitleProps {
-    id?: number;
-    title: string;
-    description: string;
+export interface TitleStyleProps extends TitleProps{
     titleStyle: 'title-white' | 'title-black';
     descriptionStyle: 'description-white' | 'description-black';
 } 

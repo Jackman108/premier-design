@@ -1,8 +1,6 @@
-import React from "react";
 import styles from "./Features.module.css";
-import FeaturesProps  from "./Features.props";
 
-function Features ({ data }: FeaturesProps): JSX.Element {
+const Features = ({ data }: { data: DataProps }): JSX.Element => {
     return (
         <section className={styles.features}>
             <div className={styles.features__container}>

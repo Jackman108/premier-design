@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { MenuProps } from '../Menu/MenuItems/MenuItems.props';
+import { MenuDataProps } from '../Menu/MenuData/MenuData.props';
 
-function useMobileMenu(initialValue:boolean = false): MenuProps {
+function useMobileMenu(initialValue:boolean = false): MenuDataProps {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(initialValue);
 
     function toggleMobileMenu(): void {
@@ -9,6 +9,9 @@ function useMobileMenu(initialValue:boolean = false): MenuProps {
     }
 
     return {
+        data: {
+            menu: []
+        },
         isMobileMenuOpen,
         toggleMobileMenu,
     };

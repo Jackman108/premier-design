@@ -1,10 +1,6 @@
-import React from "react";
 import styles from "./News.module.css";
-import NewsProps from "./News.props";
 
-
-
-function News({ data }: NewsProps): JSX.Element {
+const News = ({ data }: { data: DataProps }): JSX.Element => {
     return (
         <div className={styles.news}>
             <div className={styles.news__container}>
