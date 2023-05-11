@@ -4,6 +4,7 @@ import Layout from '../components/Layout/Layout';
 import Banner from '../components/Banner/Banner';
 import data from "../data/data.json";
 import bannerImg from '../public/banner-design.png';
+import OfferList from '../components/OfferList/OfferList';
 
 
 const Design: React.FC<NextPage & DataProps> = (): JSX.Element => {
@@ -36,6 +37,11 @@ const Design: React.FC<NextPage & DataProps> = (): JSX.Element => {
                             bannerImg={bannerImageProps}
                             titleStyle='title-white'
                             descriptionStyle='description-white'
+                        />
+                        <OfferList 
+                        data={data.offerList.filter(offer => offer.id === 1)} 
+                        buttonHeader={buttonTitle}  
+                        buttonStyle='button-black'
                         />
                     </section>
                 </main>

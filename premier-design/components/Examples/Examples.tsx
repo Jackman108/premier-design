@@ -19,7 +19,7 @@ const Examples: React.FC = (): JSX.Element => {
                     descriptionStyle='description-black'
                     title={title}
                     description={description} />
-                <ExamplesCards data={data.list.examples} />
+                <ExamplesCards data={data.cards.examplesCard} />
             </div>
         </section>
     );

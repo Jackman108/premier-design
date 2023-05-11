@@ -16,7 +16,7 @@ const Approach: React.FC = (): JSX.Element => {
                     descriptionStyle='description-black'
                     title={title}
                     description={description} />
-                <ApproachCards data={data.list.approach} />
+                <ApproachCards data={data.cards.approachCard} />
             </div>
         </section >
     );

@@ -4,7 +4,7 @@ import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../hooks/useResizeEffects';
 import Link from 'next/link';
 
-const ExamplesCards: React.FC<{ data: ExampleProps[] }> = ({ data }): JSX.Element => {
+const ExamplesCards: React.FC<{ data: ExampleCardProps[] }> = ({ data }): JSX.Element => {
     const { isMobile } = useResizeEffects();
     const slidesPerView = 3;
     return (

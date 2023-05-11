@@ -18,7 +18,7 @@ const Costing: React.FC = (): JSX.Element => {
                     descriptionStyle='description-black'
                     title={title}
                     description={description} />
-                <CostingCards data={data.list.costing}/>
+                <CostingCards data={data.cards.costingCard}/>
             </div>
         </section>
     );

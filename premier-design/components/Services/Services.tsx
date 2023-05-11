@@ -19,7 +19,7 @@ const Services: React.FC<OrderButtonProps> = (): JSX.Element => {
                     descriptionStyle='description-black'
                     title={title}
                     description={description} />
-                <ServicesCards data={data.list.services} />
+                <ServicesCards data={data.cards.servicesCard} />
                 <OrderButton buttonHeader={'Оставить заявку'} buttonStyle='button-black' />
             </div>
         </section>

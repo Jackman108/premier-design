@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ApproachCards.module.css';
 
-const ApproachCards: React.FC<{ data: ApproachProps[] }> = ({ data }): JSX.Element => {
+const ApproachCards: React.FC<{ data: ApproachCardProps[] }> = ({ data }): JSX.Element => {
     return (
         <div className={styles.approach__cards}>
             {data.map(({id, image, title, description}) => (
