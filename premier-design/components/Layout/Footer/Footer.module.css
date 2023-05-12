@@ -11,6 +11,7 @@
     grid-template-columns: repeat(3, auto);
     grid-gap: 5vw;
     text-align: center;
+    justify-items: center;
     max-width: 1440px;
 
 }

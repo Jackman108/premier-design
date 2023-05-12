@@ -1,6 +1,8 @@
 .menu {
     max-width: 20vw;   
     display: grid;
+    justify-content: center; 
+
 }
 
 .menu__link {
@@ -11,7 +13,7 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 3vh;
-    align-content: center;  
+    align-content: center; 
 }
 
 .menu__item {
@@ -21,6 +23,7 @@
     cursor: pointer;
     display: grid;
     white-space: nowrap;
+    
 
 }
 

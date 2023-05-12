@@ -1,9 +1,12 @@
 .offer {
-    padding: 5vh 0;
+    padding: 5% 0;
+    height: auto;
+
 }
 
 .offer__container {
     max-width: 1440px;
+    height: auto;
     margin: 0 auto;
     display: grid;
     justify-items: center;
@@ -12,67 +15,101 @@
 
 .offer__row {
     display: grid;
-    grid-template-rows: 80vh;
+    grid-template-rows: auto;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-gap: 1rem;
+    grid-gap: 4%;
+    margin-bottom: 5%;
 }
 
 .offer__left_column {
     position: relative;
+    margin: 0 2%;
 }
 
 .offer__image {
     position: relative;
-    top: 0;
-    left: 0;
-    width: 100%;
+    width: auto;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
 }
 
 .offer__image img {
     width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    height: 100%;
+    object-fit: cover;
 }
 
 .offer__right_column {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    position: relative;
+    margin: 0 2%;
 }
 
 .text__content {
-    text-align: center;
+    display: grid;
+    text-align: justify;
+    font-size: 1.1rem;
+    line-height: 2rem;
+
+    color: var(--brown-dark);
+    text-shadow: 0 0 1px var(--brown-light);
+    opacity: 0.9;
+
 }
 
 .content_subTitle {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
-    margin: 1rem 0;
+    line-height: 2rem;
+    margin: 2% 0;
+    opacity: 0.8;
+    text-align: center;
+
+}
+
+.content_subTitle::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 80%;
+    margin: 5% auto 0;
+    background-color: var(--brown-light);
 }
 
 .content_description {
-    margin: 1rem 0;
+    margin: 2% 0;
+
 }
 
 
 .content_tips {
-    margin: 1rem 0;
+    margin: 2% 0;
 }
 
 .content_questions li {
-    margin: 0.5rem 0;
+    margin: 2% 0;
+    list-style: square;
 }
 
 .content_tips {
     font-style: italic;
+    margin: 2% 0;
 }
 
 .order__button {
-    margin-top: 1rem;
     align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+    .offer__left_column {
+        display: none;
+    }
+
+    .offer__container {
+        margin: 3% 5%;
+    }
+
+    .text__content {
+        font-size: 0.9rem;
+        line-height: 1.2rem;
+    }
 }

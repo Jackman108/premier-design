@@ -35,7 +35,7 @@ const OfferList: React.FC<{ data: OfferListProps[] } & OrderButtonProps> = ({
                                     </ul>
                                     <p className={styles.content_description}>
                                         {description}
-                                    </p>
+                                    </p>                                    
                                     <p className={styles.content_tips}>
                                         {tips}
                                     </p>
