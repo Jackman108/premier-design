@@ -5,5 +5,5 @@ export interface FeedbackItem {
     message: string;
 }
 export interface FeedbackFormProps {
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+    onSubmit: (data: FormData) => void;
 }
