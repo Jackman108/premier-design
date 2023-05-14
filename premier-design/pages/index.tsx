@@ -10,20 +10,13 @@ import Costing from '../components/Costing/Costing';
 import Preloader from '../components/UX/Preloader/Preloader';
 import Appeal from '../components/Appeal/Appeal';
 import data from "../data/data.json";
-import bannerImg from '../public/banner.png';
 
 const Home: React.FC<NextPage & DataProps> = (): JSX.Element => {
   const findTitle = data.title.find((item) => item.id === 1);
   const { title = '', description = '' } = findTitle || {};
+  const findButton = data.button[1]?.buttonHeader ?? '';
+  const bannerImageSettings: BannerImagesProps = data.bannersImages[2];
 
-  const findButton = data.button[0] ?? { buttonHeader: '' };
-  const { buttonHeader: buttonTitle = '' } = findButton;
-
-  const bannerImageProps = {
-    src: bannerImg,
-    alt: 'Banner Image',
-    quality: 100,
-  };
   return (
     <>
       <Head>
@@ -40,8 +33,8 @@ const Home: React.FC<NextPage & DataProps> = (): JSX.Element => {
             description={description}
             titleStyle='title-white'
             descriptionStyle='description-white'
-            buttonHeader={buttonTitle}
-            bannerImg={bannerImageProps}
+            buttonHeader={findButton}
+            bannerImg={bannerImageSettings}
             buttonStyle='button-white'
           />
           <Features data={data} />

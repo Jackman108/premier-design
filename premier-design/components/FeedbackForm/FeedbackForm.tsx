@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Form.module.css";
+import styles from "./FeedbackForm.module.css";
 import { FeedbackFormProps } from "./FeedbackForm.props";
 
 

@@ -3,22 +3,14 @@ import Head from 'next/head';
 import Layout from '../components/Layout/Layout';
 import Banner from '../components/Banner/Banner';
 import data from "../data/data.json";
-import bannerImg from '../public/banner-design.png';
 import OfferList from '../components/OfferList/OfferList';
-
+import ProjectOffer from '../components/ProjectOffer/ProjectOffer';
 
 const Design: React.FC<NextPage & DataProps> = (): JSX.Element => {
     const findTitle = data.title.find((item) => item.id === 7);
     const { title = '', description = '' } = findTitle || {};
-
-    const findButton = data.button[1] ?? { buttonHeader: '' };
-    const { buttonHeader: buttonTitle = '' } = findButton;
-
-    const bannerImageProps = {
-        src: bannerImg,
-        alt: 'Banner Image',
-        quality: 100,
-    };
+    const findButton = data.button[1]?.buttonHeader ?? '';
+    const bannerImageSettings: BannerImagesProps = data.bannersImages[0];
     return (
         <>
             <Head>
@@ -33,15 +25,20 @@ const Design: React.FC<NextPage & DataProps> = (): JSX.Element => {
                             buttonStyle='button-white'
                             title={title}
                             description={description}
-                            buttonHeader={buttonTitle}
-                            bannerImg={bannerImageProps}
+                            buttonHeader={findButton}
+                            bannerImg={bannerImageSettings}
                             titleStyle='title-white'
                             descriptionStyle='description-white'
                         />
-                        <OfferList 
-                        data={data.offerList.filter(offer => offer.id === 1)} 
-                        buttonHeader={buttonTitle}  
-                        buttonStyle='button-black'
+                        <OfferList
+                            data={data.offerList.filter((offer) => offer.id === 1)}
+                            buttonHeader={findButton}
+                            buttonStyle='button-black'
+                        />
+                        <ProjectOffer
+                            data={data.offerType}
+                            buttonHeader={findButton}
+                            buttonStyle='button-black'
                         />
                     </section>
                 </main>

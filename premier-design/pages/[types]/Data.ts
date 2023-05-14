@@ -58,6 +58,23 @@ interface OfferListProps {
     questions: string[];
     tips: string;
 }
+interface BannerImagesProps {
+    src: string;
+    alt: string;
+    quality: number;
+    width: number,
+    height: number
+}
+interface OfferProject {
+    id: number;
+    image: string;
+    title: string;
+    price: string;
+    pros: string;
+    cons: string;
+    prosDescription: string[];
+    consDescription: string[];
+}
 interface DataProps {
     menu: MenuProps[];
     button: ButtonProps[];
@@ -71,5 +88,7 @@ interface DataProps {
         servicesCard: ServiceCardProps[];
     };
     offerList: OfferListProps[];
+    offerProject: OfferProject[];
+    bannersImages: BannerImagesProps[];
 
 }

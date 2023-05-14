@@ -15,16 +15,16 @@
     z-index: -1;
     background-repeat: no-repeat;
     object-fit: cover;
-
 }
 
 .banner__container {
     display: grid;
     justify-items: center;
     justify-content: center;
-    grid-gap: 10vh;
+    grid-gap: 15vh;
     max-width: 1440px;
-    margin: 12vh auto;
+    margin: 12vh auto 2vh;
+    height: 80%;
 }
 
 @media screen and (max-width: 768px) {

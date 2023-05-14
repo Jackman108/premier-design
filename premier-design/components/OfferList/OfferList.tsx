@@ -3,7 +3,7 @@ import styles from './OfferList.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
 
-const OfferList: React.FC<{ data: OfferListProps[] } & OrderButtonProps> = ({ 
+const ProjectOffer: React.FC<{ data: OfferListProps[] } & OrderButtonProps> = ({ 
     data, 
     buttonHeader, 
     buttonStyle,
@@ -49,4 +49,4 @@ const OfferList: React.FC<{ data: OfferListProps[] } & OrderButtonProps> = ({
         </section>
     );
 };
-export default OfferList;
+export default ProjectOffer;
