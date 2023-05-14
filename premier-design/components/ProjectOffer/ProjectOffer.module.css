@@ -1,5 +1,5 @@
 .offer {
-    padding: 4% 0;
+    padding: 2% 0;
     height: auto;
 }
 
@@ -14,7 +14,7 @@
 .offer__row {
     display: grid;
     grid-template-rows: auto;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     grid-gap: 4%;
     margin: 1% 0;
     border: 1px solid var(--brown-light);
@@ -24,6 +24,8 @@
 .offer__left_column {
     position: relative;
     margin: 0 4%;
+    min-height: 90vh;
+    display: grid;
 }
 
 .offer__image {
@@ -90,7 +92,6 @@
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     align-items: start;
     line-height: 1.5rem;
-
 }
 
 
@@ -111,7 +112,7 @@
 .order__button {
     display: grid;
     align-self: flex-end;
-    margin: 10% 0;
+    margin: 5% 0;
     justify-items: center;
 }
 
@@ -129,17 +130,19 @@
 
 @media (max-width: 768px) {
     .offer__row {
-        grid-gap: 10vh;
+        grid-gap: 10vh;     
     }
 
 
     .offer__container {
         margin: 3% 5%;
+        max-width: 90vw;
     }
 
     .column__content {
         font-size: 0.9rem;
         line-height: 1.2rem;
+        height: 15vh;      
     }
 
     .offer__left_column {
@@ -152,7 +155,4 @@
         height: 30vh;
     }
 
-    .column__content {
-        height: 15vh;
-    }
 }

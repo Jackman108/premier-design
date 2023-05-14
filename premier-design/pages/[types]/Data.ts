@@ -49,6 +49,7 @@ interface ServiceCardProps {
     id?: number;
     text: string;
     image: string;
+    href: string;
 }
 interface OfferListProps {
     id: number;
@@ -88,7 +89,9 @@ interface DataProps {
         servicesCard: ServiceCardProps[];
     };
     offerList: OfferListProps[];
-    offerProject: OfferProject[];
+    offerProject: {
+        designType: OfferProject[];
+        repairType: OfferProject[];
+    }
     bannersImages: BannerImagesProps[];
-
 }

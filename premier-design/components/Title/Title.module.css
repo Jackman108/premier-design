@@ -10,8 +10,7 @@
     white-space: nowrap;
     animation: typing 1s steps(30) 1s 1 normal both;
     font-family: var(--font-family);
-    
-}
+    }
 
 .description-white{
     max-width: 70%;
@@ -40,7 +39,6 @@
     text-shadow: 0 0 2px var(--brown-light)
 }
 
-
 .description-black{
     font-size: 2vh;
     font-weight: 400;
@@ -49,3 +47,9 @@
     text-align: center;
     color: var(--brown-light);
 }
+
+@media (max-width: 768px) {
+    .title-white{
+        font-size: 2vh;      
+        }    
+    }

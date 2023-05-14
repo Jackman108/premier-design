@@ -1,5 +1,5 @@
 .offer {
-    padding: 4% 0;
+    padding: 2% 0;
     height: auto;
 
 }
@@ -37,6 +37,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .offer__right_column {
@@ -106,6 +107,7 @@
 
     .offer__container {
         margin: 3% 5%;
+        max-width: 90vw;
     }
 
     .text__content {

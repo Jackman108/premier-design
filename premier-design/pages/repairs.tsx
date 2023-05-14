@@ -4,6 +4,9 @@ import Layout from '../components/Layout/Layout';
 import Banner from '../components/Banner/Banner';
 import data from "../data/data.json";
 import OfferList from '../components/OfferList/OfferList';
+import ProjectOffer from '../components/ProjectOffer/ProjectOffer';
+import Examples from '../components/Examples/Examples';
+import Appeal from '../components/Appeal/Appeal';
 
 const Services: React.FC<NextPage & DataProps> = (): JSX.Element => {
     const findTitle = data.title.find((item) => item.id === 9);
@@ -34,6 +37,13 @@ const Services: React.FC<NextPage & DataProps> = (): JSX.Element => {
                             buttonHeader={findButton}
                             buttonStyle='button-black'
                         />
+                        <Examples />
+                        <ProjectOffer
+                            data={data.offerProject.repairType}
+                            buttonHeader={findButton}
+                            buttonStyle='button-black'
+                        />
+                        <Appeal />
                     </section>
                 </main>
             </Layout>

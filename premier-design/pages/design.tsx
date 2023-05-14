@@ -5,6 +5,8 @@ import Banner from '../components/Banner/Banner';
 import data from "../data/data.json";
 import OfferList from '../components/OfferList/OfferList';
 import ProjectOffer from '../components/ProjectOffer/ProjectOffer';
+import Examples from '../components/Examples/Examples';
+import Appeal from '../components/Appeal/Appeal';
 
 const Design: React.FC<NextPage & DataProps> = (): JSX.Element => {
     const findTitle = data.title.find((item) => item.id === 7);
@@ -35,11 +37,14 @@ const Design: React.FC<NextPage & DataProps> = (): JSX.Element => {
                             buttonHeader={findButton}
                             buttonStyle='button-black'
                         />
+                        <Examples />
                         <ProjectOffer
-                            data={data.offerType}
+                            data={data.offerProject.designType}
                             buttonHeader={findButton}
                             buttonStyle='button-black'
                         />
+                        <Appeal />
+
                     </section>
                 </main>
             </Layout>
