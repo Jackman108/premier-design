@@ -4,7 +4,11 @@ import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 
 
-const Slider: React.FC<SliderProps> = ({ children, slidesPerView, isMobile }): JSX.Element => {
+const Slider: React.FC<SliderProps> = ({ 
+    children, 
+    slidesPerView, 
+    isMobile 
+}): JSX.Element => {
 
     const [ref] = useKeenSlider<HTMLDivElement>({
         loop: true,

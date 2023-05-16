@@ -212,7 +212,12 @@
                 "bathroomOption": 1,
                 "areaIcon": "/examples/areaIcon.svg",
                 "areaOption": 49,
-                "areaSquare": "m2"
+                "areaSquare": "m2",
+                "images": [
+                    "/design/designType1.png",
+                    "/design/designType2.png",
+                    "/design/designType3.png"
+                ]
             },
             {
                 "id": 2,
@@ -223,7 +228,12 @@
                 "bathroomOption": 1,
                 "areaIcon": "/examples/areaIcon.svg",
                 "areaOption": 42,
-                "areaSquare": "m2"
+                "areaSquare": "m2",
+                "images": [
+                    "/repair/repairType1.png",
+                    "/repair/repairType2.png",
+                    "/repair/repairType3.png"
+                ]
             },
             {
                 "id": 3,
@@ -234,7 +244,12 @@
                 "bathroomOption": 1,
                 "areaIcon": "/examples/areaIcon.svg",
                 "areaOption": 80,
-                "areaSquare": "m2"
+                "areaSquare": "m2",
+                "images": [
+                    "/design/designType1.png",
+                    "/design/designType2.png",
+                    "/design/designType3.png"
+                ]
             },
             {
                 "id": 4,
@@ -245,7 +260,12 @@
                 "bathroomOption": 0,
                 "areaIcon": "/examples/areaIcon.svg",
                 "areaOption": 108,
-                "areaSquare": "m2"
+                "areaSquare": "m2",
+                "images": [
+                    "/repair/repairType1.png",
+                    "/repair/repairType2.png",
+                    "/repair/repairType3.png"
+                ]
             },
             {
                 "id": 5,
@@ -256,7 +276,12 @@
                 "bathroomOption": 1,
                 "areaIcon": "/examples/areaIcon.svg",
                 "areaOption": 70,
-                "areaSquare": "m2"
+                "areaSquare": "m2",
+                "images": [
+                    "/design/designType1.png",
+                    "/design/designType2.png",
+                    "/design/designType3.png"
+                ]
             },
             {
                 "id": 6,
@@ -267,7 +292,14 @@
                 "bathroomOption": 2,
                 "areaIcon": "/examples/areaIcon.svg",
                 "areaOption": 150,
-                "areaSquare": "m2"
+                "areaSquare": "m2",
+                "images": [
+                    "/examples/example01.png",
+                    "/examples/example02.png",
+                    "/examples/example03.png",
+                    "/examples/example04.png",
+                    "/examples/example05.png"
+                ]
             }
         ],
         "servicesCard": [
@@ -474,7 +506,7 @@
                     "Незначительная перепланировка без возведения внутренних перегородок",
                     "Монтаж электропроводки, водопровода, канализации, сантехники",
                     "Плиточные работы",
-                    "Выравнивание стен по маякам",                    
+                    "Выравнивание стен по маякам",
                     "Шпаклевка, грунтовка поверхностей",
                     "Установка ламината, линолеума, ковролина",
                     "Оклейка обоев, покраска стен",
@@ -484,7 +516,7 @@
                 "cons": "В стоимость работ не входит:",
                 "consDescription": [
                     "Без дизайн проекта",
-                    "Без замены дверей и окон",                    
+                    "Без замены дверей и окон",
                     "Без монтажа вентиляции, отопления и сложных инженерных сетей",
                     "С применением экономичных стройматериалов и элементов отделки",
                     "Выполняем стандартную отделку улучшенного качества",

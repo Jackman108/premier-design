@@ -44,6 +44,7 @@ interface ExampleCardProps {
     areaIcon: string;
     areaOption: number;
     areaSquare: string;
+    images: string[];
 }
 interface ServiceCardProps {
     id?: number;

@@ -1,0 +1,82 @@
+.photoViewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    cursor: pointer;
+}
+
+.image {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    position: absolute;
+    z-index: 1000;
+    background-color: rgb(255, 255, 255);
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    width: 100%;
+    position: absolute;
+}
+
+.buttonPrev,
+.buttonNext {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.buttonPrev {
+    left: 10px;
+}
+
+.buttonNext {
+    right: 10px;
+}
+
+.buttonClose {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+.imageCounter{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
