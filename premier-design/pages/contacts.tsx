@@ -1,14 +1,11 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Layout from '../components/Layout/Layout';
-import FeedbackForm from '../components/FeedbackForm/FeedbackForm';
-import { FeedbackFormProps } from '../components/FeedbackForm/FeedbackForm.props';
+import Appeal from '../components/Appeal/Appeal';
+import YandexMap from '../components/YandexMap/YandexMap';
+import Address from '../components/Address/Address';
 
 const Contacts: React.FC<NextPage & DataProps> = (): JSX.Element => {
-    const handleSubmit: FeedbackFormProps['onSubmit'] = (e) => {
-        e.preventDefault();
-        console.log('Form submitted!');
-    };
     return (
         <>
             <Head>
@@ -17,10 +14,9 @@ const Contacts: React.FC<NextPage & DataProps> = (): JSX.Element => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Layout>
-                <h1>Контакты</h1>
-                <p>Наш адрес: г. Москва, ул. Ленина, д. 10, офис 123</p>
-                <p>Телефон: +7 (999) 123-45-67</p>
-                <FeedbackForm onSubmit={handleSubmit} />
+                <Address />
+                <YandexMap />
+                <Appeal />
             </Layout>
         </>
     );

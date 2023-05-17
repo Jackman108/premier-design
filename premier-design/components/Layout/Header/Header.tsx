@@ -7,10 +7,9 @@ import DesktopMenu from '../../Menu/DesktopMenu/DesktopMenu';
 import MobileMenu from '../../Menu/MobileMenu/MobileMenu';
 import MenuButton from '../../UX/MenuButton/MenuButton';
 import ThemeButton from '../../UX/ThemeButton/ThemeButton';
-import data from '../../../data/data.json';
 import styles from './Header.module.css';
 
-const Header: React.FC<DataProps> = (): JSX.Element => {
+const Header: React.FC<{ data: DataProps }> = ({ data }): JSX.Element => {
     const { currentTheme, toggleTheme } = useResizeEffects();
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);
     return (

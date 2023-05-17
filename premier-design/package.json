@@ -10,7 +10,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@pbe/react-yandex-maps": "^1.2.4",
     "date-fns": "^2.29.3",
+    "dotenv": "^16.0.3",
     "keen-slider": "^6.8.5",
     "next": "^13.0.0",
     "next-themes": "^0.2.1",

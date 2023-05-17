@@ -99,7 +99,7 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
             />
             <div
                 className={styles.overlay}
-                onClick={handleNext}
+                onClick={handleClose}
             />
             <div className={styles.buttonContainer}>
                 <button
@@ -119,7 +119,6 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
                     &gt;
                 </button>
             </div>
-
             <button
                 className={styles.buttonClose}
                 onClick={handleClose}
