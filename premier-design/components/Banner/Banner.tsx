@@ -23,7 +23,11 @@ const Banner: FC<BannerProps> = ({
     return (
         <section className={styles.banner}>
             <div className={`${styles.banner__background} banner__background`}>
-                <Image priority={true} {...bannerImg} className={styles.banner__background} />
+                <Image
+                    priority={true}
+                    {...bannerImg}
+                    className={styles.banner__background}
+                />
             </div>
             <div className={styles.banner__container}>
                 <Title

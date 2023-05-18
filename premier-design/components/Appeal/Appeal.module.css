@@ -2,29 +2,35 @@
     position: inherit;
     max-width: 100%;
     height: 54vh;
-    background-image: url("/appeal.png");
-    background-size: cover;
-    padding: 6% 0;
 }
 
 .appeal__container {
     display: grid;
     justify-items: center;
     justify-content: center;
+    align-content: flex-end;
     grid-gap: 15%;
     max-width: 1440px;
-    height: 32vh;
+    height: 80%;
     margin: 0 auto;
+}
+
+.appeal__background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-repeat: no-repeat;
+    object-fit: cover;
 }
 
 @media screen and (max-width: 768px) {
     .appeal {
         height: 25vh;
-        background-image: url("/appeal.png");
-        padding: 6% 0;
         background-size: 200%;
     }
-    .appeal__container {      
+
+    .appeal__container {
         grid-gap: 0%;
         height: 20vh;
     }

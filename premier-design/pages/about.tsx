@@ -1,8 +1,17 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Layout from '../components/Layout/Layout';
+import Approach from '../components/Approach/Approach';
+import Appeal from '../components/Appeal/Appeal';
+import AboutUs from '../components/AboutUs/AboutUs';
+import data from "../data/data.json";
+import OfferList from '../components/OfferList/OfferList';
 
 const About: React.FC<NextPage & DataProps> = (): JSX.Element => {
+    const findTitle = data.title.find((item) => item.id === 10);
+    const { title = '', description = '' } = findTitle || {};
+
+
     return (
         <>
             <Head>
@@ -11,9 +20,16 @@ const About: React.FC<NextPage & DataProps> = (): JSX.Element => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Layout>
-                <h1>О нас</h1>
-                <p>Мы - компания, занимающаяся продажей и монтажом окон в Москве и Московской области.</p>
-                <p>Наша цель - обеспечить наших клиентов качественными окнами по адекватной цене.</p>
+                <AboutUs
+                    title={title}
+                    description={description}
+                    titleStyle='title-black'
+                    descriptionStyle='description-black' />
+                <Approach />
+                <OfferList
+                    data={data.offerList.filter(offer => offer.id === 2)}
+                />
+                <Appeal />
             </Layout>
         </>
     );

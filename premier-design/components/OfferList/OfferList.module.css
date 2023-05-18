@@ -1,7 +1,6 @@
 .offer {
-    padding: 2% 0;
+    padding: 3% 0;
     height: auto;
-
 }
 
 .offer__container {
@@ -18,7 +17,6 @@
     grid-template-rows: auto;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 4%;
-    margin-bottom: 4%;
 }
 
 .offer__left_column {

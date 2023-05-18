@@ -5,6 +5,7 @@
 .image {
     max-width: 14vh;
     max-height: 14vh;
+    height: auto;
 }
 
 .image:hover {

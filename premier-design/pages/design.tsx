@@ -34,8 +34,6 @@ const Design: React.FC<NextPage & DataProps> = (): JSX.Element => {
                         />
                         <OfferList
                             data={data.offerList.filter((offer) => offer.id === 1)}
-                            buttonHeader={findButton}
-                            buttonStyle='button-black'
                         />
                         <Examples />
                         <ProjectOffer

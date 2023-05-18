@@ -45,7 +45,8 @@ const Home: React.FC<NextPage & DataProps> = (): JSX.Element => {
           <Examples />
           <Costing />
           <Preloader />
-          <Appeal />
+          <Appeal           
+          />
         </main>
       </Layout>
     </>

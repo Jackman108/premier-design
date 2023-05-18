@@ -1,12 +1,9 @@
 import React from 'react';
 import styles from './OfferList.module.css';
-import OrderButton from '../UX/OrderButton/OrderButton';
-import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
 
-const ProjectOffer: React.FC<{ data: OfferListProps[] } & OrderButtonProps> = ({ 
+const OfferList: React.FC<{ data: OfferListProps[] } > = ({ 
     data, 
-    buttonHeader, 
-    buttonStyle,
+
 }): JSX.Element => {
     return (
         <section className={styles.offer}>
@@ -44,9 +41,8 @@ const ProjectOffer: React.FC<{ data: OfferListProps[] } & OrderButtonProps> = ({
                         </div>
                     ))
                 }
-                <OrderButton buttonHeader={buttonHeader} buttonStyle={buttonStyle} />
             </div>
         </section>
     );
 };
-export default ProjectOffer;
+export default OfferList;

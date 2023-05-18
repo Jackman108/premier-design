@@ -1,5 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './PhotoViewer.module.css';
+import Image from 'next/image';
 
 interface PhotoViewerProps {
     images: string[];
@@ -91,11 +92,13 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
                 className={styles.overlay}
                 onClick={handlePrev}
             />
-            <img
+            <Image
                 src={currentIndex >= 0 && currentIndex < images.length ? images[currentIndex] : ''}
                 alt="Current Image"
                 className={styles.image}
                 loading="lazy"
+                width={1800}
+                height={1080}
             />
             <div
                 className={styles.overlay}
