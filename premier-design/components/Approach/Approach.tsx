@@ -1,9 +1,10 @@
 import styles from './Approach.module.css';
 import Title from '../Title/Title';
 import ApproachCards from '../Cards/ApproachCards/ApproachCards';
-import data from '../../data/data.json';
 
-const Approach: React.FC = (): JSX.Element => {
+const Approach: React.FC<{ data: DataProps }> = ({ 
+    data 
+}): JSX.Element => {
     const foundTitle: TitleProps | undefined = data.title.find((item: TitleProps): boolean => item.id === 3);
     const title = foundTitle?.title ?? '';
     const description = foundTitle?.description ?? '';
@@ -16,7 +17,7 @@ const Approach: React.FC = (): JSX.Element => {
                     descriptionStyle='description-black'
                     title={title}
                     description={description} />
-                <ApproachCards data={data.cards.approachCard} />
+                <ApproachCards data={data} />
             </div>
         </section >
     );

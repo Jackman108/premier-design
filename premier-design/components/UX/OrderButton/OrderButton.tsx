@@ -1,28 +1,36 @@
-import React, { ButtonHTMLAttributes, DetailedHTMLProps, useState } from 'react';
 import styles from './OrderButton.module.css';
 import ModalOverlay from '../../ModalOverlay/ModalOverlay';
 import { FeedbackItem } from '../../FeedbackForm/FeedbackForm.props';
-interface OrderButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-    buttonStyle: 'button-white' | 'button-black' | 'button-none';
-    buttonHeader?: string;
-}
+import { OrderButtonProps, OrderButtonState } from './OrderButton.props';
+import { useCallback, useState } from 'react';
+
 
 const OrderButton: React.FC<OrderButtonProps> = ({
     buttonHeader,
     buttonStyle,
 }) => {
+    const initialState: OrderButtonState = {
+        showModal: false,
+        error: "",
+    };
     const buttonClass = styles[buttonStyle];
-    const [showModal, setShowModal] = useState(false);
-    const [error, setError] = useState("");
+    const [state, setState] = useState<OrderButtonState>(initialState);
 
-    const handleButtonClick = () => {
-        setShowModal(true);
-    };
+    const handleButtonClick = useCallback(() => {
+        setState((prevState) => ({
+            ...prevState,
+            showModal: true,
+        }));
+    }, []);
 
-    const handleModalClose = () => {
-        setShowModal(false);
-    };
-    const handleSubmit = async (formDataState: FeedbackItem): Promise<void> => {
+    const handleModalClose = useCallback(() => {
+        setState((prevState) => ({
+            ...prevState,
+            showModal: false,
+        }));
+    }, []);
+
+    const handleSubmit = useCallback(async (formDataState: FeedbackItem) => {
         try {
             const response = await fetch('/api/feedback', {
                 method: 'POST',
@@ -31,19 +39,31 @@ const OrderButton: React.FC<OrderButtonProps> = ({
                 },
                 body: JSON.stringify(formDataState),
             });
+
             if (!response.ok) {
-                setError('Произошла ошибка при отправке формы');
-                console.error(`Ошибка ${response.status}: ${response.statusText}`);
+                const errorMessage = `Ошибка ${response.status}: ${response.statusText}`;
+                console.error(errorMessage);
+                setState((prevState) => ({
+                    ...prevState,
+                    error: 'Произошла ошибка при отправке формы: ' + errorMessage,
+                }));
                 return;
             }
-            console.log("Данные успешно отправлены")
-            setShowModal(false);
-        } catch (error) {
-            setError("Произошла ошибка при отправке формы");
-            console.error(error);
-        }
-    };
 
+            console.log("Данные успешно отправлены");
+            setState((prevState) => ({
+                ...prevState,
+                showModal: false,
+                error: "",
+            }));
+        } catch (error) {
+            console.error(error);
+            setState((prevState) => ({
+                ...prevState,
+                error: 'Произошла ошибка при отправке формы: ' + error,
+            }));
+        }
+    }, []);
     return (
         <>
             <button
@@ -53,13 +73,13 @@ const OrderButton: React.FC<OrderButtonProps> = ({
             >
                 {buttonHeader}
             </button>
-            {showModal && (
+            {state.showModal && (
                 <ModalOverlay
                     onClose={handleModalClose}
                     onSubmit={(data: FeedbackItem) => handleSubmit(data)}
                 />
             )}
-            {error && <p className={styles.error}>{error}</p>}
+            {state.error && <p className={styles.error}>{state.error}</p>}
         </>
     );
 };

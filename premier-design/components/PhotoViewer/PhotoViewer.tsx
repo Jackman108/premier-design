@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './PhotoViewer.module.css';
-import Image from 'next/image';
+import NextImage from 'next/image';
 
 interface PhotoViewerProps {
     images: string[];
@@ -12,7 +12,9 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
     currentImage,
     onClose
 }) => {
-    const [currentIndex, setCurrentIndex] = useState<number>(images.indexOf(currentImage));
+    const [currentIndex, setCurrentIndex] = useState<number>(
+        images.indexOf(currentImage)
+    );
 
     useEffect(() => {
         setCurrentIndex(images.indexOf(currentImage));
@@ -61,9 +63,9 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
 
     const handleImageClick = useCallback(
         (event: React.MouseEvent<HTMLDivElement>) => {
-            const { width, left } = event.currentTarget.getBoundingClientRect();
-            const mouseX = event.clientX - left;
-            if (mouseX < width / 2) {
+            const { offsetWidth } = event.currentTarget;
+            const mouseX = event.clientX;
+            if (mouseX < offsetWidth / 2) {
                 handlePrev();
             } else {
                 handleNext();
@@ -92,11 +94,11 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
                 className={styles.overlay}
                 onClick={handlePrev}
             />
-            <Image
+            <NextImage
                 src={currentIndex >= 0 && currentIndex < images.length ? images[currentIndex] : ''}
                 alt="Current Image"
                 className={styles.image}
-                loading="lazy"
+                loading="eager"
                 width={1800}
                 height={1080}
             />

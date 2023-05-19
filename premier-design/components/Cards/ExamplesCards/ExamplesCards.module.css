@@ -2,21 +2,22 @@
     margin: 0 5%;
     display: grid;
     padding: 2vh 0;
-    
+
 }
 
 .examples__card {
-    max-width: 100%;
+    width: auto;
     height: 90%;
     position: relative;
     display: grid;
     justify-items: center;
-    margin: 0;
+    margin: 0 4%;
     align-items: center;
     border-radius: 2%;
     grid-gap: 4vh;
     cursor: pointer;
-    box-shadow: 0px 0px 10px var(--brown-white),inset -2px -2px 10px var(--brown-white);;
+    box-shadow: 0px 0px 10px var(--brown-white), inset -2px -2px 10px var(--brown-white);
+    ;
     transition: transform 0.5s ease, opacity 0.3s ease;
     opacity: 1;
     transform: translateY(20px);
@@ -24,7 +25,8 @@
 }
 
 .examples__card:hover {
-    box-shadow: 0px 0px 5px var(--brown-white),inset -2px -2px 5px var(--brown-white);;
+    box-shadow: 0px 0px 5px var(--brown-white), inset -2px -2px 5px var(--brown-white);
+    ;
     opacity: 0.9;
     transform: translateY(0);
 }
@@ -32,12 +34,12 @@
 .card__background {
     position: relative;
     overflow: hidden;
-    width: 100%;
+    width: auto;
     height: 100%;
 }
 
 .card__background img {
-    width: 100%;
+    width: auto;
     height: 30vh;
 }
 
@@ -49,6 +51,8 @@
     justify-items: center;
     align-content: space-between;
     font-size: 2vh;
+    white-space: nowrap;
+
 }
 
 .card__address {
@@ -56,7 +60,6 @@
     font-weight: 500;
     letter-spacing: 0.002em;
     color: var(--brown);
-    white-space: nowrap;
 }
 
 .card__deadlines {
@@ -80,7 +83,8 @@
 }
 
 .bathroom__icon {
-    height: 2vh;
+    width: auto;
+    height: auto;
 }
 
 
@@ -92,7 +96,8 @@
 }
 
 .area__icon {
-    height: 2vh;
+    width: auto;
+    height: auto;
 }
 
 

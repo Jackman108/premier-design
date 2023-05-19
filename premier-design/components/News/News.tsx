@@ -1,6 +1,11 @@
+import NextImage from "next/image";
 import styles from "./News.module.css";
 
-const News = ({ data }: { data: DataProps }): JSX.Element => {
+const News = ({ data
+}: {
+    data: DataProps
+}
+): JSX.Element => {
     return (
         <div className={styles.news}>
             <div className={styles.news__container}>
@@ -11,7 +16,12 @@ const News = ({ data }: { data: DataProps }): JSX.Element => {
                     <div className={styles.news__content} key={news.id}>
 
                         <div className={styles.content__image}>
-                            <img src={news.image} alt={news.title} />
+                            <NextImage
+                                src={news.image}
+                                alt={news.title}
+                                width={40}
+                                height={40}
+                            />
                         </div>
                         <div className={styles.content__wrapper}>
                             <div className={styles.content__title}>

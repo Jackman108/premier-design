@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './ProjectOffer.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
+import Image from 'next/image';
 
 const ProjectOffer: React.FC<{ data: OfferProject[] } & OrderButtonProps> = ({
     data,
@@ -28,7 +29,6 @@ const ProjectOffer: React.FC<{ data: OfferProject[] } & OrderButtonProps> = ({
                                             ))}
                                         </ul>
                                     </div>
-                                    
                                     <div className={styles.content_description}>
                                         <p className={styles.content_subTitle}>
                                             {cons}
@@ -46,10 +46,13 @@ const ProjectOffer: React.FC<{ data: OfferProject[] } & OrderButtonProps> = ({
                             </div>
                             <div className={`${styles.offer__right_column} ${evenCounter % 2 === 0 ? styles.offer__right_column_reverse : ''}`}>
                                 <div className={styles.offer__image}>
-                                    <img
+                                    <Image
                                         src={image}
                                         alt={title}
                                         className={styles.image__background}
+                                        width={1935}
+                                        height={1119}
+                                        loading='lazy'
                                     />
                                 </div>
                                 <div className={styles.column__content}>

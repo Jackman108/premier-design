@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './OfferList.module.css';
+import Image from 'next/image';
 
 const OfferList: React.FC<{ data: OfferListProps[] } > = ({ 
     data, 
@@ -13,10 +14,13 @@ const OfferList: React.FC<{ data: OfferListProps[] } > = ({
                         <div className={styles.offer__row} key={id}>
                             <div className={styles.offer__left_column}>
                                 <div className={styles.offer__image}>
-                                    <img
+                                    <Image
                                         src={image}
                                         alt="Premium Interior | Ремонт и дизайн интерьеров в Беларуси"
                                         className={styles.image__background}
+                                        width={1935}
+                                        height={1119}
+                                        loading = 'lazy'
                                     />
                                 </div>
                             </div>

@@ -1,23 +1,5 @@
-import Document, { DocumentContext, DocumentInitialProps, Head, Html, Main, NextScript } from 'next/document';
-
-
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 class MyDocument extends Document {
-    static async getInitialProps(
-        ctx: DocumentContext
-    ): Promise<DocumentInitialProps> {
-        const originalRenderPage = ctx.renderPage;
-        // Run the React rendering logic synchronously
-        ctx.renderPage = () =>
-            originalRenderPage({
-                // Useful for wrapping the whole react tree
-                enhanceApp: (App) => App,
-                // Useful for wrapping in a per-page basis
-                enhanceComponent: (Component) => Component,
-            })
-        const initialProps = await Document.getInitialProps(ctx);
-        return initialProps;
-    }
-
     render(): JSX.Element {
         return (
             <Html lang='ru'>
@@ -33,8 +15,17 @@ class MyDocument extends Document {
                     />
                     <link rel="icon" href="/favicon.ico" />
                     <link rel="preconnect" href="https://fonts.gstatic.com" />
-                    <link href="http://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-                    <link href="http://fonts.googleapis.com/css2?family=Public+Sans:wght@600&family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+                        rel="stylesheet"
+                        media="print"
+                    />
+                    <link
+                        href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@600&family=Roboto:wght@400;500&display=swap"
+                        rel="stylesheet"
+                        media="print"
+                    />
+
                 </Head>
                 <body>
                     <Main />

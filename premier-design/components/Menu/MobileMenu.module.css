@@ -1,4 +1,4 @@
-.mobile__menu {
+.menu {
     position: absolute;
     top: 80px;
     left: 0;
@@ -14,7 +14,7 @@
     z-index: 999;  
     }
     
-    .menu__items {
+    .menu__container {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -23,18 +23,18 @@
     align-items: center;
     }
     
-    .menu__item {
+    .menu__links {
     margin-bottom: 20px;
     }
     
-    .item {
+    .menu__link {
     font-size: 1.5rem;
     font-weight: bold;
     text-transform: uppercase;
     color: var(--brown);
     }
     
-    .item:hover {
+    .menu__link:hover {
         color: var(--brown-light);
     }
     
@@ -42,7 +42,7 @@
     transform: translateX(0);
     }
     @media (max-width: 768px) {
-        .mobile__menu {
+        .menu {
             height: 0;
             overflow: auto;
             transition: height 0.3s ease;

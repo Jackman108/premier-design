@@ -3,9 +3,10 @@ import styles from './Layout.module.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import { useRef } from 'react';
-import data from '../../data/data.json';
+import { getData } from '../../pages/api/data';
 
 export default function Layout({ children }: LayoutProps): JSX.Element {
+    const data = getData();
     const bodyRef = useRef<HTMLDivElement>(null);
     return (
         <>

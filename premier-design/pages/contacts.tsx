@@ -4,8 +4,11 @@ import Layout from '../components/Layout/Layout';
 import Appeal from '../components/Appeal/Appeal';
 import YandexMap from '../components/YandexMap/YandexMap';
 import Address from '../components/Address/Address';
+import { getData } from './api/data';
+import { FC } from 'react';
 
-const Contacts: React.FC<NextPage & DataProps> = (): JSX.Element => {
+const Contacts: FC<NextPage & DataProps> = (): JSX.Element => {
+    const data = getData();
     return (
         <>
             <Head>
@@ -16,7 +19,9 @@ const Contacts: React.FC<NextPage & DataProps> = (): JSX.Element => {
             <Layout>
                 <Address />
                 <YandexMap />
-                <Appeal />
+                <Appeal
+                    data={data}
+                />
             </Layout>
         </>
     );

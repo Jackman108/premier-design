@@ -2,13 +2,15 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import Layout from '../components/Layout/Layout';
 import Banner from '../components/Banner/Banner';
-import data from "../data/data.json";
 import OfferList from '../components/OfferList/OfferList';
 import ProjectOffer from '../components/ProjectOffer/ProjectOffer';
 import Examples from '../components/Examples/Examples';
 import Appeal from '../components/Appeal/Appeal';
+import { getData } from './api/data';
+import { FC, memo } from 'react';
 
-const Services: React.FC<NextPage & DataProps> = (): JSX.Element => {
+const Services: FC<NextPage & DataProps> = memo((): JSX.Element => {
+    const data = getData();
     const findTitle = data.title.find((item) => item.id === 9);
     const { title = '', description = '' } = findTitle || {};
     const findButton = data.button[1]?.buttonHeader ?? '';
@@ -32,21 +34,20 @@ const Services: React.FC<NextPage & DataProps> = (): JSX.Element => {
                             titleStyle='title-white'
                             descriptionStyle='description-white'
                         />
-                        <OfferList
-                            data={data.offerList.filter(offer => offer.id === 2)}
+                        <OfferList data={data.offerList.filter(offer => offer.id === 2)}
                         />
-                        <Examples />
+                        <Examples data={data} />
                         <ProjectOffer
                             data={data.offerProject.repairType}
                             buttonHeader={findButton}
                             buttonStyle='button-black'
                         />
-                        <Appeal />
+                        <Appeal data={data} />
                     </section>
                 </main>
             </Layout>
         </>
     );
-};
+});
 
 export default Services;

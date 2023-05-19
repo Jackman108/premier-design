@@ -9,9 +9,11 @@ import Examples from '../components/Examples/Examples';
 import Costing from '../components/Costing/Costing';
 import Preloader from '../components/UX/Preloader/Preloader';
 import Appeal from '../components/Appeal/Appeal';
-import data from "../data/data.json";
+import { getData } from "./api/data";
+
 
 const Home: React.FC<NextPage & DataProps> = (): JSX.Element => {
+  const data = getData();
   const findTitle = data.title.find((item) => item.id === 1);
   const { title = '', description = '' } = findTitle || {};
   const findButton = data.button[1]?.buttonHeader ?? '';
@@ -38,15 +40,12 @@ const Home: React.FC<NextPage & DataProps> = (): JSX.Element => {
             buttonStyle='button-white'
           />
           <Features data={data} />
-          <Services
-            buttonStyle='button-black'
-          />
-          <Approach />
-          <Examples />
-          <Costing />
+          <Services data={data} />
+          <Approach data={data} />
+          <Examples data={data} />
+          <Costing data={data} />
           <Preloader />
-          <Appeal           
-          />
+          <Appeal data={data} />
         </main>
       </Layout>
     </>

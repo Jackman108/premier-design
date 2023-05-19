@@ -1,13 +1,16 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import styles from './ExamplesCards.module.css';
 import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../hooks/useResizeEffects';
 import PhotoViewer from '../../PhotoViewer/PhotoViewer';
+import NextImage from 'next/image';
 
-const ExamplesCards: React.FC<{ data: ExampleCardProps[] }> = ({ data }): JSX.Element => {
+const ExamplesCards: React.FC<{ data: ExampleCardProps[] }> = ({
+    data
+}): JSX.Element => {
+    const memoizedExamplesCards = useMemo(() => data || [], [data]);
     const { isMobile } = useResizeEffects();
     const slidesPerView = 3;
-
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [isViewerOpen, setIsViewerOpen] = useState(false);
 
@@ -21,21 +24,34 @@ const ExamplesCards: React.FC<{ data: ExampleCardProps[] }> = ({ data }): JSX.El
         setIsViewerOpen(false);
     }, []);
 
-
+    const handleCardClick = useCallback(
+        (card: ExampleCardProps) => {
+            if (card.images.length > 0) {
+                openViewer(card.images);
+            }
+        },
+        [openViewer]
+    );
     return (
         <div className={styles.examples__cards}>
             <SliderComponent
                 slidesPerView={slidesPerView}
                 isMobile={isMobile}
             >
-                {data.map((card) => (
+                {memoizedExamplesCards.map((card) => (
                     <div
                         className={styles.examples__card}
                         key={card.id}
-                        onClick={() => card.images.length > 0 && openViewer([...card.images])}
+                        onClick={() => handleCardClick(card)}
                     >
                         <div className={styles.card__background}>
-                            <img src={card.background} alt={card.address} />
+                            <NextImage
+                                src={card.background}
+                                alt={card.address}
+                                width={424}
+                                height={240}
+                                loading='lazy'
+                            />
                         </div>
                         <div className={styles.card__content}>
                             <div className={styles.card__address}>
@@ -47,7 +63,13 @@ const ExamplesCards: React.FC<{ data: ExampleCardProps[] }> = ({ data }): JSX.El
                             <div className={styles.card__option}>
                                 <div className={styles.card__bathroom}>
                                     <div className={styles.bathroom__icon}>
-                                        <img src={card.bathroomIcon} alt='bathroom' />
+                                        <NextImage
+                                            src={card.bathroomIcon}
+                                            alt='bathroom'
+                                            width={20}
+                                            height={20}
+                                            loading='lazy'
+                                        />
                                     </div>
                                     <div className={styles.bathroom__option}>
                                         {card.bathroomOption}
@@ -55,7 +77,13 @@ const ExamplesCards: React.FC<{ data: ExampleCardProps[] }> = ({ data }): JSX.El
                                 </div>
                                 <div className={styles.card__area}>
                                     <div className={styles.area__icon}>
-                                        <img src={card.areaIcon} alt='bathroom' />
+                                        <NextImage
+                                            src={card.areaIcon}
+                                            alt='area'
+                                            width={20}
+                                            height={20}
+                                            loading='lazy'
+                                        />
                                     </div>
                                     <div className={styles.area__option}>
                                         {card.areaOption}

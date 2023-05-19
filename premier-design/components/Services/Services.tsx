@@ -2,11 +2,13 @@ import styles from './Services.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../Title/Title';
-import data from '../../data/data.json';
-import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
+import { FC } from 'react';
 
 
-const Services: React.FC<OrderButtonProps> = (): JSX.Element => {
+
+const Services: FC<{ data: DataProps }> = ({ 
+    data 
+}): JSX.Element => {
     const foundTitle: TitleProps | undefined = data.title.find((item: TitleProps): boolean => item.id === 2);
     const title = foundTitle?.title ?? '';
     const description = foundTitle?.description ?? '';
@@ -19,7 +21,7 @@ const Services: React.FC<OrderButtonProps> = (): JSX.Element => {
                     descriptionStyle='description-black'
                     title={title}
                     description={description} />
-                <ServicesCards data={data.cards.servicesCard} />
+                <ServicesCards data={data} />
                 <OrderButton buttonHeader={'Оставить заявку'} buttonStyle='button-black' />
             </div>
         </section>

@@ -1,13 +1,12 @@
-import React from 'react';
+import {FC, Children, memo} from 'react';
 import { SliderProps } from './Slider.props';
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
 
-
-const Slider: React.FC<SliderProps> = ({ 
-    children, 
-    slidesPerView, 
-    isMobile 
+const Slider: FC<SliderProps> = memo(({
+    children,
+    slidesPerView,
+    isMobile
 }): JSX.Element => {
 
     const [ref] = useKeenSlider<HTMLDivElement>({
@@ -20,10 +19,10 @@ const Slider: React.FC<SliderProps> = ({
     })
     return (
         <div ref={ref} className="keen-slider">
-            {React.Children.map(children, (child, index) => (
+            {Children.map(children, (child, index) => (
                 <div className="keen-slider__slide" key={index}>{child}</div>
             ))}
         </div>
     )
-}
+});
 export default Slider;

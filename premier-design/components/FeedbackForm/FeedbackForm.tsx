@@ -1,3 +1,4 @@
+import { FC, memo } from "react";
 import styles from "./FeedbackForm.module.css";
 export interface FeedbackItem {
     name: string;
@@ -13,7 +14,7 @@ export interface FeedbackFormProps {
     formDataState: FeedbackItem;
 }
 
-const FeedbackForm: React.FC<FeedbackFormProps> = ({
+const FeedbackForm: FC<FeedbackFormProps> = memo(({
     onSubmit,
     formDataState,
     onInputChange
@@ -73,6 +74,8 @@ const FeedbackForm: React.FC<FeedbackFormProps> = ({
             </div>
         </form>
     );
-};
-
+}, (prevProps, nextProps) => {
+    return prevProps.onSubmit === nextProps.onSubmit
+        && prevProps.formDataState === nextProps.formDataState;
+});
 export default FeedbackForm;
