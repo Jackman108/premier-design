@@ -8,6 +8,7 @@ import MenuButton from '../../UX/MenuButton/MenuButton';
 import ThemeButton from '../../UX/ThemeButton/ThemeButton';
 import styles from './Header.module.css';
 
+
 const Header: React.FC<{ data: DataProps }> = ({
     data
 }): JSX.Element => {

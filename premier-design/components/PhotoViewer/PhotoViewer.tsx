@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './PhotoViewer.module.css';
 import NextImage from 'next/image';
 
-interface PhotoViewerProps {
+export interface PhotoViewerProps {
     images: string[];
     currentImage: string;
     onClose: () => void;
@@ -80,19 +80,19 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
         if (wrapperRef.current) {
             wrapperRef.current.focus();
         }
-    }, [wrapperRef]);
+    }, []);
 
     return (
         <div
             className={styles.photoViewer}
             tabIndex={0}
             onKeyDown={handleKeyDown}
-            onClick={handleImageClick}
+            onMouseDown={handleImageClick}
             ref={wrapperRef}
         >
             <div
                 className={styles.overlay}
-                onClick={handlePrev}
+                onMouseDown={handlePrev}
             />
             <NextImage
                 src={currentIndex >= 0 && currentIndex < images.length ? images[currentIndex] : ''}
@@ -104,12 +104,12 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
             />
             <div
                 className={styles.overlay}
-                onClick={handleClose}
+                onMouseDown={handleClose}
             />
             <div className={styles.buttonContainer}>
                 <button
                     className={styles.buttonPrev}
-                    onClick={handlePrev}
+                    onMouseDown={handlePrev}
                     aria-label="Previous"
                     tabIndex={-1}
                 >
@@ -117,7 +117,7 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
                 </button>
                 <button
                     className={styles.buttonNext}
-                    onClick={handleNext}
+                    onMouseDown={handleNext}
                     aria-label="Next"
                     tabIndex={-1}
                 >
@@ -126,7 +126,7 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
             </div>
             <button
                 className={styles.buttonClose}
-                onClick={handleClose}
+                onMouseDown={handleClose}
             >
                 Close
             </button>

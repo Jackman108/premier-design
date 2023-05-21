@@ -1,9 +1,9 @@
-import React, { useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import styles from './ServicesCards.module.css';
 import Link from 'next/link';
 import NextImage from 'next/image';
 
-const ServicesCards: React.FC<{ data: DataProps }> = ({ data }): JSX.Element => {
+const ServicesCards: FC<{ data: DataProps }> = ({ data }): JSX.Element => {
     const memoizedServicesCards = useMemo(() => data.cards?.servicesCard || [], []);
     return (
         <div className={styles.services__cards}>

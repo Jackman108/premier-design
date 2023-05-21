@@ -16,7 +16,7 @@ const Contacts: FC<NextPage & DataProps> = (): JSX.Element => {
                 <meta name="description" content="Контакты нашей компании" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Layout>
+            <Layout data={data}>
                 <Address />
                 <YandexMap />
                 <Appeal

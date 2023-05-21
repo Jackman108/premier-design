@@ -19,7 +19,7 @@ const About: React.FC<NextPage & DataProps> = (): JSX.Element => {
                 <meta name="description" content="Информация о нашей компании" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Layout>
+            <Layout data={data}>
                 <AboutUs
                     title={title}
                     description={description}

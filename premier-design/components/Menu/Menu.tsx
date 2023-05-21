@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useMemo } from 'react';
+import { memo, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { MenuStyleProps, MenuDataProps } from './MenuData.props';
 import headerStyles from './HeaderMenu.module.css';

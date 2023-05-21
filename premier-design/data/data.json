@@ -131,7 +131,7 @@
     ],
     "bannersImages": [
         {
-            "src": "/design/banner-design.png",
+            "src": "/banners/banner-design.webp",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 100,
             "width": 1920,
@@ -139,7 +139,7 @@
         },
         {
             "id": 2,
-            "src": "/repair/banner-repair.png",
+            "src": "/banners/banner-repair.webp",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 100,
             "width": 1920,
@@ -147,7 +147,7 @@
         },
         {
             "id": 3,
-            "src": "/banner.png",
+            "src": "/banners/banner.webp",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 100,
             "width": 1920,
@@ -155,7 +155,7 @@
         },
         {
             "id": 4,
-            "src": "/appeal.png",
+            "src": "/banners/appeal.webp",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 100,
             "width": 1920,
@@ -193,33 +193,33 @@
             {
                 "id": 1,
                 "title": "Ремонт квартиры",
-                "image": "/costing/costing01.png"
+                "image": "/costing/costing01.webp"
             },
             {
                 "id": 2,
                 "title": "Ремонт дома",
-                "image": "/costing/costing02.png"
+                "image": "/costing/costing02.webp"
             },
             {
                 "id": 3,
                 "title": "Ремонт магазина",
-                "image": "/costing/costing03.png"
+                "image": "/costing/costing03.webp"
             },
             {
                 "id": 4,
                 "title": "Ремонт ресторана",
-                "image": "/costing/costing04.png"
+                "image": "/costing/costing04.webp"
             },
             {
                 "id": 5,
                 "title": "Ремонт офиса",
-                "image": "/costing/costing05.png"
+                "image": "/costing/costing05.webp"
             }
         ],
         "examplesCard": [
             {
                 "id": 1,
-                "background": "/examples/example01.png",
+                "background": "/examples/example01.webp",
                 "address": "Ремонт квартиры. г.Жлобин",
                 "deadlines": "Срок выполнения 5,5 мес.",
                 "bathroomIcon": "/examples/bathroomIcon.svg",
@@ -228,14 +228,14 @@
                 "areaOption": 49,
                 "areaSquare": "m2",
                 "images": [
-                    "/design/designType1.png",
-                    "/design/designType2.png",
-                    "/design/designType3.png"
+                    "/design/designType1.webp",
+                    "/design/designType2.webp",
+                    "/design/designType3.webp"
                 ]
             },
             {
                 "id": 2,
-                "background": "/examples/example02.png",
+                "background": "/examples/example02.webp",
                 "address": "Ремонт дома. п.Сейбит",
                 "deadlines": "Срок выполнения 4 мес.",
                 "bathroomIcon": "/examples/bathroomIcon.svg",
@@ -244,14 +244,14 @@
                 "areaOption": 42,
                 "areaSquare": "m2",
                 "images": [
-                    "/repair/repairType1.png",
-                    "/repair/repairType2.png",
-                    "/repair/repairType3.png"
+                    "/repair/repairType1.webp",
+                    "/repair/repairType2.webp",
+                    "/repair/repairType3.webp"
                 ]
             },
             {
                 "id": 3,
-                "background": "/examples/example03.png",
+                "background": "/examples/example03.webp",
                 "address": "Ремонт дома. д.Малые Роги",
                 "deadlines": "Срок выполнения 1 мес.",
                 "bathroomIcon": "/examples/bathroomIcon.svg",
@@ -260,14 +260,14 @@
                 "areaOption": 80,
                 "areaSquare": "m2",
                 "images": [
-                    "/design/designType1.png",
-                    "/design/designType2.png",
-                    "/design/designType3.png"
+                    "/design/designType1.webp",
+                    "/design/designType2.webp",
+                    "/design/designType3.webp"
                 ]
             },
             {
                 "id": 4,
-                "background": "/examples/example04.png",
+                "background": "/examples/example04.webp",
                 "address": "Ремонт магазина IMPERIAL",
                 "deadlines": "Срок выполнения 2 мес.",
                 "bathroomIcon": "/examples/bathroomIcon.svg",
@@ -276,14 +276,14 @@
                 "areaOption": 108,
                 "areaSquare": "m2",
                 "images": [
-                    "/repair/repairType1.png",
-                    "/repair/repairType2.png",
-                    "/repair/repairType3.png"
+                    "/repair/repairType1.webp",
+                    "/repair/repairType2.webp",
+                    "/repair/repairType3.webp"
                 ]
             },
             {
                 "id": 5,
-                "background": "/examples/example05.png",
+                "background": "/examples/example05.webp",
                 "address": "Ремонт павильона IQOS",
                 "deadlines": "Срок выполнения 1,5 мес.",
                 "bathroomIcon": "/examples/bathroomIcon.svg",
@@ -292,14 +292,14 @@
                 "areaOption": 70,
                 "areaSquare": "m2",
                 "images": [
-                    "/design/designType1.png",
-                    "/design/designType2.png",
-                    "/design/designType3.png"
+                    "/design/designType1.webp",
+                    "/design/designType2.webp",
+                    "/design/designType3.webp"
                 ]
             },
             {
                 "id": 6,
-                "background": "/examples/example06.png",
+                "background": "/examples/example06.webp",
                 "address": "Ремонт ресторана Колбасный Цех",
                 "deadlines": "Срок выполнения 2 мес.",
                 "bathroomIcon": "/examples/bathroomIcon.svg",
@@ -308,11 +308,11 @@
                 "areaOption": 150,
                 "areaSquare": "m2",
                 "images": [
-                    "/examples/example01.png",
-                    "/examples/example02.png",
-                    "/examples/example03.png",
-                    "/examples/example04.png",
-                    "/examples/example05.png"
+                    "/examples/example01.webp",
+                    "/examples/example02.webp",
+                    "/examples/example03.webp",
+                    "/examples/example04.webp",
+                    "/examples/example05.webp"
                 ]
             }
         ],
@@ -320,31 +320,31 @@
             {
                 "id": 1,
                 "text": "Дизайн интерьеров",
-                "image": "/services/service01.png",
+                "image": "/services/service01.webp",
                 "href": "/design"
             },
             {
                 "id": 2,
                 "text": "Ремонт интерьеров",
-                "image": "/services/service02.png",
+                "image": "/services/service02.webp",
                 "href": "/repairs"
             },
             {
                 "id": 3,
                 "text": "Сопутствующие услуги",
-                "image": "/services/service03.png",
+                "image": "/services/service03.webp",
                 "href": "/design"
             },
             {
                 "id": 4,
                 "text": "Акции",
-                "image": "/services/service05.png",
+                "image": "/services/service05.webp",
                 "href": "/about"
             },
             {
                 "id": 5,
                 "text": "Ремонт общественных знаний и сооружений",
-                "image": "/services/service04.png",
+                "image": "/services/service04.webp",
                 "href": "/repairs"
             }
         ]
@@ -352,7 +352,7 @@
     "offerList": [
         {
             "id": 1,
-            "image": "/design/offerList.png",
+            "image": "/design/offerList.webp",
             "subTitle": "Для того, чтобы разработать качественный дизайн-проект, важно ответить на множество вопросов, касающихся стилистики, функциональности и комфорта помещения. Необходимо решить:",
             "description": "Дизайн-проект квартиры является детальным описанием интерьерного пространства с визуализацией и последовательным планом действий для ремонтных бригад. Данный проект содержит полноценную рабочую документацию с чертежами, точными расчетами геометрических конструкций и элементов декорирования, включая учет толщины штукатурки. Также дизайн-проект включает точную смету работ и потребностей в материалах.",
             "questions": [
@@ -366,7 +366,7 @@
         },
         {
             "id": 2,
-            "image": "/repair/offerList.png",
+            "image": "/repair/offerList.webp",
             "subTitle": "Для того, чтобы провести качественный ремонт помещения, важно учитывать множество факторов, связанных с его функциональностью и комфортом. Необходимо решить:",
             "description": "Комплексный ремонт помещения – это работа по обновлению всего интерьера, включая замену и установку коммуникаций, ремонт стен, потолков и полов, установку дверей, окон и мебели. Мы предоставляем полный спектр услуг, включая оценку состояния помещения, разработку дизайн-проекта, подбор материалов и мебели, а также проведение ремонтных работ.",
             "questions": [
@@ -383,7 +383,7 @@
         "designType": [
             {
                 "id": 1,
-                "image": "/design/designType1.png",
+                "image": "/design/designType1.webp",
                 "title": "Стандарт",
                 "price": "от 55 бел.руб. за 1 м. кв.",
                 "pros": "Вы получаете:",
@@ -425,7 +425,7 @@
             },
             {
                 "id": 2,
-                "image": "/design/designType2.png",
+                "image": "/design/designType2.webp",
                 "title": "Оптима",
                 "price": "от 76 бел.руб. за 1 м. кв.",
                 "pros": "Вы получаете:",
@@ -467,7 +467,7 @@
             },
             {
                 "id": 3,
-                "image": "/design/designType3.png",
+                "image": "/design/designType3.webp",
                 "title": "Премиум",
                 "price": "от 140 бел.руб. за 1 м. кв.",
                 "pros": "Вы получаете:",
@@ -510,7 +510,7 @@
         "repairType": [
             {
                 "id": 1,
-                "image": "/repair/repairType1.png",
+                "image": "/repair/repairType1.webp",
                 "title": "Стандарт",
                 "price": "от 259 бел.руб. за 1 м. кв.",
                 "pros": "Перечень работ включает:",
@@ -541,7 +541,7 @@
             },
             {
                 "id": 2,
-                "image": "/repair/repairType2.png",
+                "image": "/repair/repairType2.webp",
                 "title": "Комфорт",
                 "price": "от 369 бел.руб. за 1 м. кв.",
                 "pros": "Перечень работ включает:",
@@ -568,7 +568,7 @@
             },
             {
                 "id": 3,
-                "image": "/repair/repairType3.png",
+                "image": "/repair/repairType3.webp",
                 "title": "Бизнес",
                 "price": "от 554 бел.руб. за 1 м. кв.",
                 "pros": "Перечень работ включает:",

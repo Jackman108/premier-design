@@ -1,6 +1,6 @@
 .appeal {
     position: inherit;
-    max-width: 100%;  
+    max-width: 100%;
     padding: 2vh 0;
 }
 
@@ -10,7 +10,6 @@
     justify-items: center;
     justify-content: center;
     align-content: space-around;
-
     max-width: 1440px;
     margin: 0 auto;
 }
@@ -18,17 +17,15 @@
 .appeal__background {
     position: absolute;
     width: 100%;
-    height: 100%;
+    height: 60%;
     z-index: -1;
     background-repeat: no-repeat;
     object-fit: cover;
 }
 
 @media screen and (max-width: 768px) {
-
     .appeal__container {
         height: 30vh;
-        
     }
 
 }

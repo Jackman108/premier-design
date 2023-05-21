@@ -21,14 +21,14 @@ const Banner: FC<BannerProps> = ({
 }): JSX.Element => {
     return (
         <section className={styles.banner}>
-            <div className={`${styles.banner__background} banner__background`}>
             <NextImage
-                    priority={true}
-                    {...bannerImg}
-                    className={styles.banner__background}
-                    quality={75}
-                />
-            </div>
+                priority={true}
+                {...bannerImg}
+                className={styles.banner__background}
+                width={1935}
+                height={684}
+                quality={95}
+            />
             <div className={styles.banner__container}>
                 <Title
                     id={id}

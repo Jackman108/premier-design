@@ -3,9 +3,9 @@ import styles from "./Features.module.css";
 import { useMemo } from "react";
 
 const Features = (
-    { data }: { data: DataProps }
+    { features }: { features: FeatureProps[] }
 ): JSX.Element => {
-    const memoizedFeatures = useMemo(() => data.features, []);
+    const memoizedFeatures = useMemo(() => features, []);
     return (
         <section className={styles.features}>
             <div className={styles.features__container}>

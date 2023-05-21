@@ -1,25 +1,14 @@
-import { FC, memo } from "react";
+import { FC, FormEvent, memo } from "react";
 import styles from "./FeedbackForm.module.css";
-export interface FeedbackItem {
-    name: string;
-    phone: string;
-    email: string;
-    message: string;
-}
-export interface FeedbackFormProps {
-    onSubmit: (data: FeedbackItem) => Promise<void>;
-    onInputChange: (
-        event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => void;
-    formDataState: FeedbackItem;
-}
+import { FeedbackFormProps } from "./FeedbackForm.props";
+
 
 const FeedbackForm: FC<FeedbackFormProps> = memo(({
     onSubmit,
     formDataState,
     onInputChange
 }) => {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         onSubmit(formDataState);
     };

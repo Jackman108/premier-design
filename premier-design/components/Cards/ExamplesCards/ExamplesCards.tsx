@@ -1,11 +1,11 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, FC } from 'react';
 import styles from './ExamplesCards.module.css';
 import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../hooks/useResizeEffects';
 import PhotoViewer from '../../PhotoViewer/PhotoViewer';
 import NextImage from 'next/image';
 
-const ExamplesCards: React.FC<{ data: ExampleCardProps[] }> = ({
+const ExamplesCards: FC<{ data: ExampleCardProps[] }> = ({
     data
 }): JSX.Element => {
     const memoizedExamplesCards = useMemo(() => data || [], [data]);
@@ -107,4 +107,4 @@ const ExamplesCards: React.FC<{ data: ExampleCardProps[] }> = ({
         </div>
     );
 };
-export default ExamplesCards;
+export default ExamplesCards; 

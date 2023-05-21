@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react";
+
 export interface FeedbackItem {
     name: string;
     phone: string;
@@ -5,5 +7,9 @@ export interface FeedbackItem {
     message: string;
 }
 export interface FeedbackFormProps {
-    onSubmit: (data: FormData) => void;
+    onSubmit: (data: FeedbackItem) => Promise<void>;
+    onInputChange: (
+        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => void;
+    formDataState: FeedbackItem;
 }

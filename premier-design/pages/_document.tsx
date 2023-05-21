@@ -25,7 +25,6 @@ class MyDocument extends Document {
                         rel="stylesheet"
                         media="print"
                     />
-
                 </Head>
                 <body>
                     <Main />

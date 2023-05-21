@@ -2,13 +2,14 @@ import styles from './OrderButton.module.css';
 import ModalOverlay from '../../ModalOverlay/ModalOverlay';
 import { FeedbackItem } from '../../FeedbackForm/FeedbackForm.props';
 import { OrderButtonProps, OrderButtonState } from './OrderButton.props';
-import { useCallback, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 
 
-const OrderButton: React.FC<OrderButtonProps> = ({
+const OrderButton: FC<OrderButtonProps> = ({
     buttonHeader,
     buttonStyle,
-}) => {
+}: OrderButtonProps) => {
+    
     const initialState: OrderButtonState = {
         showModal: false,
         error: "",
@@ -69,7 +70,7 @@ const OrderButton: React.FC<OrderButtonProps> = ({
             <button
                 className={buttonClass}
                 type="button"
-                onClick={handleButtonClick}
+                onMouseDown={handleButtonClick}
             >
                 {buttonHeader}
             </button>

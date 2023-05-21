@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import { FC, useMemo } from 'react';
 import styles from './CostingCards.module.css';
 import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../hooks/useResizeEffects';
 import Link from 'next/link';
 import NextImage from 'next/image';
 
-const CostingCards: React.FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element => {
+const CostingCards: FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element => {
     const memoizedCostingCards = useMemo(() => data || [], []);
 
     const { isMobile } = useResizeEffects();
