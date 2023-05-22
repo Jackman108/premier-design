@@ -1,21 +1,15 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import Layout from '../components/Layout/Layout';
 import Appeal from '../components/Appeal/Appeal';
 import YandexMap from '../components/YandexMap/YandexMap';
 import Address from '../components/Address/Address';
-import { getData } from './api/data';
-import { FC } from 'react';
+import { getStaticProps } from './api/data';
+import CustomHead from '../components/helpers/CustomHead';
 
-const Contacts: FC<NextPage & DataProps> = (): JSX.Element => {
-    const data = getData();
+const Contacts: NextPage<GetDataProps> = ({ data }): JSX.Element => {
     return (
         <>
-            <Head>
-                <title>Контакты</title>
-                <meta name="description" content="Контакты нашей компании" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <CustomHead title={'Premium Interior | Контакты'} description={'Ремонт и дизайн интерьеров в Беларуси'} />
             <Layout data={data}>
                 <Address />
                 <YandexMap />
@@ -26,5 +20,5 @@ const Contacts: FC<NextPage & DataProps> = (): JSX.Element => {
         </>
     );
 };
-
+export { getStaticProps };
 export default Contacts;

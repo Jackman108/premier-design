@@ -48,8 +48,8 @@ const ExamplesCards: FC<{ data: ExampleCardProps[] }> = ({
                             <NextImage
                                 src={card.background}
                                 alt={card.address}
-                                width={424}
-                                height={240}
+                                width={388}
+                                height={312}
                                 loading='lazy'
                             />
                         </div>

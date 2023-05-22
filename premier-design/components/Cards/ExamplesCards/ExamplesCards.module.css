@@ -2,7 +2,6 @@
     margin: 0 5%;
     display: grid;
     padding: 2vh 0;
-
 }
 
 .examples__card {
@@ -17,7 +16,6 @@
     grid-gap: 4vh;
     cursor: pointer;
     box-shadow: 0px 0px 10px var(--brown-white), inset -2px -2px 10px var(--brown-white);
-    ;
     transition: transform 0.5s ease, opacity 0.3s ease;
     opacity: 1;
     transform: translateY(20px);
@@ -26,7 +24,6 @@
 
 .examples__card:hover {
     box-shadow: 0px 0px 5px var(--brown-white), inset -2px -2px 5px var(--brown-white);
-    ;
     opacity: 0.9;
     transform: translateY(0);
 }
@@ -40,7 +37,6 @@
 
 .card__background img {
     width: auto;
-    height: 30vh;
 }
 
 .card__content {
@@ -83,8 +79,8 @@
 }
 
 .bathroom__icon {
-    width: auto;
-    height: auto;
+    width: 20px;
+    height: 20px;
 }
 
 
@@ -92,12 +88,11 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 0.5rem;
-
 }
 
 .area__icon {
-    width: auto;
-    height: auto;
+    width: 20px;
+    height: 20px;
 }
 
 

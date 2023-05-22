@@ -3,32 +3,30 @@ import styles from './Appeal.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../Title/Title';
 import NextImage from 'next/image';
+import { findTitle, bannerImageSettings, findButton } from '../../pages/api/constants';
 
 const Appeal: FC<{ data: DataProps }> = ({ 
     data 
 }): JSX.Element => {
-    const findData = data.title.find((item) => item.id === 6);
-    const title = findData ? findData.title : '';
-    const description = findData ? findData.description : '';
-    const appealImg: BannerImagesProps = data.bannersImages[3];
-
+    const { title = '', description = '' } = findTitle(data, 6) || {};
+    const buttonHeader = findButton(data, 0);
+    const bannerImg = bannerImageSettings(data, 3);
     return (
         <section className={styles.appeal}>
             <div className={styles.appeal__container}>
             <NextImage
-                    {...appealImg}
+                    {...bannerImg}
                     className={styles.appeal__background}
                     width={1920}
                     height={508}
                     loading='lazy'
                 />
                 <Title
-                    id={6}
                     titleStyle='title-black'
                     descriptionStyle='description-white'
                     title={title}
                     description={description} />
-                <OrderButton buttonHeader={'Оставить заявку'} buttonStyle='button-white' />
+                <OrderButton buttonHeader={buttonHeader} buttonStyle='button-white' />
             </div>
         </section>
     );

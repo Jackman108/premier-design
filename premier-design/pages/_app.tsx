@@ -3,7 +3,7 @@ import { ThemeProvider } from 'next-themes';
 import '../styles/globals.css';
 import "keen-slider/keen-slider.min.css";
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <ThemeProvider
             defaultTheme="light"

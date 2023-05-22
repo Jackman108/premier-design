@@ -5,40 +5,35 @@ import OfferList from '../components/OfferList/OfferList';
 import ProjectOffer from '../components/ProjectOffer/ProjectOffer';
 import Examples from '../components/Examples/Examples';
 import Appeal from '../components/Appeal/Appeal';
-import { getData } from './api/data';
-import { memo } from 'react';
+import { getStaticProps } from './api/data';
+import { findTitle, bannerImageSettings, findButton } from './api/constants';
+import CustomHead from '../components/helpers/CustomHead';
 
-const Design: NextPage<DataProps> = memo((): JSX.Element => {
-    const data = getData();
-    const findTitle = data.title.find((item) => item.id === 7);
-    const { title = '', description = '' } = findTitle || {};
-    const findButton = data.button[1]?.buttonHeader ?? '';
-    const bannerImageSettings: BannerImagesProps = data.bannersImages[0];
+const Design: NextPage<GetDataProps> = ({data}): JSX.Element => {
+    const { title = '', description = '' } = findTitle(data, 7) || {};
+    const buttonHeader = findButton(data, 1);
+    const bannerImg = bannerImageSettings(data, 0);
     return (
-        <Layout data={data}>
-            <main>
-                <section>
+        <>
+            <CustomHead title={'Premium Interior | Дизайн интерьеров'} description={'Ремонт и дизайн интерьеров в Беларуси'} />
+            <Layout data={data}>
                     <Banner
-                        buttonStyle='button-white'
                         title={title}
                         description={description}
-                        buttonHeader={findButton}
-                        bannerImg={bannerImageSettings}
-                        titleStyle='title-white'
-                        descriptionStyle='description-white'
+                        buttonHeader={buttonHeader}
+                        bannerImg={bannerImg}                      
                     />
                     <OfferList data={data.offerList.filter((offer) => offer.id === 1)} />
                     <Examples data={data} />
                     <ProjectOffer
                         data={data.offerProject.designType}
-                        buttonHeader={findButton}
+                        buttonHeader={buttonHeader}
                         buttonStyle='button-black'
                     />
                     <Appeal data={data} />
-                </section>
-            </main>
-        </Layout>
+            </Layout>
+        </>
     );
-});
-
+};
+export { getStaticProps };
 export default Design;

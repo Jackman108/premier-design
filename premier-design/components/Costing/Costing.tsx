@@ -1,19 +1,16 @@
 import styles from './Costing.module.css';
 import CostingCards from '../Cards/CostingCards/CostingCards';
 import Title from '../Title/Title';
+import { findTitle } from '../../pages/api/constants';
 
 const Costing: React.FC<{ data: DataProps }> = ({ 
     data 
 }): JSX.Element => {
-        const foundTitle: TitleProps | undefined = data.title.find((item: TitleProps): boolean =>
-        item.id === 5);
-    const title = foundTitle?.title ?? '';
-    const description = foundTitle?.description ?? '';
+    const { title = '', description = '' } = findTitle(data, 5) || {};
     return (
         <section className={styles.costing}>
             <div className={styles.costing__container}>
                 <Title
-                    id={foundTitle?.id ?? 5}
                     titleStyle='title-black'
                     descriptionStyle='description-black'
                     title={title}

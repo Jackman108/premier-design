@@ -1,45 +1,43 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styles from './Banner.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../Title/Title';
 import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
 import NextImage, { ImageProps } from 'next/image';
-import { TitleStyleProps } from '../Title/TitleStyle.props';
 
-type BannerProps = TitleStyleProps & OrderButtonProps & {
+type BannerProps = TitleProps & OrderButtonProps & {
     bannerImg: ImageProps
 }
 const Banner: FC<BannerProps> = ({
     id,
     title,
     description,
-    titleStyle,
-    descriptionStyle,
     buttonHeader,
-    buttonStyle,
     bannerImg
 }): JSX.Element => {
+    const { width, height, quality, ...otherImageProps } = bannerImg;
+
     return (
         <section className={styles.banner}>
             <NextImage
-                priority={true}
-                {...bannerImg}
+                priority
+                {...otherImageProps}
                 className={styles.banner__background}
-                width={1935}
-                height={684}
-                quality={95}
+                width={width}
+                height={height}
+                quality={quality}
             />
             <div className={styles.banner__container}>
                 <Title
                     id={id}
-                    titleStyle={titleStyle}
-                    descriptionStyle={descriptionStyle}
+                    titleStyle='title-white'
+                    descriptionStyle='description-white'
                     title={title}
                     description={description}
                 />
                 <OrderButton
                     buttonHeader={buttonHeader}
-                    buttonStyle={buttonStyle}
+                    buttonStyle='button-white'
                 />
             </div>
         </section>

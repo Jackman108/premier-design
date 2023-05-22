@@ -3,26 +3,23 @@ import OrderButton from '../UX/OrderButton/OrderButton';
 import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../Title/Title';
 import { FC } from 'react';
+import { findTitle, findButton } from '../../pages/api/constants';
 
-
-
-const Services: FC<{ data: DataProps }> = ({ 
-    data 
+const Services: FC<{ data: DataProps }> = ({
+    data
 }): JSX.Element => {
-    const foundTitle: TitleProps | undefined = data.title.find((item: TitleProps): boolean => item.id === 2);
-    const title = foundTitle?.title ?? '';
-    const description = foundTitle?.description ?? '';
+    const { title = '', description = '' } = findTitle(data, 2) || {};
+    const buttonHeader = findButton(data, 0);
     return (
         <section className={styles.services}>
             <div className={styles.services__container}>
                 <Title
-                    id={foundTitle?.id ?? 2}
                     titleStyle='title-black'
                     descriptionStyle='description-black'
                     title={title}
                     description={description} />
                 <ServicesCards data={data} />
-                <OrderButton buttonHeader={'Оставить заявку'} buttonStyle='button-black' />
+                <OrderButton buttonHeader={buttonHeader} buttonStyle='button-black' />
             </div>
         </section>
     );

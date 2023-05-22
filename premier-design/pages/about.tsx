@@ -1,24 +1,18 @@
 import type { NextPage } from 'next';
-import Head from 'next/head';
 import Layout from '../components/Layout/Layout';
 import Approach from '../components/Approach/Approach';
 import Appeal from '../components/Appeal/Appeal';
 import AboutUs from '../components/AboutUs/AboutUs';
 import OfferList from '../components/OfferList/OfferList';
-import { getData } from './api/data';
+import { getStaticProps } from './api/data';
+import { findTitle } from './api/constants';
+import CustomHead from '../components/helpers/CustomHead';
 
-const About: React.FC<NextPage & DataProps> = (): JSX.Element => {
-    const data = getData();
-    const findTitle = data.title.find((item) => item.id === 10);
-    const { title = '', description = '' } = findTitle || {};
-
+const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
+    const { title = '', description = '' } = findTitle(data, 10) || {};
     return (
         <>
-            <Head>
-                <title>О нас</title>
-                <meta name="description" content="Информация о нашей компании" />
-                <link rel="icon" href="/favicon.ico" />
-            </Head>
+            <CustomHead title={'Premium Interior | О Компании'} description={'Ремонт и дизайн интерьеров в Беларуси'} />
             <Layout data={data}>
                 <AboutUs
                     title={title}
@@ -38,5 +32,5 @@ const About: React.FC<NextPage & DataProps> = (): JSX.Element => {
         </>
     );
 };
-
+export { getStaticProps };
 export default About;

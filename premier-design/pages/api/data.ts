@@ -1,12 +1,16 @@
-import data from "../../data/data.json";
+import data from '../../data/data.json';
+import type { GetStaticProps } from 'next'
 
-let cachedData: typeof data | null = null;
-
-export const getData = (): typeof data => {
-    if (cachedData) {
-        return cachedData;
-    }
-
-    cachedData = data;
-    return cachedData;
+export const getData = async (): Promise<typeof data> => {
+    return data;
 };
+
+export const getStaticProps: GetStaticProps<{ data: DataProps }> = async () => {
+    const data: DataProps = await getData();
+    return {
+        props: {
+            data,
+        },
+        revalidate: 60,
+    };
+}; 

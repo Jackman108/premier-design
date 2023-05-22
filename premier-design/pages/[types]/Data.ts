@@ -77,22 +77,25 @@ interface OfferProject {
     prosDescription: string[];
     consDescription: string[];
 }
-interface DataProps {   
-        menu: MenuProps[];
-        button: ButtonProps[];
-        news: NewsProps[];
-        features: FeatureProps[];
-        title: TitleProps[];
-        cards: {
-            approachCard: ApproachCardProps[];
-            costingCard: CostingCardProps[];
-            examplesCard: ExampleCardProps[];
-            servicesCard: ServiceCardProps[];
-        };
-        offerList: OfferListProps[];
-        offerProject: {
-            designType: OfferProject[];
-            repairType: OfferProject[];
-        }
-        bannersImages: BannerImagesProps[];
+interface DataProps {
+    menu: MenuProps[];
+    button: ButtonProps[];
+    news: NewsProps[];
+    features: FeatureProps[];
+    title: TitleProps[];
+    cards: {
+        approachCard: ApproachCardProps[];
+        costingCard: CostingCardProps[];
+        examplesCard: ExampleCardProps[];
+        servicesCard: ServiceCardProps[];
+    };
+    offerList: OfferListProps[];
+    offerProject: {
+        designType: OfferProject[];
+        repairType: OfferProject[];
+    }
+    bannersImages: BannerImagesProps[];
+}
+interface GetDataProps {
+    data: DataProps;
 }

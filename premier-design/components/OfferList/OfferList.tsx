@@ -20,7 +20,7 @@ const OfferList: React.FC<{ data: OfferListProps[] } > = ({
                                         className={styles.image__background}
                                         width={1935}
                                         height={1119}
-                                        loading = 'lazy'
+                                        loading = 'lazy' 
                                     />
                                 </div>
                             </div>

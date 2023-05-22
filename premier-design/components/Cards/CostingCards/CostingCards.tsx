@@ -20,8 +20,8 @@ const CostingCards: FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element =
                                 src={image}
                                 alt={title}
                                 className={styles.background}
-                                width={425}
-                                height={312}                                
+                                width={380}
+                                height={520}  
                                 loading='lazy'
                             />
                         </div>

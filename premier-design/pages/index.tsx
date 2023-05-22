@@ -1,45 +1,30 @@
-import type { GetStaticProps, NextPage } from 'next';
-import Head from 'next/head';
+import { NextPage } from 'next';
 import Layout from '../components/Layout/Layout';
 import Banner from '../components/Banner/Banner';
 import Approach from '../components/Approach/Approach';
 import Preloader from '../components/UX/Preloader/Preloader';
-import { getData } from "./api/data";
 import Features from '../components/Features/Features';
 import Examples from '../components/Examples/Examples';
 import Costing from '../components/Costing/Costing';
 import Appeal from '../components/Appeal/Appeal';
 import Services from '../components/Services/Services';
+import { getStaticProps } from './api/data';
+import { findTitle, bannerImageSettings, findButton } from './api/constants';
+import CustomHead from '../components/helpers/CustomHead';
 
-interface HomeProps {
-  data: DataProps;
-}
-
-const Home: NextPage<HomeProps> = ({ data }) => {
-  const findTitle = data.title.find((item) => item.id === 1);
-  const { title = '', description = '' } = findTitle || {};
-  const findButton = data.button[1]?.buttonHeader ?? '';
-  const bannerImageSettings: BannerImagesProps = data.bannersImages[2];
-
+const Home: NextPage<GetDataProps> = ({ data }) => {
+  const { title = '', description = '' } = findTitle(data, 1) || {};
+  const buttonHeader = findButton(data, 0);
+  const bannerImg = bannerImageSettings(data, 2);
   return (
     <>
-      <Head>
-        <title>Premium Interior - Ремонт и дизайн интерьеров в Беларуси</title>
-        <meta
-          name="description"
-          content="Premium Interior - ремонт и дизайн интерьеров в Беларуси"
-        />
-      </Head>
-      <Layout data={data}>
-        <main>
+            <CustomHead title={'Premium Interior | Главная'} description={'Ремонт и дизайн интерьеров в Беларуси'} />
+        <Layout data={data}>
           <Banner
             title={title}
             description={description}
-            titleStyle='title-white'
-            descriptionStyle='description-white'
-            buttonHeader={findButton}
-            bannerImg={bannerImageSettings}
-            buttonStyle='button-white'
+            buttonHeader={buttonHeader}
+            bannerImg={bannerImg}
           />
           <Features features={data.features} />
           <Services data={data} />
@@ -48,19 +33,9 @@ const Home: NextPage<HomeProps> = ({ data }) => {
           <Costing data={data} />
           <Preloader />
           <Appeal data={data} />
-        </main>
-      </Layout>
-    </>
-  );
+        </Layout>
+      </>
+      );
 };
-
-export const getStaticProps: GetStaticProps<HomeProps> = async () => {
-  const data: DataProps = await getData(); 
-  return {
-    props: {
-      data,
-    },
-  };
-};
-
-export default Home;
+      export {getStaticProps};
+      export default Home;

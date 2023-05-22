@@ -5,41 +5,36 @@ import OfferList from '../components/OfferList/OfferList';
 import ProjectOffer from '../components/ProjectOffer/ProjectOffer';
 import Examples from '../components/Examples/Examples';
 import Appeal from '../components/Appeal/Appeal';
-import { getData } from './api/data';
-import { memo } from 'react';
+import { getStaticProps } from './api/data';
+import { findTitle, bannerImageSettings, findButton } from './api/constants';
+import CustomHead from '../components/helpers/CustomHead';
 
-const Services: NextPage<DataProps> = memo((): JSX.Element => {
-    const data = getData();
-    const findTitle = data.title.find((item) => item.id === 9);
-    const { title = '', description = '' } = findTitle || {};
-    const findButton = data.button[1]?.buttonHeader ?? '';
-    const bannerImageSettings: BannerImagesProps = data.bannersImages[1];
+const Repairs: NextPage<GetDataProps> = ({ data }): JSX.Element => {
+    const { title = '', description = '' } = findTitle(data, 9) || {};
+    const buttonHeader = findButton(data, 0);
+    const bannerImg = bannerImageSettings(data, 1);
     return (
-        <Layout data={data}>
-            <main>
-                <section>
-                    <Banner
-                        buttonStyle='button-white'
-                        title={title}
-                        description={description}
-                        buttonHeader={findButton}
-                        bannerImg={bannerImageSettings}
-                        titleStyle='title-white'
-                        descriptionStyle='description-white'
-                    />
-                    <OfferList data={data.offerList.filter(offer => offer.id === 2)}
-                    />
-                    <Examples data={data} />
-                    <ProjectOffer
-                        data={data.offerProject.repairType}
-                        buttonHeader={findButton}
-                        buttonStyle='button-black'
-                    />
-                    <Appeal data={data} />
-                </section>
-            </main>
-        </Layout>
+        <>
+            <CustomHead title={'Premium Interior | Ремонт интерьеров'} description={'Ремонт и дизайн интерьеров в Беларуси'} />
+            <Layout data={data}>
+                <Banner
+                    title={title}
+                    description={description}
+                    buttonHeader={buttonHeader}
+                    bannerImg={bannerImg}
+                />
+                <OfferList data={data.offerList.filter(offer => offer.id === 2)}
+                />
+                <Examples data={data} />
+                <ProjectOffer
+                    data={data.offerProject.repairType}
+                    buttonHeader={buttonHeader}
+                    buttonStyle='button-black'
+                />
+                <Appeal data={data} />
+            </Layout>
+        </>
     );
-});
-
-export default Services;
+};
+export { getStaticProps };
+export default Repairs;

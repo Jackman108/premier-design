@@ -1,18 +1,16 @@
 import styles from './Approach.module.css';
 import Title from '../Title/Title';
 import ApproachCards from '../Cards/ApproachCards/ApproachCards';
+import { findTitle } from '../../pages/api/constants';
 
 const Approach: React.FC<{ data: DataProps }> = ({ 
     data 
 }): JSX.Element => {
-    const foundTitle: TitleProps | undefined = data.title.find((item: TitleProps): boolean => item.id === 3);
-    const title = foundTitle?.title ?? '';
-    const description = foundTitle?.description ?? '';
+    const { title = '', description = '' } = findTitle(data, 3) || {};
     return (
         <section className={styles.approach}>
             <div className={styles.approach__container}>
-                <Title
-                    id={foundTitle?.id ?? 3}
+                <Title                   
                     titleStyle='title-black'
                     descriptionStyle='description-black'
                     title={title}
