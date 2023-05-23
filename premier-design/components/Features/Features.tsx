@@ -10,17 +10,17 @@ const Features = (
         <section className={styles.features}>
             <div className={styles.features__container}>
                 <div className={styles.features__list}>
-                    {memoizedFeatures.map((feature) => (
-                        <div className={styles.features__item} key={`feature_${feature.id}`}>
+                    {memoizedFeatures.map(({ id, title, icon, iconPng }: FeatureProps) => (
+                        <div className={styles.features__item} key={`id_${id}`}>
                             <NextImage
-                                src={feature.icon}
-                                alt={feature.title}
+                                src={icon?icon:iconPng}
+                                alt={title}
                                 className={styles.features__icon}
                                 width={40}
                                 height={40}
                                 loading='lazy'
                             />
-                            <h3 className={styles.features__title}>{feature.title}</h3>
+                            <h3 className={styles.features__title}>{title}</h3>
                         </div>
                     ))}
                 </div>

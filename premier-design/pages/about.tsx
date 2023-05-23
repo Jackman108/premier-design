@@ -7,6 +7,7 @@ import OfferList from '../components/OfferList/OfferList';
 import { getStaticProps } from './api/data';
 import { findTitle } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
+import News from '../components/News/News';
 
 const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 10) || {};
@@ -19,6 +20,10 @@ const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
                     description={description}
                     titleStyle='title-black'
                     descriptionStyle='description-black' />
+                     <News 
+                     news={data.news} 
+                     newsStyle= 'about'
+                     />
                 <Approach
                     data={data}
                 />

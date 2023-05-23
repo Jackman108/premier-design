@@ -2,8 +2,8 @@ export interface MenuDataProps {
     data: {
         menu: MenuProps[];
     };
-    isMobileMenuOpen?: boolean;
-    toggleMobileMenu?: () => void;
+    isMobileMenuOpen: boolean;
+    toggleMobileMenu: () => void;
 };
 
 export interface MenuStyleProps extends MenuDataProps {

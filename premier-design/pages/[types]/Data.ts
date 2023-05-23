@@ -10,12 +10,15 @@ interface ButtonProps {
 interface NewsProps {
     id: number;
     image: string;
+    imagePng: string;
     title: string;
+    text: string;
     date: string;
 }
 interface FeatureProps {
     id: number;
     title: string;
+    iconPng: string;
     icon: string;
 }
 interface TitleProps {

@@ -19,6 +19,8 @@ const Header: React.FC<{ data: DataProps }> = ({
             <div className={styles.header__container}>
                 <Logo />
                 <Menu
+                isMobileMenuOpen={isMobileMenuOpen}
+                toggleMobileMenu={toggleMobileMenu}
                     data={data}
                     menuStyle='header' />
                 <Phone />

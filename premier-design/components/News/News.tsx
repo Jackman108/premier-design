@@ -1,36 +1,57 @@
 import NextImage from "next/image";
-import styles from "./News.module.css";
+import footerStyles from "./footerNews.module.css";
+import aboutStyles from "./aboutNews.module.css";
+import bodyStyles from "./bodyNews.module.css";
 
-const News = ({ data
-}: {
-    data: DataProps
+export interface NewsStyleProps {
+    newsStyle: 'about' | 'footer' | 'body';
 }
-): JSX.Element => {
-    return (
-        <div className={styles.news}>
-            <div className={styles.news__container}>
-                <div className={styles.news__title}>
-                    <h2>Новости</h2>
-                </div>
-                {data.news.map((news) => (
-                    <div className={styles.news__content} key={news.id}>
+interface NewsComponentProps {
+    news: NewsProps[];
+    newsStyle: NewsStyleProps['newsStyle'];
+}
+const getNewsStyles = (newsStyle: NewsStyleProps['newsStyle']) => {
+    switch (newsStyle) {
+        case 'footer':
+            return footerStyles;
+        case 'about':
+            return aboutStyles;
+        default:
+            return bodyStyles;
+    }
+};
 
-                        <div className={styles.content__image}>
+const News: React.FC<NewsComponentProps> = ({ news, newsStyle }
+): JSX.Element => {
+    const stylesToUse = getNewsStyles(newsStyle);
+    return (
+        <div className={stylesToUse.news}>
+            <div className={stylesToUse.news__title}>
+                <h2>Новости</h2>
+            </div>
+            <div className={stylesToUse.news__container}>
+                {news.map((item) => (
+                    <div className={stylesToUse.news__content} key={item.id}>
+                        <div className={stylesToUse.content__image}>
                             <NextImage
-                                src={news.image}
-                                alt={news.title}
+                                src={item.image ? item.image : item.imagePng}
+                                alt={item.title}
                                 width={40}
                                 height={40}
                             />
                         </div>
-                        <div className={styles.content__wrapper}>
-                            <div className={styles.content__title}>
-                                {news.title}
+                        <div className={stylesToUse.content__wrapper}>
+                            <div className={stylesToUse.content__title}>
+                                {item.title}
                             </div>
-                            <div className={styles.content__date}>
-                                {news.date}
+                            <div className={stylesToUse.content__date}>
+                                {item.date}
                             </div>
+                            <div className={stylesToUse.content__text}>
+                            {item.text}
                         </div>
+                        </div>
+                        
                     </div>
                 ))}
             </div>

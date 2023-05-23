@@ -5,7 +5,7 @@ const CustomHead = ({ title, description }: { title: string, description: string
         <Head>
             <title>{title}</title>
             <meta name="description" content={description} />
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="icon" href="/favicon.webp" />
         </Head>
     );
 };
