@@ -34,7 +34,7 @@ const News: React.FC<NewsComponentProps> = ({ news, newsStyle }
                     <div className={stylesToUse.news__content} key={item.id}>
                         <div className={stylesToUse.content__image}>
                             <NextImage
-                                src={item.image ? item.image : item.imagePng}
+                                src={item.imagePng ? item.image : item.imagePng}
                                 alt={item.title}
                                 width={40}
                                 height={40}

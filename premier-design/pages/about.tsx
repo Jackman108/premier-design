@@ -2,28 +2,32 @@ import type { NextPage } from 'next';
 import Layout from '../components/Layout/Layout';
 import Approach from '../components/Approach/Approach';
 import Appeal from '../components/Appeal/Appeal';
-import AboutUs from '../components/AboutUs/AboutUs';
 import OfferList from '../components/OfferList/OfferList';
 import { getStaticProps } from './api/data';
-import { findTitle } from './api/constants';
+import { bannerImageSettings, findButton, findTitle } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
 import News from '../components/News/News';
+import Banner from '../components/Banner/Banner';
 
 const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 10) || {};
+    const buttonHeader = findButton(data, 0);
+    const bannerImg = bannerImageSettings(data, 4);
+
     return (
         <>
             <CustomHead title={'Premium Interior | О Компании'} description={'Ремонт и дизайн интерьеров в Беларуси'} />
             <Layout data={data}>
-                <AboutUs
+                <Banner
                     title={title}
                     description={description}
-                    titleStyle='title-black'
-                    descriptionStyle='description-black' />
-                     <News 
-                     news={data.news} 
-                     newsStyle= 'about'
-                     />
+                    buttonHeader={buttonHeader}
+                    bannerImg={bannerImg}
+                />
+                <News
+                    news={data.news}
+                    newsStyle='about'
+                />
                 <Approach
                     data={data}
                 />

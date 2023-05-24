@@ -12,7 +12,7 @@ import CustomHead from '../components/helpers/CustomHead';
 const Design: NextPage<GetDataProps> = ({data}): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 7) || {};
     const buttonHeader = findButton(data, 1);
-    const bannerImg = bannerImageSettings(data, 0);
+    const bannerImg = bannerImageSettings(data, 0); 
     return (
         <>
             <CustomHead title={'Premium Interior | Дизайн интерьеров'} description={'Ремонт и дизайн интерьеров в Беларуси'} />

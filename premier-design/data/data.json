@@ -194,6 +194,14 @@
             "quality": 95,
             "width": 1935,
             "height": 684  
+        },
+        {
+            "id": 5,
+            "src": "/banners/banner-about.webp",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 1935,
+            "height": 684  
         }
     ],
     "cards": {
