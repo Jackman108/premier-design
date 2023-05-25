@@ -2,7 +2,6 @@ import { NextPage } from 'next';
 import Layout from '../components/Layout/Layout';
 import Banner from '../components/Banner/Banner';
 import Approach from '../components/Approach/Approach';
-import Preloader from '../components/UX/Preloader/Preloader';
 import Features from '../components/Features/Features';
 import Examples from '../components/Examples/Examples';
 import Costing from '../components/Costing/Costing';
@@ -31,7 +30,6 @@ const Home: NextPage<GetDataProps> = ({ data }) => {
           <Approach data={data} />
           <Examples data={data} />
           <Costing data={data} />
-          <Preloader />
           <Appeal data={data} />
         </Layout>
       </>

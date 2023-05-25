@@ -1,0 +1,13 @@
+.tab{
+padding: 0.5rem;
+color: var(--brown-dark);
+font-size: 1.1rem;
+border-radius: 4px;
+}
+.tab:hover{
+cursor: pointer;
+background-color: var(--beige-dark);
+}
+.tab.active {
+    background-color: var(--brown-white);
+}

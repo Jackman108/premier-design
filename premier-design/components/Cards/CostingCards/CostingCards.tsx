@@ -1,4 +1,5 @@
-import { FC, useMemo, useState } from 'react';
+'use strict'
+import { FC, useEffect, useState } from 'react';
 import styles from './CostingCards.module.css';
 import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../hooks/useResizeEffects';
@@ -6,8 +7,6 @@ import NextImage from 'next/image';
 import CalculatorModal from '../../CalculatorModal/CalculatorModal';
 
 const CostingCards: FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element => {
-    const memoizedCostingCards = useMemo(() => data || [], []);
-
     const { isMobile } = useResizeEffects();
     const slidesPerView = 3;
 
@@ -23,10 +22,15 @@ const CostingCards: FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element =
         setIsModalOpen(false);
         setSelectedCard(null);
     };
+
+    useEffect(() => {
+        setIsModalOpen(false);
+        setSelectedCard(null);
+    }, [data]);
     return (
         <div className={styles.costing__cards}>
             <SliderComponent slidesPerView={slidesPerView} isMobile={isMobile}>
-                {memoizedCostingCards.map(({ id, title, image }: CostingCardProps) => (
+                {data.map(({ id, title, image }: CostingCardProps) => (
                     <div
                         className={styles.costing__card}
                         key={id}
@@ -47,7 +51,11 @@ const CostingCards: FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element =
                 ))}
             </SliderComponent>
             {isModalOpen && selectedCard && (
-                <CalculatorModal onClose={closeModal} />
+                <CalculatorModal 
+                card={selectedCard} 
+                onClose={closeModal} 
+                data={data}
+                />
             )}
         </div>
     );
