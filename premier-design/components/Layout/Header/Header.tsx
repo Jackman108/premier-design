@@ -1,7 +1,7 @@
 import Logo from '../../Logo/Logo';
 import Phone from '../../Phone/Phone';
 import SocialIcons from '../../SocialIcons/SocialIcons';
-import useResizeEffects from '../../hooks/useResizeEffects';
+import useThemeToggle from '../../hooks/useThemeToggle';
 import useMobileMenu from '../../hooks/useMobileMenu';
 import Menu from '../../Menu/Menu';
 import MenuButton from '../../UX/MenuButton/MenuButton';
@@ -12,7 +12,7 @@ import styles from './Header.module.css';
 const Header: React.FC<{ data: DataProps }> = ({
     data
 }): JSX.Element => {
-    const { currentTheme, toggleTheme } = useResizeEffects();
+    const { currentTheme, toggleTheme } = useThemeToggle();
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);
     return (
         <header className={styles.header}>

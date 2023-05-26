@@ -1,3 +1,4 @@
+'use client'
 import { useState, useCallback, useMemo, FC } from 'react';
 import styles from './ExamplesCards.module.css';
 import SliderComponent from '../../Slider/Slider';

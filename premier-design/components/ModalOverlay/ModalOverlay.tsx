@@ -1,3 +1,4 @@
+'use client'
 import styles from './ModalOverlay.module.css';
 import FeedbackForm from '../FeedbackForm/FeedbackForm';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';

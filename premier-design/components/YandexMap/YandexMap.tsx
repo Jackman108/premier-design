@@ -1,3 +1,4 @@
+'use client'
 import { useCallback, useEffect } from 'react';
 import styles from './YandexMap.module.css';
 import { YMaps, Map, Placemark, ZoomControl, FullscreenControl } from '@pbe/react-yandex-maps';

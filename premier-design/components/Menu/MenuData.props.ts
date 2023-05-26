@@ -11,8 +11,6 @@ export interface MenuStyleProps extends MenuDataProps {
 }
 
 export interface UseResizeEffectsReturnType {
-    currentTheme: string;
-    toggleTheme: () => void;
     isMobileMenuOpen: boolean;
     toggleMobileMenu: () => void;
     isMobile: boolean;

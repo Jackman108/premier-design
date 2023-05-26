@@ -1,3 +1,4 @@
+'use client'
 import { memo, useCallback, useMemo } from 'react';
 import Link from 'next/link';
 import { MenuStyleProps, MenuDataProps } from './MenuData.props';

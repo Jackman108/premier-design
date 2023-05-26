@@ -1,3 +1,4 @@
+'use client'
 import {FC, Children, memo} from 'react';
 import { SliderProps } from './Slider.props';
 import { useKeenSlider } from "keen-slider/react"
@@ -13,10 +14,11 @@ const Slider: FC<SliderProps> = memo(({
         loop: true,
         mode: "free-snap",
         slides: {
-            perView: isMobile ? 1 : slidesPerView,
-            spacing: 15,
+            perView: isMobile === undefined ? 1 : isMobile ? 1 : slidesPerView,
+            spacing: 15, 
         },
     })
+    
     return (
         <div ref={ref} className="keen-slider">
             {Children.map(children, (child, index) => (
