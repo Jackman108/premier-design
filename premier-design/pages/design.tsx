@@ -4,7 +4,7 @@ import { getStaticProps } from './api/data';
 import { findTitle, bannerImageSettings, findButton } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
 import dynamic from 'next/dynamic';
-import { GetDataProps } from './[types]/Data';
+import  {GetDataProps}  from '../interface/interfaceData';
 
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const OfferList = dynamic(() => import('../components/OfferList/OfferList'));

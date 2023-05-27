@@ -1,7 +1,7 @@
 import  { useMemo } from 'react';
 import styles from './ApproachCards.module.css';
 import Image from 'next/image';
-import { DataProps } from '../../../pages/[types]/Data';
+import { DataProps } from '../../../interface/interfaceData';
 
 const ApproachCards: React.FC<{ data: DataProps }> = ({ 
     data 

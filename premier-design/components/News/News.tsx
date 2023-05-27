@@ -2,7 +2,7 @@ import NextImage from "next/image";
 import footerStyles from "./footerNews.module.css";
 import aboutStyles from "./aboutNews.module.css";
 import bodyStyles from "./bodyNews.module.css";
-import { NewsProps } from "../../pages/[types]/Data";
+import { NewsProps } from "../../interface/interfaceData";
 
 export interface NewsStyleProps {
     newsStyle: 'about' | 'footer' | 'body';

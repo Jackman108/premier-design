@@ -1,4 +1,4 @@
-import { CostingCardProps } from "../../../pages/[types]/Data";
+import { CostingCardProps } from "../../../interface/interfaceData";
 export interface ModalTabsProps {
     selectedTab: number;
     handleTabChange: (index: number) => void;

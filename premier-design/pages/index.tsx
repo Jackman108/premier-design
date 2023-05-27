@@ -4,7 +4,7 @@ import Layout from '../Layout/Layout';
 import { getStaticProps } from './api/data';
 import { findTitle, bannerImageSettings, findButton } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
-import { GetDataProps } from './[types]/Data';
+import  {GetDataProps}  from '../interface/interfaceData';
 
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const Features = dynamic(() => import('../components/Features/Features'));

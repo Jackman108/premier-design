@@ -4,7 +4,7 @@ import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../Title/Title';
 import NextImage from 'next/image';
 import { findTitle, bannerImageSettings, findButton } from '../../pages/api/constants';
-import { DataProps } from '../../pages/[types]/Data';
+import { DataProps } from '../../interface/interfaceData';
 
 const Appeal: FC<{ data: DataProps }> = ({
     data

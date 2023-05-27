@@ -2,7 +2,7 @@ import styles from './Costing.module.css';
 import CostingCards from '../Cards/CostingCards/CostingCards';
 import Title from '../Title/Title';
 import { findTitle } from '../../pages/api/constants';
-import { DataProps } from '../../pages/[types]/Data';
+import { DataProps } from '../../interface/interfaceData';
 
 const Costing: React.FC<{ data: DataProps }> = ({ 
     data 

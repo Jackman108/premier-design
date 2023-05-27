@@ -2,7 +2,7 @@ import styles from './Approach.module.css';
 import Title from '../Title/Title';
 import ApproachCards from '../Cards/ApproachCards/ApproachCards';
 import { findTitle } from '../../pages/api/constants';
-import { DataProps } from '../../pages/[types]/Data';
+import { DataProps } from '../../interface/interfaceData';
 
 const Approach: React.FC<{ data: DataProps }> = ({ 
     data 

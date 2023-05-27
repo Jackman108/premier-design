@@ -4,7 +4,7 @@ import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../Title/Title';
 import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
 import NextImage, { ImageProps } from 'next/image';
-import { TitleProps } from '../../pages/[types]/Data';
+import { TitleProps } from '../../interface/interfaceData';
 
 type BannerProps = TitleProps & OrderButtonProps & {
     bannerImg: ImageProps

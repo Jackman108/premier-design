@@ -2,7 +2,7 @@ import styles from "./Footer.module.css";
 import useResizeEffects from "../../hooks/useResizeEffects";
 import dynamic from "next/dynamic";
 import { FC } from "react";
-import { GetDataProps } from "../../pages/[types]/Data";
+import  {GetDataProps} from "../../interface/interfaceData";
 
 const News = dynamic(() => import('../../components/News/News'));
 const Menu = dynamic(() => import('../../components/Menu/Menu'));

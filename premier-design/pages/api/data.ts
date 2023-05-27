@@ -1,6 +1,6 @@
 import data from '../../data/data.json';
 import type { GetStaticProps } from 'next'
-import type { DataProps } from '../[types]/Data';
+import type { DataProps } from '../../interface/interfaceData';
 
 export const getData = async (): Promise<typeof data> => {
     return data;

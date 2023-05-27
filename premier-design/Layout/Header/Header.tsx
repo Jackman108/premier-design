@@ -8,7 +8,7 @@ import MenuButton from '../../components/UX/MenuButton/MenuButton';
 import ThemeButton from '../../components/UX/ThemeButton/ThemeButton';
 import styles from './Header.module.css';
 import { FC } from 'react';
-import { GetDataProps } from '../../pages/[types]/Data';
+import  {GetDataProps}  from '../../interface/interfaceData';
 
 
 const Header: FC<GetDataProps> = ({ data }): JSX.Element => {

@@ -4,7 +4,7 @@ import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../Title/Title';
 import { FC } from 'react';
 import { findTitle, findButton } from '../../pages/api/constants';
-import { DataProps } from '../../pages/[types]/Data';
+import { DataProps } from '../../interface/interfaceData';
 
 const Services: FC<{ data: DataProps }> = ({
     data

@@ -2,7 +2,7 @@ import { FC, useMemo } from 'react';
 import styles from './ServicesCards.module.css';
 import Link from 'next/link';
 import NextImage from 'next/image';
-import { DataProps, ServiceCardProps } from '../../../pages/[types]/Data';
+import { DataProps, ServiceCardProps } from '../../../interface/interfaceData';
 
 const ServicesCards: FC<{ data: DataProps }> = ({ data }): JSX.Element => {
     const memoizedServicesCards = useMemo(() => data.cards?.servicesCard || [], [data.cards?.servicesCard]);

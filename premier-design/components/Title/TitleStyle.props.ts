@@ -1,4 +1,4 @@
-import { TitleProps } from "../../pages/[types]/Data";
+import { TitleProps } from "../../interface/interfaceData";
 
 export interface TitleStyleProps extends TitleProps{
     titleStyle: 'title-white' | 'title-black';

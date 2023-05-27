@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './OfferList.module.css';
 import Image from 'next/image';
-import { OfferListProps } from '../../pages/[types]/Data';
+import { OfferListProps } from '../../interface/interfaceData';
 
 const OfferList: React.FC<{ data: OfferListProps[] } > = ({ 
     data, 

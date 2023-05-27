@@ -1,4 +1,4 @@
-import { DataProps } from '../[types]/Data';
+import { DataProps } from '../../interface/interfaceData';
 import { getStaticProps } from '../api/data';
 
 
