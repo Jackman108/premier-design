@@ -3,6 +3,7 @@ import styles from './ProjectOffer.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
 import Image from 'next/image';
+import { OfferProject } from '../../pages/[types]/Data';
 
 const ProjectOffer: React.FC<{ data: OfferProject[] } & OrderButtonProps> = ({
     data,

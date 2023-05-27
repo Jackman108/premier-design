@@ -1,11 +1,12 @@
 import NextImage from "next/image";
 import styles from "./Features.module.css";
 import { useMemo } from "react";
+import { FeatureProps } from "../../pages/[types]/Data";
 
 const Features = (
     { features }: { features: FeatureProps[] }
 ): JSX.Element => {
-    const memoizedFeatures = useMemo(() => features, []);
+    const memoizedFeatures = useMemo(() => features, [features]);
     return (
         <section className={styles.features}>
             <div className={styles.features__container}>

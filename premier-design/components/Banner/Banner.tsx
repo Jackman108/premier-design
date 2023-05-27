@@ -4,6 +4,7 @@ import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../Title/Title';
 import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
 import NextImage, { ImageProps } from 'next/image';
+import { TitleProps } from '../../pages/[types]/Data';
 
 type BannerProps = TitleProps & OrderButtonProps & {
     bannerImg: ImageProps
@@ -13,6 +14,7 @@ const Banner: FC<BannerProps> = ({
     title,
     description,
     buttonHeader,
+    buttonStyle,
     bannerImg
 }): JSX.Element => {
     const { width, height, quality, ...otherImageProps } = bannerImg;
@@ -37,7 +39,7 @@ const Banner: FC<BannerProps> = ({
                 />
                 <OrderButton
                     buttonHeader={buttonHeader}
-                    buttonStyle='button-white'
+                    buttonStyle={buttonStyle}
                 />
             </div>
         </section>

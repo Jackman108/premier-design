@@ -3,6 +3,7 @@ import styles from './Examples.module.css';
 import ExamplesCards from '../Cards/ExamplesCards/ExamplesCards';
 import Title from '../Title/Title';
 import { findTitle } from '../../pages/api/constants';
+import { DataProps } from '../../pages/[types]/Data';
 
 const Examples: React.FC<{ data: DataProps }> = ({
     data

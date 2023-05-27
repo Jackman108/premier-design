@@ -54,6 +54,9 @@ const CalculatorModal: FC<CalculatorModalProps> = ({
         { label: 'Дизайн', value: 'design' }
     ], []);
 
+    const propertyFactor = propertyType === 'new' ? 1 : 1.1;
+            const repairFactor = repairFactorMap[repairType] ?? 1;
+            const serviceFactor = serviceFactorMap[serviceType] ?? 1;
     useEffect(() => {
         setResult(0);
     }, [selectedTab, inputValue, propertyType]);
@@ -85,11 +88,7 @@ const CalculatorModal: FC<CalculatorModalProps> = ({
 
     const handleCalculate = useCallback(async () => {
         setIsLoading(true);
-        try {
-            const propertyFactor = propertyType === 'new' ? 1 : 1.1;
-            const repairFactor = repairFactorMap[repairType] ?? 1;
-            const serviceFactor = serviceFactorMap[serviceType] ?? 1;
-
+        try {         
             const totalCost =
                 tabCosts[selectedTab] *
                 inputValueAsNumber *
@@ -105,7 +104,7 @@ const CalculatorModal: FC<CalculatorModalProps> = ({
         } finally {
             setIsLoading(false);
         }
-    }, [propertyType, repairType, serviceType, selectedTab, inputValueAsNumber, tabCosts]);
+    }, [propertyFactor, repairFactor, serviceFactor, selectedTab, inputValueAsNumber, tabCosts]);
     return (
         <div className={styles.modal_overlay} onClick={() => onClose()}>
             <div className={styles.modal_container} onClick={(e) => e.stopPropagation()}>

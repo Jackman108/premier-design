@@ -69,4 +69,5 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({
     return prevProps.onSubmit === nextProps.onSubmit
         && prevProps.formDataState === nextProps.formDataState;
 });
+FeedbackForm.displayName = "FeedbackForm";
 export default FeedbackForm;

@@ -5,6 +5,7 @@ import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../../hooks/useResizeEffects';
 import NextImage from 'next/image';
 import CalculatorModal from '../../CalculatorModal/CalculatorModal';
+import { CostingCardProps } from '../../../pages/[types]/Data';
 
 const CostingCards: FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element => {
     const { isMobile } = useResizeEffects();

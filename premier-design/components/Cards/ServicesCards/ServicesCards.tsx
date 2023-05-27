@@ -2,9 +2,10 @@ import { FC, useMemo } from 'react';
 import styles from './ServicesCards.module.css';
 import Link from 'next/link';
 import NextImage from 'next/image';
+import { DataProps, ServiceCardProps } from '../../../pages/[types]/Data';
 
 const ServicesCards: FC<{ data: DataProps }> = ({ data }): JSX.Element => {
-    const memoizedServicesCards = useMemo(() => data.cards?.servicesCard || [], []);
+    const memoizedServicesCards = useMemo(() => data.cards?.servicesCard || [], [data.cards?.servicesCard]);
     return (
         <div className={styles.services__cards}>
             {memoizedServicesCards.map(({ id, text, image, href }: ServiceCardProps) => (

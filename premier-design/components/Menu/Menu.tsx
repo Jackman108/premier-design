@@ -5,6 +5,7 @@ import { MenuStyleProps, MenuDataProps } from './MenuData.props';
 import headerStyles from './HeaderMenu.module.css';
 import footerStyles from './FooterMenu.module.css';
 import mobileStyles from './MobileMenu.module.css';
+import { MenuProps } from '../../pages/[types]/Data';
 
 const getMenuStyles = (menuStyle: string) => {
     switch (menuStyle) {
@@ -60,5 +61,5 @@ const Menu = memo(({
         </nav>
     );
 });
-
+Menu.displayName = "Menu";
 export default Menu;

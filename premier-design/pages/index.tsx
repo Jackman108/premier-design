@@ -4,6 +4,7 @@ import Layout from '../Layout/Layout';
 import { getStaticProps } from './api/data';
 import { findTitle, bannerImageSettings, findButton } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
+import { GetDataProps } from './[types]/Data';
 
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const Features = dynamic(() => import('../components/Features/Features'));
@@ -28,6 +29,7 @@ const Home: NextPage<GetDataProps> = ({ data }) => {
           title={title}
           description={description}
           buttonHeader={buttonHeader}
+          buttonStyle='button-white'
           bannerImg={bannerImg}
         />
         <Features features={data.features} />

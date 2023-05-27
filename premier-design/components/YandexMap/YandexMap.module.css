@@ -16,7 +16,6 @@
   opacity: 0.8;
 }
 
-/* Медиа-запросы для мобильных устройств */
 @media only screen and (max-width: 752px) {
   .mapContainer {
     width: 90vw;

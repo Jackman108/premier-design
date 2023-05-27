@@ -5,6 +5,7 @@ import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../../hooks/useResizeEffects';
 import PhotoViewer from '../../PhotoViewer/PhotoViewer';
 import NextImage from 'next/image';
+import { ExampleCardProps } from '../../../pages/[types]/Data';
 
 const ExamplesCards: FC<{ data: ExampleCardProps[] }> = ({
     data

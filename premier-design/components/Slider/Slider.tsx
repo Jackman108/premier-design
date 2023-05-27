@@ -27,4 +27,5 @@ const Slider: FC<SliderProps> = memo(({
         </div>
     )
 });
+Slider.displayName = "Slider";
 export default Slider;

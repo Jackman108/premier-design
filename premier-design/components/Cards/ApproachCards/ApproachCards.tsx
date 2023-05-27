@@ -1,11 +1,12 @@
 import  { useMemo } from 'react';
 import styles from './ApproachCards.module.css';
 import Image from 'next/image';
+import { DataProps } from '../../../pages/[types]/Data';
 
 const ApproachCards: React.FC<{ data: DataProps }> = ({ 
     data 
 }): JSX.Element => {
-    const memoizedApproachCards = useMemo(() => data.cards?.approachCard || [], []);
+    const memoizedApproachCards = useMemo(() => data.cards?.approachCard || [], [data.cards?.approachCard]);
     return (
         <div className={styles.approach__cards}>
             {memoizedApproachCards.map(({ id, image, title, description }) => (

@@ -1,13 +1,13 @@
 
-interface MenuProps {
+export interface MenuProps {
     id: number;
     title: string;
     ruTitle: string;
 }
-interface ButtonProps {
+export interface ButtonProps {
     buttonHeader: string;
 }
-interface NewsProps {
+export interface NewsProps {
     id: number;
     image: string;
     imagePng: string;
@@ -15,29 +15,29 @@ interface NewsProps {
     text: string;
     date: string;
 }
-interface FeatureProps {
+export interface FeatureProps {
     id: number;
     title: string;
     iconPng: string;
     icon: string;
 }
-interface TitleProps {
+export interface TitleProps {
     id?: number;
     title: string;
     description: string;
 }
-interface ApproachCardProps {
+export interface ApproachCardProps {
     id: number;
     image: string;
     title: string;
     description: string;
 }
-interface CostingCardProps {
+export interface CostingCardProps {
     id: number;
     title: string;
     image: string;
 }
-interface ExampleCardProps {
+export interface ExampleCardProps {
     id: number;
     background: string;
     address: string;
@@ -49,13 +49,13 @@ interface ExampleCardProps {
     areaSquare: string;
     images: string[];
 }
-interface ServiceCardProps {
+export interface ServiceCardProps {
     id?: number;
     text: string;
     image: string;
     href: string;
 }
-interface OfferListProps {
+export interface OfferListProps {
     id: number;
     image: string;
     subTitle: string;
@@ -63,14 +63,14 @@ interface OfferListProps {
     questions: string[];
     tips: string;
 }
-interface BannerImagesProps {
+export interface BannerImagesProps {
     src: string;
     alt: string;
     quality: number;
     width: number,
     height: number
 }
-interface OfferProject {
+export interface OfferProject {
     id: number;
     image: string;
     title: string;
@@ -80,7 +80,7 @@ interface OfferProject {
     prosDescription: string[];
     consDescription: string[];
 }
-interface DataProps {
+export interface DataProps {
     menu: MenuProps[];
     button: ButtonProps[];
     news: NewsProps[];
@@ -99,6 +99,6 @@ interface DataProps {
     }
     bannersImages: BannerImagesProps[];
 }
-interface GetDataProps {
+export interface GetDataProps {
     data: DataProps;
 }

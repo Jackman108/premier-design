@@ -3,6 +3,7 @@ import Layout from '../Layout/Layout';
 import { getStaticProps } from './api/data';
 import CustomHead from '../components/helpers/CustomHead';
 import dynamic from 'next/dynamic';
+import { GetDataProps } from './[types]/Data';
 
 const Address = dynamic(() => import('../components/Address/Address'));
 const YandexMap = dynamic(() => import('../components/YandexMap/YandexMap'));

@@ -4,6 +4,7 @@ import { getStaticProps } from './api/data';
 import { bannerImageSettings, findButton, findTitle } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
 import dynamic from 'next/dynamic';
+import { GetDataProps } from './[types]/Data';
 
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const OfferList = dynamic(() => import('../components/OfferList/OfferList'));
@@ -24,6 +25,7 @@ const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
                     title={title}
                     description={description}
                     buttonHeader={buttonHeader}
+                    buttonStyle={'button-white'}
                     bannerImg={bannerImg}
                 />
                 <News

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from "react";
 import styles from "./Copywriting.module.css";
 import Logo from "../Logo/Logo";
 import SocialIcons from "../SocialIcons/SocialIcons";
 import { format } from "date-fns";
 
-const Copywriting: React.FC = (): JSX.Element => {
+const Copywriting: FC = (): JSX.Element => {
     return (
         <section className={styles.footer__contacts}>
             <div className={styles.footer__logo}>

@@ -1,4 +1,8 @@
-module.exports = {
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+    enabled: process.env.ANALYZE === 'true',
+});
+module.exports = withBundleAnalyzer({
+
     async rewrites() {
         return [
             { source: '/', destination: '/' },
@@ -20,11 +24,12 @@ module.exports = {
                 headers: [
                     {
                         key: 'Cache-Control',
-                        value: 'public, max-age=31536000, immutable', // Кэширование на год
+                        value: 'public, max-age=31536000, immutable',
                     },
                 ],
             },
         ];
     },
     compress: true,
-}
+    pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
+});
