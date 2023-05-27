@@ -1,13 +1,14 @@
-import React from "react";
 import styles from "./Footer.module.css";
-import Menu from '../../Menu/Menu';
-import News from "../../News/News";
-import Copywriting from "../../Copywriting/Copywriting";
 import useResizeEffects from "../../hooks/useResizeEffects";
+import dynamic from "next/dynamic";
+import { FC } from "react";
 
-const Footer: React.FC<{ data: DataProps }> = ({
-    data
-}): JSX.Element => {
+const News = dynamic(() => import('../../components/News/News'));
+const Menu = dynamic(() => import('../../components/Menu/Menu'));
+const Copywriting = dynamic(() => import('../../components/Copywriting/Copywriting'));
+
+
+const Footer: FC<GetDataProps> = ({ data }): JSX.Element => {
     const { isMobileMenuOpen, toggleMobileMenu, } = useResizeEffects();
 
     return (
@@ -28,5 +29,4 @@ const Footer: React.FC<{ data: DataProps }> = ({
         </footer>
     );
 };
-
 export default Footer;

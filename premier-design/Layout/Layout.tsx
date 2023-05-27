@@ -2,10 +2,11 @@ import { LayoutProps } from './Layout.props';
 import styles from './Layout.module.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import { useRef } from 'react';
+import { FC, useRef } from 'react';
 
-export default function Layout({ children, data }: LayoutProps): JSX.Element {
+const Layout: FC<LayoutProps> = ({ children, data }): JSX.Element => {
     const bodyRef = useRef<HTMLDivElement>(null);
+
     return (
         <>
             <Header data={data} />
@@ -19,3 +20,4 @@ export default function Layout({ children, data }: LayoutProps): JSX.Element {
         </>
     );
 }
+export default Layout;

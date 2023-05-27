@@ -1,17 +1,16 @@
-import Logo from '../../Logo/Logo';
-import Phone from '../../Phone/Phone';
-import SocialIcons from '../../SocialIcons/SocialIcons';
+import Logo from '../../components/Logo/Logo';
+import Phone from '../../components/Phone/Phone';
+import SocialIcons from '../../components/SocialIcons/SocialIcons';
 import useThemeToggle from '../../hooks/useThemeToggle';
 import useMobileMenu from '../../hooks/useMobileMenu';
-import Menu from '../../Menu/Menu';
-import MenuButton from '../../UX/MenuButton/MenuButton';
-import ThemeButton from '../../UX/ThemeButton/ThemeButton';
+import Menu from '../../components/Menu/Menu';
+import MenuButton from '../../components/UX/MenuButton/MenuButton';
+import ThemeButton from '../../components/UX/ThemeButton/ThemeButton';
 import styles from './Header.module.css';
+import { FC } from 'react';
 
 
-const Header: React.FC<{ data: DataProps }> = ({
-    data
-}): JSX.Element => {
+const Header: FC<GetDataProps> = ({ data }): JSX.Element => {
     const { currentTheme, toggleTheme } = useThemeToggle();
     const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);
     return (
@@ -39,5 +38,4 @@ const Header: React.FC<{ data: DataProps }> = ({
         </header>
     );
 }
-
 export default Header;

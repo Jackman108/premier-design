@@ -1,10 +1,12 @@
 import type { NextPage } from 'next';
-import Layout from '../components/Layout/Layout';
-import Appeal from '../components/Appeal/Appeal';
-import YandexMap from '../components/YandexMap/YandexMap';
-import Address from '../components/Address/Address';
+import Layout from '../Layout/Layout';
 import { getStaticProps } from './api/data';
 import CustomHead from '../components/helpers/CustomHead';
+import dynamic from 'next/dynamic';
+
+const Address = dynamic(() => import('../components/Address/Address'));
+const YandexMap = dynamic(() => import('../components/YandexMap/YandexMap'));
+const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
 
 const Contacts: NextPage<GetDataProps> = ({ data }): JSX.Element => {
     return (

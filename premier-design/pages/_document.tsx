@@ -16,6 +16,9 @@ export default function Document(): JSX.Element {
                 />
                 <link rel="icon" href="/favicon.ico" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" />
+                <meta httpEquiv="Cache-Control" content="public, max-age=31536000" />
+                <meta httpEquiv="Expires" content="31536000" />
+                <meta httpEquiv="Pragma" content="public" />
             </Head>
             <body>
                 <Main />

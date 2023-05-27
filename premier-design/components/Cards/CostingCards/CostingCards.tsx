@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import styles from './CostingCards.module.css';
 import SliderComponent from '../../Slider/Slider';
-import useResizeEffects from '../../hooks/useResizeEffects';
+import useResizeEffects from '../../../hooks/useResizeEffects';
 import NextImage from 'next/image';
 import CalculatorModal from '../../CalculatorModal/CalculatorModal';
 

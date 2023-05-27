@@ -1,13 +1,15 @@
 import type { NextPage } from 'next';
-import Layout from '../components/Layout/Layout';
-import Approach from '../components/Approach/Approach';
-import Appeal from '../components/Appeal/Appeal';
-import OfferList from '../components/OfferList/OfferList';
+import Layout from '../Layout/Layout';
 import { getStaticProps } from './api/data';
 import { bannerImageSettings, findButton, findTitle } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
-import News from '../components/News/News';
-import Banner from '../components/Banner/Banner';
+import dynamic from 'next/dynamic';
+
+const Banner = dynamic(() => import('../components/Banner/Banner'));
+const OfferList = dynamic(() => import('../components/OfferList/OfferList'));
+const Approach = dynamic(() => import('../components/Approach/Approach'));
+const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
+const News = dynamic(() => import('../components/News/News'));
 
 const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 10) || {};
