@@ -13,6 +13,7 @@
 .footer__socialIcons svg {
     width: 4vh;
     height: 4vh;
+    filter: none;
 }
 
 .footer__copy {

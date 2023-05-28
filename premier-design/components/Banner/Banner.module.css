@@ -1,6 +1,6 @@
 .banner {
     margin: 0;
-    height: 82vh;
+    height: 80vh;
     width: 100%;
 }
 
@@ -21,7 +21,7 @@
     display: grid;
     justify-items: center;
     justify-content: center;
-    grid-gap: 15vh;
+    align-content: space-between;
     max-width: 1440px;
     margin: 12vh auto 2vh;
     height: 80%;
@@ -38,10 +38,9 @@
     }
 
     .banner__container {
-        height: 24vh;
+        height: 26vh;
         align-content: flex-end;
         margin: 5vh auto;
         grid-gap: 3vh;
-
     }
 }

@@ -26,7 +26,7 @@ const News: React.FC<NewsComponentProps> = ({ news, newsStyle }
 ): JSX.Element => {
     const stylesToUse = getNewsStyles(newsStyle);
     return (
-        <div className={stylesToUse.news}>
+        <section className={stylesToUse.news}>
             <div className={stylesToUse.news__title}>
                 <h2>Новости</h2>
             </div>
@@ -56,7 +56,7 @@ const News: React.FC<NewsComponentProps> = ({ news, newsStyle }
                     </div>
                 ))}
             </div>
-        </div>
+        </section>
     );
 }
 

@@ -1,5 +1,5 @@
 .news {
-    padding: 2vh 0;
+    padding: 5vh 0;
     height: auto;
 }
 
@@ -63,5 +63,9 @@
 @media (max-width: 768px) {
     .content__title {
         max-width: 400px;
+    }
+    .news__container {       
+        grid-template-columns: 1fr;
+        margin: 0 10px;
     }
 }

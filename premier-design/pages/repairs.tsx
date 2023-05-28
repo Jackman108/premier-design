@@ -9,7 +9,6 @@ import  {GetDataProps}  from '../interface/interfaceData';
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const OfferList = dynamic(() => import('../components/OfferList/OfferList'));
 const ProjectOffer = dynamic(() => import('../components/ProjectOffer/ProjectOffer'));
-const Examples = dynamic(() => import('../components/Examples/Examples'));
 const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
 
 const Repairs: NextPage<GetDataProps> = ({ data }): JSX.Element => {
@@ -29,7 +28,6 @@ const Repairs: NextPage<GetDataProps> = ({ data }): JSX.Element => {
                 />
                 <OfferList data={data.offerList.filter(offer => offer.id === 2)}
                 />
-                <Examples data={data} />
                 <ProjectOffer
                     data={data.offerProject.repairType}
                     buttonHeader={buttonHeader}

@@ -3,6 +3,7 @@
     background-color: transparent;
     border: none;
     color: var(--brown);
+    filter: drop-shadow(0 0 5px var(--brown-white));
     display: grid;
     align-items: center;
     justify-content: end;
@@ -15,7 +16,8 @@
 }
 
 .theme__button:hover {
-    color: var(--brown-light);
+    color: var(--brown-white);
+    filter: drop-shadow(0px 0px 3px var(--brown-dark));
     cursor: pointer;
 }
 

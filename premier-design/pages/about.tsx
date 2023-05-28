@@ -4,18 +4,17 @@ import { getStaticProps } from './api/data';
 import { bannerImageSettings, findButton, findTitle } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
 import dynamic from 'next/dynamic';
-import  {GetDataProps}  from '../interface/interfaceData';
+import { GetDataProps } from '../interface/interfaceData';
 
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const OfferList = dynamic(() => import('../components/OfferList/OfferList'));
-const Approach = dynamic(() => import('../components/Approach/Approach'));
 const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
 const News = dynamic(() => import('../components/News/News'));
 
 const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 10) || {};
     const buttonHeader = findButton(data, 0);
-    const bannerImg = bannerImageSettings(data, 4);
+    const bannerImg = bannerImageSettings(data, 3);
 
     return (
         <>
@@ -32,11 +31,9 @@ const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
                     news={data.news}
                     newsStyle='about'
                 />
-                <Approach
-                    data={data}
-                />
+
                 <OfferList
-                    data={data.offerList.filter(offer => offer.id === 2)}
+                    data={data.offerList.filter(offer => offer.id === 3)}
                 />
                 <Appeal
                     data={data}

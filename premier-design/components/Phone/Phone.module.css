@@ -9,10 +9,13 @@
     grid-gap: 1vh;
     justify-content: center;
     text-decoration: none;
+    font-weight: bolder ;
+    text-shadow: 0 0 15px var(--white);
 }
 
 .phone__container:hover {
-    color: var(--brown-light);
+    color: var(--brown-white);
+    text-shadow: 0px 0px 5px var(--brown-dark);
 }
 
 .phone__logo {

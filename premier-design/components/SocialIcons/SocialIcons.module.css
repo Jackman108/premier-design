@@ -2,24 +2,26 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 0.5vw;
-    grid-column: 4 / 5; 
-    font-size: 1.2rem;
+    grid-column: 4 / 5;
+    font-size: 1.4rem;
 }
 
 .icons {
     display: grid;
     justify-content: center;
     align-content: center;
-    color: var(--brown);   
+    color: var(--brown);
+    filter: drop-shadow(0 0 5px var(--brown-white));
 }
 
 .icons:hover {
-    color: var(--brown-light);   
+    color: var(--brown-white);
+    filter: drop-shadow(0px 0px 3px var(--brown-dark));
 }
 
 @media (max-width: 768px) {
     .social__icons {
         grid-column: 3 / 4;
         grid-gap: 2vw;
-    }    
+    }
 }

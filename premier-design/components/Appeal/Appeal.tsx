@@ -11,7 +11,7 @@ const Appeal: FC<{ data: DataProps }> = ({
 }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 6) || {};
     const buttonHeader = findButton(data, 0);
-    const bannerImg = bannerImageSettings(data, 3);
+    const bannerImg = bannerImageSettings(data, 5);
     return (
         <section className={styles.appeal}>
             <div className={styles.appeal__container}>

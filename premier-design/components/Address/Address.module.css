@@ -1,19 +1,12 @@
 .address__contacts {
-  padding: 5%;
-  max-width: 1440px;
-  margin: 0 auto;
-  color: var(--brown);
-}
-
-.address__header {
-  display: grid;
-  justify-content: center;
-  margin-bottom: 5%;
-  color: var(--brown-dark);
-
+  color: var(--brown-dark);  
+  background-color: var(--brown-white);
+  padding: 3% 5%; 
 }
 
 .address__content {
+  margin: 0 auto;  
+  max-width: 1440px;
   display: grid;
   grid-template-columns: repeat(3, auto);
   justify-content: space-between;
@@ -21,7 +14,7 @@
 }
 
 .address__item {
-  border-left: 3px solid var(--brown-light);
+  border-left: 3px solid var(--brown);
   padding: 10px;
   min-height: 100%;
   line-height: 3rem;
@@ -36,6 +29,6 @@
     grid-template-columns: repeat(1, auto);
     justify-content: space-between;
     align-items: center;
-
+    padding: 10% 5%; 
   }
 }

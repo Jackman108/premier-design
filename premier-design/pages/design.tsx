@@ -9,13 +9,12 @@ import  {GetDataProps}  from '../interface/interfaceData';
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const OfferList = dynamic(() => import('../components/OfferList/OfferList'));
 const ProjectOffer = dynamic(() => import('../components/ProjectOffer/ProjectOffer'));
-const Examples = dynamic(() => import('../components/Examples/Examples'));
 const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
 
 const Design: NextPage<GetDataProps> = ({data}): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 7) || {};
     const buttonHeader = findButton(data, 1);
-    const bannerImg = bannerImageSettings(data, 0); 
+    const bannerImg = bannerImageSettings(data, 2); 
     return (
         <>
             <CustomHead title={'Premium Interior | Дизайн интерьеров'} description={'Ремонт и дизайн интерьеров в Беларуси'} />
@@ -28,7 +27,6 @@ const Design: NextPage<GetDataProps> = ({data}): JSX.Element => {
                         bannerImg={bannerImg}                      
                     />
                     <OfferList data={data.offerList.filter((offer) => offer.id === 1)} />
-                    <Examples data={data} />
                     <ProjectOffer
                         data={data.offerProject.designType}
                         buttonHeader={buttonHeader}

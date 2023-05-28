@@ -23,7 +23,7 @@
     text-align: center;
     cursor: pointer;
     white-space: nowrap;
-text-shadow: 0 0 15px var(--white);
+    text-shadow: 0 0 15px var(--white);
 }
 
 .menu__item:hover {
