@@ -12,3 +12,10 @@
     justify-items: center;
     grid-gap: 4vh;
 }
+
+    @media screen and (max-width: 768px) {
+        .examples__container {
+            margin: 4vh auto;
+            grid-gap: 0vh;
+        }
+    }

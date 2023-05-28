@@ -1,5 +1,4 @@
 .examples__cards {
-    margin: 0 5%;
     display: grid;
     height: 60vh;
 }
@@ -10,7 +9,6 @@
     position: relative;
     display: grid;
     justify-items: center;
-    margin: 0 4%;
     align-items: center;
     border-radius: 2%;
     grid-gap: 4vh;
@@ -99,7 +97,6 @@
 
 @media screen and (max-width: 768px) {
     .examples__cards {
-        grid-template-columns: 1fr;
         margin: 0 10vw;
     }
 

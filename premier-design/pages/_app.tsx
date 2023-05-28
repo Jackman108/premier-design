@@ -3,8 +3,9 @@ import { ThemeProvider } from 'next-themes';
 import '../styles/globals.css';
 import "keen-slider/keen-slider.min.css";
 import Head from 'next/head';
+import { FC } from 'react';
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
+const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
     return (
         <ThemeProvider
             defaultTheme="light"
@@ -24,5 +25,4 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 export function reportWebVitals(metric: NextWebVitalsMetric) {
     console.log(metric);
 }
-
 export default MyApp;

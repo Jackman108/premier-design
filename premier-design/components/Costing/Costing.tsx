@@ -3,9 +3,10 @@ import CostingCards from '../Cards/CostingCards/CostingCards';
 import Title from '../Title/Title';
 import { findTitle } from '../../pages/api/constants';
 import { DataProps } from '../../interface/interfaceData';
+import { FC } from 'react';
 
-const Costing: React.FC<{ data: DataProps }> = ({ 
-    data 
+const Costing: FC<{ data: DataProps }> = ({
+    data
 }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 5) || {};
     return (

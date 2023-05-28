@@ -54,7 +54,6 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-gap: 20px;
-
 }
 
 .body_control {
@@ -102,6 +101,7 @@
     letter-spacing: 2px;
     background-color: var(--brown);
 }
+
 .calculate_button:hover {
     cursor: pointer;
     background-color: var(--brown-light);
@@ -122,11 +122,11 @@
     }
 
     .body_result {
-        grid-gap: 5vh;
+        grid-gap: 0;
+        height: 15vh;
     }
 
     .body_result {
         width: 90vw;
     }
-
 }
