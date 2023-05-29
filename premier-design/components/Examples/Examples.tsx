@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Examples.module.css';
 import ExamplesCards from '../Cards/ExamplesCards/ExamplesCards';
-import Title from '../Title/Title';
+import Title from '../UX/Title/Title';
 import { findTitle } from '../../pages/api/constants';
 import { DataProps } from '../../interface/interfaceData';
 

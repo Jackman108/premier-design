@@ -1,12 +1,12 @@
 'use client'
-import styles from './ModalOverlay.module.css';
-import FeedbackForm from '../FeedbackForm/FeedbackForm';
+import styles from './FeedbackModal.module.css';
+import FeedbackForm from './FeedbackForm/FeedbackForm';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
-import { FeedbackItem } from '../FeedbackForm/FeedbackForm.props';
-import { ModalOverlayProps } from './ModalOverlay.props';
+import { FeedbackItem } from './FeedbackForm/FeedbackForm.props';
+import { FeedbackModalProps } from './FeedbackModal.props';
 
 
-const ModalOverlay: FC<ModalOverlayProps> = ({
+const ModalOverlay: FC<FeedbackModalProps> = ({
     onClose,
     onSubmit
 }) => {

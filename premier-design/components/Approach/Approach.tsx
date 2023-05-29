@@ -1,5 +1,5 @@
 import styles from './Approach.module.css';
-import Title from '../Title/Title';
+import Title from '../UX/Title/Title';
 import ApproachCards from '../Cards/ApproachCards/ApproachCards';
 import { findTitle } from '../../pages/api/constants';
 import { DataProps } from '../../interface/interfaceData';

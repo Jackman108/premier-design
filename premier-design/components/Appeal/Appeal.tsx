@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './Appeal.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
-import Title from '../Title/Title';
+import Title from '../UX/Title/Title';
 import NextImage from 'next/image';
 import { findTitle, bannerImageSettings, findButton } from '../../pages/api/constants';
 import { DataProps } from '../../interface/interfaceData';

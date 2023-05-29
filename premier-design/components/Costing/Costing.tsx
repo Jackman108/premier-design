@@ -1,6 +1,6 @@
 import styles from './Costing.module.css';
 import CostingCards from '../Cards/CostingCards/CostingCards';
-import Title from '../Title/Title';
+import Title from '../UX/Title/Title';
 import { findTitle } from '../../pages/api/constants';
 import { DataProps } from '../../interface/interfaceData';
 import { FC } from 'react';

@@ -1,5 +1,5 @@
-import Logo from '../../components/Logo/Logo';
-import Phone from '../../components/Phone/Phone';
+import Logo from '../../components/UX/Logo/Logo';
+import Phone from '../../components/UX/Phone/Phone';
 import SocialIcons from '../../components/SocialIcons/SocialIcons';
 import useThemeToggle from '../../hooks/useThemeToggle';
 import useMobileMenu from '../../hooks/useMobileMenu';

@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import styles from "./Address.module.css";
 import SocialIcons from "../SocialIcons/SocialIcons";
-import Phone from "../Phone/Phone";
+import Phone from "../UX/Phone/Phone";
 import dynamic from "next/dynamic";
-const YandexMap = dynamic(() => import('../YandexMap/YandexMap'));
+const YandexMap = dynamic(() => import('../UX/YandexMap/YandexMap'));
 
 const Address: FC = (): JSX.Element => {
     return (
-        <div className={styles.address__contacts}>
+        <section className={styles.address__contacts}>
             <div className={styles.address__content}>
                 <div className={styles.address__item}>
                     <Phone />
@@ -22,7 +22,7 @@ const Address: FC = (): JSX.Element => {
                 </div>
             </div>
             <YandexMap />
-        </div>
+        </section>
     );
 };
 

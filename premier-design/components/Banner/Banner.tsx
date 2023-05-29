@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import styles from './Banner.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
-import Title from '../Title/Title';
+import Title from '../UX/Title/Title';
 import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
 import NextImage, { ImageProps } from 'next/image';
 import { TitleProps } from '../../interface/interfaceData';

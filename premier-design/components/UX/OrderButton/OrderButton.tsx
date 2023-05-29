@@ -1,6 +1,6 @@
 import styles from './OrderButton.module.css';
-import ModalOverlay from '../../ModalOverlay/ModalOverlay';
-import { FeedbackItem } from '../../FeedbackForm/FeedbackForm.props';
+import FeedbackModal from '../../FeedbackModal/FeedbackModal';
+import { FeedbackItem } from '../../FeedbackModal/FeedbackForm/FeedbackForm.props';
 import { OrderButtonProps, OrderButtonState } from './OrderButton.props';
 import { FC, useCallback, useState } from 'react';
 
@@ -75,7 +75,7 @@ const OrderButton: FC<OrderButtonProps> = ({
                 {buttonHeader}
             </button>
             {state.showModal && (
-                <ModalOverlay
+                <FeedbackModal
                     onClose={handleModalClose}
                     onSubmit={(data: FeedbackItem) => handleSubmit(data)}
                 />

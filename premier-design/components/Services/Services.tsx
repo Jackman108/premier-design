@@ -1,7 +1,7 @@
 import styles from './Services.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import ServicesCards from '../Cards/ServicesCards/ServicesCards';
-import Title from '../Title/Title';
+import Title from '../UX/Title/Title';
 import { FC } from 'react';
 import { findTitle, findButton } from '../../pages/api/constants';
 import { DataProps } from '../../interface/interfaceData';

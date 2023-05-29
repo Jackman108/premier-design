@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "./Copywriting.module.css";
-import Logo from "../Logo/Logo";
+import Logo from "../UX/Logo/Logo";
 import SocialIcons from "../SocialIcons/SocialIcons";
 import { format } from "date-fns";
 

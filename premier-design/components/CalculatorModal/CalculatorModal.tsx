@@ -5,7 +5,7 @@ import { CalculatorModalProps } from './CalculatorModal.props';
 import Preloader from '../UX/Preloader/Preloader';
 import CostInput from './CostInput/CostInput';
 import ModalTabs from './ModalTabs/ModalTabs';
-import Logo from '../Logo/Logo';
+import Logo from '../UX/Logo/Logo';
 import CollapsibleContainer from './CollapsibleContainer/CollapsibleContainer';
 
 const CalculatorModal: FC<CalculatorModalProps> = ({

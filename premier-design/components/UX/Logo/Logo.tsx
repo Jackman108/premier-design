@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import LogoImage from '../../public/logo.svg';
+import LogoImage from '../../../public/logo.svg';
 import styles from './Logo.module.css';
 import NextImage from 'next/image';
 

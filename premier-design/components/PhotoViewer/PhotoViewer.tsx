@@ -2,7 +2,6 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import styles from './PhotoViewer.module.css';
 import NextImage from 'next/image';
-
 export interface PhotoViewerProps {
     images: string[];
     currentImage: string;
