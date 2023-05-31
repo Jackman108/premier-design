@@ -1,0 +1,15 @@
+server {
+    listen 80;
+
+    server_name premier-design.by;
+
+    location / {
+        proxy_pass http://frontend-docker-container:3000/;
+        proxy_set_header Host $host;
+    }
+
+     location /pgdata {
+        proxy_pass http://db:5432;
+        rewrite ^/pgdata/(.*) /$1 break;        
+    }   
+}

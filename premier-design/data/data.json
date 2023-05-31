@@ -28,9 +28,11 @@
     ],
     "button": [
         {
+            "id": 1,
             "buttonHeader": "Оставить заявку"
         },
         {
+            "id": 2,
             "buttonHeader": "Заказать проект"
         }
     ],

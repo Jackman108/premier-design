@@ -7,16 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
-    "test": "jest"
+    "test": "jest",
+    "type": "node pages/api/importData.mjs"
   },
   "dependencies": {
     "@pbe/react-yandex-maps": "^1.2.4",
+    "@types/pg": "^8.10.1",
     "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "keen-slider": "^6.8.5",
     "next": "^13.4.0",
     "next-themes": "^0.2.1",
-    "node-sass": "^7.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
@@ -34,6 +35,7 @@
     "eslint": "^8.9.0",
     "eslint-config-next": "^13.0.0",
     "jest": "^27.4.7",
+    "pg": "^8.11.0",
     "ts-jest": "^27.1.3"
   }
 }

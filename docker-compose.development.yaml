@@ -2,14 +2,20 @@ version: "3"
 
 services:
   frontend:
-    build:
+    build: 
       context: ./premier-design
-      dockerfile: Dockerfile.prod
+      target: runner
+      dockerfile: Dockerfile.dev
     container_name: frontend-docker-container
     restart: unless-stopped
-    command: npm run start
+    command: npm run dev
+    ports:
+      - "3000:3000"
     environment:
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_DATABASE}
+      - NODE_ENV=development
+    volumes:
+      - ./premier-design:/app    
     networks:
       - docker-network
 
@@ -18,32 +24,28 @@ services:
       context: ./pgdata
       dockerfile: Dockerfile
     container_name: postgres-docker-container
-    restart: unless-stopped
+    restart: always
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
       - POSTGRES_DB=${DB_DATABASE}
-    volumes:
-      - pgdata:/var/lib/postgresql/data
     networks:
       - docker-network
 
-  nginx:    
-    image: nginx:stable-alpine 
+  nginx:
+    image: nginx:stable-alpine   
     container_name: nginx-docker-container
     restart: unless-stopped
     ports:
       - "80:80"
     volumes:
-      - ./nginx/nginx.conf.prod:/etc/nginx/conf.d/nginx.conf
+      - ./nginx/nginx.conf.dev:/etc/nginx/conf.d/nginx.conf
     depends_on:
       - frontend
-      - db      
+      - db
     networks:
       - docker-network
 
-volumes:
-  pgdata:
 
 networks:
   docker-network:
