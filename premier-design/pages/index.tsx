@@ -17,7 +17,7 @@ const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
 const Home: NextPage<GetDataProps> = ({ data }) => {
   const { title = '', description = '' } = findTitle(data, 1) || {};
   const buttonHeader = findButton(data, 0);
-  const bannerImg = bannerImageSettings(data, 0);
+  const bannerImg = bannerImageSettings(data, 1);
   return (
     <>
       <CustomHead

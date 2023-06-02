@@ -32,5 +32,4 @@ module.exports = withBundleAnalyzer({
     },
     compress: true,
     pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
-    output: 'standalone',
 });

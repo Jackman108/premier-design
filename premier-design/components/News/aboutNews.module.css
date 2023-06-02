@@ -49,6 +49,7 @@
     font-size: 0.9rem;
     color: var(--brown-white);
     text-align: start;
+    text-decoration:none;
 }
 
 .content__title:hover {

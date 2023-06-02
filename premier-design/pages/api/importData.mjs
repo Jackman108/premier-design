@@ -1,4 +1,4 @@
-import { pool, createTables } from './db.js';
+import { pool, createTables } from './dbSet.js';
 import data from '../../data/data.json' assert { type: "json" };
 createTables().then(() => importData()).catch(console.error);
 

@@ -14,7 +14,7 @@ const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
 const Repairs: NextPage<GetDataProps> = ({ data }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 9) || {};
     const buttonHeader = findButton(data, 0);
-    const bannerImg = bannerImageSettings(data, 1);
+    const bannerImg = bannerImageSettings(data, 2);
     return (
         <>
             <CustomHead title={'Premium Interior | Ремонт интерьеров'} description={'Ремонт и дизайн интерьеров в Беларуси'} />

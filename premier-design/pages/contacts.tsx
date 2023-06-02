@@ -13,7 +13,7 @@ const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
 const Contacts: NextPage<GetDataProps> = ({ data }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 11) || {};
     const buttonHeader = findButton(data, 0);
-    const bannerImg = bannerImageSettings(data, 4);
+    const bannerImg = bannerImageSettings(data, 5);
     return (
         <>
             <CustomHead title={'Premium Interior | Контакты'} description={'Ремонт и дизайн интерьеров в Беларуси'} />

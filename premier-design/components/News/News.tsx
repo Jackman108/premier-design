@@ -71,7 +71,8 @@ const News: FC<NewsComponentProps> = (
             <div className={stylesToUse.news__container}>
                 {news.map((item, index) => (
                     <div
-                        className={`${stylesToUse.news__content} ${expandedNews === index ? stylesToUse.expanded : ""
+                        className={`${stylesToUse.news__content} ${
+                            expandedNews === index ? stylesToUse.expanded : ""
                             }`}
                         key={item.id}
                         onClick={() => handleNewsClick(index)}
@@ -88,7 +89,12 @@ const News: FC<NewsComponentProps> = (
                             />
                         </div>
                         <div className={stylesToUse.content__wrapper}>
-                            <Link href={`about/#news-${index}`}>{item.title}</Link>
+                            <Link 
+                            href={`about/#news-${index}`}
+                            className={stylesToUse.content__title}
+                            >
+                                {item.title}
+                            </Link>
                             <div className={stylesToUse.content__date}>
                                 {item.date}
                             </div>

@@ -5,6 +5,7 @@ export interface MenuProps {
     ruTitle: string;
 }
 export interface ButtonProps {
+    id?: number;
     buttonHeader: string;
 }
 export interface NewsProps {
@@ -64,6 +65,7 @@ export interface OfferListProps {
     tips: string;
 }
 export interface BannerImagesProps {
+    id: number;
     src: string;
     alt: string;
     quality: number;

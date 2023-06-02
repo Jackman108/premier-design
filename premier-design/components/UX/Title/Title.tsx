@@ -10,7 +10,7 @@ const Title = ({
 }: TitleStyleProps): JSX.Element => {
     const titleClass = titleStyle ? `${styles[titleStyle]} ${styles.title}` : styles.title;
     const descriptionClass = descriptionStyle ? `${styles[descriptionStyle]} ${styles.description}` : styles.description;
-     return (
+    return (
         <>
             <h1 className={titleClass}>{title}</h1>
             <p className={descriptionClass}>{description}</p>

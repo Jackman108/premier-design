@@ -11,23 +11,27 @@ const Appeal: FC<{ data: DataProps }> = ({
 }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 6) || {};
     const buttonHeader = findButton(data, 0);
-    const bannerImg = bannerImageSettings(data, 5);
+    const bannerImg = bannerImageSettings(data, 6);
+    const { src = '', alt = '', quality, width } = bannerImg ?? {};
+
     return (
         <section className={styles.appeal}>
             <div className={styles.appeal__container}>
                 <NextImage
-                    {...bannerImg}
-                    className={styles.appeal__background}
-                    width={1920}
-                    height={508}
                     priority
+                    src={src}
+                    alt={alt}
+                    quality={quality}
+                    width={width}
+                    height={508}
+                    className={styles.appeal__background}   
                 />
                 <Title
                     titleStyle='title-black'
-                    descriptionStyle='description-white'
+                    descriptionStyle='description-black'
                     title={title}
                     description={description} />
-                <OrderButton buttonHeader={buttonHeader} buttonStyle='button-white' />
+                <OrderButton buttonHeader={buttonHeader} buttonStyle='button-black' />
             </div>
         </section>
     );

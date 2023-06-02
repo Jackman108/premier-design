@@ -14,7 +14,7 @@ const News = dynamic(() => import('../components/News/News'));
 const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 10) || {};
     const buttonHeader = findButton(data, 0);
-    const bannerImg = bannerImageSettings(data, 3);
+    const bannerImg = bannerImageSettings(data, 4);
 
     return (
         <>
