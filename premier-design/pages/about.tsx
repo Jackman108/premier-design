@@ -5,6 +5,7 @@ import { bannerImageSettings, findButton, findTitle } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
 import dynamic from 'next/dynamic';
 import { GetDataProps } from '../interface/interfaceData';
+import Partners from '../components/Partners/Partners';
 
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const OfferList = dynamic(() => import('../components/OfferList/OfferList'));
@@ -34,6 +35,9 @@ const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
 
                 <OfferList
                     data={data.offerList.filter(offer => offer.id === 3)}
+                />
+                <Partners
+                    data={data}
                 />
                 <Appeal
                     data={data}

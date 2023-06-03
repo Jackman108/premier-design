@@ -28,6 +28,7 @@ const Banner: FC<BannerProps> = ({
                 quality={quality}
                 width={width}
                 height={height}
+                placeholder='empty'
                 className={styles.banner__background}
             />
             <div className={styles.banner__container}>

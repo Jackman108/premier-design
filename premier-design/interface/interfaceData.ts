@@ -82,6 +82,17 @@ export interface OfferProject {
     prosDescription: string[];
     consDescription: string[];
 }
+
+export interface PartnersProps {
+    id: number;
+    src: string;
+    srcPng: string;
+    alt: string;
+    quality: number;
+    width: number;
+    height: number;
+    discounts: string;
+}
 export interface DataProps {
     menu: MenuProps[];
     button: ButtonProps[];
@@ -100,6 +111,7 @@ export interface DataProps {
         repairType: OfferProject[];
     }
     bannersImages: BannerImagesProps[];
+    partners: PartnersProps[];
 }
 export interface GetDataProps {
     data: DataProps;

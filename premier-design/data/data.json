@@ -167,6 +167,11 @@
             "id": 11,
             "title": "Мы всегда рады помочь вам!",
             "description": "Свяжитесь с нами, чтобы обсудить свои идеи и сделать ваше пространство уютным современным."
+        },
+        {
+            "id": 12,
+            "title": "Наши партнеры!",
+            "description": "Мы сотрудничаем с ведущими компаниями, предлагающими высококачественные товары и услуги, чтобы удовлетворить все ваши потребности."
         }
     ],
     "bannersImages": [
@@ -188,7 +193,7 @@
         },
         {
             "id": 3,
-            "src": "/banners/banner-design.webp",
+            "src": "/banners/banner-designs.webp",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 95,
             "width": 1935,
@@ -217,6 +222,88 @@
             "quality": 95,
             "width": 1935,
             "height": 684
+        }
+    ],
+    "partners": [
+        {
+            "id": 1,
+            "src": "/partners/Bild.webp",
+            "srcPng": "/partners/Bild.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 320,
+            "height": 140,
+            "discounts": "Скидка до 8%"
+        },
+        {
+            "id": 2,
+            "src": "/partners/oma.webp",
+            "srcPng": "/partners/oma.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 320,
+            "height": 140,
+            "discounts": "Скидка до 7%"
+        },
+        {
+            "id": 3,
+            "src": "/partners/KSK.webp",
+            "srcPng": "/partners/KSK.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 320,
+            "height": 140,
+            "discounts": "Скидка до 7%"
+        },
+        {
+            "id": 4,
+            "src": "/partners/volt.webp",
+            "srcPng": "/partners/volt.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 320,
+            "height": 140,
+            "discounts": "Скидка до 7%"
+        },
+        {
+            "id": 5,
+            "src": "/partners/Tarkett.webp",
+            "srcPng": "/partners/Tarkett.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 320,
+            "height": 140,
+            "discounts": "Скидка до 7%"
+        },
+        {
+            "id": 6,
+            "src": "/partners/Jurkas.webp",
+            "srcPng": "/partners/Jurkas.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 320,
+            "height": 140,
+            "discounts": "Скидка до 7%"
+        },
+        {
+            "id": 7,
+            "src": "/partners/Aquarius.webp",
+            "srcPng": "/partners/Aquarius.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 320,
+            "height": 140,
+            "discounts": "Скидка до 10%"
+        },
+        {
+            "id": 8,
+            "src": "/partners/Home.webp",
+            "srcPng": "/partners/Home.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 320,
+            "height": 140,
+            "discounts": "Скидка до 8%"
         }
     ],
     "cards": {
