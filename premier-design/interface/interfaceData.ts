@@ -95,12 +95,6 @@ export interface PartnersProps {
 }
 export interface WorkStagesProps {
     id: number;
-    src: string;
-    srcPng: string;
-    alt: string;
-    quality: number;
-    width: number;
-    height: number;
     stage: string;
 }
 export interface DataProps {

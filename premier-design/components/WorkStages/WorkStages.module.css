@@ -4,12 +4,13 @@
 }
 
 .stages__container {
-    height: 60vh;
+    height: auto;
     display: grid;
-    justify-items: center;
     justify-content: center;
+    justify-items: center;
     max-width: 1440px;
     margin: 0 auto;
+    grid-gap: 2vh;
 }
 
 .content__image {
@@ -20,59 +21,42 @@
 .timeline {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-gap: 1vh;
-    justify-items: center;
+    grid-auto-flow: column;
     align-items: center;
-    margin: 0 2vh;
+    margin-top: 6vh;
+    transform: rotate(-40deg);
+    height: 74vh;
+    left: -14vw;
 }
 
 .timeline__step {
     display: grid;
-    grid-template-rows: 1fr auto;
     position: relative;
     animation-duration: 0.5s;
-    animation-fill-mode: forwards;
+    animation-fill-mode: backwards;
     align-items: center;
-    justify-content: center;
+    justify-content: start;
     color: var(--beige);
     font-size: 1.1rem;
-
-}
-
-.timeline__progress {
-    position: absolute;
-    left: 0;
-    bottom: 2%;
-    height: 8px;
-    width: 100%;
-    border-radius: 4px 4px 0 0;
-    box-shadow: 1px 1px 5px var(--brown-dark);
-    background-color: yellow;
-    background-color: var(--brown-white);
-
-}
-
-.active .timeline__progress {
-    background-color: rgb(181, 2, 2);
-    transition: opacity 1s ease-in-out;
+    transform: rotate(40deg);
+    width: 20vh;
 }
 
 .fade {
     padding: 10px;
-    transform: translateY(-50%);
     opacity: 0;
     transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     border: 2px solid var(--brown);
     border-radius: 5px;
-    background: linear-gradient(var(--brown-white), var(--brown));
-    min-height: 35vh;
+    background: linear-gradient(var(--brown-light), var(--brown-dark));
+    width: 30vw;
+    height: 12vh;
     display: grid;
-    grid-template-rows: auto 1fr;
-    grid-gap: 4vh;
-    align-content: flex-end;
+    grid-template-columns: auto 1fr;
+    align-content: center;
     text-align: center;
     justify-items: center;
+    transform: translateY(-5vh);
 }
 
 .active .fade {
@@ -80,28 +64,31 @@
     opacity: 1;
 }
 
-.finishFlag {
-    text-align: center;
-    font-weight: bold;
-    padding-top: 1rem;
-    border: 2px solid var(--brown);
-    border-radius: 5px;
-    background-color: var(--brown-white);
-    box-shadow: 1px 1px 8px rgb(181, 2, 2);
-    height: 35vh;
-    width: 100%;   
-    font-size: 1.8rem;
-    background: linear-gradient(var(--brown-white), var(--brown-dark));
-    background-size: 100% 100%;
-    animation: gradientAnimation 1.5s linear infinite;
+.timeline__progress {
+    position: absolute;
+    left: 0;
+    bottom: 2%;
+    height: 8px;
+    width: 0;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 1px 1px 5px var(--brown-dark);
 }
+
+.active .timeline__progress {
+    background-color: var(--brown-white);
+    transition: width 2s linear;
+    width: 100%;
+}
+
 @keyframes gradientAnimation {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
