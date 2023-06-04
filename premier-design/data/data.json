@@ -172,6 +172,11 @@
             "id": 12,
             "title": "Наши партнеры!",
             "description": "Мы сотрудничаем с ведущими компаниями, предлагающими высококачественные товары и услуги, чтобы удовлетворить все ваши потребности."
+        },
+        {
+            "id": 13,
+            "title": "Этапы работы с нами",
+            "description": "Процесс, который приведет Вас к успеху: от начала до финиша."
         }
     ],
     "bannersImages": [
@@ -227,8 +232,8 @@
     "partners": [
         {
             "id": 1,
-            "src": "/partners/Bild.webp",
-            "srcPng": "/partners/Bild.png",
+            "src": "/partners/marketBuild.webp",
+            "srcPng": "/partners/marketBuild.png",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 95,
             "width": 320,
@@ -237,8 +242,8 @@
         },
         {
             "id": 2,
-            "src": "/partners/oma.webp",
-            "srcPng": "/partners/oma.png",
+            "src": "/partners/shopOMA.webp",
+            "srcPng": "/partners/shopOMA.png",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 95,
             "width": 320,
@@ -247,8 +252,8 @@
         },
         {
             "id": 3,
-            "src": "/partners/KSK.webp",
-            "srcPng": "/partners/KSK.png",
+            "src": "/partners/MarketKSK.webp",
+            "srcPng": "/partners/MarketKSK.png",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 95,
             "width": 320,
@@ -257,8 +262,8 @@
         },
         {
             "id": 4,
-            "src": "/partners/volt.webp",
-            "srcPng": "/partners/volt.png",
+            "src": "/partners/electricsVolt.webp",
+            "srcPng": "/partners/electricsVolt.png",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 95,
             "width": 320,
@@ -267,8 +272,8 @@
         },
         {
             "id": 5,
-            "src": "/partners/Tarkett.webp",
-            "srcPng": "/partners/Tarkett.png",
+            "src": "/partners/parquetTarkett.webp",
+            "srcPng": "/partners/parquetTarkett.png",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 95,
             "width": 320,
@@ -277,8 +282,8 @@
         },
         {
             "id": 6,
-            "src": "/partners/Jurkas.webp",
-            "srcPng": "/partners/Jurkas.png",
+            "src": "/partners/doorsJurkas.webp",
+            "srcPng": "/partners/doorsJurkas.png",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 95,
             "width": 320,
@@ -287,8 +292,8 @@
         },
         {
             "id": 7,
-            "src": "/partners/Aquarius.webp",
-            "srcPng": "/partners/Aquarius.png",
+            "src": "/partners/plumbingAquarius.webp",
+            "srcPng": "/partners/plumbingAquarius.png",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 95,
             "width": 320,
@@ -297,8 +302,8 @@
         },
         {
             "id": 8,
-            "src": "/partners/Home.webp",
-            "srcPng": "/partners/Home.png",
+            "src": "/partners/fsHome.webp",
+            "srcPng": "/partners/fsHome.png",
             "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
             "quality": 95,
             "width": 320,
@@ -752,5 +757,67 @@
                 "consDescription": []
             }
         ]
-    }
+    },
+    "workStages": [
+        {
+            "id": 1,
+            "src": "/partners/marketBuild.webp",
+            "srcPng": "/partners/marketBuild.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 64,
+            "height": 64,
+            "stage": "Мы фиксируем сумму в смете и не увеличиваем стоимость в процессе ремонта, если только заказчик не меняет объем и характер работ"
+        },
+        {
+            "id": 2,
+            "src": "/partners/shopOMA.webp",
+            "srcPng": "/partners/shopOMA.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 64,
+            "height": 64,
+            "stage": "После получения заявки менеджер перезвонит вам и ответит на все вопросы, согласует время выезда замерщика"
+        },
+        {
+            "id": 3,
+            "src": "/partners/MarketKSK.webp",
+            "srcPng": "/partners/MarketKSK.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 64,
+            "height": 64,
+            "stage": "После согласования работ и проекта мы приступаем к ремонту в течение 1-2 дней и строго соблюдаем сроки"
+        },
+        {
+            "id": 4,
+            "src": "/partners/electricsVolt.webp",
+            "srcPng": "/partners/electricsVolt.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 64,
+            "height": 64,
+            "stage": "По желанию клиента, выезд на объект назначается на ближайший день, в любое удобное время"
+        },
+        {
+            "id": 5,
+            "src": "/partners/parquetTarkett.webp",
+            "srcPng": "/partners/parquetTarkett.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 64,
+            "height": 64,
+            "stage": "Замеры выполняет квалифицированный прораб, который непосредственно контролирует ход ремонта"
+        },
+        {
+            "id": 6,
+            "src": "/partners/fsHome.webp",
+            "srcPng": "/partners/fsHome.png",
+            "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+            "quality": 95,
+            "width": 64,
+            "height": 64,
+            "stage": "Специалист приедет, сделает замеры, проконсультирует и рассчитает смету в течение 24-х часов."
+        }
+    ]
 }

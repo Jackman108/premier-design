@@ -93,6 +93,16 @@ export interface PartnersProps {
     height: number;
     discounts: string;
 }
+export interface WorkStagesProps {
+    id: number;
+    src: string;
+    srcPng: string;
+    alt: string;
+    quality: number;
+    width: number;
+    height: number;
+    stage: string;
+}
 export interface DataProps {
     menu: MenuProps[];
     button: ButtonProps[];
@@ -112,6 +122,7 @@ export interface DataProps {
     }
     bannersImages: BannerImagesProps[];
     partners: PartnersProps[];
+    workStages: WorkStagesProps[];
 }
 export interface GetDataProps {
     data: DataProps;
