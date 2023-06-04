@@ -84,8 +84,8 @@ const News: FC<NewsComponentProps> = (
                             <NextImage
                                 src={item.image}
                                 alt={item.title}
-                                width={40}
-                                height={40}
+                                width={400}
+                                height={400}
                             />
                         </div>
                         <div className={stylesToUse.content__wrapper}>

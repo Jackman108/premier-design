@@ -12,6 +12,7 @@
     align-content: space-around;
     max-width: 1440px;
     margin: 0 auto;
+    text-shadow: 1px 1px 1px var(--brown-dark);
 }
 
 .appeal__background {

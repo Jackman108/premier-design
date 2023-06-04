@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "./Copywriting.module.css";
-import Logo from "../UX/Logo/Logo";
+import Logo from "../Logo/Logo";
 import SocialIcons from "../SocialIcons/SocialIcons";
 import { format } from "date-fns";
 
@@ -11,7 +11,7 @@ const Copywriting: FC = (): JSX.Element => {
                 <Logo />
             </div>
             <div className={styles.footer__copy}>
-                &copy; Premier Design, 2012 - {format(new Date(), 'yyyy')}.
+                &copy; Premium Interior, 2012 - {format(new Date(), 'yyyy')}.
                 <br />
                 Все права защищены
             </div>

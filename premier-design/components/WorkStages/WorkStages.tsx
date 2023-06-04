@@ -59,14 +59,14 @@ const WorkStages: FC<GetDataProps> = ({
 
     return (
         <section className={styles.stages} >
-            <div className={styles.stages__container}>
+            <div className={styles.stages__container} ref={containerRef}>
                 <MemoizedTitle
                     titleStyle='title-black'
                     descriptionStyle='description-black'
                     title={title}
                     description={description}
                 />
-                <div className={styles.timeline} ref={containerRef}>
+                <div className={styles.timeline} >
                     {data.workStages?.map((stage: WorkStagesProps) => (
                         <div
                             key={stage.id}

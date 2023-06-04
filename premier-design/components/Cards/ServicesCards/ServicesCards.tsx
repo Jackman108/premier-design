@@ -1,7 +1,7 @@
 import { FC, useMemo } from 'react';
 import styles from './ServicesCards.module.css';
 import Link from 'next/link';
-import NextImage from 'next/image';
+import Image from 'next/image';
 import { DataProps, ServiceCardProps } from '../../../interface/interfaceData';
 
 const ServicesCards: FC<{ data: DataProps }> = ({ data }): JSX.Element => {
@@ -14,7 +14,7 @@ const ServicesCards: FC<{ data: DataProps }> = ({ data }): JSX.Element => {
                         {text}
                     </div>
                     <div className={styles.card__image}>
-                        <NextImage
+                        <Image
                             src={image}
                             alt={text}
                             className={styles.image__background}

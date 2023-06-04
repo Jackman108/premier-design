@@ -24,7 +24,7 @@
 .content__image img {
     width: 4vh;
     height: 4vh;
-    color: var(--brown-dark);
+    object-fit: cover;
 }
 
 .content__wrapper {

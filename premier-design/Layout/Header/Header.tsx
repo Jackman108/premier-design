@@ -1,6 +1,6 @@
 import Logo from '../../components/UX/Logo/Logo';
 import Phone from '../../components/UX/Phone/Phone';
-import SocialIcons from '../../components/SocialIcons/SocialIcons';
+import SocialIcons from '../../components/UX/SocialIcons/SocialIcons';
 import useThemeToggle from '../../hooks/useThemeToggle';
 import useMobileMenu from '../../hooks/useMobileMenu';
 import Menu from '../../components/Menu/Menu';

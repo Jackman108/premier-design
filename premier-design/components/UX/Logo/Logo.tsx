@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import LogoImage from '../../../public/logo.svg';
 import styles from './Logo.module.css';
-import NextImage from 'next/image';
+import Image from 'next/image';
 
 const Logo = (): JSX.Element => {
     return (
@@ -11,7 +11,7 @@ const Logo = (): JSX.Element => {
                 href="/"
                 className={styles.logo__image}
             >
-                <NextImage
+                <Image
                     src={LogoImage}
                     alt="Logo"
                     className={styles.image}                   

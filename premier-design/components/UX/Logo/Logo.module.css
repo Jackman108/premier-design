@@ -6,6 +6,7 @@
     max-width: 14vh;
     max-height: 14vh;
     height: auto;
+    filter: brightness(1.3)
 }
 
 .image:hover {

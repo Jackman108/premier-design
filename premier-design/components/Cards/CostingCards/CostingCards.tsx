@@ -3,7 +3,7 @@ import { FC, useEffect, useState } from 'react';
 import styles from './CostingCards.module.css';
 import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../../hooks/useResizeEffects';
-import NextImage from 'next/image';
+import Image from 'next/image';
 import CalculatorModal from '../../CalculatorModal/CalculatorModal';
 import { CostingCardProps } from '../../../interface/interfaceData';
 
@@ -38,7 +38,7 @@ const CostingCards: FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element =
                         onClick={() => handleCardClick({ id, title, image })}
                     >
                         <div className={styles.card__background}>
-                            <NextImage
+                            <Image
                                 src={image}
                                 alt={title}
                                 className={styles.background}

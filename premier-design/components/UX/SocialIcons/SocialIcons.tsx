@@ -7,16 +7,16 @@ import styles from './SocialIcons.module.css';
 const SocialIcons = (): JSX.Element => {
     return (
         <div className={styles.social__icons}>
-            <Link href="#">
+            <Link href="https://t.me/PremiumInterior">
                 <FaTelegram className={styles.icons} />
             </Link>
-            <Link href="#">
+            <Link href="https://vk.com/proremontzhl">
                 <SlSocialVkontakte className={styles.icons} />
             </Link>
-            <Link href="#">
+            <Link href="https://instagram.com/proremont_zhl">
                 <FaInstagram className={styles.icons} />
             </Link>
-            <Link href="#">
+            <Link href="mailto:example@example.com">
                 <TfiEmail className={styles.icons} />
             </Link>
         </div>

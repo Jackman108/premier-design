@@ -6,7 +6,7 @@ import  {GetDataProps} from "../../interface/interfaceData";
 
 const News = dynamic(() => import('../../components/News/News'));
 const Menu = dynamic(() => import('../../components/Menu/Menu'));
-const Copywriting = dynamic(() => import('../../components/Copywriting/Copywriting'));
+const Copywriting = dynamic(() => import('../../components/UX/Copywriting/Copywriting'));
 
 
 const Footer: FC<GetDataProps> = ({ data }): JSX.Element => {

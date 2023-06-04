@@ -14,10 +14,12 @@
 }
 
 .news__title {
-    font-size: 1.2rem;
-    color: var(--brown-light);
     padding-bottom: 2vh;
+    font-size: 3vh;
+    font-weight: 600;
     text-align: center;
+    color: var(--brown-dark);
+    text-shadow: 0 0 2px var(--brown-light)
 }
 
 .news__content {
@@ -29,6 +31,8 @@
 .content__image img {
     width: 4vh;
     height: 4vh;
+    object-fit: cover;
+
 }
 
 .content__wrapper {

@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styles from "./Address.module.css";
-import SocialIcons from "../SocialIcons/SocialIcons";
+import SocialIcons from "../UX/SocialIcons/SocialIcons";
 import Phone from "../UX/Phone/Phone";
 import dynamic from "next/dynamic";
 const YandexMap = dynamic(() => import('../UX/YandexMap/YandexMap'));
