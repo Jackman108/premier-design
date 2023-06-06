@@ -166,7 +166,7 @@
         {
             "id": 11,
             "title": "Мы всегда рады помочь вам!",
-            "description": "Свяжитесь с нами, чтобы обсудить свои идеи и сделать ваше пространство уютным современным."
+            "description": "Свяжитесь с нами, чтобы обсудить свои идеи и сделать ваше пространство уютным и современным."
         },
         {
             "id": 12,
@@ -377,30 +377,16 @@
                 "areaOption": 49,
                 "areaSquare": "m2",
                 "images": [
-                    "/design/designType1.webp",
-                    "/design/designType2.webp",
-                    "/design/designType3.webp"
+                    "/viewer/apartment/01.webp",
+                    "/viewer/apartment/02.webp",
+                    "/viewer/apartment/03.webp",
+                    "/viewer/apartment/04.webp",
+                    "/viewer/apartment/05.webp"
                 ]
             },
             {
                 "id": 2,
                 "background": "/examples/example02.webp",
-                "address": "Ремонт дома. п.Сейбит",
-                "deadlines": "Срок выполнения 4 мес.",
-                "bathroomIcon": "/examples/bathroomIcon.svg",
-                "bathroomOption": 1,
-                "areaIcon": "/examples/areaIcon.svg",
-                "areaOption": 42,
-                "areaSquare": "m2",
-                "images": [
-                    "/repair/repairType1.webp",
-                    "/repair/repairType2.webp",
-                    "/repair/repairType3.webp"
-                ]
-            },
-            {
-                "id": 3,
-                "background": "/examples/example03.webp",
                 "address": "Ремонт дома. д.Малые Роги",
                 "deadlines": "Срок выполнения 1 мес.",
                 "bathroomIcon": "/examples/bathroomIcon.svg",
@@ -409,9 +395,28 @@
                 "areaOption": 80,
                 "areaSquare": "m2",
                 "images": [
-                    "/design/designType1.webp",
-                    "/design/designType2.webp",
-                    "/design/designType3.webp"
+                    "/viewer/cottage/01.webp",
+                    "/viewer/cottage/02.webp",
+                    "/viewer/cottage/03.webp",
+                    "/viewer/cottage/04.webp",
+                    "/viewer/cottage/05.webp"
+                ]
+            },
+            {
+                "id": 3,
+                "background": "/examples/example03.webp",
+                "address": "Ремонт дома. п.Сейбит",
+                "deadlines": "Срок выполнения 4 мес.",               
+                "bathroomIcon": "/examples/bathroomIcon.svg",
+                "bathroomOption": 1,
+                "areaIcon": "/examples/areaIcon.svg",
+                "areaOption": 42,
+                "areaSquare": "m2",
+                "images": [                   
+                    "/viewer/home/01.webp",
+                    "/viewer/home/02.webp",
+                    "/viewer/home/03.webp",
+                    "/viewer/home/04.webp"
                 ]
             },
             {
@@ -425,9 +430,9 @@
                 "areaOption": 108,
                 "areaSquare": "m2",
                 "images": [
-                    "/repair/repairType1.webp",
-                    "/repair/repairType2.webp",
-                    "/repair/repairType3.webp"
+                    "/viewer/imperial/01.webp",
+                    "/viewer/imperial/02.webp",
+                    "/viewer/imperial/03.webp"
                 ]
             },
             {
@@ -441,9 +446,11 @@
                 "areaOption": 70,
                 "areaSquare": "m2",
                 "images": [
-                    "/design/designType1.webp",
-                    "/design/designType2.webp",
-                    "/design/designType3.webp"
+                    "/viewer/iqos/01.webp",
+                    "/viewer/iqos/02.webp",
+                    "/viewer/iqos/03.webp",
+                    "/viewer/iqos/04.webp",
+                    "/viewer/iqos/05.webp"
                 ]
             },
             {
@@ -457,11 +464,11 @@
                 "areaOption": 150,
                 "areaSquare": "m2",
                 "images": [
-                    "/examples/example01.webp",
-                    "/examples/example02.webp",
-                    "/examples/example03.webp",
-                    "/examples/example04.webp",
-                    "/examples/example05.webp"
+                    "/viewer/workshop/01.webp",
+                    "/viewer/workshop/02.webp",
+                    "/viewer/workshop/03.webp",
+                    "/viewer/workshop/04.webp",
+                    "/viewer/workshop/05.webp"
                 ]
             }
         ],
@@ -470,13 +477,13 @@
                 "id": 1,
                 "text": "Дизайн интерьеров",
                 "image": "/services/service01.webp",
-                "href": "/design"
+                "href": "/#costing-cards"
             },
             {
                 "id": 2,
                 "text": "Ремонт интерьеров",
                 "image": "/services/service02.webp",
-                "href": "/repairs"
+                "href": "/#costing-cards"
             },
             {
                 "id": 3,
@@ -494,7 +501,7 @@
                 "id": 5,
                 "text": "Ремонт общественных знаний и сооружений",
                 "image": "/services/service04.webp",
-                "href": "/contacts"
+                "href": "/#costing-cards"
             }
         ]
     },
@@ -684,7 +691,7 @@
                     "Монтаж электропроводки, водопровода, канализации, сантехники",
                     "Плиточные работы",
                     "Выравнивание стен по маякам",
-                    "Шпаклевка, грунтовка поверхностей",
+                    "Шпатлевка, грунтовка поверхностей",
                     "Установка ламината, линолеума, ковролина",
                     "Оклейка обоев, покраска стен",
                     "Монтаж натяжных потолков",
@@ -692,13 +699,13 @@
                 ],
                 "cons": "В стоимость работ не входит:",
                 "consDescription": [
-                    "Без дизайн проекта",
-                    "Без замены дверей и окон",
-                    "Без монтажа вентиляции, отопления и сложных инженерных сетей",
-                    "С применением экономичных стройматериалов и элементов отделки",
-                    "Выполняем стандартную отделку улучшенного качества",
-                    "Без сложных интерьерных декоров",
-                    "Без создания гидро-, шумо- и теплоизоляции",
+                    "Дизайн проекта",
+                    "Замена дверей и окон",
+                    "Монтаж вентиляции, отопления и сложных инженерных сетей",
+                    "Применение экономичных стройматериалов и элементов отделки",
+                    "Выполняем стандартную отделку улучшенного качества, с применение экономичных стройматериалов и элементов отделки",
+                    "Сложные интерьерные декоры",
+                    "Создания гидро-, шумо- и теплоизоляции",
                     "Используем только качественные отделочные материалы и доступные по цене технологии"
                 ]
             },

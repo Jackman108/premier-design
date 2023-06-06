@@ -2,14 +2,20 @@ import { FC, useMemo } from 'react';
 import styles from './ServicesCards.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import { DataProps, ServiceCardProps } from '../../../interface/interfaceData';
+import { ServiceCardProps } from '../../../interface/interfaceData';
 
-const ServicesCards: FC<{ data: DataProps }> = ({ data }): JSX.Element => {
+const ServicesCards: FC<{ data: { cards: { servicesCard: ServiceCardProps[] } } }> = ({
+    data
+}): JSX.Element => {
     const memoizedServicesCards = useMemo(() => data.cards?.servicesCard || [], [data.cards?.servicesCard]);
     return (
         <div className={styles.services__cards}>
-            {memoizedServicesCards.map(({ id, text, image, href }: ServiceCardProps) => (
-                <Link href={href} className={styles.services__card} key={id}>
+            {(memoizedServicesCards.map(({ id, text, image, href }: ServiceCardProps) => (
+                <Link
+                    href={href}
+                    className={styles.services__card}
+                    key={id}
+                >
                     <div className={styles.card__title}>
                         {text}
                     </div>
@@ -25,7 +31,7 @@ const ServicesCards: FC<{ data: DataProps }> = ({ data }): JSX.Element => {
                         />
                     </div>
                 </Link>
-            ))}
+            )))}
         </div>
     );
 };

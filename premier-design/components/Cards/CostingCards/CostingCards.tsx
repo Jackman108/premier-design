@@ -7,14 +7,16 @@ import Image from 'next/image';
 import CalculatorModal from '../../CalculatorModal/CalculatorModal';
 import { CostingCardProps } from '../../../interface/interfaceData';
 
-const CostingCards: FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element => {
+const CostingCards: FC<{ data: CostingCardProps[] }> = ({
+    data
+}): JSX.Element => {
     const { isMobile } = useResizeEffects();
     const slidesPerView = 3;
 
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState<CostingCardProps | null>(null);
 
-    const handleCardClick = (card: CostingCardProps) => {
+    const handleCardClick = (card: CostingCardProps) => () => {
         setSelectedCard(card);
         setIsModalOpen(true);
     };
@@ -29,7 +31,7 @@ const CostingCards: FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element =
         setSelectedCard(null);
     }, [data]);
     return (
-        <div className={styles.costing__cards}>
+        <div className={styles.costing__cards} id="costing-cards">
             <SliderComponent slidesPerView={slidesPerView} isMobile={isMobile}>
                 {data.map(({ id, title, image }: CostingCardProps) => (
                     <div
@@ -52,10 +54,10 @@ const CostingCards: FC<{ data: CostingCardProps[] }> = ({ data }): JSX.Element =
                 ))}
             </SliderComponent>
             {isModalOpen && selectedCard && (
-                <CalculatorModal 
-                card={selectedCard} 
-                onClose={closeModal} 
-                data={data}
+                <CalculatorModal
+                    card={selectedCard}
+                    onClose={closeModal}
+                    data={data}
                 />
             )}
         </div>
