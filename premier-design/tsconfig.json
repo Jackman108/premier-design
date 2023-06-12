@@ -36,6 +36,7 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "pages/api/dbSet.js", "pages/api/importData.mjs" ]
+    "**/*.tsx",
+    "components/ChatBotSidebar/config.tsx"
+  ]
 }

@@ -1,0 +1,20 @@
+.toggle_button {
+    position: fixed;
+    right: 0px;
+    bottom: 50%;
+    width: 5%;
+    height: 10%;
+    padding: 2%;
+    background-color: var(--brown-white);
+    border: none;
+    cursor: pointer;
+}
+.toggle_button:hover {
+    background-color: var(--brown-light);
+}
+.chatbot{
+    position: absolute;
+    position: fixed;
+    right: 0px;
+    bottom: 5%;
+}
