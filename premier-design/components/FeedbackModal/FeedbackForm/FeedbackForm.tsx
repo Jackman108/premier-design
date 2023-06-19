@@ -1,9 +1,7 @@
 'use client';
-
 import { FC, FormEvent, memo } from "react";
 import styles from "./FeedbackForm.module.css";
 import { FeedbackFormProps } from "./FeedbackForm.props";
-
 
 const FeedbackForm: FC<FeedbackFormProps> = memo(({
     onSubmit,
