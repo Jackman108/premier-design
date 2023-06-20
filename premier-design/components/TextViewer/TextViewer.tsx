@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./TextViewer.module.css";
-import NextImage from "next/image";
+import Image from "next/image";
 
 interface TextViewerProps {
     text: string;
@@ -17,7 +17,12 @@ const TextViewer: FC<TextViewerProps> = ({ text, showModal, setShowModal, image 
                 <div className={styles.modal} onClick={() => setShowModal(false)}>
                     <div className={styles.modal__content}>
                         <div className={styles.content__image}>
-                            <NextImage src={image} alt={text} width={2000} height={400} />
+                            <Image
+                                src={image}
+                                alt={text}
+                                width={2000}
+                                height={400}
+                            />
                         </div>
                         <div className={styles.content__text}>
                             {text}

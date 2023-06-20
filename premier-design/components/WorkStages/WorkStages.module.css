@@ -93,3 +93,24 @@
         background-position: 0% 50%;
     }
 }
+
+@media (max-width: 1440px) {
+    .timeline {
+        grid-auto-flow: row;
+        margin-top: 3vh;
+        transform: rotate(0deg);
+        height: auto;
+        left: 0vw;
+        grid-gap: 2vh;
+    }
+
+    .timeline__step {
+        transform: rotate(0deg);
+        width: 90vw;
+    }
+
+    .fade {
+        height: auto;
+        width: 90vw;
+    }
+}

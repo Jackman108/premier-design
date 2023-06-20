@@ -1,19 +1,14 @@
 'use client'
+import { FC, useCallback, useEffect, useRef, useState } from "react";
 import NextImage from "next/image";
+import Link from "next/link";
+import { NewsComponentProps, NewsStyleProps } from "./News.props";
+import TextViewer from "../TextViewer/TextViewer";
 import footerStyles from "./footerNews.module.css";
 import aboutStyles from "./aboutNews.module.css";
 import bodyStyles from "./bodyNews.module.css";
-import { NewsProps } from "../../interface/interfaceData";
-import { FC, useCallback, useEffect, useRef, useState } from "react";
-import TextViewer from "../TextViewer/TextViewer";
-import Link from "next/link";
-export interface NewsStyleProps {
-    newsStyle: 'about' | 'footer' | 'body';
-}
-interface NewsComponentProps {
-    news: NewsProps[];
-    newsStyle: NewsStyleProps['newsStyle'];
-}
+
+// Функция для получения стилей в зависимости от типа новости
 const getNewsStyles = (newsStyle: NewsStyleProps['newsStyle']) => {
     switch (newsStyle) {
         case 'footer':
@@ -25,14 +20,17 @@ const getNewsStyles = (newsStyle: NewsStyleProps['newsStyle']) => {
     }
 };
 
-const News: FC<NewsComponentProps> = (
-    { news, newsStyle }
-): JSX.Element => {
+// Компонент News
+const News: FC<NewsComponentProps> = ({
+    news,
+    newsStyle
+}): JSX.Element => {
     const stylesToUse = getNewsStyles(newsStyle);
     const [expandedNews, setExpandedNews] = useState<number | null>(null);
     const [showModal, setShowModal] = useState(false);
     const newsRef = useRef<HTMLDivElement>(null);
 
+    // Обработчик клика по новости
     const handleNewsClick = useCallback(
         (index: number) => {
             if (expandedNews === index) {
@@ -54,6 +52,7 @@ const News: FC<NewsComponentProps> = (
         },
         [expandedNews]
     );
+
     useEffect(() => {
         const hash = window.location.hash;
         if (hash) {
@@ -62,17 +61,17 @@ const News: FC<NewsComponentProps> = (
                 handleNewsClick(index);
             }
         }
-    }, []);
+    }, [news.length]);
+    
     return (
         <section className={stylesToUse.news}>
             <div className={stylesToUse.news__title}>
-                <h2>Новости</h2>
+                <h2>Новости и Акции</h2>
             </div>
             <div className={stylesToUse.news__container}>
                 {news.map((item, index) => (
                     <div
-                        className={`${stylesToUse.news__content} ${
-                            expandedNews === index ? stylesToUse.expanded : ""
+                        className={`${stylesToUse.news__content} ${expandedNews === index ? stylesToUse.expanded : ""
                             }`}
                         key={item.id}
                         onClick={() => handleNewsClick(index)}
@@ -89,9 +88,9 @@ const News: FC<NewsComponentProps> = (
                             />
                         </div>
                         <div className={stylesToUse.content__wrapper}>
-                            <Link 
-                            href={`about/#news-${index}`}
-                            className={stylesToUse.content__title}
+                            <Link
+                                href={`about/#news-${index}`}
+                                className={stylesToUse.content__title}
                             >
                                 {item.title}
                             </Link>
