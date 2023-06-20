@@ -29,7 +29,7 @@
     color: var(--brown-light);
     text-shadow: 1px 1px 1px var(--beige-dark);
     transition: all 0.5s ease-out;
-    z-index: 2;
+    z-index: 1;
     padding: 1vh;
     }
     
@@ -39,7 +39,7 @@
     cursor: pointer;
     text-decoration: underline;
     text-shadow: 1px 1px 1px var(--brown-dark);
-    z-index: 2;
+    z-index: 1;
     transition: all 0.5s ease-in-out;
     opacity: 0.9;
     }
@@ -52,7 +52,7 @@
     transition: transform 0.5s ease-in-out;
     border: 1px solid rgb(171, 170, 170);
     border-radius: 1.2vh;
-    z-index: 1;
+    z-index: 0;
     background-color: white;
     }
     

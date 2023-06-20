@@ -1,41 +1,60 @@
 'use client'
-import { FC, useState } from "react";
+import { useEffect, useState } from "react";
 import { Chatbot } from "react-chatbot-kit";
-import { ChatState } from "./types";
 import chatbotConfig from './config';
 import MessageParser from './MessageParser';
 import ActionProvider from './ActionProvider';
 import styles from './ChatBotSidebar.module.css';
 import 'react-chatbot-kit/build/main.css'
+import { IMessage } from "react-chatbot-kit/build/src/interfaces/IMessages";
 
-const ChatBotSidebar: FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
+const ChatBotSidebar = (
+): JSX.Element => {
+    const [isBotOpen, setIsBotOpen] = useState(false);
 
-    const saveMessages = (messages: ChatState) => {
+    // Загрузка сообщений из localStorage при открытии компонента
+    useEffect(() => {
+        const messages = loadMessages();
+        if (messages.length > 0) {
+            saveMessages(messages);
+        }
+    }, []);
+
+    const saveMessages = (messages: IMessage[]) => {
         localStorage.setItem('chat_messages', JSON.stringify(messages));
     };
-    const loadMessages = () => {
+
+    const loadMessages = (): IMessage[] => {
         const messagesString = localStorage.getItem('chat_messages');
-        const messages = messagesString ? JSON.parse(messagesString) : [];
+        const messages: IMessage[] = messagesString
+            ? JSON.parse(messagesString)
+            : [];
         return messages;
     };
+
     return (
         <div>
             <button
-                onClick={() => setIsOpen((prev) => !prev)}
+                onClick={() => setIsBotOpen((prev) => !prev)}
                 className={styles.toggle_button}
             >
-                Bot
+                {isBotOpen ? "Closed" : "Bot"}
             </button>
             <div>
-                {isOpen && (
+                {isBotOpen && (
                     <div className={styles.chatbot}>
                         <Chatbot
                             config={chatbotConfig}
                             messageParser={MessageParser}
                             actionProvider={ActionProvider}
-                            messageHistory={loadMessages().length > 0 ? loadMessages() : chatbotConfig.initialMessages}
-                            saveMessages={saveMessages}
+                            messageHistory={
+                                loadMessages().length > 0
+                                    ? loadMessages()
+                                    : chatbotConfig.initialMessages}
+                            saveMessages={saveMessages
+                            }
+                            placeholderText='Задайте Ваш вопрос'
+                            runInitialMessagesWithHistory={true}
                         />
                     </div>
                 )}

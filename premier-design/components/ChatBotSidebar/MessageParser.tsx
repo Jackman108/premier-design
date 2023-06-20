@@ -1,6 +1,6 @@
 'use client'
 import React, { FC, ReactElement, cloneElement } from 'react';
-import { MessageParserProps } from './types';
+import { MessageParserProps } from './ChatBot.props';
 
 const MessageParser: FC<MessageParserProps> = ({
     children,
@@ -19,6 +19,27 @@ const MessageParser: FC<MessageParserProps> = ({
             (lowerCaseMessage.includes('пока') ||
                 lowerCaseMessage.includes('до свидания'))) {
             actions.handleBye();
+        }
+        if (actions.handleServices &&
+            (lowerCaseMessage.includes('услуги') ||
+                lowerCaseMessage.includes('делаете'))) {
+            actions.handleServices();
+        }
+        if (actions.handlePortfolio &&
+            lowerCaseMessage.includes('портфолио')||
+            lowerCaseMessage.includes('примеры')) {
+            actions.handlePortfolio();
+        }
+        if (actions.handlePricing &&
+            lowerCaseMessage.includes('цены') ||
+            lowerCaseMessage.includes('стоимость')||
+            lowerCaseMessage.includes('стоит')) {
+            actions.handlePricing();
+        }
+        if (actions.handleAppointment &&
+            (lowerCaseMessage.includes('записаться') ||
+                lowerCaseMessage.includes('время'))) {
+            actions.handleAppointment();
         }
     };
 
