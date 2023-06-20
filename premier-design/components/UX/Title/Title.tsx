@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Title.module.css';
-import { TitleStyleProps } from './TitleStyle.props';
+import { TitleStyleProps } from '../../../interface/TitleStyle.props';
 
 const Title = ({
     title,

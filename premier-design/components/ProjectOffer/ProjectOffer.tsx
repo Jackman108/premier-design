@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './ProjectOffer.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
-import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
+import { OrderButtonProps } from '../../interface/OrderButton.props';
 import Image from 'next/image';
 import { OfferProject } from '../../interface/interfaceData';
 

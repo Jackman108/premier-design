@@ -1,6 +1,6 @@
 'use client'
 import React, { FC, ReactElement } from 'react';
-import { ActionProviderProps, ChatState } from './ChatBot.props';
+import { ActionProviderProps, ChatState } from '../../interface/ChatBot.props';
 
 const ActionProvider: FC<ActionProviderProps> = ({
     createChatBotMessage,

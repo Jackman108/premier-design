@@ -2,7 +2,7 @@ import { FC } from 'react';
 import styles from './Banner.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../UX/Title/Title';
-import { OrderButtonProps } from '../UX/OrderButton/OrderButton.props';
+import { OrderButtonProps } from '../../interface/OrderButton.props';
 import Image from 'next/image';
 import { BannerImagesProps, TitleProps } from '../../interface/interfaceData';
 

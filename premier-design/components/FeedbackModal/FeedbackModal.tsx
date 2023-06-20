@@ -3,7 +3,7 @@ import styles from './FeedbackModal.module.css';
 import FeedbackForm from './FeedbackForm/FeedbackForm';
 import { ChangeEvent, FC, MouseEvent, useState } from 'react';
 import { FeedbackItem } from './FeedbackForm/FeedbackForm.props';
-import { FeedbackModalProps } from './FeedbackModal.props';
+import { FeedbackModalProps } from '../../interface/FeedbackModal.props';
 
 
 const ModalOverlay: FC<FeedbackModalProps> = ({

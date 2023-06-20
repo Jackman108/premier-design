@@ -1,7 +1,7 @@
 'use strict'
 import React, { FC, useState } from 'react';
 import styles from './CostInput.module.css';
-import { CostInputProps } from './CostInput.props';
+import { CostInputProps } from '../../../interface/CalculatorModal.props';
 
 const CostInput: FC<CostInputProps> = ({
     inputValue,

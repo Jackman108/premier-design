@@ -2,7 +2,7 @@
 
 import React, { FC, useEffect, useState } from 'react';
 import styles from './CollapsibleContainer.module.css';
-import { CollapsibleContainerProps } from './CollapsibleContainer.props';
+import { CollapsibleContainerProps } from '../../../interface/CalculatorModal.props';
 
 const CollapsibleContainer: FC<CollapsibleContainerProps> = ({
     items,

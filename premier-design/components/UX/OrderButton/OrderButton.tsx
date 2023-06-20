@@ -1,8 +1,8 @@
 import styles from './OrderButton.module.css';
 import FeedbackModal from '../../FeedbackModal/FeedbackModal';
-import { FeedbackItem } from '../../FeedbackModal/FeedbackForm/FeedbackForm.props';
-import { OrderButtonProps, OrderButtonState } from './OrderButton.props';
+import { OrderButtonProps, OrderButtonState } from '../../../interface/OrderButton.props';
 import { FC, useCallback, useState } from 'react';
+import { FeedbackItem } from '../../../interface/FeedbackModal.props';
 
 
 const OrderButton: FC<OrderButtonProps> = ({

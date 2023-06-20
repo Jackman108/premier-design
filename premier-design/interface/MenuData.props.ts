@@ -1,4 +1,4 @@
-import { MenuProps } from "../../interface/interfaceData";
+import { MenuProps } from "./interfaceData";
 
 export interface MenuDataProps {
     data: {

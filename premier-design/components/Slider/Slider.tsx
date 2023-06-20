@@ -1,6 +1,6 @@
 'use client'
 import { FC, Children, memo, useState } from 'react';
-import { SliderProps } from './Slider.props';
+import { SliderProps } from '../../interface/Slider.props';
 import { useKeenSlider } from "keen-slider/react";
 
 const Slider: FC<SliderProps> = memo(({

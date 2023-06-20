@@ -1,7 +1,7 @@
 'use client'
 import styles from './CalculatorModal.module.css';
 import { ChangeEvent, Dispatch, FC, useCallback, useEffect, useMemo, useState } from 'react';
-import { CalculatorModalProps } from './CalculatorModal.props';
+import { CalculatorModalProps } from '../../interface/CalculatorModal.props';
 import Preloader from '../UX/Preloader/Preloader';
 import CostInput from './CostInput/CostInput';
 import ModalTabs from './ModalTabs/ModalTabs';

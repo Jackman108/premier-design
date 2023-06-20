@@ -1,5 +1,4 @@
 import { ChangeEvent } from "react";
-
 export interface FeedbackItem {
     name: string;
     phone: string;
@@ -12,4 +11,8 @@ export interface FeedbackFormProps {
         event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => void;
     formDataState: FeedbackItem;
+}
+export interface FeedbackModalProps {
+    onClose: () => void;
+    onSubmit: (data: FeedbackItem) => Promise<void>;
 }

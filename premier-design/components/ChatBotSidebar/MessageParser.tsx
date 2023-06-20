@@ -1,6 +1,6 @@
 'use client'
 import React, { FC, ReactElement, cloneElement } from 'react';
-import { MessageParserProps } from './ChatBot.props';
+import { MessageParserProps } from '../../interface/ChatBot.props';
 
 const MessageParser: FC<MessageParserProps> = ({
     children,

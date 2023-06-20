@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MenuDataProps } from '../components/Menu/MenuData.props';
+import { MenuDataProps } from '../interface/MenuData.props';
 
 function useMobileMenu(initialValue = false): MenuDataProps {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(initialValue);

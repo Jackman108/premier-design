@@ -2,7 +2,7 @@
 import { FC, useCallback, useEffect, useRef, useState } from "react";
 import NextImage from "next/image";
 import Link from "next/link";
-import { NewsComponentProps, NewsStyleProps } from "./News.props";
+import { NewsComponentProps, NewsStyleProps } from "../../interface/News.props";
 import TextViewer from "../TextViewer/TextViewer";
 import footerStyles from "./footerNews.module.css";
 import aboutStyles from "./aboutNews.module.css";

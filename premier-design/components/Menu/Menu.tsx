@@ -1,7 +1,7 @@
 'use client'
 import { memo, useCallback, useEffect, useMemo } from 'react';
 import Link from 'next/link';
-import { MenuStyleProps, MenuDataProps } from './MenuData.props';
+import { MenuStyleProps, MenuDataProps } from '../../interface/MenuData.props';
 import headerStyles from './HeaderMenu.module.css';
 import footerStyles from './FooterMenu.module.css';
 import mobileStyles from './MobileMenu.module.css';

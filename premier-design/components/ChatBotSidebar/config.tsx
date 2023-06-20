@@ -2,7 +2,7 @@
 import { createChatBotMessage } from 'react-chatbot-kit';
 import Phone from '../UX/Phone/Phone';
 import CustomAvatar from './CustomAvatar';
-import { CustomAvatarProps } from './ChatBot.props';
+import { CustomAvatarProps } from '../../interface/ChatBot.props';
 
 const botName = 'Алина';
 const botAvatarPath = '/botAvatars/botAvatar.webp';

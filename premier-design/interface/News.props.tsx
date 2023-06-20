@@ -1,4 +1,4 @@
-import { NewsProps } from "../../interface/interfaceData";
+import { NewsProps } from "./interfaceData";
 
 export interface NewsStyleProps {
     newsStyle: 'about' | 'footer' | 'body';
