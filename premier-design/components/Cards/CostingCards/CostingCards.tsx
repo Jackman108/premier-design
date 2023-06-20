@@ -16,7 +16,7 @@ const CostingCards: FC<{ data: CostingCardProps[] }> = ({
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedCard, setSelectedCard] = useState<CostingCardProps | null>(null);
 
-    const handleCardClick = (card: CostingCardProps) => () => {
+    const handleCardClick = (card: CostingCardProps) => {
         setSelectedCard(card);
         setIsModalOpen(true);
     };

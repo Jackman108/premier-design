@@ -24,16 +24,16 @@ const CalculatorModal: FC<CalculatorModalProps> = ({
     const [error, setError] = useState<string>('');
 
     const inputValueAsNumber = useMemo(() => parseInt(inputValue, 10), [inputValue]);
-    const tabCosts: number[] = useMemo(() => [0, 100, 200, 300, 400, 500], []);
+    const tabCosts: number[] = useMemo(() => [0, 289, 319, 379, 409, 379], []);
 
     const repairFactorMap: { [key: string]: number } = {
         standard: 1,
         comfort: 1.5,
-        business: 2
+        business: 2.1
     };
     const serviceFactorMap: { [key: string]: number } = {
-        design_repair: 1,
-        repair: 0.8,
+        design_repair: 1.2,
+        repair: 1,
         design: 0.2
     };
 
