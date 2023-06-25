@@ -1,5 +1,5 @@
 'use client'
-import { memo, useCallback, useEffect, useMemo } from 'react';
+import { memo, useCallback,  useMemo } from 'react';
 import Link from 'next/link';
 import { MenuStyleProps, MenuDataProps } from '../../interface/MenuData.props';
 import headerStyles from './HeaderMenu.module.css';
@@ -28,32 +28,14 @@ const Menu = memo(({
     const memoizedMenu = useMemo(() => data.menu || [], [data.menu]);
     const stylesToUse = getMenuStyles(menuStyle);
     const isMobile = menuStyle === 'mobile';
-
-    useEffect(() => {
-        const handleWheel = (event: WheelEvent) => {
-            if (isMobileMenuOpen) {
-                event.preventDefault();
-            }
-        };
-
-        if (isMobileMenuOpen) {
-            document.body.style.overflow = 'hidden'; // Запретить прокрутку страницы
-            document.addEventListener('wheel', handleWheel, { passive: false });
-        } else {
-            document.body.style.overflow = ''; // Разрешить прокрутку страницы
-        }
-
-        return () => {
-            document.body.style.overflow = ''; // Разрешить прокрутку страницы при размонтировании компонента
-            document.removeEventListener('wheel', handleWheel);
-        };
-    }, [isMobileMenuOpen]);
+    
 
     const handleClick = useCallback(() => {
         if (isMobileMenuOpen) {
-            toggleMobileMenu;
+            toggleMobileMenu();
         }
     }, [isMobileMenuOpen, toggleMobileMenu]);
+
 
     return (
         <nav className={`${stylesToUse.menu} 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import {  useState } from 'react';
 import { MenuDataProps } from '../interface/MenuData.props';
 
 function useMobileMenu(initialValue = false): MenuDataProps {
@@ -15,6 +15,6 @@ function useMobileMenu(initialValue = false): MenuDataProps {
         isMobileMenuOpen,
         toggleMobileMenu,
     };
-} 
+}
 
 export default useMobileMenu;

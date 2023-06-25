@@ -1,10 +1,10 @@
-import React from 'react';
-import styles from './ProjectOffer.module.css';
-import OrderButton from '../UX/OrderButton/OrderButton';
-import { OrderButtonProps } from '../../interface/OrderButton.props';
 import Image from 'next/image';
 import { OfferProject } from '../../interface/interfaceData';
+import OrderButton from '../UX/OrderButton/OrderButton';
+import { OrderButtonProps } from '../../interface/OrderButton.props';
+import styles from './ProjectOffer.module.css';
 
+// Определение компонента ProjectOffer
 const ProjectOffer: React.FC<{ data: OfferProject[] } & OrderButtonProps> = ({
     data,
     buttonHeader,
