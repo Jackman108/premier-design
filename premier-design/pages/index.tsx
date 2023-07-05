@@ -4,7 +4,7 @@ import Layout from '../Layout/Layout';
 import { getStaticProps } from './api/data';
 import { findTitle, bannerImageSettings, findButton } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
-import  {GetDataProps}  from '../interface/interfaceData';
+import { PageProps } from '../interface/ExampleCards.props';
 
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const Features = dynamic(() => import('../components/Features/Features'));
@@ -14,7 +14,7 @@ const Examples = dynamic(() => import('../components/Examples/Examples'));
 const Costing = dynamic(() => import('../components/Costing/Costing'));
 const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
 
-const Home: NextPage<GetDataProps> = ({ data }) => {
+const Home: NextPage<PageProps> = ({ data, enableSlider = true }) => {
   const { title = '', description = '' } = findTitle(data, 1) || {};
   const buttonHeader = findButton(data, 0);
   const bannerImg = bannerImageSettings(data, 1);
@@ -35,7 +35,7 @@ const Home: NextPage<GetDataProps> = ({ data }) => {
         <Features features={data.features} />
         <Services data={data} />
         <Approach data={data} />
-        <Examples data={data} />
+        <Examples data={data} enableSlider={enableSlider} />
         <Costing data={data} />
         <Appeal data={data} />
       </Layout>

@@ -1,6 +1,12 @@
 .examples__cards {
     display: grid;
-    height: 60vh;
+    height: auto;
+}
+.examples__grid {
+    display: grid;   
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 1fr 1fr;
+    grid-gap: 4vh;
 }
 
 .examples__card {

@@ -1,13 +1,13 @@
 .examples {
     max-width: 100vw;
-    max-height: 100%;
+    height: auto;
     padding: 3% 0;
 }
 
 .examples__container {
     margin: 0 auto;
     max-width: 1440px;
-    max-height: 100vh;
+    max-height: auto;
     display: grid;
     justify-items: center;
     grid-gap: 4vh; 

@@ -5,8 +5,9 @@ import Title from '../UX/Title/Title';
 import { findTitle } from '../../pages/api/constants';
 import { DataProps } from '../../interface/interfaceData';
 
-const Examples: FC<{ data: DataProps }> = ({
-    data
+const Examples: FC<{ data: DataProps, enableSlider?: boolean }> = ({
+    data,
+    enableSlider = true,
 }): JSX.Element => {
     const { title = '', description = '' } = findTitle(data, 4) || {};
     return (
@@ -20,6 +21,7 @@ const Examples: FC<{ data: DataProps }> = ({
                 />
                 <ExamplesCards
                     data={data.cards.examplesCard}
+                    enableSlider={enableSlider}
                 />
             </div>
         </section>
