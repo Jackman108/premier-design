@@ -5,7 +5,6 @@ import { getStaticProps } from './api/data';
 import { findTitle, bannerImageSettings, findButton } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
 import { PageProps } from '../interface/ExampleCards.props';
-import BrickWallLoader from '../components/UX/BrickWallLoader/BrickWallLoader';
 
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const Features = dynamic(() => import('../components/Features/Features'));
@@ -33,7 +32,6 @@ const Home: NextPage<PageProps> = ({ data, enableSlider = true }) => {
           buttonStyle='button-white'
           bannerImg={bannerImg}
         />
-        <BrickWallLoader  />
         <Features features={data.features} />
         <Services data={data} />
         <Approach data={data} />

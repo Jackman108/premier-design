@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import fs from 'fs';
 import path from 'path';
-import { FeedbackItem } from '../../components/FeedbackModal/FeedbackForm/FeedbackForm.props';
 import nodemailer from 'nodemailer';
+import { FeedbackItem } from '../../interface/FeedbackModal.props';
 
 const filePath = path.join(process.cwd(), 'formData.json');
 
