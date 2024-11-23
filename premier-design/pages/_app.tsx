@@ -1,23 +1,23 @@
-import type { AppProps, NextWebVitalsMetric } from 'next/app';
-import { ThemeProvider } from 'next-themes';
+import type {AppProps, NextWebVitalsMetric} from 'next/app';
+import {ThemeProvider} from 'next-themes';
 import '../styles/globals.css';
 import "keen-slider/keen-slider.min.css";
 
 import Head from 'next/head';
-import { FC } from 'react';
+import {FC} from 'react';
 
-const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
+const MyApp: FC<AppProps> = ({Component, pageProps}) => {
     return (
         <ThemeProvider
             defaultTheme="light"
             themes={['light', 'dark']}
             attribute="class">
-                <Head>
+            <Head>
                 <meta
                     name="viewport"
                     content="width=device-width, initial-scale=1"
                 />
-                </Head>
+            </Head>
             <Component {...pageProps} />
         </ThemeProvider>
     );
@@ -26,4 +26,5 @@ const MyApp: FC<AppProps> = ({ Component, pageProps }) => {
 export function reportWebVitals(metric: NextWebVitalsMetric) {
     console.log(metric);
 }
+
 export default MyApp;

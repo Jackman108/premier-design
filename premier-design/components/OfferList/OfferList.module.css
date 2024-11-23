@@ -48,11 +48,11 @@
     text-align: justify;
     font-size: 1.1rem;
     line-height: 2rem;
-
+    background: linear-gradient(to bottom, white, var(--beige-dark));
+    border-radius: 5px;
     color: var(--brown-dark);
     text-shadow: 0 0 1px var(--brown-light);
     opacity: 0.9;
-
 }
 
 .content_subTitle {

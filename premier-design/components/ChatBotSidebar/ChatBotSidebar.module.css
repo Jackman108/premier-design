@@ -1,7 +1,7 @@
 .toggle_button {
     position: fixed;
-    right: 0px;
-    bottom: 52%;
+    right: 0;
+    bottom: 5%;
     width: 60px;
     height: 10%;
     padding: 2% 0;
@@ -16,9 +16,8 @@
     background-color: var(--brown-light);
 }
 .chatbot{
-    position: absolute;
     position: fixed;
-    right: 0px;
-    bottom: 0%;
+    right: 0;
+    bottom: 0;
     z-index: 9999;
 }

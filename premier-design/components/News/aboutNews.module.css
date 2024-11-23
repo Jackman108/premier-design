@@ -19,7 +19,7 @@
     font-weight: 600;
     line-height: 1.5;
     text-align: center;
-    color: var(--brown-dark);
+    color: var(--brown);
     text-shadow: 0 0 2px var(--brown-light)
 }
 

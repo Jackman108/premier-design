@@ -17,6 +17,10 @@
 
 # misc
 .DS_Store
+dist
+dist-ssr
+coverage
+*.local
 
 # debug
 npm-debug.log*
@@ -30,3 +34,15 @@ yarn-error.log*
 .env.production.local
 .env
 formData.json
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.tsbuildinfo
