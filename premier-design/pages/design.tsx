@@ -1,24 +1,25 @@
-import type { NextPage } from 'next';
+import type {NextPage} from 'next';
 import Layout from '../Layout/Layout';
-import { getStaticProps } from './api/data';
-import { findTitle, bannerImageSettings, findButton } from './api/constants';
+import {getStaticProps} from './api/data';
+import {findTitle, bannerImageSettings, findButton} from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
 import dynamic from 'next/dynamic';
 import Examples from '../components/Examples/Examples';
-import { PageProps } from '../interface/ExampleCards.props';
+import {PageProps} from '../interface/ExampleCards.props';
 
 const Banner = dynamic(() => import('../components/Banner/Banner'));
 const OfferList = dynamic(() => import('../components/OfferList/OfferList'));
 const ProjectOffer = dynamic(() => import('../components/ProjectOffer/ProjectOffer'));
 const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
 
-const Design: NextPage<PageProps> = ({ data, enableSlider = false }): JSX.Element => {
-    const { title = '', description = '' } = findTitle(data, 7) || {};
+const Design: NextPage<PageProps> = ({data, enableSlider = true}): JSX.Element => {
+    const {title = '', description = ''} = findTitle(data, 7) || {};
     const buttonHeader = findButton(data, 1);
     const bannerImg = bannerImageSettings(data, 3);
     return (
         <>
-            <CustomHead title={'Premium Interior | Дизайн интерьеров'} description={'Ремонт и дизайн интерьеров в Беларуси'} />
+            <CustomHead title={'Premium Interior | Дизайн интерьеров'}
+                        description={'Ремонт и дизайн интерьеров в Беларуси'}/>
             <Layout data={data}>
                 <Banner
                     title={title}
@@ -27,17 +28,17 @@ const Design: NextPage<PageProps> = ({ data, enableSlider = false }): JSX.Elemen
                     buttonStyle='button-white'
                     bannerImg={bannerImg}
                 />
-                <Examples data={data} enableSlider={enableSlider} />
-                <OfferList data={data.offerList.filter((offer) => offer.id === 1)} />
+                <Examples data={data} enableSlider={enableSlider}/>
+                <OfferList data={data.offerList.filter((offer) => offer.id === 1)}/>
                 <ProjectOffer
                     data={data.offerProject.designType}
                     buttonHeader={buttonHeader}
                     buttonStyle='button-black'
                 />
-                <Appeal data={data} />
+                <Appeal data={data}/>
             </Layout>
         </>
     );
 };
-export { getStaticProps };
+export {getStaticProps};
 export default Design;

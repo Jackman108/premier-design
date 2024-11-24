@@ -1,56 +1,71 @@
-.title-white{
-    max-width:1440px;
-    font-size: 5vh;
-    font-weight: 600;
-    line-height: 1.2;
-    padding-bottom: 7vh;
-    text-align: center;
-    color: var(--beige-dark);
-    text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.8);
-    overflow: hidden;
-    white-space: nowrap;
-    animation: typing 1s steps(30) 1s 1 normal both;
-    font-family: var(--font-family);
-    }
+.title-white {
+	max-width: 1440px;
+	font-size: 3rem;
+	font-weight: 600;
+	line-height: 1.2;
+	padding-bottom: 7vh;
+	text-align: center;
+	color: var(--beige-dark);
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+	overflow: hidden;
+	white-space: wrap;
+	animation: typing 1s steps(30) 1s 1 normal both;
+	font-family: var(--font-family), monospace;
+}
 
-.description-white{
-    max-width: 70%;
-    font-size: 2vh;
-    font-weight: 400;
-    line-height: 1.5;
-    text-align: center;
-    color: var(--beige-dark);
-    text-shadow: 0px 0px 1px rgba(255, 255, 255, 0.8);
+.description-white {
+	max-width: 70%;
+	font-size: 1.5rem;
+	font-weight: 400;
+	line-height: 1.5;
+	text-align: center;
+	color: var(--beige-dark);
+	text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
 }
 
 @keyframes typing {
-    from {
-        width: 0;
-    }
-    to {
-        width: 100%;
-    }
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
 }
 
-.title-black{
-    font-size: 4vh;
-    font-weight: 600;
-    text-align: center;
-    color: var(--brown-dark);
-    text-shadow: 0 0 2px var(--brown-light)
+.title-black {
+	font-size: 2rem;
+	font-weight: 600;
+	text-align: center;
+	color: var(--brown-dark);
+	text-shadow: 0 0 2px var(--brown-light)
 }
 
-.description-black{
-    font-size: 2vh;
-    font-weight: 400;
-    line-height: 1.5;
-    max-width: 50vw;
-    text-align: center;
-    color: var(--brown-light);
+.description-black {
+	font-size: 1.5rem;
+	font-weight: 400;
+	line-height: 1.5;
+	max-width: 80vw;
+	text-align: center;
+	color: var(--brown-light);
 }
 
 @media (max-width: 768px) {
-    .title-white{
-        font-size: 2vh;      
-        }    
-    }
+	.title-white {
+		font-size: 1rem;
+	}
+
+	.title-black {
+		font-size: 1rem;
+
+	}
+
+	.description-white {
+		font-size: 1rem;
+
+	}
+
+	.description-black {
+		font-size: 1rem;
+
+	}
+}

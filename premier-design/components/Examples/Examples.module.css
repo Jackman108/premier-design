@@ -1,21 +1,20 @@
 .examples {
-    max-width: 100vw;
-    height: auto;
-    padding: 3% 0;
+	max-width: 100vw;
+	height: auto;
+	padding: 3% 0;
 }
 
 .examples__container {
-    margin: 0 auto;
-    max-width: 1440px;
-    max-height: auto;
-    display: grid;
-    justify-items: center;
-    grid-gap: 4vh; 
+	margin: 0 auto;
+	max-width: 1440px;
+	display: grid;
+	justify-items: center;
+	grid-gap: 4vh;
 }
 
 @media screen and (max-width: 768px) {
-    .examples__container {
-        margin: 4vh auto;
-        grid-gap: 0vh;
-    }
+	.examples__container {
+		margin: 4vh auto;
+		grid-gap: 0;
+	}
 }

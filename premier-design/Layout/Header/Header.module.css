@@ -31,15 +31,20 @@
 	align-items: flex-start;
 }
 
+@media (max-width: 1024px) {
+	.header__container {
+		gap: 1rem;
+	}
+}
+
 @media (max-width: 768px) {
 	.header__container {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		width: 100%;
-		padding: 1rem;
-
+		width: 90%;
+		margin: 0 auto;
 	}
 
 	.contact__container {
