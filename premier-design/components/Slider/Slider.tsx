@@ -1,5 +1,5 @@
 'use client'
-import { FC, Children, memo, useState } from 'react';
+import React, { FC, Children, memo, useState } from 'react';
 import { SliderProps } from '../../interface/Slider.props';
 import { useKeenSlider } from "keen-slider/react";
 
@@ -12,6 +12,7 @@ const Slider: FC<SliderProps> = memo(({
     const [loaded, setLoaded] = useState(false)
     const slidesToShow = isMobile === undefined ? 1 : isMobile ? 1 : slidesPerView;
     const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+        loop: true,
         initial: 0,
         slideChanged(slider) {
             setCurrentSlide(slider.track.details.rel)
