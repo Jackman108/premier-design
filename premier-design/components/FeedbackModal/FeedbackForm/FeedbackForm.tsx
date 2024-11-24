@@ -1,16 +1,13 @@
 'use client';
-import {FC, FormEvent, memo, useState} from "react";
+import {ChangeEvent, FC, FormEvent, memo, useState} from "react";
 import styles from "./FeedbackForm.module.css";
 import {FeedbackFormProps} from "../../../interface/FeedbackModal.props";
 import {validatePhone} from "../../../validates/validatePhone";
 import {validateEmail} from "../../../validates/validateEmail";
-import InputMask from 'react-input-mask';
+import {PatternFormat} from 'react-number-format';
 
-const FeedbackForm: FC<FeedbackFormProps> = memo(({
-                                                      onSubmit,
-                                                      formDataState,
-                                                      onInputChange
-                                                  }) => {
+
+const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, formDataState, onInputChange}) => {
     const [country, setCountry] = useState("by");
     const [errors, setErrors] = useState({
         name: "",
@@ -19,36 +16,49 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({
         message: ""
     });
 
-    const phoneMask = country === 'ru' ? '+7 (999) 999-99-99' : '+375 (99) 999-99-99';
+    const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setErrors(prevErrors => ({
+            ...prevErrors,
+            [event.target.name]: ""
+        }));
+        onInputChange(event);
+    };
 
+    const handlePhoneChange = (values: { value: string }) => {
+        const countryCode = country === 'ru' ? '+7' : '+375';
+        const formattedPhone = `${countryCode}${values.value}`;
+        onInputChange({
+            target: {
+                name: 'phone',
+                value: formattedPhone,
+            },
+        } as ChangeEvent<HTMLInputElement>);
+    };
+
+    const validateForm = () => {
+        return {
+            name: formDataState.name ? "" : "Введите ваше имя",
+            phone: formDataState.phone ? (validatePhone(formDataState.phone) ? "" : "Неверный формат номера телефона!") : "Введите ваш номер телефона",
+            email: formDataState.email && !validateEmail(formDataState.email) ? "Неверный формат email." : "",
+            message: formDataState.message ? "" : "Введите сообщение",
+        };
+    };
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+        console.log(formDataState.phone)
 
-        const cleanedPhone = formDataState.phone.replace(/\D/g, '');
-        const formErrors = {name: "", phone: "", email: "", message: ""};
-
-        if (!formDataState.name) {
-            formErrors.name = "Введите ваше имя";
-        }
-        if (!formDataState.phone) {
-            formErrors.phone = "Введите ваш номер телефона";
-        } else if (!validatePhone(formDataState.phone)) {
-            formErrors.phone = "Неверный формат номера телефона! Поддерживаются только номера России и Беларуси.";
-        }
-        if (!formDataState.message) {
-            formErrors.message = "Введите сообщение";
-        }
-        if (formDataState.email && !validateEmail(formDataState.email)) {
-            formErrors.email = "Неверный формат email.";
-        }
+        const formErrors = validateForm();
 
         if (Object.values(formErrors).some((error) => error)) {
             setErrors(formErrors);
             return;
         }
 
+        const cleanedPhone = formDataState.phone.replace(/\D/g, '');
         onSubmit({...formDataState, phone: cleanedPhone});
     };
+
+    const phoneMask = country === 'ru' ? '+7 (###) ###-##-##' : '+375 (##) ###-##-##';
 
     return (
         <form className={styles.form} onSubmit={handleSubmit}>
@@ -59,7 +69,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({
                     name="name"
                     placeholder="Введите ваше имя"
                     value={formDataState.name}
-                    onChange={onInputChange}
+                    onChange={handleInputChange}
                     className={errors.name ? `${styles.error}` : ""}
                 />
                 {errors.name && <div className={styles.errorMessage}>{errors.name}</div>}
@@ -74,25 +84,27 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({
                     <option value="by">🇧🇾</option>
                 </select>
 
-                <InputMask
-                    mask={phoneMask}
+                <PatternFormat
+                    format={phoneMask}
+                    allowEmptyFormatting
+                    mask="_"
                     id="phone"
                     name="phone"
                     placeholder="Введите ваш номер телефона"
-                    value={formDataState.phone}
-                    onChange={onInputChange}
+                    value={formDataState.phone.replace(/^\+375|^\+7/, "")}
+                    onValueChange={handlePhoneChange}
                     className={errors.phone ? `${styles.error}` : ""}
                 />
                 {errors.phone && <div className={styles.errorMessage}>{errors.phone}</div>}
             </div>
             <div className={styles.input__group}>
-            <input
+                <input
                     type="email"
                     id="email"
                     name="email"
                     placeholder="Введите ваш email (необязательно)"
                     value={formDataState.email}
-                    onChange={onInputChange}
+                    onChange={handleInputChange}
                     className={errors.email ? `${styles.error}` : ""}
                 />
                 {errors.email && <div className={styles.errorMessage}>{errors.email}</div>}
@@ -103,7 +115,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({
                     name="message"
                     placeholder="Введите ваше сообщение"
                     value={formDataState.message}
-                    onChange={onInputChange}
+                    onChange={handleInputChange}
                     className={errors.message ? `${styles.error}` : ""}
                 />
                 {errors.message && <div className={styles.errorMessage}>{errors.message}</div>}

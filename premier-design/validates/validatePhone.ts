@@ -1,6 +1,7 @@
 export const validatePhone = (phone: string) => {
-    // Регулярные выражения для проверки номера телефона (Россия, Беларусь)
-    const phonePattern = /^(?:\+7|8)[\s\(\)\-0-9]{10,15}$/; // Россия
-    const belarusPhonePattern = /^(?:\+375|80)[\s\(\)\-0-9]{9,15}$/; // Беларусь
-    return phonePattern.test(phone) || belarusPhonePattern.test(phone);
+    const cleanedPhone = phone.replace(/\D/g, '');
+
+    const phonePattern = /^[78][0-9]{10}$/;
+    const belarusPhonePattern = /^(?:375|80)[0-9]{9}$/;
+    return phonePattern.test(cleanedPhone) || belarusPhonePattern.test(cleanedPhone);
 };

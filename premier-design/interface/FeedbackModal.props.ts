@@ -1,10 +1,12 @@
-import { ChangeEvent } from "react";
+import {ChangeEvent} from "react";
+
 export interface FeedbackItem {
     name: string;
     phone: string;
-    email: string;
+    email?: string;
     message: string;
 }
+
 export interface FeedbackFormProps {
     onSubmit: (data: FeedbackItem) => Promise<void>;
     onInputChange: (
@@ -12,6 +14,7 @@ export interface FeedbackFormProps {
     ) => void;
     formDataState: FeedbackItem;
 }
+
 export interface FeedbackModalProps {
     onClose: () => void;
     onSubmit: (data: FeedbackItem) => Promise<void>;

@@ -10,7 +10,7 @@ const Address: FC = (): JSX.Element => {
         <section className={styles.address__contacts}>
             <div className={styles.address__content}>
                 <div className={styles.address__item}>
-                    <h3>Специалист по работе с клиентами:</h3>
+                    <h3>Позвоните нам:</h3>
                     <Phone />
                 </div>
                 <div className={styles.address__item}>
