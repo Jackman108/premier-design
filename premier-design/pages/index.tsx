@@ -5,8 +5,8 @@ import { getStaticProps } from './api/data';
 import { findTitle, bannerImageSettings, findButton } from './api/constants';
 import CustomHead from '../components/helpers/CustomHead';
 import { PageProps } from '../interface/ExampleCards.props';
+import Banner from "../components/Banner/Banner";
 
-const Banner = dynamic(() => import('../components/Banner/Banner'));
 const Features = dynamic(() => import('../components/Features/Features'));
 const Services = dynamic(() => import('../components/Services/Services'));
 const Approach = dynamic(() => import('../components/Approach/Approach'));

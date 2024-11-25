@@ -3,13 +3,13 @@ import useResizeEffects from "../../hooks/useResizeEffects";
 import dynamic from "next/dynamic";
 import { FC } from "react";
 import  {GetDataProps} from "../../interface/interfaceData";
+import Menu from "../../components/Menu/Menu";
 
 const News = dynamic(() => import('../../components/News/News'));
-const Menu = dynamic(() => import('../../components/Menu/Menu'));
 const Copywriting = dynamic(() => import('../../components/UX/Copywriting/Copywriting'));
 
 
-const Footer: FC<GetDataProps> = ({ data }): JSX.Element => {
+const Footer: FC<GetDataProps> = ({ data }) => {
     const { isMobileMenuOpen, toggleMobileMenu, } = useResizeEffects();
 
     return (

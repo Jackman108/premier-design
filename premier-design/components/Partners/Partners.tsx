@@ -1,14 +1,14 @@
-import { FC } from 'react';
+import {FC} from 'react';
 import styles from './Partners.module.css';
 import Title from '../UX/Title/Title';
 import Image from 'next/image';
-import { GetDataProps } from '../../interface/interfaceData';
-import { findTitle } from '../../pages/api/constants';
+import {GetDataProps} from '../../interface/interfaceData';
+import {findTitle} from '../../pages/api/constants';
 
 const Partners: FC<GetDataProps> = ({
-    data
-}): JSX.Element => {
-    const { title = '', description = '' } = findTitle(data, 12) || {};
+                                        data
+                                    }): JSX.Element => {
+    const {title = '', description = ''} = findTitle(data, 12) || {};
     return (
         <section className={styles.partners}>
 
@@ -19,14 +19,14 @@ const Partners: FC<GetDataProps> = ({
                     title={title}
                     description={description}
                 />
-                <div className={styles.partners__cards}                >
+                <div className={styles.partners__cards}>
                     {data.partners.map((partner) => (
                         <div
                             key={partner.id}
                             className={styles.partners__card}
                         >
                             <Image
-                                priority
+                                priority={false}
                                 src={partner.src}
                                 alt={partner.alt}
                                 quality={partner.quality}
@@ -34,8 +34,9 @@ const Partners: FC<GetDataProps> = ({
                                 height={partner.height}
                                 placeholder='empty'
                                 className={styles.partners__image}
+                                loading={'lazy'}
                             />
-                            <p className={styles.partners__discounts}                            >
+                            <p className={styles.partners__discounts}>
                                 {partner.discounts}
                             </p>
                         </div>

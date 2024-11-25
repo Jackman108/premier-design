@@ -1,4 +1,4 @@
-import type {AppProps, NextWebVitalsMetric} from 'next/app';
+import type {AppProps} from 'next/app';
 import {ThemeProvider} from 'next-themes';
 import '../styles/globals.css';
 import "keen-slider/keen-slider.min.css";
@@ -21,10 +21,6 @@ const MyApp: FC<AppProps> = ({Component, pageProps}) => {
             <Component {...pageProps} />
         </ThemeProvider>
     );
-}
-
-export function reportWebVitals(metric: NextWebVitalsMetric) {
-    console.log(metric);
 }
 
 export default MyApp;

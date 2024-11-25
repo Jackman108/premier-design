@@ -3,10 +3,11 @@ import Title from '../UX/Title/Title';
 import ApproachCards from '../Cards/ApproachCards/ApproachCards';
 import { findTitle } from '../../pages/api/constants';
 import { DataProps } from '../../interface/interfaceData';
+import  {FC} from "react";
 
-const Approach: React.FC<{ data: DataProps }> = ({ 
+const Approach: FC<{ data: DataProps }> = ({
     data 
-}): JSX.Element => {
+}) => {
     const { title = '', description = '' } = findTitle(data, 3) || {};
     return (
         <section className={styles.approach}>

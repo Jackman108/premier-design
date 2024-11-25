@@ -16,13 +16,13 @@ const Banner: FC<BannerProps> = ({
     buttonHeader,
     buttonStyle,
     bannerImg
-}): JSX.Element => {
+}) => {
     const { src = '', alt = '', quality, width, height } = bannerImg ?? {};
 
     return (
         <section className={styles.banner}>
             <Image
-                priority
+                priority={true}
                 src={src}
                 alt={alt}
                 quality={quality}
