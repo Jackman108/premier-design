@@ -1,25 +1,26 @@
-import React, { FC } from "react";
-import styles from "./Copywriting.module.css";
+import React, {FC, ReactElement} from "react";
+import styles from "./Copyrighting.module.css";
 import Logo from "../Logo/Logo";
 import SocialIcons from "../SocialIcons/SocialIcons";
-import { format } from "date-fns";
+import {format} from "date-fns";
 
-const Copywriting: FC = (): JSX.Element => {
+const Copyrighting: FC = (): ReactElement => {
     return (
+
         <section className={styles.footer__contacts}>
             <div className={styles.footer__logo}>
-                <Logo />
+                <Logo/>
             </div>
             <div className={styles.footer__copy}>
                 &copy; Premium Interior, 2012 - {format(new Date(), 'yyyy')}.
-                <br />
+                <br/>
                 Все права защищены
             </div>
             <div className={styles.footer__socialIcons}>
-                <SocialIcons />
+                <SocialIcons/>
             </div>
         </section>
     );
 };
 
-export default Copywriting;
+export default Copyrighting;

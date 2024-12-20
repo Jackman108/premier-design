@@ -1,19 +1,19 @@
 'use client'
-import { useState, useCallback, useMemo, FC } from 'react';
+import {useState, useCallback, useMemo, FC, ReactElement} from 'react';
 import styles from './ExamplesCards.module.css';
 import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../../hooks/useResizeEffects';
 import PhotoViewer from '../../PhotoViewer/PhotoViewer';
-import { ExampleCardProps } from '../../../interface/interfaceData';
-import { ExampleCardsProps } from '../../../interface/ExampleCards.props';
+import {ExampleCardProps} from '../../../interface/interfaceData';
+import {ExampleCardsProps} from '../../../interface/ExampleCards.props';
 import ExampleCard from './ExamplesCard';
 
 const ExamplesCards: FC<ExampleCardsProps> = ({
-    data,
-    enableSlider = true,
-}): JSX.Element => {
+                                                  data,
+                                                  enableSlider = true,
+                                              }): ReactElement => {
     const memoizedExamplesCards = useMemo(() => data || [], [data]);
-    const { isMobile } = useResizeEffects();
+    const {isMobile} = useResizeEffects();
     const slidesPerView = 3;
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [isViewerOpen, setIsViewerOpen] = useState(false);
@@ -46,7 +46,7 @@ const ExamplesCards: FC<ExampleCardsProps> = ({
                         <ExampleCard
                             card={card}
                             onClick={handleCardClick}
-                            key={card.id} />
+                            key={card.id}/>
                     ))}
                 </SliderComponent>
             )}
@@ -56,7 +56,7 @@ const ExamplesCards: FC<ExampleCardsProps> = ({
                         <ExampleCard
                             card={card}
                             onClick={handleCardClick}
-                            key={card.id} />
+                            key={card.id}/>
                     ))}
                 </div>
             )}

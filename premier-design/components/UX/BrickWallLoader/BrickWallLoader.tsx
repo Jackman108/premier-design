@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, ReactElement} from 'react';
 import styles from './BrickWallLoader.module.css';
 
-const BrickWallLoader = (): JSX.Element => {
+const BrickWallLoader = (): ReactElement => {
     const [animationActive, setAnimationActive] = useState(false);
     const [animationFinished, setAnimationFinished] = useState(false);
     const [brickRows, setBrickRows] = useState([[], [], [0]]);
@@ -65,7 +65,7 @@ const BrickWallLoader = (): JSX.Element => {
     }, [animationActive, animationStep, animationFinished]);
 
     return (
-        <div style={{ display: animationFinished ? 'block' : 'none' }}>
+        <div style={{display: animationFinished ? 'block' : 'none'}}>
             <div className={styles.brickWallLoader}>
                 {brickRows.map((brickRow, rowIndex) => (
                     <div key={rowIndex} className={styles.brickRow}>
@@ -75,7 +75,7 @@ const BrickWallLoader = (): JSX.Element => {
                                 className={`${styles.brick} ${brickIndex < brick && animationActive
                                     ? styles.brickAnimation
                                     : ''}`}
-                                style={{ backgroundColor: "#4D4540" }}
+                                style={{backgroundColor: "#4D4540"}}
                             ></div>
                         ))}
                     </div>

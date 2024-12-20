@@ -1,8 +1,8 @@
 'use client'
-import { FC, useCallback, useEffect, useRef, useState } from "react";
+import {FC, ReactElement, useCallback, useEffect, useRef, useState} from "react";
 import NextImage from "next/image";
 import Link from "next/link";
-import { NewsComponentProps, NewsStyleProps } from "../../interface/News.props";
+import {NewsComponentProps, NewsStyleProps} from "../../interface/News.props";
 import TextViewer from "../TextViewer/TextViewer";
 import footerStyles from "./footerNews.module.css";
 import aboutStyles from "./aboutNews.module.css";
@@ -22,9 +22,9 @@ const getNewsStyles = (newsStyle: NewsStyleProps['newsStyle']) => {
 
 // Компонент News
 const News: FC<NewsComponentProps> = ({
-    news,
-    newsStyle
-}): JSX.Element => {
+                                          news,
+                                          newsStyle
+                                      }): ReactElement => {
     const stylesToUse = getNewsStyles(newsStyle);
     const [expandedNews, setExpandedNews] = useState<number | null>(null);
     const [showModal, setShowModal] = useState(false);
@@ -37,7 +37,7 @@ const News: FC<NewsComponentProps> = ({
                 setShowModal(false);
                 setExpandedNews(null);
                 if (newsRef.current) {
-                    newsRef.current.scrollIntoView({ behavior: "smooth" });
+                    newsRef.current.scrollIntoView({behavior: "smooth"});
                 }
             } else {
                 setShowModal(true);
@@ -45,7 +45,7 @@ const News: FC<NewsComponentProps> = ({
                 if (newsRef.current) {
                     const newsElement = newsRef.current.querySelector(`#news-${index}`);
                     if (newsElement) {
-                        newsElement.scrollIntoView({ behavior: "smooth" });
+                        newsElement.scrollIntoView({behavior: "smooth"});
                     }
                 }
             }
@@ -62,7 +62,7 @@ const News: FC<NewsComponentProps> = ({
             }
         }
     }, [news.length]);
-    
+
     return (
         <section className={stylesToUse.news}>
             <div className={stylesToUse.news__title}>
@@ -72,7 +72,7 @@ const News: FC<NewsComponentProps> = ({
                 {news.map((item, index) => (
                     <div
                         className={`${stylesToUse.news__content} ${expandedNews === index ? stylesToUse.expanded : ""
-                            }`}
+                        }`}
                         key={item.id}
                         onClick={() => handleNewsClick(index)}
                         ref={expandedNews === index ? newsRef : null}
@@ -89,7 +89,7 @@ const News: FC<NewsComponentProps> = ({
                         </div>
                         <div className={stylesToUse.content__wrapper}>
                             <Link
-                                href={`about/#news-${index}`}
+                                href={`/about/#news-${index}`}
                                 className={stylesToUse.content__title}
                             >
                                 {item.title}

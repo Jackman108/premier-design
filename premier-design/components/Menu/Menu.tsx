@@ -1,11 +1,11 @@
 'use client'
-import { memo, useCallback,  useMemo } from 'react';
+import {memo, ReactElement, useCallback, useMemo} from 'react';
 import Link from 'next/link';
-import { MenuStyleProps, MenuDataProps } from '../../interface/MenuData.props';
+import {MenuStyleProps, MenuDataProps} from '../../interface/MenuData.props';
 import headerStyles from './HeaderMenu.module.css';
 import footerStyles from './FooterMenu.module.css';
 import mobileStyles from './MobileMenu.module.css';
-import { MenuProps } from '../../interface/interfaceData';
+import {MenuProps} from '../../interface/interfaceData';
 
 const getMenuStyles = (menuStyle: string) => {
     switch (menuStyle) {
@@ -19,16 +19,16 @@ const getMenuStyles = (menuStyle: string) => {
 };
 
 const Menu = memo(({
-    data,
-    menuStyle,
-    isMobileMenuOpen,
-    toggleMobileMenu
-}: MenuStyleProps & MenuDataProps
-): JSX.Element => {
+                       data,
+                       menuStyle,
+                       isMobileMenuOpen,
+                       toggleMobileMenu
+                   }: MenuStyleProps & MenuDataProps
+): ReactElement => {
     const memoizedMenu = useMemo(() => data.menu || [], [data.menu]);
     const stylesToUse = getMenuStyles(menuStyle);
     const isMobile = menuStyle === 'mobile';
-    
+
 
     const handleClick = useCallback(() => {
         if (isMobileMenuOpen) {
@@ -42,7 +42,7 @@ const Menu = memo(({
         ${isMobile && isMobileMenuOpen ? mobileStyles.open : ''}`}
         >
             <ul className={stylesToUse.menu__container}>
-                {memoizedMenu.map(({ id, title, ruTitle }: MenuProps) => (
+                {memoizedMenu.map(({id, title, ruTitle}: MenuProps) => (
                     <li
                         key={id}
                         className={stylesToUse.menu__links}

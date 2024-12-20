@@ -1,8 +1,8 @@
 .social__icons {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(3, 1fr);
 	grid-gap: 0.5vw;
-	grid-column: 4 / 5;
+	grid-column: 3 / 4;
 	font-size: 1.4rem;
 }
 
@@ -21,7 +21,7 @@
 
 @media (max-width: 768px) {
 	.social__icons {
-		grid-column: 4 / 4;
+		grid-column: 3 / 3;
 		grid-gap: 1vw;
 	}
 }

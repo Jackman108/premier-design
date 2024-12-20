@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {ReactElement} from 'react';
 import Link from 'next/link';
 import LogoImage from '../../../public/logo.svg';
 import styles from './Logo.module.css';
 import Image from 'next/image';
 
-const Logo = (): JSX.Element => {
+const Logo = (): ReactElement => {
     return (
         <div className={styles.logo}>
             <Link
@@ -14,7 +14,7 @@ const Logo = (): JSX.Element => {
                 <Image
                     src={LogoImage}
                     alt="Logo"
-                    className={styles.image}                   
+                    className={styles.image}
                 />
             </Link>
         </div>

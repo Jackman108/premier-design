@@ -1,25 +1,27 @@
 import styles from './Approach.module.css';
 import Title from '../UX/Title/Title';
 import ApproachCards from '../Cards/ApproachCards/ApproachCards';
-import { findTitle } from '../../pages/api/constants';
-import { DataProps } from '../../interface/interfaceData';
-import  {FC} from "react";
+import {findItemByShortTitle} from '../../pages/api/constants';
+import {DataProps} from '../../interface/interfaceData';
+import {FC} from "react";
 
 const Approach: FC<{ data: DataProps }> = ({
-    data 
-}) => {
-    const { title = '', description = '' } = findTitle(data, 3) || {};
+                                               data
+                                           }) => {
+    const {title = '', description = '', shortTitle = ''} = findItemByShortTitle(data.title, "our-approach") || {};
     return (
         <section className={styles.approach}>
             <div className={styles.approach__container}>
-                <Title                   
+                <Title
                     titleStyle='title-black'
                     descriptionStyle='description-black'
                     title={title}
-                    description={description} />
-                <ApproachCards data={data} />
+                    description={description}
+                    shortTitle={shortTitle}
+                />
+                <ApproachCards data={data}/>
             </div>
-        </section >
+        </section>
     );
 };
 export default Approach;

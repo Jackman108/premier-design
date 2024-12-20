@@ -1,15 +1,15 @@
 import styles from './OrderButton.module.css';
 import FeedbackModal from '../../FeedbackModal/FeedbackModal';
-import { OrderButtonProps, OrderButtonState } from '../../../interface/OrderButton.props';
-import { FC, useCallback, useState } from 'react';
-import { FeedbackItem } from '../../../interface/FeedbackModal.props';
+import {OrderButtonProps, OrderButtonState} from '../../../interface/OrderButton.props';
+import {FC, useCallback, useState} from 'react';
+import {FeedbackItem} from '../../../interface/FeedbackModal.props';
 
 
 const OrderButton: FC<OrderButtonProps> = ({
-    buttonHeader,
-    buttonStyle,
-}: OrderButtonProps) => {
-    
+                                               buttonData,
+                                               buttonStyle,
+                                           }: OrderButtonProps) => {
+
     const initialState: OrderButtonState = {
         showModal: false,
         error: "",
@@ -72,7 +72,7 @@ const OrderButton: FC<OrderButtonProps> = ({
                 type="button"
                 onMouseDown={handleButtonClick}
             >
-                {buttonHeader}
+                {buttonData}
             </button>
             {state.showModal && (
                 <FeedbackModal

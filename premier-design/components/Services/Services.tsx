@@ -2,15 +2,17 @@ import styles from './Services.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../UX/Title/Title';
-import { FC } from 'react';
-import { findTitle, findButton } from '../../pages/api/constants';
-import { DataProps } from '../../interface/interfaceData';
+import {FC, ReactElement} from 'react';
+import {findItemByShortTitle} from '../../pages/api/constants';
+import {ButtonData, DataProps, TitleData} from '../../interface/interfaceData';
 
 const Services: FC<{ data: DataProps }> = ({
-    data
-}): JSX.Element => {
-    const { title = '', description = '' } = findTitle(data, 2) || {};
-    const buttonHeader = findButton(data, 0);
+                                               data
+                                           }): ReactElement => {
+    const titleData = findItemByShortTitle(data.title, "services") || {} as TitleData;
+    const buttonData = findItemByShortTitle(data.button, "leave_request") || {} as ButtonData;
+
+    const {title = '', description = '', shortTitle = ''} = titleData;
     return (
         <section className={styles.services}>
             <div className={styles.services__container}>
@@ -18,9 +20,14 @@ const Services: FC<{ data: DataProps }> = ({
                     titleStyle='title-black'
                     descriptionStyle='description-black'
                     title={title}
-                    description={description} />
-                <ServicesCards data={data} />
-                <OrderButton buttonHeader={buttonHeader} buttonStyle='button-black' />
+                    description={description}
+                    shortTitle={shortTitle}
+                />
+                <ServicesCards data={data}/>
+                <OrderButton
+                    buttonData={buttonData.buttonHeader}
+                    buttonStyle='button-black'
+                />
             </div>
         </section>
     );

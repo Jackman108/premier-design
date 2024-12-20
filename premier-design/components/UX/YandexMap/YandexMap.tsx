@@ -1,9 +1,9 @@
 'use client'
-import { FC, useCallback, useEffect } from 'react';
+import {FC, ReactElement, useCallback, useEffect} from 'react';
 import styles from './YandexMap.module.css';
-import { YMaps, Map, Placemark, ZoomControl, FullscreenControl } from '@pbe/react-yandex-maps';
+import {YMaps, Map, Placemark, ZoomControl, FullscreenControl} from '@pbe/react-yandex-maps';
 
-const YandexMap: FC = (): JSX.Element => {
+const YandexMap: FC = (): ReactElement => {
     const {
         NEXT_PUBLIC_YANDEX_MAPS_API_KEY: yandexMapsApiKey = '',
     } = process.env;
@@ -21,18 +21,18 @@ const YandexMap: FC = (): JSX.Element => {
 
     return (
         <section className={styles.mapContainer}>
-            <YMaps query={{ apikey: yandexMapsApiKey }}>
+            <YMaps query={{apikey: yandexMapsApiKey}}>
                 <Map
                     defaultState={{
                         center: defaultCenter,
                         zoom: defaultZoom,
                     }}
                     className={styles.map}
-                    options={{ suppressMapOpenBlock: true }}
+                    options={{suppressMapOpenBlock: true}}
                 >
-                    <ZoomControl />
-                    <FullscreenControl options={{ float: 'right' }} />
-                    <Placemark geometry={defaultCenter} />
+                    <ZoomControl/>
+                    <FullscreenControl options={{float: 'right'}}/>
+                    <Placemark geometry={defaultCenter}/>
                 </Map>
             </YMaps>
 

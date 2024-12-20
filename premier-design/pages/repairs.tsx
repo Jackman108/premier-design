@@ -1,39 +1,38 @@
 import type {NextPage} from 'next';
-import CustomHead from '../components/helpers/CustomHead';
 import Layout from '../Layout/Layout';
-import {findButton, bannerImageSettings, findTitle} from './api/constants';
-import {getStaticProps} from './api/data';
-import dynamic from 'next/dynamic';
+import {getStaticProps} from './api/dataProvider';
 import {PageProps} from '../interface/ExampleCards.props';
-import Examples from '../components/Examples/Examples';
+import {ReactElement} from "react";
+import {usePageData} from "../hooks/usePageData";
+import Banner from "../components/Banner/Banner";
+import {Appeal, Examples, OfferList, ProjectOffer} from '../components';
+import CustomHead from "../components/CustomHead/CustomHead";
 
-const Banner = dynamic(() => import('../components/Banner/Banner'));
-const OfferList = dynamic(() => import('../components/OfferList/OfferList'));
-const ProjectOffer = dynamic(() => import('../components/ProjectOffer/ProjectOffer'));
-const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
+const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
+    const {
+        titleData,
+        buttonData,
+        bannerData,
+        offerListData
+    } = usePageData(data, "pleasant-repair", "leave_request", "repair_banner", "repairs_offer");
+    const pageMeta = data.pageMeta['repairs'];
 
-const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): JSX.Element => {
-    const {title = '', description = ''} = findTitle(data, 9) || {};
-    const buttonHeader = findButton(data, 0);
-    const bannerImg = bannerImageSettings(data, 2);
     return (
         <>
-            <CustomHead title={'Premium Interior | Ремонт интерьеров'}
-                        description={'Ремонт и дизайн интерьеров в Беларуси'}/>
+            <CustomHead title={pageMeta.title} description={pageMeta.description}/>
             <Layout data={data}>
                 <Banner
-                    title={title}
-                    description={description}
-                    buttonHeader={buttonHeader}
+                    titleData={titleData}
+                    buttonData={buttonData}
+                    bannerData={bannerData}
                     buttonStyle='button-white'
-                    bannerImg={bannerImg}
                 />
                 <Examples data={data} enableSlider={enableSlider}/>
-                <OfferList data={data.offerList.filter(offer => offer.id === 2)}
-                />
+                {offerListData && <OfferList data={[offerListData]}/>}
+
                 <ProjectOffer
                     data={data.offerProject.repairType}
-                    buttonHeader={buttonHeader}
+                    buttonData={buttonData.buttonHeader}
                     buttonStyle='button-black'
                 />
                 <Appeal data={data}/>

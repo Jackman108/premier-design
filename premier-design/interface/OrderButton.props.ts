@@ -1,8 +1,8 @@
-import { DetailedHTMLProps, ButtonHTMLAttributes } from 'react';
+import {DetailedHTMLProps, ButtonHTMLAttributes} from 'react';
 
 export interface OrderButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     buttonStyle: 'button-white' | 'button-black' | 'button-none';
-    buttonHeader: string;
+    buttonData: string;
 }
 
 export interface OrderButtonState {

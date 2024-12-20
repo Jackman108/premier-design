@@ -7,11 +7,11 @@ import Menu from '../../components/Menu/Menu';
 import MenuButton from '../../components/UX/MenuButton/MenuButton';
 import ThemeButton from '../../components/UX/ThemeButton/ThemeButton';
 import styles from './Header.module.css';
-import {FC} from 'react';
+import {FC, ReactElement} from 'react';
 import {GetDataProps} from '../../interface/interfaceData';
 
 
-const Header: FC<GetDataProps> = ({data}): JSX.Element => {
+const Header: FC<GetDataProps> = ({data}): ReactElement => {
     const {currentTheme, toggleTheme} = useThemeToggle();
     const {isMobileMenuOpen, toggleMobileMenu} = useMobileMenu(false);
     return (

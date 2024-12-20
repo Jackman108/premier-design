@@ -1,17 +1,15 @@
-import React from 'react';
+import React, {FC, ReactElement} from 'react';
 import styles from './OfferList.module.css';
 import Image from 'next/image';
-import { OfferListProps } from '../../interface/interfaceData';
+import {OfferListProps} from '../../interface/interfaceData';
 
-const OfferList: React.FC<{ data: OfferListProps[] } > = ({ 
-    data, 
+const OfferList: FC<{ data: OfferListProps[] }> = ({data,}): ReactElement => {
 
-}): JSX.Element => {
     return (
         <section className={styles.offer}>
             <div className={styles.offer__container}>
                 {
-                    data.map(({ id, image, subTitle, description, questions, tips }: OfferListProps) => (
+                    data.map(({id, image, subTitle, description, questions, tips}: OfferListProps) => (
                         <div className={styles.offer__row} key={id}>
                             <div className={styles.offer__left_column}>
                                 <div className={styles.offer__image}>
@@ -21,7 +19,6 @@ const OfferList: React.FC<{ data: OfferListProps[] } > = ({
                                         className={styles.image__background}
                                         width={1935}
                                         height={1119}
-                                        loading = 'lazy' 
                                     />
                                 </div>
                             </div>
@@ -37,7 +34,7 @@ const OfferList: React.FC<{ data: OfferListProps[] } > = ({
                                     </ul>
                                     <p className={styles.content_description}>
                                         {description}
-                                    </p>                                    
+                                    </p>
                                     <p className={styles.content_tips}>
                                         {tips}
                                     </p>

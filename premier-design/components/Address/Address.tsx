@@ -1,16 +1,16 @@
-import React, { FC } from "react";
+import React, {FC, ReactElement} from "react";
 import styles from "./Address.module.css";
 import SocialIcons from "../UX/SocialIcons/SocialIcons";
 import Phone from "../UX/Phone/Phone";
 import GoogleMap from "../UX/GoogleMap/GoogleMap";
 
-const Address: FC = (): JSX.Element => {
+const Address: FC = (): ReactElement => {
     return (
         <section className={styles.address__contacts}>
             <div className={styles.address__content}>
                 <div className={styles.address__item}>
                     <h3>Позвоните нам:</h3>
-                    <Phone />
+                    <Phone/>
                 </div>
                 <div className={styles.address__item}>
                     <h3>Адрес и режим работы:</h3>
@@ -19,10 +19,10 @@ const Address: FC = (): JSX.Element => {
                 </div>
                 <div className={styles.address__item}>
                     <h3>Мы в соц. сетях:</h3>
-                    <SocialIcons />
+                    <SocialIcons/>
                 </div>
             </div>
-            <GoogleMap />
+            <GoogleMap/>
         </section>
     );
 };

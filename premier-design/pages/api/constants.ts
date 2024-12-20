@@ -1,17 +1,6 @@
-import { BannerImagesProps, DataProps } from '../../interface/interfaceData';
-import { getStaticProps } from '../api/data';
-
-
-export const findTitle = (data: DataProps, id: number) => {
-    return data.title?.find((item) => item.id === id);
+export const findItemByShortTitle = <T extends {
+    shortTitle: string
+}>(data: T[], shortTitle: string): T | undefined => {
+    return data.find(item => item.shortTitle === shortTitle);
 };
 
-export const bannerImageSettings = (data: DataProps, id: number): BannerImagesProps | undefined => {
-    return data.bannersImages?.find((item) => item.id === id);
-};
-
-export const findButton = (data: DataProps, index: number) => {
-    return data.button?.[index]?.buttonHeader ?? '';
-};
-
-export { getStaticProps };

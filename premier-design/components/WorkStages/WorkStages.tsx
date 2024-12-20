@@ -1,9 +1,9 @@
 'use client'
-import { FC, useState, useEffect, useRef, memo, useCallback } from 'react';
-import { BsFillArrowUpRightSquareFill } from 'react-icons/bs';
+import {FC, memo, ReactElement, useCallback, useEffect, useRef, useState} from 'react';
+import {BsFillArrowUpRightSquareFill} from 'react-icons/bs';
 
-import { GetDataProps, WorkStagesProps } from '../../interface/interfaceData';
-import { findTitle } from '../../pages/api/constants';
+import {GetDataProps, WorkStagesProps} from '../../interface/interfaceData';
+import {findItemByShortTitle} from '../../pages/api/constants';
 
 import Title from '../UX/Title/Title';
 
@@ -12,9 +12,9 @@ import styles from './WorkStages.module.css';
 const MemoizedTitle = memo(Title);
 
 const WorkStages: FC<GetDataProps> = ({
-    data
-}): JSX.Element => {
-    const { title = '', description = '' } = findTitle(data, 13) || {};
+                                          data
+                                      }): ReactElement => {
+    const {title = '', description = '', shortTitle = ''} = findItemByShortTitle(data.title, "our-partners") || {};
     const [currentStep, setCurrentStep] = useState<number>(0);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -58,15 +58,16 @@ const WorkStages: FC<GetDataProps> = ({
     }, [data.workStages, currentStep]);
 
     return (
-        <section className={styles.stages} >
+        <section className={styles.stages}>
             <div className={styles.stages__container} ref={containerRef}>
                 <MemoizedTitle
                     titleStyle='title-black'
                     descriptionStyle='description-black'
                     title={title}
                     description={description}
+                    shortTitle={shortTitle}
                 />
-                <div className={styles.timeline} >
+                <div className={styles.timeline}>
                     {data.workStages?.map((stage: WorkStagesProps) => (
                         <div
                             key={stage.id}
@@ -80,7 +81,7 @@ const WorkStages: FC<GetDataProps> = ({
                                 <div className={styles.content__stage}>
                                     {stage.stage}
                                 </div>
-                                <div className={styles.timeline__progress} />
+                                <div className={styles.timeline__progress}/>
                             </div>
                         </div>
                     ))}

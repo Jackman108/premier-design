@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
+import React, {FC, ReactElement} from 'react';
 import styles from './Examples.module.css';
 import ExamplesCards from '../Cards/ExamplesCards/ExamplesCards';
 import Title from '../UX/Title/Title';
-import { findTitle } from '../../pages/api/constants';
-import { DataProps } from '../../interface/interfaceData';
+import {findItemByShortTitle} from '../../pages/api/constants';
+import {DataProps} from '../../interface/interfaceData';
 
 const Examples: FC<{ data: DataProps, enableSlider?: boolean }> = ({
-    data,
-    enableSlider = true,
-}): JSX.Element => {
-    const { title = '', description = '' } = findTitle(data, 4) || {};
+                                                                       data,
+                                                                       enableSlider = true,
+                                                                   }): ReactElement => {
+    const {title = '', description = '', shortTitle = ''} = findItemByShortTitle(data.title, "our-works") || {};
     return (
         <section className={styles.examples}>
             <div className={styles.examples__container}>
@@ -18,6 +18,7 @@ const Examples: FC<{ data: DataProps, enableSlider?: boolean }> = ({
                     descriptionStyle='description-black'
                     title={title}
                     description={description}
+                    shortTitle={shortTitle}
                 />
                 <ExamplesCards
                     data={data.cards.examplesCard}

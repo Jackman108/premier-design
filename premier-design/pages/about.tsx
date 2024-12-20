@@ -1,47 +1,41 @@
-import type { NextPage } from 'next';
+import type {NextPage} from 'next';
 import Layout from '../Layout/Layout';
-import { getStaticProps } from './api/data';
-import { bannerImageSettings, findButton, findTitle } from './api/constants';
-import CustomHead from '../components/helpers/CustomHead';
-import dynamic from 'next/dynamic';
-import { GetDataProps } from '../interface/interfaceData';
-import Partners from '../components/Partners/Partners';
-import WorkStages from '../components/WorkStages/WorkStages';
+import {getStaticProps} from './api/dataProvider';
+import {GetDataProps} from '../interface/interfaceData';
+import {ReactElement} from "react";
+import {usePageData} from "../hooks/usePageData";
+import Banner from "../components/Banner/Banner";
+import {Appeal, News, OfferList, Partners, WorkStages} from '../components';
+import CustomHead from "../components/CustomHead/CustomHead";
 
-const Banner = dynamic(() => import('../components/Banner/Banner'));
-const OfferList = dynamic(() => import('../components/OfferList/OfferList'));
-const Appeal = dynamic(() => import('../components/Appeal/Appeal'));
-const News = dynamic(() => import('../components/News/News'));
-
-const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
-    const { title = '', description = '' } = findTitle(data, 10) || {};
-    const buttonHeader = findButton(data, 0);
-    const bannerImg = bannerImageSettings(data, 4);
-
+const About: NextPage<GetDataProps> = ({data}): ReactElement => {
+    const {
+        titleData,
+        buttonData,
+        bannerData,
+        offerListData
+    } = usePageData(data, "our-values", "leave_request", "about_banner", "about_offer");
+    const pageMeta = data.pageMeta['about'];
     return (
         <>
-            <CustomHead title={'Premium Interior | О Компании'} description={'Ремонт и дизайн интерьеров в Беларуси'} />
+            <CustomHead title={pageMeta.title} description={pageMeta.description}/>
             <Layout data={data}>
                 <Banner
-                    title={title}
-                    description={description}
-                    buttonHeader={buttonHeader}
-                    buttonStyle={'button-white'}
-                    bannerImg={bannerImg}
+                    titleData={titleData}
+                    buttonData={buttonData}
+                    bannerData={bannerData}
+                    buttonStyle='button-white'
                 />
+                {offerListData && <OfferList data={[offerListData]}/>}
                 <News
                     news={data.news}
                     newsStyle='about'
-                />
-
-                <OfferList
-                    data={data.offerList.filter(offer => offer.id === 3)}
                 />
                 <Partners
                     data={data}
                 />
                 <WorkStages
-                data={data}/>
+                    data={data}/>
                 <Appeal
                     data={data}
                 />
@@ -49,5 +43,5 @@ const About: NextPage<GetDataProps> = ({ data }): JSX.Element => {
         </>
     );
 };
-export { getStaticProps };
+export {getStaticProps};
 export default About;

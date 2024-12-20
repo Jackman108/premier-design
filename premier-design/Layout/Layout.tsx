@@ -1,25 +1,20 @@
-import { LayoutProps } from './Layout.props';
+import {LayoutProps} from './Layout.props';
 import styles from './Layout.module.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';
-import { FC, useRef } from 'react';
+import {FC, ReactElement} from 'react';
 import ChatBotSidebar from '../components/ChatBotSidebar/ChatBotSidebar';
 
-const Layout: FC<LayoutProps> = ({ children, data }): JSX.Element => {
-    const bodyRef = useRef<HTMLDivElement>(null);
+const Layout: FC<LayoutProps> = ({children, data}: LayoutProps): ReactElement => {
 
     return (
         <>
-            <Header data={data} />
-            
-            <main
-                className={styles.body}
-                ref={bodyRef}
-                role='main'>
+            <Header data={data}/>
+            <main className={styles.body} role='main'>
                 {children}
-                <ChatBotSidebar />
+                <ChatBotSidebar/>
             </main>
-            <Footer data={data} />
+            <Footer data={data}/>
         </>
     );
 }

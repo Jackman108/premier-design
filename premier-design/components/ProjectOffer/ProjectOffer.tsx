@@ -1,30 +1,34 @@
 import Image from 'next/image';
-import { OfferProject } from '../../interface/interfaceData';
+import {OfferProject} from '../../interface/interfaceData';
 import OrderButton from '../UX/OrderButton/OrderButton';
-import { OrderButtonProps } from '../../interface/OrderButton.props';
+import {OrderButtonProps} from '../../interface/OrderButton.props';
 import styles from './ProjectOffer.module.css';
+import {FC, ReactElement} from "react";
 
 // Определение компонента ProjectOffer
-const ProjectOffer: React.FC<{ data: OfferProject[] } & OrderButtonProps> = ({
-    data,
-    buttonHeader,
-    buttonStyle,
-}): JSX.Element => {
+const ProjectOffer: FC<{ data: OfferProject[] } & OrderButtonProps> = ({
+                                                                           data,
+                                                                           buttonData,
+                                                                           buttonStyle,
+                                                                       }): ReactElement => {
     let evenCounter = 1;
     return (
         <section className={styles.offer}>
             <div className={styles.offer__container}>
-                {data.map(({ id, image, title, price, pros, cons, prosDescription, consDescription }: OfferProject,) => {
-                    { evenCounter += 1; }
+                {data.map(({id, image, title, price, pros, cons, prosDescription, consDescription}: OfferProject,) => {
+                    {
+                        evenCounter += 1;
+                    }
                     return (
                         <div className={styles.offer__row} key={id}>
-                            <div className={`${styles.offer__left_column} ${evenCounter % 2 === 0 ? '' : styles.offer__left_column_reverse}`}>
+                            <div
+                                className={`${styles.offer__left_column} ${evenCounter % 2 === 0 ? '' : styles.offer__left_column_reverse}`}>
                                 <div className={styles.column__description}>
                                     <div className={styles.content_description}>
                                         <p className={styles.content_subTitle}>
                                             {pros}
                                         </p>
-                                        <ul className={styles.description} >
+                                        <ul className={styles.description}>
                                             {prosDescription.map((description, index) => (
                                                 <li key={index}>{description}</li>
                                             ))}
@@ -34,7 +38,7 @@ const ProjectOffer: React.FC<{ data: OfferProject[] } & OrderButtonProps> = ({
                                         <p className={styles.content_subTitle}>
                                             {cons}
                                         </p>
-                                        <ul className={styles.description} >
+                                        <ul className={styles.description}>
                                             {consDescription.map((description, index) => (
                                                 <li key={index}>{description}</li>
                                             ))}
@@ -42,10 +46,11 @@ const ProjectOffer: React.FC<{ data: OfferProject[] } & OrderButtonProps> = ({
                                     </div>
                                 </div>
                                 <div className={styles.order__button}>
-                                    <OrderButton buttonHeader={buttonHeader} buttonStyle={buttonStyle} />
+                                    <OrderButton buttonData={buttonData} buttonStyle={buttonStyle}/>
                                 </div>
                             </div>
-                            <div className={`${styles.offer__right_column} ${evenCounter % 2 === 0 ? styles.offer__right_column_reverse : ''}`}>
+                            <div
+                                className={`${styles.offer__right_column} ${evenCounter % 2 === 0 ? styles.offer__right_column_reverse : ''}`}>
                                 <div className={styles.offer__image}>
                                     <Image
                                         src={image}

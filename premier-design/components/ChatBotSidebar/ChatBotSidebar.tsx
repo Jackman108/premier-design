@@ -1,15 +1,14 @@
 'use client'
-import { useEffect, useState } from "react";
-import { Chatbot } from "react-chatbot-kit";
+import {ReactElement, useEffect, useState} from "react";
+import {Chatbot} from "react-chatbot-kit";
 import chatbotConfig from './config';
 import MessageParser from './MessageParser';
 import ActionProvider from './ActionProvider';
 import styles from './ChatBotSidebar.module.css';
 import 'react-chatbot-kit/build/main.css'
-import { IMessage } from "react-chatbot-kit/build/src/interfaces/IMessages";
+import {IMessage} from "react-chatbot-kit/build/src/interfaces/IMessages";
 
-const ChatBotSidebar = (
-): JSX.Element => {
+const ChatBotSidebar = (): ReactElement => {
     const [isBotOpen, setIsBotOpen] = useState(false);
 
     // Загрузка сообщений из localStorage при открытии компонента
@@ -26,10 +25,8 @@ const ChatBotSidebar = (
 
     const loadMessages = (): IMessage[] => {
         const messagesString = localStorage.getItem('chat_messages');
-        const messages: IMessage[] = messagesString
-            ? JSON.parse(messagesString)
-            : [];
-        return messages;
+        return messagesString ? JSON.parse(messagesString) : [];
+
     };
 
     return (

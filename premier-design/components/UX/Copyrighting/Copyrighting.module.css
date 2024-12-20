@@ -1,0 +1,24 @@
+.footer__contacts {
+	display: grid;
+	grid-template-columns: auto;
+	grid-gap: 2vh;
+	align-content: space-evenly;
+}
+
+.footer__logo {
+	display: grid;
+	justify-content: center;
+}
+
+.footer__socialIcons svg {
+	width: 4vh;
+	height: 4vh;
+	filter: none;
+}
+
+.footer__copy {
+	font-size: 0.8rem;
+	text-align: center;
+	color: var(--brown-white);
+}
+

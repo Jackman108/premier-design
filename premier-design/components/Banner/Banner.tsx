@@ -1,46 +1,43 @@
-import { FC } from 'react';
+import {FC} from 'react';
 import styles from './Banner.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../UX/Title/Title';
-import { OrderButtonProps } from '../../interface/OrderButton.props';
 import Image from 'next/image';
-import { BannerImagesProps, TitleProps } from '../../interface/interfaceData';
+import {BannerProps} from "../../interface/interfaceData";
 
-type BannerProps = TitleProps & OrderButtonProps & {
-    bannerImg: BannerImagesProps | undefined
-}
+
 const Banner: FC<BannerProps> = ({
-    id,
-    title,
-    description,
-    buttonHeader,
-    buttonStyle,
-    bannerImg
-}) => {
-    const { src = '', alt = '', quality, width, height } = bannerImg ?? {};
+
+                                     bannerData,
+                                     buttonData,
+                                     titleData,
+                                     buttonStyle,
+                                 }) => {
 
     return (
         <section className={styles.banner}>
             <Image
                 priority={true}
-                src={src}
-                alt={alt}
-                quality={quality}
-                width={width}
-                height={height}
+                src={bannerData.src}
+                alt={bannerData.alt}
+                quality={bannerData.quality}
+                width={bannerData.width}
+                height={bannerData.height}
                 placeholder='empty'
                 className={styles.banner__background}
             />
             <div className={styles.banner__container}>
                 <Title
-                    id={id}
+                    id={titleData.id}
                     titleStyle='title-white'
                     descriptionStyle='description-white'
-                    title={title}
-                    description={description}
+                    title={titleData.title}
+                    description={titleData.description}
+                    shortTitle={titleData.shortTitle}
+
                 />
                 <OrderButton
-                    buttonHeader={buttonHeader}
+                    buttonData={buttonData.buttonHeader}
                     buttonStyle={buttonStyle}
                 />
             </div>
