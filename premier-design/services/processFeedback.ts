@@ -6,7 +6,9 @@ import {telegramService} from "./telegramService";
 
 export const processFeedback = async (data: FeedbackItem) => {
     try {
-        fileService.saveData(data);
+        if (envVar('NODE_ENV') === 'development') {
+            fileService.saveData(data);
+        }
 
         const emailConfig = {
             host: envVar('EMAIL_HOST'),
