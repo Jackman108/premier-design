@@ -8,27 +8,26 @@ export const processFeedback = async (data: FeedbackItem) => {
     try {
         if (envVar('NODE_ENV') === 'development') {
             fileService.saveData(data);
-        }
 
-        const emailConfig = {
-            host: envVar('EMAIL_HOST'),
-            port: parseInt(envVar('EMAIL_PORT')),
-            user: envVar('EMAIL_USERNAME'),
-            pass: envVar('EMAIL_PASSWORD'),
-        };
+            const emailConfig = {
+                host: envVar('EMAIL_HOST'),
+                port: parseInt(envVar('EMAIL_PORT')),
+                user: envVar('EMAIL_USERNAME'),
+                pass: envVar('EMAIL_PASSWORD'),
+            };
+            await emailService.sendMail({
+                ...emailConfig,
+                from: data.name,
+                to: 'jivatman108@gmail.com',
+                subject: `New Feedback ${data.email}`,
+                text: `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nMessage: ${data.message}`,
+            });
+        }
 
         const telegramConfig = {
             token: envVar('TELEGRAM_BOT_TOKEN'),
             chatId: envVar('TELEGRAM_CHAT_ID'),
         };
-
-        await emailService.sendMail({
-            ...emailConfig,
-            from: data.name,
-            to: 'jivatman108@gmail.com',
-            subject: `New Feedback ${data.email}`,
-            text: `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\nMessage: ${data.message}`,
-        });
 
         const message = `
         <b>Новое сообщение с формы:</b>
