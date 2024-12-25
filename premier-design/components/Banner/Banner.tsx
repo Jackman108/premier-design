@@ -3,7 +3,7 @@ import styles from './Banner.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../UX/Title/Title';
 import Image from 'next/image';
-import {BannerProps} from "../../interface/interfaceData";
+import {BannerProps} from "../../interface/Banner.props";
 
 
 const Banner: FC<BannerProps> = ({

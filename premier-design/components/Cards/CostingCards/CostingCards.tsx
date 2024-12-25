@@ -5,7 +5,7 @@ import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../../hooks/useResizeEffects';
 import Image from 'next/image';
 import CalculatorModal from '../../CalculatorModal/CalculatorModal';
-import {CostingCardProps} from '../../../interface/interfaceData';
+import {CostingCardProps} from "../../../interface/Cards.props";
 
 const CostingCards: FC<{ data: CostingCardProps[] }> = ({
                                                             data

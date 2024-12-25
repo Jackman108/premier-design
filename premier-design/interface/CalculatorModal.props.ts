@@ -1,4 +1,4 @@
-import { CostingCardProps } from "./interfaceData";
+import {CostingCardProps} from "./Cards.props";
 
 export interface CalculatorModalProps {
     onClose: () => void;

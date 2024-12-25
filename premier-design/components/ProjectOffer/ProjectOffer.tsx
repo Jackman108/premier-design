@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import {OfferProjectProps} from '../../interface/interfaceData';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import {OrderButtonProps} from '../../interface/OrderButton.props';
 import styles from './ProjectOffer.module.css';
 import {FC, ReactElement} from "react";
+import {OfferProjectProps} from "../../interface/OfferProject.props";
 
 // Определение компонента ProjectOffer
 const ProjectOffer: FC<{ data: OfferProjectProps[] } & OrderButtonProps> = ({

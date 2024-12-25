@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react';
-import PhotoViewer, { PhotoViewerProps } from './PhotoViewer';
+import PhotoViewer from './PhotoViewer';
+import {PhotoViewerProps} from "../../interface/PhotoViewer.props";
 
 const AsyncPhotoViewer: React.FC<PhotoViewerProps> = (props) => {
     return (

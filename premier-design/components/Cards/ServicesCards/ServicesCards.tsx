@@ -2,7 +2,7 @@ import {FC, ReactElement, useMemo} from 'react';
 import styles from './ServicesCards.module.css';
 import Link from 'next/link';
 import Image from 'next/image';
-import {ServiceCardProps} from '../../../interface/interfaceData';
+import {ServiceCardProps} from "../../../interface/Cards.props";
 
 const ServicesCards: FC<{ data: { cards: { servicesCard: ServiceCardProps[] } } }> = ({data}): ReactElement => {
     const memoizedServicesCards = useMemo(

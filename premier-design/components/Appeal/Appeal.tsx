@@ -4,7 +4,10 @@ import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../UX/Title/Title';
 import NextImage from 'next/image';
 import {findItemByTitle} from '../../utils/findItemByTitle';
-import {BannerImageProps, ButtonProps, DataProps, TitleProps} from '../../interface/interfaceData';
+import {DataProps,} from '../../interface/interfaceData';
+import {TitleProps} from "../../interface/Title.props";
+import {ButtonProps} from "../../interface/Button.props";
+import {BannerImageProps} from "../../interface/Banner.props";
 
 const Appeal: FC<{ data: DataProps }> = ({
                                              data

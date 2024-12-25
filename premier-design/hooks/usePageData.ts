@@ -1,6 +1,10 @@
 // hooks/usePageData.ts
 import {findItemByTitle} from '../utils/findItemByTitle';
-import {BannerImageProps, ButtonProps, DataProps, OfferListProps, TitleProps} from '../interface/interfaceData';
+import {DataProps} from '../interface/interfaceData';
+import {TitleProps} from "../interface/Title.props";
+import {ButtonProps} from "../interface/Button.props";
+import {BannerImageProps} from "../interface/Banner.props";
+import {OfferListProps} from "../interface/OfferList.props";
 
 export const usePageData = (data: DataProps, titleShort: string, buttonShort: string, bannerShort: string, offerListShort?: string) => {
     const titleData = findItemByTitle(data.title, titleShort) || {} as TitleProps;

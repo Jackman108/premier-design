@@ -1,7 +1,7 @@
 import NextImage from "next/image";
 import styles from "./Features.module.css";
 import {ReactElement, useMemo} from "react";
-import {FeatureProps} from "../../interface/interfaceData";
+import {FeatureProps} from "../../interface/Feature.props";
 
 const Features = (
     {features}: { features: FeatureProps[] }

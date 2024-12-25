@@ -4,7 +4,9 @@ import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../UX/Title/Title';
 import {FC, ReactElement} from 'react';
 import {findItemByTitle} from '../../utils/findItemByTitle';
-import {ButtonProps, DataProps, TitleProps} from '../../interface/interfaceData';
+import { DataProps} from '../../interface/interfaceData';
+import {TitleProps} from "../../interface/Title.props";
+import {ButtonProps} from "../../interface/Button.props";
 
 const Services: FC<{ data: DataProps }> = ({
                                                data
