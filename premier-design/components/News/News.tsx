@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import {FC, ReactElement, useCallback, useEffect, useRef, useState} from "react";
 import NextImage from "next/image";
@@ -8,7 +9,6 @@ import footerStyles from "./footerNews.module.css";
 import aboutStyles from "./aboutNews.module.css";
 import bodyStyles from "./bodyNews.module.css";
 
-// Функция для получения стилей в зависимости от типа новости
 const getNewsStyles = (newsStyle: NewsStyleProps['newsStyle']) => {
     switch (newsStyle) {
         case 'footer':
@@ -20,19 +20,14 @@ const getNewsStyles = (newsStyle: NewsStyleProps['newsStyle']) => {
     }
 };
 
-// Компонент News
-const News: FC<NewsComponentProps> = ({
-                                          news,
-                                          newsStyle
-                                      }): ReactElement => {
+const News: FC<NewsComponentProps> = ({news, newsStyle}): ReactElement => {
     const stylesToUse = getNewsStyles(newsStyle);
     const [expandedNews, setExpandedNews] = useState<number | null>(null);
     const [showModal, setShowModal] = useState(false);
     const newsRef = useRef<HTMLDivElement>(null);
 
     // Обработчик клика по новости
-    const handleNewsClick = useCallback(
-        (index: number) => {
+    const handleNewsClick = useCallback((index: number) => {
             if (expandedNews === index) {
                 setShowModal(false);
                 setExpandedNews(null);
@@ -103,6 +98,7 @@ const News: FC<NewsComponentProps> = ({
                             >
                                 {expandedNews === index && showModal ? (
                                     <TextViewer
+                                        title={item.title}
                                         text={item.text}
                                         image={item.image}
                                         showModal={showModal}

@@ -2,16 +2,10 @@ import {FC} from "react";
 import styles from "./TextViewer.module.css";
 import Image from "next/image";
 import {formatText} from "../../utils/formatText";
+import {TextViewerProps} from "../../interface/TextViewer.props";
 
-interface TextViewerProps {
-    text: string;
-    showModal: boolean;
-    setShowModal: (showModal: boolean) => void;
-    image: string;
 
-}
-
-const TextViewer: FC<TextViewerProps> = ({text, showModal, setShowModal, image}) => {
+const TextViewer: FC<TextViewerProps> = ({title, text, showModal, setShowModal, image}) => {
 
     return (
         <>
@@ -21,9 +15,9 @@ const TextViewer: FC<TextViewerProps> = ({text, showModal, setShowModal, image})
                         <div className={styles.content__image}>
                             <Image
                                 src={image}
-                                alt={text}
+                                alt={title}
                                 width={2000}
-                                height={400}
+                                height={200}
                             />
                         </div>
                         <div className={styles.content__text}>

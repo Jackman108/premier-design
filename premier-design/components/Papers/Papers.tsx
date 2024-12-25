@@ -18,7 +18,7 @@ const Papers: FC<FooterPapersProps> = ({papers}) => {
         setShowModal(true);
     };
 
-    const document = findPaper(selectedPaper || "");
+    const paper = findPaper(selectedPaper || "");
 
     return (
         <div className={styles.papers__container}>
@@ -33,8 +33,9 @@ const Papers: FC<FooterPapersProps> = ({papers}) => {
             ))}
 
             <TextViewer
-                text={document?.content || ""}
-                image={document?.image || ""}
+                title={paper?.title || ""}
+                text={paper?.content || ""}
+                image={paper?.image || ""}
                 showModal={showModal}
                 setShowModal={setShowModal}
             />
