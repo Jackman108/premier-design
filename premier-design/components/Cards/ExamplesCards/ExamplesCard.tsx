@@ -3,7 +3,7 @@ import {FC, ReactElement} from 'react';
 import styles from './ExamplesCards.module.css';
 
 import NextImage from 'next/image';
-import {ExamplesCardProps} from '../../../interface/ExampleCards.props';
+import {ExamplesCardProps} from "../../../interface/Cards.props";
 
 const ExampleCard: FC<ExamplesCardProps> = ({card, onClick}): ReactElement => {
     return (

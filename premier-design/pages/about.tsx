@@ -5,7 +5,7 @@ import {GetDataProps} from '../interface/interfaceData';
 import {ReactElement} from "react";
 import {usePageData} from "../hooks/usePageData";
 import Banner from "../components/Banner/Banner";
-import {Appeal, News, OfferList, Partners, WorkStages} from '../components';
+import {Appeal, News, OfferList, Partners, StepsWork} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 
 const About: NextPage<GetDataProps> = ({data}): ReactElement => {
@@ -34,7 +34,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
                 <Partners
                     data={data}
                 />
-                <WorkStages
+                <StepsWork
                     data={data}/>
                 <Appeal
                     data={data}

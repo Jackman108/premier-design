@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 import useMobileMenu from './useMobileMenu';
-import { UseResizeEffectsReturnType } from '../interface/MenuData.props';
+import { UseResizeEffectsReturnType } from '../interface/Menu.props';
 
 const MOBILE_BREAKPOINT = 768;
 

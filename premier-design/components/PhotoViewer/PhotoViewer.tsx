@@ -1,17 +1,14 @@
 'use client';
-import { useState, useCallback, useEffect, useRef } from 'react';
+import {FC, useCallback, useEffect, useRef, useState} from 'react';
 import styles from './PhotoViewer.module.css';
 import NextImage from 'next/image';
-export interface PhotoViewerProps {
-    images: string[];
-    currentImage: string;
-    onClose: () => void;
-}
-const PhotoViewer: React.FC<PhotoViewerProps> = ({
-    images,
-    currentImage,
-    onClose
-}) => {
+import {PhotoViewerProps} from "../../interface/PhotoViewer.props";
+
+const PhotoViewer: FC<PhotoViewerProps> = ({
+                                               images,
+                                               currentImage,
+                                               onClose
+                                           }) => {
     const [currentIndex, setCurrentIndex] = useState<number>(
         images.indexOf(currentImage)
     );
@@ -63,7 +60,7 @@ const PhotoViewer: React.FC<PhotoViewerProps> = ({
 
     const handleImageClick = useCallback(
         (event: React.MouseEvent<HTMLDivElement>) => {
-            const { offsetWidth } = event.currentTarget;
+            const {offsetWidth} = event.currentTarget;
             const mouseX = event.clientX;
             if (mouseX < offsetWidth / 2) {
                 handlePrev();

@@ -1,130 +1,22 @@
-export interface MenuProps {
-    id: number;
-    title: string;
-    ruTitle: string;
-}
-
-export interface ButtonData {
-    id?: number;
-    buttonHeader: string;
-    shortTitle: string;
-}
-
-export interface NewsProps {
-    id: number;
-    image: string;
-    imagePng: string;
-    title: string;
-    text: string;
-    date: string;
-}
-
-export interface FeatureProps {
-    id: number;
-    title: string;
-    iconPng: string;
-    icon: string;
-}
-
-export interface TitleData {
-    id?: number;
-    title: string;
-    shortTitle: string;
-    description: string;
-}
-
-export interface ApproachCardProps {
-    id: number;
-    image: string;
-    title: string;
-    description: string;
-}
-
-export interface CostingCardProps {
-    id: number;
-    title: string;
-    image: string;
-}
-
-export interface ExampleCardProps {
-    id: number;
-    background: string;
-    address: string;
-    deadlines: string;
-    bathroomIcon: string;
-    bathroomOption: number;
-    areaIcon: string;
-    areaOption: number;
-    areaSquare: string;
-    images: string[];
-}
-
-export interface ServiceCardProps {
-    id?: number;
-    text: string;
-    image: string;
-    href: string;
-}
-
-export interface OfferListProps {
-    id: number;
-    image: string;
-    subTitle: string;
-    description: string;
-    questions: string[];
-    tips: string;
-    shortTitle: string;
-}
-
-export interface BannerData {
-    shortTitle: string;
-    src: string;
-    alt: string;
-    quality: number;
-    width: number;
-    height: number;
-}
-
-export interface BannerProps {
-    bannerData: BannerData;
-    buttonData: ButtonData;
-    titleData: TitleData;
-    buttonStyle: 'button-white' | 'button-black' | 'button-none';
-}
-
-export interface OfferProject {
-    id: number;
-    image: string;
-    title: string;
-    price: string;
-    pros: string;
-    cons: string;
-    prosDescription: string[];
-    consDescription: string[];
-}
-
-export interface PartnersProps {
-    id: number;
-    src: string;
-    srcPng: string;
-    alt: string;
-    quality: number;
-    width: number;
-    height: number;
-    discounts: string;
-}
-
-export interface WorkStagesProps {
-    id: number;
-    stage: string;
-}
+import {Paper} from "./Paper.props";
+import {NewsProps} from "./News.props";
+import {MenuProps} from "./Menu.props";
+import {ButtonProps} from "./Button.props";
+import {FeatureProps} from "./Feature.props";
+import {TitleProps} from "./Title.props";
+import {ApproachCardProps, CostingCardProps, ExampleCardProps, ServiceCardProps} from "./Cards.props";
+import {OfferListProps} from "./OfferList.props";
+import {OfferProjectProps} from "./OfferProject.props";
+import {BannerImageProps} from "./Banner.props";
+import {PartnersProps} from "./Partners.props";
+import {StepsWorkProps} from "./StepsWork.props";
 
 export interface DataProps {
     menu: MenuProps[];
-    button: ButtonData[];
+    button: ButtonProps[];
     news: NewsProps[];
     features: FeatureProps[];
-    title: TitleData[];
+    title: TitleProps[];
     cards: {
         approachCard: ApproachCardProps[];
         costingCard: CostingCardProps[];
@@ -133,18 +25,19 @@ export interface DataProps {
     };
     offerList: OfferListProps[];
     offerProject: {
-        designType: OfferProject[];
-        repairType: OfferProject[];
+        designType: OfferProjectProps[];
+        repairType: OfferProjectProps[];
     }
-    bannersImages: BannerData[];
+    bannersImages: BannerImageProps[];
     partners: PartnersProps[];
-    workStages: WorkStagesProps[];
+    stepsWork: StepsWorkProps[];
     pageMeta: {
         [key: string]: {
             title: string;
             description: string;
         };
     };
+    papers: Paper[];
 }
 
 export interface GetDataProps {

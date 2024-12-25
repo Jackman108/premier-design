@@ -1,12 +1,12 @@
 import type {NextPage} from 'next';
 import Layout from '../Layout/Layout';
 import {getStaticProps} from './api/dataProvider';
-import {PageProps} from '../interface/ExampleCards.props';
 import {ReactElement} from "react";
 import {usePageData} from "../hooks/usePageData";
 import Banner from "../components/Banner/Banner";
 import {Appeal, Examples, OfferList, ProjectOffer} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
+import {PageProps} from "../interface/Page.props";
 
 const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
     const {

@@ -1,50 +1,34 @@
-.menu {
-	max-width: 20vw;
-	display: grid;
-	justify-content: center;
+/* Papers.module.css */
 
-}
-
-.menu__link {
-	text-decoration: none;
-}
-
-.menu__container {
+.papers__container {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 3vh;
+	margin: 10% 0;
 	align-content: center;
+
 }
 
-.menu__item {
+.paper__link {
+	background: transparent;
+	border: transparent;
 	font-size: 1.5rem;
 	font-weight: bold;
 	color: var(--brown-light);
 	cursor: pointer;
-	white-space: nowrap;
 	transition: background-color 0.3s, color 0.3s, transform 0.3s;
-
+	width: 100%;
+	text-align: center;
+	white-space: wrap;
 }
 
-.menu__item:hover {
+.paper__link:hover {
 	color: var(--brown-white);
 	text-shadow: 0 0 10px var(--brown-white);
 	transform: scale(1.05);
 }
 
-.menu__item:focus {
+.paper__link:focus {
 	outline: none;
 	box-shadow: 0 0 4px 2px var(--brown-white);
 }
-
-@media (max-width: 768px) {
-	.navigation {
-		max-width: 80vw;
-		margin: 0 auto;
-	}
-
-	.menu__item {
-		font-size: 1.7rem;
-	}
-}
-

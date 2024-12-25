@@ -3,15 +3,15 @@ import styles from './Appeal.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../UX/Title/Title';
 import NextImage from 'next/image';
-import {findItemByShortTitle} from '../../pages/api/constants';
-import {BannerData, ButtonData, DataProps, TitleData} from '../../interface/interfaceData';
+import {findItemByTitle} from '../../utils/findItemByTitle';
+import {BannerImageProps, ButtonProps, DataProps, TitleProps} from '../../interface/interfaceData';
 
 const Appeal: FC<{ data: DataProps }> = ({
                                              data
                                          }): ReactElement => {
-    const titleData = findItemByShortTitle(data.title, "create-best-place") || {} as TitleData;
-    const buttonData = findItemByShortTitle(data.button, "leave_request") || {} as ButtonData;
-    const bannerData = findItemByShortTitle(data.bannersImages, "appeal_banner") || {} as BannerData;
+    const titleData = findItemByTitle(data.title, "create-best-place") || {} as TitleProps;
+    const buttonData = findItemByTitle(data.button, "leave_request") || {} as ButtonProps;
+    const bannerData = findItemByTitle(data.bannersImages, "appeal_banner") || {} as BannerImageProps;
 
     return (
         <section className={styles.appeal}>

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { DataProps } from '../interface/interfaceData';
+import { DataProps } from './interfaceData';
 
 export interface LayoutProps {
     children: ReactNode;

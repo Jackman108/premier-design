@@ -3,12 +3,12 @@ import styles from './Partners.module.css';
 import Title from '../UX/Title/Title';
 import Image from 'next/image';
 import {GetDataProps} from '../../interface/interfaceData';
-import {findItemByShortTitle} from '../../pages/api/constants';
+import {findItemByTitle} from '../../utils/findItemByTitle';
 
 const Partners: FC<GetDataProps> = ({
                                         data
                                     }): ReactElement => {
-    const {title = '', description = '', shortTitle = ''} = findItemByShortTitle(data.title, "our-partners") || {};
+    const {title = '', description = '', shortTitle = ''} = findItemByTitle(data.title, "our-partners") || {};
     return (
         <section className={styles.partners}>
 

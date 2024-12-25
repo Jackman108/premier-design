@@ -1,12 +1,12 @@
 import Image from 'next/image';
-import {OfferProject} from '../../interface/interfaceData';
+import {OfferProjectProps} from '../../interface/interfaceData';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import {OrderButtonProps} from '../../interface/OrderButton.props';
 import styles from './ProjectOffer.module.css';
 import {FC, ReactElement} from "react";
 
 // Определение компонента ProjectOffer
-const ProjectOffer: FC<{ data: OfferProject[] } & OrderButtonProps> = ({
+const ProjectOffer: FC<{ data: OfferProjectProps[] } & OrderButtonProps> = ({
                                                                            data,
                                                                            buttonData,
                                                                            buttonStyle,
@@ -15,7 +15,7 @@ const ProjectOffer: FC<{ data: OfferProject[] } & OrderButtonProps> = ({
     return (
         <section className={styles.offer}>
             <div className={styles.offer__container}>
-                {data.map(({id, image, title, price, pros, cons, prosDescription, consDescription}: OfferProject,) => {
+                {data.map(({id, image, title, price, pros, cons, prosDescription, consDescription}: OfferProjectProps,) => {
                     {
                         evenCounter += 1;
                     }

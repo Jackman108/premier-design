@@ -3,14 +3,14 @@ import OrderButton from '../UX/OrderButton/OrderButton';
 import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../UX/Title/Title';
 import {FC, ReactElement} from 'react';
-import {findItemByShortTitle} from '../../pages/api/constants';
-import {ButtonData, DataProps, TitleData} from '../../interface/interfaceData';
+import {findItemByTitle} from '../../utils/findItemByTitle';
+import {ButtonProps, DataProps, TitleProps} from '../../interface/interfaceData';
 
 const Services: FC<{ data: DataProps }> = ({
                                                data
                                            }): ReactElement => {
-    const titleData = findItemByShortTitle(data.title, "services") || {} as TitleData;
-    const buttonData = findItemByShortTitle(data.button, "leave_request") || {} as ButtonData;
+    const titleData = findItemByTitle(data.title, "services") || {} as TitleProps;
+    const buttonData = findItemByTitle(data.button, "leave_request") || {} as ButtonProps;
 
     const {title = '', description = '', shortTitle = ''} = titleData;
     return (

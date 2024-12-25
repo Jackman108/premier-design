@@ -1,12 +1,12 @@
 import type {NextPage} from 'next';
 import Layout from '../Layout/Layout';
 import {getStaticProps} from './api/dataProvider';
-import {PageProps} from '../interface/ExampleCards.props';
 import {ReactElement} from "react";
 import Banner from "../components/Banner/Banner";
 import {usePageData} from "../hooks/usePageData";
 import {Appeal, Examples, OfferList, ProjectOffer} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
+import {PageProps} from "../interface/Page.props";
 
 const Design: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
     const pageMeta = data.pageMeta['design'];

@@ -2,19 +2,20 @@
 import {FC, memo, ReactElement, useCallback, useEffect, useRef, useState} from 'react';
 import {BsFillArrowUpRightSquareFill} from 'react-icons/bs';
 
-import {GetDataProps, WorkStagesProps} from '../../interface/interfaceData';
-import {findItemByShortTitle} from '../../pages/api/constants';
+import {GetDataProps} from '../../interface/interfaceData';
+import {findItemByTitle} from '../../utils/findItemByTitle';
 
 import Title from '../UX/Title/Title';
 
-import styles from './WorkStages.module.css';
+import styles from './StepsWork.module.css';
+import {StepsWorkProps} from "../../interface/StepsWork.props";
 
 const MemoizedTitle = memo(Title);
 
-const WorkStages: FC<GetDataProps> = ({
+const StepsWork: FC<GetDataProps> = ({
                                           data
                                       }): ReactElement => {
-    const {title = '', description = '', shortTitle = ''} = findItemByShortTitle(data.title, "our-partners") || {};
+    const {title = '', description = '', shortTitle = ''} = findItemByTitle(data.title, "our-partners") || {};
     const [currentStep, setCurrentStep] = useState<number>(0);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -48,14 +49,14 @@ const WorkStages: FC<GetDataProps> = ({
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentStep((prevStep) =>
-                prevStep < (data.workStages?.length || 0) ? prevStep + 1 : prevStep
+                prevStep < (data.stepsWork?.length || 0) ? prevStep + 1 : prevStep
             );
         }, 2000);
 
         return () => {
             clearInterval(interval);
         };
-    }, [data.workStages, currentStep]);
+    }, [data.stepsWork, currentStep]);
 
     return (
         <section className={styles.stages}>
@@ -68,7 +69,7 @@ const WorkStages: FC<GetDataProps> = ({
                     shortTitle={shortTitle}
                 />
                 <div className={styles.timeline}>
-                    {data.workStages?.map((stage: WorkStagesProps) => (
+                    {data.stepsWork?.map((stage: StepsWorkProps) => (
                         <div
                             key={stage.id}
                             className={`${styles.timeline__step} 
@@ -90,4 +91,4 @@ const WorkStages: FC<GetDataProps> = ({
         </section>
     );
 };
-export default WorkStages;
+export default StepsWork;

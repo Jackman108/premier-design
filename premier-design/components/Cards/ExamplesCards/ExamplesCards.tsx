@@ -4,9 +4,8 @@ import styles from './ExamplesCards.module.css';
 import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../../hooks/useResizeEffects';
 import PhotoViewer from '../../PhotoViewer/PhotoViewer';
-import {ExampleCardProps} from '../../../interface/interfaceData';
-import {ExampleCardsProps} from '../../../interface/ExampleCards.props';
 import ExampleCard from './ExamplesCard';
+import {ExampleCardProps, ExampleCardsProps} from "../../../interface/Cards.props";
 
 const ExamplesCards: FC<ExampleCardsProps> = ({
                                                   data,

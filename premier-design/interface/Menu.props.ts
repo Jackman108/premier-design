@@ -1,6 +1,10 @@
-import { MenuProps } from "./interfaceData";
+export interface MenuProps {
+    id: number;
+    title: string;
+    ruTitle: string;
+}
 
-export interface MenuDataProps {
+export interface MenuMobileProps {
     data: {
         menu: MenuProps[];
     };
@@ -8,7 +12,7 @@ export interface MenuDataProps {
     toggleMobileMenu: () => void;
 }
 
-export interface MenuStyleProps extends MenuDataProps {
+export interface MenuStyleProps extends MenuMobileProps {
     menuStyle: 'header' | 'footer' | 'mobile';
 }
 

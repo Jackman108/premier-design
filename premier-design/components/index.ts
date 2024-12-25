@@ -11,7 +11,7 @@ export const Appeal = dynamic(() => import('./Appeal/Appeal'));
 export const OfferList = dynamic(() => import('./OfferList/OfferList'));
 export const ProjectOffer = dynamic(() => import('./ProjectOffer/ProjectOffer'));
 export const Partners = dynamic(() => import('./Partners/Partners'));
-export const WorkStages = dynamic(() => import('./WorkStages/WorkStages'));
+export const StepsWork = dynamic(() => import('./StepsWork/StepsWork'));
 export const News = dynamic(() => import('./News/News'));
 export const Address = dynamic(() => import('./Address/Address'));
 export const Copyrighting = dynamic(() => import('./UX/Copyrighting/Copyrighting'));

@@ -3,15 +3,22 @@ import useResizeEffects from "../../hooks/useResizeEffects";
 import {FC} from "react";
 import {GetDataProps} from "../../interface/interfaceData";
 import Menu from "../../components/Menu/Menu";
-import { News, Copyrighting} from '../../components';
+import {Copyrighting, News} from '../../components';
+
+import Papers from "../../components/Papers/Papers";
 
 const Footer: FC<GetDataProps> = ({data}) => {
     const {isMobileMenuOpen, toggleMobileMenu,} = useResizeEffects();
 
+
     return (
         <footer className={styles.footer}>
             <div className={styles.footer__container}>
-                <Copyrighting/>
+                <div className={styles.footer__papers}>
+                    <Papers papers={data.papers}/>
+                    <Copyrighting/>
+                </div>
+
                 <News
                     news={data.news}
                     newsStyle='footer'

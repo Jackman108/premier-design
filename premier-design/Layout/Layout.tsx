@@ -1,4 +1,4 @@
-import {LayoutProps} from './Layout.props';
+import {LayoutProps} from '../interface/Layout.props';
 import styles from './Layout.module.css';
 import Header from './Header/Header';
 import Footer from './Footer/Footer';

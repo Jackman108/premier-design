@@ -1,6 +1,7 @@
-import { FC } from "react";
+import {FC} from "react";
 import styles from "./TextViewer.module.css";
 import Image from "next/image";
+import {formatText} from "../../utils/formatText";
 
 interface TextViewerProps {
     text: string;
@@ -10,7 +11,8 @@ interface TextViewerProps {
 
 }
 
-const TextViewer: FC<TextViewerProps> = ({ text, showModal, setShowModal, image }) => {
+const TextViewer: FC<TextViewerProps> = ({text, showModal, setShowModal, image}) => {
+
     return (
         <>
             {showModal && (
@@ -25,7 +27,7 @@ const TextViewer: FC<TextViewerProps> = ({ text, showModal, setShowModal, image 
                             />
                         </div>
                         <div className={styles.content__text}>
-                            {text}
+                            {formatText(text) || "Документ не найден"}
                         </div>
                         <button className={styles.modal__close} onClick={() => setShowModal(false)}>
                             Закрыть

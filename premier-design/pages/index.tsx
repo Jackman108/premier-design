@@ -1,11 +1,11 @@
 import {NextPage} from 'next';
 import Layout from '../Layout/Layout';
 import {getStaticProps} from './api/dataProvider';
-import {PageProps} from '../interface/ExampleCards.props';
 import Banner from "../components/Banner/Banner";
 import {usePageData} from "../hooks/usePageData";
 import {Appeal, Approach, Costing, Examples, Features, Services} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
+import {PageProps} from "../interface/Page.props";
 
 const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
     const {titleData, buttonData, bannerData} = usePageData(data, "repair-and-design", "leave_request", "home_banner");
