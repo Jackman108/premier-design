@@ -1,7 +1,7 @@
 server {
     listen 80;
 
-    server_name premier-design.by;
+    server_name localhost;
 
     location / {
         proxy_pass http://frontend-docker-container:3000/;
