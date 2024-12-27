@@ -2,7 +2,7 @@ FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-COPY premier-design/package*.json ./
+COPY package*.json ./
 
 RUN npm install -g npm@latest
 
