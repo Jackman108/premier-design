@@ -1,0 +1,50 @@
+import {FC, useState} from 'react';
+import Link from 'next/link';
+import {Category} from "../../interface/Prices.props";
+import styles from './CategoryCollapse.module.css';
+
+const CategoryCollapse: FC<{ category: Category }> = ({category}) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const handleToggle = () => setIsOpen(prev => !prev);
+
+    return (
+        <section className={`${styles.categoryCollapse} ${isOpen ? styles.open : ''}`}>
+
+            <div
+                className={styles.categoryHeader}
+                onClick={handleToggle}
+            >
+                <h3>{category.title}</h3>
+                <span className={`${styles.toggleIcon} ${isOpen ? styles.open : ''}`}/>
+            </div>
+            {isOpen && (
+                <div className={styles.categoryBody}>
+                    <table className={styles.table}>
+                        <thead>
+                        <tr className={styles.tr}>
+                            <th className={styles.th}>Услуга</th>
+                            <th className={styles.th}>Ед. измер.</th>
+                            <th className={styles.th}>Цена</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {category.priceList.map((item, idx) => (
+                            <tr key={idx} className={styles.tr}>
+                                <td className={styles.td}>
+                                    <Link href={item.canonical} className={styles.link}>
+                                        <p>{item.service}</p>
+                                    </Link>
+                                </td>
+                                <td className={styles.td}>{item.unit}</td>
+                                <td className={styles.td}>{item.price}</td>
+                            </tr>
+                        ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
+        </section>
+    );
+};
+
+export default CategoryCollapse;

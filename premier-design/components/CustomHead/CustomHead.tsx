@@ -1,22 +1,9 @@
 import Head from 'next/head';
 import {CustomHeadProps} from "./CustomHead.props";
+import {generateStructuredData} from "../../utils/generateStructuredData";
 
-const CustomHead = ({ title, description }: CustomHeadProps) => {
-    const structuredData = {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "Premium Interior",
-        "url": "https://example.com",
-        "logo": "/logo.png",
-        "sameAs": ["https://www.facebook.com/PremiumInterior", "https://twitter.com/PremiumInterior"],
-        "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Pervomayskaya",
-            "addressLocality": "Zhlobin",
-            "postalCode": "247210",
-            "addressCountry": "BY"
-        }
-    };
+const CustomHead = ({title, description, canonical}: CustomHeadProps) => {
+    const structuredData = generateStructuredData();
 
     return (
         <Head>
@@ -27,6 +14,7 @@ const CustomHead = ({ title, description }: CustomHeadProps) => {
             <meta property="og:type" content="website"/>
             <meta property="og:image" content="/path/to/image.jpg"/>
             <link rel="icon" href="/favicon.webp"/>
+            <link rel="canonical" href={canonical}/>
             <script type="application/ld+json">
                 {JSON.stringify(structuredData)}
             </script>

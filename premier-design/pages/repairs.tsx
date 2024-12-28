@@ -7,6 +7,7 @@ import Banner from "../components/Banner/Banner";
 import {Appeal, Examples, OfferList, ProjectOffer} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
+import Category from "../components/Category/Category";
 
 const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
     const {
@@ -29,6 +30,8 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
                 />
                 <Examples data={data} enableSlider={enableSlider}/>
                 {offerListData && <OfferList data={[offerListData]}/>}
+
+                <Category data={data} />
 
                 <ProjectOffer
                     data={data.offerProject.repairType}

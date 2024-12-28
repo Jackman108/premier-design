@@ -10,6 +10,7 @@ import {OfferProjectProps} from "./OfferProject.props";
 import {BannerImageProps} from "./Banner.props";
 import {PartnersProps} from "./Partners.props";
 import {StepsWorkProps} from "./StepsWork.props";
+import {Prices} from "./Prices.props";
 
 export interface DataProps {
     menu: MenuProps[];
@@ -38,6 +39,7 @@ export interface DataProps {
         };
     };
     papers: Paper[];
+    prices: Prices;
 }
 
 export interface GetDataProps {
