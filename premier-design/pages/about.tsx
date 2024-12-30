@@ -13,8 +13,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
         titleData,
         buttonData,
         bannerData,
-        offerListData
-    } = usePageData(data, "our-values", "leave_request", "about_banner", "about_offer");
+    } = usePageData(data, "our-values", "leave_request", "about_banner");
     const pageMeta = data.pageMeta['about'];
     return (
         <>
@@ -26,7 +25,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
                     bannerData={bannerData}
                     buttonStyle='button-white'
                 />
-                {offerListData && <OfferList data={[offerListData]}/>}
+                <OfferList data={data.offerList.aboutType}/>
                 <News
                     news={data.news}
                     newsStyle='about'
@@ -35,7 +34,9 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
                     data={data}
                 />
                 <StepsWork
-                    data={data}/>
+                    stepsWork={data.stepsWork}
+                    titles={data.title}
+                />
                 <Appeal
                     data={data}
                 />

@@ -1,6 +1,5 @@
 .categoryCollapse {
 	max-width: 1440px;
-
 	margin: 10px auto;
 	border: 2px solid #ddd;
 	border-radius: 12px;
@@ -17,6 +16,7 @@
 .categoryHeader {
 	cursor: pointer;
 	font-weight: bold;
+	color: var(--brown-light);
 	background-color: #f9f9f9;
 	padding: 18px 20px;
 	display: flex;
@@ -80,7 +80,6 @@
 
 .th, .td {
 	padding: 12px 15px;
-	text-align: left;
 	border: 1px solid #ddd;
 	font-size: 16px;
 }
@@ -97,6 +96,12 @@
 .tr:hover {
 	background-color: #f0f0f0;
 	cursor: pointer;
+}
+
+.unitColumn,
+.priceColumn {
+	width: 100px;
+	text-align: right;
 }
 
 .link {
@@ -121,4 +126,27 @@
 	max-height: 500px;
 	overflow-y: auto;
 	transition: max-height 0.5s ease;
+}
+
+@media (max-width: 768px) {
+	.categoryCollapse {
+		margin: 5px;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+	}
+
+	.categoryHeader {
+		padding: 14px 16px;
+		font-size: 14px;
+	}
+
+	.th, .td {
+		font-size: 14px;
+		padding: 8px 10px;
+	}
+
+	.unitColumn,
+	.priceColumn {
+		width: 80px;
+	}
 }

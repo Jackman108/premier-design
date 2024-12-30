@@ -2,13 +2,15 @@ import styles from './Costing.module.css';
 import CostingCards from '../Cards/CostingCards/CostingCards';
 import Title from '../UX/Title/Title';
 import {findItemByTitle} from '../../utils/findItemByTitle';
-import {DataProps} from '../../interface/interfaceData';
 import {FC, ReactElement} from 'react';
+import {CostingCardProps} from "../../interface/Cards.props";
+import {TitleProps} from "../../interface/Title.props";
 
-const Costing: FC<{ data: DataProps }> = ({
-                                              data
-                                          }): ReactElement => {
-    const {title = '', description = '', shortTitle = ''} = findItemByTitle(data.title, "price-calculation") || {};
+const Costing: FC<{ cards: CostingCardProps[]; titles: TitleProps[] }> = ({
+                                                                              cards,
+                                                                              titles,
+                                                                          }): ReactElement => {
+    const {title = '', description = '', shortTitle = ''} = findItemByTitle(titles, "price-calculation") || {};
     return (
         <section className={styles.costing}>
             <div className={styles.costing__container}>
@@ -20,7 +22,7 @@ const Costing: FC<{ data: DataProps }> = ({
                     shortTitle={shortTitle}
                 />
                 <CostingCards
-                    data={data.cards.costingCard}
+                    data={cards}
                 />
             </div>
         </section>

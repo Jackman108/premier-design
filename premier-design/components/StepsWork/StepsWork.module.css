@@ -1,116 +1,96 @@
 .stages {
-    padding: 5vh 0;
-    height: auto;
+	padding: 5vh 0;
+	height: auto;
 }
 
 .stages__container {
-    height: auto;
-    display: grid;
-    justify-content: center;
-    justify-items: center;
-    max-width: 1440px;
-    margin: 0 auto;
-    grid-gap: 2vh;
+	height: auto;
+	display: grid;
+	justify-content: center;
+	justify-items: center;
+	max-width: 1440px;
+	margin: 0 auto;
+	grid-gap: 2vh;
 }
 
 .content__image {
-    width: 64px;
-    height: 64px;
+	width: 64px;
+	height: 64px;
 }
 
 .timeline {
-    position: relative;
-    display: grid;
-    grid-auto-flow: column;
-    align-items: center;
-    margin-top: 6vh;
-    transform: rotate(-40deg);
-    height: 74vh;
-    left: -14vw;
+	position: relative;
+	display: grid;
+	grid-auto-flow: row;
+	align-items: center;
+	margin-top: 3vh;
+	transform: rotate(0deg);
+	left: 0;
+	grid-gap: 2vh;
+
 }
 
 .timeline__step {
-    display: grid;
-    position: relative;
-    animation-duration: 0.5s;
-    animation-fill-mode: backwards;
-    align-items: center;
-    justify-content: start;
-    color: var(--beige);
-    font-size: 1.1rem;
-    transform: rotate(40deg);
-    width: 20vh;
+	display: grid;
+	position: relative;
+	animation-duration: 0.5s;
+	animation-fill-mode: backwards;
+	align-items: center;
+	justify-content: start;
+	color: var(--beige);
+	font-size: 1.1rem;
+	transform: rotate(0deg);
+	width: 90vw;
 }
 
 .fade {
-    padding: 10px;
-    opacity: 0;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
-    border: 2px solid var(--brown);
-    border-radius: 5px;
-    background: linear-gradient(var(--brown-light), var(--brown-dark));
-    width: 30vw;
-    height: 12vh;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    align-content: center;
-    text-align: center;
-    justify-items: center;
-    transform: translateY(-5vh);
+	padding: 10px;
+	opacity: 0;
+	transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+	border: 2px solid var(--brown);
+	border-radius: 5px;
+	background: linear-gradient(var(--brown-light), var(--brown-dark));
+	height: auto;
+	width: 90vw;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-content: center;
+	text-align: center;
+	justify-items: center;
+	transform: translateY(-5vh);
 }
 
 .active .fade {
-    transform: translateY(0);
-    opacity: 1;
+	transform: translateY(0);
+	opacity: 1;
 }
 
 .timeline__progress {
-    position: absolute;
-    left: 0;
-    bottom: 2%;
-    height: 8px;
-    width: 0;
-    border-radius: 4px 4px 0 0;
-    box-shadow: 1px 1px 5px var(--brown-dark);
+	position: absolute;
+	left: 0;
+	bottom: 2%;
+	height: 8px;
+	width: 0;
+	border-radius: 4px 4px 0 0;
+	box-shadow: 1px 1px 5px var(--brown-dark);
 }
 
 .active .timeline__progress {
-    background-color: var(--brown-white);
-    transition: width 2s linear;
-    width: 100%;
+	background-color: var(--brown-white);
+	transition: width 2s linear;
+	width: 100%;
 }
 
 @keyframes gradientAnimation {
-    0% {
-        background-position: 0 50%;
-    }
+	0% {
+		background-position: 0 50%;
+	}
 
-    50% {
-        background-position: 100% 50%;
-    }
+	50% {
+		background-position: 100% 50%;
+	}
 
-    100% {
-        background-position: 0 50%;
-    }
-}
-
-@media (max-width: 1440px) {
-    .timeline {
-        grid-auto-flow: row;
-        margin-top: 3vh;
-        transform: rotate(0deg);
-        height: auto;
-        left: 0;
-        grid-gap: 2vh;
-    }
-
-    .timeline__step {
-        transform: rotate(0deg);
-        width: 90vw;
-    }
-
-    .fade {
-        height: auto;
-        width: 90vw;
-    }
+	100% {
+		background-position: 0 50%;
+	}
 }

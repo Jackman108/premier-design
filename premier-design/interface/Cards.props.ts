@@ -1,4 +1,3 @@
-
 export interface ApproachCardProps {
     id: number;
     image: string;
@@ -32,10 +31,6 @@ export interface ServiceCardProps {
     href: string;
 }
 
-export interface ExampleCardsProps {
-    data: ExampleCardProps[];
-    enableSlider?: boolean;
-}
 
 export interface ExamplesCardProps {
     card: ExampleCardProps;

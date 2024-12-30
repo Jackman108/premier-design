@@ -1,21 +1,21 @@
 .approach {
-    max-width: 100%; 
-    background-color: var(--brown-white);
-    padding: 3% 0;
+	max-width: 100%;
+	background-color: var(--brown-white);
+	padding: 3% 0;
 }
 
 .approach__container {
-    margin: 0 auto;
-    max-width: 1440px;
-    display: grid;
-    justify-content: center;
-    justify-items: center;
-    grid-gap: 4vh;
+	margin: 0 auto;
+	max-width: 1440px;
+	display: grid;
+	justify-content: center;
+	justify-items: center;
+	grid-gap: 4vh;
 }
 
-    @media screen and (max-width: 768px) {
-        .examples__container {
-            margin: 4vh auto;
-            grid-gap: 0vh;
-        }
-    }
+@media screen and (max-width: 768px) {
+	.approach__container {
+		margin: 4vh auto;
+		grid-gap: 0;
+	}
+}

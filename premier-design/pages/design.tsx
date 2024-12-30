@@ -4,7 +4,7 @@ import {getStaticProps} from './api/dataProvider';
 import {ReactElement} from "react";
 import Banner from "../components/Banner/Banner";
 import {usePageData} from "../hooks/usePageData";
-import {Appeal, Examples, OfferList, ProjectOffer} from '../components';
+import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 
@@ -15,8 +15,7 @@ const Design: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement 
         titleData,
         buttonData,
         bannerData,
-        offerListData
-    } = usePageData(data, "comfort-dreams", "order_project", "design_banner", "design_offer");
+    } = usePageData(data, "comfort-dreams", "order_project", "design_banner");
 
     return (
         <>
@@ -28,8 +27,17 @@ const Design: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement 
                     bannerData={bannerData}
                     buttonStyle='button-white'
                 />
-                <Examples data={data} enableSlider={enableSlider}/>
-                {offerListData && <OfferList data={[offerListData]}/>}
+                <Features features={data.features}/>
+                <Costing
+                    cards={data.cards.costingCard}
+                    titles={data.title}
+                />
+                <Examples
+                    cards={data.cards.examplesCard}
+                    titles={data.title}
+                    enableSlider={enableSlider}
+                />
+                <OfferList data={data.offerList.designType}/>
                 <ProjectOffer
                     data={data.offerProject.designType}
                     buttonData={buttonData.buttonHeader}

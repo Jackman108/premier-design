@@ -1,17 +1,18 @@
 'use client'
-import {useState, useCallback, useMemo, FC, ReactElement} from 'react';
+import {FC, ReactElement, useCallback, useMemo, useState} from 'react';
 import styles from './ExamplesCards.module.css';
 import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../../hooks/useResizeEffects';
 import PhotoViewer from '../../PhotoViewer/PhotoViewer';
 import ExampleCard from './ExamplesCard';
-import {ExampleCardProps, ExampleCardsProps} from "../../../interface/Cards.props";
+import {ExampleCardProps} from "../../../interface/Cards.props";
+import {ExamplesCardsProps} from "../../../interface/Examples.props";
 
-const ExamplesCards: FC<ExampleCardsProps> = ({
-                                                  data,
-                                                  enableSlider = true,
-                                              }): ReactElement => {
-    const memoizedExamplesCards = useMemo(() => data || [], [data]);
+const ExamplesCards: FC<ExamplesCardsProps> = ({
+                                                   cards,
+                                                   enableSlider = true,
+                                               }): ReactElement => {
+    const memoizedExamplesCards = useMemo(() => cards || [], [cards]);
     const {isMobile} = useResizeEffects();
     const slidesPerView = 3;
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -61,7 +62,7 @@ const ExamplesCards: FC<ExampleCardsProps> = ({
             )}
             {isViewerOpen && selectedImage !== null && (
                 <PhotoViewer
-                    images={data.find((card) => card.images.includes(selectedImage))?.images ?? []}
+                    images={cards.find((card) => card.images.includes(selectedImage))?.images ?? []}
                     currentImage={selectedImage}
                     onClose={closeViewer}
                 />

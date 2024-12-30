@@ -4,7 +4,7 @@ import {getStaticProps} from './api/dataProvider';
 import {ReactElement} from "react";
 import {usePageData} from "../hooks/usePageData";
 import Banner from "../components/Banner/Banner";
-import {Appeal, Examples, OfferList, ProjectOffer} from '../components';
+import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer, StepsWork} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import Category from "../components/Category/Category";
@@ -14,8 +14,8 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
         titleData,
         buttonData,
         bannerData,
-        offerListData
-    } = usePageData(data, "pleasant-repair", "leave_request", "repair_banner", "repairs_offer");
+    } = usePageData(data, "pleasant-repair", "leave_request", "repair_banner");
+
     const pageMeta = data.pageMeta['repairs'];
 
     return (
@@ -28,15 +28,26 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
                     bannerData={bannerData}
                     buttonStyle='button-white'
                 />
-                <Examples data={data} enableSlider={enableSlider}/>
-                {offerListData && <OfferList data={[offerListData]}/>}
-
-                <Category data={data} />
-
+                <Features features={data.features}/>
+                <Examples
+                    cards={data.cards.examplesCard}
+                    titles={data.title}
+                    enableSlider={enableSlider}
+                />
+                <Costing
+                    cards={data.cards.costingCard}
+                    titles={data.title}
+                />
+                <Category data={data}/>
+                <OfferList data={data.offerList.repairType}/>
                 <ProjectOffer
                     data={data.offerProject.repairType}
                     buttonData={buttonData.buttonHeader}
                     buttonStyle='button-black'
+                />
+                <StepsWork
+                    stepsWork={data.stepsWork}
+                    titles={data.title}
                 />
                 <Appeal data={data}/>
             </Layout>

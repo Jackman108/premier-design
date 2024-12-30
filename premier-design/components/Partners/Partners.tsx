@@ -5,9 +5,7 @@ import Image from 'next/image';
 import {GetDataProps} from '../../interface/interfaceData';
 import {findItemByTitle} from '../../utils/findItemByTitle';
 
-const Partners: FC<GetDataProps> = ({
-                                        data
-                                    }): ReactElement => {
+const Partners: FC<GetDataProps> = ({data}): ReactElement => {
     const {title = '', description = '', shortTitle = ''} = findItemByTitle(data.title, "our-partners") || {};
     return (
         <section className={styles.partners}>

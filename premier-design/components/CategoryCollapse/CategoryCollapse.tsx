@@ -9,11 +9,7 @@ const CategoryCollapse: FC<{ category: Category }> = ({category}) => {
 
     return (
         <section className={`${styles.categoryCollapse} ${isOpen ? styles.open : ''}`}>
-
-            <div
-                className={styles.categoryHeader}
-                onClick={handleToggle}
-            >
+            <div className={styles.categoryHeader} onClick={handleToggle}>
                 <h3>{category.title}</h3>
                 <span className={`${styles.toggleIcon} ${isOpen ? styles.open : ''}`}/>
             </div>
@@ -23,8 +19,8 @@ const CategoryCollapse: FC<{ category: Category }> = ({category}) => {
                         <thead>
                         <tr className={styles.tr}>
                             <th className={styles.th}>Услуга</th>
-                            <th className={styles.th}>Ед. измер.</th>
-                            <th className={styles.th}>Цена</th>
+                            <th className={`${styles.th} ${styles.unitColumn}`}>Ед.измер.</th>
+                            <th className={`${styles.th} ${styles.priceColumn}`}>Цена</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -35,8 +31,8 @@ const CategoryCollapse: FC<{ category: Category }> = ({category}) => {
                                         <p>{item.service}</p>
                                     </Link>
                                 </td>
-                                <td className={styles.td}>{item.unit}</td>
-                                <td className={styles.td}>{item.price}</td>
+                                <td className={`${styles.td} ${styles.unitColumn}`}>{item.unit}</td>
+                                <td className={`${styles.td} ${styles.priceColumn}`}>{item.price}</td>
                             </tr>
                         ))}
                         </tbody>

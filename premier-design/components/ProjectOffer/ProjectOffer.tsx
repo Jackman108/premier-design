@@ -5,17 +5,25 @@ import styles from './ProjectOffer.module.css';
 import {FC, ReactElement} from "react";
 import {OfferProjectProps} from "../../interface/OfferProject.props";
 
-// Определение компонента ProjectOffer
 const ProjectOffer: FC<{ data: OfferProjectProps[] } & OrderButtonProps> = ({
-                                                                           data,
-                                                                           buttonData,
-                                                                           buttonStyle,
-                                                                       }): ReactElement => {
+                                                                                data,
+                                                                                buttonData,
+                                                                                buttonStyle,
+                                                                            }): ReactElement => {
     let evenCounter = 1;
     return (
         <section className={styles.offer}>
             <div className={styles.offer__container}>
-                {data.map(({id, image, title, price, pros, cons, prosDescription, consDescription}: OfferProjectProps,) => {
+                {data.map(({
+                               id,
+                               image,
+                               title,
+                               price,
+                               pros,
+                               cons,
+                               prosDescription,
+                               consDescription
+                           }: OfferProjectProps,) => {
                     {
                         evenCounter += 1;
                     }

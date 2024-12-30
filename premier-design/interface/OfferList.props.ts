@@ -1,4 +1,4 @@
-export interface OfferListProps {
+export interface OfferType {
     id: number;
     image: string;
     subTitle: string;
@@ -6,4 +6,10 @@ export interface OfferListProps {
     questions: string[];
     tips: string;
     shortTitle: string;
+}
+
+export interface OfferListProps {
+    designType: OfferType;
+    repairType: OfferType;
+    aboutType: OfferType;
 }

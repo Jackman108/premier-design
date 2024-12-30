@@ -3,13 +3,14 @@ import styles from './Examples.module.css';
 import ExamplesCards from '../Cards/ExamplesCards/ExamplesCards';
 import Title from '../UX/Title/Title';
 import {findItemByTitle} from '../../utils/findItemByTitle';
-import {DataProps} from '../../interface/interfaceData';
+import {ExamplesProps} from "../../interface/Examples.props";
 
-const Examples: FC<{ data: DataProps, enableSlider?: boolean }> = ({
-                                                                       data,
-                                                                       enableSlider = true,
-                                                                   }): ReactElement => {
-    const {title = '', description = '', shortTitle = ''} = findItemByTitle(data.title, "our-works") || {};
+const Examples: FC<ExamplesProps> = ({
+                                         cards,
+                                         titles,
+                                         enableSlider = true,
+                                     }): ReactElement => {
+    const {title = '', description = '', shortTitle = ''} = findItemByTitle(titles, "our-works") || {};
     return (
         <section className={styles.examples}>
             <div className={styles.examples__container}>
@@ -21,7 +22,7 @@ const Examples: FC<{ data: DataProps, enableSlider?: boolean }> = ({
                     shortTitle={shortTitle}
                 />
                 <ExamplesCards
-                    data={data.cards.examplesCard}
+                    cards={cards}
                     enableSlider={enableSlider}
                 />
             </div>

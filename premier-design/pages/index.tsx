@@ -6,6 +6,7 @@ import {usePageData} from "../hooks/usePageData";
 import {Appeal, Approach, Costing, Examples, Features, Services} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
+import Reviews from "../components/Reviews/Reviews";
 
 const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
     const {titleData, buttonData, bannerData} = usePageData(data, "repair-and-design", "leave_request", "home_banner");
@@ -24,8 +25,16 @@ const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
                 <Features features={data.features}/>
                 <Services data={data}/>
                 <Approach data={data}/>
-                <Examples data={data} enableSlider={enableSlider}/>
-                <Costing data={data}/>
+                <Examples
+                    cards={data.cards.examplesCard}
+                    titles={data.title}
+                    enableSlider={enableSlider}
+                />
+                <Costing
+                    cards={data.cards.costingCard}
+                    titles={data.title}
+                />
+                <Reviews data={data}/>
                 <Appeal data={data}/>
             </Layout>
         </>

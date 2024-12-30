@@ -11,6 +11,7 @@ import {BannerImageProps} from "./Banner.props";
 import {PartnersProps} from "./Partners.props";
 import {StepsWorkProps} from "./StepsWork.props";
 import {Prices} from "./Prices.props";
+import {Review} from "./Review.props";
 
 export interface DataProps {
     menu: MenuProps[];
@@ -24,7 +25,7 @@ export interface DataProps {
         examplesCard: ExampleCardProps[];
         servicesCard: ServiceCardProps[];
     };
-    offerList: OfferListProps[];
+    offerList: OfferListProps;
     offerProject: {
         designType: OfferProjectProps[];
         repairType: OfferProjectProps[];
@@ -40,6 +41,7 @@ export interface DataProps {
     };
     papers: Paper[];
     prices: Prices;
+    reviews: Review[];
 }
 
 export interface GetDataProps {
