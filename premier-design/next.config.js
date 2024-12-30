@@ -6,6 +6,7 @@ module.exports = {
             { source: '/Design', destination: '/design' },
             { source: '/About', destination: '/about' },
             { source: '/Contacts', destination: '/contacts' },
+            { source: '/sitemap.xml', destination: '/api/sitemap' },
         ]
     },
     images: {

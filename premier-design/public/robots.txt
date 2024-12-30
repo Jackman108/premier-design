@@ -1,0 +1,17 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://premier-design.by/sitemap.xml
+
+# Disallow: /private/
+# Disallow: /admin/
+
+# Crawl-delay: 10
+
+User-agent: Googlebot
+Disallow: /no-google/
+
+User-agent: Bingbot
+Disallow: /no-bing/
+
+# Crawl-delay: 5
