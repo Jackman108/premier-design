@@ -7,6 +7,7 @@ import {usePageData} from "../hooks/usePageData";
 import Banner from "../components/Banner/Banner";
 import {Address, Appeal} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
+import {getFullCanonicalUrl} from "../utils/findService";
 
 const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {
     const {
@@ -15,10 +16,15 @@ const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {
         bannerData
     } = usePageData(data, "we-are-here-to-help", "leave_request", "contacts_banner");
     const pageMeta = data.pageMeta['contacts'];
+    const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
 
     return (
         <>
-            <CustomHead title={pageMeta.title} description={pageMeta.description}/>
+            <CustomHead
+                title={pageMeta.title}
+                description={pageMeta.description}
+                canonical={fullCanonicalUrl}
+            />
             <Layout data={data}>
                 <Banner
                     titleData={titleData}

@@ -11,7 +11,11 @@ const MyApp: FC<AppProps> = ({Component, pageProps}) => {
             defaultTheme="light"
             themes={['light', 'dark']}
             attribute="class">
-            <CustomHead title="Premium Interior" description="Ремонт и дизайн интерьеров" />
+            <CustomHead
+                title="Premium Interior"
+                description="Ремонт и дизайн интерьеров"
+                canonical={"https://premium-interior.by/"}
+            />
             <Component {...pageProps} />
         </ThemeProvider>
     );

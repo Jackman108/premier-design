@@ -7,14 +7,20 @@ import {Appeal, Approach, Costing, Examples, Features, Services} from '../compon
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import Reviews from "../components/Reviews/Reviews";
+import {getFullCanonicalUrl} from "../utils/findService";
 
 const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
     const {titleData, buttonData, bannerData} = usePageData(data, "repair-and-design", "leave_request", "home_banner");
     const pageMeta = data.pageMeta['home'];
+    const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
 
     return (
         <>
-            <CustomHead title={pageMeta.title} description={pageMeta.description}/>
+            <CustomHead
+                title={pageMeta.title}
+                description={pageMeta.description}
+                canonical={fullCanonicalUrl}
+            />
             <Layout data={data}>
                 <Banner
                     titleData={titleData}

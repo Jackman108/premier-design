@@ -37,6 +37,7 @@ export interface DataProps {
         [key: string]: {
             title: string;
             description: string;
+            canonical: string;
         };
     };
     papers: Paper[];

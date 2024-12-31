@@ -3,6 +3,7 @@ import {useRouter} from "next/router";
 import {ServiceDetailProps} from "../../interface/ServiceDetail.props";
 import CustomHead from "../CustomHead/CustomHead";
 import styles from './ServiceDetail.module.css';
+import {getFullCanonicalUrl} from "../../utils/findService";
 
 const ServiceDetail: FC<ServiceDetailProps> = ({service, categoryDescription}) => {
     const router = useRouter();
@@ -10,10 +11,15 @@ const ServiceDetail: FC<ServiceDetailProps> = ({service, categoryDescription}) =
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
+    const fullCanonicalUrl = getFullCanonicalUrl(service.canonical);
 
     return (
         <>
-            <CustomHead title={service.service} description={categoryDescription} canonical={service.canonical}/>
+            <CustomHead
+                title={service.service}
+                description={categoryDescription}
+                canonical={fullCanonicalUrl}
+            />
             <section>
                 <h1 className={styles.categoryDetail}>{categoryDescription}</h1>
                 <p>

@@ -8,6 +8,7 @@ import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer, StepsWork}
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import Category from "../components/Category/Category";
+import {getFullCanonicalUrl} from "../utils/findService";
 
 const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
     const {
@@ -17,10 +18,15 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
     } = usePageData(data, "pleasant-repair", "leave_request", "repair_banner");
 
     const pageMeta = data.pageMeta['repairs'];
+    const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
 
     return (
         <>
-            <CustomHead title={pageMeta.title} description={pageMeta.description}/>
+            <CustomHead
+                title={pageMeta.title}
+                description={pageMeta.description}
+                canonical={fullCanonicalUrl}
+            />
             <Layout data={data}>
                 <Banner
                     titleData={titleData}
