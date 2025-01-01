@@ -1,8 +1,8 @@
 'use client'
-import { createChatBotMessage } from 'react-chatbot-kit';
+import {createChatBotMessage} from 'react-chatbot-kit';
 import Phone from '../UX/Phone/Phone';
 import CustomAvatar from './CustomAvatar';
-import { CustomAvatarProps } from '../../interface/ChatBot.props';
+import {CustomAvatarProps} from '../../interface/ChatBot.props';
 
 const botName = 'Алина';
 const botAvatarPath = '/botAvatars/botAvatar.webp';
@@ -12,8 +12,8 @@ const config = {
     lang: 'no',
     initialMessages: [
         createChatBotMessage(
-            `Привет, я ${botName}. Буду рада тебе помочь?`,
-            { delay: 0 },
+            `Привет, я ${botName}. Буду рада тебе помочь!`,
+            {delay: 0},
         ),
         createChatBotMessage(
             `Для получения подробной информации можешь нам позвонить, написать в соц. сети или заполнить форму и Мы тебе скоро перезвоним!`,
@@ -26,7 +26,7 @@ const config = {
     widgets: [
         {
             widgetName: 'Phone',
-            widgetFunc: () => <Phone />,
+            widgetFunc: () => <Phone/>,
             mapStateToProps: ['gist'],
             props: {}
         },
@@ -47,12 +47,19 @@ const config = {
         },
     },
     customComponents: {
-        header: () => <div style={{ color: "white", fontSize: 20, textAlign: "center", backgroundColor: "#786B64", padding: "5px", borderRadius: "3px" }}>Ваш консультант {botName}</div>,
+        header: () => <div style={{
+            color: "white",
+            fontSize: 20,
+            textAlign: "center",
+            backgroundColor: "#786B64",
+            padding: "5px",
+            borderRadius: "3px"
+        }}>Ваш консультант {botName}</div>,
         botAvatar: (props: CustomAvatarProps) => (
-            <CustomAvatar {...props} src={botAvatarPath} alt="Bot Avatar" />
+            <CustomAvatar {...props} src={botAvatarPath} alt="Bot Avatar"/>
         ),
         userAvatar: (props: CustomAvatarProps) => (
-            <CustomAvatar {...props} src={userAvatarPath} alt="User Avatar" />
+            <CustomAvatar {...props} src={userAvatarPath} alt="User Avatar"/>
         ),
     },
 };

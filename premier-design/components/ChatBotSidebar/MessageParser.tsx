@@ -1,11 +1,11 @@
 'use client'
-import React, { FC, ReactElement, cloneElement } from 'react';
-import { MessageParserProps } from '../../interface/ChatBot.props';
+import React, {FC} from 'react';
+import {MessageParserProps} from '../../interface/ChatBot.props';
 
 const MessageParser: FC<MessageParserProps> = ({
-    children,
-    actions
-}: MessageParserProps) => {
+                                                   children,
+                                                   actions
+                                               }: MessageParserProps) => {
 
     const parse = (message: string): void => {
         const lowerCaseMessage = message.toLowerCase()
@@ -26,13 +26,13 @@ const MessageParser: FC<MessageParserProps> = ({
             actions.handleServices();
         }
         if (actions.handlePortfolio &&
-            lowerCaseMessage.includes('портфолио')||
+            lowerCaseMessage.includes('портфолио') ||
             lowerCaseMessage.includes('примеры')) {
             actions.handlePortfolio();
         }
         if (actions.handlePricing &&
             lowerCaseMessage.includes('цены') ||
-            lowerCaseMessage.includes('стоимость')||
+            lowerCaseMessage.includes('стоимость') ||
             lowerCaseMessage.includes('стоит')) {
             actions.handlePricing();
         }
@@ -46,10 +46,13 @@ const MessageParser: FC<MessageParserProps> = ({
     return (
         <>
             {React.Children.map(children, (child) => {
-                return cloneElement(child as ReactElement, {
-                    parse: parse,
-                    actions,
-                });
+                if (React.isValidElement(child)) {
+                    return React.cloneElement(child, {
+                        parse,
+                        actions,
+                    });
+                }
+                return child;
             })}
         </>
     );

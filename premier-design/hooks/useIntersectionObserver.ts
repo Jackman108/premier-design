@@ -1,6 +1,6 @@
 import {RefObject, useEffect, useMemo, useState} from 'react';
 
-const useIntersectionObserver = (ref: RefObject<HTMLElement>, threshold = 1): boolean => {
+const useIntersectionObserver = (ref: RefObject<HTMLDivElement | null>, threshold = 1): boolean => {
     const [isVisible, setIsVisible] = useState(false);
 
     const observerCallback = useMemo(() => {

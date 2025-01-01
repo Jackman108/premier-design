@@ -2,10 +2,10 @@ module.exports = {
     async rewrites() {
         return [
             { source: '/', destination: '/' },
-            { source: '/Repairs', destination: '/repairs' },
-            { source: '/Design', destination: '/design' },
-            { source: '/About', destination: '/about' },
-            { source: '/Contacts', destination: '/contacts' },
+            { source: '/repairs', destination: '/repairs' },
+            { source: '/design', destination: '/design' },
+            { source: '/about', destination: '/about' },
+            { source: '/contacts', destination: '/contacts' },
             { source: '/sitemap.xml', destination: '/api/sitemap' },
         ]
     },

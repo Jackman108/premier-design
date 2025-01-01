@@ -50,7 +50,7 @@ const useCalculatorHandlers = (card: CostingCardProps) => {
             await new Promise((resolve) => setTimeout(resolve, 2000));
             setResult(Math.round(totalCost));
             setError('');
-        } catch (error) {
+        } catch {
             setError('Произошла ошибка при расчёте стоимости. Пожалуйста, попробуйте ещё раз или обратитесь к нам.');
         } finally {
             setIsLoading(false);

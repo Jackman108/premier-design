@@ -10,12 +10,13 @@ import {IMessage} from "react-chatbot-kit/build/src/interfaces/IMessages";
 
 const ChatBotSidebar = (): ReactElement => {
     const [isBotOpen, setIsBotOpen] = useState(false);
+    const [messages, setMessages] = useState<IMessage[]>([]);
 
-    // Загрузка сообщений из localStorage при открытии компонента
     useEffect(() => {
-        const messages = loadMessages();
-        if (messages.length > 0) {
-            saveMessages(messages);
+        const loadedMessages = loadMessages();
+        setMessages(loadedMessages);
+        if (loadedMessages.length > 0) {
+            saveMessages(loadedMessages);
         }
     }, []);
 
@@ -29,13 +30,17 @@ const ChatBotSidebar = (): ReactElement => {
 
     };
 
+    const handleToggle = () => {
+        setIsBotOpen(prev => !prev);
+    };
+
     return (
         <div>
             <button
-                onClick={() => setIsBotOpen((prev) => !prev)}
+                onClick={handleToggle}
                 className={styles.toggle_button}
             >
-                {isBotOpen ? "Closed" : "Bot"}
+                {isBotOpen ? "Закрыть" : "Чат"}
             </button>
             <div>
                 {isBotOpen && (
@@ -45,11 +50,10 @@ const ChatBotSidebar = (): ReactElement => {
                             messageParser={MessageParser}
                             actionProvider={ActionProvider}
                             messageHistory={
-                                loadMessages().length > 0
-                                    ? loadMessages()
+                                messages.length > 0
+                                    ? messages
                                     : chatbotConfig.initialMessages}
-                            saveMessages={saveMessages
-                            }
+                            saveMessages={saveMessages}
                             placeholderText='Задайте Ваш вопрос'
                             runInitialMessagesWithHistory={true}
                         />

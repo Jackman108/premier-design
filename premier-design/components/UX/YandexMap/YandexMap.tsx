@@ -1,4 +1,4 @@
-'use client'
+export {/*'use client'
 import {FC, ReactElement, useCallback, useEffect} from 'react';
 import styles from './YandexMap.module.css';
 import {YMaps, Map, Placemark, ZoomControl, FullscreenControl} from '@pbe/react-yandex-maps';
@@ -41,4 +41,5 @@ const YandexMap: FC = (): ReactElement => {
     );
 };
 
-export default YandexMap;
+export default YandexMap;*/
+}
