@@ -1,15 +1,12 @@
-import {ReactElement, useMemo} from 'react';
+import {FC, ReactElement} from 'react';
 import styles from './ApproachCards.module.css';
 import Image from 'next/image';
-import {DataProps} from '../../../interface/interfaceData';
+import {ApproachCardProps} from "../../../interface/Cards.props";
 
-const ApproachCards: React.FC<{ data: DataProps }> = ({
-                                                          data
-                                                      }): ReactElement => {
-    const memoizedApproachCards = useMemo(() => data.cards?.approachCard || [], [data.cards?.approachCard]);
+const ApproachCards: FC<{ cards: ApproachCardProps[] }> = ({cards}): ReactElement => {
     return (
         <div className={styles.approach__cards}>
-            {memoizedApproachCards.map(({id, image, title, description}) => (
+            {cards.map(({id, image, title, description}) => (
                 <div className={styles.approach__card} key={id}>
                     <div className={styles.card__image}>
                         <Image

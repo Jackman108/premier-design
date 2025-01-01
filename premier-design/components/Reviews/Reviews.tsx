@@ -1,12 +1,12 @@
 import React, {FC} from 'react';
 import styles from './Reviews.module.css';
 import Image from "next/image";
-import {GetDataProps} from "../../interface/interfaceData";
 import {findItemByTitle} from "../../utils/findItemByTitle";
 import Title from "../UX/Title/Title";
+import {ReviewsProps} from "../../interface/Review.props";
 
-const Reviews: FC<GetDataProps> = ({data}) => {
-    const {title = '', description = '', shortTitle = ''} = findItemByTitle(data.title, "customer_reviews") || {};
+const Reviews: FC<ReviewsProps> = ({titles, reviews}) => {
+    const {title = '', description = '', shortTitle = ''} = findItemByTitle(titles, "customer_reviews") || {};
 
     return (
         <section className={styles.reviews}>
@@ -19,7 +19,7 @@ const Reviews: FC<GetDataProps> = ({data}) => {
                     shortTitle={shortTitle}
                 />
                 <div className={styles.reviews__content}>
-                    {data.reviews.map((review) => (
+                    {reviews.map((review) => (
                         <div key={review.id} className={styles.content__review}>
                             <Image
                                 priority={false}

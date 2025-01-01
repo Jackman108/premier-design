@@ -12,11 +12,7 @@ import {getFullCanonicalUrl} from "../utils/findService";
 import {useLayoutProps} from "../hooks/useLayoutProps";
 
 const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
-    const {
-        titleData,
-        buttonData,
-        bannerData,
-    } = usePageData(data, "pleasant-repair", "leave_request", "repair_banner");
+    const {titleData, buttonData, bannerData} = usePageData(data, "pleasant-repair", "leave_request", "repair_banner");
 
     const pageMeta = data.pageMeta['repairs'];
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);

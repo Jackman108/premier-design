@@ -4,28 +4,25 @@ import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../UX/Title/Title';
 import {FC, ReactElement} from 'react';
 import {findItemByTitle} from '../../utils/findItemByTitle';
-import { DataProps} from '../../interface/interfaceData';
 import {TitleProps} from "../../interface/Title.props";
 import {ButtonProps} from "../../interface/Button.props";
+import {ServicesProps} from "../../interface/Services.props";
 
-const Services: FC<{ data: DataProps }> = ({
-                                               data
-                                           }): ReactElement => {
-    const titleData = findItemByTitle(data.title, "services") || {} as TitleProps;
-    const buttonData = findItemByTitle(data.button, "leave_request") || {} as ButtonProps;
+const Services: FC<ServicesProps> = ({titles, buttons, servicesCard}): ReactElement => {
+    const titleData = findItemByTitle(titles, "services") || {} as TitleProps;
+    const buttonData = findItemByTitle(buttons, "leave_request") || {} as ButtonProps;
 
-    const {title = '', description = '', shortTitle = ''} = titleData;
     return (
         <section className={styles.services}>
             <div className={styles.services__container}>
                 <Title
                     titleStyle='title-black'
                     descriptionStyle='description-black'
-                    title={title}
-                    description={description}
-                    shortTitle={shortTitle}
+                    title={titleData.title}
+                    description={titleData.description}
+                    shortTitle={titleData.shortTitle}
                 />
-                <ServicesCards data={data}/>
+                <ServicesCards cards={servicesCard}/>
                 <OrderButton
                     buttonData={buttonData.buttonHeader}
                     buttonStyle='button-black'

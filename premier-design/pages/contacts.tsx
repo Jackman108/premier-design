@@ -16,6 +16,7 @@ const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {
         buttonData,
         bannerData
     } = usePageData(data, "we-are-here-to-help", "leave_request", "contacts_banner");
+
     const pageMeta = data.pageMeta['contacts'];
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
     const {headerProps, footerProps} = useLayoutProps(data);
@@ -35,9 +36,7 @@ const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {
                     buttonStyle='button-white'
                 />
                 <Address/>
-                <Appeal
-                    data={data}
-                />
+                <Appeal data={data}/>
             </Layout>
         </>
     );

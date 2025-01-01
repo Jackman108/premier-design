@@ -12,6 +12,7 @@ import {useLayoutProps} from "../hooks/useLayoutProps";
 
 const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
     const {titleData, buttonData, bannerData} = usePageData(data, "repair-and-design", "leave_request", "home_banner");
+
     const pageMeta = data.pageMeta['home'];
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
     const {headerProps, footerProps} = useLayoutProps(data);
@@ -31,18 +32,28 @@ const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
                     buttonStyle='button-white'
                 />
                 <Features features={data.features}/>
-                <Services data={data}/>
-                <Approach data={data}/>
+                <Services
+                    titles={data.title}
+                    buttons={data.button}
+                    servicesCard={data.cards.servicesCard}
+                />
+                <Approach
+                    titles={data.title}
+                    cards={data.cards.approachCard}
+                />
                 <Examples
                     cards={data.cards.examplesCard}
                     titles={data.title}
                     enableSlider={enableSlider}
                 />
                 <Costing
-                    cards={data.cards.costingCard}
                     titles={data.title}
+                    cards={data.cards.costingCard}
                 />
-                <Reviews data={data}/>
+                <Reviews
+                    titles={data.title}
+                    reviews={data.reviews}
+                />
                 <Appeal data={data}/>
             </Layout>
         </>

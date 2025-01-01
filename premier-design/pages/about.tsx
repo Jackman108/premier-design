@@ -11,11 +11,8 @@ import {getFullCanonicalUrl} from "../utils/findService";
 import {useLayoutProps} from "../hooks/useLayoutProps";
 
 const About: NextPage<GetDataProps> = ({data}): ReactElement => {
-    const {
-        titleData,
-        buttonData,
-        bannerData,
-    } = usePageData(data, "our-values", "leave_request", "about_banner");
+    const {titleData, buttonData, bannerData} = usePageData(data, "our-values", "leave_request", "about_banner");
+
     const pageMeta = data.pageMeta['about'];
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
     const {headerProps, footerProps} = useLayoutProps(data);
