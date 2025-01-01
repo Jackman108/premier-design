@@ -17,6 +17,7 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
     const pageMeta = data.pageMeta['repairs'];
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
     const {headerProps, footerProps} = useLayoutProps(data);
+    const costingCards = data.cards.costingCard;
 
     return (
         <>
@@ -25,7 +26,7 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
                 description={pageMeta.description}
                 canonical={fullCanonicalUrl}
             />
-            <Layout headerProps={headerProps} footerProps={footerProps}>
+            <Layout headerProps={headerProps} footerProps={footerProps} costingCards={costingCards}>
                 <Banner
                     titleData={titleData}
                     buttonData={buttonData}

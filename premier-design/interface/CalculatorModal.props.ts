@@ -3,7 +3,7 @@ import {CostingCardProps} from "./Cards.props";
 export interface CalculatorModalProps {
     onClose: () => void;
     card: CostingCardProps;
-    data: CostingCardProps[];
+    cards: CostingCardProps[];
 }
 
 export interface CollapsibleContainerProps {

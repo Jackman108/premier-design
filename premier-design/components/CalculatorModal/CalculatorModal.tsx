@@ -7,10 +7,10 @@ import ModalTabs from './ModalTabs/ModalTabs';
 import Preloader from '../UX/Preloader/Preloader';
 import {CalculatorModalProps} from '../../interface/CalculatorModal.props';
 import styles from './CalculatorModal.module.css';
-import { typeItemsConfig} from "../../configs/factorsConfig";
+import {typeItemsConfig} from "../../configs/factorsConfig";
 import useCalculatorHandlers from "../../hooks/useCalculatorHandlers";
 
-const CalculatorModal: FC<CalculatorModalProps> = ({data, card, onClose}) => {
+const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
     const {
         selectedTab,
         inputValue,
@@ -45,7 +45,7 @@ const CalculatorModal: FC<CalculatorModalProps> = ({data, card, onClose}) => {
                         <ModalTabs
                             handleTabChange={handleTabChange}
                             selectedTab={selectedTab}
-                            data={data}
+                            data={cards}
                         />
                         <CollapsibleContainer
                             items={serviceTypeItems}

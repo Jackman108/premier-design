@@ -4,8 +4,9 @@ import Header from './Header/Header';
 import Footer from './Footer/Footer';
 import {FC, ReactElement} from 'react';
 import ChatBotSidebar from '../components/ChatBotSidebar/ChatBotSidebar';
+import CalculatorButton from "../components/CalculatorButton/CalculatorButton";
 
-const Layout: FC<LayoutProps> = ({children, headerProps, footerProps}: LayoutProps): ReactElement => {
+const Layout: FC<LayoutProps> = ({children, headerProps, footerProps, costingCards}: LayoutProps): ReactElement => {
 
     return (
         <>
@@ -13,6 +14,7 @@ const Layout: FC<LayoutProps> = ({children, headerProps, footerProps}: LayoutPro
             <main className={styles.body} role='main'>
                 {children}
                 <ChatBotSidebar/>
+                <CalculatorButton costingCards={costingCards}/>
             </main>
             <Footer {...footerProps}/>
         </>

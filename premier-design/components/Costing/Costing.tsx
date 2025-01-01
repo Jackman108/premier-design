@@ -22,7 +22,7 @@ const Costing: FC<{ cards: CostingCardProps[]; titles: TitleProps[] }> = ({
                     shortTitle={shortTitle}
                 />
                 <CostingCards
-                    data={cards}
+                    cards={cards}
                 />
             </div>
         </section>

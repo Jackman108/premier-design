@@ -33,6 +33,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
     const menuData = data.menu;
     const papersData = data.papers;
     const newsData = data.news;
+    const costingData = data.cards.costingCard;
 
     return {
         props: {
@@ -41,6 +42,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
             menuData,
             papersData,
             newsData,
+            costingData,
         },
     };
 };

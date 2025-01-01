@@ -3,7 +3,7 @@
 	align-items: center;
 	position: fixed;
 	right: 1%;
-	bottom: 55%;
+	bottom: 49%;
 	height: 6%;
 	width: 50px;
 	padding: 0 7px 0;
@@ -44,15 +44,6 @@
 	vertical-align: top;
 }
 
-.chatbot {
-	position: fixed;
-	right: 3%;
-	bottom: 16%;
-	z-index: 1000;
-}
-
-
-/* Показ текста при наведении */
 .toggle_button:hover .sticky_button_text {
 	width: auto;
 	opacity: 1;

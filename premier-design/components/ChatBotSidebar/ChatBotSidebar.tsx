@@ -1,5 +1,5 @@
 'use client'
-import {ReactElement, useEffect, useState} from "react";
+import React, {ReactElement, useEffect, useState} from "react";
 import {Chatbot} from "react-chatbot-kit";
 import chatbotConfig from './config';
 import MessageParser from './MessageParser';
@@ -7,6 +7,7 @@ import ActionProvider from './ActionProvider';
 import styles from './ChatBotSidebar.module.css';
 import 'react-chatbot-kit/build/main.css'
 import {IMessage} from "react-chatbot-kit/build/src/interfaces/IMessages";
+import Image from "next/image";
 
 const ChatBotSidebar = (): ReactElement => {
     const [isBotOpen, setIsBotOpen] = useState(false);
@@ -40,7 +41,16 @@ const ChatBotSidebar = (): ReactElement => {
                 onClick={handleToggle}
                 className={styles.toggle_button}
             >
-                {isBotOpen ? "Закрыть" : "Чат"}
+                <Image
+                    src="/panel/chat.svg"
+                    alt="Чат"
+                    width={40}
+                    height={36}
+                    className={styles.button_icon}
+                />
+                <div className={styles.sticky_button_text}>
+                    <span>Спросить в чате</span>
+                </div>
             </button>
             <div>
                 {isBotOpen && (

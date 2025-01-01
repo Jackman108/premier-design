@@ -7,9 +7,9 @@ import Image from 'next/image';
 import CalculatorModal from '../../CalculatorModal/CalculatorModal';
 import {CostingCardProps} from "../../../interface/Cards.props";
 
-const CostingCards: FC<{ data: CostingCardProps[] }> = ({
-                                                            data
-                                                        }): ReactElement => {
+const CostingCards: FC<{ cards: CostingCardProps[] }> = ({
+                                                             cards
+                                                         }): ReactElement => {
     const {isMobile} = useResizeEffects();
     const slidesPerView = 3;
 
@@ -29,11 +29,11 @@ const CostingCards: FC<{ data: CostingCardProps[] }> = ({
     useEffect(() => {
         setIsModalOpen(false);
         setSelectedCard(null);
-    }, [data]);
+    }, [cards]);
     return (
         <div className={styles.costing__cards} id="costing-cards">
             <SliderComponent slidesPerView={slidesPerView} isMobile={isMobile}>
-                {data.map(({id, title, image}: CostingCardProps) => (
+                {cards.map(({id, title, image}: CostingCardProps) => (
                     <div
                         className={styles.costing__card}
                         key={id}
@@ -57,7 +57,7 @@ const CostingCards: FC<{ data: CostingCardProps[] }> = ({
                 <CalculatorModal
                     card={selectedCard}
                     onClose={closeModal}
-                    data={data}
+                    cards={cards}
                 />
             )}
         </div>
