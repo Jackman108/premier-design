@@ -1,20 +1,14 @@
-import {  useState } from 'react';
+import {useCallback, useState} from 'react';
 import {MenuMobileProps} from '../interface/Menu.props';
 
-function useMobileMenu(initialValue = false): MenuMobileProps {
+function useMobileMenu(initialValue = false): Omit<MenuMobileProps, 'menu'> {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(initialValue);
 
-    function toggleMobileMenu(): void {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    }
+    const toggleMobileMenu = useCallback(() => {
+        setIsMobileMenuOpen((prev) => !prev);
+    }, []);
 
-    return {
-        data: {
-            menu: []
-        },
-        isMobileMenuOpen,
-        toggleMobileMenu,
-    };
+    return {isMobileMenuOpen, toggleMobileMenu};
 }
 
 export default useMobileMenu;

@@ -8,12 +8,13 @@ import MenuButton from '../../components/UX/MenuButton/MenuButton';
 import ThemeButton from '../../components/UX/ThemeButton/ThemeButton';
 import styles from './Header.module.css';
 import {FC, ReactElement} from 'react';
-import {GetDataProps} from '../../interface/interfaceData';
+import {HeaderProps} from "../../interface/Layout.props";
 
 
-const Header: FC<GetDataProps> = ({data}): ReactElement => {
+const Header: FC<HeaderProps> = ({menu}): ReactElement => {
     const {currentTheme, toggleTheme} = useThemeToggle();
     const {isMobileMenuOpen, toggleMobileMenu} = useMobileMenu(false);
+
     return (
         <header className={styles.header}>
             <div className={styles.header__container}>
@@ -21,7 +22,7 @@ const Header: FC<GetDataProps> = ({data}): ReactElement => {
                 <Menu
                     isMobileMenuOpen={isMobileMenuOpen}
                     toggleMobileMenu={toggleMobileMenu}
-                    data={data}
+                    menu={menu}
                     menuStyle='header'/>
                 <div className={styles.contact__container}>
                     <Phone/>
@@ -31,14 +32,17 @@ const Header: FC<GetDataProps> = ({data}): ReactElement => {
                     <ThemeButton
                         currentTheme={currentTheme}
                         toggleTheme={toggleTheme}/>
-                    <MenuButton data={data}
-                                isMobileMenuOpen={isMobileMenuOpen}
-                                toggleMobileMenu={toggleMobileMenu}/>
+                    <MenuButton
+                        menu={menu}
+                        isMobileMenuOpen={isMobileMenuOpen}
+                        toggleMobileMenu={toggleMobileMenu}
+                    />
                 </div>
-                <Menu data={data}
-                      menuStyle='mobile'
-                      isMobileMenuOpen={isMobileMenuOpen}
-                      toggleMobileMenu={toggleMobileMenu}/>
+                <Menu
+                    menu={menu}
+                    menuStyle='mobile'
+                    isMobileMenuOpen={isMobileMenuOpen}
+                    toggleMobileMenu={toggleMobileMenu}/>
             </div>
         </header>
     );

@@ -8,11 +8,13 @@ import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import Reviews from "../components/Reviews/Reviews";
 import {getFullCanonicalUrl} from "../utils/findService";
+import {useLayoutProps} from "../hooks/useLayoutProps";
 
 const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
     const {titleData, buttonData, bannerData} = usePageData(data, "repair-and-design", "leave_request", "home_banner");
     const pageMeta = data.pageMeta['home'];
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
+    const {headerProps, footerProps} = useLayoutProps(data);
 
     return (
         <>
@@ -21,7 +23,7 @@ const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
                 description={pageMeta.description}
                 canonical={fullCanonicalUrl}
             />
-            <Layout data={data}>
+            <Layout headerProps={headerProps} footerProps={footerProps}>
                 <Banner
                     titleData={titleData}
                     buttonData={buttonData}

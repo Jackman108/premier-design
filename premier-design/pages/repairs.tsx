@@ -9,6 +9,7 @@ import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import Category from "../components/Category/Category";
 import {getFullCanonicalUrl} from "../utils/findService";
+import {useLayoutProps} from "../hooks/useLayoutProps";
 
 const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
     const {
@@ -19,6 +20,7 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
 
     const pageMeta = data.pageMeta['repairs'];
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
+    const {headerProps, footerProps} = useLayoutProps(data);
 
     return (
         <>
@@ -27,7 +29,7 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
                 description={pageMeta.description}
                 canonical={fullCanonicalUrl}
             />
-            <Layout data={data}>
+            <Layout headerProps={headerProps} footerProps={footerProps}>
                 <Banner
                     titleData={titleData}
                     buttonData={buttonData}

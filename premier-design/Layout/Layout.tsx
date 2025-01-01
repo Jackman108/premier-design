@@ -5,16 +5,16 @@ import Footer from './Footer/Footer';
 import {FC, ReactElement} from 'react';
 import ChatBotSidebar from '../components/ChatBotSidebar/ChatBotSidebar';
 
-const Layout: FC<LayoutProps> = ({children, data}: LayoutProps): ReactElement => {
+const Layout: FC<LayoutProps> = ({children, headerProps, footerProps}: LayoutProps): ReactElement => {
 
     return (
         <>
-            <Header data={data}/>
+            <Header {...headerProps}/>
             <main className={styles.body} role='main'>
                 {children}
                 <ChatBotSidebar/>
             </main>
-            <Footer data={data}/>
+            <Footer {...footerProps}/>
         </>
     );
 }

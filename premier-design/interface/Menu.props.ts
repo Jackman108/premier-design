@@ -5,9 +5,7 @@ export interface MenuProps {
 }
 
 export interface MenuMobileProps {
-    data: {
-        menu: MenuProps[];
-    };
+    menu: MenuProps[];
     isMobileMenuOpen: boolean;
     toggleMobileMenu: () => void;
 }

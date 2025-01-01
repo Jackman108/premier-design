@@ -29,10 +29,18 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
     if (!service) {
         return {notFound: true};
     }
+
+    const menuData = data.menu;
+    const papersData = data.papers;
+    const newsData = data.news;
+
     return {
         props: {
             service,
             categoryDescription,
+            menuData,
+            papersData,
+            newsData,
         },
     };
 };

@@ -8,6 +8,7 @@ import Banner from "../components/Banner/Banner";
 import {Appeal, News, OfferList, Partners, StepsWork} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 import {getFullCanonicalUrl} from "../utils/findService";
+import {useLayoutProps} from "../hooks/useLayoutProps";
 
 const About: NextPage<GetDataProps> = ({data}): ReactElement => {
     const {
@@ -17,6 +18,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
     } = usePageData(data, "our-values", "leave_request", "about_banner");
     const pageMeta = data.pageMeta['about'];
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
+    const {headerProps, footerProps} = useLayoutProps(data);
 
     return (
         <>
@@ -25,7 +27,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
                 description={pageMeta.description}
                 canonical={fullCanonicalUrl}
             />
-            <Layout data={data}>
+            <Layout headerProps={headerProps} footerProps={footerProps}>
                 <Banner
                     titleData={titleData}
                     buttonData={buttonData}

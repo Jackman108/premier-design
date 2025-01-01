@@ -4,14 +4,21 @@ import {ServiceDetailProps} from "../../interface/ServiceDetail.props";
 import CustomHead from "../CustomHead/CustomHead";
 import styles from './ServiceDetail.module.css';
 import {getFullCanonicalUrl} from "../../utils/findService";
+import Layout from "../../Layout/Layout";
 
-const ServiceDetail: FC<ServiceDetailProps> = ({service, categoryDescription}) => {
+const ServiceDetail: FC<ServiceDetailProps> = ({
+                                                   service,
+                                                   categoryDescription,
+                                                   menuData,
+                                                   papersData,
+                                                   newsData,
+                                               }) => {
     const router = useRouter();
+    const fullCanonicalUrl = getFullCanonicalUrl(service.canonical);
 
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
-    const fullCanonicalUrl = getFullCanonicalUrl(service.canonical);
 
     return (
         <>
@@ -20,14 +27,24 @@ const ServiceDetail: FC<ServiceDetailProps> = ({service, categoryDescription}) =
                 description={categoryDescription}
                 canonical={fullCanonicalUrl}
             />
-            <section>
-                <h1 className={styles.categoryDetail}>{categoryDescription}</h1>
-                <p>
-                    <span>{service.service}</span>
-                    <span><strong>Ед. измер</strong>: {service.unit}</span>
-                    <span><strong>Цена</strong>: {service.price}</span>
-                </p>
-            </section>
+            <Layout
+                headerProps={{menu: menuData}}
+                footerProps={{
+                    papers: papersData,
+                    news: newsData,
+                    menu: menuData,
+                }}
+            >
+                <section>
+                    <h1 className={styles.categoryDetail}>{categoryDescription}</h1>
+                    <p>
+                        <span>{service.service}</span>
+                        <span><strong>Ед. измер</strong>: {service.unit}</span>
+                        <span><strong>Цена</strong>: {service.price}</span>
+                    </p>
+                </section>
+            </Layout>
+
         </>
     );
 };

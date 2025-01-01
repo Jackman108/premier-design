@@ -8,6 +8,7 @@ import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer} from '../c
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import {getFullCanonicalUrl} from "../utils/findService";
+import {useLayoutProps} from "../hooks/useLayoutProps";
 
 const Design: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
     const pageMeta = data.pageMeta['design'];
@@ -18,6 +19,8 @@ const Design: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement 
         bannerData,
     } = usePageData(data, "comfort-dreams", "order_project", "design_banner");
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
+    const {headerProps, footerProps} = useLayoutProps(data);
+
 
     return (
         <>
@@ -26,7 +29,7 @@ const Design: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement 
                 description={pageMeta.description}
                 canonical={fullCanonicalUrl}
             />
-            <Layout data={data}>
+            <Layout headerProps={headerProps} footerProps={footerProps}>
                 <Banner
                     titleData={titleData}
                     buttonData={buttonData}
