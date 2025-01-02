@@ -13,6 +13,8 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                                                    papersData,
                                                    newsData,
                                                    costingData,
+                                                   buttonData,
+                                                   panelData,
                                                }) => {
     const router = useRouter();
     const fullCanonicalUrl = getFullCanonicalUrl(service.canonical);
@@ -37,6 +39,8 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                     menu: menuData,
                 }}
                 costingCards={costingData}
+                buttonData={buttonData}
+                panelData={panelData}
             >
                 <section>
                     <h1 className={styles.categoryDetail}>{categoryDescription}</h1>
@@ -49,7 +53,8 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
             </Layout>
 
         </>
-    );
+    )
+        ;
 };
 
 export default ServiceDetail;

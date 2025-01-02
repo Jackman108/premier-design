@@ -1,12 +1,12 @@
 'use client'
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import useMobileMenu from './useMobileMenu';
-import { UseResizeEffectsReturnType } from '../interface/Menu.props';
+import {UseResizeEffectsReturnType} from '../interface/Menu.props';
 
 const MOBILE_BREAKPOINT = 768;
 
 function useResizeEffects(): UseResizeEffectsReturnType {
-    const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);
+    const {isMobileMenuOpen, toggleMobileMenu} = useMobileMenu(false);
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
@@ -14,9 +14,6 @@ function useResizeEffects(): UseResizeEffectsReturnType {
             const isWindowMobile = document.documentElement.clientWidth <= MOBILE_BREAKPOINT;
             if (isWindowMobile !== isMobile) {
                 setIsMobile(isWindowMobile);
-                if (isWindowMobile) {
-                    toggleMobileMenu?.();
-                }
             }
         };
 
@@ -27,7 +24,7 @@ function useResizeEffects(): UseResizeEffectsReturnType {
         };
     }, [toggleMobileMenu, isMobile]);
 
-    return { isMobileMenuOpen, toggleMobileMenu, isMobile };
+    return {isMobileMenuOpen, toggleMobileMenu, isMobile};
 }
 
 export default useResizeEffects;

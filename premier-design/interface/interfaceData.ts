@@ -12,6 +12,7 @@ import {PartnersProps} from "./Partners.props";
 import {StepsWorkProps} from "./StepsWork.props";
 import {Prices} from "./Prices.props";
 import {Review} from "./Review.props";
+import {PanelProps} from "./Panel.props";
 
 export interface DataProps {
     menu: MenuProps[];
@@ -43,6 +44,7 @@ export interface DataProps {
     papers: Paper[];
     prices: Prices;
     reviews: Review[];
+    panel: PanelProps[];
 }
 
 export interface GetDataProps {

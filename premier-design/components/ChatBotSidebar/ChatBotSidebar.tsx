@@ -1,35 +1,22 @@
 'use client'
-import React, {ReactElement, useEffect, useState} from "react";
+import React, {FC, useState} from "react";
 import {Chatbot} from "react-chatbot-kit";
 import chatbotConfig from './config';
 import MessageParser from './MessageParser';
 import ActionProvider from './ActionProvider';
 import styles from './ChatBotSidebar.module.css';
 import 'react-chatbot-kit/build/main.css'
-import {IMessage} from "react-chatbot-kit/build/src/interfaces/IMessages";
-import Image from "next/image";
+import {useChatMessages} from "../../hooks/useChatMessages";
+import PanelButton from "../UX/PanelButton/PanelButton";
+import {PanelProps} from "../../interface/Panel.props";
 
-const ChatBotSidebar = (): ReactElement => {
+interface ChatBotSidebarProps {
+    panelData: PanelProps;
+}
+
+const ChatBotSidebar: FC<ChatBotSidebarProps> = ({ panelData}) => {
     const [isBotOpen, setIsBotOpen] = useState(false);
-    const [messages, setMessages] = useState<IMessage[]>([]);
-
-    useEffect(() => {
-        const loadedMessages = loadMessages();
-        setMessages(loadedMessages);
-        if (loadedMessages.length > 0) {
-            saveMessages(loadedMessages);
-        }
-    }, []);
-
-    const saveMessages = (messages: IMessage[]) => {
-        localStorage.setItem('chat_messages', JSON.stringify(messages));
-    };
-
-    const loadMessages = (): IMessage[] => {
-        const messagesString = localStorage.getItem('chat_messages');
-        return messagesString ? JSON.parse(messagesString) : [];
-
-    };
+    const [messages, saveMessages] = useChatMessages();
 
     const handleToggle = () => {
         setIsBotOpen(prev => !prev);
@@ -37,21 +24,15 @@ const ChatBotSidebar = (): ReactElement => {
 
     return (
         <div>
-            <button
+
+            <PanelButton
+                id={panelData.id}
                 onClick={handleToggle}
-                className={styles.toggle_button}
-            >
-                <Image
-                    src="/panel/chat.svg"
-                    alt="Чат"
-                    width={40}
-                    height={36}
-                    className={styles.button_icon}
-                />
-                <div className={styles.sticky_button_text}>
-                    <span>Спросить в чате</span>
-                </div>
-            </button>
+                icon={panelData.icon}
+                altText={panelData.altText}
+                text={panelData.text}
+                position={panelData.position}
+            />
             <div>
                 {isBotOpen && (
                     <div className={styles.chatbot}>
@@ -59,10 +40,7 @@ const ChatBotSidebar = (): ReactElement => {
                             config={chatbotConfig}
                             messageParser={MessageParser}
                             actionProvider={ActionProvider}
-                            messageHistory={
-                                messages.length > 0
-                                    ? messages
-                                    : chatbotConfig.initialMessages}
+                            messageHistory={messages.length > 0 ? messages : chatbotConfig.initialMessages}
                             saveMessages={saveMessages}
                             placeholderText='Задайте Ваш вопрос'
                             runInitialMessagesWithHistory={true}

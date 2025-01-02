@@ -4,23 +4,20 @@ import Phone from '../UX/Phone/Phone';
 import CustomAvatar from './CustomAvatar';
 import {CustomAvatarProps} from '../../interface/ChatBot.props';
 
-const botName = 'Алина';
-const botAvatarPath = '/botAvatars/botAvatar.webp';
-const userAvatarPath = '/botAvatars/userAvatar.webp';
+const BOT_NAME = 'Алина';
+const BOT_AVATAR_PATH = '/botAvatars/botAvatar.webp';
+const USER_AVATAR_PATH = '/botAvatars/userAvatar.webp';
+
+const GREETING_MESSAGE = `Привет, я ${BOT_NAME}. Буду рада тебе помочь!`;
+const INFO_MESSAGE = `Для получения подробной информации можешь нам позвонить, написать в соц. сети или заполнить форму, и Мы тебе скоро перезвоним!`;
+
+
 const config = {
-    botName: botName,
-    lang: 'no',
+    botName: BOT_NAME,
+    lang: 'ru',
     initialMessages: [
-        createChatBotMessage(
-            `Привет, я ${botName}. Буду рада тебе помочь!`,
-            {delay: 0},
-        ),
-        createChatBotMessage(
-            `Для получения подробной информации можешь нам позвонить, написать в соц. сети или заполнить форму и Мы тебе скоро перезвоним!`,
-            {
-                delay: 2000,
-                widget: 'Phone',
-            },
+        createChatBotMessage(GREETING_MESSAGE, {delay: 0}),
+        createChatBotMessage(INFO_MESSAGE, {delay: 2000, widget: 'Phone'},
         ),
     ],
     widgets: [
@@ -54,12 +51,12 @@ const config = {
             backgroundColor: "#786B64",
             padding: "5px",
             borderRadius: "3px"
-        }}>Ваш консультант {botName}</div>,
+        }}>Ваш консультант {BOT_NAME}</div>,
         botAvatar: (props: CustomAvatarProps) => (
-            <CustomAvatar {...props} src={botAvatarPath} alt="Bot Avatar"/>
+            <CustomAvatar {...props} src={BOT_AVATAR_PATH} alt="Bot Avatar"/>
         ),
         userAvatar: (props: CustomAvatarProps) => (
-            <CustomAvatar {...props} src={userAvatarPath} alt="User Avatar"/>
+            <CustomAvatar {...props} src={USER_AVATAR_PATH} alt="User Avatar"/>
         ),
     },
 };

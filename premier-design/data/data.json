@@ -36,9 +36,37 @@
       "id": 2,
       "buttonHeader": "Заказать проект",
       "shortTitle": "order_project"
+    },
+    {
+      "id": 3,
+      "buttonHeader": "Получить консультацию",
+      "shortTitle": "get_counseling"
     }
   ],
-  "news": [
+  "panel": [
+    {
+      "id": "phoneButton",
+      "icon": "/panel/phone.svg",
+      "altText": "Телефон",
+      "text": "Получить консультацию",
+      "position": { "bottom": "61%" }
+    },
+    {
+      "id": "calculatorButton",
+      "icon": "/panel/calculator.svg",
+      "altText": "Калькулятор",
+      "text": "Рассчитать стоимость",
+      "position": { "bottom": "49%" }
+    },
+    {
+      "id": "chatButton",
+      "icon": "/panel/chat.svg",
+      "altText": "Чат",
+      "text": "Спросить в чате",
+      "position": { "bottom": "55%" }
+    }
+  ],
+"news": [
     {
       "id": 1,
       "image": "/news/news01.webp",

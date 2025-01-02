@@ -1,9 +1,9 @@
 import Image from 'next/image';
-import React from 'react';
-import { CustomAvatarProps } from '../../interface/ChatBot.props';
+import React, {FC} from 'react';
+import {CustomAvatarProps} from '../../interface/ChatBot.props';
 
-const CustomAvatar = ({ src, alt }: CustomAvatarProps) => {
-    return <Image src={src} alt={alt} width={50} height={50} />;
+const CustomAvatar: FC<CustomAvatarProps> = ({src, alt}) => {
+    return <Image src={src} alt={alt} width={50} height={50}/>;
 };
 
 export default CustomAvatar;

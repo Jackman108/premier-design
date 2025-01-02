@@ -34,6 +34,8 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
     const papersData = data.papers;
     const newsData = data.news;
     const costingData = data.cards.costingCard;
+    const buttonData = data.button;
+    const panelData = data.panel;
 
     return {
         props: {
@@ -43,6 +45,8 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
             papersData,
             newsData,
             costingData,
+            buttonData,
+            panelData
         },
     };
 };

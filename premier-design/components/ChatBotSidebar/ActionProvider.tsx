@@ -1,54 +1,24 @@
 'use client'
-import React, { FC, ReactElement } from 'react';
-import { ActionProviderProps, ChatState } from '../../interface/ChatBot.props';
+import React, {FC, ReactElement, SetStateAction} from 'react';
+import {ActionProviderProps, ChatState} from '../../interface/ChatBot.props';
 
-const ActionProvider: FC<ActionProviderProps> = ({
-    createChatBotMessage,
-    setState,
-    children
-}: ActionProviderProps) => {
-    const handleHello = (): void => {
-        const botMessage = createChatBotMessage('Чем могу быть полезна?');
-        setState((prev: ChatState) => ({
-            ...prev,
-            messages: [...prev.messages, botMessage],
-        }));
-    };
-    const handleBye = () => {
-        const botMessage = createChatBotMessage('Рада была помочь!');
-        setState((prev: ChatState) => ({
-            ...prev,
-            messages: [...prev.messages, botMessage],
-        }));
-    };
-    const handleServices = () => {
-        const botMessage = createChatBotMessage('Мы предоставляем широкий спектр услуг по ремонту интерьеров, включая покраску стен, укладку полов, установку мебели и многое другое. Расскажите нам, что вас интересует, и мы с радостью поможем вам с вашим проектом!');
-        setState((prev: ChatState) => ({
-            ...prev,
-            messages: [...prev.messages, botMessage],
-        }));
-    };
-    const handlePortfolio = () => {
-        const botMessage = createChatBotMessage('У нас есть много успешных проектов в нашем портфолио. Можете посмотреть его на нашем сайте в разделе "Примеры работ".');
-        setState((prev: ChatState) => ({
-            ...prev,
-            messages: [...prev.messages, botMessage],
-        }));
-    };
-    const handlePricing = () => {
-        const botMessage = createChatBotMessage('Для получения информации о ценах на наши услуги, пожалуйста, свяжитесь с нами по указанным контактам.');
-        setState((prev: ChatState) => ({
-            ...prev,
-            messages: [...prev.messages, botMessage],
-        }));
-    };
-    const handleAppointment = () => {
-        const botMessage = createChatBotMessage('Для записи на прием, пожалуйста, свяжитесь с нами по указанным контактам или заполните форму на нашем сайте.');
-        setState((prev: ChatState) => ({
-            ...prev,
-            messages: [...prev.messages, botMessage],
-        }));
-    };
+const sendMessage = (createChatBotMessage: (message: string) => ReactElement, setState: React.Dispatch<SetStateAction<ChatState>>, message: string) => {
+    const botMessage = createChatBotMessage(message);
+    setState((prev: ChatState) => ({
+        ...prev,
+        messages: [...prev.messages, botMessage],
+    }));
+};
+
+const ActionProvider: FC<ActionProviderProps> = ({createChatBotMessage, setState, children}) => {
+
+    const handleHello = () => sendMessage(createChatBotMessage, setState, 'Чем могу быть полезна?');
+    const handleBye = () => sendMessage(createChatBotMessage, setState, 'Рада была помочь!');
+    const handleServices = () => sendMessage(createChatBotMessage, setState, 'Мы предоставляем широкий спектр услуг по ремонту интерьеров, включая покраску стен, укладку полов, установку мебели и многое другое. Расскажите нам, что вас интересует, и мы с радостью поможем вам с вашим проектом!');
+    const handlePortfolio = () => sendMessage(createChatBotMessage, setState, 'У нас есть много успешных проектов в нашем портфолио.Можете посмотреть его на нашем сайте в разделе "Примеры работ".');
+    const handlePricing = () => sendMessage(createChatBotMessage, setState, 'Для получения информации о ценах на наши услуги, пожалуйста, свяжитесь с нами по указанным контактам.');
+    const handleAppointment = () => sendMessage(createChatBotMessage, setState, 'Для записи на прием, пожалуйста, свяжитесь с нами по указанным контактам или заполните форму на нашем сайте.');
+
     return (
         <>
             {React.Children.map(children, (child) => {

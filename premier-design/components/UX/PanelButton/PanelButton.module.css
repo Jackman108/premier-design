@@ -1,0 +1,45 @@
+/* Общие стили для всех кнопок */
+.button-common {
+	display: flex;
+	align-items: center;
+	position: fixed;
+	right: 1%;
+	padding: 0 7px 0;
+	background: linear-gradient(to top, var(--brown) 0%, gold 100%), linear-gradient(to left, var(--brown) 0%, gold 100%);
+	color: white;
+	border: none;
+	cursor: pointer;
+	z-index: 9999;
+	opacity: 0.7;
+	transition: background-color 0.3s ease;
+	height: 6%;
+	width: 50px;
+}
+
+.sticky_button_text {
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	background: linear-gradient(to top, var(--brown) 0%, gold 100%), linear-gradient(to left, var(--brown) 0%, gold 100%);
+	color: white;
+	font-size: 14px;
+	position: fixed;
+	width: 0;
+	z-index: 6;
+	padding: 10px 10px 10px 20px;
+	line-height: 120%;
+	height: 6%;
+	opacity: 0;
+	right: 50px;
+	transition: 0.5s all;
+	white-space: nowrap;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.button_icon {
+	padding: 0 3px 10px;
+	transition: opacity .25s ease-in-out;
+	vertical-align: top;
+}

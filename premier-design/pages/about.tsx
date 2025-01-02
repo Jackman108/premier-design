@@ -15,8 +15,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
 
     const pageMeta = data.pageMeta['about'];
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
-    const {headerProps, footerProps} = useLayoutProps(data);
-    const costingCards = data.cards.costingCard;
+    const layoutProps = useLayoutProps(data);
 
     return (
         <>
@@ -25,7 +24,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
                 description={pageMeta.description}
                 canonical={fullCanonicalUrl}
             />
-            <Layout headerProps={headerProps} footerProps={footerProps} costingCards={costingCards}>
+            <Layout {...layoutProps}>
                 <Banner
                     titleData={titleData}
                     buttonData={buttonData}

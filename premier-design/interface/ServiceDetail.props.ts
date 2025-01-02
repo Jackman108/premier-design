@@ -4,6 +4,8 @@ import {NewsProps} from "./News.props";
 import {Paper} from "./Paper.props";
 import {MenuProps} from "./Menu.props";
 import {CostingCardProps} from "./Cards.props";
+import {ButtonProps} from "./Button.props";
+import {PanelProps} from "./Panel.props";
 
 export interface ServiceDetailProps {
     service: PriceItem;
@@ -12,6 +14,8 @@ export interface ServiceDetailProps {
     papersData: Paper[];
     newsData: NewsProps[];
     costingData: CostingCardProps[];
+    buttonData: ButtonProps[];
+    panelData: PanelProps[];
 }
 
 export interface Params extends ParsedUrlQuery {

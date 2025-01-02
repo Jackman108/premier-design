@@ -1,4 +1,4 @@
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 import {MenuMobileProps} from '../interface/Menu.props';
 
 function useMobileMenu(initialValue = false): Omit<MenuMobileProps, 'menu'> {
@@ -7,6 +7,19 @@ function useMobileMenu(initialValue = false): Omit<MenuMobileProps, 'menu'> {
     const toggleMobileMenu = useCallback(() => {
         setIsMobileMenuOpen((prev) => !prev);
     }, []);
+
+    useEffect(() => {
+        if (isMobileMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [isMobileMenuOpen]);
+
 
     return {isMobileMenuOpen, toggleMobileMenu};
 }

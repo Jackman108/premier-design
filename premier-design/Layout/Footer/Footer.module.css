@@ -15,8 +15,20 @@
 }
 
 @media screen and (max-width: 768px) {
+	.footer {
+		padding: 2vh;
+	}
+
 	.footer__container {
 		grid-template-columns: auto;
 		height: 100%;
+	}
+
+	.footer__papers {
+		order: 2;
+	}
+
+	.footer__container > .menu {
+		order: 1;
 	}
 }
