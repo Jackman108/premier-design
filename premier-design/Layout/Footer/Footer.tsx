@@ -5,6 +5,7 @@ import Menu from "../../components/Menu/Menu";
 import {Copyrighting, News} from '../../components';
 import Papers from "../../components/Papers/Papers";
 import {FooterProps} from "../../interface/Layout.props";
+import CookiesBanner from "../../components/CookiesBanner/CookiesBanner";
 
 const Footer: FC<FooterProps> = ({papers, news, menu}) => {
     const {isMobileMenuOpen, toggleMobileMenu,} = useResizeEffects();
@@ -24,6 +25,7 @@ const Footer: FC<FooterProps> = ({papers, news, menu}) => {
                     toggleMobileMenu={toggleMobileMenu}
                 />
             </div>
+            <CookiesBanner papers={papers}/>
         </footer>
     );
 };

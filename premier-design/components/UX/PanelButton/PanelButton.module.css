@@ -1,9 +1,8 @@
-/* Общие стили для всех кнопок */
-.button-common {
+.button_common {
 	display: flex;
 	align-items: center;
 	position: fixed;
-	right: 1%;
+	right: 5px;
 	padding: 0 7px 0;
 	background: linear-gradient(to top, var(--brown) 0%, gold 100%), linear-gradient(to left, var(--brown) 0%, gold 100%);
 	color: white;
@@ -29,7 +28,7 @@
 	line-height: 120%;
 	height: 6%;
 	opacity: 0;
-	right: 50px;
+	right: 55px;
 	transition: 0.5s all;
 	white-space: nowrap;
 	overflow: hidden;
@@ -42,4 +41,9 @@
 	padding: 0 3px 10px;
 	transition: opacity .25s ease-in-out;
 	vertical-align: top;
+}
+
+.button_common:hover .sticky_button_text {
+	width: auto;
+	opacity: 1;
 }

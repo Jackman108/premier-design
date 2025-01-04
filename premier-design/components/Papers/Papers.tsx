@@ -5,7 +5,7 @@ import {Paper} from '../../interface/Paper.props';
 import TextViewer from '../../components/TextViewer/TextViewer';
 import {usePapers} from '../../hooks/usePapers';
 
-interface FooterPapersProps {
+export interface FooterPapersProps {
     papers: Paper[];
 }
 

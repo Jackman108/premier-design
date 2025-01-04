@@ -4,12 +4,11 @@ import Image from "next/image";
 import {PanelProps} from "../../../interface/Panel.props";
 
 
-
- const PanelButton: FC<PanelProps> = ({ onClick, icon, altText, text, position }) => (
+const PanelButton: FC<PanelProps> = ({onClick, icon, altText, text, position}) => (
     <button
         onClick={onClick}
-        className={`${styles['button-common']}`}
-        style={{ bottom: position.bottom }}
+        className={`${styles['button_common']}`}
+        style={{bottom: position.bottom}}
     >
         <Image
             src={icon}

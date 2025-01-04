@@ -1,18 +1,14 @@
-import {ChangeEvent} from "react";
-
 export interface FeedbackItem {
     name: string;
     phone: string;
     email?: string;
     message: string;
+    consent: boolean
 }
 
 export interface FeedbackFormProps {
     onSubmit: (data: FeedbackItem) => Promise<void>;
-    onInputChange: (
-        event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-    ) => void;
-    formDataState: FeedbackItem;
+
 }
 
 export interface FeedbackModalProps {

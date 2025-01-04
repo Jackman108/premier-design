@@ -1,54 +1,41 @@
 'use client';
 import {ChangeEvent, FC, FormEvent, memo, useState} from "react";
 import styles from "./FeedbackForm.module.css";
-import {FeedbackFormProps} from "../../../interface/FeedbackModal.props";
-import {validatePhone} from "../../../validates/validatePhone";
-import {validateEmail} from "../../../validates/validateEmail";
+import {FeedbackFormProps, FeedbackItem} from "../../../interface/FeedbackModal.props";
 import {PatternFormat} from 'react-number-format';
+import {validateForm} from "../../../validates/validateForm";
 
 
-const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, formDataState, onInputChange}) => {
-    const [country, setCountry] = useState("by");
-    const [errors, setErrors] = useState({
+const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
+    const [formDataState, setFormDataState] = useState<FeedbackItem>({
         name: "",
         phone: "",
         email: "",
-        message: ""
+        message: "",
+        consent: false,
     });
+    const [country, setCountry] = useState("by");
+    const [isConsentGiven, setIsConsentGiven] = useState(false);
+    const [errors, setErrors] = useState({name: "", phone: "", email: "", message: "", consent: ""});
+
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setErrors(prevErrors => ({
-            ...prevErrors,
-            [event.target.name]: ""
-        }));
-        onInputChange(event);
+        const {name, value} = event.target;
+        setFormDataState((prev) => ({...prev, [name]: value}));
+        setErrors((prevErrors) => ({...prevErrors, [name]: ""}));
     };
 
     const handlePhoneChange = (values: { value: string }) => {
         const countryCode = country === 'ru' ? '+7' : '+375';
         const formattedPhone = `${countryCode}${values.value}`;
-        onInputChange({
-            target: {
-                name: 'phone',
-                value: formattedPhone,
-            },
-        } as ChangeEvent<HTMLInputElement>);
+        setFormDataState((prev) => ({...prev, phone: formattedPhone}));
+        setErrors((prevErrors) => ({...prevErrors, phone: ""}));
     };
 
-    const validateForm = () => {
-        return {
-            name: formDataState.name ? "" : "Введите ваше имя",
-            phone: formDataState.phone ? (validatePhone(formDataState.phone) ? "" : "Неверный формат номера телефона!") : "Введите ваш номер телефона",
-            email: formDataState.email && !validateEmail(formDataState.email) ? "Неверный формат email." : "",
-            message: formDataState.message ? "" : "Введите сообщение",
-        };
-    };
     const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(formDataState.phone)
 
-        const formErrors = validateForm();
-
+        const formErrors = validateForm(formDataState, isConsentGiven);
         if (Object.values(formErrors).some((error) => error)) {
             setErrors(formErrors);
             return;
@@ -120,14 +107,25 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, formDataState, onIn
                 />
                 {errors.message && <div className={styles.errorMessage}>{errors.message}</div>}
             </div>
+            <div className={`${styles.input__group}`}>
+                <label>
+                    <input
+                        type="checkbox"
+                        name="consent"
+                        checked={isConsentGiven}
+                        onChange={() => setIsConsentGiven(prev => !prev)}
+                    />
+                    Нажимая на кнопку, вы соглашаетесь с{" "}
+                    <a href="/user-agreement" target="_blank">пользовательским соглашением</a> и{" "}
+                    <a href="/privacy-policy" target="_blank">политикой конфиденциальности</a>.
+                </label>
+                {errors.consent && <div className={styles.errorMessage}>{errors.consent}</div>}
+            </div>
             <div className={styles.form__button}>
                 <button type="submit">Отправить</button>
             </div>
         </form>
     );
-}, (prevProps, nextProps) => {
-    return prevProps.onSubmit === nextProps.onSubmit
-        && prevProps.formDataState === nextProps.formDataState;
 });
 FeedbackForm.displayName = "FeedbackForm";
 export default FeedbackForm;

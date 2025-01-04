@@ -17,12 +17,8 @@ const CalculatorButton: FC<CalculatorButtonProps> = ({costingCards, panelData}) 
     return (
         <>
             <PanelButton
-                id={panelData.id}
+                {...panelData}
                 onClick={toggleModal}
-                icon={panelData.icon}
-                altText={panelData.altText}
-                text={panelData.text}
-                position={panelData.position}
             />
             {isModalOpen && (
                 <CalculatorModal

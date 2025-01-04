@@ -14,7 +14,7 @@ interface ChatBotSidebarProps {
     panelData: PanelProps;
 }
 
-const ChatBotSidebar: FC<ChatBotSidebarProps> = ({ panelData}) => {
+const ChatBotSidebar: FC<ChatBotSidebarProps> = ({panelData}) => {
     const [isBotOpen, setIsBotOpen] = useState(false);
     const [messages, saveMessages] = useChatMessages();
 
@@ -26,12 +26,8 @@ const ChatBotSidebar: FC<ChatBotSidebarProps> = ({ panelData}) => {
         <div>
 
             <PanelButton
-                id={panelData.id}
+                {...panelData}
                 onClick={handleToggle}
-                icon={panelData.icon}
-                altText={panelData.altText}
-                text={panelData.text}
-                position={panelData.position}
             />
             <div>
                 {isBotOpen && (
