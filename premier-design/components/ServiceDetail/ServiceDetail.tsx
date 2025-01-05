@@ -17,12 +17,15 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                                                    panelData,
                                                }) => {
     const router = useRouter();
-    const fullCanonicalUrl = getFullCanonicalUrl(service.canonical);
 
     if (router.isFallback) {
         return <div>Loading...</div>;
     }
+    if (!service) {
+        return <div>Service not found.</div>;
+    }
 
+    const fullCanonicalUrl = getFullCanonicalUrl(service.canonical);
     return (
         <>
             <CustomHead
