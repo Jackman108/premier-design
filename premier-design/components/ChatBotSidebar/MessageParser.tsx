@@ -1,5 +1,5 @@
 'use client'
-import React, {FC} from 'react';
+import React, {FC, ReactElement} from 'react';
 import {Actions, MessageParserProps} from '../../interface/ChatBot.props';
 
 const handlers: Record<string, keyof Actions> = {
@@ -35,7 +35,10 @@ const MessageParser: FC<MessageParserProps> = ({children, actions}: MessageParse
         <>
             {React.Children.map(children, (child) => {
                 if (React.isValidElement(child)) {
-                    return React.cloneElement(child, {parse: parseMessage, actions});
+                    return React.cloneElement(child as ReactElement<{
+                        actions: Actions;
+                        parse: (message: string) => void
+                    }>, {parse: parseMessage, actions});
                 }
                 return child;
             })}

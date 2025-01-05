@@ -1,8 +1,12 @@
 'use client'
 import React, {FC, ReactElement, SetStateAction} from 'react';
-import {ActionProviderProps, ChatState} from '../../interface/ChatBot.props';
+import {ActionProviderProps, Actions, ChatState} from '../../interface/ChatBot.props';
 
-const sendMessage = (createChatBotMessage: (message: string) => ReactElement, setState: React.Dispatch<SetStateAction<ChatState>>, message: string) => {
+const sendMessage = (
+    createChatBotMessage: (message: string) => ReactElement,
+    setState: React.Dispatch<SetStateAction<ChatState>>,
+    message: string
+) => {
     const botMessage = createChatBotMessage(message);
     setState((prev: ChatState) => ({
         ...prev,
@@ -22,16 +26,19 @@ const ActionProvider: FC<ActionProviderProps> = ({createChatBotMessage, setState
     return (
         <>
             {React.Children.map(children, (child) => {
-                return React.cloneElement(child as ReactElement, {
-                    actions: {
-                        handleHello,
-                        handleBye,
-                        handleServices,
-                        handlePortfolio,
-                        handlePricing,
-                        handleAppointment,
-                    },
-                });
+                if (React.isValidElement(child)) {
+                    return React.cloneElement(child as React.ReactElement<{ actions: Actions }>, {
+                        actions: {
+                            handleHello,
+                            handleBye,
+                            handleServices,
+                            handlePortfolio,
+                            handlePricing,
+                            handleAppointment,
+                        },
+                    });
+                }
+                return child;
             })}
         </>
     );
