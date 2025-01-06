@@ -2,16 +2,15 @@
 import React, {useEffect, useState} from "react";
 import styles from "./CookiesBanner.module.css";
 import {Paper} from "../../interface/Paper.props";
-import TextViewer from "../TextViewer/TextViewer";
 import Image from "next/image";
+import {usePaperNavigation} from "../../hooks/usePaperNavigation";
 
 const CheckmarkIcon = '/checkmark.svg';
 
 const CookiesBanner = ({papers}: { papers: Paper[] }) => {
     const [isVisible, setIsVisible] = useState(false);
-    const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
     const privacyPolicy = papers.find(paper => paper.shortTitle === 'privacy-policy');
-
+    const {handlePaperClick} = usePaperNavigation();
     useEffect(() => {
         try {
             const cookiesAccepted = localStorage.getItem("cookiesAccepted");
@@ -29,8 +28,15 @@ const CookiesBanner = ({papers}: { papers: Paper[] }) => {
         }
         setIsVisible(false);
     };
-    const handlePrivacyPolicyClick = () => {
-        setShowPrivacyPolicy(true);
+
+    const handlePrivacyPolicyClick = async () => {
+        if (privacyPolicy) {
+            try {
+                await handlePaperClick(privacyPolicy.shortTitle);
+            } catch (error) {
+                console.error("Ошибка при переходе к политике конфиденциальности:", error);
+            }
+        }
     };
 
     if (!isVisible) return null;
@@ -66,15 +72,6 @@ const CookiesBanner = ({papers}: { papers: Paper[] }) => {
                     </button>
                 </div>
             </div>
-            {showPrivacyPolicy && privacyPolicy && (
-                <TextViewer
-                    title={privacyPolicy.title || ""}
-                    text={privacyPolicy.content || ""}
-                    image={privacyPolicy.image || ""}
-                    showModal={showPrivacyPolicy}
-                    setShowModal={setShowPrivacyPolicy}
-                />
-            )}
         </div>
     );
 };

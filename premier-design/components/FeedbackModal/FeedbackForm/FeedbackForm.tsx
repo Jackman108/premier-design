@@ -116,8 +116,8 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                         onChange={() => setIsConsentGiven(prev => !prev)}
                     />
                     Нажимая на кнопку, вы соглашаетесь с{" "}
-                    <a href="/user-agreement" target="_blank">пользовательским соглашением</a> и{" "}
-                    <a href="/privacy-policy" target="_blank">политикой конфиденциальности</a>.
+                    <a href="/documents/user-agreement" target="_blank">пользовательским соглашением</a> и{" "}
+                    <a href="/documents/privacy-policy" target="_blank">политикой конфиденциальности</a>.
                 </label>
                 {errors.consent && <div className={styles.errorMessage}>{errors.consent}</div>}
             </div>
