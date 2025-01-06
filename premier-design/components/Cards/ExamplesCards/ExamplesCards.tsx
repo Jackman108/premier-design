@@ -7,6 +7,7 @@ import PhotoViewer from '../../PhotoViewer/PhotoViewer';
 import ExampleCard from './ExamplesCard';
 import {ExampleCardProps} from "../../../interface/Cards.props";
 import {ExamplesCardsProps} from "../../../interface/Examples.props";
+import {useModalState} from "../../../hooks/useModalState";
 
 const ExamplesCards: FC<ExamplesCardsProps> = ({
                                                    cards,
@@ -16,17 +17,17 @@ const ExamplesCards: FC<ExamplesCardsProps> = ({
     const {isMobile} = useResizeEffects();
     const slidesPerView = 3;
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
-    const [isViewerOpen, setIsViewerOpen] = useState(false);
+    const {isOpen: isViewerOpen, openModal, closeModal} = useModalState(false);
 
     const openViewer = useCallback((images: string[]) => {
         setSelectedImage(images[0]);
-        setIsViewerOpen(true);
-    }, []);
+        openModal();
+    }, [openModal]);
 
     const closeViewer = useCallback(() => {
         setSelectedImage(null);
-        setIsViewerOpen(false);
-    }, []);
+        closeModal();
+    }, [closeModal]);
 
     const handleCardClick = useCallback(
         (card: ExampleCardProps) => {

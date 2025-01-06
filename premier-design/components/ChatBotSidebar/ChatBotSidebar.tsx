@@ -1,5 +1,5 @@
 'use client'
-import React, {FC, useState} from "react";
+import React, {FC} from "react";
 import {Chatbot} from "react-chatbot-kit";
 import chatbotConfig from './config';
 import MessageParser from './MessageParser';
@@ -9,25 +9,23 @@ import 'react-chatbot-kit/build/main.css'
 import {useChatMessages} from "../../hooks/useChatMessages";
 import PanelButton from "../UX/PanelButton/PanelButton";
 import {PanelProps} from "../../interface/Panel.props";
+import {useModalState} from "../../hooks/useModalState";
 
 interface ChatBotSidebarProps {
     panelData: PanelProps;
 }
 
 const ChatBotSidebar: FC<ChatBotSidebarProps> = ({panelData}) => {
-    const [isBotOpen, setIsBotOpen] = useState(false);
+    const {isOpen: isBotOpen, toggleModal} = useModalState();
     const [messages, saveMessages] = useChatMessages();
 
-    const handleToggle = () => {
-        setIsBotOpen(prev => !prev);
-    };
 
     return (
         <div>
 
             <PanelButton
                 {...panelData}
-                onClick={handleToggle}
+                onClick={toggleModal}
             />
             <div>
                 {isBotOpen && (

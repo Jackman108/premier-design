@@ -6,6 +6,7 @@ import useResizeEffects from '../../../hooks/useResizeEffects';
 import Image from 'next/image';
 import CalculatorModal from '../../CalculatorModal/CalculatorModal';
 import {CostingCardProps} from "../../../interface/Cards.props";
+import {useModalState} from "../../../hooks/useModalState";
 
 const CostingCards: FC<{ cards: CostingCardProps[] }> = ({
                                                              cards
@@ -13,23 +14,19 @@ const CostingCards: FC<{ cards: CostingCardProps[] }> = ({
     const {isMobile} = useResizeEffects();
     const slidesPerView = 3;
 
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const {isOpen: isModalOpen, openModal, closeModal} = useModalState(false);
     const [selectedCard, setSelectedCard] = useState<CostingCardProps | null>(null);
 
     const handleCardClick = (card: CostingCardProps) => {
         setSelectedCard(card);
-        setIsModalOpen(true);
-    };
-
-    const closeModal = () => {
-        setIsModalOpen(false);
-        setSelectedCard(null);
+        openModal();
     };
 
     useEffect(() => {
-        setIsModalOpen(false);
+        closeModal();
         setSelectedCard(null);
-    }, [cards]);
+    }, [cards, closeModal]);
+
     return (
         <div className={styles.costing__cards} id="costing-cards">
             <SliderComponent slidesPerView={slidesPerView} isMobile={isMobile}>

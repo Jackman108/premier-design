@@ -6,6 +6,7 @@ export const useModalState = (initialState: boolean = false) => {
 
     const openModal = useCallback(() => setIsOpen(true), []);
     const closeModal = useCallback(() => setIsOpen(false), []);
+    const toggleModal = useCallback(() => setIsOpen(prev => !prev), []);
 
-    return {isOpen, openModal, closeModal};
+    return {isOpen, openModal, closeModal, toggleModal};
 };

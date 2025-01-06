@@ -1,5 +1,5 @@
 'use client';
-import {FC, useCallback, useEffect, useRef, useState} from 'react';
+import {FC, KeyboardEvent, MouseEvent, useCallback, useEffect, useRef, useState} from 'react';
 import styles from './PhotoViewer.module.css';
 import NextImage from 'next/image';
 import {PhotoViewerProps} from "../../interface/PhotoViewer.props";
@@ -34,7 +34,7 @@ const PhotoViewer: FC<PhotoViewerProps> = ({
     }, [onClose]);
 
     const handleKeyDown = useCallback(
-        (event: React.KeyboardEvent<HTMLDivElement>) => {
+        (event: KeyboardEvent<HTMLDivElement>) => {
             switch (event.key) {
                 case 'ArrowLeft':
                     handlePrev();
@@ -59,7 +59,7 @@ const PhotoViewer: FC<PhotoViewerProps> = ({
     );
 
     const handleImageClick = useCallback(
-        (event: React.MouseEvent<HTMLDivElement>) => {
+        (event: MouseEvent<HTMLDivElement>) => {
             const {offsetWidth} = event.currentTarget;
             const mouseX = event.clientX;
             if (mouseX < offsetWidth / 2) {

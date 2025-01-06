@@ -6,15 +6,12 @@ import NextImage from 'next/image';
 import {DataProps,} from '../../interface/interfaceData';
 import {usePageData} from "../../hooks/usePageData";
 
-const Appeal: FC<{ data: DataProps }> = ({
-                                             data
-                                         }): ReactElement => {
+const Appeal: FC<{ data: DataProps }> = ({data}): ReactElement => {
     const {
         titleData,
         buttonData,
         bannerData
     } = usePageData(data, "create-best-place", "leave_request", "appeal_banner");
-
 
     return (
         <section className={styles.appeal}>

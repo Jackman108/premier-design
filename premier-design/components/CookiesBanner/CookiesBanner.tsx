@@ -1,24 +1,30 @@
 'use client'
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import styles from "./CookiesBanner.module.css";
 import {Paper} from "../../interface/Paper.props";
 import Image from "next/image";
 import {usePaperNavigation} from "../../hooks/usePaperNavigation";
+import {useModalState} from "../../hooks/useModalState";
 
 const CheckmarkIcon = '/checkmark.svg';
 
 const CookiesBanner = ({papers}: { papers: Paper[] }) => {
-    const [isVisible, setIsVisible] = useState(false);
+    const {isOpen, closeModal, openModal} = useModalState(false);
     const privacyPolicy = papers.find(paper => paper.shortTitle === 'privacy-policy');
     const {handlePaperClick} = usePaperNavigation();
+
     useEffect(() => {
         try {
             const cookiesAccepted = localStorage.getItem("cookiesAccepted");
-            setIsVisible(cookiesAccepted !== "true" && cookiesAccepted !== "false");
+            if (cookiesAccepted === "false") {
+                openModal();
+            } else if (cookiesAccepted !== "true") {
+                openModal();
+            }
         } catch (error) {
             console.error("Ошибка при доступе к localStorage:", error);
         }
-    }, []);
+    }, [openModal]);
 
     const handleAction = (accepted: boolean) => {
         try {
@@ -26,7 +32,7 @@ const CookiesBanner = ({papers}: { papers: Paper[] }) => {
         } catch (error) {
             console.error("Ошибка при записи в localStorage:", error);
         }
-        setIsVisible(false);
+        closeModal();
     };
 
     const handlePrivacyPolicyClick = async () => {
@@ -39,7 +45,7 @@ const CookiesBanner = ({papers}: { papers: Paper[] }) => {
         }
     };
 
-    if (!isVisible) return null;
+    if (!isOpen) return null;
 
     return (
         <div className={styles.cookies}>

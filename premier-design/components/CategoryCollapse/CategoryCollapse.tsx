@@ -1,15 +1,15 @@
-import {FC, useState} from 'react';
+import {FC} from 'react';
 import Link from 'next/link';
 import {Category} from "../../interface/Prices.props";
 import styles from './CategoryCollapse.module.css';
+import {useModalState} from "../../hooks/useModalState";
 
 const CategoryCollapse: FC<{ category: Category }> = ({category}) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const handleToggle = () => setIsOpen(prev => !prev);
+    const {isOpen, toggleModal} = useModalState();
 
     return (
         <section className={`${styles.categoryCollapse} ${isOpen ? styles.open : ''}`}>
-            <div className={styles.categoryHeader} onClick={handleToggle}>
+            <div className={styles.categoryHeader} onClick={toggleModal}>
                 <h3>{category.title}</h3>
                 <span className={`${styles.toggleIcon} ${isOpen ? styles.open : ''}`}/>
             </div>
