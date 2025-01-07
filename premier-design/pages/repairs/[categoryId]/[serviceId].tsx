@@ -23,7 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({params}) => {
     const {categoryId, serviceId} = params as Params;
 
-    const {service, categoryDescription} = findService(categoryId, serviceId);
+    const {service, categoryProps} = findService(categoryId, serviceId);
 
 
     if (!service) {
@@ -40,7 +40,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
     return {
         props: {
             service,
-            categoryDescription,
+            categoryProps,
             menuData,
             papersData,
             newsData,

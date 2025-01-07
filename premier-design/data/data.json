@@ -49,24 +49,30 @@
       "icon": "/panel/phone.svg",
       "altText": "Телефон",
       "text": "Получить консультацию",
-      "position": { "bottom": "61%" }
+      "position": {
+        "bottom": "61%"
+      }
     },
     {
       "id": "calculatorButton",
       "icon": "/panel/calculator.svg",
       "altText": "Калькулятор",
       "text": "Рассчитать стоимость",
-      "position": { "bottom": "49%" }
+      "position": {
+        "bottom": "49%"
+      }
     },
     {
       "id": "chatButton",
       "icon": "/panel/chat.svg",
       "altText": "Чат",
       "text": "Спросить в чате",
-      "position": { "bottom": "55%" }
+      "position": {
+        "bottom": "55%"
+      }
     }
   ],
-"news": [
+  "news": [
     {
       "id": 1,
       "image": "/news/news01.webp",
@@ -909,6 +915,13 @@
         "id": "dismantling-works",
         "title": "Демонтажные работы",
         "description": "Работы по разрушению старых конструкций, удалению ненужных материалов. Включает в себя как частичный, так и полный демонтаж зданий, а также подготовку помещения к дальнейшим ремонтным работам.",
+        "image": {
+          "src": "/categories/dismantling-works.webp",
+          "alt": "Изображение демонтажных работ",
+          "quality": 100,
+          "width": 1440,
+          "height": 810
+        },
         "priceList": [
           {
             "service": "Демонтаж кирпичных стен до 40 см",
@@ -988,6 +1001,13 @@
         "id": "construction-works",
         "title": "Общестроительные работы",
         "description": "Работы по строительству зданий и сооружений, включая заливку фундамента, возведение стен, монтаж фасада, кровельные работы, возведение ограждений и т.д.",
+        "image": {
+          "src": "/categories/construction-works.webp",
+          "alt": "Изображение общестроительных работ",
+          "quality": 100,
+          "width": 1440,
+          "height": 810
+        },
         "priceList": [
           {
             "service": "Заливка фундамента",
@@ -1031,6 +1051,13 @@
         "id": "installation-works",
         "title": "Монтажные работы",
         "description": "Монтаж гипсокартонных конструкций, панелей по каркасу, звукоизоляционных конструкций, оборудования и т.д.",
+        "image": {
+          "src": "/categories/installation-works.webp",
+          "alt": "Изображение монтажных работ",
+          "quality": 100,
+          "width": 1440,
+          "height": 810
+        },
         "priceList": [
           {
             "service": "Монтаж гипсокартонных конструкций",
@@ -1047,9 +1074,16 @@
         ]
       },
       {
-        "id": "finishing -works",
+        "id": "finishing-works",
         "title": "Отделочные работы",
         "description": "Работы по отделке помещений, включая штукатурку, шпатлёвку, укладку плитки и другие отделочные материалы.",
+        "image": {
+          "src": "/categories/finishing-works.webp",
+          "alt": "Изображение отделочных работ",
+          "quality": 100,
+          "width": 1440,
+          "height": 810
+        },
         "priceList": [
           {
             "service": "Штукатурка стен",
@@ -1099,6 +1133,13 @@
         "id": "painting-works",
         "title": "Малярные работы",
         "description": "Работы по покраске различных поверхностей, включая стены, потолки, фасады, а так же применение декоративных составов.",
+        "image": {
+          "src": "/categories/painting-works.webp",
+          "alt": "Изображение малярных работ",
+          "quality": 100,
+          "width": 1440,
+          "height": 810
+        },
         "priceList": [
           {
             "service": "Покраска стен и потолков",
@@ -1124,6 +1165,13 @@
         "id": "plumbing-works",
         "title": "Сантехнические работы",
         "description": "Работы по установке и ремонту сантехнического оборудования: водоснабжение, канализация, отопление.",
+        "image": {
+          "src": "/categories/plumbing-works.webp",
+          "alt": "Изображение сантехнических работ",
+          "quality": 100,
+          "width": 1440,
+          "height": 810
+        },
         "priceList": [
           {
             "service": "Монтаж труб (полипропилен, металлопласт, метал)",
@@ -1185,6 +1233,13 @@
         "id": "electrical-works",
         "title": "Электромонтажные работы",
         "description": "Работы по монтажу электрических сетей, щитков, установке розеток, выключателей, осветительных приборов.",
+        "image": {
+          "src": "/categories/electrical-works.webp",
+          "alt": "Изображение электромонтажных работ",
+          "quality": 100,
+          "width": 1440,
+          "height": 810
+        },
         "priceList": [
           {
             "service": "Монтаж электропроводки",
@@ -1240,6 +1295,13 @@
         "id": "carpentry-works",
         "title": "Столярные работы",
         "description": "Работы по установке деревянных и пластиковых конструкций, дверей, окон, мебели.",
+        "image": {
+          "src": "/categories/carpentry-works.webp",
+          "alt": "Изображение столярных работ",
+          "quality": 100,
+          "width": 1440,
+          "height": 810
+        },
         "priceList": [
           {
             "service": "Установка дверей",
@@ -1258,9 +1320,16 @@
     ],
     "design": [
       {
-        "id": "interior-design",
+        "id": "interior-works",
         "title": "Дизайн интерьера",
         "description": "Проектирование интерьеров, подбор материалов, планировка и оформление помещений.",
+        "image": {
+          "src": "/categories/interior-works.webp",
+          "alt": "Изображение работ дизайна",
+          "quality": 100,
+          "width": 1440,
+          "height": 810
+        },
         "priceList": [
           {
             "service": "Разработка дизайна комнаты",

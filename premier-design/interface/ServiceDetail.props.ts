@@ -9,13 +9,25 @@ import {PanelProps} from "./Panel.props";
 
 export interface ServiceDetailProps {
     service: PriceItem;
-    categoryDescription: string;
+    categoryProps: categoryDetailProps;
     menuData: MenuProps[];
     papersData: Paper[];
     newsData: NewsProps[];
     costingData: CostingCardProps[];
     buttonData: ButtonProps[];
     panelData: PanelProps[];
+}
+
+export interface categoryDetailProps {
+    title: string;
+    description: string;
+    image: {
+        src: string;
+        alt: string;
+        quality: number;
+        width: number;
+        height: number;
+    };
 }
 
 export interface Params extends ParsedUrlQuery {
