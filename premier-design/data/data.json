@@ -890,6 +890,21 @@
       "title": "Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
       "description": "Качественный ремонт интерьеров с гарантией. Мы выполняем ремонтные работы любой сложности и создаем стильные и функциональные пространства.",
       "canonical": "/repairs"
+    },
+    "user-agreement": {
+      "title": "Пользовательское соглашение",
+      "description": "Пользовательское соглашение | Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
+      "canonical": "/documents/user-agreement"
+    },
+    "privacy-policy": {
+      "title": "Политика конфиденциальности",
+      "description": "Политика конфиденциальности | Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
+      "canonical": "/documents/privacy-policy"
+    },
+    "public-offer": {
+      "title": "Публичная оферта",
+      "description": "Публичная оферта | Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
+      "canonical": "/documents/public-offer"
     }
   },
   "papers": [
