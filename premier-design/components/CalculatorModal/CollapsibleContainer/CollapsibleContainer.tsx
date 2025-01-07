@@ -1,15 +1,15 @@
 'use client';
 
-import React, { FC, useEffect, useState } from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styles from './CollapsibleContainer.module.css';
-import { CollapsibleContainerProps } from '../../../interface/CalculatorModal.props';
+import {CollapsibleContainerProps} from '../../../interface/CalculatorModal.props';
 
 const CollapsibleContainer: FC<CollapsibleContainerProps> = ({
-    items,
-    activeItem,
-    activeLabel,
-    onItemClick
-}) => {
+                                                                 items,
+                                                                 activeItem,
+                                                                 activeLabel,
+                                                                 onItemClick
+                                                             }) => {
     const [isCollapsed, setIsCollapsed] = useState(true);
 
     const handleOutsideClick = (event: MouseEvent) => {
@@ -33,9 +33,10 @@ const CollapsibleContainer: FC<CollapsibleContainerProps> = ({
             <button
                 onClick={() => setIsCollapsed(!isCollapsed)}
                 className={styles.collapse_header}
+                aria-label="Сввернуть аккордион"
             >
                 <span>{activeLabel}</span>
-                <span className={isCollapsed ? styles.arrow_right : styles.arrow_down} >
+                <span className={isCollapsed ? styles.arrow_right : styles.arrow_down}>
                     {'<'}
                 </span>
             </button>
@@ -49,6 +50,7 @@ const CollapsibleContainer: FC<CollapsibleContainerProps> = ({
                                 onItemClick(item.value);
                                 setIsCollapsed(!isCollapsed);
                             }}
+                            aria-label="Развернуть аккордион"
                         >
                             {item.label}
                         </button>

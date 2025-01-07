@@ -8,7 +8,9 @@ const Phone = (): ReactElement => {
         <div className={styles.phone}>
             <Link
                 href="tel:+375291942881"
-                className={styles.phone__container}>
+                className={styles.phone__container}
+                aria-label="Позвонить"
+            >
                 <div className={styles.phone__logo}>
                     <FaPhoneVolume/>
                 </div>

@@ -1,5 +1,5 @@
 'use client'
-import React, {FC, Children, memo, useState, ReactElement} from 'react';
+import React, {Children, FC, memo, ReactElement, useState} from 'react';
 import {SliderProps} from '../../interface/Slider.props';
 import {useKeenSlider} from "keen-slider/react";
 
@@ -71,6 +71,7 @@ const Slider: FC<SliderProps> = memo(({
                                     instanceRef.current?.moveToIdx(idx)
                                 }}
                                 className={"dot" + (currentSlide === idx ? " active" : "")}
+                                aria-label="Открыть слайд"
                             >{}</button>
                         )
                     })}

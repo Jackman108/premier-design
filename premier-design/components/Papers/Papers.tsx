@@ -18,6 +18,7 @@ const Papers: FC<FooterPapersProps> = ({papers}) => {
                     key={paper.id}
                     onClick={() => handlePaperClick(paper.shortTitle)}
                     className={styles.paper__link}
+                    aria-label={`Открыть документ ${paper.title}`}
                 >
                     {paper.title}
                 </button>

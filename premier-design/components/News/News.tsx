@@ -40,6 +40,7 @@ const News: FC<NewsComponentProps> = ({news, newsStyle}): ReactElement => {
                             <Link
                                 href={`/about/#news-${index}`}
                                 className={stylesToUse.content__title}
+                                aria-label={`Перейти к разделу ${item.title}`}
                             >
                                 {item.title}
                             </Link>

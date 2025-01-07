@@ -57,13 +57,21 @@ const CookiesBanner = ({papers}: { papers: Paper[] }) => {
                         предоставления наиболее подходящего персонального контента для вас.
                     </p>
                     <p className={styles.cookiesContent}>
-                        <button onClick={handlePrivacyPolicyClick} className={styles.link}>
+                        <button
+                            onClick={handlePrivacyPolicyClick}
+                            className={styles.link}
+                            aria-label="Открыть Политику конфиденциальности"
+                        >
                             Политика конфиденциальности
                         </button>
                     </p>
                 </div>
                 <div className={styles.cookiesRight}>
-                    <button className={`${styles.btn} ${styles.accent}`} onClick={() => handleAction(true)}>
+                    <button
+                        className={`${styles.btn} ${styles.accent}`}
+                        onClick={() => handleAction(true)}
+                        aria-label="Принять все куки"
+                    >
                         <Image
                             src={CheckmarkIcon}
                             alt="Checkmark"
@@ -73,7 +81,8 @@ const CookiesBanner = ({papers}: { papers: Paper[] }) => {
                         />
                         <span>Принять все</span>
                     </button>
-                    <button className={`${styles.btn} ${styles.white}`} onClick={() => handleAction(false)}>
+                    <button className={`${styles.btn} ${styles.white}`} onClick={() => handleAction(false)}
+                            aria-label="Отклонить все куки">
                         Отклонить
                     </button>
                 </div>

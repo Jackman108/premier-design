@@ -21,7 +21,7 @@ const Features = (
                                 height={40}
                                 loading='lazy'
                             />
-                            <h3 className={styles.features__title}>{title}</h3>
+                            <h2 className={styles.features__title}>{title}</h2>
                         </div>
                     ))}
                 </div>

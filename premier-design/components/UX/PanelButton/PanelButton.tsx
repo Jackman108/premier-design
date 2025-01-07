@@ -9,6 +9,7 @@ const PanelButton: FC<PanelProps> = ({onClick, icon, altText, text, position}) =
         onClick={onClick}
         className={`${styles['button_common']}`}
         style={{bottom: position.bottom}}
+        aria-label={text}
     >
         <Image
             src={icon}

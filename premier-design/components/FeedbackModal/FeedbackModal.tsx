@@ -26,7 +26,12 @@ const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit}) => {
                         <h3>Оставьте заявку</h3>
                         <p>Мы свяжемся в ближайшее время</p>
                     </div>
-                    <button className={styles.closeButton} type="button" onMouseDown={onClose}>
+                    <button
+                        className={styles.closeButton}
+                        type="button"
+                        onMouseDown={onClose}
+                        aria-label="Закрыть форму"
+                    >
                         &times;
                     </button>
                 </div>

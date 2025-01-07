@@ -17,12 +17,18 @@ const Appeal: FC<{ data: DataProps }> = ({data}): ReactElement => {
         <section className={styles.appeal}>
             <div className={styles.appeal__container}>
                 <NextImage
-                    priority
                     src={bannerData.src}
                     alt={bannerData.alt}
                     quality={bannerData.quality}
                     width={bannerData.width}
                     height={508}
+                    sizes="
+                    (max-width: 600px) 600px,
+                    (max-width: 1440px) 1440px,
+                    1935px
+                    "
+                    loading="lazy"
+                    placeholder="empty"
                     className={styles.appeal__background}
                 />
                 <Title

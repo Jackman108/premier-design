@@ -23,6 +23,11 @@ const Banner: FC<BannerProps> = ({
                 quality={bannerData.quality}
                 width={bannerData.width}
                 height={bannerData.height}
+                sizes="
+                (max-width: 600px) 600px,
+                (max-width: 1440px) 1440px,
+                1935px
+                "
                 placeholder='empty'
                 className={styles.banner__background}
             />

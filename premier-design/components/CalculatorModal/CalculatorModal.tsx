@@ -36,7 +36,7 @@ const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
                     <h2 className={styles.header_title}>
                         Рассчитайте стоимость Вашего ремонта
                     </h2>
-                    <button className={styles.header_close} onClick={() => onClose()}>
+                    <button className={styles.header_close} onClick={() => onClose()} aria-label="Закрыть калькулятор">
                         &times;
                     </button>
                 </div>
@@ -101,6 +101,7 @@ const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
                         className={styles.calculate_button}
                         onClick={handleCalculate}
                         disabled={isLoading || inputValueAsNumber <= 0 || inputValue === ''}
+                        aria-label="Рассчитайте стоимость"
                     >
                         Рассчитать
                     </button>

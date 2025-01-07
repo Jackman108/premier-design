@@ -34,6 +34,7 @@ const Menu = memo(({menu, menuStyle, isMobileMenuOpen, toggleMobileMenu}: MenuSt
                             href={`/${title === 'Home' ? '' : title.toLowerCase()}`}
                             onClick={isMobileMenuOpen ? handleClick : undefined}
                             passHref
+                            aria-label={`Перейти к разделу ${ruTitle}`}
                         >
                             <div className={stylesToUse.menu__item}> {ruTitle} </div>
                         </Link>

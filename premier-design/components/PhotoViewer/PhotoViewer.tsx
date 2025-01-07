@@ -124,6 +124,7 @@ const PhotoViewer: FC<PhotoViewerProps> = ({
             <button
                 className={styles.buttonClose}
                 onMouseDown={handleClose}
+                aria-label="Закрыть окно"
             >
                 Close
             </button>

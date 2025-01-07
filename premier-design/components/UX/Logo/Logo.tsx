@@ -10,6 +10,7 @@ const Logo = (): ReactElement => {
             <Link
                 href="/"
                 className={styles.logo__image}
+                aria-label="Перейти на главную"
             >
                 <Image
                     src={LogoImage}

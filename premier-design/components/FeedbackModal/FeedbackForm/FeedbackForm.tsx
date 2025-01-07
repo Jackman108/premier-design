@@ -122,7 +122,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                 {errors.consent && <div className={styles.errorMessage}>{errors.consent}</div>}
             </div>
             <div className={styles.form__button}>
-                <button type="submit">Отправить</button>
+                <button type="submit" aria-label="Отправить заявку">Отправить</button>
             </div>
         </form>
     );

@@ -16,7 +16,7 @@ const BackButton: React.FC<BackButtonProps> = ({label = 'Вернуться на
 
     return (
         <div className={styles.backButtonWrapper}>
-            <button className={styles.backButton} onClick={handleBackClick}>
+            <button className={styles.backButton} onClick={handleBackClick} aria-label={label}>
                 <FaArrowLeft className={styles.arrowIcon}/>
                 <span className={styles.tooltip}>{label}</span>
             </button>

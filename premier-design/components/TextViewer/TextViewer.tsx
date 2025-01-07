@@ -23,7 +23,8 @@ const TextViewer: FC<TextViewerProps> = ({title, text, showModal, setShowModal, 
                         <div className={styles.content__text}>
                             {formatText(text) || "Документ не найден"}
                         </div>
-                        <button className={styles.modal__close} onClick={() => setShowModal(false)}>
+                        <button className={styles.modal__close} onClick={() => setShowModal(false)}
+                                aria-label="Закрыть окно">
                             Закрыть
                         </button>
                     </div>
