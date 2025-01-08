@@ -5,7 +5,17 @@ import {Params} from "../../../interface/ServiceDetail.props";
 import {findService} from "../../../utils/findService";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const paths = data.prices.repairs.flatMap(category =>
+    const repairs = data.prices?.repairs;
+
+    if (!repairs || !Array.isArray(repairs)) {
+        console.error("`repairs` is not defined or is not an array");
+        return {
+            paths: [],
+            fallback: true,
+        };
+    }
+
+    const paths = repairs.flatMap(category =>
         category.priceList.map(item => ({
             params: {
                 categoryId: category.id,
@@ -27,6 +37,8 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 
 
     if (!service) {
+        console.error(`Service not found for categoryId: ${categoryId}, serviceId: ${serviceId}`);
+
         return {notFound: true};
     }
 
