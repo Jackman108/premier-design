@@ -11,6 +11,7 @@ export const getFullCanonicalUrl = (canonical: string): string => {
 
 export const findService = (categoryId: string, serviceId: string) => {
     const category = data.prices.repairs.find((category) => category.id === categoryId);
+
     if (!category) {
         console.error(`Category with id ${categoryId} not found`);
         return {service: null, categoryProps: null};
@@ -20,6 +21,7 @@ export const findService = (categoryId: string, serviceId: string) => {
     if (!service) {
         console.error(`Service with id ${serviceId} not found`);
     }
+
     return {
         service,
         categoryProps: {

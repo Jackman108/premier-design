@@ -6,8 +6,3 @@ export interface OrderButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes
     buttonData: string;
     panelData?: PanelProps;
 }
-
-export interface OrderButtonState {
-    showModal: boolean;
-    error: string;
-}

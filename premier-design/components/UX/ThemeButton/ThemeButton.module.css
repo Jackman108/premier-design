@@ -1,32 +1,26 @@
 .theme__button {
-    grid-column: 5 / 6;
-    background-color: transparent;
-    border: none;
-    color: var(--brown-dark);
-    filter: drop-shadow(0 0 5px var(--brown-white));
-    display: grid;
-    align-items: center;
-    justify-content: end;
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 0;
-    margin: 0;
-    transition: color 0.5s ease;
-    white-space: nowrap;
+	background-color: transparent;
+	border: none;
+	color: var(--brown-dark);
+	filter: drop-shadow(0 0 5px var(--brown-white));
+	display: grid;
+	align-items: center;
+	justify-content: end;
+	font-size: 1.8rem;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+	transition: color 0.5s ease;
+	white-space: nowrap;
 }
 
 .theme__button:hover {
-    color: var(--brown-white);
-    filter: drop-shadow(0px 0px 3px var(--brown-dark));
-    cursor: pointer;
+	color: var(--brown-white);
+	filter: drop-shadow(0px 0px 3px var(--brown-dark));
+	cursor: pointer;
 }
 
-.theme__button svg{
-    width: 1.2rem;
-    height: 1.2rem;
-}
-@media (max-width: 768px) {
-    .theme__button {
-        grid-column: 4 / 5;
-    }
+.theme__button svg {
+	width: 1.6rem;
+	height: 1.6rem;
 }

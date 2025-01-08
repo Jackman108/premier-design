@@ -1,4 +1,4 @@
-import {ReactElement, ReactNode, SetStateAction} from "react";
+import {Dispatch, ReactElement, ReactNode, SetStateAction} from "react";
 
 export interface ChatState {
     messages: ReactElement[];
@@ -20,7 +20,7 @@ export interface MessageParserProps {
 
 export interface ActionProviderProps {
     createChatBotMessage: (message: string) => ReactElement;
-    setState: React.Dispatch<SetStateAction<ChatState>>;
+    setState: Dispatch<SetStateAction<ChatState>>;
     children: ReactNode;
 }
 

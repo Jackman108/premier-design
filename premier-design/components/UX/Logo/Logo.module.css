@@ -1,20 +1,42 @@
 .logo {
-    grid-column: 1 / 2;
+	max-width: 100%;
+	height: auto;
+	align-items: center;
+}
+
+.logo__image {
+	display: block;
+	width: auto;
+	height: 100%;
+	max-width: 100%;
 }
 
 .image {
-    max-width: 14vh;
-    max-height: 14vh;
-    height: auto;
-    filter: brightness(1.3)
+	width: 200px;
+	max-height: 40px;
+	height: auto;
+	filter: brightness(1.3);
+	object-fit: contain;
+	transition: transform 0.3s ease;
 }
 
-.image:hover {
-    opacity: 0.8;
+.logo__image:hover .image {
+	transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+	.logo {
+		padding: 0 1rem;
+	}
+
+	.image {
+		width: 100px;
+	}
 }
 
 @media (max-width: 768px) {
-    .logo{
-        display: none;
-    }
+	.logo {
+		padding: 0;
+	}
+
 }

@@ -21,18 +21,17 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                                                    buttonData,
                                                    panelData,
                                                }) => {
-    const buttonHeader = findItemByTitle(buttonData, "leave_request") || {} as ButtonProps;
-
     const router = useRouter();
 
     if (router.isFallback) {
         return <div className={styles.loader}>Loading...</div>;
     }
-    if (!service) {
+    if (!service || !categoryProps) {
         return <div className={styles.error}>Service not found.</div>;
     }
-
+    const buttonHeader = findItemByTitle(buttonData, "leave_request") || {} as ButtonProps;
     const fullCanonicalUrl = getFullCanonicalUrl(service.canonical);
+
     return (
         <>
             <CustomHead

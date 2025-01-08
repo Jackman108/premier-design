@@ -1,0 +1,15 @@
+.work__hours {
+	font-size: 1.2rem;
+	color: #333;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	white-space: nowrap;
+	font-weight: bold;
+}
+
+@media (max-width: 768px) {
+	.work__hours {
+		font-size: 1rem;
+	}
+}

@@ -9,6 +9,7 @@ import ThemeButton from '../../components/UX/ThemeButton/ThemeButton';
 import styles from './Header.module.css';
 import {FC, ReactElement} from 'react';
 import {HeaderProps} from "../../interface/Layout.props";
+import WorkHours from "../../components/UX/WorkHours/WorkHours";
 
 
 const Header: FC<HeaderProps> = ({menu}): ReactElement => {
@@ -19,12 +20,9 @@ const Header: FC<HeaderProps> = ({menu}): ReactElement => {
         <header className={styles.header}>
             <div className={styles.header__container}>
                 <Logo/>
-                <Menu
-                    isMobileMenuOpen={isMobileMenuOpen}
-                    toggleMobileMenu={toggleMobileMenu}
-                    menu={menu}
-                    menuStyle='header'/>
+
                 <div className={styles.contact__container}>
+                    <WorkHours hours="Пн-Пт: 09:00 - 18:00" />
                     <Phone/>
                     <SocialIcons/>
                 </div>
@@ -39,10 +37,17 @@ const Header: FC<HeaderProps> = ({menu}): ReactElement => {
                     />
                 </div>
                 <Menu
+                    isMobileMenuOpen={isMobileMenuOpen}
+                    toggleMobileMenu={toggleMobileMenu}
+                    menu={menu}
+                    menuStyle='header'
+                />
+                <Menu
                     menu={menu}
                     menuStyle='mobile'
                     isMobileMenuOpen={isMobileMenuOpen}
-                    toggleMobileMenu={toggleMobileMenu}/>
+                    toggleMobileMenu={toggleMobileMenu}
+                />
             </div>
         </header>
     );

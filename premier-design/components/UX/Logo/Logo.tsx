@@ -15,6 +15,14 @@ const Logo = (): ReactElement => {
                 <Image
                     src={LogoImage}
                     alt="Logo"
+                    placeholder='empty'
+                    width={2000}
+                    height={160}
+                    sizes="
+                    (max-width: 600px) 100vw,
+                    (max-width: 1440px) 60vw,
+                    1935px
+                    "
                     className={styles.image}
                 />
             </Link>

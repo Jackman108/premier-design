@@ -1,32 +1,32 @@
 .input_container {
-    height: 10vh;
+	height: 10vh;
 }
 
 .input_area {
-    width: 80%;
-    height: 40px;
-    border-radius: 4px;
-    display: grid;
-    margin: 2vh auto 0vh;
-    padding: 8px;
-    color: var(--brown-light);
-    font: bold;
-    font-size: 1.3rem;
-    outline: none;
+	width: 80%;
+	height: 40px;
+	border-radius: 4px;
+	display: grid;
+	margin: 2vh auto 0;
+	padding: 8px;
+	color: var(--brown-light);
+	font-weight: bold;
+	font-size: 1.3rem;
+	outline: none;
 }
 
 .input_area:focus {
-    outline: 2px solid var(--brown-light);
+	outline: 2px solid var(--brown-light);
 }
 
 .empty {
-    border: 2px solid #c41e3a;
+	border: 2px solid #c41e3a;
 }
 
 .error {
-    color: #C41E3A;
-    margin-top: 0.5rem;
-    font-size: 0.8rem;
-    font-style: oblique;
-    text-align: center;
+	color: #C41E3A;
+	margin-top: 0.5rem;
+	font-size: 0.8rem;
+	font-style: oblique;
+	text-align: center;
 }

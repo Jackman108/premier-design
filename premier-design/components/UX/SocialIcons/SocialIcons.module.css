@@ -1,9 +1,8 @@
 .social__icons {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	grid-gap: 0.5vw;
-	grid-column: 3 / 4;
-	font-size: 1.4rem;
+	grid-gap: 1rem;
+	font-size: 1.8rem;
 }
 
 .icons {
@@ -21,7 +20,6 @@
 
 @media (max-width: 768px) {
 	.social__icons {
-		grid-column: 3 / 3;
 		grid-gap: 1vw;
 	}
 }

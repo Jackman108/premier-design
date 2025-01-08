@@ -4,7 +4,7 @@ import {MenuMobileProps} from '../../../interface/Menu.props';
 
 const MenuButton: React.FC<MenuMobileProps> = ({isMobileMenuOpen, toggleMobileMenu}) => (
     <div
-        className={`${styles.menuButton} ${isMobileMenuOpen ? styles.active : ''}`}
+        className={`${styles.menu__button} ${isMobileMenuOpen ? styles.active : ''}`}
         onClick={toggleMobileMenu}
     >
         <span></span>

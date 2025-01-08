@@ -1,4 +1,5 @@
 import {CostingCardProps} from "./Cards.props";
+import {ChangeEvent} from "react";
 
 export interface CalculatorModalProps {
     onClose: () => void;
@@ -15,7 +16,7 @@ export interface CollapsibleContainerProps {
 
 export interface CostInputProps {
     inputValue: string;
-    handleInputChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
 }
 
 export interface ModalTabsProps {
