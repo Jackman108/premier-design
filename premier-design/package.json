@@ -2,8 +2,10 @@
   "name": "premier-design",
   "version": "1.0.0",
   "description": "Website for premium repair and interior design",
+  "type": "module",
   "scripts": {
     "dev": "next dev",
+    "server": "node server.js",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",

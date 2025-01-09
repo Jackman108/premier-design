@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
     async rewrites() {
         return [
             {source: '/', destination: '/'},
@@ -34,3 +34,4 @@ module.exports = {
     compress: true,
     pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
 };
+export default config;
