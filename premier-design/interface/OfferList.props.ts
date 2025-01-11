@@ -12,4 +12,5 @@ export interface OfferListProps {
     designType: OfferType;
     repairType: OfferType;
     aboutType: OfferType;
+    homeType: OfferType;
 }

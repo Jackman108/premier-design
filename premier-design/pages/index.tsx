@@ -3,12 +3,13 @@ import Layout from '../Layout/Layout';
 import {getStaticProps} from './api/dataProvider';
 import Banner from "../components/Banner/Banner";
 import {usePageData} from "../hooks/usePageData";
-import {Appeal, Approach, Costing, Examples, Features, Services, StepsWork} from '../components';
+import {Appeal, Approach, Costing, Examples, Features, OfferList, Services, StepsWork} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import Reviews from "../components/Reviews/Reviews";
 import {getFullCanonicalUrl} from "../utils/findService";
 import {useLayoutProps} from "../hooks/useLayoutProps";
+import RelatedServices from "../components/RelatedServices/RelatedServices";
 
 const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
     const {titleData, buttonData, bannerData} = usePageData(data, "repair-and-design", "leave_request", "home_banner");
@@ -32,6 +33,7 @@ const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
                     buttonStyle='button-white'
                 />
                 <Features features={data.features}/>
+                <OfferList offer={data.offerList.homeType}/>
                 <Services
                     titles={data.title}
                     buttons={data.button}
@@ -54,6 +56,7 @@ const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
                     titles={data.title}
                     cards={data.cards.costingCard}
                 />
+                <RelatedServices   titles={data.title} relatedServices={data.relatedServices}/>
                 <Reviews
                     titles={data.title}
                     reviews={data.reviews}
