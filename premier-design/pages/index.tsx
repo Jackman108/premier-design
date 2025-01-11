@@ -3,7 +3,7 @@ import Layout from '../Layout/Layout';
 import {getStaticProps} from './api/dataProvider';
 import Banner from "../components/Banner/Banner";
 import {usePageData} from "../hooks/usePageData";
-import {Appeal, Approach, Costing, Examples, Features, Services} from '../components';
+import {Appeal, Approach, Costing, Examples, Features, Services, StepsWork} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import Reviews from "../components/Reviews/Reviews";
@@ -40,6 +40,10 @@ const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
                 <Approach
                     titles={data.title}
                     cards={data.cards.approachCard}
+                />
+                <StepsWork
+                    stepsWork={data.stepsWork}
+                    titles={data.title}
                 />
                 <Examples
                     cards={data.cards.examplesCard}

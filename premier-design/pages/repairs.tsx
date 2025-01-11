@@ -4,7 +4,7 @@ import {getStaticProps} from './api/dataProvider';
 import {ReactElement} from "react";
 import {usePageData} from "../hooks/usePageData";
 import Banner from "../components/Banner/Banner";
-import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer, StepsWork} from '../components';
+import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import Category from "../components/Category/Category";
@@ -33,25 +33,21 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
                     buttonStyle='button-white'
                 />
                 <Features features={data.features}/>
+                <OfferList offer={data.offerList.repairType}/>
                 <Examples
                     cards={data.cards.examplesCard}
                     titles={data.title}
                     enableSlider={enableSlider}
                 />
+                <Category data={data}/>
                 <Costing
                     cards={data.cards.costingCard}
                     titles={data.title}
                 />
-                <Category data={data}/>
-                <OfferList data={data.offerList.repairType}/>
                 <ProjectOffer
                     data={data.offerProject.repairType}
                     buttonData={buttonData.buttonHeader}
                     buttonStyle='button-black'
-                />
-                <StepsWork
-                    stepsWork={data.stepsWork}
-                    titles={data.title}
                 />
                 <Appeal data={data}/>
             </Layout>

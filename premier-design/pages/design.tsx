@@ -32,16 +32,17 @@ const Design: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement 
                     buttonStyle='button-white'
                 />
                 <Features features={data.features}/>
-                <Costing
-                    cards={data.cards.costingCard}
-                    titles={data.title}
-                />
+                <OfferList offer={data.offerList.designType}/>
+
                 <Examples
                     cards={data.cards.examplesCard}
                     titles={data.title}
                     enableSlider={enableSlider}
                 />
-                <OfferList data={data.offerList.designType}/>
+                <Costing
+                    cards={data.cards.costingCard}
+                    titles={data.title}
+                />
                 <ProjectOffer
                     data={data.offerProject.designType}
                     buttonData={buttonData.buttonHeader}

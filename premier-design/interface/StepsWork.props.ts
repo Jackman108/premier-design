@@ -1,4 +1,6 @@
 export interface StepsWorkProps {
     id: number;
-    stage: string;
+    title: string;
+    description: string;
+    icon: string;
 }

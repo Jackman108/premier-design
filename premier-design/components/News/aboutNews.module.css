@@ -1,85 +1,85 @@
 .news {
-    padding: 5vh 0;
-    height: auto;
+	padding: 5vh 0;
+	height: auto;
 }
 
 .news__container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
-    align-items: start;
-    grid-gap: 2vh;
-    max-width: 1440px;
-    margin: 0 auto;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	justify-content: center;
+	align-items: start;
+	grid-gap: 2vh;
+	max-width: 1440px;
+	margin: 0 auto;
 }
 
 .news__title {
-    padding-bottom: 2vh;
-    font-size: 2.5vh;
-    font-weight: 600;
-    line-height: 1.5;
-    text-align: center;
-    color: var(--brown);
-    text-shadow: 0 0 2px var(--brown-light)
+	padding-bottom: 2vh;
+	font-size: 2.5vh;
+	font-weight: 600;
+	line-height: 1.5;
+	text-align: center;
+	color: var(--brown);
 }
 
 .news__content {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    grid-gap: 2vh;
-    margin: 0 2%;
+	display: grid;
+	grid-template-columns: auto 1fr;
+	grid-gap: 2vh;
+	margin: 0 2%;
 }
+
 .content__image {
-    width: auto;
+	width: auto;
 }
 
 .content__image img {
-    width: 4vh;
-    height: 4vh;
-    object-fit: cover;
+	width: 4vh;
+	height: 4vh;
+	object-fit: cover;
 }
 
 .content__wrapper {
-    display: grid;
-    grid-template-rows: auto auto;
-    grid-gap: 0.6vh;
-    align-items: start;
+	display: grid;
+	grid-template-rows: auto auto;
+	grid-gap: 0.6vh;
+	align-items: start;
 }
 
 .content__date {
-    font-size: 0.8rem;
-    text-align: start;
-    color: var(--brown-light);
+	font-size: 0.8rem;
+	text-align: start;
+	color: var(--brown-light);
 }
 
 .content__title {
-    max-width: 25vw;
-    font-size: 0.9rem;
-    color: var(--brown-white);
-    text-align: start;
-    text-decoration:none;
+	max-width: 25vw;
+	font-size: 0.9rem;
+	color: var(--brown-white);
+	text-align: start;
+	text-decoration: none;
 }
 
 .content__title:hover {
-    color: var(--beige-dark);
-    cursor: pointer;
+	color: var(--beige-dark);
+	cursor: pointer;
 }
 
 .content__text {
-    margin: 1vh;
-    max-height: 20vh;
-    overflow: hidden;
-    transition: height 0.3s ease-in-out;
+	margin: 1vh;
+	max-height: 20vh;
+	overflow: hidden;
+	transition: height 0.3s ease-in-out;
 }
 
 
 @media (max-width: 768px) {
-    .content__title {
-        max-width: 400px;
-    }
+	.content__title {
+		max-width: 400px;
+	}
 
-    .news__container {
-        grid-template-columns: 1fr;
-        margin: 0 10px;
-    }
+	.news__container {
+		grid-template-columns: 1fr;
+		margin: 0 10px;
+	}
 }

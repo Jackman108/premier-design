@@ -31,7 +31,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
                     bannerData={bannerData}
                     buttonStyle='button-white'
                 />
-                <OfferList data={data.offerList.aboutType}/>
+                <OfferList offer={data.offerList.aboutType}/>
                 <News
                     news={data.news}
                     newsStyle='about'

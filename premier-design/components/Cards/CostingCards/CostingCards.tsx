@@ -1,5 +1,5 @@
 'use strict'
-import {FC, ReactElement, useEffect, useState} from 'react';
+import {FC, ReactElement, KeyboardEvent, useEffect, useState} from 'react';
 import styles from './CostingCards.module.css';
 import SliderComponent from '../../Slider/Slider';
 import useResizeEffects from '../../../hooks/useResizeEffects';
@@ -22,6 +22,13 @@ const CostingCards: FC<{ cards: CostingCardProps[] }> = ({
         openModal();
     };
 
+    const handleKeyDown = (event: KeyboardEvent, card: CostingCardProps) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            handleCardClick(card);
+        }
+    };
+
     useEffect(() => {
         closeModal();
         setSelectedCard(null);
@@ -35,14 +42,18 @@ const CostingCards: FC<{ cards: CostingCardProps[] }> = ({
                         className={styles.costing__card}
                         key={id}
                         onClick={() => handleCardClick({id, title, image})}
+                        onKeyDown={(e) => handleKeyDown(e, { id, title, image })}
+                        role="button"
+                        tabIndex={0}
+                        aria-label={`Открыть калькулятор для ${title}`}
                     >
                         <div className={styles.card__background}>
                             <Image
                                 src={image}
                                 alt={title}
-                                className={styles.background}
-                                width={380}
-                                height={520}
+                                className={styles.image}
+                                width={450}
+                                height={640}
                                 loading='lazy'
                             />
                         </div>

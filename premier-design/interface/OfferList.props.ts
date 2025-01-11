@@ -1,7 +1,7 @@
 export interface OfferType {
     id: number;
     image: string;
-    subTitle: string;
+    title: string;
     description: string;
     questions: string[];
     tips: string;

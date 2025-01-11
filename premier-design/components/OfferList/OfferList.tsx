@@ -3,45 +3,33 @@ import styles from './OfferList.module.css';
 import Image from 'next/image';
 import {OfferType} from "../../interface/OfferList.props";
 
-const OfferList: FC<{ data: OfferType }> = ({data}): ReactElement => {
+const OfferList: FC<{ offer: OfferType }> = ({offer}): ReactElement => {
 
     return (
         <section className={styles.offer}>
             <div className={styles.offer__container}>
-                {
-                    <div className={styles.offer__row} key={data.id}>
-                        <div className={styles.offer__left_column}>
-                            <div className={styles.offer__image}>
-                                <Image
-                                    src={data.image}
-                                    alt="Premium Interior | Ремонт и дизайн интерьеров в Беларуси"
-                                    className={styles.image__background}
-                                    width={1935}
-                                    height={1119}
-                                />
-                            </div>
-                        </div>
-                        <div className={styles.offer__right_column}>
-                            <div className={styles.text__content}>
-                                <p className={styles.content_subTitle}>
-                                    {data.subTitle}
-                                </p>
-                                <ul className={styles.content_questions}>
-                                    {data.questions.map((question, index) => (
-                                        <li key={index}>{question}</li>
-                                    ))}
-                                </ul>
-                                <p className={styles.content_description}>
-                                    {data.description}
-                                </p>
-                                <p className={styles.content_tips}>
-                                    {data.tips}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                <Image
+                    priority={true}
+                    src={offer.image}
+                    alt={offer.shortTitle}
+                    quality={75}
+                    width={1935}
+                    height={1119}
+                    sizes="(max-width: 600px) 100vw, (max-width: 1440px) 60vw, 1935px"
+                    placeholder="empty"
+                    className={styles.offer__image}
+                />
+                <div className={styles.offer__text}>
+                    <p className={styles.offer__title}>{offer.title}</p>
+                    <ul className={styles.offer__questions}>
+                        {offer.questions.map((question, index) => (
+                            <li key={index}>{question}</li>
+                        ))}
+                    </ul>
+                    <p className={styles.offer__description}>{offer.description}</p>
+                    <p className={styles.offer__tips}>{offer.tips}</p>
+                </div>
 
-                }
             </div>
         </section>
     );
