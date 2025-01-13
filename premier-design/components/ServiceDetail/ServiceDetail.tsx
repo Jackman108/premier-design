@@ -24,7 +24,7 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
     const router = useRouter();
 
     if (router.isFallback) {
-        return <div className={styles.loader}>Loading...</div>;
+        return <div className={styles.loader}>Подгружаем данные...</div>;
     }
     if (!service || !categoryProps) {
         return <div className={styles.error}>Service not found.</div>;

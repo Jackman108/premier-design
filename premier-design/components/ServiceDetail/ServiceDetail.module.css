@@ -14,6 +14,7 @@
 	display: flex;
 	flex-direction: column;
 	gap: 20px;
+	justify-content: space-around
 }
 
 .right {
@@ -27,6 +28,13 @@
 
 .title {
 	font-size: 2rem;
+	color: var(--gray-dark);
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.subTitle {
+	font-size: 1.4rem;
 	color: var(--gray-dark);
 	margin-bottom: 20px;
 	text-align: center;
@@ -68,6 +76,10 @@
 	gap: 10px;
 }
 
+.info ul {
+	padding-left: 20px;
+}
+
 .info_row {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
@@ -88,8 +100,6 @@
 .button {
 	display: flex;
 	justify-content: center;
-	align-items: center;
-	margin-top: 20px;
 }
 
 /* Адаптивность */

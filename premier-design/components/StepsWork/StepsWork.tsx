@@ -1,36 +1,26 @@
-import { FC, ReactElement, useEffect, useRef, useState } from 'react';
-import { findItemByTitle } from '../../utils/findItemByTitle';
+import {FC, ReactElement, useRef} from 'react';
+import {findItemByTitle} from '../../utils/findItemByTitle';
 import Title from '../UX/Title/Title';
 import styles from './StepsWork.module.css';
-import { StepsWorkProps } from "../../interface/StepsWork.props";
+import {StepsWorkProps} from "../../interface/StepsWork.props";
 import useIntersectionObserver from "../../hooks/useIntersectionObserver";
-import { TitleProps } from "../../interface/Title.props";
+import {TitleProps} from "../../interface/Title.props";
 import Image from "next/image";
+import {useStepAnimation} from "../../hooks/useStepAnimation";
 
-const StepsWork: FC<{ stepsWork: StepsWorkProps[]; titles: TitleProps[] }> = ({ stepsWork, titles }): ReactElement => {
-    const { title = '', description = '', shortTitle = '' } = findItemByTitle(titles, "application-process") || {};
-    const [currentStep, setCurrentStep] = useState<number>(-1);
+const StepsWork: FC<{ stepsWork: StepsWorkProps[]; titles: TitleProps[] }> = ({stepsWork, titles}): ReactElement => {
+    const {title = '', description = '', shortTitle = ''} = findItemByTitle(titles, "application-process") || {};
     const containerRef = useRef<HTMLDivElement>(null);
     const isVisible = useIntersectionObserver(containerRef, 0.1);
 
-    useEffect(() => {
-        if (isVisible) {
-            const interval = setInterval(() => {
-                setCurrentStep((prevStep) =>
-                    prevStep < (stepsWork?.length || 0) - 1 ? prevStep + 1 : prevStep
-                );
-            }, 800);
+    const currentStep = useStepAnimation(stepsWork.length, 800, isVisible);
 
-            return () => clearInterval(interval);
-        }
-        return;
-    }, [isVisible, stepsWork?.length]);
 
     const renderStep = (step: StepsWorkProps, isActive: boolean, delay: number) => (
         <div
             key={step.id}
             className={`${styles.step__item} ${isActive ? styles.step__item_active : ''}`}
-            style={{ animationDelay: `${delay}ms` }}
+            style={{animationDelay: `${delay}ms`}}
         >
             <div className={styles.step__icon_wrapper}>
                 <div className={styles.step__number}>{step.id}</div>

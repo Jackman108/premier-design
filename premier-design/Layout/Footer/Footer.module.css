@@ -31,4 +31,8 @@
 	.footer__container > .menu {
 		order: 1;
 	}
+
+	.footer__news {
+		order: 3;
+	}
 }

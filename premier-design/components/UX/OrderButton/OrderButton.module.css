@@ -47,18 +47,3 @@
 .button-none {
 	display: none;
 }
-
-@media (max-width: 768px) {
-	.button-white {
-		width: 32vw;
-		height: 9vw;
-		font-size: 2.8vw;
-	}
-
-	.button-black {
-		width: 32vw;
-		height: 9vw;
-		font-size: 2.8vw;
-
-	}
-}

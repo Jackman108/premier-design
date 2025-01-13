@@ -23,7 +23,7 @@ const RelatedServiceDetail: FC<RelatedServiceDetail> = ({
     const router = useRouter();
 
     if (router.isFallback) {
-        return <div className={styles.loader}>Loading...</div>;
+        return <div className={styles.loader}>Подгружаем данные...</div>;
     }
     if (!relatedServices) {
         return <div className={styles.error}>Service not found.</div>;
@@ -52,6 +52,7 @@ const RelatedServiceDetail: FC<RelatedServiceDetail> = ({
                 <section className={styles.service_detail}>
                     <div className={styles.left}>
                         <h1 className={styles.title}>{relatedServices.title}</h1>
+                        <h2 className={styles.subTitle}>{relatedServices.subTitle}</h2>
                         <div className={styles.image_wrapper}>
                             <Image
                                 priority={true}
@@ -66,26 +67,28 @@ const RelatedServiceDetail: FC<RelatedServiceDetail> = ({
                                 className={styles.image}
                             />
                         </div>
-                    </div>
-                    <div className={styles.right}>
-                        <h2 className={styles.description}>{relatedServices.description}</h2>
-                        <div className={styles.info}>
-                            <div className={styles.info_row}>
-                                <span className={styles.label}>Услуга:</span>
-                                <span className={styles.value}>{relatedServices.description}</span>
-                            </div>
-                            <div className={styles.info_row}>
-                                <span className={styles.label}>Единица измерения:</span>
-                                <span className={styles.value}>{relatedServices.description}</span>
-                            </div>
-                            <div className={styles.info_row}>
-                                <span className={styles.label}>Цена:</span>
-                                <span className={styles.value}>{relatedServices.description}</span>
-                            </div>
-                        </div>
                         <div className={styles.button}>
                             <OrderButton buttonStyle='button-black' buttonData={buttonHeader.buttonHeader}/>
                         </div>
+                    </div>
+                    <div className={styles.right}>
+                        <h3 className={styles.description}>{relatedServices.description}</h3>
+                        <div className={styles.info}>
+                            <h3 className={styles.subheading}>Преимущества:</h3>
+                            <ul>
+                                {relatedServices.benefits.map((benefit, index) => (
+                                    <li key={index}>{benefit}</li>
+                                ))}
+                            </ul>
+                            <p>{relatedServices.text}</p>
+                            <h3 className={styles.subheading}>Зачем это нужно вам?</h3>
+                            <ul>
+                                {relatedServices.triggers.map((trigger, index) => (
+                                    <li key={index}>{trigger}</li>
+                                ))}
+                            </ul>
+                        </div>
+
                     </div>
                     <BackButton/>
                 </section>

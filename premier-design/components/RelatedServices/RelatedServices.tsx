@@ -42,7 +42,7 @@ const RelatedServices: React.FC<RelatedServicesProps> = ({titles, relatedService
                                         />
                                     </div>
                                     <h3 className={styles.title}>{service.title}</h3>
-                                    <p className={styles.description}>{service.description}</p>
+                                    <p className={styles.description}>{service.subTitle}</p>
                                 </div>
                             </div>
                         </Link>

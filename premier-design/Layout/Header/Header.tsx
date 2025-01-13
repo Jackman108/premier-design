@@ -20,9 +20,8 @@ const Header: FC<HeaderProps> = ({menu}): ReactElement => {
         <header className={styles.header}>
             <div className={styles.header__container}>
                 <Logo/>
-
                 <div className={styles.contact__container}>
-                    <WorkHours hours="Пн-Пт: 09:00 - 18:00" />
+                    <WorkHours hours="Пн-Пт: 09:00 - 18:00"/>
                     <Phone/>
                     <SocialIcons/>
                 </div>

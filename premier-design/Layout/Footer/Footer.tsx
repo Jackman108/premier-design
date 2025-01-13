@@ -17,7 +17,9 @@ const Footer: FC<FooterProps> = ({papers, news, menu}) => {
                     <Papers papers={papers}/>
                     <Copyrighting/>
                 </div>
-                <News news={news} newsStyle='footer'/>
+                <div className={styles.footer__news}>
+                    <News news={news} newsStyle='footer'/>
+                </div>
                 <Menu
                     menu={menu}
                     menuStyle='footer'
