@@ -971,73 +971,73 @@
             "service": "Демонтаж кирпичных стен до 40 см",
             "unit": "м²",
             "price": "от 32 р.",
-            "canonical": "/repairs/dismantling-works/dismantling-brick-walls"
+            "canonical": "/services/dismantling-works/dismantling-brick-walls"
           },
           {
             "service": "Демонтаж плитки",
             "unit": "м²",
             "price": "от 16 р.",
-            "canonical": "/repairs/dismantling-works/dismantling-tiles"
+            "canonical": "/services/dismantling-works/dismantling-tiles"
           },
           {
             "service": "Демонтаж штукатурки",
             "unit": "м²",
             "price": "от 16 р.",
-            "canonical": "/repairs/dismantling-works/plaster-removal"
+            "canonical": "/services/dismantling-works/plaster-removal"
           },
           {
             "service": "Демонтаж стяжки",
             "unit": "м²",
             "price": "от 16 р.",
-            "canonical": "/repairs/dismantling-works/dismantling-screed"
+            "canonical": "/services/dismantling-works/dismantling-screed"
           },
           {
             "service": "Демонтаж деревянного пола",
             "unit": "м²",
             "price": "от 16 р.",
-            "canonical": "/repairs/dismantling-works/dismantling-wooden-floor"
+            "canonical": "/services/dismantling-works/dismantling-wooden-floor"
           },
           {
             "service": "Демонтаж побелки, старой краски",
             "unit": "м²",
             "price": "от 15 р.",
-            "canonical": "/repairs/dismantling-works/removal-whitewash_old-paint"
+            "canonical": "/services/dismantling-works/removal-whitewash_old-paint"
           },
           {
             "service": "Демонтаж оконных, дверных блоков (без сохранения)",
             "unit": "м²",
             "price": "от 15 р.",
-            "canonical": "/repairs/dismantling-works/dismantling-window-and-door-units-without-preservation"
+            "canonical": "/services/dismantling-works/dismantling-window-and-door-units-without-preservation"
           },
           {
             "service": "Демонтаж оконных, дверных блоков (с сохранением)",
             "unit": "м²",
             "price": "от 35 р.",
-            "canonical": "/repairs/dismantling-works/dismantling-window-and-door-units-with-preservation"
+            "canonical": "/services/dismantling-works/dismantling-window-and-door-units-with-preservation"
           },
           {
             "service": "Демонтаж перегородок из ГКЛ",
             "unit": "м²",
             "price": "от 20 р.",
-            "canonical": "/repairs/dismantling-works/dismantling-GKL-partitions"
+            "canonical": "/services/dismantling-works/dismantling-GKL-partitions"
           },
           {
             "service": "Демонтаж перегородок кирпич",
             "unit": "м²",
             "price": "от 40 р.",
-            "canonical": "/repairs/dismantling-works/dismantling-brick-partitions"
+            "canonical": "/services/dismantling-works/dismantling-brick-partitions"
           },
           {
             "service": "Демонтаж перегородок ПГС",
             "unit": "м²",
             "price": "от 20 р.",
-            "canonical": "/repairs/dismantling-works/dismantling-CBC-partitions"
+            "canonical": "/services/dismantling-works/dismantling-CBC-partitions"
           },
           {
             "service": "Демонтаж перегородок бетон",
             "unit": "м²",
             "price": "от 150 р.",
-            "canonical": "/repairs/dismantling-works/dismantling-concrete-partitions"
+            "canonical": "/services/dismantling-works/dismantling-concrete-partitions"
           }
         ]
       },
@@ -1057,37 +1057,37 @@
             "service": "Заливка фундамента",
             "unit": "м³",
             "price": "от 175 р.",
-            "canonical": "/repairs/construction-works/foundation-pouring"
+            "canonical": "/services/construction-works/foundation-pouring"
           },
           {
             "service": "Возведение кирпичных стен",
             "unit": "м²",
             "price": "от 120 р.",
-            "canonical": "/repairs/construction-works/brick-wall-construction"
+            "canonical": "/services/construction-works/brick-wall-construction"
           },
           {
             "service": "Возведение стен ПГС",
             "unit": "м²",
             "price": "от 70 р.",
-            "canonical": "/repairs/construction-works/CBC-wall-construction"
+            "canonical": "/services/construction-works/CBC-wall-construction"
           },
           {
             "service": "Монтаж фасада",
             "unit": "м²",
             "price": "от 28 р.",
-            "canonical": "/repairs/construction-works/facade-installation"
+            "canonical": "/services/construction-works/facade-installation"
           },
           {
             "service": "Устройство кровли",
             "unit": "м²",
             "price": "от 52 р.",
-            "canonical": "/repairs/construction-works/roofing"
+            "canonical": "/services/construction-works/roofing"
           },
           {
             "service": "Возведение ограждений",
             "unit": "м.п.",
             "price": "от 20 р.",
-            "canonical": "/repairs/construction-works/fence-construction"
+            "canonical": "/services/construction-works/fence-construction"
           }
         ]
       },
@@ -1107,13 +1107,13 @@
             "service": "Монтаж гипсокартонных конструкций",
             "unit": "м²",
             "price": "от 25 р.",
-            "canonical": "/repairs/installation-works/gypboard-installation"
+            "canonical": "/services/installation-works/gypboard-installation"
           },
           {
             "service": "Установка вентиляции",
             "unit": "шт.",
             "price": "от 50 р.",
-            "canonical": "/repairs/installation-works/ventilation-installation"
+            "canonical": "/services/installation-works/ventilation-installation"
           }
         ]
       },
@@ -1133,43 +1133,43 @@
             "service": "Штукатурка стен",
             "unit": "м²",
             "price": "от 32 р.",
-            "canonical": "/repairs/finishing-works/plastering-walls"
+            "canonical": "/services/finishing-works/plastering-walls"
           },
           {
             "service": "Шпатлёвка стен",
             "unit": "м²",
             "price": "от 16 р.",
-            "canonical": "/repairs/finishing-works/wall-puttying"
+            "canonical": "/services/finishing-works/wall-puttying"
           },
           {
             "service": "Укладка плитки",
             "unit": "м²",
             "price": "от 48 р.",
-            "canonical": "/repairs/finishing-works/tile-laying"
+            "canonical": "/services/finishing-works/tile-laying"
           },
           {
             "service": "Укладка керамогранита",
             "unit": "м²",
             "price": "от 60 р.",
-            "canonical": "/repairs/finishing-works/stoneware-laying"
+            "canonical": "/services/finishing-works/stoneware-laying"
           },
           {
             "service": "Укладка ламината",
             "unit": "м²",
             "price": "от 20 р.",
-            "canonical": "/repairs/finishing-works/laminate-flooring"
+            "canonical": "/services/finishing-works/laminate-flooring"
           },
           {
             "service": "Оклейка стен обоями",
             "unit": "м²",
             "price": "от 12 р.",
-            "canonical": "/repairs/finishing-works/wallpapering"
+            "canonical": "/services/finishing-works/wallpapering"
           },
           {
             "service": "Грунтовка основания",
             "unit": "м²",
             "price": "от 4 р.",
-            "canonical": "/repairs/finishing-works/base-priming"
+            "canonical": "/services/finishing-works/base-priming"
           }
         ]
       },
@@ -1189,19 +1189,19 @@
             "service": "Покраска стен и потолков",
             "unit": "м²",
             "price": "от 12 р.",
-            "canonical": "/repairs/painting-works/painting-walls-ceilings"
+            "canonical": "/services/painting-works/painting-walls-ceilings"
           },
           {
             "service": "Окраска фасадов",
             "unit": "м²",
             "price": "от 10 р.",
-            "canonical": "/repairs/painting-works/facade-painting"
+            "canonical": "/services/painting-works/facade-painting"
           },
           {
             "service": "Декоративная отделка",
             "unit": "м²",
             "price": "от 35 р.",
-            "canonical": "/repairs/painting-works/decorative-finishing"
+            "canonical": "/services/painting-works/decorative-finishing"
           }
         ]
       },
@@ -1221,55 +1221,55 @@
             "service": "Монтаж труб (полипропилен, металлопласт, метал)",
             "unit": "м.п.",
             "price": "от 10 р.",
-            "canonical": "/repairs/plumbing-works/water-pipe-installation"
+            "canonical": "/services/plumbing-works/water-pipe-installation"
           },
           {
             "service": "Монтаж смесителя",
             "unit": "шт.",
             "price": "от 70 р.",
-            "canonical": "/repairs/plumbing-works/faucet-installation"
+            "canonical": "/services/plumbing-works/faucet-installation"
           },
           {
             "service": "Монтаж умывальника",
             "unit": "шт.",
             "price": "от 140 р.",
-            "canonical": "/repairs/plumbing-works/mounting-washbasin"
+            "canonical": "/services/plumbing-works/mounting-washbasin"
           },
           {
             "service": "Монтаж унитаза",
             "unit": "шт.",
             "price": "от 140 р.",
-            "canonical": "/repairs/plumbing-works/toilet-installation"
+            "canonical": "/services/plumbing-works/toilet-installation"
           },
           {
             "service": "Установка душевой кабины",
             "unit": "шт.",
             "price": "от 175 р.",
-            "canonical": "/repairs/plumbing-works/shower-cabin-installation"
+            "canonical": "/services/plumbing-works/shower-cabin-installation"
           },
           {
             "service": "Подвод точки воды или канализации",
             "unit": "шт.",
             "price": "от 50 р.",
-            "canonical": "/repairs/plumbing-works/water-or-sewage-connection"
+            "canonical": "/services/plumbing-works/water-or-sewage-connection"
           },
           {
             "service": "Установка радиаторов",
             "unit": "шт.",
             "price": "от 105 р.",
-            "canonical": "/repairs/plumbing-works/radiator-installation"
+            "canonical": "/services/plumbing-works/radiator-installation"
           },
           {
             "service": "Замена стояка",
             "unit": "шт.",
             "price": "от 200 р.",
-            "canonical": "/repairs/plumbing-works/riser-replacement"
+            "canonical": "/services/plumbing-works/riser-replacement"
           },
           {
             "service": "Замена счётчика",
             "unit": "шт.",
             "price": "от 200 р.",
-            "canonical": "/repairs/plumbing-works/meter-replacement"
+            "canonical": "/services/plumbing-works/meter-replacement"
           }
         ]
       },
@@ -1289,49 +1289,49 @@
             "service": "Монтаж электропроводки",
             "unit": "м.п.",
             "price": "от 4 р.",
-            "canonical": "/repairs/electrical-works/wiring-installation"
+            "canonical": "/services/electrical-works/wiring-installation"
           },
           {
             "service": "Установка розеток",
             "unit": "шт.",
             "price": "от 20 р.",
-            "canonical": "/repairs/electrical-works/socket-installation"
+            "canonical": "/services/electrical-works/socket-installation"
           },
           {
             "service": "Установка подрозетника",
             "unit": "шт.",
             "price": "от 20 р.",
-            "canonical": "/repairs/electrical-works/socket-outlet-installation"
+            "canonical": "/services/electrical-works/socket-outlet-installation"
           },
           {
             "service": "Установка щитка",
             "unit": "шт.",
             "price": "от 70 р.",
-            "canonical": "/repairs/electrical-works/panel-installation"
+            "canonical": "/services/electrical-works/panel-installation"
           },
           {
             "service": "Установка автомата",
             "unit": "шт.",
             "price": "от 48 р.",
-            "canonical": "/repairs/electrical-works/dispenser-installation"
+            "canonical": "/services/electrical-works/dispenser-installation"
           },
           {
             "service": "Штроба под электрокабель",
             "unit": "м.п.",
             "price": "от 12 р.",
-            "canonical": "/repairs/electrical-works/rutting-electrical-cables"
+            "canonical": "/services/electrical-works/rutting-electrical-cables"
           },
           {
             "service": "Гофрирование кабеля",
             "unit": "м.п.",
             "price": "от 12 р.",
-            "canonical": "/repairs/electrical-works/cable-corrugation"
+            "canonical": "/services/electrical-works/cable-corrugation"
           },
           {
             "service": "Установка освещения",
             "unit": "шт.",
             "price": "от 1000 р.",
-            "canonical": "/repairs/electrical-works/lighting-installation"
+            "canonical": "/services/electrical-works/lighting-installation"
           }
         ]
       },
@@ -1351,13 +1351,13 @@
             "service": "Установка дверей",
             "unit": "шт.",
             "price": "от 160 р.",
-            "canonical": "/repairs/carpentry-works/door-installation"
+            "canonical": "/services/carpentry-works/door-installation"
           },
           {
             "service": "Установка  окон",
             "unit": "шт.",
             "price": "от 160 р.",
-            "canonical": "/repairs/carpentry-works/window-installation"
+            "canonical": "/services/carpentry-works/window-installation"
           }
         ]
       }
@@ -1423,46 +1423,46 @@
   ],
   "relatedServices": [
     {
-      "id": 1,
+      "id": "expertise",
       "title": "Строительная экспертиза",
       "description": "Проведем экспертизу состояния вашего жилья и предложим улучшения для повышения его стоимости и безопасности.",
       "image": "/services/related/expertise.webp",
-      "link": "/services/expertise"
+      "canonical": "/services/expertise"
     },
     {
-      "id": 2,
+      "id": "smart-home",
       "title": "Умный дом и автоматизация",
       "description": "Установим системы умного дома: освещение, климат-контроль, безопасность и управление с телефона.",
       "image": "/services/related/smart-home.webp",
-      "link": "/services/smart-home"
+      "canonical": "/services/smart-home"
     },
     {
-      "id": 3,
+      "id": "energy-saving",
       "title": "Энергосбережение и экология",
       "description": "Проектируем и устанавливаем решения для энергосбережения, включая солнечные панели, системы отопления и вентиляции с минимальными затратами.",
       "image": "/services/related/energy-saving.webp",
-      "link": "/services/energy-saving"
+      "canonical": "/services/energy-saving"
     },
     {
-      "id": 4,
+      "id": "technical-documentation",
       "title": "Техническая документация",
       "description": "Разработаем детальную документацию по прокладке электросетей, водоснабжения, отопления и освещения.",
       "image": "/services/related/technical-documentation.webp",
-      "link": "/services/technical-documentation"
+      "canonical": "/services/technical-documentation"
     },
     {
-      "id": 5,
+      "id": "materials",
       "title": "Подбор и заказ материалов",
       "description": "Подберем и доставим чистовые и черновые материалы для ремонта, а также мебель, сантехнику и освещение.",
       "image": "/services/related/materials.webp",
-      "link": "/services/materials"
+      "canonical": "/services/materials"
     },
     {
-      "id": 6,
+      "id": "cleaning",
       "title": "Вывоз строительного мусора и клининг",
       "description": "Вывезем строительный мусор и сделаем влажную уборку. Вы получите чистую квартиру, готовую к переезду.",
       "image": "/services/related/cleaning.webp",
-      "link": "/services/cleaning"
+      "canonical": "/services/cleaning"
     }
   ]
 }

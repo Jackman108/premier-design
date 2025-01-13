@@ -7,7 +7,7 @@ import {Appeal, Approach, Costing, Examples, Features, OfferList, Services, Step
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import Reviews from "../components/Reviews/Reviews";
-import {getFullCanonicalUrl} from "../utils/findService";
+import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 import {useLayoutProps} from "../hooks/useLayoutProps";
 import RelatedServices from "../components/RelatedServices/RelatedServices";
 
@@ -56,7 +56,7 @@ const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
                     titles={data.title}
                     cards={data.cards.costingCard}
                 />
-                <RelatedServices   titles={data.title} relatedServices={data.relatedServices}/>
+                <RelatedServices titles={data.title} relatedServices={data.relatedServices}/>
                 <Reviews
                     titles={data.title}
                     reviews={data.reviews}

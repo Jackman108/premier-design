@@ -8,7 +8,7 @@ import BackButton from "../../components/UX/BackButton/BackButton";
 import DocumentImage from "../../components/UX/DocumentImage/DocumentImage";
 import PrivacyPolicyContent from "../../components/Documents/PrivacyPolicyContent";
 import CustomHead from "../../components/CustomHead/CustomHead";
-import {getFullCanonicalUrl} from "../../utils/findService";
+import {getFullCanonicalUrl} from "../../utils/getFullCanonicalUrl";
 
 const PrivacyPolicyPage: NextPage<PageProps> = ({data}) => {
     const layoutProps = useLayoutProps(data);

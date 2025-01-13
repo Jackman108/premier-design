@@ -7,7 +7,7 @@ import {PageProps} from "../../interface/Page.props";
 import BackButton from "../../components/UX/BackButton/BackButton";
 import DocumentImage from "../../components/UX/DocumentImage/DocumentImage";
 import PublicOfferContent from "../../components/Documents/PublicOfferContent";
-import {getFullCanonicalUrl} from "../../utils/findService";
+import {getFullCanonicalUrl} from "../../utils/getFullCanonicalUrl";
 import CustomHead from "../../components/CustomHead/CustomHead";
 
 const PublicOfferPage: NextPage<PageProps> = ({data}) => {

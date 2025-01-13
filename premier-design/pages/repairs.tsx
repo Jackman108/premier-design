@@ -8,7 +8,7 @@ import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer} from '../c
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
 import Category from "../components/Category/Category";
-import {getFullCanonicalUrl} from "../utils/findService";
+import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 import {useLayoutProps} from "../hooks/useLayoutProps";
 
 const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {

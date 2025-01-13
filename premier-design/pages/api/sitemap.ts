@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import {NextApiRequest, NextApiResponse} from 'next';
 import data from '../../data/data.json';
 
 // Константы для базового URL и конфигурации sitemap
@@ -19,7 +19,7 @@ const generateUrl = (path: string, changefreq: string = CHANGE_FREQUENCY, priori
 
 const generateStaticPages = (): string[] => {
     const staticPages = [
-        '', '/repairs', '/design', '/about', '/contacts',
+        '', '/repairs', '/design', '/about', '/contacts', '/documents/privacy-policy', '/documents/public-offer', '/documents/user-agreement',
     ];
     return staticPages.map(page => generateUrl(page, CHANGE_FREQUENCY, STATIC_PRIORITY));
 };
@@ -30,7 +30,7 @@ const generateDynamicPages = (): string[] => {
     }
 
     return data.prices.repairs.flatMap(category =>
-        category.priceList.map(item => generateUrl(`/repairs/${category.id}/${item.canonical.split('/').pop()}`, CHANGE_FREQUENCY, DYNAMIC_PRIORITY))
+        category.priceList.map(item => generateUrl(`/services/${category.id}/${item.canonical.split('/').pop()}`, CHANGE_FREQUENCY, DYNAMIC_PRIORITY))
     );
 };
 
@@ -53,9 +53,9 @@ export default function handler(_req: NextApiRequest, res: NextApiResponse): voi
         res.status(200).send(sitemap);
     } catch (error: unknown) {
         if (error instanceof Error) {
-            res.status(500).json({ error: 'Error generating sitemap', details: error.message });
+            res.status(500).json({error: 'Error generating sitemap', details: error.message});
         } else {
-            res.status(500).json({ error: 'Error generating sitemap', details: 'Unknown error' });
+            res.status(500).json({error: 'Error generating sitemap', details: 'Unknown error'});
         }
     }
 }

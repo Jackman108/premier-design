@@ -7,7 +7,7 @@ import {usePageData} from "../hooks/usePageData";
 import Banner from "../components/Banner/Banner";
 import {Address, Appeal} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
-import {getFullCanonicalUrl} from "../utils/findService";
+import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 import {useLayoutProps} from "../hooks/useLayoutProps";
 
 const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {

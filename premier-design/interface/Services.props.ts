@@ -7,16 +7,3 @@ export interface ServicesProps {
     buttons: ButtonProps[];
     servicesCard: ServiceCardProps[];
 }
-
-export interface RelatedService {
-    id: number;
-    title: string;
-    description: string;
-    image: string;
-    link: string;
-}
-
-export interface RelatedServicesProps {
-    titles: TitleProps[];
-    relatedServices: RelatedService[];
-}

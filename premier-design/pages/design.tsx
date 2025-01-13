@@ -7,7 +7,7 @@ import {usePageData} from "../hooks/usePageData";
 import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
-import {getFullCanonicalUrl} from "../utils/findService";
+import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 import {useLayoutProps} from "../hooks/useLayoutProps";
 
 const Design: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
