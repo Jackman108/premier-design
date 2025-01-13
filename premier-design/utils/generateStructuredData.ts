@@ -4,7 +4,7 @@ export const generateStructuredData = () => ({
     "name": "Premium Interior",
     "url": "https://premium-interior.by",
     "logo": "/logo.png",
-    "sameAs": ["https://www.facebook.com/PremiumInterior", "https://twitter.com/PremiumInterior"],
+    "sameAs": ["https://t.me/PremiumInterior", "https://www.instagram.com/proremont_zhl", "https://vk.com/premium_interior_zhl" ],
     "address": {
         "@type": "PostalAddress",
         "streetAddress": "Pervomayskaya",

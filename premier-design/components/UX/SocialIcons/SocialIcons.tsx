@@ -10,7 +10,7 @@ const SocialIcons = (): ReactElement => {
             <Link href="https://t.me/PremiumInterior" aria-label="Мы в телеграм">
                 <FaTelegram className={styles.icons}/>
             </Link>
-            <Link href="https://vk.com/proremontzhl" aria-label="Мы в вконтакте">
+            <Link href="https://vk.com/premium_interior_zhl" aria-label="Мы в вконтакте">
                 <SlSocialVkontakte className={styles.icons}/>
             </Link>
             <Link href="https://instagram.com/proremont_zhl" aria-label="Мы в инстаграм">

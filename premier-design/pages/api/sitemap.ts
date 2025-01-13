@@ -24,21 +24,35 @@ const generateStaticPages = (): string[] => {
     return staticPages.map(page => generateUrl(page, CHANGE_FREQUENCY, STATIC_PRIORITY));
 };
 
-const generateDynamicPages = (): string[] => {
+const generateDynamicPagesFromPrices  = (): string[] => {
     if (!data.prices || !Array.isArray(data.prices.repairs)) {
         throw new Error('Invalid data structure: expected prices.repairs array.');
     }
 
     return data.prices.repairs.flatMap(category =>
-        category.priceList.map(item => generateUrl(`/services/${category.id}/${item.canonical.split('/').pop()}`, CHANGE_FREQUENCY, DYNAMIC_PRIORITY))
+        category.priceList.map(item =>
+            generateUrl(`/services/${category.id}/${item.canonical.split('/').pop()}`, CHANGE_FREQUENCY, DYNAMIC_PRIORITY)
+        )
     );
 };
 
+const generateDynamicPagesFromRelatedServices = (): string[] => {
+    if (!data.relatedServices || !Array.isArray(data.relatedServices)) {
+        throw new Error('Invalid data structure: expected relatedServices array.');
+    }
+
+    return data.relatedServices.map(service =>
+        generateUrl(service.canonical, CHANGE_FREQUENCY, DYNAMIC_PRIORITY)
+    );
+};
+
+
 const generateSitemap = (): string => {
     const staticPages = generateStaticPages();
-    const dynamicPages = generateDynamicPages();
+    const dynamicPages = generateDynamicPagesFromPrices ();
+    const dynamicRelatedPages = generateDynamicPagesFromRelatedServices();
 
-    const allPages = [...staticPages, ...dynamicPages];
+    const allPages = [...staticPages, ...dynamicPages, ...dynamicRelatedPages];
 
     return `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">
