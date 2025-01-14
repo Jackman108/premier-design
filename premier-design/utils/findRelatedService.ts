@@ -1,11 +1,11 @@
 import data from "../data/data.json";
-import {RelatedService} from "../interface/RelatedService.props";
+import {RelatedServiceCardProps} from "../interface/Cards.props";
 
 const getServiceIdFromCanonical = (canonical: string): string => {
     return canonical.split('/').pop() || '';
 };
 
-export const findRelatedService = (categoryId: string): RelatedService | null => {
+export const findRelatedService = (categoryId: string): RelatedServiceCardProps | null => {
     const relatedService = data.relatedServices.find(
         (service) => getServiceIdFromCanonical(service.canonical) === categoryId
     );

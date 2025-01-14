@@ -1,0 +1,47 @@
+.item {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 10px;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	min-width: 300px;
+	text-align: center;
+}
+
+.content__photo {
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin-bottom: 15px;
+}
+
+.content__text {
+	font-size: 1rem;
+	color: #555;
+}
+
+.content__quote {
+	font-style: italic;
+	margin-bottom: 10px;
+}
+
+.content__author {
+	font-weight: bold;
+	color: #333;
+}
+
+@media (max-width: 768px) {
+
+	.item {
+		padding: 20vw;
+	}
+
+	.content__photo {
+		margin: 0 auto;
+	}
+
+	.content__quote {
+		font-style: italic;
+		margin: 10px 0;
+	}
+}

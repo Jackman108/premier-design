@@ -31,6 +31,17 @@ export interface ServiceCardProps {
     href: string;
 }
 
+export interface RelatedServiceCardProps {
+    id: string;
+    title: string;
+    subTitle: string;
+    description: string;
+    image: string;
+    canonical: string;
+    benefits: string[];
+    text: string;
+    triggers: string[];
+}
 
 export interface ExamplesCardProps {
     card: ExampleCardProps;

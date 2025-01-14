@@ -1,12 +1,15 @@
 import React, {FC} from 'react';
 import styles from './Reviews.module.css';
-import Image from "next/image";
 import {findItemByTitle} from "../../utils/findItemByTitle";
 import Title from "../UX/Title/Title";
 import {ReviewsProps} from "../../interface/Review.props";
+import useResizeEffects from "../../hooks/useResizeEffects";
+import Slider from "../Slider/Slider";
+import ReviewCard from "../Cards/ReviewCard/ReviewCard";
 
 const Reviews: FC<ReviewsProps> = ({titles, reviews}) => {
     const {title = '', description = '', shortTitle = ''} = findItemByTitle(titles, "customer_reviews") || {};
+    const {isMobile} = useResizeEffects();
 
     return (
         <section className={styles.reviews}>
@@ -19,27 +22,17 @@ const Reviews: FC<ReviewsProps> = ({titles, reviews}) => {
                     shortTitle={shortTitle}
                 />
                 <div className={styles.reviews__content}>
-                    {reviews.map((review) => (
-                        <div key={review.id} className={styles.content__review}>
-                            <Image
-                                priority={false}
-                                src={review.photoUrl}
-                                alt={shortTitle}
-                                quality={100}
-                                width={600}
-                                height={600}
-                                placeholder='empty'
-                                className={styles.content__photo}
-                                loading={'lazy'}
-                            />
-                            <div className={styles.content__text}>
-                                <p className={styles.content__quote}>{review.text}</p>
-                                <p className={styles.content__author}>
-                                    — {review.name}, {review.city}
-                                </p>
-                            </div>
-                        </div>
-                    ))}
+                    {isMobile ? (
+                        <Slider isMobile={isMobile} slidesPerView={1}>
+                            {reviews.map((review) => (
+                                <ReviewCard key={review.id} {...review} />
+                            ))}
+                        </Slider>
+                    ) : (
+                        reviews.map((review) => (
+                            <ReviewCard key={review.id} {...review} />
+                        ))
+                    )}
                 </div>
             </div>
         </section>
