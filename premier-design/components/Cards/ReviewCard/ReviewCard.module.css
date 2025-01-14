@@ -1,4 +1,5 @@
 .item {
+	height: 100%;
 	background-color: #fff;
 	padding: 20px;
 	border-radius: 10px;
@@ -31,9 +32,8 @@
 }
 
 @media (max-width: 768px) {
-
 	.item {
-		padding: 20vw;
+		padding: 0 15vw;
 	}
 
 	.content__photo {

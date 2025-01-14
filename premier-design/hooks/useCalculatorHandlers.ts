@@ -1,6 +1,6 @@
 import {ChangeEvent, useCallback, useEffect, useMemo, useState} from 'react';
 import {factorConfig, PropertyType, RepairType, ServiceType} from "../configs/factorsConfig";
-import {CostingCardProps} from "../interface/Cards.props";
+import {CostingCardProps} from "../interface/Costing.props";
 
 const useCalculatorHandlers = (card: CostingCardProps) => {
     const [selectedTab, setSelectedTab] = useState<number>(card.id || 0);

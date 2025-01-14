@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './RelatedServiceCard.module.css';
-import {RelatedServiceCardProps} from "../../../interface/Cards.props";
+import {RelatedServiceCardProps} from "../../../interface/RelatedService.props";
 
 const RelatedServiceCard: React.FC<RelatedServiceCardProps> = (relatedService) => {
     return (

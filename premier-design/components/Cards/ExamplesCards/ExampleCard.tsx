@@ -1,11 +1,10 @@
 'use client'
 import {FC, ReactElement} from 'react';
-import styles from './ExamplesCards.module.css';
-
+import styles from './ExampleCard.module.css';
 import NextImage from 'next/image';
-import {ExamplesCardProps} from "../../../interface/Cards.props";
+import {ExampleCardComponentProps} from "../../../interface/Examples.props";
 
-const ExampleCard: FC<ExamplesCardProps> = ({card, onClick}): ReactElement => {
+const ExampleCard: FC<ExampleCardComponentProps> = ({card, onClick}): ReactElement => {
     return (
         <div className={styles.examples__card} onClick={() => onClick(card)}>
             <div className={styles.card__background}>

@@ -1,14 +1,19 @@
 .costing {
 	max-width: 100vw;
-	height: auto;
-	padding: 3% 0;
+	padding: 3%;
 }
 
 .costing__container {
-	margin: 0 auto;
-	padding: 0 1%;
 	max-width: 1440px;
-	display: grid;
-	justify-items: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	grid-gap: 4vh;
+	margin: 0 auto;
+}
+
+.costing__cards {
+	display: grid;
+	height: auto;
+	grid-gap: 3vh;
 }

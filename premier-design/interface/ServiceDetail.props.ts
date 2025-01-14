@@ -3,9 +3,9 @@ import {PriceItem} from "./Prices.props";
 import {NewsProps} from "./News.props";
 import {Paper} from "./Paper.props";
 import {MenuProps} from "./Menu.props";
-import {CostingCardProps} from "./Cards.props";
 import {ButtonProps} from "./Button.props";
 import {PanelProps} from "./Panel.props";
+import {CostingCardProps} from "./Costing.props";
 
 export interface ServiceDetailProps {
     service: PriceItem;

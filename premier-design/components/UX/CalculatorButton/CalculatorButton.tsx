@@ -1,8 +1,8 @@
 import React, {FC, useState} from 'react';
 import CalculatorModal from '../../CalculatorModal/CalculatorModal';
-import {CostingCardProps} from '../../../interface/Cards.props';
 import PanelButton from "../PanelButton/PanelButton";
 import {PanelProps} from "../../../interface/Panel.props";
+import {CostingCardProps} from "../../../interface/Costing.props";
 
 interface CalculatorButtonProps {
     costingCards: CostingCardProps[];

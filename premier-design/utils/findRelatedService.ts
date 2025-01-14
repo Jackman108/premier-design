@@ -1,5 +1,5 @@
 import data from "../data/data.json";
-import {RelatedServiceCardProps} from "../interface/Cards.props";
+import {RelatedServiceCardProps} from "../interface/RelatedService.props";
 
 const getServiceIdFromCanonical = (canonical: string): string => {
     return canonical.split('/').pop() || '';
