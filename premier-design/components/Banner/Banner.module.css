@@ -24,7 +24,7 @@
 	align-content: space-between;
 	max-width: 1440px;
 	margin: 12vh auto 2vh;
-	height: 60%;
+	height: 80%;
 }
 
 @media screen and (max-width: 768px) {
@@ -41,6 +41,7 @@
 		height: 26vh;
 		align-content: flex-end;
 		margin: 5vh auto;
-		grid-gap: 3vh;
+		padding-bottom: 2vh;
+		grid-gap: 2vh;
 	}
 }

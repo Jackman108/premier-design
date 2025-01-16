@@ -31,3 +31,9 @@
 		height: 1.4rem;
 	}
 }
+
+@media (max-width: 425px) {
+	.theme__button {
+		display: none;
+	}
+}

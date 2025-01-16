@@ -50,8 +50,8 @@
 
 @media (max-width: 768px) {
 	.title-white {
-		font-size: 0.9rem;
-		padding-bottom: 1rem;
+		font-size: 1rem;
+		font-weight: 400;
 	}
 
 	.title-black {

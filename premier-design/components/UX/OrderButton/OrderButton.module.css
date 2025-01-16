@@ -44,7 +44,6 @@
 
 @media (max-width: 768px) {
 	.button-base {
-		width: 60vw;
 		height: 6vh;
 		font-size: 1.4rem;
 	}
@@ -52,8 +51,7 @@
 
 @media (max-width: 480px) {
 	.button-base {
-		width: 70vw;
-		height: 6vh;
+		width: 60vw;
 		font-size: 1.2rem;
 	}
 }
