@@ -1,8 +1,9 @@
-import React, {FC, useState} from 'react';
+import React, {FC} from 'react';
 import CalculatorModal from '../../CalculatorModal/CalculatorModal';
 import PanelButton from "../PanelButton/PanelButton";
 import {PanelProps} from "../../../interface/Panel.props";
 import {CostingCardProps} from "../../../interface/Costing.props";
+import {useModalState} from "../../../hooks/useModalState";
 
 interface CalculatorButtonProps {
     costingCards: CostingCardProps[];
@@ -10,10 +11,7 @@ interface CalculatorButtonProps {
 }
 
 const CalculatorButton: FC<CalculatorButtonProps> = ({costingCards, panelData}) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const toggleModal = () => setIsModalOpen((prev) => !prev);
-
+    const {isOpen: isModalOpen, toggleModal} = useModalState(false);
     return (
         <>
             <PanelButton
