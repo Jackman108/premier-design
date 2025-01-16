@@ -16,7 +16,12 @@ const OrderButton: FC<OrderButtonProps> = ({buttonData, buttonStyle, panelData}:
                 <PanelButton {...panelData} onClick={openModal}/>
             ) : (
                 buttonData && (
-                    <button className={buttonClass} type="button" onMouseDown={openModal} aria-label="Сделать заказ">
+                    <button
+                        className={`${styles['button-base']} ${buttonClass}`}
+                        type="button"
+                        onMouseDown={openModal}
+                        aria-label="Сделать заказ"
+                    >
                         {buttonData}
                     </button>
                 )

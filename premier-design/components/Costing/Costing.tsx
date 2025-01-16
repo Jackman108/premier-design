@@ -1,7 +1,7 @@
 'use client';
 
 import styles from './Costing.module.css';
-import CostingCard from '../Cards/CostingCards/CostingCard';
+import CostingCard from '../Cards/CostingCard/CostingCard';
 import Title from '../UX/Title/Title';
 import {findItemByTitle} from '../../utils/findItemByTitle';
 import {FC, ReactElement, useMemo} from 'react';

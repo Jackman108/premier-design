@@ -6,7 +6,7 @@ import Title from "../UX/Title/Title";
 import {RelatedServicesProps} from "../../interface/RelatedService.props";
 import useResizeEffects from "../../hooks/useResizeEffects";
 import Slider from "../Slider/Slider";
-import RelatedServiceCard from "../Cards/RelatedServicesCards/RelatedServiceCard";
+import RelatedServiceCard from "../Cards/RelatedServicesCard/RelatedServiceCard";
 
 const RelatedServices: React.FC<RelatedServicesProps> = ({titles, relatedServices}) => {
     const titleData = findItemByTitle(titles, "related-services") || {} as TitleProps;

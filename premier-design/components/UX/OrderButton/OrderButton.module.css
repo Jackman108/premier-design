@@ -1,16 +1,19 @@
-.button-white {
+.button-base {
 	width: 36vh;
 	height: 8vh;
-	border: 1px solid rgba(230, 227, 225, 0.3);
 	border-radius: 4px;
 	background: transparent;
 	color: rgba(230, 227, 225, 0.4);
 	cursor: pointer;
-	font-size: 3.2vh;
+	font-size: 1.8rem;
 	overflow: hidden;
 	white-space: nowrap;
 	transition: all 0.3s ease-in-out;
 	text-shadow: 0 1px 1px rgba(230, 227, 225, 0.8);
+}
+
+.button-white {
+	border: 1px solid rgba(230, 227, 225, 0.3);
 }
 
 .button-white:hover {
@@ -22,17 +25,8 @@
 }
 
 .button-black {
-	width: 36vh;
-	height: 8vh;
 	border: 2px solid var(--brown-light);
-	border-radius: 4px;
-	background: transparent;
 	color: var(--brown);
-	cursor: pointer;
-	font-size: 3.2vh;
-	overflow: hidden;
-	white-space: nowrap;
-	transition: all 0.3s ease-in-out;
 	text-shadow: 0 1px 1px rgba(77, 69, 64, 0.4);
 }
 
@@ -46,4 +40,20 @@
 
 .button-none {
 	display: none;
+}
+
+@media (max-width: 768px) {
+	.button-base {
+		width: 60vw;
+		height: 6vh;
+		font-size: 1.4rem;
+	}
+}
+
+@media (max-width: 480px) {
+	.button-base {
+		width: 70vw;
+		height: 6vh;
+		font-size: 1.2rem;
+	}
 }

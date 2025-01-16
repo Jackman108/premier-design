@@ -47,3 +47,15 @@
 	width: auto;
 	opacity: 1;
 }
+
+@media (max-width: 768px) {
+	.button_common {
+		width: 50px;
+		height: 45px;
+		bottom: 20px;
+	}
+
+	.sticky_button_text {
+		height: 45px;
+	}
+}

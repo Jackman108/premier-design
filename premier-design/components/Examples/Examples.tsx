@@ -5,7 +5,7 @@ import styles from './Examples.module.css';
 import SliderComponent from '../Slider/Slider';
 import Title from '../UX/Title/Title';
 import {findItemByTitle} from '../../utils/findItemByTitle';
-import ExampleCard from "../Cards/ExamplesCards/ExampleCard";
+import ExampleCard from "../Cards/ExamplesCard/ExampleCard";
 import PhotoViewer from "../PhotoViewer/PhotoViewer";
 import {ExamplesProps} from "../../interface/Examples.props";
 import {useExamplesLogic} from "../../hooks/useExamplesLogic";

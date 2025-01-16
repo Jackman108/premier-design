@@ -24,3 +24,9 @@
 	grid-gap: 1rem;
 	margin: 0 1rem;
 }
+
+@media (max-width: 768px) {
+	.examples__grid {
+		grid-template-columns:  1fr;
+	}
+}

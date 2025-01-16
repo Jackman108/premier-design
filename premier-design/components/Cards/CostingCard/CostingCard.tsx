@@ -1,6 +1,6 @@
 'use strict'
 import {FC, ReactElement} from 'react';
-import styles from './CostingCards.module.css';
+import styles from './CostingCard.module.css';
 import Image from 'next/image';
 import {CostingCardProps} from "../../../interface/Costing.props";
 
