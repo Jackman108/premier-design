@@ -13,3 +13,7 @@ export const StepsWork = dynamic(() => import('./StepsWork/StepsWork'));
 export const News = dynamic(() => import('./News/News'));
 export const Address = dynamic(() => import('./Address/Address'));
 export const Copyrighting = dynamic(() => import('./UX/Copyrighting/Copyrighting'));
+export const BusinessServices = dynamic(() => import('./BusinessServices/BusinessServices'));
+export const Category = dynamic(() => import('./Category/Category'));
+export const RelatedServices = dynamic(() => import('./RelatedServices/RelatedServices'));
+export const Reviews = dynamic(() => import('./Reviews/Reviews'));

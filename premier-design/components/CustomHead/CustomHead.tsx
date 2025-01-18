@@ -9,9 +9,20 @@ const CustomHead = ({title, description, canonical}: CustomHeadProps) => {
         <Head>
             <title>{title}</title>
             <meta name="description" content={description}/>
+
             <meta property="og:title" content={title}/>
             <meta property="og:description" content={description}/>
             <meta property="og:type" content="website"/>
+            <meta property="og:url" content={canonical}/>
+            <meta property="og:image" content="/logo.png"/>
+            <meta property="og:site_name" content="Premium Interior"/>
+
+            <meta property="twitter:card" content="summary_large_image" />
+            <meta property="twitter:title" content={title} />
+            <meta property="twitter:description" content={description} />
+            <meta property="twitter:image" content="/logo.png" />
+
+
             <link rel="canonical" href={canonical}/>
 
             <script

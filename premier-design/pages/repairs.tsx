@@ -4,13 +4,11 @@ import {getStaticProps} from './api/dataProvider';
 import {ReactElement} from "react";
 import {usePageData} from "../hooks/usePageData";
 import Banner from "../components/Banner/Banner";
-import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer} from '../components';
+import {Appeal, BusinessServices, Category, Costing, Examples, Features, OfferList, ProjectOffer} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
 import {PageProps} from "../interface/Page.props";
-import Category from "../components/Category/Category";
 import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 import {useLayoutProps} from "../hooks/useLayoutProps";
-import BusinessServices from "../components/BusinessServices/BusinessServices";
 
 const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
     const {titleData, buttonData, bannerData} = usePageData(data, "pleasant-repair", "leave_request", "repair_banner");
