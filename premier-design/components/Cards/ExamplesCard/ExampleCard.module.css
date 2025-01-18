@@ -77,7 +77,6 @@
 	height: 20px;
 }
 
-
 .card__area {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
@@ -89,26 +88,7 @@
 	height: 20px;
 }
 
-@media screen and (max-width: 1024px) {
-	.examples__grid {
-		grid-template-columns: repeat(3, 1fr);
-		grid-template-rows: auto;
-		grid-gap: 4vh;
-	}
-}
-
 @media screen and (max-width: 768px) {
-	.examples__cards {
-		margin: 0 10vw;
-	}
-
-	.examples__grid {
-
-		grid-template-columns:  1fr;
-		grid-template-rows: auto;
-		grid-gap: 0;
-	}
-
 	.examples__card {
 		grid-gap: 4vh
 	}

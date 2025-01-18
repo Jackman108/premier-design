@@ -1,3 +1,6 @@
+import {TitleProps} from "./Title.props";
+import {ButtonProps} from "./Button.props";
+
 export interface PriceItem {
     service: string;
     unit: string;
@@ -22,4 +25,10 @@ export interface Category {
 export interface Prices {
     repairs: Category[];
     design: Category[];
+}
+
+export interface CategoryProps {
+    titles: TitleProps[];
+    repairs: Category[];
+    buttonData: ButtonProps[];
 }

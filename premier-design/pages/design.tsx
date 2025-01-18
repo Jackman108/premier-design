@@ -33,14 +33,13 @@ const Design: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement 
                 />
                 <Features features={data.features}/>
                 <OfferList offer={data.offerList.designType}/>
-
                 <Examples
-                    cards={data.cards.examplesCard}
+                    cards={data.examplesCard}
                     titles={data.title}
                     enableSlider={enableSlider}
                 />
                 <Costing
-                    cards={data.cards.costingCard}
+                    cards={data.costingCard}
                     titles={data.title}
                 />
                 <ProjectOffer

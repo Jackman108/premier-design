@@ -16,7 +16,6 @@ const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
 
     const pageMeta = data.pageMeta['home'];
     const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
-    const layoutProps = useLayoutProps(data);
 
     return (
         <>
@@ -25,7 +24,7 @@ const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
                 description={pageMeta.description}
                 canonical={fullCanonicalUrl}
             />
-            <Layout {...layoutProps}>
+            <Layout {...useLayoutProps(data)}>
                 <Banner
                     titleData={titleData}
                     buttonData={buttonData}
@@ -37,24 +36,24 @@ const Home: NextPage<PageProps> = ({data, enableSlider = true}) => {
                 <Services
                     titles={data.title}
                     buttons={data.button}
-                    servicesCard={data.cards.servicesCard}
+                    servicesCard={data.servicesCard}
                 />
                 <Approach
                     titles={data.title}
-                    cards={data.cards.approachCard}
+                    cards={data.approachCard}
                 />
                 <StepsWork
                     stepsWork={data.stepsWork}
                     titles={data.title}
                 />
                 <Examples
-                    cards={data.cards.examplesCard}
+                    cards={data.examplesCard}
                     titles={data.title}
                     enableSlider={enableSlider}
                 />
                 <Costing
                     titles={data.title}
-                    cards={data.cards.costingCard}
+                    cards={data.costingCard}
                 />
                 <RelatedServices titles={data.title} relatedServices={data.relatedServices}/>
                 <Reviews

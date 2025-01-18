@@ -79,10 +79,6 @@ select {
 	}
 }
 
-.navigation-wrapper {
-	position: relative;
-}
-
 .dots {
 	display: flex;
 	justify-content: center;

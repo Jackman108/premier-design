@@ -1,0 +1,39 @@
+.businessServices {
+	max-width: 100vw;
+	padding: 3%;
+}
+
+.container {
+	max-width: 1440px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	grid-gap: 4vh;
+	margin: 0 auto;
+}
+
+.services {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.reasons {
+	list-style-type: none;
+	color: white;
+}
+
+
+.callToAction {
+	width: 100%;
+	background-color: var(--brown-light);
+	padding: 2rem;
+	color: white;
+	text-align: center;
+}
+
+.headline {
+	font-size: 2rem;
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+}

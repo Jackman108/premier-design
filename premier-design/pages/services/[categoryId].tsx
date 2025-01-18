@@ -34,7 +34,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
         return {notFound: true};
     }
 
-    const {menu, papers, news, cards, button, panel} = data;
+    const {menu, papers, news, costingCard, button, panel} = data;
 
     return {
         props: {
@@ -42,7 +42,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
             menuData: menu,
             papersData: papers,
             newsData: news,
-            costingData: cards.costingCard,
+            costingData: costingCard,
             buttonData: button,
             panelData: panel,
         },

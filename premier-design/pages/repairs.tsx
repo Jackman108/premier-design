@@ -10,6 +10,7 @@ import {PageProps} from "../interface/Page.props";
 import Category from "../components/Category/Category";
 import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 import {useLayoutProps} from "../hooks/useLayoutProps";
+import BusinessServices from "../components/BusinessServices/BusinessServices";
 
 const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
     const {titleData, buttonData, bannerData} = usePageData(data, "pleasant-repair", "leave_request", "repair_banner");
@@ -35,15 +36,27 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
                 <Features features={data.features}/>
                 <OfferList offer={data.offerList.repairType}/>
                 <Examples
-                    cards={data.cards.examplesCard}
+                    cards={data.examplesCard}
                     titles={data.title}
                     enableSlider={enableSlider}
                 />
-                <Category data={data}/>
+                <Category
+                    titles={data.title}
+                    repairs={data.prices.repairs}
+                    buttonData={data.button}
+                />
+                <BusinessServices
+                    titles={data.title}
+                    businessServices={data.businessServices}
+                    businessServiceCard={data.businessServiceCard}
+                    buttonData={data.button}
+                    buttonStyle='button-white'
+                />
                 <Costing
-                    cards={data.cards.costingCard}
+                    cards={data.costingCard}
                     titles={data.title}
                 />
+
                 <ProjectOffer
                     data={data.offerProject.repairType}
                     buttonData={buttonData.buttonHeader}

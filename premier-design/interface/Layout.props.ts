@@ -10,9 +10,7 @@ export interface LayoutData {
     menu: MenuProps[];
     papers: Paper[];
     news: NewsProps[];
-    cards: {
-        costingCard: CostingCardProps[];
-    };
+    costingCard: CostingCardProps[];
     button: ButtonProps[];
     panel: PanelProps[];
 }

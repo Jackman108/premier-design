@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import Link from 'next/link';
-import {Category} from "../../interface/Prices.props";
+import {Category} from "../../interface/Category.props";
 import styles from './CategoryCollapse.module.css';
 import {useModalState} from "../../hooks/useModalState";
 
@@ -27,7 +27,8 @@ const CategoryCollapse: FC<{ category: Category }> = ({category}) => {
                         {category.priceList.map((item, idx) => (
                             <tr key={idx} className={styles.tr}>
                                 <td className={styles.td}>
-                                    <Link href={item.canonical} className={styles.link} aria-label={`Перейти к разделу ${item.service}`}>
+                                    <Link href={item.canonical} className={styles.link}
+                                          aria-label={`Перейти к разделу ${item.service}`}>
                                         <p>{item.service}</p>
                                     </Link>
                                 </td>

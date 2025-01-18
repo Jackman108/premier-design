@@ -16,7 +16,7 @@ const CustomHead = ({title, description, canonical}: CustomHeadProps) => {
 
             <script
                 type="application/ld+json"
-                dangerouslySetInnerHTML={{__html: JSON.stringify(structuredData)}}
+                dangerouslySetInnerHTML={{"__html": JSON.stringify(structuredData)}}
             />
         </Head>
     );

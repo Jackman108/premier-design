@@ -244,6 +244,12 @@
       "title": "Все для вашего удобства и спокойствия",
       "shortTitle": "related-services",
       "description": "Мы знаем, что для создания идеального пространства важны не только ремонтные работы, но и дополнительные детали. Мы предлагаем уникальные решения, которые облегчают вашу жизнь: от умного дома до энергоэффективных технологий."
+    },
+    {
+      "id": 16,
+      "title": "Ремонт и Дизайн интерьеров для бизнеса",
+      "shortTitle": "business-services",
+      "description": "Мы знаем, как важно создать пространство, которое работает на ваш бизнес. От первого впечатления до мелких деталей — мы делаем так, чтобы ваши клиенты возвращались, а сотрудники чувствовали себя комфортно."
     }
   ],
   "bannersImages": [
@@ -384,200 +390,310 @@
       "discounts": "Скидка до 8%"
     }
   ],
-  "cards": {
-    "approachCard": [
-      {
-        "id": 1,
-        "image": "/approach/approach01.svg",
-        "title": "Выезд оценщика",
-        "description": "Любые консультации и составление сметы – БЕСПЛАТНО"
-      },
-      {
-        "id": 2,
-        "image": "/approach/approach02.svg",
-        "title": "Помощь с материалами",
-        "description": "Помощь в выборе и закупке чистовых материалов – БЕСПЛАТНО!"
-      },
-      {
-        "id": 3,
-        "image": "/approach/approach03.svg",
-        "title": "Дизайн-проект",
-        "description": "Базовый дизайн-проект, экономит Вам до 25% стоимости - БЕСПЛАТНО."
-      },
-      {
-        "id": 4,
-        "image": "/approach/approach04.svg",
-        "title": "Минимизация расходов",
-        "description": "Качественный ремонт дешевле чем Вы думаете!"
-      }
-    ],
-    "costingCard": [
-      {
-        "id": 1,
-        "title": "Ремонт квартиры",
-        "image": "/costing/costing01.webp"
-      },
-      {
-        "id": 2,
-        "title": "Ремонт дома",
-        "image": "/costing/costing02.webp"
-      },
-      {
-        "id": 3,
-        "title": "Ремонт магазина",
-        "image": "/costing/costing03.webp"
-      },
-      {
-        "id": 4,
-        "title": "Ремонт ресторана",
-        "image": "/costing/costing04.webp"
-      },
-      {
-        "id": 5,
-        "title": "Ремонт офиса",
-        "image": "/costing/costing05.webp"
-      }
-    ],
-    "examplesCard": [
-      {
-        "id": 1,
-        "background": "/examples/example01.webp",
-        "address": "Ремонт квартиры. г.Жлобин",
-        "deadlines": "Срок выполнения 5,5 мес.",
-        "bathroomIcon": "/examples/bathroomIcon.svg",
-        "bathroomOption": 1,
-        "areaIcon": "/examples/areaIcon.svg",
-        "areaOption": 49,
-        "areaSquare": "m2",
-        "images": [
-          "/viewer/apartment/01.webp",
-          "/viewer/apartment/02.webp",
-          "/viewer/apartment/03.webp",
-          "/viewer/apartment/04.webp",
-          "/viewer/apartment/05.webp"
-        ]
-      },
-      {
-        "id": 2,
-        "background": "/examples/example02.webp",
-        "address": "Ремонт дома. д.Малые Роги",
-        "deadlines": "Срок выполнения 1 мес.",
-        "bathroomIcon": "/examples/bathroomIcon.svg",
-        "bathroomOption": 1,
-        "areaIcon": "/examples/areaIcon.svg",
-        "areaOption": 80,
-        "areaSquare": "m2",
-        "images": [
-          "/viewer/cottage/01.webp",
-          "/viewer/cottage/02.webp",
-          "/viewer/cottage/03.webp",
-          "/viewer/cottage/04.webp",
-          "/viewer/cottage/05.webp"
-        ]
-      },
-      {
-        "id": 3,
-        "background": "/examples/example03.webp",
-        "address": "Ремонт дома. п.Сейбит",
-        "deadlines": "Срок выполнения 4 мес.",
-        "bathroomIcon": "/examples/bathroomIcon.svg",
-        "bathroomOption": 1,
-        "areaIcon": "/examples/areaIcon.svg",
-        "areaOption": 42,
-        "areaSquare": "m2",
-        "images": [
-          "/viewer/home/01.webp",
-          "/viewer/home/02.webp",
-          "/viewer/home/03.webp",
-          "/viewer/home/04.webp"
-        ]
-      },
-      {
-        "id": 4,
-        "background": "/examples/example04.webp",
-        "address": "Ремонт магазина IMPERIAL",
-        "deadlines": "Срок выполнения 2 мес.",
-        "bathroomIcon": "/examples/bathroomIcon.svg",
-        "bathroomOption": 0,
-        "areaIcon": "/examples/areaIcon.svg",
-        "areaOption": 108,
-        "areaSquare": "m2",
-        "images": [
-          "/viewer/imperial/01.webp",
-          "/viewer/imperial/02.webp",
-          "/viewer/imperial/03.webp"
-        ]
-      },
-      {
-        "id": 5,
-        "background": "/examples/example05.webp",
-        "address": "Ремонт павильона IQOS",
-        "deadlines": "Срок выполнения 1,5 мес.",
-        "bathroomIcon": "/examples/bathroomIcon.svg",
-        "bathroomOption": 1,
-        "areaIcon": "/examples/areaIcon.svg",
-        "areaOption": 70,
-        "areaSquare": "m2",
-        "images": [
-          "/viewer/iqos/01.webp",
-          "/viewer/iqos/02.webp",
-          "/viewer/iqos/03.webp",
-          "/viewer/iqos/04.webp",
-          "/viewer/iqos/05.webp"
-        ]
-      },
-      {
-        "id": 6,
-        "background": "/examples/example06.webp",
-        "address": "Ремонт ресторана Колбасный Цех",
-        "deadlines": "Срок выполнения 2 мес.",
-        "bathroomIcon": "/examples/bathroomIcon.svg",
-        "bathroomOption": 2,
-        "areaIcon": "/examples/areaIcon.svg",
-        "areaOption": 150,
-        "areaSquare": "m2",
-        "images": [
-          "/viewer/workshop/01.webp",
-          "/viewer/workshop/02.webp",
-          "/viewer/workshop/03.webp",
-          "/viewer/workshop/04.webp",
-          "/viewer/workshop/05.webp"
-        ]
-      }
-    ],
-    "servicesCard": [
-      {
-        "id": 1,
-        "text": "Дизайн интерьеров",
-        "image": "/services/service01.webp",
-        "href": "/design"
-      },
-      {
-        "id": 2,
-        "text": "Ремонт интерьеров",
-        "image": "/services/service02.webp",
-        "href": "/repairs"
-      },
-      {
-        "id": 3,
-        "text": "Сопутствующие услуги",
-        "image": "/services/service03.webp",
-        "href": "/#related-services"
-      },
-      {
-        "id": 4,
-        "text": "Акции",
-        "image": "/services/service05.webp",
-        "href": "/about#news-1"
-      },
-      {
-        "id": 5,
-        "text": "Ремонт для бизнеса",
-        "image": "/services/service04.webp",
-        "href": "/repairs#repair-for-business"
-      }
-    ]
-  },
+  "approachCard": [
+    {
+      "id": 1,
+      "image": "/approach/approach01.svg",
+      "title": "Выезд оценщика",
+      "description": "Любые консультации и составление сметы – БЕСПЛАТНО"
+    },
+    {
+      "id": 2,
+      "image": "/approach/approach02.svg",
+      "title": "Помощь с материалами",
+      "description": "Помощь в выборе и закупке чистовых материалов – БЕСПЛАТНО!"
+    },
+    {
+      "id": 3,
+      "image": "/approach/approach03.svg",
+      "title": "Дизайн-проект",
+      "description": "Базовый дизайн-проект, экономит Вам до 25% стоимости - БЕСПЛАТНО."
+    },
+    {
+      "id": 4,
+      "image": "/approach/approach04.svg",
+      "title": "Минимизация расходов",
+      "description": "Качественный ремонт дешевле чем Вы думаете!"
+    }
+  ],
+  "costingCard": [
+    {
+      "id": 1,
+      "title": "Ремонт квартиры",
+      "image": "/costing/costing01.webp"
+    },
+    {
+      "id": 2,
+      "title": "Ремонт дома",
+      "image": "/costing/costing02.webp"
+    },
+    {
+      "id": 3,
+      "title": "Ремонт магазина",
+      "image": "/costing/costing03.webp"
+    },
+    {
+      "id": 4,
+      "title": "Ремонт ресторана",
+      "image": "/costing/costing04.webp"
+    },
+    {
+      "id": 5,
+      "title": "Ремонт офиса",
+      "image": "/costing/costing05.webp"
+    }
+  ],
+  "examplesCard": [
+    {
+      "id": 1,
+      "background": "/examples/example01.webp",
+      "address": "Ремонт квартиры. г.Жлобин",
+      "deadlines": "Срок выполнения 5,5 мес.",
+      "bathroomIcon": "/examples/bathroomIcon.svg",
+      "bathroomOption": 1,
+      "areaIcon": "/examples/areaIcon.svg",
+      "areaOption": 49,
+      "areaSquare": "m2",
+      "images": [
+        "/viewer/apartment/01.webp",
+        "/viewer/apartment/02.webp",
+        "/viewer/apartment/03.webp",
+        "/viewer/apartment/04.webp",
+        "/viewer/apartment/05.webp"
+      ]
+    },
+    {
+      "id": 2,
+      "background": "/examples/example02.webp",
+      "address": "Ремонт дома. д.Малые Роги",
+      "deadlines": "Срок выполнения 1 мес.",
+      "bathroomIcon": "/examples/bathroomIcon.svg",
+      "bathroomOption": 1,
+      "areaIcon": "/examples/areaIcon.svg",
+      "areaOption": 80,
+      "areaSquare": "m2",
+      "images": [
+        "/viewer/cottage/01.webp",
+        "/viewer/cottage/02.webp",
+        "/viewer/cottage/03.webp",
+        "/viewer/cottage/04.webp",
+        "/viewer/cottage/05.webp"
+      ]
+    },
+    {
+      "id": 3,
+      "background": "/examples/example03.webp",
+      "address": "Ремонт дома. п.Сейбит",
+      "deadlines": "Срок выполнения 4 мес.",
+      "bathroomIcon": "/examples/bathroomIcon.svg",
+      "bathroomOption": 1,
+      "areaIcon": "/examples/areaIcon.svg",
+      "areaOption": 42,
+      "areaSquare": "m2",
+      "images": [
+        "/viewer/home/01.webp",
+        "/viewer/home/02.webp",
+        "/viewer/home/03.webp",
+        "/viewer/home/04.webp"
+      ]
+    },
+    {
+      "id": 4,
+      "background": "/examples/example04.webp",
+      "address": "Ремонт магазина IMPERIAL",
+      "deadlines": "Срок выполнения 2 мес.",
+      "bathroomIcon": "/examples/bathroomIcon.svg",
+      "bathroomOption": 0,
+      "areaIcon": "/examples/areaIcon.svg",
+      "areaOption": 108,
+      "areaSquare": "m2",
+      "images": [
+        "/viewer/imperial/01.webp",
+        "/viewer/imperial/02.webp",
+        "/viewer/imperial/03.webp"
+      ]
+    },
+    {
+      "id": 5,
+      "background": "/examples/example05.webp",
+      "address": "Ремонт павильона IQOS",
+      "deadlines": "Срок выполнения 1,5 мес.",
+      "bathroomIcon": "/examples/bathroomIcon.svg",
+      "bathroomOption": 1,
+      "areaIcon": "/examples/areaIcon.svg",
+      "areaOption": 70,
+      "areaSquare": "m2",
+      "images": [
+        "/viewer/iqos/01.webp",
+        "/viewer/iqos/02.webp",
+        "/viewer/iqos/03.webp",
+        "/viewer/iqos/04.webp",
+        "/viewer/iqos/05.webp"
+      ]
+    },
+    {
+      "id": 6,
+      "background": "/examples/example06.webp",
+      "address": "Ремонт ресторана Колбасный Цех",
+      "deadlines": "Срок выполнения 2 мес.",
+      "bathroomIcon": "/examples/bathroomIcon.svg",
+      "bathroomOption": 2,
+      "areaIcon": "/examples/areaIcon.svg",
+      "areaOption": 150,
+      "areaSquare": "m2",
+      "images": [
+        "/viewer/workshop/01.webp",
+        "/viewer/workshop/02.webp",
+        "/viewer/workshop/03.webp",
+        "/viewer/workshop/04.webp",
+        "/viewer/workshop/05.webp"
+      ]
+    }
+  ],
+  "servicesCard": [
+    {
+      "id": 1,
+      "text": "Дизайн интерьеров",
+      "image": "/services/service01.webp",
+      "href": "/design"
+    },
+    {
+      "id": 2,
+      "text": "Ремонт интерьеров",
+      "image": "/services/service02.webp",
+      "href": "/repairs"
+    },
+    {
+      "id": 3,
+      "text": "Сопутствующие услуги",
+      "image": "/services/service03.webp",
+      "href": "/#related-services"
+    },
+    {
+      "id": 4,
+      "text": "Акции",
+      "image": "/services/service05.webp",
+      "href": "/about#news-1"
+    },
+    {
+      "id": 5,
+      "text": "Ремонт для бизнеса",
+      "image": "/services/service04.webp",
+      "href": "/repairs#repair-for-business"
+    }
+  ],
+  "businessServiceCard": [
+    {
+      "category": "Магазины",
+      "image": "/services/business/stores.webp",
+      "details": [
+        "Создание уникального дизайна, подчеркивающего ваш бренд и привлекающего покупателей.",
+        "Разработка эргономичных решений для увеличения потоков клиентов.",
+        "Оптимизация пространства под товары для максимального удобства покупателей.",
+        "Использование прочных и долговечных материалов для интенсивного использования.",
+        "Реализация витрин, которые привлекают внимание с первого взгляда."
+      ]
+    },
+    {
+      "category": "Рестораны",
+      "image": "/services/business/restaurants.webp",
+      "details": [
+        "Разработка атмосферы, которая вызывает аппетит и заставляет возвращаться снова.",
+        "Оптимизация пространства для максимального количества посадочных мест без ущерба для комфорта.",
+        "Эстетичное и функциональное зонирование: открытые кухни, лаунж-зоны, бары.",
+        "Интеграция современных систем освещения и звукоизоляции для уюта.",
+        "Подбор дизайнерских решений, подчеркивающих уникальность вашей кухни и концепции."
+      ]
+    },
+    {
+      "category": "Офисы",
+      "image": "/services/business/offices.webp",
+      "details": [
+        "Создание эргономичного рабочего пространства, повышающего продуктивность сотрудников.",
+        "Интеграция зон отдыха и переговорных для удобства и работы.",
+        "Оптимизация освещения для снижения усталости глаз.",
+        "Инновационные решения для звукоизоляции, чтобы ничто не отвлекало от работы.",
+        "Эстетика, которая отражает корпоративный стиль и формирует доверие у партнеров."
+      ]
+    },
+    {
+      "category": "Салоны красоты",
+      "image": "/services/business/beauty_salons.webp",
+      "details": [
+        "Дизайн интерьера, способствующий созданию уюта и расслабляющей атмосферы.",
+        "Разработка функциональных зон для мастеров и клиентов.",
+        "Использование антисептических и легко очищаемых материалов.",
+        "Установка современных осветительных решений для оптимальной работы.",
+        "Создание кабинетов для приватных процедур и отдыха."
+      ]
+    },
+    {
+      "category": "Гостиницы и отели",
+      "image": "/services/business/hotels_and_inns.webp",
+      "details": [
+        "Дизайн лобби и ресепшн для создания первого впечатления.",
+        "Оформление номеров с учетом функциональности и эстетики.",
+        "Звукоизоляция для максимального комфорта гостей.",
+        "Оптимизация пространства для дополнительных услуг: спа, фитнес-зоны.",
+        "Долговечные решения для интенсивного использования."
+      ]
+    },
+    {
+      "category": "Учебные центры и детские учреждения",
+      "image": "/services/business/training_centers.webp",
+      "details": [
+        "Разработка веселого и функционального дизайна для детских зон.",
+        "Установка противоударных покрытий, устойчивых к износу.",
+        "Оптимизация учебных помещений для групповой и индивидуальной работы.",
+        "Зонирование пространства: классы, зоны отдыха, спортивные залы.",
+        "Реализация современных систем вентиляции и освещения."
+      ]
+    },
+    {
+      "category": "Спортивные клубы и фитнес-центры",
+      "image": "/services/business/sports_clubs.webp",
+      "details": [
+        "Дизайн залов для групповых занятий и тренажерных зон.",
+        "Создание душевых и раздевалок с акцентом на гигиену и комфорт.",
+        "Разработка уникального дизайна ресепшн и лаунж-зон.",
+        "Использование материалов, устойчивых к влажности и износу.",
+        "Звукоизоляция для уменьшения шума между зонами."
+      ]
+    },
+    {
+      "category": "Медицинские центры и клиники",
+      "image": "/services/business/medical_centers.webp",
+      "details": [
+        "Ремонт кабинетов с учетом санитарных норм.",
+        "Установка антибактериальных покрытий и материалов.",
+        "Организация комфортных зон ожидания.",
+        "Освещение, которое снижает уровень стресса у пациентов.",
+        "Дизайн, подчеркивающий профессионализм и надежность."
+      ]
+    },
+    {
+      "category": "Производственные помещения и склады",
+      "image": "/services/business/production_facilities.webp",
+      "details": [
+        "Оптимизация логистических маршрутов внутри склада.",
+        "Установка покрытий, устойчивых к нагрузкам и износу.",
+        "Организация зон для персонала: комнаты отдыха, офисы, кухни.",
+        "Создание систем вентиляции и кондиционирования.",
+        "Дизайн фасадов для соответствия корпоративному стилю."
+      ]
+    },
+    {
+      "category": "Развлекательные центры и игровые зоны",
+      "image": "/services/business/entertainment_centers.webp",
+      "details": [
+        "Дизайн игровых зон для детей и взрослых.",
+        "Организация зон виртуальной реальности, кинотеатров, боулинга.",
+        "Установка ударопрочных покрытий.",
+        "Использование световых эффектов для создания атмосферы.",
+        "Звукоизоляция для разделения зон активности."
+      ]
+    }
+  ],
   "offerList": {
     "homeType": {
       "id": 1,
@@ -1536,5 +1652,18 @@
         "Минимизация усилий: Позвольте нам позаботиться о грязной работе, а вам остаться довольными результатом."
       ]
     }
-  ]
+  ],
+  "businessServices": {
+    "services": {},
+    "callToAction": {
+      "headline": "Почему выбирают нас?",
+      "reasons": [
+        "У нас более 10 лет опыта в работе с бизнес-пространствами.",
+        "Мы создаем проекты, которые увеличивают продажи и привлекают клиентов.",
+        "Полный цикл работ: от разработки до реализации.",
+        "Применение современных материалов и технологий для долговечности и комфорта.",
+        "Индивидуальный подход к каждому клиенту."
+      ]
+    }
+  }
 }

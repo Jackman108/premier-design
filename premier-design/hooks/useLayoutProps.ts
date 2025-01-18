@@ -11,7 +11,7 @@ export const useLayoutProps = (data: LayoutData) => {
             news: data.news,
             menu: data.menu,
         },
-        costingCards: data.cards.costingCard,
+        costingCards: data.costingCard,
         buttonData: data.button,
         panelData: data.panel,
     }), [data]);

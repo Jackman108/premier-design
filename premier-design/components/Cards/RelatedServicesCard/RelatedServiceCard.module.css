@@ -88,10 +88,6 @@
 		font-size: 14px;
 	}
 
-	.relatedServices__container {
-		padding: 0 10px;
-	}
-
 	.items {
 		grid-template-columns: 1fr;
 	}
