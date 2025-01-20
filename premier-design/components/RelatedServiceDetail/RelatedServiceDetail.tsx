@@ -34,8 +34,8 @@ const RelatedServiceDetail: FC<RelatedServiceDetail> = ({
     return (
         <>
             <CustomHead
-                title={relatedServices.title}
-                description={relatedServices.description}
+                metaTitle={relatedServices.title}
+                metaDescription={relatedServices.description}
                 canonical={fullCanonicalUrl}
             />
             <Layout
@@ -45,9 +45,12 @@ const RelatedServiceDetail: FC<RelatedServiceDetail> = ({
                     news: newsData,
                     menu: menuData,
                 }}
-                costingCards={costingData}
-                buttonData={buttonData}
-                panelData={panelData}
+                additionalData={{
+                    costingCards: costingData,
+                    buttonData: buttonData,
+                    panelData: panelData
+                }}
+
             >
                 <section className={styles.service_detail}>
                     <div className={styles.left}>

@@ -1,14 +1,12 @@
 import React, {FC} from 'react';
 import styles from './Reviews.module.css';
-import {findItemByTitle} from "../../utils/findItemByTitle";
 import Title from "../UX/Title/Title";
 import {ReviewsProps} from "../../interface/Review.props";
 import useResizeEffects from "../../hooks/useResizeEffects";
 import Slider from "../Slider/Slider";
 import ReviewCard from "../Cards/ReviewCard/ReviewCard";
 
-const Reviews: FC<ReviewsProps> = ({titles, reviews}) => {
-    const {title = '', description = '', shortTitle = ''} = findItemByTitle(titles, "customer_reviews") || {};
+const Reviews: FC<ReviewsProps> = ({title, reviews}) => {
     const {isMobile} = useResizeEffects();
 
     return (
@@ -17,9 +15,9 @@ const Reviews: FC<ReviewsProps> = ({titles, reviews}) => {
                 <Title
                     titleStyle='title-black'
                     descriptionStyle='description-black'
-                    title={title}
-                    description={description}
-                    shortTitle={shortTitle}
+                    title={title.title}
+                    description={title.description}
+                    shortTitle={title.shortTitle}
                 />
                 <div className={styles.reviews__content}>
                     {isMobile ? (

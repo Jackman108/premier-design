@@ -3,24 +3,18 @@ import styles from './Appeal.module.css';
 import OrderButton from '../UX/OrderButton/OrderButton';
 import Title from '../UX/Title/Title';
 import NextImage from 'next/image';
-import {DataProps,} from '../../interface/interfaceData';
-import {usePageData} from "../../hooks/usePageData";
+import {AppealProps} from "../../interface/Appeal.props";
 
-const Appeal: FC<{ data: DataProps }> = ({data}): ReactElement => {
-    const {
-        titleData,
-        buttonData,
-        bannerData
-    } = usePageData(data, "create-best-place", "leave_request", "appeal_banner");
+const Appeal: FC<AppealProps> = ({titleItem, buttonItem, bannerItem}): ReactElement => {
 
     return (
         <section className={styles.appeal}>
             <div className={styles.appeal__container}>
                 <NextImage
-                    src={bannerData.src}
-                    alt={bannerData.alt}
-                    quality={bannerData.quality}
-                    width={bannerData.width}
+                    src={bannerItem.src}
+                    alt={bannerItem.alt}
+                    quality={bannerItem.quality}
+                    width={bannerItem.width}
                     height={508}
                     sizes="
                     (max-width: 600px) 600px,
@@ -34,12 +28,12 @@ const Appeal: FC<{ data: DataProps }> = ({data}): ReactElement => {
                 <Title
                     titleStyle='title-black'
                     descriptionStyle='description-black'
-                    title={titleData.title}
-                    description={titleData.description}
-                    shortTitle={titleData.shortTitle}
+                    title={titleItem.title}
+                    description={titleItem.description}
+                    shortTitle={titleItem.shortTitle}
                 />
                 <OrderButton
-                    buttonData={buttonData.buttonHeader}
+                    buttonData={buttonItem.buttonHeader}
                     buttonStyle='button-black'
                 />
             </div>

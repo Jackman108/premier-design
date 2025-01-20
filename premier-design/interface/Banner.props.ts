@@ -14,5 +14,4 @@ export interface BannerProps {
     bannerData: BannerImageProps;
     buttonData: ButtonProps;
     titleData: TitleProps;
-    buttonStyle: 'button-white' | 'button-black' | 'button-none';
 }

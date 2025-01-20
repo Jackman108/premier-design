@@ -3,7 +3,7 @@ import {ButtonProps} from "./Button.props";
 import {ServiceCardProps} from "./Cards.props";
 
 export interface ServicesProps {
-    titles: TitleProps[];
+    title: TitleProps;
     buttons: ButtonProps[];
     servicesCard: ServiceCardProps[];
 }

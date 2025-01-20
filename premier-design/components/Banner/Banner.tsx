@@ -11,7 +11,6 @@ const Banner: FC<BannerProps> = ({
                                      bannerData,
                                      buttonData,
                                      titleData,
-                                     buttonStyle,
                                  }) => {
 
     return (
@@ -43,7 +42,7 @@ const Banner: FC<BannerProps> = ({
                 />
                 <OrderButton
                     buttonData={buttonData.buttonHeader}
-                    buttonStyle={buttonStyle}
+                    buttonStyle={'button-white'}
                 />
             </div>
         </section>

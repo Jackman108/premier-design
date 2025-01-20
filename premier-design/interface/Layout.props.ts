@@ -19,9 +19,11 @@ export interface LayoutProps {
     children: ReactNode;
     headerProps: HeaderProps;
     footerProps: FooterProps;
-    costingCards: CostingCardProps[];
-    buttonData: ButtonProps[];
-    panelData: PanelProps[]
+    additionalData: {
+        costingCards: CostingCardProps[];
+        buttonData: ButtonProps[];
+        panelData: PanelProps[];
+    };
 }
 
 export interface HeaderProps {

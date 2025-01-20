@@ -4,18 +4,15 @@ import React, {FC, ReactElement} from 'react';
 import styles from './Examples.module.css';
 import SliderComponent from '../Slider/Slider';
 import Title from '../UX/Title/Title';
-import {findItemByTitle} from '../../utils/findItemByTitle';
 import ExampleCard from "../Cards/ExamplesCard/ExampleCard";
-import PhotoViewer from "../PhotoViewer/PhotoViewer";
 import {ExamplesProps} from "../../interface/Examples.props";
 import {useExamplesLogic} from "../../hooks/useExamplesLogic";
+import AsyncPhotoViewer from "../PhotoViewer/AsyncPhotoViewer";
 
 const Examples: FC<ExamplesProps> = ({
                                          cards,
-                                         titles,
-                                         enableSlider = true,
+                                         title,
                                      }): ReactElement => {
-    const {title = '', description = '', shortTitle = ''} = findItemByTitle(titles, "our-works") || {};
 
     const {
         memoizedCards,
@@ -33,12 +30,12 @@ const Examples: FC<ExamplesProps> = ({
                 <Title
                     titleStyle='title-black'
                     descriptionStyle='description-black'
-                    title={title}
-                    description={description}
-                    shortTitle={shortTitle}
+                    title={title.title}
+                    description={title.description}
+                    shortTitle={title.shortTitle}
                 />
                 <div className={styles.examples__cards}>
-                    {enableSlider ? (
+                    {
                         <SliderComponent slidesPerView={slidesPerView} isMobile={isMobile}>
                             {memoizedCards.map((card) => (
                                 <ExampleCard
@@ -48,19 +45,9 @@ const Examples: FC<ExamplesProps> = ({
                                 />
                             ))}
                         </SliderComponent>
-                    ) : (
-                        <div className={styles.examples__grid}>
-                            {memoizedCards.map((card) => (
-                                <ExampleCard
-                                    card={card}
-                                    onClick={handleCardClick}
-                                    key={card.id}
-                                />
-                            ))}
-                        </div>
-                    )}
+                    }
                     {isViewerOpen && selectedImage && (
-                        <PhotoViewer
+                        <AsyncPhotoViewer
                             images={cards.find((card) => card.images.includes(selectedImage))?.images ?? []}
                             currentImage={selectedImage}
                             onClose={closeViewer}

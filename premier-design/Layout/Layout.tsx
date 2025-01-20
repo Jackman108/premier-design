@@ -6,19 +6,14 @@ import {FC, ReactElement} from 'react';
 import ButtonsPanel from "../components/UX/ButtonsPanel/ButtonsPanel";
 
 const Layout: FC<LayoutProps> = ({
-                                     children,
-                                     headerProps,
-                                     footerProps,
-                                     costingCards,
-                                     buttonData,
-                                     panelData
+                                     children, headerProps, footerProps, additionalData
                                  }: LayoutProps): ReactElement => {
     return (
         <>
             <Header {...headerProps}/>
             <main className={styles.body} role='main'>
                 {children}
-                <ButtonsPanel buttonData={buttonData} panelData={panelData} costingCards={costingCards}/>
+                <ButtonsPanel additionalData={additionalData}/>
             </main>
             <Footer {...footerProps}/>
         </>

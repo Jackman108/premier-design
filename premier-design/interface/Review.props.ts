@@ -10,5 +10,5 @@ export interface Review {
 
 export interface ReviewsProps {
     reviews: Review[];
-    titles: TitleProps[];
+    title: TitleProps;
 }

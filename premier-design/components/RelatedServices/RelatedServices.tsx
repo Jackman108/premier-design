@@ -1,15 +1,12 @@
 import React from 'react';
 import styles from './RelatedServices.module.css';
-import {findItemByTitle} from "../../utils/findItemByTitle";
-import {TitleProps} from "../../interface/Title.props";
 import Title from "../UX/Title/Title";
 import {RelatedServicesProps} from "../../interface/RelatedService.props";
 import useResizeEffects from "../../hooks/useResizeEffects";
 import Slider from "../Slider/Slider";
 import RelatedServiceCard from "../Cards/RelatedServicesCard/RelatedServiceCard";
 
-const RelatedServices: React.FC<RelatedServicesProps> = ({titles, relatedServices}) => {
-    const titleData = findItemByTitle(titles, "related-services") || {} as TitleProps;
+const RelatedServices: React.FC<RelatedServicesProps> = ({title, relatedServices}) => {
     const {isMobile} = useResizeEffects();
 
 
@@ -19,9 +16,9 @@ const RelatedServices: React.FC<RelatedServicesProps> = ({titles, relatedService
                 <Title
                     titleStyle='title-black'
                     descriptionStyle='description-black'
-                    title={titleData.title}
-                    description={titleData.description}
-                    shortTitle={titleData.shortTitle}
+                    title={title.title}
+                    description={title.description}
+                    shortTitle={title.shortTitle}
                 />
                 <div className={styles.items}>
                     {isMobile ? (

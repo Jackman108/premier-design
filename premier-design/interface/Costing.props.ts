@@ -15,5 +15,5 @@ export interface CostingCardProps {
 
 export interface CostingProps {
     cards: CostingCardProps[];
-    titles: TitleProps[];
+    title: TitleProps;
 }

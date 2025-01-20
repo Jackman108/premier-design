@@ -21,7 +21,7 @@ export interface RelatedServiceCardProps {
 }
 
 export interface RelatedServicesProps {
-    titles: TitleProps[];
+    title: TitleProps;
     relatedServices: RelatedServiceCardProps[];
 }
 

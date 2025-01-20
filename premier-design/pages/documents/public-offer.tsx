@@ -3,24 +3,26 @@ import styles from '../../styles/DocumetPage.module.css';
 import Layout from "../../Layout/Layout";
 import {useLayoutProps} from "../../hooks/useLayoutProps";
 import {NextPage} from "next";
-import {PageProps} from "../../interface/Page.props";
 import BackButton from "../../components/UX/BackButton/BackButton";
 import DocumentImage from "../../components/UX/DocumentImage/DocumentImage";
 import PublicOfferContent from "../../components/Documents/PublicOfferContent";
 import {getFullCanonicalUrl} from "../../utils/getFullCanonicalUrl";
 import CustomHead from "../../components/CustomHead/CustomHead";
+import {GetDataProps} from "../../interface/interfaceData";
+import {findItemByTitle} from "../../utils/findItemByTitle";
+import {TitlePage} from "../../interface/Title.props";
 
-const PublicOfferPage: NextPage<PageProps> = ({data}) => {
+const PublicOfferPage: NextPage<GetDataProps> = ({data}) => {
     const layoutProps = useLayoutProps(data);
-    const pageMeta = data.pageMeta['public-offer'];
-    const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
+    const titleData = findItemByTitle(data.titlesPage, "public-offer") || {} as TitlePage;
+    const fullCanonical = getFullCanonicalUrl(titleData.canonical);
 
     return (
         <>
             <CustomHead
-                title={pageMeta.title}
-                description={pageMeta.description}
-                canonical={fullCanonicalUrl}
+                metaTitle={titleData.metaTitle}
+                metaDescription={titleData.metaDescription}
+                canonical={fullCanonical}
             />
             <Layout {...layoutProps}>
                 <section className={styles.document}>

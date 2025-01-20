@@ -2,41 +2,40 @@ import type {NextPage} from 'next';
 import Layout from '../Layout/Layout';
 import {getStaticProps} from './api/dataProvider';
 import {ReactElement} from "react";
-import {usePageData} from "../hooks/usePageData";
 import Banner from "../components/Banner/Banner";
 import {Appeal, BusinessServices, Category, Costing, Examples, Features, OfferList, ProjectOffer} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
-import {PageProps} from "../interface/Page.props";
-import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 import {useLayoutProps} from "../hooks/useLayoutProps";
+import {GetDataProps} from "../interface/interfaceData";
+import {BannerProps} from "../interface/Banner.props";
+import {usePageData} from "../hooks/usePageData";
+import {AppealProps} from "../interface/Appeal.props";
+import {getTitleData} from "../utils/findItemByTitle";
 
-const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
-    const {titleData, buttonData, bannerData} = usePageData(data, "pleasant-repair", "leave_request", "repair_banner");
+const Repairs: NextPage<GetDataProps> = ({data}): ReactElement => {
+    const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
+        data.titlesPage, data.button, data.bannersImages,
+        "repairs", "leave_request", "repair_banner"
+    );
+    const bannerProps: BannerProps = {titleData, buttonData, bannerData};
 
-    const pageMeta = data.pageMeta['repairs'];
-    const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
-    const layoutProps = useLayoutProps(data);
+    const {titleItem, buttonItem, bannerItem} = usePageData(
+        data.title, data.button, data.bannersImages,
+        "our-partners", "leave_request", "appeal_banner"
+    );
+    const appealProps: AppealProps = {titleItem, buttonItem, bannerItem};
+    const titles = getTitleData(data.title, "our-works", "price-calculation");
 
     return (
         <>
-            <CustomHead
-                title={pageMeta.title}
-                description={pageMeta.description}
-                canonical={fullCanonicalUrl}
-            />
-            <Layout {...layoutProps}>
-                <Banner
-                    titleData={titleData}
-                    buttonData={buttonData}
-                    bannerData={bannerData}
-                    buttonStyle='button-white'
-                />
+            <CustomHead {...titleData}/>
+            <Layout {...useLayoutProps(data)}>
+                <Banner {...bannerProps}/>
                 <Features features={data.features}/>
                 <OfferList offer={data.offerList.repairType}/>
                 <Examples
                     cards={data.examplesCard}
-                    titles={data.title}
-                    enableSlider={enableSlider}
+                    title={titles["our-works"]}
                 />
                 <Category
                     titles={data.title}
@@ -52,7 +51,7 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
                 />
                 <Costing
                     cards={data.costingCard}
-                    titles={data.title}
+                    title={titles["price-calculation"]}
                 />
 
                 <ProjectOffer
@@ -60,7 +59,7 @@ const Repairs: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement
                     buttonData={buttonData.buttonHeader}
                     buttonStyle='button-black'
                 />
-                <Appeal data={data}/>
+                <Appeal {...appealProps}/>
             </Layout>
         </>
     );

@@ -2,11 +2,9 @@ import {FC, ReactElement} from 'react';
 import styles from './Partners.module.css';
 import Title from '../UX/Title/Title';
 import Image from 'next/image';
-import {GetDataProps} from '../../interface/interfaceData';
-import {findItemByTitle} from '../../utils/findItemByTitle';
+import {PartnersSectionProps} from "../../interface/Partners.props";
 
-const Partners: FC<GetDataProps> = ({data}): ReactElement => {
-    const {title = '', description = '', shortTitle = ''} = findItemByTitle(data.title, "our-partners") || {};
+const Partners: FC<PartnersSectionProps> = ({title, partners}): ReactElement => {
     return (
         <section className={styles.partners}>
 
@@ -14,12 +12,12 @@ const Partners: FC<GetDataProps> = ({data}): ReactElement => {
                 <Title
                     titleStyle='title-black'
                     descriptionStyle='description-black'
-                    title={title}
-                    description={description}
-                    shortTitle={shortTitle}
+                    title={title.title}
+                    description={title.description}
+                    shortTitle={title.shortTitle}
                 />
                 <div className={styles.partners__cards}>
-                    {data.partners.map((partner) => (
+                    {partners.map((partner) => (
                         <div
                             key={partner.id}
                             className={styles.partners__card}

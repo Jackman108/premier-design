@@ -3,7 +3,6 @@ import {ThemeProvider} from 'next-themes';
 import '../styles/globals.css';
 import "keen-slider/keen-slider.min.css";
 import {FC} from 'react';
-import CustomHead from "../components/CustomHead/CustomHead";
 
 const MyApp: FC<AppProps> = ({Component, pageProps}) => {
     return (
@@ -11,11 +10,6 @@ const MyApp: FC<AppProps> = ({Component, pageProps}) => {
             defaultTheme="light"
             themes={['light', 'dark']}
             attribute="class">
-            <CustomHead
-                title="Premium Interior"
-                description="Ремонт и дизайн интерьеров"
-                canonical={"https://premium-interior.by/"}
-            />
             <Component {...pageProps} />
         </ThemeProvider>
     );

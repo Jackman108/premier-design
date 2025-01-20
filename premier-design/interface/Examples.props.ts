@@ -2,8 +2,7 @@ import {TitleProps} from "./Title.props";
 
 export interface ExamplesProps {
     cards: ExampleCardProps[];
-    titles: TitleProps[];
-    enableSlider?: boolean;
+    title: TitleProps;
 }
 
 export interface ExampleCardComponentProps {

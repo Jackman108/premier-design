@@ -1,5 +1,4 @@
 import {FC, ReactElement, useRef} from 'react';
-import {findItemByTitle} from '../../utils/findItemByTitle';
 import Title from '../UX/Title/Title';
 import styles from './StepsWork.module.css';
 import {StepsWorkProps} from "../../interface/StepsWork.props";
@@ -8,8 +7,7 @@ import {TitleProps} from "../../interface/Title.props";
 import Image from "next/image";
 import {useStepAnimation} from "../../hooks/useStepAnimation";
 
-const StepsWork: FC<{ stepsWork: StepsWorkProps[]; titles: TitleProps[] }> = ({stepsWork, titles}): ReactElement => {
-    const {title = '', description = '', shortTitle = ''} = findItemByTitle(titles, "application-process") || {};
+const StepsWork: FC<{ stepsWork: StepsWorkProps[]; title: TitleProps }> = ({stepsWork, title}): ReactElement => {
     const containerRef = useRef<HTMLDivElement>(null);
     const isVisible = useIntersectionObserver(containerRef, 0.1);
 
@@ -49,9 +47,9 @@ const StepsWork: FC<{ stepsWork: StepsWorkProps[]; titles: TitleProps[] }> = ({s
                 <Title
                     titleStyle="title-black"
                     descriptionStyle="description-black"
-                    title={title}
-                    description={description}
-                    shortTitle={shortTitle}
+                    title={title.title}
+                    description={title.description}
+                    shortTitle={title.shortTitle}
                 />
                 <div className={styles.steps__list} ref={containerRef}>
                     {stepsWork && stepsWork.length > 0 ? (

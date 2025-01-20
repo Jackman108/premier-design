@@ -35,8 +35,8 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
     return (
         <>
             <CustomHead
-                title={service.service}
-                description={categoryProps.description}
+                metaTitle={service.service}
+                metaDescription={categoryProps.description}
                 canonical={fullCanonicalUrl}
             />
             <Layout
@@ -46,9 +46,11 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                     news: newsData,
                     menu: menuData,
                 }}
-                costingCards={costingData}
-                buttonData={buttonData}
-                panelData={panelData}
+                additionalData={{
+                    costingCards: costingData,
+                    buttonData: buttonData,
+                    panelData: panelData
+                }}
             >
                 <section className={styles.service_detail}>
                     <div className={styles.left}>

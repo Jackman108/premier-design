@@ -4,12 +4,10 @@ import ServicesCards from '../Cards/ServicesCards/ServicesCards';
 import Title from '../UX/Title/Title';
 import {FC, ReactElement} from 'react';
 import {findItemByTitle} from '../../utils/findItemByTitle';
-import {TitleProps} from "../../interface/Title.props";
 import {ButtonProps} from "../../interface/Button.props";
 import {ServicesProps} from "../../interface/Services.props";
 
-const Services: FC<ServicesProps> = ({titles, buttons, servicesCard}): ReactElement => {
-    const titleData = findItemByTitle(titles, "services") || {} as TitleProps;
+const Services: FC<ServicesProps> = ({title, buttons, servicesCard}): ReactElement => {
     const buttonData = findItemByTitle(buttons, "leave_request") || {} as ButtonProps;
 
     return (
@@ -18,9 +16,9 @@ const Services: FC<ServicesProps> = ({titles, buttons, servicesCard}): ReactElem
                 <Title
                     titleStyle='title-black'
                     descriptionStyle='description-black'
-                    title={titleData.title}
-                    description={titleData.description}
-                    shortTitle={titleData.shortTitle}
+                    title={title.title}
+                    description={title.description}
+                    shortTitle={title.shortTitle}
                 />
                 <ServicesCards cards={servicesCard}/>
                 <OrderButton

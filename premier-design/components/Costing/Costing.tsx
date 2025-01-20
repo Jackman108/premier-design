@@ -3,7 +3,6 @@
 import styles from './Costing.module.css';
 import CostingCard from '../Cards/CostingCard/CostingCard';
 import Title from '../UX/Title/Title';
-import {findItemByTitle} from '../../utils/findItemByTitle';
 import {FC, ReactElement, useMemo} from 'react';
 import {CostingProps} from "../../interface/Costing.props";
 import useResizeEffects from "../../hooks/useResizeEffects";
@@ -13,9 +12,8 @@ import SliderComponent from '../Slider/Slider';
 
 const Costing: FC<CostingProps> = ({
                                        cards,
-                                       titles,
+                                       title,
                                    }): ReactElement => {
-    const {title = '', description = '', shortTitle = ''} = findItemByTitle(titles, "price-calculation") || {};
     const {isMobile} = useResizeEffects();
     const slidesPerView = 3;
     const {isModalOpen, selectedCard, handleCardClick, handleKeyDown, closeModal} = useCostingCardLogic(cards)
@@ -27,9 +25,9 @@ const Costing: FC<CostingProps> = ({
                 <Title
                     titleStyle='title-black'
                     descriptionStyle='description-black'
-                    title={title}
-                    description={description}
-                    shortTitle={shortTitle}
+                    title={title.title}
+                    description={title.description}
+                    shortTitle={title.shortTitle}
                 />
                 <div className={styles.costing__cards} id="costing-cards">
                     <SliderComponent slidesPerView={slidesPerView} isMobile={isMobile}>

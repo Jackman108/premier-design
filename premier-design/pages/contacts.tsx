@@ -3,40 +3,34 @@ import Layout from '../Layout/Layout';
 import {getStaticProps} from './api/dataProvider';
 import {GetDataProps} from '../interface/interfaceData';
 import {ReactElement} from "react";
-import {usePageData} from "../hooks/usePageData";
 import Banner from "../components/Banner/Banner";
 import {Address, Appeal} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
-import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 import {useLayoutProps} from "../hooks/useLayoutProps";
+import {BannerProps} from "../interface/Banner.props";
+import {usePageData} from "../hooks/usePageData";
+import {AppealProps} from "../interface/Appeal.props";
 
 const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {
-    const {
-        titleData,
-        buttonData,
-        bannerData
-    } = usePageData(data, "we-are-here-to-help", "leave_request", "contacts_banner");
+    const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
+        data.titlesPage, data.button, data.bannersImages,
+        "contacts", "leave_request", "contacts_banner"
+    );
+    const bannerProps: BannerProps = {titleData, buttonData, bannerData};
 
-    const pageMeta = data.pageMeta['contacts'];
-    const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
-    const layoutProps = useLayoutProps(data);
+    const {titleItem, buttonItem, bannerItem} = usePageData(
+        data.title, data.button, data.bannersImages,
+        "our-partners", "leave_request", "appeal_banner"
+    );
+    const appealProps: AppealProps = {titleItem, buttonItem, bannerItem};
 
     return (
         <>
-            <CustomHead
-                title={pageMeta.title}
-                description={pageMeta.description}
-                canonical={fullCanonicalUrl}
-            />
-            <Layout {...layoutProps}>
-                <Banner
-                    titleData={titleData}
-                    buttonData={buttonData}
-                    bannerData={bannerData}
-                    buttonStyle='button-white'
-                />
+            <CustomHead {...titleData}/>
+            <Layout {...useLayoutProps(data)}>
+                <Banner {...bannerProps}/>
                 <Address/>
-                <Appeal data={data}/>
+                <Appeal {...appealProps}/>
             </Layout>
         </>
     );

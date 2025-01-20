@@ -3,51 +3,50 @@ import Layout from '../Layout/Layout';
 import {getStaticProps} from './api/dataProvider';
 import {ReactElement} from "react";
 import Banner from "../components/Banner/Banner";
-import {usePageData} from "../hooks/usePageData";
 import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer} from '../components';
 import CustomHead from "../components/CustomHead/CustomHead";
-import {PageProps} from "../interface/Page.props";
-import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 import {useLayoutProps} from "../hooks/useLayoutProps";
+import {GetDataProps} from "../interface/interfaceData";
+import {BannerProps} from "../interface/Banner.props";
+import {usePageData} from "../hooks/usePageData";
+import {AppealProps} from "../interface/Appeal.props";
+import {getTitleData} from "../utils/findItemByTitle";
 
-const Design: NextPage<PageProps> = ({data, enableSlider = true}): ReactElement => {
-    const {titleData, buttonData, bannerData,} = usePageData(data, "comfort-dreams", "order_project", "design_banner");
+const Design: NextPage<GetDataProps> = ({data}): ReactElement => {
+    const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
+        data.titlesPage, data.button, data.bannersImages,
+        "design", "order_project", "design_banner"
+    );
+    const bannerProps: BannerProps = {titleData, buttonData, bannerData};
 
-    const pageMeta = data.pageMeta['design'];
-    const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
-    const layoutProps = useLayoutProps(data);
+    const {titleItem, buttonItem, bannerItem} = usePageData(
+        data.title, data.button, data.bannersImages,
+        "our-partners", "leave_request", "appeal_banner"
+    );
+    const appealProps: AppealProps = {titleItem, buttonItem, bannerItem};
+    const titles = getTitleData(data.title, "our-works", "price-calculation");
 
     return (
         <>
-            <CustomHead
-                title={pageMeta.title}
-                description={pageMeta.description}
-                canonical={fullCanonicalUrl}
-            />
-            <Layout {...layoutProps}>
-                <Banner
-                    titleData={titleData}
-                    buttonData={buttonData}
-                    bannerData={bannerData}
-                    buttonStyle='button-white'
-                />
+            <CustomHead {...titleData}/>
+            <Layout {...useLayoutProps(data)}>
+                <Banner {...bannerProps}/>
                 <Features features={data.features}/>
                 <OfferList offer={data.offerList.designType}/>
                 <Examples
                     cards={data.examplesCard}
-                    titles={data.title}
-                    enableSlider={enableSlider}
+                    title={titles["our-works"]}
                 />
                 <Costing
                     cards={data.costingCard}
-                    titles={data.title}
+                    title={titles["price-calculation"]}
                 />
                 <ProjectOffer
                     data={data.offerProject.designType}
                     buttonData={buttonData.buttonHeader}
                     buttonStyle='button-black'
                 />
-                <Appeal data={data}/>
+                <Appeal {...appealProps}/>
             </Layout>
         </>
     );

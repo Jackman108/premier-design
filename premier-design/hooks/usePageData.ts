@@ -1,13 +1,19 @@
 import {findItemByTitle} from '../utils/findItemByTitle';
-import {DataProps} from '../interface/interfaceData';
-import {TitleProps} from "../interface/Title.props";
-import {ButtonProps} from "../interface/Button.props";
-import {BannerImageProps} from "../interface/Banner.props";
+import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 
-export const usePageData = (data: DataProps, titleShort: string, buttonShort: string, bannerShort: string) => {
-    const titleData = findItemByTitle(data.title, titleShort) || {} as TitleProps;
-    const buttonData = findItemByTitle(data.button, buttonShort) || {} as ButtonProps;
-    const bannerData = findItemByTitle(data.bannersImages, bannerShort) || {} as BannerImageProps;
+type ItemWithTitle = { shortTitle: string };
 
-    return {titleData, buttonData, bannerData};
+export const usePageData = <T extends ItemWithTitle, U extends ItemWithTitle, V extends ItemWithTitle>(
+    titles: T[], buttons: U[], banners: V[],
+    titleShort: string, buttonShort: string, bannerShort: string
+) => {
+    const titleItem = findItemByTitle(titles, titleShort) ?? ({} as T);
+    const buttonItem = findItemByTitle(buttons, buttonShort) ?? ({} as U);
+    const bannerItem = findItemByTitle(banners, bannerShort) ?? ({} as V);
+
+    const fullCanonical = 'canonical' in titleItem && typeof titleItem.canonical === 'string'
+        ? getFullCanonicalUrl(titleItem.canonical)
+        : '';
+
+    return {titleItem: {...titleItem, fullCanonical}, buttonItem, bannerItem};
 };

@@ -3,7 +3,7 @@ import {NewsProps} from "./News.props";
 import {MenuProps} from "./Menu.props";
 import {ButtonProps} from "./Button.props";
 import {FeatureProps} from "./Feature.props";
-import {TitleProps} from "./Title.props";
+import {TitlePage, TitleProps} from "./Title.props";
 import {ApproachCardProps, ServiceCardProps} from "./Cards.props";
 import {OfferListProps} from "./OfferList.props";
 import {OfferProjectProps} from "./OfferProject.props";
@@ -17,9 +17,9 @@ import {ExampleCardProps} from "./Examples.props";
 import {CostingCardProps} from "./Costing.props";
 import {RelatedServiceCardProps} from "./RelatedService.props";
 import {BusinessServiceCard, BusinessServices} from "./BusinessService.props";
-import {CustomHeadProps} from "../components/CustomHead/CustomHead.props";
 
 export interface DataProps {
+    titlesPage: TitlePage[]
     menu: MenuProps[];
     button: ButtonProps[];
     news: NewsProps[];
@@ -38,7 +38,6 @@ export interface DataProps {
     bannersImages: BannerImageProps[];
     partners: PartnersProps[];
     stepsWork: StepsWorkProps[];
-    pageMeta: Record<string, CustomHeadProps>;
     papers: Paper[];
     prices: Prices;
     reviews: Review[];

@@ -1,5 +1,5 @@
 export interface CustomHeadProps {
-    title: string;
-    description: string;
+    metaTitle: string;
+    metaDescription: string;
     canonical: string
 }

@@ -3,24 +3,26 @@ import styles from '../../styles/DocumetPage.module.css';
 import Layout from "../../Layout/Layout";
 import {useLayoutProps} from "../../hooks/useLayoutProps";
 import {NextPage} from "next";
-import {PageProps} from "../../interface/Page.props";
 import BackButton from "../../components/UX/BackButton/BackButton";
 import DocumentImage from "../../components/UX/DocumentImage/DocumentImage";
 import UserAgreementContent from "../../components/Documents/UserAgreementContent";
 import CustomHead from "../../components/CustomHead/CustomHead";
 import {getFullCanonicalUrl} from "../../utils/getFullCanonicalUrl";
+import {GetDataProps} from "../../interface/interfaceData";
+import {findItemByTitle} from "../../utils/findItemByTitle";
+import {TitlePage} from "../../interface/Title.props";
 
-const UserAgreementPage: NextPage<PageProps> = ({data}) => {
+const UserAgreementPage: NextPage<GetDataProps> = ({data}) => {
     const layoutProps = useLayoutProps(data);
-    const pageMeta = data.pageMeta['user-agreement'];
-    const fullCanonicalUrl = getFullCanonicalUrl(pageMeta.canonical);
+    const titleData = findItemByTitle(data.titlesPage, "user-agreement") || {} as TitlePage;
+    const fullCanonical = getFullCanonicalUrl(titleData.canonical);
 
     return (
         <>
             <CustomHead
-                title={pageMeta.title}
-                description={pageMeta.description}
-                canonical={fullCanonicalUrl}
+                metaTitle={titleData.metaTitle}
+                metaDescription={titleData.metaDescription}
+                canonical={fullCanonical}
             />
             <Layout {...layoutProps}>
                 <section className={styles.document}>
