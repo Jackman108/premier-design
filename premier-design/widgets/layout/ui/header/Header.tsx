@@ -10,44 +10,52 @@ import styles from './Header.module.css';
 import {FC, ReactElement} from 'react';
 import WorkHours from "@shared/ui/work-hours/WorkHours";
 import {HeaderProps} from "../../interface/Header.props";
+import {useStickyHeader} from "../../hooks/useStickyHeader";
 
 
 const Header: FC<HeaderProps> = ({menu}): ReactElement => {
     const {currentTheme, toggleTheme} = useThemeToggle();
     const {isMobileMenuOpen, toggleMobileMenu} = useMobileMenu(false);
-
+    const {isSticky} = useStickyHeader();
     return (
-        <header className={styles.header}>
-            <div className={styles.header__container}>
-                <Logo/>
-                <div className={styles.contact__container}>
-                    <WorkHours />
-                    <Phone/>
-                    <SocialIcons/>
-                </div>
-                <div className={styles.buttons__container}>
-                    <ThemeButton
-                        currentTheme={currentTheme}
-                        toggleTheme={toggleTheme}/>
-                    <MenuButton
+        <>
+            <header
+                className={`${styles.header} ${isSticky ? styles.sticky : ''}`}
+            >
+                <div className={styles.header__container}>
+                    <Logo/>
+                    <div className={styles.contact__container}>
+                        <WorkHours/>
+                        <Phone/>
+                        <SocialIcons/>
+                    </div>
+                    <div className={styles.buttons__container}>
+                        <ThemeButton
+                            currentTheme={currentTheme}
+                            toggleTheme={toggleTheme}/>
+                        <MenuButton
+                            isMobileMenuOpen={isMobileMenuOpen}
+                            toggleMobileMenu={toggleMobileMenu}
+                        />
+                    </div>
+                    <Menu
+                        isMobileMenuOpen={isMobileMenuOpen}
+                        toggleMobileMenu={toggleMobileMenu}
+                        menu={menu}
+                        menuStyle='header'
+                    />
+                    <Menu
+                        menu={menu}
+                        menuStyle='mobile'
                         isMobileMenuOpen={isMobileMenuOpen}
                         toggleMobileMenu={toggleMobileMenu}
                     />
                 </div>
-                <Menu
-                    isMobileMenuOpen={isMobileMenuOpen}
-                    toggleMobileMenu={toggleMobileMenu}
-                    menu={menu}
-                    menuStyle='header'
-                />
-                <Menu
-                    menu={menu}
-                    menuStyle='mobile'
-                    isMobileMenuOpen={isMobileMenuOpen}
-                    toggleMobileMenu={toggleMobileMenu}
-                />
-            </div>
-        </header>
+            </header>
+            {isSticky && (
+                <div className={styles.stickyPlaceholder}></div>
+            )}
+        </>
     );
 }
 export default Header;
