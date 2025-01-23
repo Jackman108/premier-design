@@ -28,7 +28,21 @@
     "declaration": true,
     "declarationDir": "./types",
     "incremental": true,
-    "noEmit": true
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@ui/*": ["ui/*"],
+      "@processes/*": ["processes/*"],
+      "@pages/*": ["pages/*"],
+      "@features/*": ["features/*"],
+      "@entities/*": ["entities/*"],
+      "@shared/*": ["shared/*"],
+      "@components/*": ["components/*"],
+      "@components/index": ["components/index.ts"],
+      "@config/*": ["config/*"],
+      "@interface/*": ["interface/*"],
+      "@hooks/*": ["hooks/*"],
+    }
   },
   "exclude": [
     "node_modules"
@@ -37,6 +51,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/ChatBotSidebar/config.tsx"
+    "features/buttons-panel/config/chatbotConfig.tsx"
   ]
 }

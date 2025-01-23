@@ -1,7 +1,7 @@
 import {NextPage} from 'next';
-import Layout from '../Layout/Layout';
+import Layout from '../widgets/layout/ui/layout/Layout';
 import {getStaticProps} from './api/dataProvider';
-import Banner from "../components/Banner/Banner";
+import Banner from "@features/banner/ui/Banner";
 import {
     Appeal,
     Approach,
@@ -13,14 +13,14 @@ import {
     Reviews,
     Services,
     StepsWork
-} from '../components';
-import CustomHead from "../components/CustomHead/CustomHead";
-import {useLayoutProps} from "../hooks/useLayoutProps";
-import {GetDataProps} from "../interface/interfaceData";
-import {BannerProps} from "../interface/Banner.props";
-import {usePageData} from "../hooks/usePageData";
-import {AppealProps} from "../interface/Appeal.props";
-import {getTitleData} from "../utils/findItemByTitle";
+} from '@shared/utils/dynamicImports';
+import CustomHead from "../widgets/layout/seo/CustomHead/CustomHead";
+import {useLayoutProps} from "../widgets/layout/hooks/useLayoutProps";
+import {GetDataProps} from "../widgets/interface/interfaceData";
+import {BannerProps} from "@features/banner/interface/Banner.props";
+import {usePageData} from "@shared/hooks/usePageData";
+import {AppealProps} from "@features/appeal/interface/Appeal.props";
+import {getTitleData} from "@shared/utils/findItemByTitle";
 
 const Home: NextPage<GetDataProps> = ({data}) => {
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(

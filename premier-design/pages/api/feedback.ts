@@ -1,5 +1,5 @@
 import {NextApiRequest, NextApiResponse} from 'next';
-import {FeedbackItem} from '../../interface/FeedbackModal.props';
+import {FeedbackItem} from '@shared/ui/order/interface/FeedbackModal.props';
 import {processFeedback} from "../../services/processFeedback";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

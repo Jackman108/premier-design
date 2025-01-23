@@ -1,7 +1,7 @@
-import {FeedbackItem} from "../interface/FeedbackModal.props";
+import {FeedbackItem} from "@shared/ui/order/interface/FeedbackModal.props";
 import {fileService} from "./fileService";
 import {emailService} from "./emailService";
-import {envVar} from "../validates/envVar";
+import {envVar} from "./envVar";
 import {telegramService} from "./telegramService";
 
 export const processFeedback = async (data: FeedbackItem) => {

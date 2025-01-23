@@ -1,9 +1,9 @@
 import {GetStaticPaths, GetStaticProps} from "next";
-import RelatedServiceDetail from "../../components/RelatedServiceDetail/RelatedServiceDetail";
-import {findRelatedService} from "../../utils/findRelatedService";
+import RelatedServiceDetail from "@features/related-services/ui/RelatedServiceDetail/RelatedServiceDetail";
+import {findRelatedService} from "@features/related-services/utils/findRelatedService";
 import data from "../../data/data.json";
-import {RelatedParams} from "../../interface/RelatedService.props";
-import {getServiceIdFromCanonical} from "../../utils/findService";
+import {RelatedParams} from "@features/related-services/interface/RelatedService.props";
+import {getServiceIdFromCanonical} from "@features/services/utils/findService";
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const relatedServices = data.relatedServices;

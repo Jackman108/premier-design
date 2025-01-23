@@ -1,16 +1,16 @@
 import {getStaticProps} from '../api/dataProvider';
-import styles from '../../styles/DocumetPage.module.css';
-import Layout from "../../Layout/Layout";
-import {useLayoutProps} from "../../hooks/useLayoutProps";
+import styles from '@features/documents-content/ui/documet-page/DocumetPage.module.css';
+import Layout from "../../widgets/layout/ui/layout/Layout";
+import {useLayoutProps} from "../../widgets/layout/hooks/useLayoutProps";
 import {NextPage} from "next";
-import BackButton from "../../components/UX/BackButton/BackButton";
-import DocumentImage from "../../components/UX/DocumentImage/DocumentImage";
-import PublicOfferContent from "../../components/Documents/PublicOfferContent";
-import {getFullCanonicalUrl} from "../../utils/getFullCanonicalUrl";
-import CustomHead from "../../components/CustomHead/CustomHead";
-import {GetDataProps} from "../../interface/interfaceData";
-import {findItemByTitle} from "../../utils/findItemByTitle";
-import {TitlePage} from "../../interface/Title.props";
+import BackButton from "@shared/ui/back-button/BackButton";
+import DocumentImage from "@features/documents-content/ui/document-image/DocumentImage";
+import PublicOfferContent from "@features/documents-content/ui/documet-page/PublicOfferContent";
+import {getFullCanonicalUrl} from "../../widgets/layout/seo/utils/getFullCanonicalUrl";
+import CustomHead from "../../widgets/layout/seo/CustomHead/CustomHead";
+import {GetDataProps} from "../../widgets/interface/interfaceData";
+import {findItemByTitle} from "@shared/utils/findItemByTitle";
+import {TitlePage} from "@shared/ui/title/interface/Title.props";
 
 const PublicOfferPage: NextPage<GetDataProps> = ({data}) => {
     const layoutProps = useLayoutProps(data);

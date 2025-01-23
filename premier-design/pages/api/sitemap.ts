@@ -1,7 +1,6 @@
 import {NextApiRequest, NextApiResponse} from 'next';
 import data from '../../data/data.json';
 
-// Константы для базового URL и конфигурации sitemap
 const BASE_URL = 'https://premier-design.by';
 const CHANGE_FREQUENCY = 'monthly';
 const STATIC_PRIORITY = 1.0;

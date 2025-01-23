@@ -1,16 +1,16 @@
 import type {NextPage} from 'next';
-import Layout from '../Layout/Layout';
+import Layout from '../widgets/layout/ui/layout/Layout';
 import {getStaticProps} from './api/dataProvider';
-import {GetDataProps} from '../interface/interfaceData';
+import {GetDataProps} from '../widgets/interface/interfaceData';
 import {ReactElement} from "react";
-import Banner from "../components/Banner/Banner";
-import {Appeal, News, OfferList, Partners} from '../components';
-import CustomHead from "../components/CustomHead/CustomHead";
-import {useLayoutProps} from "../hooks/useLayoutProps";
-import {BannerProps} from "../interface/Banner.props";
-import {getTitleData} from "../utils/findItemByTitle";
-import {usePageData} from "../hooks/usePageData";
-import {AppealProps} from "../interface/Appeal.props";
+import Banner from "@features/banner/ui/Banner";
+import {Appeal, News, OfferList, Partners} from '@shared/utils/dynamicImports';
+import CustomHead from "../widgets/layout/seo/CustomHead/CustomHead";
+import {useLayoutProps} from "../widgets/layout/hooks/useLayoutProps";
+import {BannerProps} from "@features/banner/interface/Banner.props";
+import {getTitleData} from "@shared/utils/findItemByTitle";
+import {usePageData} from "@shared/hooks/usePageData";
+import {AppealProps} from "@features/appeal/interface/Appeal.props";
 
 const About: NextPage<GetDataProps> = ({data}): ReactElement => {
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
