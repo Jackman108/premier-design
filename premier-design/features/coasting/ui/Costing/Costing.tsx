@@ -3,21 +3,23 @@
 import styles from './Costing.module.css';
 import CostingCard from '@features/coasting/ui/CostingCard/CostingCard';
 import Title from '@shared/ui/title/ui/Title';
-import {FC, ReactElement, useMemo} from 'react';
+import {FC, ReactElement} from 'react';
 import {CostingProps} from "@features/coasting/interface/Costing.props";
-import useResizeEffects from "@shared/hooks/useResizeEffects";
 import {useCostingCardLogic} from "@features/coasting/hooks/useCostingCardLogic";
 import CalculatorModal from "@shared/ui/calculator-modal/ui/CalculatorModal/CalculatorModal";
 import SliderComponent from '@shared/ui/slider/ui/Slider';
 
-const Costing: FC<CostingProps> = ({
-                                       cards,
-                                       title,
-                                   }): ReactElement => {
-    const {isMobile} = useResizeEffects();
-    const slidesPerView = 3;
-    const {isModalOpen, selectedCard, handleCardClick, handleKeyDown, closeModal} = useCostingCardLogic(cards)
-    const memoizedCards = useMemo(() => cards || [], [cards]);
+const Costing: FC<CostingProps> = ({cards, title}): ReactElement => {
+    const {
+        isMobile,
+        isModalOpen,
+        selectedCard,
+        handleCardClick,
+        handleKeyDown,
+        closeModal,
+        memoizedCards,
+        slidesPerView
+    } = useCostingCardLogic(cards)
 
     return (
         <section className={styles.costing}>
@@ -32,7 +34,6 @@ const Costing: FC<CostingProps> = ({
                 <div className={styles.costing__cards} id="costing-cards">
                     <SliderComponent slidesPerView={slidesPerView} isMobile={isMobile}>
                         {memoizedCards.map((card) => (
-
                             <CostingCard
                                 key={card.id}
                                 {...card}

@@ -14,7 +14,9 @@
 	bottom: 2vw;
 	border-radius: 0.7vh;
 	box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
-	background-color: #f5f5f5;
+	background-color: var(--beige-dark);
+	z-index: 3;
+
 }
 
 .features__list {

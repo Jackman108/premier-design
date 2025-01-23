@@ -37,6 +37,11 @@ body {
 	text-rendering: optimizeSpeed;
 	line-height: 1.5;
 	font-family: Inter, sans-serif;
+	background-image: url('../../public/tools.svg');
+	background-repeat: repeat;
+	background-size: 18%;
+	position: static;
+	z-index: 0;;
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/

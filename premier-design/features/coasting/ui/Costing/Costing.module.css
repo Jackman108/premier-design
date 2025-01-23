@@ -1,6 +1,6 @@
 .costing {
 	max-width: 100vw;
-	padding: 3%;
+	padding: 2%;
 }
 
 .costing__container {
@@ -10,10 +10,11 @@
 	align-items: center;
 	grid-gap: 4vh;
 	margin: 0 auto;
+	padding: 2vh 0;
+	background-color: var(--white);
 }
 
 .costing__cards {
 	display: grid;
-	height: auto;
-	grid-gap: 3vh;
+	min-height: 50vh;
 }

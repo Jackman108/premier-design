@@ -42,7 +42,7 @@ const StepsWork: FC<{ stepsWork: StepsWorkProps[]; title: TitleProps }> = ({step
     );
 
     return (
-        <section className={styles.steps__wrapper}>
+        <section className={styles.steps}>
             <div className={styles.steps__container}>
                 <Title
                     titleStyle="title-black"

@@ -10,6 +10,7 @@
 	white-space: nowrap;
 	transition: all 0.3s ease-in-out;
 	text-shadow: 0 1px 1px rgba(230, 227, 225, 0.8);
+	z-index: 2;
 }
 
 .button-white {

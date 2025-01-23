@@ -1,11 +1,15 @@
-import {KeyboardEvent, useEffect, useState} from 'react';
+import {KeyboardEvent, useEffect, useMemo, useState} from 'react';
 import {useModalState} from "@shared/hooks/useModalState";
 import {CostingCardProps} from "@features/coasting/interface/Costing.props";
-
+import useResizeEffects from "@shared/hooks/useResizeEffects";
 
 export const useCostingCardLogic = (cards: CostingCardProps[]) => {
     const {isOpen: isModalOpen, openModal, closeModal} = useModalState(false);
     const [selectedCard, setSelectedCard] = useState<CostingCardProps | null>(null);
+    const {isMobile} = useResizeEffects();
+
+    const memoizedCards = useMemo(() => cards || [], [cards]);
+    const slidesPerView = 3;
 
     const handleCardClick = (card: CostingCardProps) => {
         setSelectedCard(card);
@@ -22,13 +26,16 @@ export const useCostingCardLogic = (cards: CostingCardProps[]) => {
     useEffect(() => {
         closeModal();
         setSelectedCard(null);
-    }, [cards, closeModal]);
+    }, [memoizedCards, closeModal]);
 
     return {
+        isMobile,
         isModalOpen,
         selectedCard,
         handleCardClick,
         handleKeyDown,
         closeModal,
+        memoizedCards,
+        slidesPerView
     };
 };

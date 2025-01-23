@@ -11,6 +11,7 @@
 	white-space: nowrap;
 	animation: typing 1s steps(30) 1s 1 normal both;
 	font-family: var(--font-family), monospace;
+	z-index: 2;
 }
 
 .description-white {
@@ -21,6 +22,7 @@
 	text-align: center;
 	color: var(--beige-dark);
 	text-shadow: 0 0 1px rgba(255, 255, 255, 0.8);
+	z-index: 2;
 }
 
 @keyframes typing {
@@ -37,6 +39,7 @@
 	font-weight: 600;
 	text-align: center;
 	color: var(--brown-dark);
+	z-index: 2;
 }
 
 .description-black {
@@ -46,6 +49,7 @@
 	max-width: 80vw;
 	text-align: center;
 	color: var(--brown);
+	z-index: 2;
 }
 
 @media (max-width: 768px) {

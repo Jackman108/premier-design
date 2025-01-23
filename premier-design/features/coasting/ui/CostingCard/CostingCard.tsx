@@ -24,8 +24,8 @@ const CostingCard: FC<CostingCardProps> = ({
                     src={image}
                     alt={title}
                     className={styles.image}
-                    width={450}
-                    height={640}
+                    width={460}
+                    height={580}
                     loading='lazy'
                 />
             </div>

@@ -40,7 +40,7 @@
 .card__title {
 	position: absolute;
 	text-align: center;
-	font-size: 1.2rem;
+	font-size: 1.6rem;
 	font-weight: bold;
 	letter-spacing: 0.002em;
 	color: var(--beige);
@@ -48,11 +48,6 @@
 	pointer-events: none;
 }
 
-@media screen and (max-width: 1920px) {
-	.costing__card {
-		min-width: 28vw;
-	}
-}
 
 @media screen and (max-width: 768px) {
 	.costing__card {
