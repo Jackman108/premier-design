@@ -1,7 +1,7 @@
 .footer__contacts {
 	display: grid;
 	grid-template-columns: auto;
-	grid-gap: 2vh;
+	grid-gap: 1.5rem;
 	align-content: space-evenly;
 }
 

@@ -8,22 +8,23 @@ import {AppealProps} from "@features/appeal/interface/Appeal.props";
 const Appeal: FC<AppealProps> = ({titleItem, buttonItem, bannerItem}): ReactElement => {
     return (
         <section className={styles.appeal}>
-            <div className={styles.appeal__container}>
-                <NextImage
-                    src={bannerItem.src}
-                    alt={bannerItem.alt}
-                    quality={bannerItem.quality}
-                    width={bannerItem.width}
-                    height={508}
-                    sizes="
-                    (max-width: 600px) 600px,
-                    (max-width: 1440px) 1440px,
-                    1935px
+
+            <NextImage
+                src={bannerItem.src}
+                alt={bannerItem.alt}
+                quality={bannerItem.quality}
+                width={bannerItem.width}
+                height={508}
+                sizes="
+                   (max-width: 600px) 100vw,
+                (max-width: 1440px) 60vw,
+                1935px
                     "
-                    loading="lazy"
-                    placeholder="empty"
-                    className={styles.appeal__background}
-                />
+                loading="lazy"
+                placeholder="empty"
+                className={styles.appeal__background}
+            />
+            <div className={styles.appeal__container}>
                 <Title
                     titleStyle='title-black'
                     descriptionStyle='description-black'

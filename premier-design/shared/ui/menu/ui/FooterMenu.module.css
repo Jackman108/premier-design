@@ -1,8 +1,6 @@
 .menu {
-	max-width: 20vw;
 	display: grid;
-	justify-content: center;
-
+	grid-template-columns: 1fr;
 }
 
 .menu__link {
@@ -10,9 +8,9 @@
 }
 
 .menu__container {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 3vh;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
 	align-content: center;
 }
 
@@ -43,9 +41,6 @@
 		margin: 0 auto;
 	}
 
-	.menu__item {
-		font-size: 1.7rem;
-		text-align: center;
-	}
+
 }
 

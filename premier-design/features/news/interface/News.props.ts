@@ -1,3 +1,5 @@
+import {TitleProps} from "@shared/ui/title/interface/Title.props";
+
 export interface NewsProps {
     id: number;
     image: string;
@@ -12,6 +14,7 @@ export interface NewsStyleProps {
 }
 
 export interface NewsComponentProps {
+    title?: TitleProps;
     news: NewsProps[];
     newsStyle: NewsStyleProps['newsStyle'];
 }

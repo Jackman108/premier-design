@@ -1,4 +1,3 @@
-'use client';
 import React, {FC, ReactElement} from 'react';
 import styles from './Examples.module.css';
 import SliderComponent from '@shared/ui/slider/ui/Slider';

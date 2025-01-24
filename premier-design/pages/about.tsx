@@ -21,10 +21,10 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
 
     const {titleItem, buttonItem, bannerItem} = usePageData(
         data.title, data.button, data.bannersImages,
-        "our-partners", "leave_request", "appeal_banner"
+        "create-best-place", "leave_request", "appeal_banner"
     );
     const appealProps: AppealProps = {titleItem, buttonItem, bannerItem}
-    const titles = getTitleData(data.title, "our-partners");
+    const titles = getTitleData(data.title, "news-shares", "our-partners");
 
     return (
         <>
@@ -33,6 +33,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
                 <Banner {...bannerProps}/>
                 <OfferList offer={data.offerList.aboutType}/>
                 <News
+                    title={titles["news-shares"]}
                     news={data.news}
                     newsStyle='about'
                 />

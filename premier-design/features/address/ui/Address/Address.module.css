@@ -1,34 +1,34 @@
 .address__contacts {
-  color: var(--brown-dark);  
-  background-color: var(--brown-white);
-  padding: 3% 5%; 
+	color: var(--brown-dark);
+	background-color: var(--beige-dark);
+	padding: 3% 5%;
 }
 
 .address__content {
-  margin: 0 auto;  
-  max-width: 1440px;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: space-between;
-  align-items: center;
+	margin: 0 auto;
+	max-width: 1440px;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	justify-content: space-between;
+	align-items: center;
 }
 
 .address__item {
-  border-left: 3px solid var(--brown);
-  padding: 10px;
-  min-height: 100%;
-  line-height: 3rem;
+	border-left: 3px solid var(--brown);
+	padding: 10px;
+	min-height: 100%;
+	line-height: 3rem;
 }
 
 .address__item:first-child svg {
-  display: none;
+	display: none;
 }
 
 @media only screen and (max-width: 752px) {
-  .address__content {
-    grid-template-columns: repeat(1, auto);
-    justify-content: space-between;
-    align-items: center;
-    padding: 10% 5%; 
-  }
+	.address__content {
+		grid-template-columns: repeat(1, auto);
+		justify-content: space-between;
+		align-items: center;
+		padding: 10% 5%;
+	}
 }

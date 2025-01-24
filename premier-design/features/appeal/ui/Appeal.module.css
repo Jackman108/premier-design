@@ -1,33 +1,39 @@
 .appeal {
-	position: inherit;
-	max-width: 100%;
-	padding: 0;
-}
-
-.appeal__container {
-	height: 54vh;
-	display: grid;
-	justify-items: center;
-	justify-content: center;
-	align-content: space-around;
-	max-width: 1440px;
-	margin: 0 auto;
-	text-shadow: 1px 1px 1px var(--brown-dark);
+	position: relative;
+	height: 50vh;
+	width: 100%;
+	padding: 2% 0;
 }
 
 .appeal__background {
 	position: absolute;
 	width: 100%;
-	height: 60%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
 	z-index: 1;
 	background-repeat: no-repeat;
 	object-fit: cover;
+}
+
+.appeal__container {
+	display: grid;
+	justify-items: center;
+	justify-content: center;
+	align-content: space-between;
+	max-width: 1440px;
+	height: 100%;
+	padding: 2% 0;
+	margin: 2% auto;
 
 }
 
 @media screen and (max-width: 768px) {
 	.appeal__container {
-		height: 30vh;
+		align-content: space-around;
+
 	}
 
 }

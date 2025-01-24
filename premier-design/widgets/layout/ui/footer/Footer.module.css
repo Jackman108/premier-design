@@ -10,7 +10,6 @@
 	display: grid;
 	grid-template-columns: repeat(3, auto);
 	grid-gap: 5vw;
-	justify-items: center;
 	max-width: 1440px;
 }
 

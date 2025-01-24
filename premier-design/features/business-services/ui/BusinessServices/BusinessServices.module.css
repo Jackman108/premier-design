@@ -1,6 +1,6 @@
 .businessServices {
 	max-width: 100vw;
-	padding: 3%;
+	padding: 2%;
 }
 
 .container {
@@ -10,6 +10,8 @@
 	align-items: center;
 	grid-gap: 4vh;
 	margin: 0 auto;
+	padding: 2vh 0;
+	background-color: var(--white);
 }
 
 .services {
@@ -23,11 +25,11 @@
 	color: white;
 }
 
-
 .callToAction {
 	width: 100%;
 	background-color: var(--brown-light);
-	padding: 2rem;
+	padding: 2rem 0;
+	margin: 0 2rem;
 	color: white;
 	text-align: center;
 }

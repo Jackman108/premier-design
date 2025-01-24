@@ -7,7 +7,6 @@ import {PartnersSectionProps} from "@features/partners/interface/Partners.props"
 const Partners: FC<PartnersSectionProps> = ({title, partners}): ReactElement => {
     return (
         <section className={styles.partners}>
-
             <div className={styles.partners__container}>
                 <Title
                     titleStyle='title-black'

@@ -1,8 +1,8 @@
 .menu {
-    grid-column: 2 / 3;
-    display: grid;
-    justify-content: space-around;
-    align-items: center;
+	grid-column: 2 / 3;
+	display: grid;
+	justify-content: space-around;
+	align-items: center;
 }
 
 .menu__link {
@@ -12,12 +12,12 @@
 .menu__container {
 	display: grid;
 	grid-template-columns: repeat(5, auto);
-	grid-gap: 2.2vh;
+	grid-gap: 2rem;
 	list-style: none;
 }
 
 .menu__item {
-	font-size: 1.2rem;
+	font-size: 1.4rem;
 	font-weight: bold;
 	color: var(--brown);
 	text-align: center;

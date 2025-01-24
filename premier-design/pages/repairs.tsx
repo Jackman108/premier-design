@@ -3,7 +3,16 @@ import Layout from '../widgets/layout/ui/layout/Layout';
 import {getStaticProps} from './api/dataProvider';
 import {ReactElement} from "react";
 import Banner from "@features/banner/ui/Banner";
-import {Appeal, BusinessServices, Category, Costing, Examples, Features, OfferList, ProjectOffer} from '@shared/utils/dynamicImports';
+import {
+    Appeal,
+    BusinessServices,
+    Category,
+    Costing,
+    Examples,
+    Features,
+    OfferList,
+    ProjectOffer
+} from '@shared/utils/dynamicImports';
 import CustomHead from "../widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "../widgets/layout/hooks/useLayoutProps";
 import {GetDataProps} from "../widgets/interface/interfaceData";
@@ -21,7 +30,7 @@ const Repairs: NextPage<GetDataProps> = ({data}): ReactElement => {
 
     const {titleItem, buttonItem, bannerItem} = usePageData(
         data.title, data.button, data.bannersImages,
-        "our-partners", "leave_request", "appeal_banner"
+        "create-best-place", "leave_request", "appeal_banner"
     );
     const appealProps: AppealProps = {titleItem, buttonItem, bannerItem};
     const titles = getTitleData(data.title, "our-works", "price-calculation");
