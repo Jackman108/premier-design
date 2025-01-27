@@ -1,5 +1,5 @@
 # Используем образ Node.js версии 16.0.0-alpine в качестве базового образа
-FROM node:20-alpine
+FROM node:20-alpine as runner
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app
 

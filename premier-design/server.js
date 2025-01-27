@@ -8,11 +8,11 @@ const handle = app.getRequestHandler();
 
 const serverOptions = dev ?
     {
-        key: fs.readFileSync('./certificates/server.key'),
-        cert: fs.readFileSync('./certificates/server.crt')
+        key: fs.readFileSync(process.env.CERT_KEY_PATH),
+        cert: fs.readFileSync(process.env.CERT_CERT_PATH),
     } : {
-        key: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/privkey.pem'),
-        cert: fs.readFileSync('/etc/letsencrypt/live/yourdomain.com/fullchain.pem'),
+        key: fs.readFileSync(process.env.PROD_CERT_KEY_PATH),
+        cert: fs.readFileSync(process.env.PROD_CERT_CERT_PATH),
     };
 
 app.prepare().then(() => {

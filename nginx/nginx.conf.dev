@@ -1,16 +1,20 @@
 server {
-    listen 80;
-
+    listen 443 ssl;
     server_name premier-design.local;
+    ssl_certificate /certificates/cert.crt;
+    ssl_certificate_key /certificates/cert.key;
 
     location / {
         proxy_pass http://frontend-docker-container:3000/;
         proxy_set_header Host $host;
-        }
+    }
 
-    location /pgdata {
-        proxy_pass http://db:5432;
-        rewrite ^/pgdata/(.*) /$1 break;        
+    location /_next/static/ {
+        proxy_pass http://frontend-docker-container:3000/_next/static/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
     }
 
     location /ws {
@@ -21,5 +25,32 @@ server {
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    }    
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header Origin $http_origin;
+    }
+
+    location /_next/webpack-hmr {
+        proxy_pass http://frontend-docker-container:3000/_next/webpack-hmr;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location @connect {
+            internal;
+            proxy_pass https://$host$request_uri;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto $scheme;
+        }
+
+    location /pgdata {
+        proxy_pass http://db:5432;
+        rewrite ^/pgdata/(.*) /$1 break;
+    }
 }

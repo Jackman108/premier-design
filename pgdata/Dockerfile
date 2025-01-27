@@ -1,5 +1,5 @@
 # Используем образ PostgreSQL в качестве базового образа
-FROM postgres:latest
+FROM postgres:16-alpine
 
 # Устанавливаем рабочую директорию внутри контейнера
 WORKDIR /app

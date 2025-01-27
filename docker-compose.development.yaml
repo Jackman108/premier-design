@@ -2,9 +2,8 @@ version: "3"
 
 services:
   frontend:
-    build: 
+    build:
       context: ./premier-design
-      target: runner
       dockerfile: Dockerfile.dev
     container_name: frontend-docker-container
     restart: unless-stopped
@@ -15,7 +14,7 @@ services:
       - DATABASE_URL=postgres://${DB_USER}:${DB_PASSWORD}@db:5432/${DB_DATABASE}
       - NODE_ENV=development
     volumes:
-      - ./premier-design:/app    
+      - ./premier-design:/app
     networks:
       - docker-network
 
@@ -33,13 +32,17 @@ services:
       - docker-network
 
   nginx:
-    image: nginx:stable-alpine   
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
     container_name: nginx-docker-container
     restart: unless-stopped
     ports:
+      - "443:443"
       - "80:80"
     volumes:
       - ./nginx/nginx.conf.dev:/etc/nginx/conf.d/nginx.conf
+      - ./nginx/certificates:/certificates
     depends_on:
       - frontend
       - db
