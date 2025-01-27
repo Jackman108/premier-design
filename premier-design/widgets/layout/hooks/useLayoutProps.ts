@@ -5,6 +5,7 @@ export const useLayoutProps = (data: LayoutData) => {
     return useMemo(() => ({
         headerProps: {
             menu: data.menu,
+            shares: data.shares,
         },
         footerProps: {
             papers: data.papers,

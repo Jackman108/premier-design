@@ -45,9 +45,17 @@
 		justify-content: center;
 		width: 100%;
 	}
+
+	.stickyPlaceholder {
+		display: none;
+	}
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
+	.header {
+		height: 102px;
+	}
+
 	.header.sticky {
 		position: fixed;
 		top: 0;
@@ -61,7 +69,6 @@
 	}
 
 	.stickyPlaceholder {
-		height: 97px;
 		width: 100%;
 	}
 

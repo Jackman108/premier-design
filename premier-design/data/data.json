@@ -388,6 +388,30 @@
       "shortTitle": "appeal_banner"
     }
   ],
+  "shares": [
+    {
+      "shortTitle": "share_electric",
+      "link": "/about#news-2",
+      "imageDesc": {
+        "id": 1,
+        "src": "/shares/share-el-d.webp",
+        "alt": "Premium Interior - акция электрика",
+        "quality": 95,
+        "width": 1920,
+        "height": 78,
+        "shortTitle": "shares_banner"
+      },
+      "imageMob": {
+        "id": 1,
+        "src": "/shares/share-el-m.webp",
+        "alt": "Premium Interior - акция электрика",
+        "quality": 95,
+        "width": 768,
+        "height": 84,
+        "shortTitle": "shares_banner"
+      }
+    }
+  ],
   "partners": [
     {
       "id": 1,
@@ -774,7 +798,7 @@
       ]
     }
   ],
-  "offerList": {
+  "offerBanner": {
     "homeType": {
       "id": 1,
       "image": "/design/offerList.webp",

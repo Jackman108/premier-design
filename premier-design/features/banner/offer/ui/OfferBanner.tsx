@@ -1,10 +1,9 @@
 import React, {FC, ReactElement} from 'react';
-import styles from './OfferList.module.css';
+import styles from './OfferBanner.module.css';
 import Image from 'next/image';
-import {OfferType} from "@features/offer-list/interface/OfferList.props";
+import {OfferType} from "@features/banner/offer/interface/OfferBanner.props";
 
-const OfferList: FC<{ offer: OfferType }> = ({offer}): ReactElement => {
-
+const OfferBanner: FC<{ offer: OfferType }> = ({offer}): ReactElement => {
     return (
         <section className={styles.offer}>
             <div className={styles.offer__container}>
@@ -34,4 +33,4 @@ const OfferList: FC<{ offer: OfferType }> = ({offer}): ReactElement => {
         </section>
     );
 };
-export default OfferList;
+export default OfferBanner;

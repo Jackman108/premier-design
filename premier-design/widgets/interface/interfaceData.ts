@@ -4,10 +4,10 @@ import {MenuItem} from "@shared/ui/menu/interface/Menu.props";
 import {ButtonProps} from "@shared/interface/Button.props";
 import {FeatureProps} from "@shared/ui/features-section/interface/Feature.props";
 import {TitlePage, TitleProps} from "@shared/ui/title/interface/Title.props";
-import { ServiceCardProps} from "@features/services/interface/ServiceCard.props";
-import {OfferListProps} from "@features/offer-list/interface/OfferList.props";
+import {ServiceCardProps} from "@features/services/interface/ServiceCard.props";
+import {OfferBannerProps} from "@features/banner/offer/interface/OfferBanner.props";
 import {OfferProjectProps} from "@features/project-offer/interface/OfferProject.props";
-import {BannerImageProps} from "@features/banner/interface/Banner.props";
+import {BannerImageProps} from "@features/banner/hero/interface/HeroBannerProps";
 import {PartnersProps} from "@features/partners/interface/Partners.props";
 import {StepsWorkProps} from "@features/steps-work/interface/StepsWork.props";
 import {Prices} from "@features/category/interface/Category.props";
@@ -18,6 +18,7 @@ import {RelatedServiceCardProps} from "@features/related-services/interface/Rela
 import {BusinessServiceCard, BusinessServices} from "@features/business-services/interface/BusinessService.props";
 import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
 import {ApproachCardProps} from "@features/approach/interface/ApproachCard.props";
+import {ShareBannerDataProps} from "@features/banner/share/interface/ShareBanner.props";
 
 export interface DataProps {
     titlesPage: TitlePage[]
@@ -31,7 +32,7 @@ export interface DataProps {
     examplesCard: ExampleCardProps[];
     servicesCard: ServiceCardProps[];
     businessServiceCard: BusinessServiceCard[];
-    offerList: OfferListProps;
+    offerBanner: OfferBannerProps;
     offerProject: {
         designType: OfferProjectProps[];
         repairType: OfferProjectProps[];
@@ -45,6 +46,7 @@ export interface DataProps {
     panel: PanelProps[];
     relatedServices: RelatedServiceCardProps[];
     businessServices: BusinessServices;
+    shares: ShareBannerDataProps[];
 }
 
 export interface GetDataProps {

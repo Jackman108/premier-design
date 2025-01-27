@@ -19,6 +19,7 @@ const RelatedServiceDetail: FC<RelatedServiceDetail> = ({
                                                             costingData,
                                                             buttonData,
                                                             panelData,
+                                                            sharesData
                                                         }) => {
     const router = useRouter();
 
@@ -39,11 +40,14 @@ const RelatedServiceDetail: FC<RelatedServiceDetail> = ({
                 canonical={fullCanonicalUrl}
             />
             <Layout
-                headerProps={{menu: menuData}}
+                headerProps={{
+                    menu: menuData,
+                    shares: sharesData
+                }}
                 footerProps={{
                     papers: papersData,
                     news: newsData,
-                    menu: menuData,
+                    menu: menuData
                 }}
                 additionalData={{
                     costingCards: costingData,

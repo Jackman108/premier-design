@@ -5,8 +5,8 @@ export const Services = dynamic(() => import('@features/services/ui/Services/Ser
 export const Approach = dynamic(() => import('@features/approach/ui/Approach'));
 export const Examples = dynamic(() => import('@features/examples/ui/Examples/Examples'));
 export const Costing = dynamic(() => import('@features/coasting/ui/Costing/Costing'));
-export const Appeal = dynamic(() => import('@features/appeal/ui/Appeal'));
-export const OfferList = dynamic(() => import('@features/offer-list/ui/OfferList'));
+export const Appeal = dynamic(() => import('@features/banner/appeal/ui/AppealBanner'));
+export const OfferBanner = dynamic(() => import('@features/banner/offer/ui/OfferBanner'));
 export const ProjectOffer = dynamic(() => import('@features/project-offer/ui/ProjectOffer/ProjectOffer'));
 export const Partners = dynamic(() => import('@features/partners/ui/Partners/Partners'));
 export const StepsWork = dynamic(() => import('@features/steps-work/ui/StepsWork/StepsWork'));

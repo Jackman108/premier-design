@@ -11,14 +11,20 @@ import {FC, ReactElement} from 'react';
 import WorkHours from "@shared/ui/work-hours/WorkHours";
 import {HeaderProps} from "../../interface/Header.props";
 import {useStickyHeader} from "../../hooks/useStickyHeader";
+import ShareBanner from "@features/banner/share/ui/ShareBanner";
+import {useShareBanner} from "@features/banner/share/hooks/useShareBanner";
 
 
-const Header: FC<HeaderProps> = ({menu}): ReactElement => {
+const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
     const {currentTheme, toggleTheme} = useThemeToggle();
     const {isMobileMenuOpen, toggleMobileMenu} = useMobileMenu(false);
     const {isSticky} = useStickyHeader();
+    const {isClosed} = useShareBanner();
+    const headerHeight = isClosed ? '102px' : '162px';
+
     return (
         <>
+            <ShareBanner isSticky={isSticky} shares={shares}/>
             <header
                 className={`${styles.header} ${isSticky ? styles.sticky : ''}`}
             >
@@ -53,7 +59,7 @@ const Header: FC<HeaderProps> = ({menu}): ReactElement => {
                 </div>
             </header>
             {isSticky && (
-                <div className={styles.stickyPlaceholder}></div>
+                <div className={styles.stickyPlaceholder} style={{height: headerHeight}}></div>
             )}
         </>
     );

@@ -1,11 +1,11 @@
 import {FC, ReactElement} from 'react';
-import styles from './Appeal.module.css';
+import styles from './AppealBanner.module.css';
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 import Title from '@shared/ui/title/ui/Title';
 import NextImage from 'next/image';
-import {AppealProps} from "@features/appeal/interface/Appeal.props";
+import {AppealBannerProps} from "@features/banner/appeal/interface/AppealBannerProps";
 
-const Appeal: FC<AppealProps> = ({titleItem, buttonItem, bannerItem}): ReactElement => {
+const AppealBanner: FC<AppealBannerProps> = ({titleItem, buttonItem, bannerItem}): ReactElement => {
     return (
         <section className={styles.appeal}>
 
@@ -40,4 +40,4 @@ const Appeal: FC<AppealProps> = ({titleItem, buttonItem, bannerItem}): ReactElem
         </section>
     );
 };
-export default Appeal;
+export default AppealBanner;

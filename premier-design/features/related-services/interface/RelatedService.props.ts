@@ -6,6 +6,7 @@ import {ButtonProps} from "@shared/interface/Button.props";
 import {ParsedUrlQuery} from "querystring";
 import {CostingCardProps} from "@features/coasting/interface/Costing.props";
 import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
+import {ShareBannerDataProps} from "@features/banner/share/interface/ShareBanner.props";
 
 
 export interface RelatedServiceCardProps {
@@ -34,6 +35,7 @@ export interface RelatedServiceDetail {
     costingData: CostingCardProps[];
     buttonData: ButtonProps[];
     panelData: PanelProps[];
+    sharesData: ShareBannerDataProps[]
 }
 
 export interface RelatedParams extends ParsedUrlQuery {

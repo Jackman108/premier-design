@@ -33,7 +33,7 @@ export function usePrivacyPolicy(privacyPolicy: { shortTitle: string }, handlePa
     const handlePrivacyPolicyClick = async () => {
         if (privacyPolicy) {
             try {
-                await handlePaperClick(privacyPolicy.shortTitle);
+                handlePaperClick(privacyPolicy.shortTitle);
             } catch (error) {
                 console.error("Ошибка при переходе к политике конфиденциальности:", error);
             }

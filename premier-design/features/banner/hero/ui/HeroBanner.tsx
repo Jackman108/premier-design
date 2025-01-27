@@ -1,11 +1,11 @@
 import {FC} from 'react';
-import styles from './Banner.module.css';
+import styles from './HeroBanner.module.css';
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 import Title from '@shared/ui/title/ui/Title';
 import Image from 'next/image';
-import {BannerProps} from "@features/banner/interface/Banner.props";
+import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
 
-const Banner: FC<BannerProps> = ({bannerData, buttonData, titleData}) => {
+const HeroBanner: FC<HeroBannerProps> = ({bannerData, buttonData, titleData}) => {
     return (
         <section className={styles.banner}>
             <Image
@@ -41,4 +41,4 @@ const Banner: FC<BannerProps> = ({bannerData, buttonData, titleData}) => {
         </section>
     );
 };
-export default Banner;
+export default HeroBanner;

@@ -8,7 +8,7 @@ export interface OfferType {
     shortTitle: string;
 }
 
-export interface OfferListProps {
+export interface OfferBannerProps {
     designType: OfferType;
     repairType: OfferType;
     aboutType: OfferType;

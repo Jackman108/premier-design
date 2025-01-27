@@ -20,6 +20,7 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                                                    costingData,
                                                    buttonData,
                                                    panelData,
+                                                   sharesData
                                                }) => {
     const router = useRouter();
 
@@ -40,7 +41,10 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                 canonical={fullCanonicalUrl}
             />
             <Layout
-                headerProps={{menu: menuData}}
+                headerProps={{
+                    menu: menuData,
+                    shares: sharesData
+                }}
                 footerProps={{
                     papers: papersData,
                     news: newsData,

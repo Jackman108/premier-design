@@ -10,7 +10,7 @@ export interface BannerImageProps {
     height: number;
 }
 
-export interface BannerProps {
+export interface HeroBannerProps {
     bannerData: BannerImageProps;
     buttonData: ButtonProps;
     titleData: TitleProps;

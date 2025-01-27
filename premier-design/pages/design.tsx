@@ -2,14 +2,14 @@ import type {NextPage} from 'next';
 import Layout from '../widgets/layout/ui/layout/Layout';
 import {getStaticProps} from './api/dataProvider';
 import {ReactElement} from "react";
-import Banner from "@features/banner/ui/Banner";
-import {Appeal, Costing, Examples, Features, OfferList, ProjectOffer} from '@shared/utils/dynamicImports';
+import HeroBanner from "@features/banner/hero/ui/HeroBanner";
+import {Appeal, Costing, Examples, Features, OfferBanner, ProjectOffer} from '@shared/utils/dynamicImports';
 import CustomHead from "../widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "../widgets/layout/hooks/useLayoutProps";
 import {GetDataProps} from "../widgets/interface/interfaceData";
-import {BannerProps} from "@features/banner/interface/Banner.props";
+import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
 import {usePageData} from "@shared/hooks/usePageData";
-import {AppealProps} from "@features/appeal/interface/Appeal.props";
+import {AppealBannerProps} from "@features/banner/appeal/interface/AppealBannerProps";
 import {getTitleData} from "@shared/utils/findItemByTitle";
 
 const Design: NextPage<GetDataProps> = ({data}): ReactElement => {
@@ -17,22 +17,22 @@ const Design: NextPage<GetDataProps> = ({data}): ReactElement => {
         data.titlesPage, data.button, data.bannersImages,
         "design", "order_project", "design_banner"
     );
-    const bannerProps: BannerProps = {titleData, buttonData, bannerData};
+    const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
 
     const {titleItem, buttonItem, bannerItem} = usePageData(
         data.title, data.button, data.bannersImages,
         "create-best-place", "leave_request", "appeal_banner"
     );
-    const appealProps: AppealProps = {titleItem, buttonItem, bannerItem};
+    const appealProps: AppealBannerProps = {titleItem, buttonItem, bannerItem};
     const titles = getTitleData(data.title, "our-works", "price-calculation");
 
     return (
         <>
             <CustomHead {...titleData}/>
             <Layout {...useLayoutProps(data)}>
-                <Banner {...bannerProps}/>
+                <HeroBanner {...bannerProps}/>
                 <Features features={data.features}/>
-                <OfferList offer={data.offerList.designType}/>
+                <OfferBanner offer={data.offerBanner.designType}/>
                 <Examples
                     cards={data.examplesCard}
                     title={titles["our-works"]}

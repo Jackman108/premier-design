@@ -7,6 +7,7 @@ import {CostingCardProps} from "@features/coasting/interface/Costing.props";
 import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
 import {HeaderProps} from "./Header.props";
 import {FooterProps} from "./Footer.props";
+import {ShareBannerDataProps} from "@features/banner/share/interface/ShareBanner.props";
 
 export interface LayoutData {
     menu: MenuItem[];
@@ -15,6 +16,8 @@ export interface LayoutData {
     costingCard: CostingCardProps[];
     button: ButtonProps[];
     panel: PanelProps[];
+    shares: ShareBannerDataProps[];
+
 }
 
 export interface LayoutProps {
