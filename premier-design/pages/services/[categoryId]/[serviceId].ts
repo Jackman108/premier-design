@@ -1,10 +1,14 @@
 import {GetStaticPaths, GetStaticProps} from 'next';
 import ServiceDetail from "@features/services/ui/ServiceDetail/ServiceDetail";
-import data from '../../../data/data.json';
 import {Params} from "@features/services/interface/ServiceDetail.props";
 import {findService, getServiceIdFromCanonical} from "@features/services/utils/findService";
+import {getData} from "@pages/api/dataProvider";
+import {DataProps} from "@widgets/interface/interfaceData";
+import {getCommonProps} from "@shared/utils/getCommonProps";
+
 
 export const getStaticPaths: GetStaticPaths = async () => {
+    const data: DataProps = await getData();
     const services = data.prices?.repairs;
 
     if (!Array.isArray(services)) {
@@ -28,26 +32,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({params}) => {
     const {categoryId, serviceId} = params as Params;
+    const data: DataProps = await getData();
 
-    const {service, categoryProps} = findService(categoryId, serviceId);
+    const {service, categoryProps} = findService(data, categoryId, serviceId);
     if (!service) {
         return {notFound: true};
     }
-
-    const {menu, papers, news, costingCard, button, panel, shares} = data;
 
     return {
         props: {
             service,
             categoryProps,
-            menuData: menu,
-            papersData: papers,
-            newsData: news,
-            costingData: costingCard,
-            buttonData: button,
-            panelData: panel,
-            sharesData: shares
-
+            ...getCommonProps(data),
         },
     };
 };

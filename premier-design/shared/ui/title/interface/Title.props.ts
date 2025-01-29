@@ -1,4 +1,4 @@
-import {CustomHeadProps} from "../../../../widgets/layout/seo/CustomHead/CustomHead.props";
+import {CustomHeadProps} from "@widgets/layout/seo/CustomHead/CustomHead.props";
 
 export interface TitleProps {
     id?: number;

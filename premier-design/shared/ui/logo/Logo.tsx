@@ -8,7 +8,7 @@ const Logo = (): ReactElement => {
     return (
         <div className={styles.logo}>
             <Link
-                href="/public"
+                href="/"
                 className={styles.logo__image}
                 aria-label="Перейти на главную"
             >

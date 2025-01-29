@@ -1,11 +1,11 @@
-import data from "../../../data/data.json";
+import {DataProps} from "@widgets/interface/interfaceData";
 
 export const getServiceIdFromCanonical = (canonical: string): string => {
     return canonical.split('/').pop() || '';
 };
 
 
-export const findService = (categoryId: string, serviceId: string) => {
+export const findService = (data: DataProps, categoryId: string, serviceId: string) => {
     const category = data.prices.repairs.find((category) => category.id === categoryId);
 
     if (!category) {

@@ -1,7 +1,4 @@
-// hooks/useCookiesBanner.ts
-
 import { useEffect } from "react";
-
 
 export function useCookiesBanner(openModal: () => void, closeModal: () => void) {
     useEffect(() => {

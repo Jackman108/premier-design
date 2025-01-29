@@ -1,16 +1,15 @@
 import type {NextPage} from 'next';
-import Layout from '../widgets/layout/ui/layout/Layout';
+import Layout from '@widgets/layout/ui/layout/Layout';
 import {getStaticProps} from './api/dataProvider';
-import {GetDataProps} from '../widgets/interface/interfaceData';
+import {GetDataProps} from '@widgets/interface/interfaceData';
 import {ReactElement} from "react";
 import HeroBanner from "@features/banner/hero/ui/HeroBanner";
 import {Appeal, News, OfferBanner, Partners} from '@shared/utils/dynamicImports';
-import CustomHead from "../widgets/layout/seo/CustomHead/CustomHead";
-import {useLayoutProps} from "../widgets/layout/hooks/useLayoutProps";
+import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
+import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
 import {getTitleData} from "@shared/utils/findItemByTitle";
 import {usePageData} from "@shared/hooks/usePageData";
-import {AppealBannerProps} from "@features/banner/appeal/interface/AppealBannerProps";
 
 const About: NextPage<GetDataProps> = ({data}): ReactElement => {
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
@@ -19,11 +18,6 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
     );
     const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
 
-    const {titleItem, buttonItem, bannerItem} = usePageData(
-        data.title, data.button, data.bannersImages,
-        "create-best-place", "leave_request", "appeal_banner"
-    );
-    const appealProps: AppealBannerProps = {titleItem, buttonItem, bannerItem}
     const titles = getTitleData(data.title, "news-shares", "our-partners");
 
     return (
@@ -41,7 +35,10 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
                     title={titles["our-partners"]}
                     partners={data.partners}
                 />
-                <Appeal {...appealProps}/>
+                <Appeal {...usePageData(
+                    data.title, data.button, data.bannersImages,
+                    "create-best-place", "leave_request", "appeal_banner"
+                )} />
             </Layout>
         </>
     );

@@ -1,5 +1,5 @@
 import {NextPage} from 'next';
-import Layout from '../widgets/layout/ui/layout/Layout';
+import Layout from '@widgets/layout/ui/layout/Layout';
 import {getStaticProps} from './api/dataProvider';
 import HeroBanner from "@features/banner/hero/ui/HeroBanner";
 import {
@@ -14,28 +14,26 @@ import {
     Services,
     StepsWork
 } from '@shared/utils/dynamicImports';
-import CustomHead from "../widgets/layout/seo/CustomHead/CustomHead";
-import {useLayoutProps} from "../widgets/layout/hooks/useLayoutProps";
-import {GetDataProps} from "../widgets/interface/interfaceData";
+import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
+import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
+import {GetDataProps} from "@widgets/interface/interfaceData";
 import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
 import {usePageData} from "@shared/hooks/usePageData";
-import {AppealBannerProps} from "@features/banner/appeal/interface/AppealBannerProps";
 import {getTitleData} from "@shared/utils/findItemByTitle";
 
 const Home: NextPage<GetDataProps> = ({data}) => {
+
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
         data.titlesPage, data.button, data.bannersImages,
         "home", "leave_request", "home_banner"
     );
+
     const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
 
-    const {titleItem, buttonItem, bannerItem} = usePageData(
-        data.title, data.button, data.bannersImages,
-        "create-best-place", "leave_request", "appeal_banner"
+    const titles = getTitleData(
+        data.title, "services", "our-approach", "application-process",
+        "our-works", "price-calculation", "related-services", "customer_reviews"
     );
-    const appealProps: AppealBannerProps = {titleItem, buttonItem, bannerItem};
-    const titles = getTitleData(data.title, "services", "our-approach", "application-process", "our-works", "price-calculation", "related-services", "customer_reviews");
-
 
     return (
         <>
@@ -54,12 +52,12 @@ const Home: NextPage<GetDataProps> = ({data}) => {
                     cards={data.approachCard}
                 />
                 <StepsWork
-                    stepsWork={data.stepsWork}
                     title={titles["application-process"]}
+                    stepsWork={data.stepsWork}
                 />
                 <Examples
-                    cards={data.examplesCard}
                     title={titles["our-works"]}
+                    cards={data.examplesCard}
                 />
                 <Costing
                     title={titles["price-calculation"]}
@@ -73,7 +71,10 @@ const Home: NextPage<GetDataProps> = ({data}) => {
                     title={titles["customer_reviews"]}
                     reviews={data.reviews}
                 />
-                <Appeal {...appealProps}/>
+                <Appeal {...usePageData(
+                    data.title, data.button, data.bannersImages,
+                    "create-best-place", "leave_request", "appeal_banner"
+                )} />
             </Layout>
         </>
     );

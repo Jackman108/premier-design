@@ -12,7 +12,7 @@ export const Partners = dynamic(() => import('@features/partners/ui/Partners/Par
 export const StepsWork = dynamic(() => import('@features/steps-work/ui/StepsWork/StepsWork'));
 export const News = dynamic(() => import('@features/news/ui/News/News'));
 export const Address = dynamic(() => import('@features/address/ui/Address/Address'));
-export const Footer = dynamic(() => import('../../widgets/layout/ui/footer/Footer'));
+export const Footer = dynamic(() => import('@widgets/layout/ui/footer/Footer'));
 export const BusinessServices = dynamic(() => import('@features/business-services/ui/BusinessServices/BusinessServices'));
 export const Category = dynamic(() => import('@features/category/ui/Category/Category'));
 export const RelatedServices = dynamic(() => import('@features/related-services/ui/RelatedServices/RelatedServices'));

@@ -1,6 +1,6 @@
 'use client'
 import {useEffect, useState} from 'react';
-import useMobileMenu from '../../widgets/layout/hooks/useMobileMenu';
+import useMobileMenu from '@widgets/layout/hooks/useMobileMenu';
 import {UseResizeEffectsProps} from "@shared/interface/UseResizeEffects.props";
 
 const MOBILE_BREAKPOINT = 768;

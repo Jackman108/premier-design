@@ -1,5 +1,6 @@
 import {NextApiRequest, NextApiResponse} from 'next';
-import data from '../../data/data.json';
+import {DataProps} from "@widgets/interface/interfaceData";
+import {getData} from "@pages/api/dataProvider";
 
 const BASE_URL = 'https://premier-design.by';
 const CHANGE_FREQUENCY = 'monthly';
@@ -23,7 +24,7 @@ const generateStaticPages = (): string[] => {
     return staticPages.map(page => generateUrl(page, CHANGE_FREQUENCY, STATIC_PRIORITY));
 };
 
-const generateDynamicPagesFromPrices  = (): string[] => {
+const generateDynamicPagesFromPrices = (data: DataProps): string[] => {
     if (!data.prices || !Array.isArray(data.prices.repairs)) {
         throw new Error('Invalid data structure: expected prices.repairs array.');
     }
@@ -35,7 +36,7 @@ const generateDynamicPagesFromPrices  = (): string[] => {
     );
 };
 
-const generateDynamicPagesFromRelatedServices = (): string[] => {
+const generateDynamicPagesFromRelatedServices = (data: DataProps): string[] => {
     if (!data.relatedServices || !Array.isArray(data.relatedServices)) {
         throw new Error('Invalid data structure: expected relatedServices array.');
     }
@@ -45,11 +46,11 @@ const generateDynamicPagesFromRelatedServices = (): string[] => {
     );
 };
 
-
-const generateSitemap = (): string => {
+const generateSitemap = async (): Promise<string> => {
+    const data: DataProps = await getData();
     const staticPages = generateStaticPages();
-    const dynamicPages = generateDynamicPagesFromPrices ();
-    const dynamicRelatedPages = generateDynamicPagesFromRelatedServices();
+    const dynamicPages = generateDynamicPagesFromPrices(data);
+    const dynamicRelatedPages = generateDynamicPagesFromRelatedServices(data);
 
     const allPages = [...staticPages, ...dynamicPages, ...dynamicRelatedPages];
 

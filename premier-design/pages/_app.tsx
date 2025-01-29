@@ -1,6 +1,6 @@
 import type {AppProps} from 'next/app';
 import {ThemeProvider} from 'next-themes';
-import '../widgets/styles/globals.css';
+import '@widgets/styles/globals.css';
 import "keen-slider/keen-slider.min.css";
 import {FC} from 'react';
 
