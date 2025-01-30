@@ -26,9 +26,9 @@ export interface RelatedServicesProps {
     relatedServices: RelatedServiceCardProps[];
 }
 
-export interface RelatedServiceDetail {
+export interface RelatedServiceDetailProps {
     titles: TitleProps[];
-    relatedServices: RelatedServiceCardProps;
+    relatedService: RelatedServiceCardProps;
     menuData: MenuItem[];
     papersData: Paper[];
     newsData: NewsProps[];

@@ -8,21 +8,21 @@ import BackButton from "@shared/ui/back-button/BackButton";
 import OrderButton from "@shared/ui/order/ui/OrderButton/OrderButton";
 import {findItemByTitle} from "@shared/utils/findItemByTitle";
 import {ButtonProps} from "@shared/interface/Button.props";
-import type {RelatedServiceDetail} from "@features/related-services/interface/RelatedService.props";
+import {RelatedServiceDetailProps} from "@features/related-services/interface/RelatedService.props";
 import {useFallback} from "@shared/hooks/useFallback";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 
-const RelatedServiceDetail: FC<RelatedServiceDetail> = ({
-                                                            relatedServices,
-                                                            menuData,
-                                                            papersData,
-                                                            newsData,
-                                                            costingData,
-                                                            buttonData,
-                                                            panelData,
-                                                            sharesData
-                                                        }) => {
-    const fallbackContent = useFallback(!!relatedServices);
+const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
+                                                                 relatedService,
+                                                                 menuData,
+                                                                 papersData,
+                                                                 newsData,
+                                                                 costingData,
+                                                                 buttonData,
+                                                                 panelData,
+                                                                 sharesData
+                                                             }) => {
+    const fallbackContent = useFallback(!!relatedService);
     const buttonHeader = findItemByTitle(buttonData, "leave_request") || {} as ButtonProps;
     const layoutProps = useLayoutProps({
         menu: menuData,
@@ -33,30 +33,29 @@ const RelatedServiceDetail: FC<RelatedServiceDetail> = ({
         button: buttonData,
         panel: panelData
     });
-
     return fallbackContent || (
         <>
             <CustomHead
-                metaTitle={relatedServices.title}
-                metaDescription={relatedServices.description}
-                canonical={getFullCanonicalUrl(relatedServices.canonical)}
+                metaTitle={relatedService.title}
+                metaDescription={relatedService.description}
+                canonical={getFullCanonicalUrl(relatedService.canonical)}
             />
             <Layout {...layoutProps}>
-            <section className={styles.service_detail}>
+                <section className={styles.service_detail}>
                     <div className={styles.left}>
-                        <h1 className={styles.title}>{relatedServices.title}</h1>
-                        <h2 className={styles.subTitle}>{relatedServices.subTitle}</h2>
+                        <h1 className={styles.title}>{relatedService.title}</h1>
+                        <h2 className={styles.subTitle}>{relatedService.subTitle}</h2>
                         <div className={styles.image_wrapper}>
                             <Image
                                 priority={true}
-                                src={relatedServices.image}
-                                alt={relatedServices.title}
+                                src={relatedService.image}
+                                alt={relatedService.title}
                                 quality={95}
                                 width={920}
                                 height={600}
                                 sizes="(max-width: 600px) 100vw, 920px"
                                 placeholder="blur"
-                                blurDataURL={relatedServices.image}
+                                blurDataURL={relatedService.image}
                                 className={styles.image}
                             />
                         </div>
@@ -65,18 +64,18 @@ const RelatedServiceDetail: FC<RelatedServiceDetail> = ({
                         </div>
                     </div>
                     <div className={styles.right}>
-                        <h3 className={styles.description}>{relatedServices.description}</h3>
+                        <h3 className={styles.description}>{relatedService.description}</h3>
                         <div className={styles.info}>
                             <h3 className={styles.subheading}>Преимущества:</h3>
                             <ul>
-                                {relatedServices.benefits.map((benefit, index) => (
+                                {relatedService.benefits.map((benefit, index) => (
                                     <li key={index}>{benefit}</li>
                                 ))}
                             </ul>
-                            <p>{relatedServices.text}</p>
+                            <p>{relatedService.text}</p>
                             <h3 className={styles.subheading}>Зачем это нужно вам?</h3>
                             <ul>
-                                {relatedServices.triggers.map((trigger, index) => (
+                                {relatedService.triggers.map((trigger, index) => (
                                     <li key={index}>{trigger}</li>
                                 ))}
                             </ul>

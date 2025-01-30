@@ -50,14 +50,15 @@ const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
                         menu={menu}
                         menuStyle='header'
                     />
-                    <Menu
-                        menu={menu}
-                        menuStyle='mobile'
-                        isMobileMenuOpen={isMobileMenuOpen}
-                        toggleMobileMenu={toggleMobileMenu}
-                    />
+
                 </div>
             </header>
+            <Menu
+                menu={menu}
+                menuStyle='mobile'
+                isMobileMenuOpen={isMobileMenuOpen}
+                toggleMobileMenu={toggleMobileMenu}
+            />
             {isSticky && (
                 <div className={styles.stickyPlaceholder} style={{height: headerHeight}}></div>
             )}
