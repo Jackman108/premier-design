@@ -8,7 +8,7 @@ const ExampleCard: FC<ExampleCardComponentProps> = ({card, onClick}): ReactEleme
     return (
         <div className={styles.examples__card} onClick={() => onClick(card)}>
             <div className={styles.card__background}>
-                <NextImage src={card.background} alt={card.address} width={388} height={312} loading='lazy'/>
+                <NextImage src={card.background} alt={card.address} width={424} height={241} loading='lazy'/>
             </div>
             <div className={styles.card__content}>
                 <div className={styles.card__address}>{card.address}</div>

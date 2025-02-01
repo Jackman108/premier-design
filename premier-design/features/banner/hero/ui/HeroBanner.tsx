@@ -15,11 +15,6 @@ const HeroBanner: FC<HeroBannerProps> = ({bannerData, buttonData, titleData}) =>
                 quality={bannerData.quality}
                 width={bannerData.width}
                 height={bannerData.height}
-                sizes="
-                (max-width: 600px) 100vw,
-                (max-width: 1440px) 60vw,
-                1935px
-                "
                 placeholder='empty'
                 className={styles.banner__background}
             />

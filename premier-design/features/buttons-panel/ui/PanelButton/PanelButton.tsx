@@ -14,8 +14,8 @@ const PanelButton: FC<PanelProps> = ({onClick, icon, altText, text, position}) =
         <Image
             src={icon}
             alt={altText}
-            width={40}
-            height={36}
+            width={30}
+            height={30}
             className={styles.button_icon}
         />
         <div className={styles.sticky_button_text}>

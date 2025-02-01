@@ -11,7 +11,7 @@ import {ShareBannerDataProps, ShareBannerProps} from "@features/banner/share/int
 const ShareBanner: FC<ShareBannerProps> = ({isSticky, shares}) => {
     const shareData = findItemByTitle(shares, "share_electric") || {} as ShareBannerDataProps;
     const {link, imageDesc, imageMob}: ShareBannerDataProps = shareData
-    const { isClosed, isReady, handleClose } = useShareBanner();
+    const {isClosed, isReady, handleClose} = useShareBanner();
 
     if (!isReady || isSticky || isClosed) {
         return null;
@@ -33,6 +33,7 @@ const ShareBanner: FC<ShareBannerProps> = ({isSticky, shares}) => {
                         width={imageDesc.width}
                         height={imageDesc.height}
                         placeholder='empty'
+                        loading={"lazy"}
                         className={styles.banner__img + ' ' + styles.banner__imgDesktop}
                     />
                     <Image

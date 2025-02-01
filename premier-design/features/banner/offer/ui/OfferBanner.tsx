@@ -12,9 +12,8 @@ const OfferBanner: FC<{ offer: OfferType }> = ({offer}): ReactElement => {
                     src={offer.image}
                     alt={offer.shortTitle}
                     quality={75}
-                    width={1935}
-                    height={1119}
-                    sizes="(max-width: 600px) 100vw, (max-width: 1440px) 60vw, 1935px"
+                    width={1563}
+                    height={800}
                     placeholder="empty"
                     className={styles.offer__image}
                 />

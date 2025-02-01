@@ -337,7 +337,7 @@
       "id": 1,
       "src": "/banners/banner-home.webp",
       "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
-      "quality": 95,
+      "quality": 90,
       "width": 1935,
       "height": 684,
       "shortTitle": "home_banner"
@@ -346,7 +346,7 @@
       "id": 2,
       "src": "/banners/banner-repair.webp",
       "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
-      "quality": 95,
+      "quality": 90,
       "width": 1935,
       "height": 684,
       "shortTitle": "repair_banner"
@@ -355,7 +355,7 @@
       "id": 3,
       "src": "/banners/banner-design.webp",
       "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
-      "quality": 95,
+      "quality": 90,
       "width": 1935,
       "height": 684,
       "shortTitle": "design_banner"
@@ -364,7 +364,7 @@
       "id": 4,
       "src": "/banners/banner-about.webp",
       "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
-      "quality": 95,
+      "quality": 90,
       "width": 1935,
       "height": 684,
       "shortTitle": "about_banner"
@@ -373,7 +373,7 @@
       "id": 5,
       "src": "/banners/banner-contacts.webp",
       "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
-      "quality": 95,
+      "quality": 90,
       "width": 1935,
       "height": 684,
       "shortTitle": "contacts_banner"
@@ -382,7 +382,7 @@
       "id": 6,
       "src": "/banners/appeal.webp",
       "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
-      "quality": 95,
+      "quality": 90,
       "width": 1935,
       "height": 684,
       "shortTitle": "appeal_banner"

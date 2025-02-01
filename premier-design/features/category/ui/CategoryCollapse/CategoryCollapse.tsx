@@ -20,7 +20,7 @@ const CategoryCollapse: FC<{ category: Category }> = ({category}) => {
                 aria-expanded={isOpen}
                 aria-label={isOpen ? `Скрыть ${category.title}` : `Показать ${category.title}`}
             >
-                <h3 id={`category-header-${category.id}`}>{category.title}</h3>
+                <h2 id={`category-header-${category.id}`}>{category.title}</h2>
                 <span
                     className={`${styles.toggleIcon} ${isOpen ? styles.open : ''}`}
                     aria-hidden="true"

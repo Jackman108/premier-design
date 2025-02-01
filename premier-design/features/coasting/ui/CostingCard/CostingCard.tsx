@@ -22,7 +22,7 @@ const CostingCard: FC<CostingCardProps> = ({
             <div className={styles.card__background}>
                 <Image
                     src={image}
-                    alt={title}
+                    alt=""
                     className={styles.image}
                     width={460}
                     height={580}
