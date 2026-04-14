@@ -8,7 +8,7 @@
 |--------|------|----------|
 | Аудит и дорожная карта | [audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) | Трекер задач, спринты, риски |
 | ADR (архитектурные решения) | [adr/README.md](adr/README.md) | Реестр ADR |
-| Эксплуатация и CI/CD | [guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md](guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) | Деплой по SSH/SCP, секреты, типовые ошибки |
+| Эксплуатация и CI/CD | [guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md](guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) | Деплой по SSH/SCP; **пошагово: ключ с passphrase**, секреты, ошибки |
 | Perf и SEO | [guides/PERF_AND_SEO_CHECKLIST_RU.md](guides/PERF_AND_SEO_CHECKLIST_RU.md) | Чеклист перед релизом |
 
 ## Прочее

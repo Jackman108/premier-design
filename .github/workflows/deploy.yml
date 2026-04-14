@@ -1,5 +1,8 @@
 name: Deploy to Local Server
 
+# Секреты: HOST, USERNAME, SSH_PRIVATE_KEY, PORT (часто 22), при шифровании ключа — SSH_KEY_PASSPHRASE (точный пароль от ключа).
+# Ключ в SSH_PRIVATE_KEY должен быть многострочным (как в файле), с строками BEGIN/END.
+
 on:
   push:
     branches:
@@ -12,6 +15,40 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
+      - name: Preflight — TCP до SSH-порта
+        shell: bash
+        env:
+          H: ${{ secrets.HOST }}
+          P: ${{ secrets.PORT }}
+        run: |
+          set -euo pipefail
+          PORT="${P:-22}"
+          if ! timeout 15 bash -c "exec 3<>/dev/tcp/${H}/${PORT}"; then
+            echo "::error::Нет TCP-доступа с runner до ${H}:${PORT}. Проверьте файрвол, security group и секрет PORT (часто нужно явно 22)."
+            exit 1
+          fi
+          echo "OK: TCP ${H}:${PORT}"
+
+      - name: Preflight — ключ и passphrase
+        shell: bash
+        env:
+          KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          PASS: ${{ secrets.SSH_KEY_PASSPHRASE }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$KEY" > ~/.ssh/gh_deploy_key
+          chmod 600 ~/.ssh/gh_deploy_key
+          if ssh-keygen -yf ~/.ssh/gh_deploy_key -P "" &>/dev/null; then
+            echo "OK: приватный ключ без passphrase."
+          elif [[ -n "${PASS}" ]] && ssh-keygen -yf ~/.ssh/gh_deploy_key -P "${PASS}" &>/dev/null; then
+            echo "OK: ключ с passphrase, секрет SSH_KEY_PASSPHRASE подходит."
+          else
+            echo "::error::Не удалось расшифровать SSH_PRIVATE_KEY. Если ключ создавался с паролем — добавьте репозиторный секрет SSH_KEY_PASSPHRASE (точно как при ssh-add). Иначе сгенерируйте ключ только для CI без пароля: ssh-keygen -t ed25519 -N \"\" -f deploy_ci && cat deploy_ci (в секрет SSH_PRIVATE_KEY), публичную часть — в authorized_keys на сервере."
+            exit 1
+          fi
+          rm -f ~/.ssh/gh_deploy_key
 
       - name: Pack repository for deploy
         run: |
@@ -34,7 +71,7 @@ jobs:
           port: ${{ secrets.PORT }}
           source: /tmp/deploy.tar.gz
           target: /var/www/pd-app
-          timeout: 2m
+          timeout: 5m
           command_timeout: 30m
 
       - name: Extract and restart stack
@@ -45,7 +82,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
           port: ${{ secrets.PORT }}
-          timeout: 2m
+          timeout: 5m
           command_timeout: 30m
           script: |
             set -e
