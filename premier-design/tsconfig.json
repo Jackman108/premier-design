@@ -28,7 +28,8 @@
     "declaration": true,
     "declarationDir": "./types",
     "incremental": true,
-    "noEmit": true
+    "noEmit": true,
+    "types": ["node", "jest"]
   },
   "exclude": [
     "node_modules"

@@ -8,12 +8,12 @@
     "server": "node server.js",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "jest",
     "type": "node pages/api/importData.mjs"
   },
   "dependencies": {
-    "@types/nodemailer": "^6.4.8",
     "@types/pg": "^8.10.1",
     "axios": "^1.7.7",
     "date-fns": "^4.1.0",
@@ -21,7 +21,7 @@
     "keen-slider": "^6.8.5",
     "next": "^15.1.3",
     "next-themes": "^0.4.4",
-    "nodemailer": "^6.9.3",
+    "nodemailer": "^8.0.5",
     "pg-promise": "^11.5.0",
     "react": "^19.0.0",
     "react-chatbot-kit": "^2.2.2",
@@ -31,11 +31,16 @@
     "react-multi-carousel": "^2.8.3",
     "react-number-format": "^5.4.2",
     "sharp": "^0.33.5",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
     "@next/bundle-analyzer": "^15.1.3",
+    "@types/jest": "^30.0.0",
+    "@types/next": "^8.0.7",
     "@types/node": "^22.10.2",
+    "@types/nodemailer": "^8.0.0",
     "@types/react": "^19.0.2",
     "@types/react-dom": "^19.0.2",
     "@types/webpack-env": "^1.18.0",

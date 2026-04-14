@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import {FC, ReactElement} from "react";
 import NextImage from "next/image";

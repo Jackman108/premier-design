@@ -19,5 +19,45 @@
     }
   },
   "plugins": ["@typescript-eslint", "react"],
-  "rules": {}
+  "rules": {
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          {
+            "group": ["**/pages/**"],
+            "message": "Импорты из pages разрешены только внутри pages (entrypoint слой)."
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["pages/**/*.{ts,tsx,js,jsx}"],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    },
+    {
+      "files": ["features/**/*.{ts,tsx,js,jsx}", "services/**/*.{ts,tsx,js,jsx}"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["**/components/**", "**/Layout/**"],
+                "message": "Бизнес-слой не должен зависеть от UI-слоя."
+              },
+              {
+                "group": ["**/pages/**"],
+                "message": "Бизнес-слой не должен зависеть от entrypoint слоя pages."
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
 }
