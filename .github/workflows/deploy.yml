@@ -15,7 +15,8 @@ jobs:
 
       - name: Pack repository for deploy
         run: |
-          tar -czf deploy.tar.gz \
+          # Архив вне $GITHUB_WORKSPACE — иначе tar читает растущий deploy.tar.gz и падает с "file changed as we read it"
+          tar -czf /tmp/deploy.tar.gz \
             --exclude='./.git' \
             --exclude='./premier-design/node_modules' \
             --exclude='./premier-design/.next' \
@@ -31,7 +32,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
           port: ${{ secrets.PORT }}
-          source: deploy.tar.gz
+          source: /tmp/deploy.tar.gz
           target: /var/www/pd-app
           timeout: 2m
           command_timeout: 30m

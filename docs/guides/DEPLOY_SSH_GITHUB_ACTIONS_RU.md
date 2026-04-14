@@ -6,7 +6,7 @@ Workflow: [`.github/workflows/deploy.yml`](../../.github/workflows/deploy.yml).
 
 ## Что делает workflow
 
-1. Упаковывает репозиторий в **`deploy.tar.gz`**, исключая тяжёлые/генерируемые каталоги (`.git`, `node_modules`, `.next`, `coverage`, `storybook-static`), чтобы снизить риск **таймаута** при копировании.
+1. Упаковывает репозиторий в **`/tmp/deploy.tar.gz`** (не в корень репозитория — иначе `tar` при упаковке `.` захватывает растущий архив и падает с `file changed as we read it`), с исключениями `.git`, `node_modules`, `.next`, `coverage`, `storybook-static`.
 2. Копирует архив на сервер через **`appleboy/scp-action@v1`**.
 3. По **SSH** распаковывает архив в каталог приложения и выполняет **`docker-compose`** (или замените на `docker compose` под вашу ОС).
 
