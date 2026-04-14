@@ -1,4 +1,4 @@
-import {validatePhone} from '../validatePhone';
+import {validatePhone} from '../../shared/ui/order/utils/validatePhone';
 
 describe('validatePhone', () => {
     it('accepts valid RU phone', () => {

@@ -1,0 +1,31 @@
+.papers__container {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 3vh;
+	margin-bottom: 10%;
+	align-content: center;
+}
+
+.paper__link {
+	background: transparent;
+	border: transparent;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: var(--brown-light);
+	cursor: pointer;
+	transition: background-color 0.3s, color 0.3s, transform 0.3s;
+	width: 100%;
+	text-align: start;
+	white-space: wrap;
+}
+
+.paper__link:hover {
+	color: var(--brown-white);
+	text-shadow: 0 0 10px var(--brown-white);
+	transform: scale(1.05);
+}
+
+.paper__link:focus {
+	outline: none;
+	box-shadow: 0 0 4px 2px var(--brown-white);
+}

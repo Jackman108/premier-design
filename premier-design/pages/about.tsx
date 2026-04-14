@@ -1,38 +1,33 @@
 import type {NextPage} from 'next';
-import Layout from '../Layout/Layout';
+import Layout from '@widgets/layout/ui/layout/Layout';
 import {getStaticProps} from './api/dataProvider';
-import {GetDataProps} from '../interface/interfaceData';
+import {GetDataProps} from '@widgets/interface/interfaceData';
 import {ReactElement} from "react";
-import Banner from "../components/Banner/Banner";
-import {Appeal, News, OfferList, Partners} from '../components';
-import CustomHead from "../components/CustomHead/CustomHead";
-import {useLayoutProps} from "../hooks/useLayoutProps";
-import {BannerProps} from "../interface/Banner.props";
-import {getTitleData} from "../utils/findItemByTitle";
-import {usePageData} from "../hooks/usePageData";
-import {AppealProps} from "../interface/Appeal.props";
+import HeroBanner from "@features/banner/hero/ui/HeroBanner";
+import {Appeal, News, OfferBanner, Partners} from '@shared/utils/dynamicImports';
+import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
+import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
+import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
+import {getTitleData} from "@shared/utils/findItemByTitle";
+import {usePageData} from "@shared/hooks/usePageData";
 
 const About: NextPage<GetDataProps> = ({data}): ReactElement => {
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
         data.titlesPage, data.button, data.bannersImages,
         "about", "leave_request", "about_banner"
     );
-    const bannerProps: BannerProps = {titleData, buttonData, bannerData};
+    const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
 
-    const {titleItem, buttonItem, bannerItem} = usePageData(
-        data.title, data.button, data.bannersImages,
-        "our-partners", "leave_request", "appeal_banner"
-    );
-    const appealProps: AppealProps = {titleItem, buttonItem, bannerItem}
-    const titles = getTitleData(data.title, "our-partners");
+    const titles = getTitleData(data.title, "news-shares", "our-partners");
 
     return (
         <>
             <CustomHead {...titleData}/>
             <Layout {...useLayoutProps(data)}>
-                <Banner {...bannerProps}/>
-                <OfferList offer={data.offerList.aboutType}/>
+                <HeroBanner {...bannerProps}/>
+                <OfferBanner offer={data.offerBanner.aboutType}/>
                 <News
+                    title={titles["news-shares"]}
                     news={data.news}
                     newsStyle='about'
                 />
@@ -40,7 +35,10 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
                     title={titles["our-partners"]}
                     partners={data.partners}
                 />
-                <Appeal {...appealProps}/>
+                <Appeal {...usePageData(
+                    data.title, data.button, data.bannersImages,
+                    "create-best-place", "leave_request", "appeal_banner"
+                )} />
             </Layout>
         </>
     );

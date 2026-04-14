@@ -1,36 +1,32 @@
 import type {NextPage} from 'next';
-import Layout from '../Layout/Layout';
+import Layout from '@widgets/layout/ui/layout/Layout';
 import {getStaticProps} from './api/dataProvider';
-import {GetDataProps} from '../interface/interfaceData';
+import {GetDataProps} from '@widgets/interface/interfaceData';
 import {ReactElement} from "react";
-import Banner from "../components/Banner/Banner";
-import {Address, Appeal} from '../components';
-import CustomHead from "../components/CustomHead/CustomHead";
-import {useLayoutProps} from "../hooks/useLayoutProps";
-import {BannerProps} from "../interface/Banner.props";
-import {usePageData} from "../hooks/usePageData";
-import {AppealProps} from "../interface/Appeal.props";
+import HeroBanner from "@features/banner/hero/ui/HeroBanner";
+import {Address, Appeal} from '@shared/utils/dynamicImports';
+import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
+import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
+import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
+import {usePageData} from "@shared/hooks/usePageData";
 
 const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
         data.titlesPage, data.button, data.bannersImages,
         "contacts", "leave_request", "contacts_banner"
     );
-    const bannerProps: BannerProps = {titleData, buttonData, bannerData};
-
-    const {titleItem, buttonItem, bannerItem} = usePageData(
-        data.title, data.button, data.bannersImages,
-        "our-partners", "leave_request", "appeal_banner"
-    );
-    const appealProps: AppealProps = {titleItem, buttonItem, bannerItem};
+    const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
 
     return (
         <>
             <CustomHead {...titleData}/>
             <Layout {...useLayoutProps(data)}>
-                <Banner {...bannerProps}/>
+                <HeroBanner {...bannerProps}/>
                 <Address/>
-                <Appeal {...appealProps}/>
+                <Appeal {...usePageData(
+                    data.title, data.button, data.bannersImages,
+                    "create-best-place", "leave_request", "appeal_banner"
+                )} />
             </Layout>
         </>
     );

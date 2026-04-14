@@ -1,4 +1,4 @@
-import {validateEmail} from '../validateEmail';
+import {validateEmail} from '../../shared/ui/order/utils/validateEmail';
 
 describe('validateEmail', () => {
     it('accepts valid email', () => {

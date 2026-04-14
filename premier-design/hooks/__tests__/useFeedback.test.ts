@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 import { act, renderHook } from '@testing-library/react';
-import { useFeedback } from '../useFeedback';
+import { useFeedback } from '../../shared/ui/order/hooks/useFeedback';
 
 describe('useFeedback', () => {
     const payload = {

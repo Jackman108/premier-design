@@ -18,6 +18,15 @@ module.exports = {
     moduleNameMapper: {
         '^(\\.{1,2}/.*)\\.js$': '$1',
         '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+        '^@widgets/(.*)$': '<rootDir>/widgets/$1',
+        '^@pages/(.*)$': '<rootDir>/pages/$1',
+        '^@features/(.*)$': '<rootDir>/features/$1',
+        '^@entities/(.*)$': '<rootDir>/entities/$1',
+        '^@shared/(.*)$': '<rootDir>/shared/$1',
+        '^@components/(.*)$': '<rootDir>/components/$1',
+        '^@config/(.*)$': '<rootDir>/config/$1',
+        '^@interface/(.*)$': '<rootDir>/interface/$1',
+        '^@hooks/(.*)$': '<rootDir>/hooks/$1',
     },
     testPathIgnorePatterns: ['/node_modules/', '/e2e/', '/.next/'],
     collectCoverageFrom: [

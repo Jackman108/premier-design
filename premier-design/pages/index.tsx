@@ -1,49 +1,47 @@
 import {NextPage} from 'next';
-import Layout from '../Layout/Layout';
+import Layout from '@widgets/layout/ui/layout/Layout';
 import {getStaticProps} from './api/dataProvider';
-import Banner from "../components/Banner/Banner";
+import HeroBanner from "@features/banner/hero/ui/HeroBanner";
 import {
     Appeal,
     Approach,
     Costing,
     Examples,
     Features,
-    OfferList,
+    OfferBanner,
     RelatedServices,
     Reviews,
     Services,
     StepsWork
-} from '../components';
-import CustomHead from "../components/CustomHead/CustomHead";
-import {useLayoutProps} from "../hooks/useLayoutProps";
-import {GetDataProps} from "../interface/interfaceData";
-import {BannerProps} from "../interface/Banner.props";
-import {usePageData} from "../hooks/usePageData";
-import {AppealProps} from "../interface/Appeal.props";
-import {getTitleData} from "../utils/findItemByTitle";
+} from '@shared/utils/dynamicImports';
+import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
+import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
+import {GetDataProps} from "@widgets/interface/interfaceData";
+import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
+import {usePageData} from "@shared/hooks/usePageData";
+import {getTitleData} from "@shared/utils/findItemByTitle";
 
 const Home: NextPage<GetDataProps> = ({data}) => {
+
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
         data.titlesPage, data.button, data.bannersImages,
         "home", "leave_request", "home_banner"
     );
-    const bannerProps: BannerProps = {titleData, buttonData, bannerData};
 
-    const {titleItem, buttonItem, bannerItem} = usePageData(
-        data.title, data.button, data.bannersImages,
-        "our-partners", "leave_request", "appeal_banner"
+    const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
+
+    const titles = getTitleData(
+        data.title, "services", "our-approach", "application-process",
+        "our-works", "price-calculation", "related-services", "customer_reviews"
     );
-    const appealProps: AppealProps = {titleItem, buttonItem, bannerItem};
-    const titles = getTitleData(data.title, "services", "our-approach", "application-process", "our-works", "price-calculation", "related-services", "customer_reviews");
-
 
     return (
         <>
             <CustomHead {...titleData}/>
             <Layout {...useLayoutProps(data)}>
-                <Banner {...bannerProps}/>
+                <HeroBanner {...bannerProps}/>
                 <Features features={data.features}/>
-                <OfferList offer={data.offerList.homeType}/>
+                <OfferBanner offer={data.offerBanner.homeType}/>
                 <Services
                     title={titles["services"]}
                     buttons={data.button}
@@ -54,12 +52,12 @@ const Home: NextPage<GetDataProps> = ({data}) => {
                     cards={data.approachCard}
                 />
                 <StepsWork
-                    stepsWork={data.stepsWork}
                     title={titles["application-process"]}
+                    stepsWork={data.stepsWork}
                 />
                 <Examples
-                    cards={data.examplesCard}
                     title={titles["our-works"]}
+                    cards={data.examplesCard}
                 />
                 <Costing
                     title={titles["price-calculation"]}
@@ -73,7 +71,10 @@ const Home: NextPage<GetDataProps> = ({data}) => {
                     title={titles["customer_reviews"]}
                     reviews={data.reviews}
                 />
-                <Appeal {...appealProps}/>
+                <Appeal {...usePageData(
+                    data.title, data.button, data.bannersImages,
+                    "create-best-place", "leave_request", "appeal_banner"
+                )} />
             </Layout>
         </>
     );

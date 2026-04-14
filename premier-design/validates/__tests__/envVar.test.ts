@@ -1,4 +1,4 @@
-import {envVar} from '../envVar';
+import {envVar} from '../../services/envVar';
 
 describe('envVar', () => {
     const originalEnv = process.env;

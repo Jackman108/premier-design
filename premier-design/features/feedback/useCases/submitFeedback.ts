@@ -1,5 +1,5 @@
 import {emailService} from '../../../services/emailService';
-import {envVar} from '../../../validates/envVar';
+import {envVar} from '../../../services/envVar';
 import {fileService} from '../../../services/fileService';
 import {telegramService} from '../../../services/telegramService';
 import {FeedbackInput} from '../schema';

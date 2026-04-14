@@ -84,6 +84,30 @@ const config = [{
                 ],
             },
         },
+        {
+            // FSD: страницы-детали собирают `@widgets/*`; не блокируем `**/Layout/**` (на Windows совпадает с `layout`).
+            files: [
+                'features/related-services/**/*.{ts,tsx,js,jsx}',
+                'features/services/**/*.{ts,tsx,js,jsx}',
+            ],
+            rules: {
+                'no-restricted-imports': [
+                    'error',
+                    {
+                        patterns: [
+                            {
+                                group: ['**/components/**'],
+                                message: 'Бизнес-слой не должен зависеть от легаси components/.',
+                            },
+                            {
+                                group: ['**/pages/**'],
+                                message: 'Бизнес-слой не должен зависеть от entrypoint слоя pages.',
+                            },
+                        ],
+                    },
+                ],
+            },
+        },
     ],
 }), ...storybook.configs["flat/recommended"]];
 

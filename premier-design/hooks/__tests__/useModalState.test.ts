@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 import {act, renderHook} from '@testing-library/react';
-import {useModalState} from '../useModalState';
+import {useModalState} from '../../shared/hooks/useModalState';
 
 describe('useModalState', () => {
     it('uses false default initial state', () => {
