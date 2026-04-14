@@ -20,6 +20,15 @@
 5. Откройте:
    - `http://localhost:3000`
 
+## Документация репозитория
+
+- Оглавление всех документов: [`../docs/README.md`](../docs/README.md) (аудит, гайды, ADR, деплой).
+
+## Архитектура UI
+
+- ADR по UI-стеку и токенам: [`../docs/adr/0001-ui-stack-and-design-tokens.md`](../docs/adr/0001-ui-stack-and-design-tokens.md).
+- Дизайн-токены: `styles/tokens.css`; новые примитивы — `components/ui/`.
+
 ## Основные команды
 
 - `npm run dev` - запуск в режиме разработки
@@ -28,6 +37,9 @@
 - `npm run lint` - проверка ESLint
 - `npm run lint:fix` - автоисправление ESLint проблем
 - `npm test` - запуск тестов (Jest)
+- `npm run storybook` - каталог UI-компонентов (Storybook)
+- `npm run build-storybook` - статическая сборка Storybook (артефакт в CI)
+- `npm run analyze` - сборка с отчётом `@next/bundle-analyzer` (размер чанков)
 
 ## Переменные окружения
 
@@ -49,6 +61,12 @@
 Опциональные публичные:
 - `NEXT_PUBLIC_YANDEX_MAPS_API_KEY`
 
+## Версии и релизы
+
+- Версия приложения — поле `version` в `package.json`; история изменений — `CHANGELOG.md`.
+- Формат: [Semantic Versioning](https://semver.org/lang/ru/) и [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
+- Коммиты: по возможности [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:` …) для предсказуемых нот релиза.
+
 ## Docker
 
 Из корня репозитория доступны:
@@ -65,4 +83,4 @@
 - Ошибка по переменным окружения:
   - проверьте, что `.env.local` создан из `.env.example` и заполнен.
 - `npm test` завершился без тестов:
-  - в проекте пока нет тест-кейсов, это запланировано в дорожной карте.
+  - проверьте, что тесты лежат в `**/__tests__/**` или `tests/**`, и что команда запускается из каталога приложения.

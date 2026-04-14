@@ -1,16 +1,18 @@
-# Используем образ Node.js версии 16.0.0-alpine в качестве базового образа
+# Dev-образ: контекст сборки — каталог приложения (`./premier-design` от корня репозитория).
 FROM node:20-alpine
-# Устанавливаем рабочую директорию внутри контейнера
+
+RUN apk add --no-cache libc6-compat wget
+
 WORKDIR /app
 
-# Копируем файлы package.json и package-lock.json внутрь контейнера
 COPY package*.json ./
-
-# Устанавливаем зависимости
 RUN npm install
 
-# Копируем остальные файлы проекта внутрь контейнера
 COPY . .
 
-# Команда для запуска приложения в режиме разработки
+EXPOSE 3000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
+	CMD wget -qO- http://127.0.0.1:3000/ || exit 1
+
 CMD ["npm", "run", "dev"]

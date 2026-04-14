@@ -21,6 +21,8 @@ module.exports = {
     },
     testPathIgnorePatterns: ['/node_modules/', '/e2e/', '/.next/'],
     collectCoverageFrom: [
+        'components/ui/**/*.{ts,tsx}',
+        '!components/ui/**/*.stories.{ts,tsx}',
         'features/**/*.{ts,tsx}',
         'shared/**/*.{ts,tsx}',
         'validates/**/*.{ts,tsx}',

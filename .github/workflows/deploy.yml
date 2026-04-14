@@ -6,37 +6,51 @@ on:
       - master
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-22.04
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
+      - name: Pack repository for deploy
+        run: |
+          tar -czf deploy.tar.gz \
+            --exclude='./.git' \
+            --exclude='./premier-design/node_modules' \
+            --exclude='./premier-design/.next' \
+            --exclude='./premier-design/coverage' \
+            --exclude='./premier-design/storybook-static' \
+            .
 
-      - name: Build Docker image
-        run: docker build -t devonedev/premier-design:latest -f premier-design/Dockerfile.prod .
-
-      - name: SSH to server and deploy
-        uses: appleboy/scp-action@v0.1.7
+      - name: Copy bundle to server
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
           port: ${{ secrets.PORT }}
-          source: "."
-          target: "/var/www/pd-app"
+          source: deploy.tar.gz
+          target: /var/www/pd-app
+          timeout: 2m
+          command_timeout: 30m
 
-      - name: SSH to server and run docker-compose
+      - name: Extract and restart stack
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
           port: ${{ secrets.PORT }}
+          timeout: 2m
+          command_timeout: 30m
           script: |
+            set -e
+            mkdir -p /var/www/pd-app
             cd /var/www/pd-app
+            tar -xzf deploy.tar.gz
+            rm -f deploy.tar.gz
             docker-compose down
             docker-compose up -d --build

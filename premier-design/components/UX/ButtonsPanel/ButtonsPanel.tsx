@@ -1,9 +1,14 @@
+import dynamic from 'next/dynamic';
 import React, {FC} from "react";
 import {findItemByTitle} from "../../../utils/findItemByTitle";
 import {findPanelById} from "../../../utils/findPanelById";
 import OrderButton from "../OrderButton/OrderButton";
-import ChatBotSidebar from "../../ChatBotSidebar/ChatBotSidebar";
 import CalculatorButton from "../CalculatorButton/CalculatorButton";
+
+const ChatBotSidebar = dynamic(() => import('../../ChatBotSidebar/ChatBotSidebar'), {
+	ssr: false,
+	loading: () => null,
+});
 import styles from './ButtonsPanel.module.css';
 import {ButtonsPanelProps} from "../../../interface/ButtonsPanel.props";
 

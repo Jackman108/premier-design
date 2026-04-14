@@ -1,3 +1,5 @@
+@import './tokens.css';
+
 *,
 *::before,
 *::after {
@@ -132,29 +134,4 @@ select {
 
 .arrow--disabled {
 	fill: var(--brown-light);
-}
-
-:root {
-	--black: #0D0B0B;
-	--blue: #1E2640;
-	--blue-light: #4A60A1;
-	--gold: #9f8329;
-	--gold-light: #f4ebcd;
-	--gold-dark: #6a581c;
-	--clear: transparent;
-	--gray: #889099;
-	--gray-light: #EBEBEB;
-	--gray-dark: #333333;
-	--white: white;
-	--primary: #7351F5;
-	--primary-hover: #6344DF;
-	--secondary: #555;
-
-	--brown-dark: #221F1D;
-	--brown: #4D4540;
-	--brown-light: #786B64;
-	--brown-white: #9F928B;
-	--beige: #FAF5E6;
-	--beige-dark: #E6E3E1;
-	--font-family: 'Public Sans', sans-serif;
 }

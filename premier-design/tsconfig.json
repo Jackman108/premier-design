@@ -32,7 +32,10 @@
     "types": ["node", "jest"]
   },
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "**/*.stories.ts",
+    "**/*.stories.tsx",
+    ".storybook"
   ],
   "include": [
     "next-env.d.ts",

@@ -1,0 +1,54 @@
+/**
+ * Дизайн-токены (палитра + семантика).
+ * Контракт зафиксирован в docs/adr/0001-ui-stack-and-design-tokens.md
+ */
+:root {
+	/* Палитра (легаси-имена — сохранены для существующих модулей) */
+	--black: #0d0b0b;
+	--blue: #1e2640;
+	--blue-light: #4a60a1;
+	--gold: #9f8329;
+	--gold-light: #f4ebcd;
+	--gold-dark: #6a581c;
+	--clear: transparent;
+	--gray: #889099;
+	--gray-light: #ebebeb;
+	--gray-dark: #333333;
+	--white: #ffffff;
+	--primary: #7351f5;
+	--primary-hover: #6344df;
+	--secondary: #555555;
+
+	--brown-dark: #221f1d;
+	--brown: #4d4540;
+	--brown-light: #786b64;
+	--brown-white: #9f928b;
+	--beige: #faf5e6;
+	--beige-dark: #e6e3e1;
+	--font-family: 'Public Sans', sans-serif;
+
+	/* Семантика — предпочтительно для новых `components/ui/*` */
+	--color-bg: var(--beige);
+	--color-surface: var(--white);
+	--color-surface-muted: var(--beige-dark);
+	--color-text: var(--brown-dark);
+	--color-text-muted: var(--gray);
+	--color-border: var(--brown-white);
+	--color-accent: var(--primary);
+	--color-accent-hover: var(--primary-hover);
+	--color-danger: #b42318;
+
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 12px;
+
+	--space-xs: 0.25rem;
+	--space-sm: 0.5rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+
+	--shadow-sm: 0 1px 2px rgb(13 11 11 / 0.08);
+	--shadow-md: 0 4px 12px rgb(13 11 11 / 0.12);
+
+	--focus-ring: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-accent);
+}

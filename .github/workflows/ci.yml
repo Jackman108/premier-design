@@ -47,6 +47,35 @@ jobs:
       - name: Audit production dependencies
         run: npm audit --omit=dev
 
+  storybook:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: premier-design
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: premier-design/.nvmrc
+          cache: npm
+          cache-dependency-path: premier-design/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Storybook
+        run: npm run build-storybook
+
+      - name: Upload Storybook static
+        uses: actions/upload-artifact@v4
+        with:
+          name: storybook-static
+          path: premier-design/storybook-static
+
   e2e-smoke:
     runs-on: ubuntu-22.04
     defaults:
