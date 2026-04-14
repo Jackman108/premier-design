@@ -8,7 +8,7 @@ const compat = new FlatCompat({baseDirectory: __dirname});
 
 const config = [
     {
-        ignores: ['.next/**', 'node_modules/**', 'next-env.d.ts'],
+        ignores: ['.next/**', 'node_modules/**', 'coverage/**', 'next-env.d.ts'],
     },
     ...compat.config({
         root: true,
@@ -47,6 +47,12 @@ const config = [
         overrides: [
             {
                 files: ['pages/**/*.{ts,tsx,js,jsx}'],
+                rules: {
+                    'no-restricted-imports': 'off',
+                },
+            },
+            {
+                files: ['**/__tests__/**/*.{ts,tsx,js,jsx}', 'tests/**/*.{ts,tsx,js,jsx}'],
                 rules: {
                     'no-restricted-imports': 'off',
                 },

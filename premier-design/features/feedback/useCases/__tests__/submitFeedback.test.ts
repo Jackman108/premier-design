@@ -23,10 +23,10 @@ jest.mock('../../../../services/telegramService', () => ({
 
 describe('submitFeedback', () => {
     const payload = {
-        name: 'Иван Иванов',
+        name: 'Иван <b>Иванов</b>',
         phone: '+375291234567',
         email: 'test@example.com',
-        message: 'Нужна консультация по ремонту квартиры.',
+        message: 'Нужна консультация <script>alert(1)</script>.',
         consent: true,
     };
 
@@ -61,6 +61,7 @@ describe('submitFeedback', () => {
         expect(mockedFileService.saveData).toHaveBeenCalledWith(payload);
         expect(mockedEmailService.sendMail).toHaveBeenCalledTimes(1);
         expect(mockedTelegramService.sendMessage).toHaveBeenCalledTimes(1);
+        expect(mockedEmailService.sendMail.mock.calls[0][0].from).toContain('&lt;b&gt;');
     });
 
     it('skips email and file persistence in production mode', async () => {
@@ -82,5 +83,24 @@ describe('submitFeedback', () => {
         expect(result.status).toBe('error');
         expect(result.error).toBe('Telegram outage');
         expect(consoleErrorSpy).toHaveBeenCalled();
+    });
+
+    it('returns fallback unknown error message for non-Error throw', async () => {
+        mockedTelegramService.sendMessage.mockRejectedValueOnce('string-failure');
+
+        const result = await submitFeedback(payload);
+
+        expect(result.status).toBe('error');
+        expect(result.error).toBe('Unknown error');
+    });
+
+    it('sends "Не указан" when email is missing', async () => {
+        const noEmailPayload = {...payload, email: ''};
+
+        const result = await submitFeedback(noEmailPayload);
+
+        expect(result.status).toBe('success');
+        const messageArg = mockedTelegramService.sendMessage.mock.calls[0][2];
+        expect(messageArg).toContain('Не указан');
     });
 });

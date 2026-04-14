@@ -1,0 +1,74 @@
+name: CI Quality Gates
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+
+jobs:
+  quality:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: premier-design
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: premier-design/.nvmrc
+          cache: npm
+          cache-dependency-path: premier-design/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Test with coverage
+        run: npm run test:coverage
+
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: premier-design/coverage
+
+      - name: Build
+        run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev
+
+  e2e-smoke:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: premier-design
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: premier-design/.nvmrc
+          cache: npm
+          cache-dependency-path: premier-design/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browser
+        run: npm run test:e2e:install
+
+      - name: Run e2e smoke tests
+        run: npm run test:e2e

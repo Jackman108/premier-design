@@ -3,6 +3,7 @@ import {envVar} from '../../../validates/envVar';
 import {fileService} from '../../../services/fileService';
 import {telegramService} from '../../../services/telegramService';
 import {FeedbackInput} from '../schema';
+import {escapeHtml} from '../../../shared/lib/sanitize';
 
 export interface SubmitFeedbackResult {
     status: 'success' | 'error';
@@ -12,6 +13,11 @@ export interface SubmitFeedbackResult {
 
 export const submitFeedback = async (data: FeedbackInput): Promise<SubmitFeedbackResult> => {
     try {
+        const safeName = escapeHtml(data.name);
+        const safePhone = escapeHtml(data.phone);
+        const safeEmail = escapeHtml(data.email || 'Не указан');
+        const safeMessage = escapeHtml(data.message);
+
         if (envVar('NODE_ENV') === 'development') {
             fileService.saveData(data);
 
@@ -20,19 +26,19 @@ export const submitFeedback = async (data: FeedbackInput): Promise<SubmitFeedbac
                 port: parseInt(envVar('EMAIL_PORT'), 10),
                 user: envVar('EMAIL_USERNAME'),
                 pass: envVar('EMAIL_PASSWORD'),
-                from: data.name,
+                from: safeName,
                 to: 'jivatman108@gmail.com',
                 subject: `New Feedback ${data.email || ''}`.trim(),
-                text: `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email || 'Не указан'}\nMessage: ${data.message}`,
+                text: `Name: ${safeName}\nPhone: ${safePhone}\nEmail: ${safeEmail}\nMessage: ${safeMessage}`,
             });
         }
 
         const message = `
         <b>Новое сообщение с формы:</b>
-        - <b>Имя:</b> ${data.name}
-        - <b>Телефон:</b> ${data.phone}
-        - <b>Email:</b> ${data.email || 'Не указан'}
-        - <b>Сообщение:</b> ${data.message}
+        - <b>Имя:</b> ${safeName}
+        - <b>Телефон:</b> ${safePhone}
+        - <b>Email:</b> ${safeEmail}
+        - <b>Сообщение:</b> ${safeMessage}
         `.trim();
 
         await telegramService.sendMessage(

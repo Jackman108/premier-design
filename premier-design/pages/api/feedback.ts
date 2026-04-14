@@ -15,6 +15,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
     }
 
+    const contentType = req.headers['content-type'] || '';
+    if (!contentType.includes('application/json')) {
+        res.status(415).json({
+            status: 'error',
+            message: 'Unsupported content type. Use application/json.',
+        });
+        return;
+    }
+
     const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown';
     const rateLimit = checkRateLimit(clientIp, {windowMs: 60_000, maxRequests: 5});
     res.setHeader('X-RateLimit-Remaining', String(rateLimit.remaining));

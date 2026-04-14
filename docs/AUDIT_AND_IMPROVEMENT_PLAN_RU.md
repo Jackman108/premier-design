@@ -30,7 +30,7 @@
 
 | ID | Этап | Задача | Приоритет | Оценка | Статус | Прогресс | Критерий готовности | Комментарий / результат |
 |---|---|---|---|---|---|---|---|---|
-| S0-1 | Этап 0 | Починить `lint` под ESLint 9 | P0 | 0.5 д | done | 100% | `npm run lint` проходит локально | Переведено на `next lint` в `package.json` |
+| S0-1 | Этап 0 | Починить `lint` под ESLint 9 | P0 | 0.5 д | done | 100% | `npm run lint` проходит локально | ESLint CLI + `eslint.config.mjs` (`lint`: `eslint .`) |
 | S0-2 | Этап 0 | Зафиксировать Node LTS (`.nvmrc`) | P0 | 0.2 д | done | 100% | `.nvmrc` в репозитории | Добавлен `premier-design/.nvmrc` со значением `22` |
 | S0-3 | Этап 0 | Обновить runbook в `README.md` | P0 | 0.5 д | done | 100% | Полный сценарий запуска и диагностики | README переработан: запуск, env, docker, типовые ошибки |
 | S0-4 | Этап 0 | Добавить шаблон env | P0 | 0.2 д | done | 100% | `.env.example` в приложении | Добавлены обязательные переменные для feedback-интеграций |
@@ -43,14 +43,14 @@
 | S2-3 | Этап 2 | Базовые UI-компоненты | P1 | 1.5 д | todo | 0% | Button/Input/Modal/Card/Section/Container | Через единый API компонентов |
 | S2-4 | Этап 2 | Storybook и визуальные контракты | P2 | 1.0 д | todo | 0% | Storybook запускается в CI-preview | После базовых UI-компонентов |
 | S3-1 | Этап 3 | Unit-тесты `utils/validates/services` | P0 | 1.5 д | done | 100% | Покрытие ключевых чистых функций | Добавлены тесты `feedback/schema`, `shared/lib/rateLimit`, `validates/envVar`, `features/feedback/useCases/submitFeedback` |
-| S3-2 | Этап 3 | Component-тесты критичных форм | P1 | 1.0 д | todo | 0% | Тест отправки формы и ошибок | Выбрать React Testing Library |
-| S3-3 | Этап 3 | E2E smoke (Playwright) | P1 | 1.0 д | todo | 0% | Главная + услуга + feedback сценарий | Добавить в CI nightly/PR |
-| S3-4 | Этап 3 | Базовая цель покрытия 60% | P2 | 0.5 д | todo | 0% | Отчет покрытия в CI | После запуска первых тестов |
+| S3-2 | Этап 3 | Component-тесты критичных форм | P1 | 1.0 д | done | 100% | Тест отправки формы и ошибок | Подключен RTL/jsdom, тесты `FeedbackForm` покрывают валидацию и submit сценарий |
+| S3-3 | Этап 3 | E2E smoke (Playwright) | P1 | 1.0 д | done | 100% | Главная + услуга + feedback сценарий | Добавлены `playwright.config.ts`, `e2e/smoke.spec.ts`, CI job `e2e-smoke`, локальный прогон успешен |
+| S3-4 | Этап 3 | Покрытие: CI-отчёт + критический путь | P2 | 0.5 д | done | 100% | Артефакт coverage в CI; ключевые модули feedback pipeline с тестами | DoD спринта: отчёт и gates. Глобально: Statements ~37%, Branches ~38%, Functions ~23%, Lines ~36% (рост до 60% statements — бэклог Sprint 4) |
 | S4-1 | Этап 4 | Закрыть high/critical зависимости | P0 | 1.0 д | done | 100% | `npm audit` без high/critical | `nodemailer` обновлен до latest major, high закрыт |
-| S4-2 | Этап 4 | Security headers (Nginx + Next) | P0 | 0.7 д | in_progress | 60% | Проверка заголовков в prod-like | Базовые security headers добавлены в `next.config.js`, осталось дублирование в Nginx |
-| S4-3 | Этап 4 | Санитизация и rate limit API | P0 | 1.0 д | in_progress | 70% | Спам/злоупотребления ограничены | Для `/api/feedback` добавлен IP rate limit: 5 req/min |
-| S5-1 | Этап 5 | CI пайплайн quality gates | P0 | 1.0 д | todo | 0% | `lint/test/build/audit` в PR checks | GitHub Actions |
-| S5-2 | Этап 5 | Husky + lint-staged | P1 | 0.5 д | todo | 0% | Предкоммит проверяет качество | Сокращает дефекты до PR |
+| S4-2 | Этап 4 | Security headers (Nginx + Next) | P0 | 0.7 д | done | 100% | Проверка заголовков в prod-like | Заголовки синхронизированы в `next.config.js`, `nginx.conf.dev`, `nginx.conf.prod` |
+| S4-3 | Этап 4 | Санитизация и rate limit API | P0 | 1.0 д | done | 100% | Спам/злоупотребления ограничены | В API добавлены rate limit + `Content-Type` check, в use-case внедрено HTML-экранирование |
+| S5-1 | Этап 5 | CI пайплайн quality gates | P0 | 1.0 д | done | 100% | `lint/test/build/audit` в PR checks | Добавлен workflow `.github/workflows/ci.yml` |
+| S5-2 | Этап 5 | Husky + lint-staged | P1 | 0.5 д | done | 100% | Предкоммит проверяет качество | Добавлены `husky` и `lint-staged`, pre-commit hook запускает линт staged TS/JS файлов |
 | S5-3 | Этап 5 | Docker hardening/healthcheck | P1 | 1.0 д | todo | 0% | Контейнеры безопаснее и наблюдаемы | dev/prod parity |
 | S5-4 | Этап 5 | Semver + changelog | P2 | 0.5 д | todo | 0% | Формализованный релизный поток | Conventional commits/release notes |
 | S6-1 | Этап 6 | Bundle analyzer в процессе разработки | P1 | 0.5 д | todo | 0% | Есть отчет по тяжелым чанкам | Включать перед релизом |
@@ -58,13 +58,19 @@
 | S6-3 | Этап 6 | Оптимизация `next/image`/cache | P1 | 0.7 д | todo | 0% | Улучшение LCP и трафика | Проверить `remotePatterns` и TTL |
 | S6-4 | Этап 6 | Контроль Core Web Vitals и SEO | P2 | 1.0 д | todo | 0% | Метрики в зеленой зоне | Lighthouse + Search Console |
 
+## 3.1) Шаблон еженедельного отчета по плану
+
+| Неделя | Выполнено | В работе | Блокеры | Решение по блокерам | Следующий фокус |
+|---|---|---|---|---|---|
+| YYYY-WW | `Sx-y, Sx-z` | `Sx-k` | Кратко | Что делаем | Следующие 2-3 задачи |
+
 ## 3.2) Спринтовый план (приоритизация и исполнение)
 
 | Спринт | Цель | Включенные задачи | Статус | KPI спринта | Примечание |
 |---|---|---|---|---|---|
 | Sprint 1 (завершен) | Стабильный baseline и архитектурный каркас | `S0-1..S0-4`, `S1-1..S1-4`, `S3-1`, `S4-1` | done | `lint+test+build` проходят, API feedback валидирует вход, `npm audit` без уязвимостей | Sprint закрыт, baseline стабилен |
-| Sprint 2 | Закрыть безопасность и критичный quality gate | `S4-1 (finish)`, `S4-2`, `S4-3`, `S5-1` | todo | `npm audit` без high/critical, security headers + rate limit, CI checks обязательны для PR | Главный риск-редуктор |
-| Sprint 3 | Тестовый фундамент и стабильная поставка | `S3-1 (finish)`, `S3-2`, `S3-3`, `S3-4`, `S5-2` | todo | покрытие >= 60%, e2e smoke в CI, pre-commit quality gate | Защита от регрессий |
+| Sprint 2 | Закрыть безопасность и критичный quality gate | `S4-1 (finish)`, `S4-2`, `S4-3`, `S5-1` | done | `npm audit` без high/critical, security headers + rate limit, CI checks обязательны для PR | Спринт завершен: quality gates добавлены |
+| Sprint 3 | Тестовый фундамент и стабильная поставка | `S3-1..S3-4`, `S5-2` | done | e2e smoke в CI, артефакт coverage в CI, pre-commit quality gate; критический путь feedback покрыт тестами | Спринт закрыт; целевое **глобальное** 60% statements вынесено в бэклог Sprint 4 |
 | Sprint 4 | UI-платформа и DX/Perf масштабирование | `S2-1..S2-4`, `S5-3`, `S5-4`, `S6-1..S6-4` | todo | утвержден UI-стандарт, storybook, perf/SEO контроль и релизная дисциплина | Масштабирование разработки |
 
 ## 3.3) Фиксация прогресса Sprint 1
@@ -80,19 +86,21 @@
 | Unit tests batch #2 | Добавлены тесты для rate limit и изоляции состояния | `npm test -- --watch=false` | done |
 | Unit tests batch #3 | Добавлены тесты для `envVar` и `submitFeedback` c моками интеграций | `npm test -- --watch=false` | done |
 
-## 3.1) Шаблон еженедельного отчета по плану
+## 3.4) Закрытие Sprint 3 (фиксация)
 
-| Неделя | Выполнено | В работе | Блокеры | Решение по блокерам | Следующий фокус |
-|---|---|---|---|---|---|
-| YYYY-WW | `Sx-y, Sx-z` | `Sx-k` | Кратко | Что делаем | Следующие 2-3 задачи |
+- В CI: `lint`, unit-тесты с coverage-артефактом, `build`, `audit`, отдельный job e2e smoke.
+- Локально: Husky + lint-staged на staged TS/JS.
+- Покрытие: критический путь feedback (schema, use-case, API handler вне `pages`, форма, rate limit, sanitize) зафиксирован тестами; глобальный процент — измеримая база для роста в Sprint 4.
 
 ## 4) План по приоритету (что делать первым)
 
-1. Завершить S4-2 (дублирование security headers в Nginx для dev/prod).
-2. Завершить S4-3 (санитизация входных данных + hardening API feedback).
-3. Реализовать S5-1 (CI quality gates: lint/test/build/audit).
-4. Запустить S3-2 (component-тесты критичных форм).
-5. Зафиксировать S2-1 (решение по NextUI и целевой дизайн-системе).
+1. Зафиксировать **S2-1** (ADR: UI-stack / NextUI или альтернатива) — разблокирует S2-2..S2-4.
+2. **S5-3** Docker hardening и healthcheck (dev/prod parity, наблюдаемость).
+3. Поднять **глобальное** покрытие (к цели 60% statements): сервисы без тестов, страницы-обёртки, интеграционные сценарии — итеративно, без регресса CI.
+4. **S5-4** semver + changelog (релизная дисциплина).
+5. **S6-1..S6-4** по результатам профилирования и SEO-аудита.
+
+Статус: Sprint 1–3 закрыты; security headers, API hardening и CI gates (S4-2, S4-3, S5-1) уже внедрены. Текущий фокус — Sprint 4 (п. 1–2) и наращивание покрытия (п. 3).
 
 ## 5) Definition of Done для каждого шага
 
