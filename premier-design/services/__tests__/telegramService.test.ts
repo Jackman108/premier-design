@@ -15,10 +15,14 @@ describe('telegramService', () => {
 
         await telegramService.sendMessage('token-123', 'chat-001', 'hello');
 
-        expect(post).toHaveBeenCalledWith('https://api.telegram.org/bottoken-123/sendMessage', {
-            chat_id: 'chat-001',
-            text: 'hello',
-            parse_mode: 'HTML',
-        });
+        expect(post).toHaveBeenCalledWith(
+            'https://api.telegram.org/bottoken-123/sendMessage',
+            {
+                chat_id: 'chat-001',
+                text: 'hello',
+                parse_mode: 'HTML',
+            },
+            expect.objectContaining({timeout: 10_000}),
+        );
     });
 });

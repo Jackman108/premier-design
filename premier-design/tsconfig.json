@@ -8,7 +8,7 @@
       "esnext"
     ],
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "jsx": "preserve",
     "strict": true,
     "strictNullChecks": true,
@@ -30,7 +30,6 @@
     "declarationDir": "./types",
     "incremental": true,
     "noEmit": true,
-    "baseUrl": ".",
     "types": ["node", "jest"]
   },
   "exclude": [

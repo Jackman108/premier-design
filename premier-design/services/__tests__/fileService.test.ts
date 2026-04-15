@@ -24,6 +24,17 @@ describe('fileService', () => {
         expect(result).toEqual([{id: 1}]);
     });
 
+    it('returns empty array when file content is not valid JSON', () => {
+        const errSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
+        jest.spyOn(fs, 'existsSync').mockReturnValue(true);
+        jest.spyOn(fs, 'readFileSync').mockReturnValue('not-json' as never);
+
+        const result = fileService.readData<{id: number}>();
+
+        expect(result).toEqual([]);
+        errSpy.mockRestore();
+    });
+
     it('appends new data and writes updated content', () => {
         jest.spyOn(fs, 'existsSync').mockReturnValue(true);
         jest.spyOn(fs, 'readFileSync').mockReturnValue('[{"id":1}]' as never);

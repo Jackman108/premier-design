@@ -18,7 +18,11 @@ const Menu = memo(({menu, menuStyle, isMobileMenuOpen, toggleMobileMenu}: MenuPr
     const stylesToUse = styleMap[menuStyle] || styleMap.default;
 
     return (
-        <nav className={`${stylesToUse.menu} ${isMobileMenuOpen ? mobileStyles.open : ''}`}>
+        <nav
+            className={`${stylesToUse.menu} ${isMobileMenuOpen ? mobileStyles.open : ''}`}
+            id={menuStyle === 'mobile' ? 'site-mobile-nav' : undefined}
+            aria-label={menuStyle === 'mobile' ? 'Основное меню' : undefined}
+        >
             <ul className={stylesToUse.menu__container}>
                 {menu.map(({id, title, ruTitle}: MenuItem) => (
                     <li key={id} className={stylesToUse.menu__links}>

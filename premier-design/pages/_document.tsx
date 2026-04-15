@@ -1,4 +1,5 @@
 import {Head, Html, Main, NextScript} from 'next/document';
+import {inter} from '../lib/interFont';
 
 const SEOHead = () => (
     <>
@@ -6,15 +7,12 @@ const SEOHead = () => (
         <meta name="robots" content="index, follow"/>
         <meta name="author" content="Premier Design"/>
         <link rel="icon" href="/favicon.ico"/>
-        <meta httpEquiv="Cache-Control" content="public, max-age=31536000"/>
-        <meta httpEquiv="Expires" content="31536000"/>
-        <meta httpEquiv="Pragma" content="public"/>
     </>
 );
 
 export default function Document() {
     return (
-        <Html lang="ru">
+        <Html lang="ru" className={inter.className}>
             <Head>
                 <SEOHead/>
             </Head>

@@ -2,6 +2,8 @@
 import {ChangeEvent, FC, FormEvent, memo, useState} from "react";
 import styles from "./FeedbackForm.module.css";
 import {FeedbackFormProps, FeedbackItem} from "@shared/ui/order/interface/FeedbackModal.props";
+import {UiButton} from "@shared/ui/primitives/UiButton";
+import {UiInput} from "@shared/ui/primitives/UiInput";
 import {PatternFormat} from 'react-number-format';
 import {validateForm} from "../../utils/validateForm";
 
@@ -48,81 +50,108 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
     const phoneMask = country === 'ru' ? '+7 (###) ###-##-##' : '+375 (##) ###-##-##';
 
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
+        <form className={styles.form} onSubmit={handleSubmit} noValidate>
             <div className={styles.input__group}>
-                <input
-                    type="text"
+                <UiInput
+                    label="Имя"
                     id="name"
                     name="name"
+                    type="text"
+                    autoComplete="name"
                     placeholder="Введите ваше имя"
                     value={formDataState.name}
                     onChange={handleInputChange}
-                    className={errors.name ? `${styles.error}` : ""}
+                    className={errors.name ? styles.inputError : ''}
+                    aria-invalid={errors.name ? 'true' : undefined}
+                    error={errors.name || undefined}
                 />
-                {errors.name && <div className={styles.errorMessage}>{errors.name}</div>}
-            </div>
-            <div className={`${styles.input__group} ${styles.inline}`}>
-                <select
-                    onChange={(e) => setCountry(e.target.value)}
-                    value={country}
-                    className={errors.phone ? `${styles.error}` : ""}
-                >
-                    <option value="ru">🇷🇺</option>
-                    <option value="by">🇧🇾</option>
-                </select>
-
-                <PatternFormat
-                    format={phoneMask}
-                    allowEmptyFormatting
-                    mask="_"
-                    id="phone"
-                    name="phone"
-                    placeholder="Введите ваш номер телефона"
-                    value={formDataState.phone.replace(/^\+375|^\+7/, "")}
-                    onValueChange={handlePhoneChange}
-                    className={errors.phone ? `${styles.error}` : ""}
-                />
-                {errors.phone && <div className={styles.errorMessage}>{errors.phone}</div>}
             </div>
             <div className={styles.input__group}>
-                <input
-                    type="email"
+                <div className={styles.inlineRow}>
+                    <div className={styles.inlineField}>
+                        <label htmlFor="feedback-country" className={styles.fieldLabel}>Код страны</label>
+                        <select
+                            id="feedback-country"
+                            onChange={(e) => setCountry(e.target.value)}
+                            value={country}
+                            className={errors.phone ? styles.inputError : ''}
+                            aria-label="Код страны для номера телефона"
+                        >
+                            <option value="ru">🇷🇺</option>
+                            <option value="by">🇧🇾</option>
+                        </select>
+                    </div>
+                    <div className={styles.inlineFieldGrow}>
+                        <label htmlFor="phone" className={styles.fieldLabel}>Телефон</label>
+                        <PatternFormat
+                            format={phoneMask}
+                            allowEmptyFormatting
+                            mask="_"
+                            id="phone"
+                            name="phone"
+                            inputMode="tel"
+                            autoComplete="tel"
+                            placeholder="Введите ваш номер телефона"
+                            value={formDataState.phone.replace(/^\+375|^\+7/, "")}
+                            onValueChange={handlePhoneChange}
+                            className={errors.phone ? styles.inputError : ''}
+                            aria-invalid={errors.phone ? 'true' : undefined}
+                            aria-describedby={errors.phone ? 'phone-error' : undefined}
+                        />
+                    </div>
+                </div>
+                {errors.phone && <div id="phone-error" className={styles.errorMessage} role="alert">{errors.phone}</div>}
+            </div>
+            <div className={styles.input__group}>
+                <UiInput
+                    label="Email (необязательно)"
                     id="email"
                     name="email"
+                    type="email"
+                    autoComplete="email"
                     placeholder="Введите ваш email (необязательно)"
                     value={formDataState.email}
                     onChange={handleInputChange}
-                    className={errors.email ? `${styles.error}` : ""}
+                    className={errors.email ? styles.inputError : ''}
+                    aria-invalid={errors.email ? 'true' : undefined}
+                    error={errors.email || undefined}
                 />
-                {errors.email && <div className={styles.errorMessage}>{errors.email}</div>}
             </div>
             <div className={styles.input__group}>
+                <label htmlFor="message" className={styles.fieldLabel}>Сообщение</label>
                 <textarea
                     id="message"
                     name="message"
                     placeholder="Введите ваше сообщение"
                     value={formDataState.message}
                     onChange={handleInputChange}
-                    className={errors.message ? `${styles.error}` : ""}
+                    className={errors.message ? styles.inputError : ''}
+                    aria-invalid={errors.message ? 'true' : undefined}
+                    aria-describedby={errors.message ? 'message-error' : undefined}
                 />
-                {errors.message && <div className={styles.errorMessage}>{errors.message}</div>}
+                {errors.message && <div id="message-error" className={styles.errorMessage} role="alert">{errors.message}</div>}
             </div>
-            <div className={`${styles.input__group}`}>
-                <label>
-                    <input
-                        type="checkbox"
-                        name="consent"
-                        checked={isConsentGiven}
-                        onChange={() => setIsConsentGiven(prev => !prev)}
-                    />
+            <div className={`${styles.input__group} ${styles.consentRow}`}>
+                <input
+                    type="checkbox"
+                    id="feedback-consent"
+                    name="consent"
+                    checked={isConsentGiven}
+                    onChange={() => setIsConsentGiven(prev => !prev)}
+                    aria-invalid={errors.consent ? 'true' : undefined}
+                    aria-describedby={errors.consent ? 'consent-error' : undefined}
+                />
+                <label htmlFor="feedback-consent">
                     Нажимая на кнопку, вы соглашаетесь с{" "}
-                    <a href="/documents/user-agreement" target="_blank">пользовательским соглашением</a> и{" "}
-                    <a href="/documents/privacy-policy" target="_blank">политикой конфиденциальности</a>.
+                    <a href="/documents/user-agreement" target="_blank" rel="noopener noreferrer">пользовательским соглашением</a> и{" "}
+                    <a href="/documents/privacy-policy" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>.
                 </label>
-                {errors.consent && <div className={styles.errorMessage}>{errors.consent}</div>}
+                {errors.consent && <div id="consent-error" className={styles.errorMessage} role="alert">{errors.consent}</div>}
             </div>
             <div className={styles.form__button}>
-                <button type="submit" aria-label="Отправить заявку">Отправить</button>
+                <UiButton type="submit" className={styles.submitButton} aria-label="Отправить заявку">
+                    Отправить
+                </UiButton>
             </div>
         </form>
     );

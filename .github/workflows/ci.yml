@@ -45,7 +45,15 @@ jobs:
         run: yarn build
 
       - name: Audit production dependencies
-        run: npm audit --omit=dev
+        shell: bash
+        working-directory: premier-design
+        run: |
+          set -euo pipefail
+          if [[ ! -f package-lock.json ]]; then
+            echo "::error::package-lock.json missing — run yarn sync:npm-lock and commit"
+            exit 1
+          fi
+          npm audit --omit=dev --audit-level=critical
 
   storybook:
     runs-on: ubuntu-22.04

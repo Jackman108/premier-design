@@ -2,8 +2,7 @@
 
 # dependencies
 /node_modules
-# менеджер пакетов: Yarn (yarn.lock в репозитории); не коммитьте npm-lock
-package-lock.json
+# Основной lock — yarn.lock. package-lock.json коммитим для `npm audit` в CI (синхронизация: `yarn sync:npm-lock`).
 /.pnp
 .pnp.js
 

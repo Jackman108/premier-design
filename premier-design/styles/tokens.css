@@ -25,7 +25,7 @@
 	--brown-white: #9f928b;
 	--beige: #faf5e6;
 	--beige-dark: #e6e3e1;
-	--font-family: 'Public Sans', sans-serif;
+	--font-family: Inter, ui-sans-serif, system-ui, sans-serif;
 
 	/* Семантика — предпочтительно для новых `shared/ui/primitives/*` */
 	--color-bg: var(--beige);

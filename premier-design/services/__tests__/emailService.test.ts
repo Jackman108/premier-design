@@ -25,11 +25,16 @@ describe('emailService', () => {
             text: 'Body',
         });
 
-        expect(createTransport).toHaveBeenCalledWith({
-            host: 'smtp.example.com',
-            port: 587,
-            auth: {user: 'mailer@example.com', pass: 'secret'},
-        });
+        expect(createTransport).toHaveBeenCalledWith(
+            expect.objectContaining({
+                host: 'smtp.example.com',
+                port: 587,
+                auth: {user: 'mailer@example.com', pass: 'secret'},
+                connectionTimeout: 10_000,
+                greetingTimeout: 10_000,
+                socketTimeout: 15_000,
+            }),
+        );
         expect(sendMail).toHaveBeenCalledWith({
             from: 'Ivan',
             to: 'owner@example.com',

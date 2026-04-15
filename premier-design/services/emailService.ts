@@ -15,6 +15,9 @@ export const emailService = {
             host: config.host,
             port: config.port,
             auth: {user: config.user, pass: config.pass},
+            connectionTimeout: 10_000,
+            greetingTimeout: 10_000,
+            socketTimeout: 15_000,
         });
 
         await transporter.sendMail({

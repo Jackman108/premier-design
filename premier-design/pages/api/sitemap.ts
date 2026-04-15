@@ -72,6 +72,6 @@ export default async function handler(_req: NextApiRequest, res: NextApiResponse
 }
 
 const handleError = (res: NextApiResponse, error: unknown): void => {
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-    res.status(500).json({error: 'Error generating sitemap', details: errorMessage});
+	console.error('[sitemap]', error);
+	res.status(500).json({error: 'Не удалось сформировать sitemap'});
 };

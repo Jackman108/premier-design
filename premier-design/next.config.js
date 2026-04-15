@@ -19,12 +19,15 @@ const nextConfig = {
 		contentSecurityPolicy: "default-src 'self'; script-src 'self'; sandbox;",
 		formats: ['image/avif', 'image/webp'],
 		minimumCacheTTL: 60,
+		// Next.js 16: только перечисленные quality разрешены для next/image (см. docs/messages/next-image-unconfigured-qualities).
+		qualities: [75, 90, 95, 100],
 	},
 
 	async headers() {
 		return [
 			{
-				source: '/(.*)',
+				// Skip `/_next/*` so dev/build internal assets are not wrapped in page security headers.
+				source: '/((?!_next/).*)',
 				headers: [
 					{
 						key: 'X-Frame-Options',

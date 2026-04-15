@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
     "paths": {
-      "@widgets/*": ["widgets/*"],
-      "@pages/*": ["pages/*"],
-      "@features/*": ["features/*"],
-      "@entities/*": ["entities/*"],
-      "@shared/*": ["shared/*"],
-      "@config/*": ["config/*"],
-      "@interface/*": ["interface/*"],
-      "@hooks/*": ["hooks/*"],
-      "@lib/*": ["lib/*"]
+      "@widgets/*": ["./widgets/*"],
+      "@pages/*": ["./pages/*"],
+      "@features/*": ["./features/*"],
+      "@entities/*": ["./entities/*"],
+      "@shared/*": ["./shared/*"],
+      "@config/*": ["./config/*"],
+      "@interface/*": ["./interface/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@lib/*": ["./lib/*"]
     }
   }
 }

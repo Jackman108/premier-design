@@ -9,9 +9,8 @@ module.exports = {
             'ts-jest',
             {
                 useESM: true,
-                tsconfig: {
-                    jsx: 'react-jsx',
-                },
+                // TS 6 + ts-jest: rootDir, react-jsx, ignoreDeprecations — see tsconfig.jest.json (keep root tsconfig IDE-clean).
+                tsconfig: '<rootDir>/tsconfig.jest.json',
             },
         ],
     },

@@ -20,11 +20,17 @@ const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit}) => {
 
     return (
         <div className={styles.overlay} onMouseDown={handleOverlayClick}>
-            <div className={styles.modal}>
+            <div
+                className={styles.modal}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="feedback-modal-heading"
+                aria-describedby="feedback-modal-description"
+            >
                 <div className={styles.modal_top}>
                     <div className={styles.modal_text}>
-                        <h3>Оставьте заявку</h3>
-                        <p>Мы свяжемся в ближайшее время</p>
+                        <h3 id="feedback-modal-heading">Оставьте заявку</h3>
+                        <p id="feedback-modal-description">Мы свяжемся в ближайшее время</p>
                     </div>
                     <button
                         className={styles.closeButton}
