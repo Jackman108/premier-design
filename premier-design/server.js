@@ -1,3 +1,7 @@
+/**
+ * DEPRECATED: локальный HTTPS поверх `next` для ручной отладки с сертификатами из env.
+ * В Docker и проде используйте `yarn start` (`next start`). Не полагайтесь на этот файл в CI.
+ */
 import fs from 'fs';
 import https from 'https';
 import next from 'next';

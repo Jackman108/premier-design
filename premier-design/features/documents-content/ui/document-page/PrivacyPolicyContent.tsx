@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./DocumetPage.module.css";
+import styles from "./DocumentPage.module.css";
 
 const PrivacyPolicyContent = () => (
     <>

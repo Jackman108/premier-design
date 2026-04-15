@@ -5,7 +5,7 @@ import {fn} from 'storybook/test';
 import {UiButton} from './UiButton';
 
 const meta = {
-	title: 'UI/UiButton',
+	title: 'Primitives/UiButton',
 	component: UiButton,
 	parameters: {layout: 'centered'},
 	tags: ['autodocs'],

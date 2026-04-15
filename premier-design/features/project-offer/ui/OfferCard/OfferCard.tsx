@@ -4,19 +4,19 @@ import styles from "./OfferCard.module.css";
 import OrderButton from "@shared/ui/order/ui/OrderButton/OrderButton";
 import Image from "next/image";
 
+const DescriptionBlock: FC<DescriptionBlockProps> = ({title, descriptions}): ReactElement => (
+    <div className={styles.offer__content_description}>
+        <p className={styles.offer__content_subtitle}>{title}</p>
+        <ul className={styles.offer__description_list}>
+            {descriptions.map((desc, index) => (
+                <li key={index}>{desc}</li>
+            ))}
+        </ul>
+    </div>
+);
+
 const OfferCard: FC<OfferCardProps> = ({offer, buttonData, buttonStyle, isReversed = false}): ReactElement => {
     const {image, title, price, pros, cons, prosDescription, consDescription} = offer;
-
-    const DescriptionBlock: FC<DescriptionBlockProps> = ({title, descriptions}): ReactElement => (
-        <div className={styles.offer__content_description}>
-            <p className={styles.offer__content_subtitle}>{title}</p>
-            <ul className={styles.offer__description_list}>
-                {descriptions.map((desc, index) => (
-                    <li key={index}>{desc}</li>
-                ))}
-            </ul>
-        </div>
-    );
 
     return (
         <div className={`${styles.offer__row} ${isReversed ? styles.offer__row_reversed : ""}`}>

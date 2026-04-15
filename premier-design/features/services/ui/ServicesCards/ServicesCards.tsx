@@ -18,8 +18,7 @@ const ServicesCards: FC<{ cards: ServiceCardProps[] }> = ({cards}): ReactElement
                             className={styles.image__background}
                             width={400}
                             height={243}
-                            loading='lazy'
-                            priority={false}
+                            loading="lazy"
                         />
                     </div>
                 </Link>

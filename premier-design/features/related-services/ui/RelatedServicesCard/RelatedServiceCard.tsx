@@ -22,7 +22,6 @@ const RelatedServiceCard: React.FC<RelatedServiceCardProps> = (relatedService) =
                             height={180}
                             width={410}
                             loading="lazy"
-                            priority={false}
                             className={styles.image}
                         />
                     </div>

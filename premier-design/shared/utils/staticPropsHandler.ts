@@ -1,5 +1,5 @@
 import {GetStaticProps} from 'next';
-import {getData} from "@pages/api/dataProvider";
+import {getData} from '@lib/getStaticData';
 import {getCommonProps} from "@shared/utils/getCommonProps";
 import {findRelatedService} from "@features/related-services/utils/findRelatedService";
 import {findService} from "@features/services/utils/findService";

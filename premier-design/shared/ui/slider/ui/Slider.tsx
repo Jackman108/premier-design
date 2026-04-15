@@ -10,15 +10,18 @@ const Slider: FC<SliderProps> = memo(({
                                       }): ReactElement => {
     const [currentSlide, setCurrentSlide] = useState(0)
     const [loaded, setLoaded] = useState(false)
+    const [slideCount, setSlideCount] = useState(0)
     const slidesToShow = isMobile === undefined ? 1 : isMobile ? 1 : slidesPerView;
     const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
         loop: true,
         initial: 0,
         slideChanged(slider) {
             setCurrentSlide(slider.track.details.rel)
+            setSlideCount(slider.track.details.slides.length)
         },
-        created() {
+        created(slider) {
             setLoaded(true)
+            setSlideCount(slider.track.details.slides.length)
         },
         slides: {
             perView: slidesToShow,
@@ -32,7 +35,7 @@ const Slider: FC<SliderProps> = memo(({
                 {Children.map(children, (child, index) => (
                     <div className="keen-slider__slide" key={index}>{child}</div>
                 ))}
-                {loaded && instanceRef.current && (
+                {loaded && slideCount > 0 && (
                     <>
                         <Arrow
                             left
@@ -51,18 +54,18 @@ const Slider: FC<SliderProps> = memo(({
                                     instanceRef.current.next();
                                 }
                             }}
-                            disabled={currentSlide === instanceRef.current.track.details.slides.length - 1
+                            disabled={currentSlide === slideCount - 1
                             }
                         />
                     </>
                 )}
             </div>
-            {loaded && instanceRef.current && (
+            {loaded && slideCount > 0 && (
                 <div className="dots">
                     {[
                         ...Array(
-                            isMobile ? instanceRef.current.track.details.slides.length :
-                                Math.max(0, instanceRef.current.track.details.slides.length - 2)).keys(),
+                            isMobile ? slideCount :
+                                Math.max(0, slideCount - 2)).keys(),
                     ].map((idx) => {
                         return (
                             <button

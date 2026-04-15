@@ -5,8 +5,9 @@ RUN apk add --no-cache libc6-compat wget
 
 WORKDIR /app
 
-COPY package*.json ./
-RUN npm install
+COPY package.json yarn.lock ./
+RUN npm install -g yarn@1.22.22 \
+	&& yarn install --frozen-lockfile --ignore-scripts
 
 COPY . .
 
@@ -15,4 +16,4 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
 	CMD wget -qO- http://127.0.0.1:3000/ || exit 1
 
-CMD ["npm", "run", "dev"]
+CMD ["yarn", "dev"]

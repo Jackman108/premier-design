@@ -1,4 +1,4 @@
-// components/document-image/document-image.tsx
+// features/documents-content/ui/document-image
 import Image from "next/image";
 import styles from './DocumentImage.module.css';
 import {FC} from "react";

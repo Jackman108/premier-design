@@ -24,8 +24,10 @@ export const useCostingCardLogic = (cards: CostingCardProps[]) => {
     };
 
     useEffect(() => {
-        closeModal();
-        setSelectedCard(null);
+        queueMicrotask(() => {
+            closeModal();
+            setSelectedCard(null);
+        });
     }, [memoizedCards, closeModal]);
 
     return {

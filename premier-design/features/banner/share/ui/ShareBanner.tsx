@@ -26,24 +26,23 @@ const ShareBanner: FC<ShareBannerProps> = ({isSticky, shares}) => {
                     rel="noopener noreferrer"
                 >
                     <Image
-                        priority={true}
+                        priority
                         src={imageDesc.src}
                         alt={imageDesc.alt}
                         quality={imageDesc.quality}
                         width={imageDesc.width}
                         height={imageDesc.height}
-                        placeholder='empty'
-                        loading={"lazy"}
+                        placeholder="empty"
                         className={styles.banner__img + ' ' + styles.banner__imgDesktop}
                     />
                     <Image
-                        priority={true}
                         src={imageMob.src}
                         alt={imageDesc.alt}
                         quality={imageDesc.quality}
                         width={imageDesc.width}
                         height={imageDesc.height}
-                        placeholder='empty'
+                        placeholder="empty"
+                        loading="lazy"
                         className={styles.banner__img + ' ' + styles.banner__imgMobile}
                     />
                 </Link>

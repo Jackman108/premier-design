@@ -6,11 +6,10 @@
       "@features/*": ["features/*"],
       "@entities/*": ["entities/*"],
       "@shared/*": ["shared/*"],
-      "@components/*": ["components/*"],
-      "@components/index": ["components/index.ts"],
       "@config/*": ["config/*"],
       "@interface/*": ["interface/*"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@lib/*": ["lib/*"]
     }
   }
 }

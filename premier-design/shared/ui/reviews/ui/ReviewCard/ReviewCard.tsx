@@ -7,15 +7,14 @@ const ReviewCard: React.FC<Review> = (review): ReactElement => {
     return (
         <div key={review.id} className={styles.item}>
             <Image
-                priority={false}
                 src={review.photoUrl}
                 alt={review.name}
                 quality={100}
                 width={600}
                 height={600}
-                placeholder='empty'
+                placeholder="empty"
                 className={styles.content__photo}
-                loading={'lazy'}
+                loading="lazy"
             />
             <div className={styles.content__text}>
                 <p className={styles.content__quote}>{review.text}</p>

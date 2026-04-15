@@ -1,6 +1,6 @@
 import {NextApiRequest, NextApiResponse} from 'next';
 import {DataProps} from "@widgets/interface/interfaceData";
-import {getData} from "@pages/api/dataProvider";
+import {getData} from '@lib/getStaticData';
 
 const BASE_URL = 'https://premier-design.by';
 const CHANGE_FREQUENCY = 'monthly';

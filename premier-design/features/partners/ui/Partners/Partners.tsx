@@ -22,15 +22,14 @@ const Partners: FC<PartnersSectionProps> = ({title, partners}): ReactElement => 
                             className={styles.partners__card}
                         >
                             <Image
-                                priority={false}
                                 src={partner.src}
                                 alt={partner.alt}
                                 quality={partner.quality}
                                 width={partner.width}
                                 height={partner.height}
-                                placeholder='empty'
+                                placeholder="empty"
                                 className={styles.partners__image}
-                                loading={'lazy'}
+                                loading="lazy"
                             />
                             <p className={styles.partners__discounts}>
                                 {partner.discounts}

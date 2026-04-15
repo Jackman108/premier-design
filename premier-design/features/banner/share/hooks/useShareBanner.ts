@@ -7,7 +7,7 @@ export function useShareBanner() {
     useEffect(() => {
         const closedBanner = localStorage.getItem('shareBannerClosed');
         if (closedBanner === 'true') {
-            setIsClosed(true);
+            queueMicrotask(() => setIsClosed(true));
         }
 
         const timeout = setTimeout(() => {

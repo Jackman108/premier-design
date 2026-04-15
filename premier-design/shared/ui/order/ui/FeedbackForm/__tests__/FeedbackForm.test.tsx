@@ -1,7 +1,7 @@
 /** @jest-environment jsdom */
 import {render, screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import FeedbackForm from '../../../../shared/ui/order/ui/FeedbackForm/FeedbackForm';
+import FeedbackForm from '../FeedbackForm';
 
 describe('FeedbackForm', () => {
     it('shows validation errors when required fields are empty', async () => {

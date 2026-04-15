@@ -5,18 +5,19 @@
 ## Требования
 
 - Node.js `22.x` (см. `.nvmrc`)
-- npm `10+`
+- [Yarn](https://yarnpkg.com/) Classic `1.22+` (как в CI: `yarn.lock` + `yarn install --frozen-lockfile`)
+- перед переустановкой зависимостей остановите `next dev` / `yarn dev`, иначе на Windows возможен `EPERM` при замене нативных бинарников в `node_modules` (в т.ч. `@next/swc-*`).
 
 ## Быстрый старт (локально)
 
 1. Перейдите в директорию приложения:
    - `cd premier-design`
 2. Установите зависимости:
-   - `npm install`
+   - `yarn install`
 3. Создайте файл окружения:
    - скопируйте `.env.example` в `.env.local`
 4. Запустите дев-сервер:
-   - `npm run dev`
+   - `yarn dev`
 5. Откройте:
    - `http://localhost:3000`
 
@@ -27,19 +28,19 @@
 ## Архитектура UI
 
 - ADR по UI-стеку и токенам: [`../docs/adr/0001-ui-stack-and-design-tokens.md`](../docs/adr/0001-ui-stack-and-design-tokens.md).
-- Дизайн-токены: `styles/tokens.css`; новые примитивы — `components/ui/`.
+- Дизайн-токены: `styles/tokens.css`; новые примитивы — `shared/ui/primitives/`.
 
 ## Основные команды
 
-- `npm run dev` - запуск в режиме разработки
-- `npm run build` - production-сборка
-- `npm run start` - запуск production-сборки
-- `npm run lint` - проверка ESLint
-- `npm run lint:fix` - автоисправление ESLint проблем
-- `npm test` - запуск тестов (Jest)
-- `npm run storybook` - каталог UI-компонентов (Storybook)
-- `npm run build-storybook` - статическая сборка Storybook (артефакт в CI)
-- `npm run analyze` - сборка с отчётом `@next/bundle-analyzer` (размер чанков)
+- `yarn dev` — запуск в режиме разработки
+- `yarn build` — production-сборка
+- `yarn start` — запуск production-сборки
+- `yarn lint` — проверка ESLint
+- `yarn lint:fix` — автоисправление ESLint
+- `yarn test` — тесты (Jest)
+- `yarn storybook` — каталог UI (Storybook)
+- `yarn build-storybook` — статическая сборка Storybook (артефакт в CI)
+- `yarn analyze` — сборка с отчётом `@next/bundle-analyzer`
 
 ## Переменные окружения
 
@@ -78,9 +79,10 @@
 
 ## Типовые проблемы
 
-- Ошибка `"next" не является ... командой`:
-  - выполните `npm install` в директории `premier-design`.
+- Ошибка `"next" не является ... командой` (или пустой `node_modules/.bin`):
+  - остановите `yarn dev` / другие процессы Node, затем в `premier-design` выполните **`yarn install`** (при необходимости удалите `node_modules` и повторите). Скрипты в `package.json` вызывают CLI через `node ./node_modules/...`, чтобы команды работали даже без шимов в `.bin`.
+- После установки при **`lockfileTryAcquireSync is not a function`** или **`EPERM` на `.node`**: полная переустановка (`удалить node_modules` → `yarn install` без `--ignore-scripts` локально), закрыть IDE/антивирус на время или исключить папку проекта из проверки в реальном времени.
 - Ошибка по переменным окружения:
   - проверьте, что `.env.local` создан из `.env.example` и заполнен.
-- `npm test` завершился без тестов:
+- `yarn test` завершился без тестов:
   - проверьте, что тесты лежат в `**/__tests__/**` или `tests/**`, и что команда запускается из каталога приложения.

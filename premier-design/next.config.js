@@ -7,11 +7,6 @@ const withBundleAnalyzer = bundleAnalyzer({
 const nextConfig = {
 	async rewrites() {
 		return [
-			{source: '/', destination: '/'},
-			{source: '/repairs', destination: '/repairs'},
-			{source: '/design', destination: '/design'},
-			{source: '/about', destination: '/about'},
-			{source: '/contacts', destination: '/contacts'},
 			{source: '/sitemap.xml', destination: '/api/sitemap'},
 			{source: '/user-agreement', destination: '/documents/user-agreement'},
 			{source: '/privacy-policy', destination: '/documents/privacy-policy'},

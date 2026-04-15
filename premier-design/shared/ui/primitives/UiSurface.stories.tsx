@@ -3,7 +3,7 @@ import type {Meta, StoryObj} from '@storybook/nextjs-vite';
 import {UiSurface} from './UiSurface';
 
 const meta = {
-	title: 'UI/UiSurface',
+	title: 'Primitives/UiSurface',
 	component: UiSurface,
 	parameters: {layout: 'padded'},
 	tags: ['autodocs'],

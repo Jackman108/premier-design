@@ -16,7 +16,7 @@ export const useStickyHeader = (threshold: number = 0.25) => {
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-        handleScroll();
+        queueMicrotask(() => handleScroll());
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };

@@ -1,6 +1,6 @@
 import type {NextPage} from 'next';
 import Layout from '@widgets/layout/ui/layout/Layout';
-import {getStaticProps} from './api/dataProvider';
+import {getStaticProps} from '@lib/getStaticData';
 import {GetDataProps} from '@widgets/interface/interfaceData';
 import {ReactElement} from "react";
 import HeroBanner from "@features/banner/hero/ui/HeroBanner";

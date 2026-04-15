@@ -27,7 +27,7 @@
 	--beige-dark: #e6e3e1;
 	--font-family: 'Public Sans', sans-serif;
 
-	/* Семантика — предпочтительно для новых `components/ui/*` */
+	/* Семантика — предпочтительно для новых `shared/ui/primitives/*` */
 	--color-bg: var(--beige);
 	--color-surface: var(--white);
 	--color-surface-muted: var(--beige-dark);

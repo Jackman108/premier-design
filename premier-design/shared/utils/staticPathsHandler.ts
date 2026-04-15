@@ -1,5 +1,5 @@
 import {GetStaticPaths} from 'next';
-import {getData} from "@pages/api/dataProvider";
+import {getData} from '@lib/getStaticData';
 import {getCanonicalPath} from "@shared/utils/getCanonicalPath";
 
 export const staticPathsHandler = (isRelated = false): GetStaticPaths => async () => {
