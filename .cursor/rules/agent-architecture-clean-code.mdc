@@ -50,7 +50,7 @@ alwaysApply: true
 ## 6. Next.js, UI и дизайн-система
 
 - Следуй официальным практикам Next.js: осознанный выбор SSR/SSG/ISR; не тянуть тяжёлые клиентские пакеты без `dynamic(..., { ssr: false })` где SSR не нужен.
-- **Дизайн-токены** — `styles/tokens.css`; новые примитивы — в `components/ui/`, с визуальным контрактом в Storybook (см. ADR `docs/adr/0001-ui-stack-and-design-tokens.md`, индекс `docs/README.md`).
+- **Дизайн-токены** — `styles/tokens.css`; новые примитивы — в `shared/ui/primitives/`, с визуальным контрактом в Storybook (см. ADR `docs/adr/0001-ui-stack-and-design-tokens.md`, индекс `docs/README.md`).
 - Внешние UI-библиотеки (NextUI/HeroUI и т.д.) — **только** после отдельного ADR и оценки бандла; не подключать импульсивно.
 - **a11y:** семантика, подписи к полям, фокус-стили; для интерактива — клавиатура и `aria-*` где уместно.
 

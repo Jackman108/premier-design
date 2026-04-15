@@ -23,17 +23,17 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: premier-design/.nvmrc
-          cache: npm
-          cache-dependency-path: premier-design/package-lock.json
+          cache: yarn
+          cache-dependency-path: premier-design/yarn.lock
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile --ignore-scripts
 
       - name: Lint
-        run: npm run lint
+        run: yarn lint
 
       - name: Test with coverage
-        run: npm run test:coverage
+        run: yarn test:coverage
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -42,7 +42,7 @@ jobs:
           path: premier-design/coverage
 
       - name: Build
-        run: npm run build
+        run: yarn build
 
       - name: Audit production dependencies
         run: npm audit --omit=dev
@@ -61,14 +61,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: premier-design/.nvmrc
-          cache: npm
-          cache-dependency-path: premier-design/package-lock.json
+          cache: yarn
+          cache-dependency-path: premier-design/yarn.lock
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile --ignore-scripts
 
       - name: Build Storybook
-        run: npm run build-storybook
+        run: yarn build-storybook
 
       - name: Upload Storybook static
         uses: actions/upload-artifact@v4
@@ -90,14 +90,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version-file: premier-design/.nvmrc
-          cache: npm
-          cache-dependency-path: premier-design/package-lock.json
+          cache: yarn
+          cache-dependency-path: premier-design/yarn.lock
 
       - name: Install dependencies
-        run: npm ci
+        run: yarn install --frozen-lockfile --ignore-scripts
 
       - name: Install Playwright browser
-        run: npm run test:e2e:install
+        run: yarn test:e2e:install
 
       - name: Run e2e smoke tests
-        run: npm run test:e2e
+        run: yarn test:e2e

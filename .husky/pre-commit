@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
 cd "premier-design" || exit 1
-npx lint-staged
+node ./node_modules/lint-staged/bin/lint-staged.js
