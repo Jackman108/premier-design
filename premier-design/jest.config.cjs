@@ -17,6 +17,7 @@ module.exports = {
     moduleNameMapper: {
         '^(\\.{1,2}/.*)\\.js$': '$1',
         '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
+        '^.*styled-system/css$': '<rootDir>/__mocks__/styled-system.js',
         '^@widgets/(.*)$': '<rootDir>/widgets/$1',
         '^@pages/(.*)$': '<rootDir>/pages/$1',
         '^@features/(.*)$': '<rootDir>/features/$1',

@@ -8,6 +8,10 @@ export default defineConfig({
 	theme: {
 		extend: {
 			tokens: {
+				fonts: {
+					sans: {value: 'var(--font-family)'},
+					heading: {value: 'var(--font-heading)'},
+				},
 				colors: {
 					bg: {value: 'var(--color-bg)'},
 					surface: {value: 'var(--color-surface)'},
@@ -38,6 +42,48 @@ export default defineConfig({
 					modal: {value: 'var(--z-modal)'},
 					overlay: {value: 'var(--z-overlay)'},
 					toast: {value: 'var(--z-toast)'},
+				},
+			},
+			textStyles: {
+				h1: {
+					value: {
+						fontFamily: 'heading',
+						fontWeight: 'bold',
+						fontSize: 'clamp(2.5rem, 5vw + 1rem, 4.5rem)',
+						lineHeight: '1.1',
+						letterSpacing: '-0.02em',
+					},
+				},
+				h2: {
+					value: {
+						fontFamily: 'heading',
+						fontWeight: 'bold',
+						fontSize: 'clamp(2rem, 4vw + 1rem, 3.5rem)',
+						lineHeight: '1.2',
+						letterSpacing: '-0.01em',
+					},
+				},
+				h3: {
+					value: {
+						fontFamily: 'heading',
+						fontWeight: 'semibold',
+						fontSize: 'clamp(1.5rem, 3vw + 0.5rem, 2.5rem)',
+						lineHeight: '1.3',
+					},
+				},
+				body: {
+					value: {
+						fontFamily: 'sans',
+						fontSize: '1rem',
+						lineHeight: '1.5',
+					},
+				},
+				bodyLarge: {
+					value: {
+						fontFamily: 'sans',
+						fontSize: 'clamp(1.125rem, 2vw, 1.25rem)',
+						lineHeight: '1.6',
+					},
 				},
 			},
 		},

@@ -7,6 +7,11 @@
 
 ### Added
 
+- **Sprint 14 (завершение):** закрыты `V-1`, `V-4`, `T-1`.
+  `V-1`: внедрен акцентный шрифт с засечками `Playfair Display` (через `next/font/google`) для заголовков; настроена fluid typography (clamp) в `panda.config.ts` и `Title.module.css`.
+  `V-4`: обновлена темная тема в `styles/tokens.css` — внедрен глубокий OLED-black (`#050505`) с золотыми/бронзовыми акцентами, усилены тени для глубины.
+  `T-1`: начата миграция на Panda CSS — созданы базовые `textStyles` в `panda.config.ts`, `UiButton` переведен на Panda CSS recipe (`UiButton.recipe.ts`), удален `UiButton.module.css`.
+- Аудит v3.0 `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`: запущен новый стратегический план, сфокусированный на Premium UI/UX, визуальной эстетике (типографика, сетки, анимации) и маркетинговой конверсии (воронки, квизы, интерактивное портфолио).
 - ADR `docs/adr/0001-ui-stack-and-design-tokens.md`: UI-стек (CSS Modules + токены), путь к опциональной миграции на HeroUI/NextUI.
 - Слой токенов `styles/tokens.css` и базовые примитивы `shared/ui/primitives/` (UiButton, UiInput, UiSurface, UiTextarea, UiCheckbox) со stories в Storybook.
 - Storybook 10 (`yarn storybook`, `yarn build-storybook`).

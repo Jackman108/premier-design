@@ -1,7 +1,7 @@
 import type {Metadata} from 'next';
 import type {FC, PropsWithChildren} from 'react';
 
-import {inter} from '@lib/interFont';
+import {inter, playfair} from '@lib/interFont';
 import {Providers} from './providers';
 import '@widgets/styles/globals.css';
 import 'keen-slider/keen-slider.min.css';
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 const RootLayout: FC<PropsWithChildren> = ({children}) => {
 	return (
-		<html lang="ru" className={inter.className} data-scroll-behavior="smooth">
+		<html lang="ru" className={`${inter.variable} ${playfair.variable}`} data-scroll-behavior="smooth">
 			<body>
 				<Providers>{children}</Providers>
 			</body>

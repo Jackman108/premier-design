@@ -1,5 +1,5 @@
 import {Head, Html, Main, NextScript} from 'next/document';
-import {inter} from '../lib/interFont';
+import {inter, playfair} from '../lib/interFont';
 
 const SEOHead = () => (
     <>
@@ -12,7 +12,7 @@ const SEOHead = () => (
 
 export default function Document() {
     return (
-        <Html lang="ru" className={inter.className} data-scroll-behavior="smooth">
+        <Html lang="ru" className={`${inter.variable} ${playfair.variable}`} data-scroll-behavior="smooth">
             <Head>
                 <SEOHead/>
             </Head>
