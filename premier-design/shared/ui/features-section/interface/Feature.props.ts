@@ -4,3 +4,7 @@ export interface FeatureProps {
     iconPng: string;
     icon: string;
 }
+
+export interface FeaturesProps {
+    features: FeatureProps[];
+}

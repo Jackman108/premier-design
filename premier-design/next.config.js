@@ -4,17 +4,21 @@ const withBundleAnalyzer = bundleAnalyzer({
 	enabled: process.env.ANALYZE === 'true',
 });
 
+const isDevelopment = process.env.NODE_ENV !== 'production';
+const scriptSrcPolicy = isDevelopment ? "'self' 'unsafe-inline' 'unsafe-eval'" : "'self' 'unsafe-inline'";
+const connectSrcPolicy = isDevelopment ? "'self' https: http: ws: wss:" : "'self' https:";
+
 const contentSecurityPolicy = [
 	"default-src 'self'",
 	"base-uri 'self'",
 	"form-action 'self'",
 	"frame-ancestors 'none'",
 	"object-src 'none'",
-	"script-src 'self' 'unsafe-inline'",
+	`script-src ${scriptSrcPolicy}`,
 	"style-src 'self' 'unsafe-inline'",
 	"img-src 'self' data: blob: https:",
 	"font-src 'self' data:",
-	"connect-src 'self' https:",
+	`connect-src ${connectSrcPolicy}`,
 	'upgrade-insecure-requests',
 ].join('; ');
 

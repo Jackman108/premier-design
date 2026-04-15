@@ -1,8 +1,9 @@
 'use client';
 
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useRef} from 'react';
 import styles from './CollapsibleContainer.module.css';
 import {CollapsibleContainerProps} from '@shared/ui/calculator-modal/interface/CalculatorModal.props';
+import {useCollapsibleContainer} from '@shared/ui/calculator-modal/hooks/useCollapsibleContainer';
 
 const CollapsibleContainer: FC<CollapsibleContainerProps> = ({
                                                                  items,
@@ -10,28 +11,13 @@ const CollapsibleContainer: FC<CollapsibleContainerProps> = ({
                                                                  activeLabel,
                                                                  onItemClick
                                                              }) => {
-    const [isCollapsed, setIsCollapsed] = useState(true);
-
-    const handleOutsideClick = (event: MouseEvent) => {
-        if (
-            !(event.target instanceof Element) ||
-            !event.target.closest(`.${styles.collapse_container}`)
-        ) {
-            setIsCollapsed(true);
-        }
-    };
-
-    useEffect(() => {
-        document.addEventListener('mousedown', handleOutsideClick);
-        return () => {
-            document.removeEventListener('mousedown', handleOutsideClick);
-        };
-    }, []);
+    const containerRef = useRef<HTMLDivElement>(null);
+    const {isCollapsed, handleToggleCollapse, handleSelectItem} = useCollapsibleContainer(containerRef);
 
     return (
-        <div className={styles.collapse_container}>
+        <div className={styles.collapse_container} ref={containerRef}>
             <button
-                onClick={() => setIsCollapsed(!isCollapsed)}
+                onClick={handleToggleCollapse}
                 className={styles.collapse_header}
                 aria-label="Сввернуть аккордион"
             >
@@ -46,10 +32,7 @@ const CollapsibleContainer: FC<CollapsibleContainerProps> = ({
                         <button
                             key={item.value}
                             className={activeItem === item.value ? styles.active : styles.inactive}
-                            onClick={() => {
-                                onItemClick(item.value);
-                                setIsCollapsed(!isCollapsed);
-                            }}
+                            onClick={handleSelectItem(onItemClick, item.value)}
                             aria-label="Развернуть аккордион"
                         >
                             {item.label}

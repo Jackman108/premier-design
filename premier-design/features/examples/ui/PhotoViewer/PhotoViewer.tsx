@@ -1,5 +1,5 @@
 'use client';
-import {FC, KeyboardEvent, MouseEvent, useCallback, useEffect, useRef, useState} from 'react';
+import {FC, KeyboardEvent, MouseEvent, useCallback, useEffect, useState} from 'react';
 import styles from './PhotoViewer.module.css';
 import NextImage from 'next/image';
 import {PhotoViewerProps} from "@features/examples/interface/PhotoViewer.props";
@@ -34,7 +34,7 @@ const PhotoViewer: FC<PhotoViewerProps> = ({
     }, [onClose]);
 
     const handleKeyDown = useCallback(
-        (event: KeyboardEvent<HTMLDivElement>) => {
+        (event: KeyboardEvent<HTMLDialogElement>) => {
             switch (event.key) {
                 case 'ArrowLeft':
                     handlePrev();
@@ -60,9 +60,9 @@ const PhotoViewer: FC<PhotoViewerProps> = ({
 
     const handleImageClick = useCallback(
         (event: MouseEvent<HTMLDivElement>) => {
-            const {offsetWidth} = event.currentTarget;
-            const mouseX = event.clientX;
-            if (mouseX < offsetWidth / 2) {
+            const bounds = event.currentTarget.getBoundingClientRect();
+            const mouseX = event.clientX - bounds.left;
+            if (mouseX < bounds.width / 2) {
                 handlePrev();
             } else {
                 handleNext();
@@ -71,67 +71,59 @@ const PhotoViewer: FC<PhotoViewerProps> = ({
         [handlePrev, handleNext]
     );
 
-    const wrapperRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        if (wrapperRef.current) {
-            wrapperRef.current.focus();
-        }
-    }, []);
-
     return (
-        <div
+        <dialog
             className={styles.photoViewer}
-            tabIndex={0}
+            open
             onKeyDown={handleKeyDown}
-            onMouseDown={handleImageClick}
-            ref={wrapperRef}
+            onCancel={handleClose}
+            onMouseDown={(event) => {
+                if (event.target === event.currentTarget) {
+                    handleClose();
+                }
+            }}
+            aria-label="Просмотр изображений"
         >
-            <div
-                className={styles.overlay}
-                onMouseDown={handlePrev}
-            />
-            <NextImage
-                src={currentIndex >= 0 && currentIndex < images.length ? images[currentIndex] : ''}
-                alt="Current Image"
-                className={styles.image}
-                loading="eager"
-                width={1800}
-                height={1080}
-            />
-            <div
-                className={styles.overlay}
-                onMouseDown={handleClose}
-            />
-            <div className={styles.buttonContainer}>
-                <button
-                    className={styles.buttonPrev}
-                    onMouseDown={handlePrev}
-                    aria-label="Previous"
-                    tabIndex={-1}
-                >
-                    &lt;
-                </button>
-                <button
-                    className={styles.buttonNext}
-                    onMouseDown={handleNext}
-                    aria-label="Next"
-                    tabIndex={-1}
-                >
-                    &gt;
-                </button>
+            <div className={styles.stage} onMouseDown={handleImageClick}>
+                <NextImage
+                    src={currentIndex >= 0 && currentIndex < images.length ? images[currentIndex] : ''}
+                    alt="Current Image"
+                    className={styles.image}
+                    loading="eager"
+                    width={1800}
+                    height={1080}
+                />
+                <div className={styles.buttonContainer}>
+                    <button
+                        className={styles.buttonPrev}
+                        onClick={handlePrev}
+                        aria-label="Previous"
+                        type="button"
+                    >
+                        &lt;
+                    </button>
+                    <button
+                        className={styles.buttonNext}
+                        onClick={handleNext}
+                        aria-label="Next"
+                        type="button"
+                    >
+                        &gt;
+                    </button>
+                </div>
             </div>
             <button
                 className={styles.buttonClose}
-                onMouseDown={handleClose}
+                onClick={handleClose}
                 aria-label="Закрыть окно"
+                type="button"
             >
                 Close
             </button>
             <div className={styles.imageCounter}>
                 {currentIndex + 1} / {images.length}
             </div>
-        </div>
+        </dialog>
     );
 };
 

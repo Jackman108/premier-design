@@ -1,17 +1,16 @@
 import NextImage from "next/image";
 import styles from "./Features.module.css";
-import {ReactElement, useMemo} from "react";
-import {FeatureProps} from "@shared/ui/features-section/interface/Feature.props";
+import {ReactElement} from "react";
+import {FeatureProps, FeaturesProps} from "@shared/ui/features-section/interface/Feature.props";
 
 const Features = (
-    {features}: { features: FeatureProps[] }
+    {features}: FeaturesProps
 ): ReactElement => {
-    const memoizedFeatures = useMemo(() => features, [features]);
     return (
         <section className={styles.features}>
             <div className={styles.features__container}>
                 <div className={styles.features__list}>
-                    {memoizedFeatures.map(({id, title, icon, iconPng}: FeatureProps) => (
+                    {features.map(({id, title, icon, iconPng}: FeatureProps) => (
                         <div className={styles.features__item} key={`id_${id}`}>
                             <NextImage
                                 src={icon ? icon : iconPng}

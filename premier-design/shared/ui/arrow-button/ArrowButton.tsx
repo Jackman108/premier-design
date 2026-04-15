@@ -1,13 +1,9 @@
-import React, {ButtonHTMLAttributes, DetailedHTMLProps} from 'react';
+import React from 'react';
 import styles from './ArrowButton.module.css';
 import costingButton from '../../../public/arrow.svg';
 import Image from 'next/image';
 
-interface ArrowButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-    onClick?: () => void;
-}
-
-const ArrowButton: React.FC<ArrowButtonProps> = () => {
+const ArrowButton: React.FC = () => {
     return (
         <div className={styles.arrow__buttons}>
             <button className={styles.arrow__button} aria-label="Стрелка влево">

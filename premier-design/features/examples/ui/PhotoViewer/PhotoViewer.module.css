@@ -1,5 +1,6 @@
 .photoViewer {
     position: fixed;
+    inset: 0;
     top: 0;
     left: 0;
     right: 0;
@@ -8,15 +9,25 @@
     align-items: center;
     justify-content: center;
     z-index: 500;
+    border: none;
+    margin: 0;
+    padding: 0;
+    max-width: none;
+    max-height: none;
+    background: transparent;
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+.photoViewer::backdrop {
     background-color: var(--overlay-scrim-strong);
+}
+
+.stage {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
 }
 
@@ -24,7 +35,7 @@
     max-width: 85%;
     max-height: 85%;
     object-fit: contain;
-    position: absolute;
+    position: relative;
     z-index: 1000;
 }
 
@@ -60,7 +71,7 @@
 }
 
 .buttonPrev {
-left: 1%
+left: 1%;
 }
 
 .buttonNext {

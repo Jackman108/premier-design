@@ -15,7 +15,7 @@
     "prepare": "node ./node_modules/husky/bin.js",
     "lint": "node ./node_modules/eslint/bin/eslint.js .",
     "lint:fix": "node ./node_modules/eslint/bin/eslint.js . --fix",
-    "check:regressions": "node ./scripts/check-regressions.mjs --all",
+    "check:regressions": "node ./scripts/check-p2-regressions.mjs --all",
     "test": "node ./node_modules/jest/bin/jest.js",
     "test:coverage": "node ./node_modules/jest/bin/jest.js --coverage --watch=false",
     "test:e2e": "node ./node_modules/@playwright/test/cli.js test",

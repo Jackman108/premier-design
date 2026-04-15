@@ -1,55 +1,29 @@
 'use client';
-import {ChangeEvent, FC, FormEvent, memo, useState} from "react";
+import {FC, memo} from "react";
 import styles from "./FeedbackForm.module.css";
-import {FeedbackFormProps, FeedbackItem} from "@shared/ui/order/interface/FeedbackModal.props";
+import {FeedbackFormProps} from "@shared/ui/order/interface/FeedbackModal.props";
 import {UiButton} from "@shared/ui/primitives/UiButton";
 import {UiCheckbox} from "@shared/ui/primitives/UiCheckbox";
 import {UiInput} from "@shared/ui/primitives/UiInput";
 import {UiTextarea} from "@shared/ui/primitives/UiTextarea";
 import {PatternFormat} from 'react-number-format';
-import {validateForm} from "../../utils/validateForm";
+import {useFeedbackForm} from "@shared/ui/order/hooks/useFeedbackForm";
 
 
 const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
-    const [formDataState, setFormDataState] = useState<FeedbackItem>({
-        name: "",
-        phone: "",
-        email: "",
-        message: "",
-        consent: false,
-    });
-    const [country, setCountry] = useState("by");
-    const [isConsentGiven, setIsConsentGiven] = useState(false);
-    const [errors, setErrors] = useState({name: "", phone: "", email: "", message: "", consent: ""});
-
-
-    const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const {name, value} = event.target;
-        setFormDataState((prev) => ({...prev, [name]: value}));
-        setErrors((prevErrors) => ({...prevErrors, [name]: ""}));
-    };
-
-    const handlePhoneChange = (values: { value: string }) => {
-        const countryCode = country === 'ru' ? '+7' : '+375';
-        const formattedPhone = `${countryCode}${values.value}`;
-        setFormDataState((prev) => ({...prev, phone: formattedPhone}));
-        setErrors((prevErrors) => ({...prevErrors, phone: ""}));
-    };
-
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        const formErrors = validateForm(formDataState, isConsentGiven);
-        if (Object.values(formErrors).some((error) => error)) {
-            setErrors(formErrors);
-            return;
-        }
-
-        const cleanedPhone = formDataState.phone.replace(/\D/g, '');
-        onSubmit({...formDataState, phone: cleanedPhone, consent: isConsentGiven});
-    };
-
-    const phoneMask = country === 'ru' ? '+7 (###) ###-##-##' : '+375 (##) ###-##-##';
+    const {
+        country,
+        errors,
+        formDataState,
+        isConsentGiven,
+        phoneMask,
+        displayedPhone,
+        setCountry,
+        handleInputChange,
+        handlePhoneChange,
+        handleConsentChange,
+        handleSubmit,
+    } = useFeedbackForm({onSubmit});
 
     return (
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -94,7 +68,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                             inputMode="tel"
                             autoComplete="tel"
                             placeholder="Введите ваш номер телефона"
-                            value={formDataState.phone.replace(/^\+375|^\+7/, "")}
+                            value={displayedPhone}
                             onValueChange={handlePhoneChange}
                             className={`${styles.tokenControl} ${errors.phone ? styles.inputError : ''}`.trim()}
                             aria-invalid={errors.phone ? 'true' : undefined}
@@ -138,7 +112,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                     id="feedback-consent"
                     name="consent"
                     checked={isConsentGiven}
-                    onChange={() => setIsConsentGiven((prev) => !prev)}
+                    onChange={handleConsentChange}
                     aria-invalid={errors.consent ? 'true' : undefined}
                     error={errors.consent || undefined}
                     label={

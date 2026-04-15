@@ -1,18 +1,11 @@
 import React from 'react';
-import {useRouter} from 'next/router';
 import styles from './BackButton.module.css';
 import {FaArrowLeft} from "react-icons/fa";
-
-interface BackButtonProps {
-    label?: string;
-}
+import {BackButtonProps} from '@shared/ui/back-button/interface/BackButton.props';
+import {useBackNavigation} from '@shared/ui/back-button/hooks/useBackNavigation';
 
 const BackButton: React.FC<BackButtonProps> = ({label = 'Вернуться назад'}) => {
-    const router = useRouter();
-
-    const handleBackClick = () => {
-        router.back();
-    };
+    const {handleBackClick} = useBackNavigation();
 
     return (
         <div className={styles.backButtonWrapper}>

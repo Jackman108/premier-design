@@ -1,5 +1,5 @@
 'use client'
-import {FC} from 'react';
+import {FC, MouseEvent} from 'react';
 import CollapsibleContainer from '@shared/ui/calculator-modal/ui/CollapsibleContainer/CollapsibleContainer';
 import CostInput from '@shared/ui/calculator-modal/ui/CostInput/CostInput';
 import Logo from '@shared/ui/logo/Logo';
@@ -28,12 +28,23 @@ const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
     } = useCalculatorHandlers(card);
 
     const {repairTypeItems, propertyTypeItems, serviceTypeItems} = typeItemsConfig;
+    const handleDialogMouseDown = (event: MouseEvent<HTMLDialogElement>) => {
+        if (event.target === event.currentTarget) {
+            onClose();
+        }
+    };
 
     return (
-        <div className={styles.modal_overlay} onClick={() => onClose()}>
-            <div className={styles.modal_container} onClick={(e) => e.stopPropagation()}>
+        <dialog
+            className={styles.modal_overlay}
+            open
+            onCancel={onClose}
+            onMouseDown={handleDialogMouseDown}
+            aria-labelledby="calculator-modal-title"
+        >
+            <div className={styles.modal_container}>
                 <div className={styles.modal_header}>
-                    <h2 className={styles.header_title}>
+                    <h2 id="calculator-modal-title" className={styles.header_title}>
                         Рассчитайте стоимость Вашего ремонта
                     </h2>
                     <button className={styles.header_close} onClick={() => onClose()} aria-label="Закрыть калькулятор">
@@ -107,7 +118,7 @@ const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
                     </button>
                 </div>
             </div>
-        </div>
+        </dialog>
     );
 };
 

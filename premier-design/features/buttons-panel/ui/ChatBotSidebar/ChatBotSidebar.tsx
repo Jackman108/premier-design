@@ -6,18 +6,12 @@ import MessageParser from '@features/buttons-panel/logic/MessageParser';
 import ActionProvider from '@features/buttons-panel/logic/ActionProvider';
 import styles from './ChatBotSidebar.module.css';
 import 'react-chatbot-kit/build/main.css'
-import {useChatMessages} from "@features/buttons-panel/hooks/useChatMessages";
 import PanelButton from "@features/buttons-panel/ui/PanelButton/PanelButton";
-import {useModalState} from "@shared/hooks/useModalState";
-import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
-
-interface ChatBotSidebarProps {
-    panelData: PanelProps;
-}
+import {ChatBotSidebarProps} from "@features/buttons-panel/interface/ChatBotSidebar.props";
+import {useChatBotSidebar} from "@features/buttons-panel/hooks/useChatBotSidebar";
 
 const ChatBotSidebar: FC<ChatBotSidebarProps> = ({panelData}) => {
-    const {isOpen: isBotOpen, toggleModal} = useModalState();
-    const [messages, saveMessages] = useChatMessages();
+    const {isBotOpen, toggleModal, messageHistory, saveMessages} = useChatBotSidebar();
 
 
     return (
@@ -34,7 +28,7 @@ const ChatBotSidebar: FC<ChatBotSidebarProps> = ({panelData}) => {
                             config={chatbotConfig}
                             messageParser={MessageParser}
                             actionProvider={ActionProvider}
-                            messageHistory={messages.length > 0 ? messages : chatbotConfig.initialMessages}
+                            messageHistory={messageHistory}
                             saveMessages={saveMessages}
                             placeholderText='Задайте Ваш вопрос'
                             runInitialMessagesWithHistory={true}

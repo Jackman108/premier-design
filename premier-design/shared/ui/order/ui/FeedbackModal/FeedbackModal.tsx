@@ -1,32 +1,25 @@
 'use client'
 import styles from './FeedbackModal.module.css';
 import FeedbackForm from '@shared/ui/order/ui/FeedbackForm/FeedbackForm';
-import {FC, MouseEvent, useEffect,} from 'react';
+import {FC, MouseEvent} from 'react';
 import {FeedbackModalProps} from '@shared/ui/order/interface/FeedbackModal.props';
 
 
 const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit}) => {
-    const handleOverlayClick = (event: MouseEvent<HTMLDivElement>) => {
+    const handleOverlayClick = (event: MouseEvent<HTMLDialogElement>) => {
         if (event.target === event.currentTarget) onClose();
     };
 
-    useEffect(() => {
-        const handleEscapeKey = (event: KeyboardEvent) => {
-            if (event.key === "Escape") onClose();
-        };
-        document.addEventListener("keydown", handleEscapeKey);
-        return () => document.removeEventListener("keydown", handleEscapeKey);
-    }, [onClose]);
-
     return (
-        <div className={styles.overlay} onMouseDown={handleOverlayClick}>
-            <div
-                className={styles.modal}
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="feedback-modal-heading"
-                aria-describedby="feedback-modal-description"
-            >
+        <dialog
+            className={styles.overlay}
+            open
+            onCancel={onClose}
+            onMouseDown={handleOverlayClick}
+            aria-labelledby="feedback-modal-heading"
+            aria-describedby="feedback-modal-description"
+        >
+            <div className={styles.modal}>
                 <div className={styles.modal_top}>
                     <div className={styles.modal_text}>
                         <h3 id="feedback-modal-heading">Оставьте заявку</h3>
@@ -35,7 +28,7 @@ const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit}) => {
                     <button
                         className={styles.closeButton}
                         type="button"
-                        onMouseDown={onClose}
+                        onClick={onClose}
                         aria-label="Закрыть форму"
                     >
                         &times;
@@ -47,7 +40,7 @@ const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit}) => {
                     />
                 </div>
             </div>
-        </div>
+        </dialog>
     );
 };
 

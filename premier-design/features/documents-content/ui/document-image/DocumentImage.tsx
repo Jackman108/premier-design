@@ -2,11 +2,7 @@
 import Image from "next/image";
 import styles from './DocumentImage.module.css';
 import {FC} from "react";
-
-interface DocumentImageProps {
-    alt: string;
-    src: string;
-}
+import {DocumentImageProps} from "@features/documents-content/interface/DocumentImage.props";
 
 const DocumentImage: FC<DocumentImageProps> = ({alt, src}) => (
     <div className={styles.content__image}>

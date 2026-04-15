@@ -2,12 +2,9 @@ import React, {FC} from 'react';
 import styles from './Papers.module.css';
 import {Paper} from '@features/papers/interface/Paper.props';
 import {usePaperNavigation} from '@features/papers/hooks/usePaperNavigation';
+import {PapersProps} from '@features/papers/interface/Papers.props';
 
-export interface FooterPapersProps {
-    papers: Paper[];
-}
-
-const Papers: FC<FooterPapersProps> = ({papers}) => {
+const Papers: FC<PapersProps> = ({papers}) => {
     const {handlePaperClick} = usePaperNavigation();
 
     return (
