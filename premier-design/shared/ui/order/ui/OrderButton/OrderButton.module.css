@@ -12,7 +12,7 @@
 		border-color var(--transition-base), box-shadow var(--transition-base),
 		text-shadow var(--transition-base);
 	text-shadow: var(--order-text-shadow-light);
-	z-index: 2;
+	z-index: var(--z-content);
 }
 
 .button-white {

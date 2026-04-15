@@ -15,7 +15,7 @@
 	position: fixed;
 	width: 100%;
 	min-width: 320px;
-	z-index: 501;
+	z-index: var(--z-modal);
 }
 
 .container {

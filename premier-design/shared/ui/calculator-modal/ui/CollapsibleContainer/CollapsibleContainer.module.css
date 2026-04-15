@@ -33,7 +33,7 @@
 .collapse_body {
     display: grid;
     color: var(--brown-dark);
-    z-index: 9999;
+    z-index: var(--z-dropdown);
     background-color: var(--beige-dark);
 }
 .active{

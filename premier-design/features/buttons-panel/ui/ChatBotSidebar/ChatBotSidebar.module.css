@@ -2,7 +2,7 @@
 	position: fixed;
 	right: 3%;
 	bottom: 16%;
-	z-index: 1000;
+	z-index: var(--z-toast);
 }
 
 

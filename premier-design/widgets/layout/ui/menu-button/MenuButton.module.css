@@ -17,7 +17,7 @@
 		cursor: pointer;
 		display: grid;
 		align-items: center;
-		z-index: 10;
+		z-index: var(--z-raised);
 		transition: transform var(--transition-base);
 	}
 

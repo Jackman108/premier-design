@@ -15,6 +15,12 @@
 
 ### Changed
 
+- **Sprint 12 (завершение):** закрыты `U-3`, `U-5`, `U-6`, `U-7`.
+  `U-3`: в `styles/tokens.css` добавлена единая шкала слоев (`--z-*`), хардкодные `z-index` в CSS-модулях заменены на токены по всему UI-слою.
+  `U-5`: в `styles/tokens.css` добавлены dark-mode переопределения семантических токенов через `[data-theme='dark'], .dark` (совместимо с `next-themes`).
+  `U-6`: `shared/ui/primitives/UiButton.tsx` переведен на polymorphic API (`as`) с `forwardRef`, без дублирования стилей для `<button>/<a>/...`.
+  `U-7`: подключен `@pandacss/dev`, добавлен `panda.config.ts`, скрипты `panda:codegen` / `panda:watch`, сгенерирован `styled-system/` для токенов и utility/pattern API.
+- **Sprint 12 (аудит):** из `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` удалены выполненные `U-3`, `U-5`, `U-6`, `U-7` и строка `Sprint 12`; в документе оставлены только нереализованные задачи.
 - **Sprint 11 (завершение):** закрыты `P-1`, `P-2`, `R-1`.
   `P-1`: в `next.config.js` включен React Compiler (`experimental.reactCompiler: true`) для production/dev сборок Next.js.
   `P-2`: усилен code splitting тяжелых UI-зависимостей — `CalculatorModal` загружается через `next/dynamic` в `CalculatorButton`, чат-движок `react-chatbot-kit` вынесен в отдельный lazy-runtime `ChatBotRuntime` (рендерится только при открытии чата).

@@ -11,7 +11,7 @@
 	white-space: nowrap;
 	animation: typing 1s steps(30) 1s 1 normal both;
 	font-family: var(--font-family), monospace;
-	z-index: 2;
+	z-index: var(--z-content);
 }
 
 .description-white {
@@ -22,7 +22,7 @@
 	text-align: center;
 	color: var(--beige-dark);
 	text-shadow: var(--text-shadow-on-light-soft);
-	z-index: 2;
+	z-index: var(--z-content);
 }
 
 @keyframes typing {
@@ -39,7 +39,7 @@
 	font-weight: 600;
 	text-align: center;
 	color: var(--brown-dark);
-	z-index: 2;
+	z-index: var(--z-content);
 }
 
 .description-black {
@@ -49,7 +49,7 @@
 	max-width: 80vw;
 	text-align: center;
 	color: var(--brown);
-	z-index: 2;
+	z-index: var(--z-content);
 }
 
 @media (max-width: 768px) {

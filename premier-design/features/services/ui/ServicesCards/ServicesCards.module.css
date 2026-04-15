@@ -51,7 +51,7 @@
 	opacity: 0.8;
 	transition: bottom var(--transition-slow), opacity var(--transition-slow),
 		background-color var(--transition-base);
-	z-index: 1;
+	z-index: var(--z-content);
 }
 
 .services__card:hover .card__title {

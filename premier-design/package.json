@@ -13,8 +13,8 @@
     "analyze": "node ./node_modules/cross-env/src/bin/cross-env.js ANALYZE=true yarn build",
     "start": "node ./node_modules/next/dist/bin/next start",
     "prepare": "node ./node_modules/husky/bin.js",
-    "lint": "node ./node_modules/eslint/bin/eslint.js .",
-    "lint:fix": "node ./node_modules/eslint/bin/eslint.js . --fix",
+    "lint": "node ./node_modules/eslint/bin/eslint.js . --ignore-pattern styled-system/**",
+    "lint:fix": "node ./node_modules/eslint/bin/eslint.js . --fix --ignore-pattern styled-system/**",
     "check:regressions": "node ./scripts/check-p2-regressions.mjs --all",
     "test": "node ./node_modules/jest/bin/jest.js",
     "test:coverage": "node ./node_modules/jest/bin/jest.js --coverage --watch=false",
@@ -23,6 +23,8 @@
     "type": "node pages/api/importData.mjs",
     "storybook": "node ./node_modules/storybook/dist/bin/dispatcher.js dev -p 6006",
     "build-storybook": "node ./node_modules/storybook/dist/bin/dispatcher.js build",
+    "panda:codegen": "node ./node_modules/@pandacss/dev/bin.js codegen",
+    "panda:watch": "node ./node_modules/@pandacss/dev/bin.js codegen --watch",
     "sync:npm-lock": "npm install --package-lock-only --ignore-scripts"
   },
   "resolutions": {
@@ -57,6 +59,7 @@
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^16.2.3",
+    "@pandacss/dev": "^1.9.1",
     "@playwright/test": "^1.56.0",
     "@storybook/addon-a11y": "^10.3.5",
     "@storybook/addon-docs": "^10.3.5",
