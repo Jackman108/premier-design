@@ -1,11 +1,16 @@
 .item {
 	height: 100%;
-	background-color: #fff;
+	background-color: var(--color-surface);
 	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+	border-radius: var(--radius-lg);
+	box-shadow: var(--shadow-md);
 	min-width: 300px;
 	text-align: center;
+	transition: box-shadow var(--transition-base);
+}
+
+.item:hover {
+	box-shadow: var(--shadow-lg);
 }
 
 .content__photo {
@@ -18,7 +23,7 @@
 
 .content__text {
 	font-size: 1rem;
-	color: #555;
+	color: var(--secondary);
 }
 
 .content__quote {
@@ -28,7 +33,7 @@
 
 .content__author {
 	font-weight: bold;
-	color: #333;
+	color: var(--gray-dark);
 }
 
 @media (max-width: 768px) {

@@ -2,7 +2,7 @@ import styles from './ProjectOffer.module.css';
 import {FC, ReactElement, useMemo} from "react";
 import {ProjectOfferProps} from "@features/project-offer/interface/OfferProject.props";
 import OfferCard from "../OfferCard/OfferCard";
-import SliderComponent from '@shared/ui/slider/ui/Slider';
+import SliderComponent from '@shared/ui/slider/ui/SliderLazy';
 
 const ProjectOffer: FC<ProjectOfferProps> = ({data, buttonData, buttonStyle}): ReactElement => {
     const slidesPerView = 1; // Настроить количество слайдов на экране (можно адаптировать для мобильных)

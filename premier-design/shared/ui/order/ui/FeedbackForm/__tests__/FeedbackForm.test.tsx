@@ -36,7 +36,7 @@ describe('FeedbackForm', () => {
             phone: '375291234567',
             email: 'ivan@test.by',
             message: 'Нужен расчет и консультация',
-            consent: false,
+            consent: true,
         });
     });
 });

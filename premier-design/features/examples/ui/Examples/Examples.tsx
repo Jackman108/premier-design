@@ -1,6 +1,6 @@
 import React, {FC, ReactElement} from 'react';
 import styles from './Examples.module.css';
-import SliderComponent from '@shared/ui/slider/ui/Slider';
+import SliderComponent from '@shared/ui/slider/ui/SliderLazy';
 import Title from '@shared/ui/title/ui/Title';
 import ExampleCard from "../ExamplesCard/ExampleCard";
 import {ExamplesProps} from "@features/examples/interface/Examples.props";

@@ -3,7 +3,9 @@ import {ChangeEvent, FC, FormEvent, memo, useState} from "react";
 import styles from "./FeedbackForm.module.css";
 import {FeedbackFormProps, FeedbackItem} from "@shared/ui/order/interface/FeedbackModal.props";
 import {UiButton} from "@shared/ui/primitives/UiButton";
+import {UiCheckbox} from "@shared/ui/primitives/UiCheckbox";
 import {UiInput} from "@shared/ui/primitives/UiInput";
+import {UiTextarea} from "@shared/ui/primitives/UiTextarea";
 import {PatternFormat} from 'react-number-format';
 import {validateForm} from "../../utils/validateForm";
 
@@ -44,7 +46,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
         }
 
         const cleanedPhone = formDataState.phone.replace(/\D/g, '');
-        onSubmit({...formDataState, phone: cleanedPhone});
+        onSubmit({...formDataState, phone: cleanedPhone, consent: isConsentGiven});
     };
 
     const phoneMask = country === 'ru' ? '+7 (###) ###-##-##' : '+375 (##) ###-##-##';
@@ -74,7 +76,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                             id="feedback-country"
                             onChange={(e) => setCountry(e.target.value)}
                             value={country}
-                            className={errors.phone ? styles.inputError : ''}
+                            className={`${styles.tokenControl} ${styles.tokenControlSelect} ${errors.phone ? styles.inputError : ''}`.trim()}
                             aria-label="Код страны для номера телефона"
                         >
                             <option value="ru">🇷🇺</option>
@@ -94,7 +96,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                             placeholder="Введите ваш номер телефона"
                             value={formDataState.phone.replace(/^\+375|^\+7/, "")}
                             onValueChange={handlePhoneChange}
-                            className={errors.phone ? styles.inputError : ''}
+                            className={`${styles.tokenControl} ${errors.phone ? styles.inputError : ''}`.trim()}
                             aria-invalid={errors.phone ? 'true' : undefined}
                             aria-describedby={errors.phone ? 'phone-error' : undefined}
                         />
@@ -118,8 +120,8 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                 />
             </div>
             <div className={styles.input__group}>
-                <label htmlFor="message" className={styles.fieldLabel}>Сообщение</label>
-                <textarea
+                <UiTextarea
+                    label="Сообщение"
                     id="message"
                     name="message"
                     placeholder="Введите ваше сообщение"
@@ -127,26 +129,32 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                     onChange={handleInputChange}
                     className={errors.message ? styles.inputError : ''}
                     aria-invalid={errors.message ? 'true' : undefined}
-                    aria-describedby={errors.message ? 'message-error' : undefined}
+                    error={errors.message || undefined}
+                    rows={6}
                 />
-                {errors.message && <div id="message-error" className={styles.errorMessage} role="alert">{errors.message}</div>}
             </div>
-            <div className={`${styles.input__group} ${styles.consentRow}`}>
-                <input
-                    type="checkbox"
+            <div className={styles.input__group}>
+                <UiCheckbox
                     id="feedback-consent"
                     name="consent"
                     checked={isConsentGiven}
-                    onChange={() => setIsConsentGiven(prev => !prev)}
+                    onChange={() => setIsConsentGiven((prev) => !prev)}
                     aria-invalid={errors.consent ? 'true' : undefined}
-                    aria-describedby={errors.consent ? 'consent-error' : undefined}
+                    error={errors.consent || undefined}
+                    label={
+                        <>
+                            Нажимая на кнопку, вы соглашаетесь с{' '}
+                            <a href="/documents/user-agreement" target="_blank" rel="noopener noreferrer">
+                                пользовательским соглашением
+                            </a>{' '}
+                            и{' '}
+                            <a href="/documents/privacy-policy" target="_blank" rel="noopener noreferrer">
+                                политикой конфиденциальности
+                            </a>
+                            .
+                        </>
+                    }
                 />
-                <label htmlFor="feedback-consent">
-                    Нажимая на кнопку, вы соглашаетесь с{" "}
-                    <a href="/documents/user-agreement" target="_blank" rel="noopener noreferrer">пользовательским соглашением</a> и{" "}
-                    <a href="/documents/privacy-policy" target="_blank" rel="noopener noreferrer">политикой конфиденциальности</a>.
-                </label>
-                {errors.consent && <div id="consent-error" className={styles.errorMessage} role="alert">{errors.consent}</div>}
             </div>
             <div className={styles.form__button}>
                 <UiButton type="submit" className={styles.submitButton} aria-label="Отправить заявку">

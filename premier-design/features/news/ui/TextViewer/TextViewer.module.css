@@ -7,7 +7,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: rgba(0, 0, 0, 0.5);
+	background-color: var(--overlay-scrim);
 	z-index: 999;
 	opacity: 0;
 	animation: fadeIn 0.3s ease-in-out forwards;
@@ -25,16 +25,21 @@
 .modal__close {
 	margin: 10px auto;
 	background-color: var(--brown);
-	color: #fff;
+	color: var(--color-surface);
 	border: none;
 	padding: 10px 20px;
-	border-radius: 5px;
+	border-radius: var(--radius-md);
 	cursor: pointer;
-	transition: background-color 0.3s ease-in-out;
+	transition: background-color var(--transition-base);
 }
 
 .modal__close:hover {
 	background-color: var(--brown-light);
+}
+
+.modal__close:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
 }
 
 .content__image {

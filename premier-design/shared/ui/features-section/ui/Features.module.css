@@ -13,7 +13,7 @@
 	margin: 0 auto;
 	bottom: 2vw;
 	border-radius: 0.7vh;
-	box-shadow: 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+	box-shadow: var(--shadow-lg);
 	background-color: var(--beige-dark);
 	z-index: 3;
 
@@ -38,7 +38,7 @@
 	align-items: center;
 	text-align: center;
 	border-right: 1px solid var(--brown-white);
-	transition: transform 0.3s ease-in-out;
+	transition: transform var(--transition-base) ease-in-out;
 }
 
 .features__item:hover {

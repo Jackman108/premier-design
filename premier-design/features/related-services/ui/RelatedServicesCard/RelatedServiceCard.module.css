@@ -7,34 +7,36 @@
 
 .itemLink:hover .card {
 	transform: translateY(-5px);
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+	box-shadow: var(--shadow-lg);
+}
+
+.itemLink:focus-visible .card {
+	transform: translateY(-5px);
+	box-shadow: var(--shadow-lg), var(--focus-ring);
+	outline: none;
 }
 
 .item {
 	height: 100%;
 	display: flex;
 	justify-content: center;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	transition: transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .card {
-	background: #fff;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+	background: var(--color-surface);
+	box-shadow: var(--shadow-md);
 	overflow: hidden;
 	text-align: center;
-	transition: transform 0.3s ease, box-shadow 0.3s ease;
+	border-radius: var(--radius-md);
+	transition: transform var(--transition-base), box-shadow var(--transition-base);
 	will-change: transform, box-shadow;
-}
-
-.card:hover {
-	transform: translateY(-5px);
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .imageWrapper {
 	height: 180px;
 	overflow: hidden;
-	background-color: #f3f3f3;
+	background-color: var(--gray-light);
 	display: flex;
 	justify-content: center;
 }
@@ -43,13 +45,13 @@
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	border-bottom: 1px solid #e0e0e0;
+	border-bottom: 1px solid var(--color-border);
 }
 
 .title {
 	font-size: 20px;
 	margin: 16px 0 8px;
-	transition: color 0.2s ease;
+	transition: color var(--transition-fast);
 }
 
 .title a {
@@ -57,14 +59,16 @@
 	color: var(--brown);
 }
 
-.title a:hover {
+.title a:hover,
+.title a:focus-visible {
 	text-decoration: underline;
 	color: var(--brown-light);
+	outline: none;
 }
 
 .description {
 	font-size: 16px;
-	color: #666;
+	color: var(--color-text-muted);
 	padding: 0 16px 16px;
 	line-height: 1.6;
 }

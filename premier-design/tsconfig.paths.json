@@ -7,7 +7,7 @@
       "@entities/*": ["./entities/*"],
       "@shared/*": ["./shared/*"],
       "@config/*": ["./config/*"],
-      "@interface/*": ["./interface/*"],
+      "@app-types/*": ["./types/*"],
       "@hooks/*": ["./hooks/*"],
       "@lib/*": ["./lib/*"]
     }

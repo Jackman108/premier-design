@@ -8,7 +8,7 @@ export const findRelatedService = (data: DataProps, categoryId: string) => {
 
     const relatedService = data.relatedServices.find(service => getCanonicalPath(service.canonical) === categoryId);
     if (!relatedService) {
-        throw new Error(`Service with id ${relatedService} not found`);
+        throw new Error(`Related service with id ${categoryId} not found`);
     }
 
     return {relatedService}

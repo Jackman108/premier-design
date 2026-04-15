@@ -3,7 +3,7 @@ import styles from './Reviews.module.css';
 import Title from "@shared/ui/title/ui/Title";
 import {ReviewsProps} from "@shared/ui/reviews/ui/interface/Review.props";
 import useResizeEffects from "@shared/hooks/useResizeEffects";
-import Slider from "@shared/ui/slider/ui/Slider";
+import Slider from "@shared/ui/slider/ui/SliderLazy";
 import ReviewCard from "@shared/ui/reviews/ui/ReviewCard/ReviewCard";
 
 const Reviews: FC<ReviewsProps> = ({title, reviews}) => {

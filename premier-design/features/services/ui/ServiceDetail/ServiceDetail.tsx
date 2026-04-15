@@ -59,8 +59,7 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                                 (max-width: 1440px) 60vw,
                                 920px
                                 "
-                                placeholder="blur"
-                                blurDataURL={categoryProps.image.src}
+                                placeholder="empty"
                                 className={styles.image}
                             />
                         </div>

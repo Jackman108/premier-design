@@ -72,6 +72,8 @@
 
 ## Docker
 
+Production-образ (`Dockerfile.prod`) собирает приложение с **`output: 'standalone'`** (Next.js) и запускает **`node server.js`** внутри контейнера; полный `node_modules` в рантайм-образ не копируется.
+
 Из корня репозитория доступны:
 - `docker-compose.development.yaml` - dev окружение
 - `docker-compose.yaml` - production-like окружение

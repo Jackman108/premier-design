@@ -34,23 +34,23 @@ const chatbotConfig = {
     },
     customStyles: {
         botMessageBox: {
-            backgroundColor: '#786B64',
+            backgroundColor: 'var(--brown-light)',
         },
         chatButton: {
-            backgroundColor: '#786B64',
+            backgroundColor: 'var(--brown-light)',
         },
         botAvatar: {
-            backgroundColor: "#786B64",
+            backgroundColor: 'var(--brown-light)',
         },
     },
     customComponents: {
         header: () => <div style={{
-            color: "white",
+            color: 'var(--color-surface)',
             fontSize: 20,
-            textAlign: "center",
-            backgroundColor: "#786B64",
-            padding: "5px",
-            borderRadius: "3px"
+            textAlign: 'center',
+            backgroundColor: 'var(--brown-light)',
+            padding: '5px',
+            borderRadius: 'var(--radius-sm)',
         }}>Ваш консультант {BOT_NAME}</div>,
         botAvatar: (props: CustomAvatarProps) => (
             <CustomAvatar {...props} src={BOT_AVATAR_PATH} alt="Bot Avatar"/>

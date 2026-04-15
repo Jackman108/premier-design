@@ -49,6 +49,34 @@
 
 	--shadow-sm: 0 1px 2px rgb(13 11 11 / 0.08);
 	--shadow-md: 0 4px 12px rgb(13 11 11 / 0.12);
+	--shadow-lg: 0 8px 24px rgb(13 11 11 / 0.16);
+	/* Фиксированная панель снизу (баннер cookies): мягкое «свечение» вверх */
+	--shadow-banner-glow-up: 0 -23px 25px 0 color-mix(in srgb, var(--color-surface) 59%, transparent);
+
+	--transition-fast: 150ms ease;
+	--transition-base: 200ms ease;
+	--transition-slow: 350ms ease;
+
+	--overlay-on-media: rgb(13 11 11 / 0.6);
+	--overlay-on-media-strong: rgb(13 11 11 / 0.8);
+	--overlay-scrim: rgb(13 11 11 / 0.5);
+	--overlay-scrim-strong: rgb(13 11 11 / 0.7);
+	--overlay-light: rgb(255 255 255 / 0.9);
+
+	--shadow-inset-soft: inset 0 1px 3px rgb(13 11 11 / 0.1);
+	--color-accent-soft: rgb(115 81 245 / 0.08);
+	--overlay-panel: rgb(255 255 255 / 0.7);
+	--text-shadow-on-light: 0 1px 1px rgb(255 255 255 / 0.8);
+	--text-shadow-on-light-soft: 0 0 1px rgb(255 255 255 / 0.8);
+
+	/* Кнопки заказа (полупрозрачный текст на тёмном фоне баннера) */
+	--order-fg-muted: color-mix(in srgb, var(--beige-dark) 40%, transparent);
+	--order-fg-soft: color-mix(in srgb, var(--beige-dark) 70%, transparent);
+	--order-border-soft: color-mix(in srgb, var(--beige-dark) 30%, transparent);
+	--order-bg-hover: color-mix(in srgb, var(--brown) 40%, transparent);
+	--order-text-shadow-light: 0 1px 1px color-mix(in srgb, var(--beige-dark) 80%, transparent);
+	--order-text-shadow-dark: 0 1px 1px color-mix(in srgb, var(--brown) 100%, transparent);
+	--order-text-shadow-dark-muted: 0 1px 1px color-mix(in srgb, var(--brown) 40%, transparent);
 
 	--focus-ring: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-accent);
 }

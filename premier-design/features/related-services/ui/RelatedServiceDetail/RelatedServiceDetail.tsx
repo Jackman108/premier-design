@@ -54,8 +54,7 @@ const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
                                 width={920}
                                 height={600}
                                 sizes="(max-width: 600px) 100vw, 920px"
-                                placeholder="blur"
-                                blurDataURL={relatedService.image}
+                                placeholder="empty"
                                 className={styles.image}
                             />
                         </div>

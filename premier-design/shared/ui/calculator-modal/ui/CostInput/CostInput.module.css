@@ -15,16 +15,16 @@
 	outline: none;
 }
 
-.input_area:focus {
+.input_area:focus-visible {
 	outline: 2px solid var(--brown-light);
 }
 
 .empty {
-	border: 2px solid #c41e3a;
+	border: 2px solid var(--color-danger);
 }
 
 .error {
-	color: #C41E3A;
+	color: var(--color-danger);
 	margin-top: 0.5rem;
 	font-size: 0.8rem;
 	font-style: oblique;

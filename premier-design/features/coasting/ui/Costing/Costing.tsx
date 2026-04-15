@@ -7,7 +7,7 @@ import {FC, ReactElement} from 'react';
 import {CostingProps} from "@features/coasting/interface/Costing.props";
 import {useCostingCardLogic} from "@features/coasting/hooks/useCostingCardLogic";
 import CalculatorModal from "@shared/ui/calculator-modal/ui/CalculatorModal/CalculatorModal";
-import SliderComponent from '@shared/ui/slider/ui/Slider';
+import SliderComponent from '@shared/ui/slider/ui/SliderLazy';
 
 const Costing: FC<CostingProps> = ({cards, title}): ReactElement => {
     const {

@@ -1,12 +1,25 @@
 'use client'
-import {FC, ReactElement} from 'react';
+import {FC, KeyboardEvent, ReactElement} from 'react';
 import styles from './ExampleCard.module.css';
 import NextImage from 'next/image';
 import {ExampleCardComponentProps} from "@features/examples/interface/Examples.props";
 
 const ExampleCard: FC<ExampleCardComponentProps> = ({card, onClick}): ReactElement => {
+    const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            onClick(card);
+        }
+    };
+
     return (
-        <div className={styles.examples__card} onClick={() => onClick(card)}>
+        <div
+            className={styles.examples__card}
+            role="button"
+            tabIndex={0}
+            onClick={() => onClick(card)}
+            onKeyDown={handleKeyDown}
+        >
             <div className={styles.card__background}>
                 <NextImage src={card.background} alt={card.address} width={424} height={241} loading='lazy'/>
             </div>

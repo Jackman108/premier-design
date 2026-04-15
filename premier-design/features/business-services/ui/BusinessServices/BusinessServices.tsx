@@ -3,7 +3,7 @@ import {FC} from 'react';
 import styles from './BusinessServices.module.css';
 import {BusinessServicesProps} from "@features/business-services/interface/BusinessService.props";
 import OrderButton from "@shared/ui/order/ui/OrderButton/OrderButton";
-import SliderComponent from '@shared/ui/slider/ui/Slider';
+import SliderComponent from '@shared/ui/slider/ui/SliderLazy';
 import useResizeEffects from "@shared/hooks/useResizeEffects";
 import {findItemByTitle} from "@shared/utils/findItemByTitle";
 import {TitleProps} from "@shared/ui/title/interface/Title.props";

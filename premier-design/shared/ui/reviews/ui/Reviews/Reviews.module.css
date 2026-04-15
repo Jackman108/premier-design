@@ -18,7 +18,7 @@
 .title {
 	font-size: 28px;
 	font-weight: bold;
-	color: #333;
+	color: var(--gray-dark);
 	line-height: 1.4;
 }
 

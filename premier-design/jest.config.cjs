@@ -23,11 +23,12 @@ module.exports = {
         '^@entities/(.*)$': '<rootDir>/entities/$1',
         '^@shared/(.*)$': '<rootDir>/shared/$1',
         '^@config/(.*)$': '<rootDir>/config/$1',
-        '^@interface/(.*)$': '<rootDir>/interface/$1',
+        '^@app-types/(.*)$': '<rootDir>/types/$1',
         '^@hooks/(.*)$': '<rootDir>/hooks/$1',
         '^@lib/(.*)$': '<rootDir>/lib/$1',
     },
     testPathIgnorePatterns: ['/node_modules/', '/e2e/', '/.next/'],
+    modulePathIgnorePatterns: ['<rootDir>/.next/'],
     collectCoverageFrom: [
         'shared/ui/primitives/**/*.{ts,tsx}',
         '!shared/ui/primitives/**/*.stories.{ts,tsx}',

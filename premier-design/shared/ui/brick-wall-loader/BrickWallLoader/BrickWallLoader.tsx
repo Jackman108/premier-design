@@ -75,7 +75,7 @@ const BrickWallLoader = (): ReactElement => {
                                 className={`${styles.brick} ${brickIndex < brick && animationActive
                                     ? styles.brickAnimation
                                     : ''}`}
-                                style={{backgroundColor: "#4D4540"}}
+                                style={{backgroundColor: 'var(--brown)'}}
                             ></div>
                         ))}
                     </div>

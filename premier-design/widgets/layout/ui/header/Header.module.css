@@ -4,7 +4,7 @@
 	align-items: center;
 	max-width: 100%;
 	padding: 0.5rem;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	box-shadow: var(--shadow-md);
 	position: relative;
 	z-index: 2;
 }
@@ -62,8 +62,8 @@
 		left: 0;
 		right: 0;
 		z-index: 1000;
-		box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-		background: white;
+		box-shadow: var(--shadow-lg);
+		background: var(--color-surface);
 		opacity: 0.9;
 		animation: slide-down 0.3s ease-out;
 	}

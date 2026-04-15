@@ -40,7 +40,7 @@ body {
 	line-height: 1.5;
 	font-family: inherit;
 	position: static;
-	z-index: 0;;
+	z-index: 0;
 }
 
 /* Удаляем стандартную стилизацию для всех ul и il, у которых есть атрибут class*/
@@ -94,19 +94,21 @@ select {
 	border: none;
 	width: 10px;
 	height: 10px;
-	background: #868585;
+	background: var(--color-text-muted);
 	border-radius: 50%;
 	margin: 0 5px;
 	padding: 5px;
 	cursor: pointer;
+	transition: background-color var(--transition-fast), transform var(--transition-fast);
 }
 
-.dot:focus {
+.dot:focus-visible {
 	outline: none;
+	box-shadow: var(--focus-ring);
 }
 
 .dot.active {
-	background: #000;
+	background: var(--color-text);
 }
 
 .arrow {
@@ -121,19 +123,27 @@ select {
 	fill: var(--brown);
 	background-color: var(--beige-dark);
 	cursor: pointer;
+	transition: fill var(--transition-fast), background-color var(--transition-fast),
+		box-shadow var(--transition-fast);
+}
+
+.arrow:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
 }
 
 .arrow--left {
 	left: -10px;
-	border-radius: 0 4px 4px 0;
+	border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
 .arrow--right {
 	left: auto;
 	right: -10px;
-	border-radius: 4px 0 0 4px;
+	border-radius: var(--radius-sm) 0 0 var(--radius-sm);
 }
 
 .arrow--disabled {
 	fill: var(--brown-light);
+	cursor: not-allowed;
 }

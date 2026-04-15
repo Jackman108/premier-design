@@ -1,5 +1,5 @@
 'use client'
-import React, {Children, FC, memo, ReactElement, useState} from 'react';
+import React, {Children, FC, KeyboardEvent, memo, MouseEvent, ReactElement, useState} from 'react';
 import {SliderProps} from '@shared/ui/slider/interface/Slider.props';
 import {useKeenSlider} from "keen-slider/react";
 
@@ -39,7 +39,7 @@ const Slider: FC<SliderProps> = memo(({
                     <>
                         <Arrow
                             left
-                            onClick={(e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+                            onActivate={(e) => {
                                 e.stopPropagation();
                                 if (instanceRef.current) {
                                     instanceRef.current.prev();
@@ -48,14 +48,13 @@ const Slider: FC<SliderProps> = memo(({
                             disabled={currentSlide === 0}
                         />
                         <Arrow
-                            onClick={(e: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
+                            onActivate={(e) => {
                                 e.stopPropagation();
                                 if (instanceRef.current) {
                                     instanceRef.current.next();
                                 }
                             }}
-                            disabled={currentSlide === slideCount - 1
-                            }
+                            disabled={currentSlide === slideCount - 1}
                         />
                     </>
                 )}
@@ -87,12 +86,30 @@ const Slider: FC<SliderProps> = memo(({
 function Arrow(props: {
     disabled: boolean
     left?: boolean
-    onClick: (e: React.MouseEvent<SVGSVGElement, MouseEvent>) => void
+    onActivate: (e: MouseEvent<SVGSVGElement> | KeyboardEvent<SVGSVGElement>) => void
 }) {
     const disabled = props.disabled ? " arrow--disabled" : ""
+    const handleKeyDown = (event: KeyboardEvent<SVGSVGElement>) => {
+        if (props.disabled) {
+            return;
+        }
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            props.onActivate(event);
+        }
+    };
     return (
         <svg
-            onClick={props.onClick}
+            onClick={(e) => {
+                if (!props.disabled) {
+                    props.onActivate(e);
+                }
+            }}
+            onKeyDown={handleKeyDown}
+            role="button"
+            tabIndex={props.disabled ? -1 : 0}
+            aria-label={props.left ? "Предыдущий слайд" : "Следующий слайд"}
+            aria-disabled={props.disabled}
             className={`arrow ${props.left ? "arrow--left" : "arrow--right"
             } ${disabled}`}
             xmlns="http://www.w3.org/2000/svg"

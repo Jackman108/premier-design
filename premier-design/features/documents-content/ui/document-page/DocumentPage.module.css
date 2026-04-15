@@ -17,7 +17,7 @@
 .title {
 	font-size: 2.5rem;
 	margin-bottom: 20px;
-	color: #333;
+	color: var(--gray-dark);
 	text-align: center;
 	word-wrap: break-word;
 }
@@ -25,7 +25,7 @@
 .content {
 	font-size: 1.1rem;
 	line-height: 1.6;
-	color: #555;
+	color: var(--secondary);
 	word-wrap: break-word;
 }
 
@@ -33,14 +33,14 @@
 .content h3 {
 	font-size: 1.8rem;
 	margin-top: 30px;
-	color: #222;
+	color: var(--brown-dark);
 }
 
 
 .content h3 {
 	font-size: 1.4rem;
 	margin-top: 30px;
-	color: #222;
+	color: var(--brown-dark);
 }
 
 .content p,
@@ -58,7 +58,7 @@
 
 .date {
 	font-size: 1rem;
-	color: #777;
+	color: var(--color-text-muted);
 	text-align: center;
 	margin-top: 40px;
 }

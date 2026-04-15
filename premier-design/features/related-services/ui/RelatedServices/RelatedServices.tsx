@@ -3,7 +3,7 @@ import styles from './RelatedServices.module.css';
 import Title from "@shared/ui/title/ui/Title";
 import {RelatedServicesProps} from "@features/related-services/interface/RelatedService.props";
 import useResizeEffects from "@shared/hooks/useResizeEffects";
-import Slider from "@shared/ui/slider/ui/Slider";
+import Slider from "@shared/ui/slider/ui/SliderLazy";
 import RelatedServiceCard from "../RelatedServicesCard/RelatedServiceCard";
 
 const RelatedServices: React.FC<RelatedServicesProps> = ({title, relatedServices}) => {
