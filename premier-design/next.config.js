@@ -13,6 +13,7 @@ const contentSecurityPolicy = [
 	"base-uri 'self'",
 	"form-action 'self'",
 	"frame-ancestors 'none'",
+	"frame-src 'self' https://www.google.com https://www.google.com/maps https://maps.google.com",
 	"object-src 'none'",
 	`script-src ${scriptSrcPolicy}`,
 	"style-src 'self' 'unsafe-inline'",
@@ -91,3 +92,4 @@ const nextConfig = {
 };
 
 export default withBundleAnalyzer(nextConfig);
+

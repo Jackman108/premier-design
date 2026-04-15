@@ -1,0 +1,111 @@
+.section {
+    display: grid;
+    gap: clamp(1.2rem, 2.2vw, 2rem);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border-radius: var(--radius-lg);
+    background: color-mix(in srgb, var(--color-surface) 92%, var(--gold-light));
+    box-shadow: var(--shadow-md);
+}
+
+.header {
+    display: grid;
+    gap: 0.7rem;
+}
+
+.eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+    color: var(--color-accent);
+}
+
+.title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: clamp(1.7rem, 2.5vw, 2.5rem);
+    line-height: 1.2;
+}
+
+.description {
+    margin: 0;
+    color: var(--color-text-muted);
+    max-width: 66ch;
+}
+
+.metrics {
+    display: grid;
+    gap: 0.9rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+}
+
+.metricCard {
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
+    background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+}
+
+.metricValue {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-accent);
+}
+
+.metricLabel {
+    margin: 0.35rem 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+.benefits {
+    display: grid;
+    gap: 0.85rem;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+}
+
+.benefitCard {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.8rem;
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+}
+
+.benefitCard p {
+    margin: 0;
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.benefitIcon {
+    object-fit: contain;
+}
+
+.reviewsGrid {
+    display: grid;
+    gap: 0.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.reviewCard {
+    border-radius: var(--radius-md);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    padding: 1rem;
+}
+
+.reviewText {
+    margin: 0;
+    color: var(--color-text);
+    line-height: 1.5;
+}
+
+.reviewMeta {
+    margin: 0.7rem 0 0;
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}

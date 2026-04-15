@@ -1,0 +1,53 @@
+.heroShell {
+	padding-inline: 0;
+	margin-top: 0;
+	background: none;
+}
+
+.section {
+	--section-padding-y: clamp(2.25rem, 9vw, 4rem);
+	--section-padding-inline-start: 1rem;
+	--section-padding-inline-end: 1rem;
+	padding-block: var(--section-padding-y);
+	padding-inline: var(--section-padding-inline-start) var(--section-padding-inline-end);
+	overflow-x: clip;
+}
+
+.section[data-density='compact'] {
+	--section-padding-y: clamp(2rem, 8vw, 3.5rem);
+}
+
+.section[data-width='wide'] {
+	padding-inline: 0;
+}
+
+.reveal {
+	opacity: 0;
+	transform: translateY(28px);
+	transition: opacity 650ms ease, transform 650ms ease;
+}
+
+.reveal[data-reveal-visible='true'] {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.reveal {
+		opacity: 1;
+		transform: none;
+		transition: none;
+	}
+}
+
+@media (min-width: 769px) {
+	.section[data-align='left'] {
+		--section-padding-inline-start: clamp(1rem, 9vw, 10rem);
+		--section-padding-inline-end: clamp(1rem, 3vw, 3rem);
+	}
+
+	.section[data-align='right'] {
+		--section-padding-inline-start: clamp(1rem, 3vw, 3rem);
+		--section-padding-inline-end: clamp(1rem, 9vw, 10rem);
+	}
+}

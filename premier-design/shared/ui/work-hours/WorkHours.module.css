@@ -1,17 +1,22 @@
 .work__hours {
 	font-size: 1.2rem;
-	color: var(--brown);
+	color: var(--brown-dark);
 	display: flex;
 	align-items: center;
 	gap: 0.5rem;
 	white-space: nowrap;
-	font-weight: bold;
-	text-shadow: 0 0 15px var(--white);
+	font-weight: 700;
+	line-height: 1.2;
+	background: var(--beige);
+	padding: 0.4rem 0.7rem;
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-sm);
 
 }
 
 @media (max-width: 768px) {
 	.work__hours {
-		font-size: 1rem;
+		font-size: 0.95rem;
+		padding: 0.3rem 0.6rem;
 	}
 }

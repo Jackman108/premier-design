@@ -1,31 +1,31 @@
 .theme__button {
 	background-color: transparent;
-	border: none;
-	color: var(--brown-dark);
-	filter: drop-shadow(0 0 5px var(--brown-white));
+	border: 1px solid transparent;
+	color: color-mix(in srgb, var(--brown-dark) 85%, var(--white));
 	display: grid;
 	align-items: center;
 	justify-content: end;
 	font-size: 1.8rem;
 	font-weight: bold;
-	padding: 0;
+	padding: 0.2rem;
 	margin: 0;
-	transition: color 0.5s ease;
+	transition: color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
 	white-space: nowrap;
+	filter: none;
 }
 
 .theme__button:hover {
-	color: var(--brown-white);
-	filter: drop-shadow(0px 0px 3px var(--brown-dark));
+	color: var(--gold-light);
+	border-color: color-mix(in srgb, var(--gold-light) 60%, transparent);
 	cursor: pointer;
 }
 
 .theme__button:focus-visible {
-	color: var(--brown-white);
-	filter: drop-shadow(0px 0px 3px var(--brown-dark));
+	color: var(--gold-light);
 	outline: none;
 	box-shadow: var(--focus-ring);
 	border-radius: var(--radius-sm);
+	filter: none;
 }
 
 .theme__button svg {

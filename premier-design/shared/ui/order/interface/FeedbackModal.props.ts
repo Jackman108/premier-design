@@ -8,10 +8,12 @@ export interface FeedbackItem {
 
 export interface FeedbackFormProps {
     onSubmit: (data: FeedbackItem) => Promise<void>;
-
+    initialMessage?: string;
 }
 
 export interface FeedbackModalProps {
     onClose: () => void;
     onSubmit: (data: FeedbackItem) => Promise<void>;
+    initialMessage?: string;
 }
+

@@ -14,6 +14,8 @@ const TextViewer: FC<TextViewerProps> = ({title, text, showModal, setShowModal, 
             onOpenChange={setShowModal}
             overlayClassName={styles.modal}
             contentClassName={styles.modal__content}
+            title={title}
+            description="Подробный текст новости в модальном окне."
         >
             <div className={styles.content__image}>
                 <Image

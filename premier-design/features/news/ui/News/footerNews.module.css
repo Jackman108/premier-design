@@ -1,3 +1,14 @@
+.news {
+	padding: 1rem 0;
+}
+
+.news__container {
+	display: grid;
+	grid-template-columns: 1fr;
+	justify-items: center;
+	gap: 1rem;
+}
+
 .news__cards {
 	display: grid;
 	grid-template-columns: auto;
@@ -20,6 +31,10 @@
 	grid-template-columns: auto 1fr;
 	grid-gap: 1.5rem;
 
+}
+
+.content__image {
+	width: auto;
 }
 
 .content__image img {
@@ -57,6 +72,10 @@
 
 .content__text {
 	display: none;
+}
+
+.expanded {
+	border-radius: var(--radius-sm);
 }
 
 

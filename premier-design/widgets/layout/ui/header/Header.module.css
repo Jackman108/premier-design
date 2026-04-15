@@ -4,9 +4,18 @@
 	align-items: center;
 	max-width: 100%;
 	padding: 0.5rem;
-	box-shadow: var(--shadow-md);
-	position: relative;
-	z-index: var(--z-content);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: var(--z-toast);
+	background: transparent;
+	box-shadow: none;
+}
+
+
+.withShareBanner {
+	top: var(--share-banner-height, 0px);
 }
 
 .header__container {
@@ -32,7 +41,18 @@
 }
 
 @media (max-width: 768px) {
-	.header__container {
+	.header {
+		position: relative;
+		background: var(--color-surface);
+		box-shadow: var(--shadow-md);
+	}
+
+	
+.withShareBanner {
+	top: var(--share-banner-height, 0px);
+}
+
+.header__container {
 		padding: 0 1rem;
 	}
 
@@ -64,7 +84,7 @@
 		z-index: var(--z-toast);
 		box-shadow: var(--shadow-lg);
 		background: var(--color-surface);
-		opacity: 0.9;
+		opacity: 0.95;
 		animation: slide-down 0.3s ease-out;
 	}
 
@@ -81,3 +101,4 @@
 		}
 	}
 }
+

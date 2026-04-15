@@ -11,7 +11,7 @@ import {useFeedbackForm} from "@shared/ui/order/hooks/useFeedbackForm";
 import {FeedbackPhoneCountry} from "@shared/ui/order/interface/FeedbackForm.types";
 
 
-const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
+const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, initialMessage}) => {
     const {
         country,
         errors,
@@ -24,7 +24,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
         handlePhoneChange,
         handleConsentChange,
         handleSubmit,
-    } = useFeedbackForm({onSubmit});
+    } = useFeedbackForm({onSubmit, initialMessage});
 
     return (
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -145,3 +145,4 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
 });
 FeedbackForm.displayName = "FeedbackForm";
 export default FeedbackForm;
+

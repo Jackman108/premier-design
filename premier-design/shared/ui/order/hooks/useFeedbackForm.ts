@@ -1,8 +1,9 @@
 import {ChangeEvent, SyntheticEvent, useState} from 'react';
-import {FeedbackFormProps, FeedbackItem} from '@shared/ui/order/interface/FeedbackModal.props';
-import {FeedbackFormErrors, FeedbackPhoneCountry} from '@shared/ui/order/interface/FeedbackForm.types';
-import {getPhoneMask, normalizePhoneDigits, stripPhoneCountryCode, toPhoneWithCountryCode} from '@shared/ui/order/utils/phoneFormatting';
+
 import {feedbackSchema} from '@shared/validates/feedbackSchema';
+import {FeedbackFormErrors, FeedbackPhoneCountry} from '@shared/ui/order/interface/FeedbackForm.types';
+import {FeedbackFormProps, FeedbackItem} from '@shared/ui/order/interface/FeedbackModal.props';
+import {getPhoneMask, normalizePhoneDigits, stripPhoneCountryCode, toPhoneWithCountryCode} from '@shared/ui/order/utils/phoneFormatting';
 import {z} from 'zod';
 
 const mapUiError = (field: keyof FeedbackFormErrors, message?: string): string => {
@@ -53,8 +54,8 @@ const getTreeErrorMessage = (tree: ReturnType<typeof z.treeifyError>, field: key
     return fieldNode?.errors?.[0];
 };
 
-export const useFeedbackForm = ({onSubmit}: FeedbackFormProps) => {
-    const [formDataState, setFormDataState] = useState<FeedbackItem>(INITIAL_FORM_DATA);
+export const useFeedbackForm = ({onSubmit, initialMessage}: FeedbackFormProps) => {
+    const [formDataState, setFormDataState] = useState<FeedbackItem>({...INITIAL_FORM_DATA, message: initialMessage ?? ''});
     const [country, setCountry] = useState<FeedbackPhoneCountry>('by');
     const [isConsentGiven, setIsConsentGiven] = useState(false);
     const [errors, setErrors] = useState<FeedbackFormErrors>(INITIAL_ERRORS);
@@ -115,3 +116,4 @@ export const useFeedbackForm = ({onSubmit}: FeedbackFormProps) => {
         handleSubmit,
     };
 };
+

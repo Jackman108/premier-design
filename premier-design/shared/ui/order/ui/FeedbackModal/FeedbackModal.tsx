@@ -5,7 +5,7 @@ import {FC, MouseEvent} from 'react';
 import {FeedbackModalProps} from '@shared/ui/order/interface/FeedbackModal.props';
 
 
-const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit}) => {
+const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit, initialMessage}) => {
     const handleOverlayClick = (event: MouseEvent<HTMLDialogElement>) => {
         if (event.target === event.currentTarget) onClose();
     };
@@ -37,6 +37,7 @@ const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit}) => {
                 <div className={styles.modal__container}>
                     <FeedbackForm
                         onSubmit={onSubmit}
+                        initialMessage={initialMessage}
                     />
                 </div>
             </div>

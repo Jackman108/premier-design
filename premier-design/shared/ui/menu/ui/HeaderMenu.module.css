@@ -19,17 +19,20 @@
 .menu__item {
 	font-size: 1.4rem;
 	font-weight: bold;
-	color: var(--brown);
+	color: color-mix(in srgb, var(--brown-dark) 85%, var(--white));
 	text-align: center;
 	cursor: pointer;
 	white-space: nowrap;
-	text-shadow: 0 0 15px var(--white);
+	text-shadow: none;
+	transition: color var(--transition-fast), border-color var(--transition-fast);
+	border-bottom: 1px solid transparent;
 }
 
 .menu__item:hover,
 .menu__item:focus-visible {
-	color: var(--brown-white);
-	text-shadow: 0 0 3px var(--brown-dark);
+	color: var(--gold-light);
+	border-bottom-color: color-mix(in srgb, var(--gold-light) 70%, transparent);
+	text-shadow: none;
 }
 
 @media (max-width: 768px) {

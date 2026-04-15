@@ -7,7 +7,7 @@ const GoogleMap: FC = (): ReactElement => {
 
     return (
         <section className={styles.mapContainer}>
-            <iframe
+            <iframe title="Карта офиса Premier Design"
                 src={mapSrc}
                 className={styles.map}
                 allowFullScreen
@@ -19,3 +19,4 @@ const GoogleMap: FC = (): ReactElement => {
 };
 
 export default GoogleMap;
+

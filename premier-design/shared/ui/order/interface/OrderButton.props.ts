@@ -5,4 +5,6 @@ export interface OrderButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes
     buttonStyle: 'button-white' | 'button-black' | 'button-panel' | 'button-none';
     buttonData: string;
     panelData?: PanelProps;
+    prefilledMessage?: string;
 }
+

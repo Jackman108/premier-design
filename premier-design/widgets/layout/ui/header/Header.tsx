@@ -8,12 +8,12 @@ import MenuButton from '../menu-button/MenuButton';
 import ThemeButton from '../theme-button/ThemeButton';
 import styles from './Header.module.css';
 import {FC, ReactElement} from 'react';
-import WorkHours from "@shared/ui/work-hours/WorkHours";
-import {HeaderProps} from "../../interface/Header.props";
-import {useStickyHeader} from "../../hooks/useStickyHeader";
-import ShareBanner from "@features/banner/share/ui/ShareBanner";
-import {useShareBanner} from "@features/banner/share/hooks/useShareBanner";
-
+import WorkHours from '@shared/ui/work-hours/WorkHours';
+import {HeaderProps} from '../../interface/Header.props';
+import {useStickyHeader} from '../../hooks/useStickyHeader';
+import ShareBanner from '@features/banner/share/ui/ShareBanner';
+import {useShareBanner} from '@features/banner/share/hooks/useShareBanner';
+import {useShareBannerHeight} from '@shared/hooks/useShareBannerHeight';
 
 const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
     const {currentTheme, toggleTheme} = useThemeToggle();
@@ -21,13 +21,13 @@ const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
     const {isSticky} = useStickyHeader();
     const {isClosed} = useShareBanner();
     const headerHeight = isClosed ? '102px' : '162px';
+    const hasShareBanner = !isClosed && !isSticky;
+    useShareBannerHeight(hasShareBanner);
 
     return (
         <>
             <ShareBanner isSticky={isSticky} shares={shares}/>
-            <header
-                className={`${styles.header} ${isSticky ? styles.sticky : ''}`}
-            >
+            <header className={`${styles.header} ${isSticky ? styles.sticky : ''} ${hasShareBanner ? styles.withShareBanner : ''}`}>
                 <div className={styles.header__container}>
                     <Logo/>
                     <div className={styles.contact__container}>
@@ -38,7 +38,8 @@ const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
                     <div className={styles.buttons__container}>
                         <ThemeButton
                             currentTheme={currentTheme}
-                            toggleTheme={toggleTheme}/>
+                            toggleTheme={toggleTheme}
+                        />
                         <MenuButton
                             isMobileMenuOpen={isMobileMenuOpen}
                             toggleMobileMenu={toggleMobileMenu}
@@ -50,7 +51,6 @@ const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
                         menu={menu}
                         menuStyle='header'
                     />
-
                 </div>
             </header>
             <Menu
@@ -64,5 +64,6 @@ const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
             )}
         </>
     );
-}
+};
+
 export default Header;

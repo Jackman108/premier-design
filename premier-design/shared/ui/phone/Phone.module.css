@@ -1,18 +1,25 @@
 .phone__container {
 	display: grid;
-	color: var(--brown);
+	color: var(--brown-dark);
 	grid-template-columns:  auto 1fr;
 	grid-gap: 1vh;
 	justify-content: center;
 	text-decoration: none;
-	font-weight: bolder;
-	text-shadow: 0 0 15px var(--white);
+	font-weight: 700;
+	line-height: 1.2;
+	background: var(--beige);
+	padding: 0.4rem 0.7rem;
+	min-height: 40px;
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-sm);
+	transition: color var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 .phone__container:hover,
 .phone__container:focus-visible {
-	color: var(--brown-white);
-	text-shadow: 0 0 5px var(--brown-dark);
+	color: var(--brown);
+	background: var(--color-surface);
+	box-shadow: var(--shadow-md);
 }
 
 .phone__logo {
@@ -29,7 +36,8 @@
 
 @media (max-width: 768px) {
 	.phone__container {
-		grid-gap: 0
+		grid-gap: 0;
+		padding: 0.4rem 0.65rem;
 	}
 
 	.phone__number {

@@ -7,6 +7,15 @@
 
 ### Added
 
+- **Sprint 16 (завершение):** закрыты `M-2`, `M-3`, `M-4`; дополнительно усилен Hero по UX-замечаниям (читабельность H1 и контраст CTA).
+  `M-2`: добавлен интерактивный блок `BeforeAfterShowcase` с диапазонным слайдером и выбором кейса (до/после) на основе реальных проектов.
+  `M-3`: добавлен блок `TrustSignals` (метрики доверия, подтверждающие преимущества, клиентские цитаты) для усиления social proof.
+  `M-4`: добавлена квиз-воронка `LeadQuiz` с пошаговым сценарием (3 шага, прогресс-бар, переход к заявке через существующий модальный флоу).
+  `Hero fix`: в `HeroBanner.module.css` и `Title.module.css` устранено переполнение заголовка, усилены контраст и визуальный вес CTA-кнопки.
+- **Sprint 15 (завершение):** закрыты `V-2`, `V-3`, `M-1`.
+  `V-2`: главная страница получила асимметричный ритм и macro-whitespace — добавлены чередующиеся смещения секций (`pages/HomePage.module.css`) и новый секционный layout в `pages/index.tsx`.
+  `V-3`: добавлены плавные scroll-reveal анимации через `useScrollReveal` с учетом `prefers-reduced-motion`; в Hero добавлены мягкие кинематографичные motion-эффекты (parallax/glow) без CLS.
+  `M-1`: переработан first-screen `HeroBanner` — усилены УТП, визуальный контраст и CTA-блок; добавлены cinematic overlay/mesh слои и блок ценностных акцентов.
 - **Sprint 14 (завершение):** закрыты `V-1`, `V-4`, `T-1`.
   `V-1`: внедрен акцентный шрифт с засечками `Playfair Display` (через `next/font/google`) для заголовков; настроена fluid typography (clamp) в `panda.config.ts` и `Title.module.css`.
   `V-4`: обновлена темная тема в `styles/tokens.css` — внедрен глубокий OLED-black (`#050505`) с золотыми/бронзовыми акцентами, усилены тени для глубины.
@@ -106,3 +115,7 @@
 - `tsconfig.json`: `*.stories.*` и `.storybook` исключены из типов `next build`.
 - Чат-бот через `next/dynamic` с `ssr: false`.
 - Production Docker: контекст `./premier-design`, `public`, `HEALTHCHECK`; dev-образ и `docker-compose.development.yaml` без лишнего `target`.
+
+
+
+
