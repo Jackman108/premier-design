@@ -9,7 +9,8 @@
 	transition: box-shadow var(--transition-base);
 }
 
-.item:hover {
+.item:hover,
+.item:focus-within {
 	box-shadow: var(--shadow-lg);
 }
 

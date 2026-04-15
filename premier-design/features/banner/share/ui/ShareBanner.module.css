@@ -51,10 +51,16 @@
 	transition: background-color 0.3s, color 0.3s;
 }
 
-.banner__close:hover {
+.banner__close:hover,
+.banner__close:focus-visible {
 	color: var(--white);
 	background-color: var(--brown-dark);
 	cursor: pointer;
+}
+
+.banner__close:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
 }
 
 @media (max-width: 768px) {

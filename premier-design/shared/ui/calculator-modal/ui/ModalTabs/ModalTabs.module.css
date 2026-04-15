@@ -4,7 +4,8 @@ color: var(--brown-dark);
 font-size: 1.1rem;
 border-radius: 4px;
 }
-.tab:hover{
+.tab:hover,
+.tab:focus-visible {
 cursor: pointer;
 background-color: var(--beige-dark);
 }

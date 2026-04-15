@@ -11,7 +11,8 @@
 	border-radius: var(--radius-md);
 }
 
-.service:hover {
+.service:hover,
+.service:focus-within {
 	box-shadow: var(--shadow-md);
 }
 

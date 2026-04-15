@@ -28,11 +28,13 @@
     background: transparent;
 }
 
-.arrow__left:hover {
+.arrow__left:hover,
+.arrow__left:focus-visible {
     opacity: 0.8;
 }
 
-.arrow__right:hover {
+.arrow__right:hover,
+.arrow__right:focus-visible {
     opacity: 0.8;
 
 }

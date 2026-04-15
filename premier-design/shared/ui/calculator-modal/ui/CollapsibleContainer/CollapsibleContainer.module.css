@@ -62,12 +62,14 @@
     color: var(--brown-dark);
     justify-content: flex-start;
 }
-.active:hover {
+.active:hover,
+.active:focus-visible {
     background-color: var(--brown-white);
     cursor: pointer;
 }
 
-.inactive:hover{
+.inactive:hover,
+.inactive:focus-visible {
     background-color: var(--brown-white);
     cursor: pointer;
 }

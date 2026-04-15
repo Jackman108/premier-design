@@ -63,7 +63,8 @@
 	transition: transform var(--transition-base) ease-in-out;
 }
 
-.image:hover {
+.image:hover,
+.image_wrapper:focus-within .image {
 	transform: scale(1.05);
 }
 

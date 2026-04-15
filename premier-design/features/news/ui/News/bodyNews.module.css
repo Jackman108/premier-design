@@ -44,7 +44,8 @@
     text-align: start;
 }
 
-.content__title:hover {
+.content__title:hover,
+.content__title:focus-visible {
     color: var(--beige-dark);
     cursor: pointer;
 }

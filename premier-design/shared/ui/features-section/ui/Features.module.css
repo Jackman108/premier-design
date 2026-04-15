@@ -41,7 +41,8 @@
 	transition: transform var(--transition-base) ease-in-out;
 }
 
-.features__item:hover {
+.features__item:hover,
+.features__item:focus-within {
 	transform: translateY(-5px);
 }
 

@@ -20,8 +20,15 @@
 	transition: transform 0.3s ease;
 }
 
-.logo__image:hover .image {
+.logo__image:hover .image,
+.logo__image:focus-visible .image {
 	transform: scale(1.05);
+}
+
+.logo__image:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
+	border-radius: var(--radius-sm);
 }
 
 @media (max-width: 1024px) {

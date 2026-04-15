@@ -9,7 +9,8 @@
 	text-shadow: 0 0 15px var(--white);
 }
 
-.phone__container:hover {
+.phone__container:hover,
+.phone__container:focus-visible {
 	color: var(--brown-white);
 	text-shadow: 0 0 5px var(--brown-dark);
 }

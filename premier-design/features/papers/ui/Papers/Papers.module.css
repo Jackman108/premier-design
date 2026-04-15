@@ -19,13 +19,14 @@
 	white-space: wrap;
 }
 
-.paper__link:hover {
+.paper__link:hover,
+.paper__link:focus-visible {
 	color: var(--brown-white);
 	text-shadow: 0 0 10px var(--brown-white);
 	transform: scale(1.05);
 }
 
-.paper__link:focus {
+.paper__link:focus-visible {
 	outline: none;
 	box-shadow: 0 0 4px 2px var(--brown-white);
 }

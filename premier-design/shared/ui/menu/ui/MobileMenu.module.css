@@ -40,6 +40,13 @@
 	color: var(--brown-light);
 }
 
+.menu__link:focus-visible {
+	color: var(--brown-light);
+	outline: none;
+	box-shadow: var(--focus-ring);
+	border-radius: var(--radius-sm);
+}
+
 .open {
 	transform: translateX(0);
 }

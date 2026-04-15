@@ -24,13 +24,14 @@
 
 }
 
-.menu__item:hover {
+.menu__item:hover,
+.menu__item:focus-visible {
 	color: var(--brown-white);
 	text-shadow: 0 0 10px var(--brown-white);
 	transform: scale(1.05);
 }
 
-.menu__item:focus {
+.menu__item:focus-visible {
 	outline: none;
 	box-shadow: 0 0 4px 2px var(--brown-white);
 }

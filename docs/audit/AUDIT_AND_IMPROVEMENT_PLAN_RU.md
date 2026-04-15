@@ -17,8 +17,8 @@
 | ID | Задача | Следующий шаг | Критерий готовности |
 |----|--------|---------------|---------------------|
 | **E-2** | Hook-тесты | По желанию: `useCalculatorHandlers`, `useExamplesLogic`, `useResizeEffects`, `useNews` и др. | Базовый порог **≥ 8 хуков** достигнут (см. CHANGELOG) |
-| **F-2r** | Регресс токенов | Новые `*.module.css` / инлайн-стили: без «сырого» hex вне **`tokens.css`** | Контроль при ревью |
-| **F-4r** | Регресс a11y | Новые кнопки/ссылки: **`:focus-visible`** по гайду существующих блоков | Контроль при ревью |
+| **F-2r** | Регресс токенов | Скрипт `npm run check:regressions` + `lint-staged` для CSS | Автопроверка включена; raw hex вне **`tokens.css`** блокируются (без legacy-исключений) |
+| **F-4r** | Регресс a11y | Скрипт `npm run check:regressions` + `lint-staged` для CSS | Автопроверка включена; `:hover` без `:focus-visible/:focus-within` блокируются (без legacy-исключений) |
 
 ---
 

@@ -38,7 +38,8 @@
 	transition: opacity .25s ease-in-out;
 }
 
-.button_common:hover .sticky_button_text {
+.button_common:hover .sticky_button_text,
+.button_common:focus-within .sticky_button_text {
 	width: auto;
 	opacity: 1;
 }
