@@ -5,6 +5,8 @@ import Title from '@shared/ui/title/ui/Title';
 import NextImage from 'next/image';
 import {AppealBannerProps} from "@features/banner/appeal/interface/AppealBannerProps";
 
+const APPEAL_BANNER_SIZES = '(max-width: 600px) 100vw, (max-width: 1440px) 60vw, 1935px';
+
 const AppealBanner: FC<AppealBannerProps> = ({titleItem, buttonItem, bannerItem}): ReactElement => {
     return (
         <section className={styles.appeal}>
@@ -15,11 +17,7 @@ const AppealBanner: FC<AppealBannerProps> = ({titleItem, buttonItem, bannerItem}
                 quality={bannerItem.quality}
                 width={bannerItem.width}
                 height={508}
-                sizes="
-                   (max-width: 600px) 100vw,
-                (max-width: 1440px) 60vw,
-                1935px
-                    "
+                sizes={APPEAL_BANNER_SIZES}
                 loading="lazy"
                 placeholder="empty"
                 className={styles.appeal__background}

@@ -12,6 +12,8 @@ import {ButtonProps} from "@shared/interface/Button.props";
 import {useFallback} from "@shared/hooks/useFallback";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 
+const SERVICE_DETAIL_IMAGE_SIZES = '(max-width: 600px) 100vw, (max-width: 1440px) 60vw, 920px';
+
 const ServiceDetail: FC<ServiceDetailProps> = ({
                                                    service,
                                                    categoryProps,
@@ -54,11 +56,7 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                                 quality={categoryProps.image.quality}
                                 width={categoryProps.image.width}
                                 height={categoryProps.image.height}
-                                sizes="
-                                (max-width: 600px) 100vw,
-                                (max-width: 1440px) 60vw,
-                                920px
-                                "
+                                sizes={SERVICE_DETAIL_IMAGE_SIZES}
                                 placeholder="empty"
                                 className={styles.image}
                             />

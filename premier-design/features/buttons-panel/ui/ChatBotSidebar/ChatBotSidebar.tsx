@@ -1,14 +1,15 @@
 'use client'
 import React, {FC} from "react";
-import {Chatbot} from "react-chatbot-kit";
-import chatbotConfig from '@features/buttons-panel/config/chatbotConfig';
-import MessageParser from '@features/buttons-panel/logic/MessageParser';
-import ActionProvider from '@features/buttons-panel/logic/ActionProvider';
+import dynamic from 'next/dynamic';
 import styles from './ChatBotSidebar.module.css';
-import 'react-chatbot-kit/build/main.css'
 import PanelButton from "@features/buttons-panel/ui/PanelButton/PanelButton";
 import {ChatBotSidebarProps} from "@features/buttons-panel/interface/ChatBotSidebar.props";
 import {useChatBotSidebar} from "@features/buttons-panel/hooks/useChatBotSidebar";
+
+const ChatBotRuntime = dynamic(() => import('./ChatBotRuntime'), {
+    ssr: false,
+    loading: () => null,
+});
 
 const ChatBotSidebar: FC<ChatBotSidebarProps> = ({panelData}) => {
     const {isBotOpen, toggleModal, messageHistory, saveMessages} = useChatBotSidebar();
@@ -24,14 +25,9 @@ const ChatBotSidebar: FC<ChatBotSidebarProps> = ({panelData}) => {
             <div>
                 {isBotOpen && (
                     <div className={styles.chatbot}>
-                        <Chatbot
-                            config={chatbotConfig}
-                            messageParser={MessageParser}
-                            actionProvider={ActionProvider}
+                        <ChatBotRuntime
                             messageHistory={messageHistory}
                             saveMessages={saveMessages}
-                            placeholderText='Задайте Ваш вопрос'
-                            runInitialMessagesWithHistory={true}
                         />
                     </div>
                 )}

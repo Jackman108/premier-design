@@ -4,6 +4,8 @@ import LogoImage from '../../../public/logo.svg';
 import styles from './Logo.module.css';
 import Image from 'next/image';
 
+const LOGO_IMAGE_SIZES = '(max-width: 600px) 100vw, (max-width: 1440px) 60vw, 1935px';
+
 const Logo = (): ReactElement => {
     return (
         <div className={styles.logo}>
@@ -18,11 +20,7 @@ const Logo = (): ReactElement => {
                     placeholder='empty'
                     width={2000}
                     height={160}
-                    sizes="
-                    (max-width: 600px) 100vw,
-                    (max-width: 1440px) 60vw,
-                    1935px
-                    "
+                    sizes={LOGO_IMAGE_SIZES}
                     className={styles.image}
                 />
             </Link>

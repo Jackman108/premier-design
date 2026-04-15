@@ -8,6 +8,7 @@ import {UiInput} from "@shared/ui/primitives/UiInput";
 import {UiTextarea} from "@shared/ui/primitives/UiTextarea";
 import {PatternFormat} from 'react-number-format';
 import {useFeedbackForm} from "@shared/ui/order/hooks/useFeedbackForm";
+import {FeedbackPhoneCountry} from "@shared/ui/order/interface/FeedbackForm.types";
 
 
 const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
@@ -39,8 +40,9 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                     onChange={handleInputChange}
                     className={errors.name ? styles.inputError : ''}
                     aria-invalid={errors.name ? 'true' : undefined}
-                    error={errors.name || undefined}
+                    aria-errormessage={errors.name ? 'feedback-name-error' : undefined}
                 />
+                {errors.name && <div id="feedback-name-error" className={styles.errorMessage} role="alert">{errors.name}</div>}
             </div>
             <div className={styles.input__group}>
                 <div className={styles.inlineRow}>
@@ -48,7 +50,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                         <label htmlFor="feedback-country" className={styles.fieldLabel}>Код страны</label>
                         <select
                             id="feedback-country"
-                            onChange={(e) => setCountry(e.target.value)}
+                            onChange={(e) => setCountry(e.target.value as FeedbackPhoneCountry)}
                             value={country}
                             className={`${styles.tokenControl} ${styles.tokenControlSelect} ${errors.phone ? styles.inputError : ''}`.trim()}
                             aria-label="Код страны для номера телефона"
@@ -72,7 +74,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                             onValueChange={handlePhoneChange}
                             className={`${styles.tokenControl} ${errors.phone ? styles.inputError : ''}`.trim()}
                             aria-invalid={errors.phone ? 'true' : undefined}
-                            aria-describedby={errors.phone ? 'phone-error' : undefined}
+                            aria-errormessage={errors.phone ? 'phone-error' : undefined}
                         />
                     </div>
                 </div>
@@ -90,8 +92,9 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                     onChange={handleInputChange}
                     className={errors.email ? styles.inputError : ''}
                     aria-invalid={errors.email ? 'true' : undefined}
-                    error={errors.email || undefined}
+                    aria-errormessage={errors.email ? 'feedback-email-error' : undefined}
                 />
+                {errors.email && <div id="feedback-email-error" className={styles.errorMessage} role="alert">{errors.email}</div>}
             </div>
             <div className={styles.input__group}>
                 <UiTextarea
@@ -103,9 +106,10 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                     onChange={handleInputChange}
                     className={errors.message ? styles.inputError : ''}
                     aria-invalid={errors.message ? 'true' : undefined}
-                    error={errors.message || undefined}
+                    aria-errormessage={errors.message ? 'feedback-message-error' : undefined}
                     rows={6}
                 />
+                {errors.message && <div id="feedback-message-error" className={styles.errorMessage} role="alert">{errors.message}</div>}
             </div>
             <div className={styles.input__group}>
                 <UiCheckbox
@@ -114,7 +118,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                     checked={isConsentGiven}
                     onChange={handleConsentChange}
                     aria-invalid={errors.consent ? 'true' : undefined}
-                    error={errors.consent || undefined}
+                    aria-errormessage={errors.consent ? 'feedback-consent-error' : undefined}
                     label={
                         <>
                             Нажимая на кнопку, вы соглашаетесь с{' '}
@@ -129,6 +133,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit}) => {
                         </>
                     }
                 />
+                {errors.consent && <div id="feedback-consent-error" className={styles.errorMessage} role="alert">{errors.consent}</div>}
             </div>
             <div className={styles.form__button}>
                 <UiButton type="submit" className={styles.submitButton} aria-label="Отправить заявку">

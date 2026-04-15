@@ -1,6 +1,6 @@
 .collapse_container {
     display: grid;
-    height: 5vh;
+    min-height: 3.5rem;
     width: 100%;
 }
 

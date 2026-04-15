@@ -18,18 +18,25 @@ const CostInput: FC<CostInputProps> = ({
     const inputValueAsNumber = parseInt(inputValue, 10);
     return (    
             <div className={styles.input_container}>
+                <label className={styles.visually_hidden} htmlFor="calculator-area-input">
+                    Площадь помещения в квадратных метрах
+                </label>
                 <input
                     placeholder='Количество  м2. '
                     type="number"
-                    id="input"
+                    id="calculator-area-input"
                     min={1}
                     value={inputValue}
                     onChange={handleInputChange}
                     onBlur={handleInputBlur}
                     onClick={handleInputClick}
                     className={`${styles.input_area} ${isEmpty ? styles.empty : ''}`}
+                    autoComplete="off"
+                    aria-label="Площадь помещения в квадратных метрах"
+                    aria-invalid={isEmpty || inputValueAsNumber <= 0 ? 'true' : undefined}
+                    aria-errormessage={isEmpty || inputValueAsNumber <= 0 ? 'calculator-area-error' : undefined}
                 />
-                {(isEmpty || inputValueAsNumber <= 0) && <div className={styles.error}>Введите площадь помещения</div>}
+                {(isEmpty || inputValueAsNumber <= 0) && <div id="calculator-area-error" className={styles.error} role="alert">Введите площадь помещения</div>}
             </div>
         
     );

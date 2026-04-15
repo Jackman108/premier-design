@@ -1,6 +1,6 @@
 import {ChangeEvent, useCallback, useEffect, useMemo, useState} from 'react';
-import {factorConfig, PropertyType, RepairType, ServiceType} from "@shared/ui/calculator-modal/configs/factorsConfig";
 import {CostingCardProps} from "@features/coasting/interface/Costing.props";
+import {calculateEstimate, DEFAULT_TAB_COSTS, parseAreaValue} from '@shared/ui/calculator-modal/utils/calculateEstimate';
 
 const useCalculatorHandlers = (card: CostingCardProps) => {
     const [selectedTab, setSelectedTab] = useState<number>(card.id || 0);
@@ -12,15 +12,8 @@ const useCalculatorHandlers = (card: CostingCardProps) => {
     const [repairType, setRepairType] = useState<string>('standard');
     const [serviceType, setServiceType] = useState<string>('design_repair');
 
-    const tabCosts: number[] = useMemo(() => [0, 289, 319, 379, 409, 379], []);
-    const inputValueAsNumber = useMemo(() => parseInt(inputValue, 10), [inputValue]);
-
-    const {repairFactorMap, serviceFactorMap, propertyFactorMap} = factorConfig;
-
-
-    const propertyFactor = propertyFactorMap[propertyType as PropertyType] ?? 1;
-    const repairFactor = repairFactorMap[repairType as RepairType] ?? 1;
-    const serviceFactor = serviceFactorMap[serviceType as ServiceType] ?? 1;
+    const tabCosts = useMemo(() => DEFAULT_TAB_COSTS, []);
+    const inputValueAsNumber = useMemo(() => parseAreaValue(inputValue), [inputValue]);
 
     const handleTabChange = useCallback((id: number) => {
         setSelectedTab((prevTab) => (prevTab !== id ? id : prevTab));
@@ -40,22 +33,23 @@ const useCalculatorHandlers = (card: CostingCardProps) => {
     const handleCalculate = useCallback(async () => {
         setIsLoading(true);
         try {
-            const totalCost =
-                tabCosts[selectedTab] *
-                inputValueAsNumber *
-                propertyFactor *
-                repairFactor *
-                serviceFactor;
-
+            const totalCost = calculateEstimate({
+                tabCosts,
+                selectedTab,
+                area: inputValueAsNumber,
+                propertyType,
+                repairType,
+                serviceType,
+            });
             await new Promise((resolve) => setTimeout(resolve, 2000));
-            setResult(Math.round(totalCost));
+            setResult(totalCost);
             setError('');
         } catch {
             setError('Произошла ошибка при расчёте стоимости. Пожалуйста, попробуйте ещё раз или обратитесь к нам.');
         } finally {
             setIsLoading(false);
         }
-    }, [propertyFactor, repairFactor, serviceFactor, selectedTab, inputValueAsNumber, tabCosts]);
+    }, [propertyType, repairType, selectedTab, inputValueAsNumber, serviceType, tabCosts]);
 
     useEffect(() => {
         setResult(0);

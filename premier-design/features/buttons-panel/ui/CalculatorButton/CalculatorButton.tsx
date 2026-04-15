@@ -1,8 +1,13 @@
 import React, {FC} from 'react';
-import CalculatorModal from '@shared/ui/calculator-modal/ui/CalculatorModal/CalculatorModal';
+import dynamic from 'next/dynamic';
 import PanelButton from "@features/buttons-panel/ui/PanelButton/PanelButton";
 import {useModalState} from "@shared/hooks/useModalState";
 import {CalculatorButtonProps} from "@features/buttons-panel/interface/CalculatorButton.props";
+
+const CalculatorModal = dynamic(() => import('@shared/ui/calculator-modal/ui/CalculatorModal/CalculatorModal'), {
+    ssr: false,
+    loading: () => null,
+});
 
 const CalculatorButton: FC<CalculatorButtonProps> = ({costingCards, panelData}) => {
     const {isOpen: isModalOpen, toggleModal} = useModalState(false);

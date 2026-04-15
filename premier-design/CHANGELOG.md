@@ -15,6 +15,21 @@
 
 ### Changed
 
+- **Sprint 11 (завершение):** закрыты `P-1`, `P-2`, `R-1`.
+  `P-1`: в `next.config.js` включен React Compiler (`experimental.reactCompiler: true`) для production/dev сборок Next.js.
+  `P-2`: усилен code splitting тяжелых UI-зависимостей — `CalculatorModal` загружается через `next/dynamic` в `CalculatorButton`, чат-движок `react-chatbot-kit` вынесен в отдельный lazy-runtime `ChatBotRuntime` (рендерится только при открытии чата).
+  `R-1`: логика расчета калькулятора вынесена в чистые функции `shared/ui/calculator-modal/utils/calculateEstimate.ts`, хук `useCalculatorHandlers` упрощен и использует pure utils, добавлены unit-тесты `calculateEstimate.test.ts`.
+- **Sprint 11 (аудит):** из `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` удалены выполненные `P-1`, `P-2`, `R-1` и строка `Sprint 11`; в документе сохранены только нереализованные задачи.
+- **Sprint 10 (завершение):** закрыты `A-1`, `S-1`, `S-2`, `S-4`.
+  `A-1`: use-case `submitFeedback` переведен на DAL-абстракцию `services/dal/feedbackDal.ts`, внешние I/O вызовы вынесены за границу use-case.
+  `S-1`: CSP-конфигурация в `next.config.js` действует в runtime c разделением policy по окружениям (dev/prod), заголовки безопасности применяются к страницам.
+  `S-2`: добавлен server-side tainting слой `shared/lib/taintSecrets.ts`; секреты SMTP/Telegram маркируются в DAL (best-effort через React 19 taint APIs, без деградации runtime).
+  `S-4`: сквозная валидация унифицирована на `zod`-схеме `shared/validates/feedbackSchema.ts`; клиентский `useFeedbackForm` использует ту же схему, что и `/api/feedback`.
+- **Sprint 10 (аудит):** из `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` удалены выполненные `A-1`, `S-1`, `S-2`, `S-4` и строка `Sprint 10`; в документе оставлены только нереализованные задачи.
+- **Sprint 9 (завершение):** закрыты `U-4` и `U-2`.  
+  `U-4`: в `FeedbackForm` добавлены связи ошибок с полями через `aria-errormessage` + `aria-invalid` для всех ключевых полей, в `CostInput` добавлены label/`aria-errormessage`/`role="alert"`, в `CalculatorModal` добавлен `aria-live="polite"` для блока динамического результата.  
+  `U-2`: в критичных компонентах спринта (`CalculatorModal`, `CostInput`, `CollapsibleContainer`) заменены жесткие `vw/vh` на fluid-подход с `clamp()`/`min()` и относительными единицами.
+- **Sprint 9 (аудит):** из открытого бэклога `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` удалены выполненные `U-4` и `U-2`; в аудите оставлены только нереализованные задачи.
 - Dev-fix CSP: в `next.config.js` `Content-Security-Policy` теперь учитывает окружение — для development добавлены `unsafe-eval` в `script-src` и `ws/wss/http` в `connect-src` для корректной работы `react-refresh`/HMR; production-политика не ослабляется.
 - **D-4 (завершение):** закрыты `UI-AUD-7` и `UI-AUD-8` — для `CollapsibleContainer` вынесено поведение в `hooks/useCollapsibleContainer.ts`, для `Slider` вынесены `Arrow` в `ui/Arrow.tsx`, состояние/навигация в `hooks/useSliderState.ts`, типы стрелки в `interface/Slider.props.ts`.
 - **D-4 (dead code):** закрыт `UI-AUD-10` — удален неиспользуемый закомментированный модуль `features/address/ui/YandexMap/*`.

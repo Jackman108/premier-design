@@ -1,9 +1,6 @@
-import {emailService} from '../../../services/emailService';
-import {envVar} from '../../../services/envVar';
-import {fileService} from '../../../services/fileService';
-import {telegramService} from '../../../services/telegramService';
 import {FeedbackInput} from '../schema';
 import {escapeHtml} from '../../../shared/lib/sanitize';
+import {feedbackDal, FeedbackDal} from '../../../services/dal/feedbackDal';
 
 export interface SubmitFeedbackResult {
     status: 'success' | 'error';
@@ -11,25 +8,21 @@ export interface SubmitFeedbackResult {
     error?: string;
 }
 
-export const submitFeedback = async (data: FeedbackInput): Promise<SubmitFeedbackResult> => {
+export const submitFeedback = async (data: FeedbackInput, dal: FeedbackDal = feedbackDal): Promise<SubmitFeedbackResult> => {
     try {
         const safeName = escapeHtml(data.name);
         const safePhone = escapeHtml(data.phone);
         const safeEmail = escapeHtml(data.email || 'Не указан');
         const safeMessage = escapeHtml(data.message);
 
-        if (envVar('NODE_ENV') === 'development') {
-            fileService.saveData(data);
-
-            await emailService.sendMail({
-                host: envVar('EMAIL_HOST'),
-                port: parseInt(envVar('EMAIL_PORT'), 10),
-                user: envVar('EMAIL_USERNAME'),
-                pass: envVar('EMAIL_PASSWORD'),
-                from: safeName,
-                to: 'jivatman108@gmail.com',
-                subject: `New Feedback ${data.email || ''}`.trim(),
-                text: `Name: ${safeName}\nPhone: ${safePhone}\nEmail: ${safeEmail}\nMessage: ${safeMessage}`,
+        if (dal.isDevelopment()) {
+            dal.saveDebugPayload(data);
+            await dal.sendFeedbackEmail({
+                safeName,
+                safePhone,
+                safeEmail,
+                safeMessage,
+                rawEmail: data.email || '',
             });
         }
 
@@ -41,11 +34,7 @@ export const submitFeedback = async (data: FeedbackInput): Promise<SubmitFeedbac
         - <b>Сообщение:</b> ${safeMessage}
         `.trim();
 
-        await telegramService.sendMessage(
-            envVar('TELEGRAM_BOT_TOKEN'),
-            envVar('TELEGRAM_CHAT_ID'),
-            message
-        );
+        await dal.sendTelegramMessage(message);
 
         return {status: 'success', message: 'Feedback processed successfully.'};
     } catch (error) {

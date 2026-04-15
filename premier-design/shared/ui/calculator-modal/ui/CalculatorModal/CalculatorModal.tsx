@@ -81,7 +81,7 @@ const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
                             inputValue={inputValue}
                         />
                     </div>
-                    <div className={styles.body_result}>
+                    <div className={styles.body_result} aria-live="polite" aria-atomic="true">
                         <div className={styles.result_direction}>
                             <Logo/>
                         </div>

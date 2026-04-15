@@ -24,6 +24,7 @@ const contentSecurityPolicy = [
 
 const nextConfig = {
 	output: 'standalone',
+	reactCompiler: true,
 	async rewrites() {
 		return [
 			{source: '/sitemap.xml', destination: '/api/sitemap'},
