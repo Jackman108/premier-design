@@ -1,3 +1,5 @@
+'use client';
+
 import styles from './Layout.module.css';
 import Header from '../header/Header';
 import {Footer} from '@shared/utils/dynamicImports';

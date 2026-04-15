@@ -1,7 +1,8 @@
 import {NextApiRequest, NextApiResponse} from 'next';
-import {submitFeedback} from '../../features/feedback/useCases/submitFeedback';
+import {submitFeedbackAction} from '../../features/feedback/useCases/submitFeedbackAction';
 import {feedbackSchema} from '../../features/feedback/schema';
-import {checkRateLimit} from '../../shared/lib/rateLimit';
+import {applyApiRateLimit} from '@shared/lib/applyApiRateLimit';
+import {z} from 'zod';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'OPTIONS') {
@@ -24,10 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return;
     }
 
-    const clientIp = (req.headers['x-forwarded-for'] as string)?.split(',')[0]?.trim() || req.socket.remoteAddress || 'unknown';
-    const rateLimit = checkRateLimit(clientIp, {windowMs: 60_000, maxRequests: 5});
-    res.setHeader('X-RateLimit-Remaining', String(rateLimit.remaining));
-    res.setHeader('Retry-After', String(rateLimit.retryAfterSec));
+    const rateLimit = applyApiRateLimit(req, res, 'feedback', {windowMs: 60_000, maxRequests: 5});
     if (!rateLimit.allowed) {
         res.status(429).json({
             status: 'error',
@@ -41,14 +39,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         res.status(400).json({
             status: 'error',
             message: 'Validation failed.',
-            errors: parsed.error.flatten(),
+            errors: z.treeifyError(parsed.error),
         });
         return;
     }
 
-    const response = await submitFeedback(parsed.data);
+    const response = await submitFeedbackAction(parsed.data);
+
     if (response.status === 'error') {
-        res.status(500).json(response);
+        res.status(response.code ?? 500).json(response);
         return;
     }
 

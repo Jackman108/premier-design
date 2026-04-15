@@ -1,6 +1,7 @@
 import {NextApiRequest, NextApiResponse} from 'next';
 import {DataProps} from "@widgets/interface/interfaceData";
 import {getData} from '@lib/getStaticData';
+import {applyApiRateLimit} from '@shared/lib/applyApiRateLimit';
 
 const BASE_URL = 'https://premier-design.by';
 const CHANGE_FREQUENCY = 'monthly';
@@ -62,6 +63,12 @@ const generateSitemap = async (): Promise<string> => {
 };
 
 export default async function handler(_req: NextApiRequest, res: NextApiResponse): Promise<void> {
+    const rateLimit = applyApiRateLimit(_req, res, 'sitemap', {windowMs: 60_000, maxRequests: 60});
+    if (!rateLimit.allowed) {
+        res.status(429).json({error: 'Too many requests. Try again later.'});
+        return;
+    }
+
     try {
         const sitemap = await generateSitemap();
         res.setHeader('Content-Type', 'application/xml');

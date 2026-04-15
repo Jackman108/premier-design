@@ -15,6 +15,25 @@
 
 ### Changed
 
+- **S-3 / R-2 / R-3 (завершение):** закрыты оставшиеся задачи аудита по безопасности и устойчивости UI.
+  `S-3`: усилен rate limiting на публичных API — добавлен общий helper `shared/lib/applyApiRateLimit.ts` с ключом `scope:ip`, едиными заголовками (`X-RateLimit-Limit/Remaining/Reset`, `Retry-After`) и подключением к `/api/feedback` и `/api/sitemap`; `shared/lib/rateLimit.ts` расширен метаданными лимита/времени сброса.
+  `R-2`: внедрен централизованный глобальный store темы (`shared/store/themeStore.tsx`), интегрирован в `pages/_app.tsx` и `app/providers.tsx`; `useThemeToggle` переведен на store + синхронизацию с `next-themes`.
+  `R-3`: добавлены глобальные boundary-механизмы ошибок — `shared/ui/error-boundary/AppErrorBoundary.tsx` (pages) и `app/error.tsx` (App Router), чтобы предотвращать белый экран при сбоях UI.
+- **S-3 / R-2 / R-3 (аудит):** из `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` удалены последние открытые задачи; бэклог аудита приведен к пустому состоянию (в документе остаются только новые/будущие задачи при их появлении).
+- **P-3 / P-4 (завершение):** выполнена точечная оптимизация изображений и шрифтов для Core Web Vitals.
+  `P-3`: в `HeroBanner` добавлен корректный `sizes` для LCP-изображения; в `OfferBanner` убран избыточный `priority`, добавлены `sizes` и `loading="lazy"` для non-LCP баннера; в `DocumentImage` убран `priority` и включен `loading="lazy"` для второстепенных изображений документов.
+  `P-4`: в `lib/interFont.ts` включены явные `preload: true` и fallback-стек (`system-ui`, `Arial`, `sans-serif`) для более стабильного рендера шрифтов и снижения визуальных скачков.
+- **P-3 / P-4 (аудит):** из `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` удалены выполненные `P-3` и `P-4`; в документе оставлены только нереализованные задачи.
+- **A-4 / D-2 (завершение):** усилены архитектурные и quality-guard проверки.
+  `A-4`: добавлен regression-check границ слоев `scripts/check-architecture-boundaries.mjs` + npm-команда `check:architecture`; правило блокирует новые cross-feature импорты и зависимости `shared -> features/services` (с зафиксированным legacy baseline).
+  `D-2`: подключены `eslint-plugin-jsx-a11y` и `eslint-plugin-react-compiler` в `eslint.config.mjs`; правила a11y/React Compiler включены для проекта (с исключением `hooks/*` для текущего легаси-перехода); `lint-staged` расширен запуском architecture-check для `*.ts/tsx/js/jsx`.
+- **A-4 / D-2 (аудит):** из `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` удалены выполненные `A-4` и `D-2`; в документе оставлены только нереализованные задачи.
+- **Sprint 13 (завершение):** закрыты `A-2`, `A-3`, `U-8`, `D-3`.
+  `A-2`: запущена App Router миграция — добавлены `app/layout.tsx` + `app/providers.tsx`, маршруты документов перенесены в `app/documents/*`, старые `pages/documents/*` удалены.
+  `A-3`: внедрен Server Action слой `features/feedback/useCases/submitFeedbackAction.ts`; API `pages/api/feedback.ts` переведен на вызов server action после rate-limit и валидации.
+  `U-8`: добавлен headless примитив `UiDialog` на базе `@radix-ui/react-dialog`; `TextViewer` переведен на headless dialog API.
+  `D-3`: добавлены Storybook истории для новых API примитивов (`UiDialog`, polymorphic `UiButton as="a"`), добавлен гайд `docs/guides/API_AND_STORYBOOK_RU.md` и ссылка в `docs/README.md`.
+- **Sprint 13 (аудит):** из `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` удалены выполненные `A-2`, `A-3`, `U-8`, `D-3` и строка `Sprint 13`; в документе оставлены только нереализованные задачи.
 - **Sprint 12 (завершение):** закрыты `U-3`, `U-5`, `U-6`, `U-7`.
   `U-3`: в `styles/tokens.css` добавлена единая шкала слоев (`--z-*`), хардкодные `z-index` в CSS-модулях заменены на токены по всему UI-слою.
   `U-5`: в `styles/tokens.css` добавлены dark-mode переопределения семантических токенов через `[data-theme='dark'], .dark` (совместимо с `next-themes`).

@@ -1,8 +1,9 @@
-import {ChangeEvent, FormEvent, useState} from 'react';
+import {ChangeEvent, SyntheticEvent, useState} from 'react';
 import {FeedbackFormProps, FeedbackItem} from '@shared/ui/order/interface/FeedbackModal.props';
 import {FeedbackFormErrors, FeedbackPhoneCountry} from '@shared/ui/order/interface/FeedbackForm.types';
 import {getPhoneMask, normalizePhoneDigits, stripPhoneCountryCode, toPhoneWithCountryCode} from '@shared/ui/order/utils/phoneFormatting';
 import {feedbackSchema} from '@shared/validates/feedbackSchema';
+import {z} from 'zod';
 
 const mapUiError = (field: keyof FeedbackFormErrors, message?: string): string => {
     if (!message) {
@@ -41,6 +42,17 @@ const INITIAL_ERRORS: FeedbackFormErrors = {
     consent: '',
 };
 
+type TreeifiedZodErrorNode = {
+    errors?: string[];
+    properties?: Record<string, TreeifiedZodErrorNode>;
+};
+
+const getTreeErrorMessage = (tree: ReturnType<typeof z.treeifyError>, field: keyof FeedbackFormErrors): string | undefined => {
+    const typedTree = tree as TreeifiedZodErrorNode;
+    const fieldNode = typedTree.properties?.[field];
+    return fieldNode?.errors?.[0];
+};
+
 export const useFeedbackForm = ({onSubmit}: FeedbackFormProps) => {
     const [formDataState, setFormDataState] = useState<FeedbackItem>(INITIAL_FORM_DATA);
     const [country, setCountry] = useState<FeedbackPhoneCountry>('by');
@@ -63,20 +75,20 @@ export const useFeedbackForm = ({onSubmit}: FeedbackFormProps) => {
         setIsConsentGiven((prev) => !prev);
     };
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
         const validationResult = feedbackSchema.safeParse({
             ...formDataState,
             consent: isConsentGiven,
         });
         if (!validationResult.success) {
-            const fieldErrors = validationResult.error.flatten().fieldErrors;
+            const treeErrors = z.treeifyError(validationResult.error);
             const nextErrors: FeedbackFormErrors = {
-                name: mapUiError('name', fieldErrors.name?.[0]),
-                phone: mapUiError('phone', fieldErrors.phone?.[0]),
-                email: mapUiError('email', fieldErrors.email?.[0]),
-                message: mapUiError('message', fieldErrors.message?.[0]),
-                consent: mapUiError('consent', fieldErrors.consent?.[0]),
+                name: mapUiError('name', getTreeErrorMessage(treeErrors, 'name')),
+                phone: mapUiError('phone', getTreeErrorMessage(treeErrors, 'phone')),
+                email: mapUiError('email', getTreeErrorMessage(treeErrors, 'email')),
+                message: mapUiError('message', getTreeErrorMessage(treeErrors, 'message')),
+                consent: mapUiError('consent', getTreeErrorMessage(treeErrors, 'consent')),
             };
             setErrors(nextErrors);
             return;

@@ -26,3 +26,12 @@ export const Secondary: Story = {
 export const Ghost: Story = {
 	args: {variant: 'ghost', children: 'Связаться'},
 };
+
+export const AsLink: Story = {
+	args: {
+		as: 'a',
+		href: '/contacts',
+		variant: 'primary',
+		children: 'Перейти к контактам',
+	},
+};

@@ -2,6 +2,7 @@
 // Storybook: https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
 import {createRequire} from 'node:module';
 import storybook from 'eslint-plugin-storybook';
+import reactCompiler from 'eslint-plugin-react-compiler';
 
 const require = createRequire(import.meta.url);
 
@@ -32,6 +33,27 @@ const eslintConfig = [
 					],
 				},
 			],
+		},
+	},
+	{
+		files: ['**/*.{ts,tsx,js,jsx}'],
+		plugins: {
+			'react-compiler': reactCompiler,
+		},
+		rules: {
+			'react-compiler/react-compiler': 'error',
+			'jsx-a11y/alt-text': 'error',
+			'jsx-a11y/anchor-is-valid': 'error',
+			'jsx-a11y/aria-props': 'error',
+			'jsx-a11y/aria-proptypes': 'error',
+			'jsx-a11y/aria-role': 'error',
+			'jsx-a11y/role-has-required-aria-props': 'error',
+		},
+	},
+	{
+		files: ['**/hooks/**/*.{ts,tsx,js,jsx}'],
+		rules: {
+			'react-compiler/react-compiler': 'off',
 		},
 	},
 	{

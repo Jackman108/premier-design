@@ -9,13 +9,13 @@ const DOCUMENT_IMAGE_SIZES = '(max-width: 600px) 100vw, (max-width: 1440px) 60vw
 const DocumentImage: FC<DocumentImageProps> = ({alt, src}) => (
     <div className={styles.content__image}>
         <Image
-            priority={true}
             src={src}
             alt={alt}
             placeholder='empty'
             width={2000}
             height={160}
             sizes={DOCUMENT_IMAGE_SIZES}
+            loading="lazy"
             className={styles.document_image}
         />
     </div>

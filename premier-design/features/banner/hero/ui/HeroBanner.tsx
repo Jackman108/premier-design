@@ -5,6 +5,8 @@ import Title from '@shared/ui/title/ui/Title';
 import Image from 'next/image';
 import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
 
+const HERO_BANNER_IMAGE_SIZES = '(max-width: 768px) 100vw, 1440px';
+
 const HeroBanner: FC<HeroBannerProps> = ({bannerData, buttonData, titleData}) => {
     return (
         <section className={styles.banner}>
@@ -15,6 +17,7 @@ const HeroBanner: FC<HeroBannerProps> = ({bannerData, buttonData, titleData}) =>
                 quality={bannerData.quality}
                 width={bannerData.width}
                 height={bannerData.height}
+                sizes={HERO_BANNER_IMAGE_SIZES}
                 placeholder='empty'
                 className={styles.banner__background}
             />
