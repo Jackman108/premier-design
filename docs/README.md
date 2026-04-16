@@ -20,7 +20,9 @@
 | Структура feature-модулей | [guides/FEATURE_STRUCTURE_ROADMAP_RU.md](guides/FEATURE_STRUCTURE_ROADMAP_RU.md) | Шаблон `features/*`, этапы миграции и quality-gate по структуре |
 | API и Storybook | [guides/API_AND_STORYBOOK_RU.md](guides/API_AND_STORYBOOK_RU.md) | Контракт по API-валидации, тестам и обязательной документации UI-примитивов |
 | Маркетинг и KPI-дашборд | [guides/MARKETING_ANALYTICS_DASHBOARD_RU.md](guides/MARKETING_ANALYTICS_DASHBOARD_RU.md) | Карта событий `dataLayer`, funnel-формулы, baseline и целевые значения |
-| Память агента (MemPalace, опционально) | [guides/MEMPALACE_AGENT_MEMORY_RU.md](guides/MEMPALACE_AGENT_MEMORY_RU.md) | Локальная память вне репозитория, MCP, безопасность |
+| MemPalace: установка и MCP | [mempalace/MEMPALACE_AGENT_MEMORY_RU.md](mempalace/MEMPALACE_AGENT_MEMORY_RU.md) | `init` / `mine`, Cursor, безопасность, пошаговая настройка |
+| MemPalace: эксплуатация | [mempalace/MEMPALACE_USAGE_RU.md](mempalace/MEMPALACE_USAGE_RU.md) | `search` / `status` / `wake-up`, UTF-8 в Windows, переиндексация |
+| MemPalace: правила и оглавление | [mempalace/README.md](mempalace/README.md) | `rules/*.md` (веб + чистая архитектура), синхронизация с дворцом |
 | Эксплуатация и CI/CD | [guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md](guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) | Деплой по SSH/SCP; **пошагово: ключ с passphrase**, секреты, ошибки |
 | Perf и SEO | [guides/PERF_AND_SEO_CHECKLIST_RU.md](guides/PERF_AND_SEO_CHECKLIST_RU.md) | Чеклист перед релизом |
 

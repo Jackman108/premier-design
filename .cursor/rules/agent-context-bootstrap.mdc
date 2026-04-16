@@ -34,5 +34,5 @@
 - Только **Yarn**: lock — `premier-design/yarn.lock`; **`package-lock.json` не добавлять в git** (см. `docs/guides/YARN_PACKAGE_MANAGER_RU.md`).
 
 ## Опционально: долговременная память агента (MemPalace)
-- Для сессий в Cursor можно использовать локальную память [MemPalace](https://github.com/MemPalace/mempalace) — см. `docs/guides/MEMPALACE_AGENT_MEMORY_RU.md`.
+- Для сессий в Cursor можно использовать локальную память [MemPalace](https://github.com/MemPalace/mempalace) — см. `docs/mempalace/MEMPALACE_AGENT_MEMORY_RU.md` и `docs/mempalace/MEMPALACE_USAGE_RU.md`.
 - Не подменяет `docs/`, ADR и правила репозитория; не хранить секреты и не коммитить индексы памяти в git.

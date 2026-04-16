@@ -7,9 +7,11 @@
 
 ### Added
 
+- Документ `docs/mempalace/MEMPALACE_USAGE_RU.md`: проверка MemPalace после `mine`, `search`/`status`/`wake-up`, UTF-8 в Windows, цикл переиндексации.
+- Каталог `docs/mempalace/` с README и `rules/01–12_*.md` — свод норм по веб-архитектуре, UI, a11y, perf, безопасности, Next.js, тестам, **чистой архитектуре** (use-case, порты), **чистому коду** (SOLID, DRY, KISS, YAGNI), ошибкам, типизации и техническому долгу для индексации в локальном дворце.
 - Документ `docs/guides/YARN_PACKAGE_MANAGER_RU.md`: только Yarn, без `package-lock.json` в git; CI — `yarn audit`.
 - Шаблон MCP Cursor для MemPalace: `docs/cursor/mcp.mempalace.example.json`, оглавление `docs/cursor/README.md`.
-- Документ `docs/guides/MEMPALACE_AGENT_MEMORY_RU.md`: опциональная локальная память агента на базе [MemPalace](https://github.com/MemPalace/mempalace) (вне репозитория, без секретов); ссылка в `docs/README.md` и в `.cursor/rules/agent-context-bootstrap.mdc`.
+- Документ `docs/mempalace/MEMPALACE_AGENT_MEMORY_RU.md`: опциональная локальная память агента на базе [MemPalace](https://github.com/MemPalace/mempalace) (вне репозитория, без секретов); ссылка в `docs/README.md` и в `.cursor/rules/agent-context-bootstrap.mdc`.
 - Документ `docs/guides/MARKETING_ANALYTICS_DASHBOARD_RU.md`: карта событий `dataLayer`, формулы funnel-конверсий по шагам квиза, baseline и целевые KPI для `W4-M-01`.
 - **Sprint 16 (завершение):** закрыты `M-2`, `M-3`, `M-4`; дополнительно усилен Hero по UX-замечаниям (читабельность H1 и контраст CTA).
   `M-2`: добавлен интерактивный блок `BeforeAfterShowcase` с диапазонным слайдером и выбором кейса (до/после) на основе реальных проектов.
@@ -33,12 +35,13 @@
 
 ### Changed
 
+- **MemPalace:** гайды перенесены из `docs/guides/` в `docs/mempalace/` (`MEMPALACE_AGENT_MEMORY_RU.md`, `MEMPALACE_USAGE_RU.md`); обновлены ссылки в `docs/README.md`, `docs/cursor/README.md`, `.cursor/rules/agent-context-bootstrap.mdc`.
 - **Зависимости:** `package-lock.json` убран из репозитория; в CI вместо `npm audit` — `yarn audit --level critical`; из `package.json` удалён скрипт `sync:npm-lock`.
 - **Lighthouse:** русскоязычный вывод порогов/метрик и файл сводки `premier-design/.lighthouse-perf-summary.json`.
 - **W4-P-01 (завершение):** в CI (`.github/workflows/ci.yml`) добавлен performance gate `yarn check:perf:ci` c порогами Lighthouse mobile (score/LCP/CLS/INP/TBT) и budget initial JS для главной.
 - **W4-P-01 (инструменты):** добавлены скрипты `scripts/check-lighthouse-budget.mjs` и `scripts/check-initial-js-budget.mjs`, npm-команды `check:perf:lighthouse`, `check:perf:initial-js`, `check:perf:ci`; обновлен чеклист `docs/guides/PERF_AND_SEO_CHECKLIST_RU.md`.
 - **W4-P-01 (надёжность):** прогон Lighthouse переведён на programmatic API + `chrome-launcher`, production-сервер — `node .next/standalone/server.js`; INP в lab не учитывается, если метрика отсутствует; на Windows Lighthouse по умолчанию пропускается (`PERF_AUDIT_FORCE_LIGHTHOUSE` для принудительного запуска), полный gate — в Linux CI.
-- **MemPalace:** пошаговый гайд в `docs/guides/MEMPALACE_AGENT_MEMORY_RU.md`; шаблон `docs/cursor/mcp.mempalace.example.json` исправлен на **`python -m mempalace.mcp_server`** с `--palace` (ранее ошибочно указывалась подкоманда `mcp`, она только выводит подсказку в терминале).
+- **MemPalace:** пошаговый гайд в `docs/mempalace/MEMPALACE_AGENT_MEMORY_RU.md`; шаблон `docs/cursor/mcp.mempalace.example.json` исправлен на **`python -m mempalace.mcp_server`** с `--palace` (ранее ошибочно указывалась подкоманда `mcp`, она только выводит подсказку в терминале).
 - **Security headers:** `Strict-Transport-Security` и `upgrade-insecure-requests` в `next.config.js` отправляются только при `VERCEL=1` или `ENABLE_HTTPS_SECURITY_HEADERS=true`, чтобы HTTP (`next start`, CI) не провоцировал попытки принудительного HTTPS.
 - **W4-M-01 (аудит):** `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` и индекс `docs/README.md` синхронизированы с новым маркетинговым KPI-дашбордом и закрытием задачи.
 - **Wave 1 (аудит v3.1, закрытие):**

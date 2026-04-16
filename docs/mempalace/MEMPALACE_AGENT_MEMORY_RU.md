@@ -2,15 +2,17 @@
 
 [MemPalace](https://github.com/MemPalace/mempalace) — локальная система долговременной памяти для AI-агентов (semantic search, MCP, без обязательных облачных API). Официальные источники: репозиторий на GitHub, пакет PyPI и документация на [mempalaceofficial.com](https://mempalaceofficial.com) (см. предупреждение о поддельных доменах в README проекта).
 
-## Зачем в этом репозитории
+## Документы в `docs/mempalace/`
 
-Premier Design — отдельный Next.js-проект; MemPalace **не** встраивается в runtime сайта. Его имеет смысл подключать **к рабочему месту разработчика / Cursor**, чтобы:
-
-- фиксировать решения по архитектуре, ADR, договорённости по стилю кода;
-- хранить контекст между сессиями агента без дублирования длинных вставок в чат;
-- подключить MCP-инструменты MemPalace к Cursor.
+| Файл | Назначение |
+|------|------------|
+| Этот файл | Установка, `init`, `mine`, MCP, безопасность |
+| [`MEMPALACE_USAGE_RU.md`](MEMPALACE_USAGE_RU.md) | Эксплуатация: `search`, `status`, UTF-8, переиндексация, сбои |
+| [`README.md`](README.md) | Оглавление набора `rules/*.md` и синхронизация с дворцом |
 
 Источником правды для кода остаются `docs/`, ADR и `.cursor/rules/` — MemPalace дополняет **личный** контур памяти, а не заменяет репозиторий.
+
+**Индексация в дворец:** скопируйте в каталог `$mp` (вне git) файлы из [`rules/`](rules/) и при необходимости **эти же гайды** (`MEMPALACE_*_RU.md`), затем выполните `mine $mp` — агент в Cursor сможет опираться на ту же модель знаний, что и вы локально.
 
 ---
 
@@ -46,25 +48,25 @@ python -c "import mempalace; print('ok')"
 $env:PYTHONIOENCODING='utf-8'
 ```
 
-**Зачем:** справка CLI может содержать символы вне cp1251; на **работу MCP-сервера** это обычно не влияет.
+**Зачем:** справка CLI может содержать символы вне cp1251; на **работу MCP-сервера** это обычно не влияет. Для **`search`** и других команд с Unicode в выводе задайте также `PYTHONUTF8=1` (см. [`MEMPALACE_USAGE_RU.md`](MEMPALACE_USAGE_RU.md)).
 
 ---
 
 ### Шаг 3. Каталог дворца вне репозитория
 
-**Действие:** выбрать постоянный путь (не внутри git-клона Premier Design), создать папку.
+**Действие:** выбрать постоянный путь (не внутри git-клона Premier Design), создать папку. Рекомендуемое имя — с суффиксом проекта, например `mempalace-premier-design`, чтобы не смешивать с другими дворцами.
 
 **Windows (PowerShell):**
 
 ```powershell
-$mp = "$env:USERPROFILE\Documents\mempalace"
+$mp = "$env:USERPROFILE\Documents\mempalace-premier-design"
 New-Item -ItemType Directory -Force -Path $mp | Out-Null
 ```
 
 **macOS / Linux:**
 
 ```bash
-MP="$HOME/mempalace"
+MP="$HOME/mempalace-premier-design"
 mkdir -p "$MP"
 ```
 
@@ -108,9 +110,9 @@ python -m mempalace mine $mp --dry-run
 **Важно — путь к `mine`:**
 
 - **Нельзя** передать только подпапку репозитория (например `...\premier-design\.cursor\rules`), если там **не** выполняли `init`: будет ошибка `No mempalace.yaml found`. Файл конфигурации комнат должен находиться **в корне аргумента `dir`**.
-- Чтобы индексировать **только** правила или `docs/`, не мешая git: заведите каталог вне клона (например `...\Documents\mempalace`), сделайте `init`, **скопируйте** туда нужные `.mdc` / `.md` (или зеркало), затем `mine` **этого** каталога.
+- Чтобы индексировать **только** правила или `docs/`, не мешая git: заведите каталог вне клона, сделайте `init`, **скопируйте** туда нужные `.md` / `.mdc`, затем `mine` **этого** каталога.
 
-**Важно — «Files: 0» в выводе `mine`:** в каталоге нет файлов, которые MemPalace берёт в режиме `projects` (или все отфильтрованы). Пустой дворец с одним `mempalace.yaml` даст ноль файлов — добавьте содержимое (заметки, копии документов).
+**Важно — «Files: 0» в выводе `mine`:** в каталоге нет файлов, которые MemPalace берёт в режиме `projects` (или все отфильтрованы). Пустой дворец с одним `mempalace.yaml` даст ноль файлов — добавьте содержимое (заметки, копии из `docs/mempalace/rules/`).
 
 **Важно — строка `Palace: .../.mempalace/palace`:** это путь к **векторному хранилищу** по умолчанию; он может отличаться от папки с `mempalace.yaml`. Для MCP в Cursor путь к «логическому» дворцу всё равно задаётся через **`--palace`** у `mcp_server` (шаг 9), как в примере.
 
@@ -140,7 +142,7 @@ python -m mempalace mine $mp
 python -m mempalace status
 ```
 
-**Зачем:** быстро убедиться, что «что-то уже положено в дворец».
+**Зачем:** быстро убедиться, что «что-то уже положено в дворец». Подробнее — [`MEMPALACE_USAGE_RU.md`](MEMPALACE_USAGE_RU.md).
 
 ---
 
@@ -161,7 +163,7 @@ python -m mempalace mcp
 **Действие:**
 
 1. Открыть `%USERPROFILE%\.cursor\mcp.json` (Windows) или `~/.cursor/mcp.json` (macOS/Linux).
-2. В `mcpServers` добавить блок по шаблону [`docs/cursor/mcp.mempalace.example.json`](../cursor/mcp.mempalace.example.json):  
+2. В `mcpServers` добавить блок по шаблону [`../cursor/mcp.mempalace.example.json`](../cursor/mcp.mempalace.example.json):  
    `command`: `python` (или полный путь к `python.exe`, если Cursor не видит тот же PATH).  
    `args`: `["-m", "mempalace.mcp_server", "--palace", "<абсолютный путь к каталогу из шага 3–4>"]`.
 
