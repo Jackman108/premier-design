@@ -7,7 +7,9 @@ const useAllFiles = args.includes('--all');
 
 const IGNORED_DIRS = new Set(['node_modules', '.git', '.next', 'coverage', 'storybook-static', 'styled-system']);
 
-const ALLOWLIST = new Set([
+const LEGACY_ALLOWLIST_EXPIRES_ON = '2026-12-31';
+
+const ALLOWLIST_WITH_EXPIRY = [
 	// legacy cross-feature contracts still in progress
 	'shared/ui/order/interface/OrderButton.props.ts|@features/buttons-panel/interface/PanelButton.props',
 	'shared/ui/calculator-modal/hooks/useCalculatorHandlers.ts|@features/coasting/interface/Costing.props',
@@ -32,7 +34,12 @@ const ALLOWLIST = new Set([
 	'features/related-services/interface/RelatedService.props.ts|@features/coasting/interface/Costing.props',
 	'features/related-services/interface/RelatedService.props.ts|@features/buttons-panel/interface/PanelButton.props',
 	'features/related-services/interface/RelatedService.props.ts|@features/banner/share/interface/ShareBanner.props',
-]);
+	'features/marketing/before-after/hooks/useBeforeAfterSlider.ts|@features/examples/interface/Examples.props',
+	'features/marketing/before-after/interface/BeforeAfterShowcase.props.ts|@features/examples/interface/Examples.props',
+].map((key) => ({key, expiresOn: LEGACY_ALLOWLIST_EXPIRES_ON}));
+
+const ALLOWLIST = new Map(ALLOWLIST_WITH_EXPIRY.map(({key, expiresOn}) => [key, expiresOn]));
+const today = new Date().toISOString().slice(0, 10);
 
 const IMPORT_RE = /from\s+['"]([^'"]+)['"]/g;
 
@@ -72,9 +79,14 @@ for (const file of files) {
 
 	for (const target of imports) {
 		const key = `${file}|${target}`;
+		const allowUntil = ALLOWLIST.get(key);
+		if (allowUntil && allowUntil < today) {
+			violations.push(`${file}: allowlist-исключение просрочено (${allowUntil}) -> ${target}`);
+			continue;
+		}
 
 		if (inShared && (target.startsWith('@features/') || target.startsWith('@services/'))) {
-			if (!ALLOWLIST.has(key)) {
+			if (!allowUntil) {
 				violations.push(`${file}: запрещен импорт из бизнес-слоя -> ${target}`);
 			}
 			continue;
@@ -82,7 +94,7 @@ for (const file of files) {
 
 		if (inFeature && target.startsWith('@features/')) {
 			const targetSlice = target.split('/')[1] ?? '';
-			if (targetSlice && targetSlice !== featureSlice && !ALLOWLIST.has(key)) {
+			if (targetSlice && targetSlice !== featureSlice && !allowUntil) {
 				violations.push(`${file}: cross-feature импорт нарушает FSD -> ${target}`);
 			}
 		}

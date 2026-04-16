@@ -45,6 +45,7 @@ const HeroBanner: FC<HeroBannerProps> = ({bannerData, buttonData, titleData}) =>
                 <OrderButton
                     buttonData={buttonData.buttonHeader}
                     buttonStyle='button-white'
+                    trackingContext='hero_primary_cta'
                 />
             </div>
         </section>

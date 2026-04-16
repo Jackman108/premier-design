@@ -4,11 +4,13 @@ import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 import {UiButton} from '@shared/ui/primitives/UiButton';
 
 import {useLeadQuiz} from '../hooks/useLeadQuiz';
+import {useLeadQuizTracking} from '../hooks/useLeadQuizTracking';
 import {LeadQuizProps} from '../interface/LeadQuiz.props';
 import styles from './LeadQuiz.module.css';
 
 const LeadQuiz: FC<LeadQuizProps> = ({ctaLabel}) => {
     const {step, answers, canMoveNext, setAnswer, nextStep, prevStep, totalSteps} = useLeadQuiz();
+    const {trackAnswerSelect} = useLeadQuizTracking({step, totalSteps});
 
     const quizSummary = useMemo(
         () => [
@@ -20,8 +22,13 @@ const LeadQuiz: FC<LeadQuizProps> = ({ctaLabel}) => {
         [answers.area, answers.projectType, answers.startWindow],
     );
 
+    const handleAnswerSelect = (key: 'projectType' | 'area' | 'startWindow', value: string) => {
+        setAnswer(key, value);
+        trackAnswerSelect(key, value);
+    };
+
     return (
-        <section className={styles.section} aria-labelledby='lead-quiz-title'>
+        <section id='lead-quiz' className={styles.section} aria-labelledby='lead-quiz-title'>
             <div className={styles.header}>
                 <p className={styles.eyebrow}>Interactive Funnel</p>
                 <h2 id='lead-quiz-title' className={styles.title}>Квиз: узнайте бюджет и план запуска за 60 секунд</h2>
@@ -36,27 +43,27 @@ const LeadQuiz: FC<LeadQuizProps> = ({ctaLabel}) => {
                 {step === 1 && (
                     <fieldset className={styles.fieldset}>
                         <legend>1. Что планируете?</legend>
-                        <label><input type='radio' name='projectType' checked={answers.projectType === 'Квартира'} onChange={() => setAnswer('projectType', 'Квартира')}/>Квартира</label>
-                        <label><input type='radio' name='projectType' checked={answers.projectType === 'Дом'} onChange={() => setAnswer('projectType', 'Дом')}/>Дом</label>
-                        <label><input type='radio' name='projectType' checked={answers.projectType === 'Коммерческий объект'} onChange={() => setAnswer('projectType', 'Коммерческий объект')}/>Коммерческий объект</label>
+                        <label><input type='radio' name='projectType' checked={answers.projectType === 'Квартира'} onChange={() => handleAnswerSelect('projectType', 'Квартира')}/>Квартира</label>
+                        <label><input type='radio' name='projectType' checked={answers.projectType === 'Дом'} onChange={() => handleAnswerSelect('projectType', 'Дом')}/>Дом</label>
+                        <label><input type='radio' name='projectType' checked={answers.projectType === 'Коммерческий объект'} onChange={() => handleAnswerSelect('projectType', 'Коммерческий объект')}/>Коммерческий объект</label>
                     </fieldset>
                 )}
 
                 {step === 2 && (
                     <fieldset className={styles.fieldset}>
                         <legend>2. Площадь проекта</legend>
-                        <label><input type='radio' name='area' checked={answers.area === 'до 60 м²'} onChange={() => setAnswer('area', 'до 60 м²')}/>до 60 м²</label>
-                        <label><input type='radio' name='area' checked={answers.area === '60-120 м²'} onChange={() => setAnswer('area', '60-120 м²')}/>60-120 м²</label>
-                        <label><input type='radio' name='area' checked={answers.area === '120+ м²'} onChange={() => setAnswer('area', '120+ м²')}/>120+ м²</label>
+                        <label><input type='radio' name='area' checked={answers.area === 'до 60 м²'} onChange={() => handleAnswerSelect('area', 'до 60 м²')}/>до 60 м²</label>
+                        <label><input type='radio' name='area' checked={answers.area === '60-120 м²'} onChange={() => handleAnswerSelect('area', '60-120 м²')}/>60-120 м²</label>
+                        <label><input type='radio' name='area' checked={answers.area === '120+ м²'} onChange={() => handleAnswerSelect('area', '120+ м²')}/>120+ м²</label>
                     </fieldset>
                 )}
 
                 {step === 3 && (
                     <fieldset className={styles.fieldset}>
                         <legend>3. Когда хотите старт?</legend>
-                        <label><input type='radio' name='startWindow' checked={answers.startWindow === 'В течение месяца'} onChange={() => setAnswer('startWindow', 'В течение месяца')}/>В течение месяца</label>
-                        <label><input type='radio' name='startWindow' checked={answers.startWindow === '1-3 месяца'} onChange={() => setAnswer('startWindow', '1-3 месяца')}/>1-3 месяца</label>
-                        <label><input type='radio' name='startWindow' checked={answers.startWindow === 'Позже, оцениваю варианты'} onChange={() => setAnswer('startWindow', 'Позже, оцениваю варианты')}/>Позже, оцениваю варианты</label>
+                        <label><input type='radio' name='startWindow' checked={answers.startWindow === 'В течение месяца'} onChange={() => handleAnswerSelect('startWindow', 'В течение месяца')}/>В течение месяца</label>
+                        <label><input type='radio' name='startWindow' checked={answers.startWindow === '1-3 месяца'} onChange={() => handleAnswerSelect('startWindow', '1-3 месяца')}/>1-3 месяца</label>
+                        <label><input type='radio' name='startWindow' checked={answers.startWindow === 'Позже, оцениваю варианты'} onChange={() => handleAnswerSelect('startWindow', 'Позже, оцениваю варианты')}/>Позже, оцениваю варианты</label>
                     </fieldset>
                 )}
 
@@ -65,7 +72,12 @@ const LeadQuiz: FC<LeadQuizProps> = ({ctaLabel}) => {
                     {step < totalSteps ? (
                         <UiButton type='button' variant='primary' onClick={nextStep} disabled={!canMoveNext}>Далее</UiButton>
                     ) : (
-                        <OrderButton buttonData={ctaLabel} buttonStyle='button-black' prefilledMessage={quizSummary}/>
+                        <OrderButton
+                            buttonData={ctaLabel}
+                            buttonStyle='button-black'
+                            prefilledMessage={quizSummary}
+                            trackingContext='lead_quiz_submit_cta'
+                        />
                     )}
                 </div>
 

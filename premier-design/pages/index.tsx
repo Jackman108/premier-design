@@ -2,8 +2,6 @@ import {NextPage} from 'next';
 
 import {HeroBannerProps} from '@features/banner/hero/interface/HeroBannerProps';
 import HeroBanner from '@features/banner/hero/ui/HeroBanner';
-import LeadQuiz from '@features/marketing/lead-quiz/ui/LeadQuiz';
-import TrustSignals from '@features/marketing/trust-signals/ui/TrustSignals';
 import {getStaticProps} from '@lib/getStaticData';
 import {usePageData} from '@shared/hooks/usePageData';
 import {useScrollReveal} from '@shared/hooks/useScrollReveal';
@@ -19,6 +17,8 @@ import {
     Reviews,
     Services,
     StepsWork,
+    LeadQuiz,
+    TrustSignals,
 } from '@shared/utils/dynamicImports';
 import {GetDataProps} from '@widgets/interface/interfaceData';
 import {useLayoutProps} from '@widgets/layout/hooks/useLayoutProps';

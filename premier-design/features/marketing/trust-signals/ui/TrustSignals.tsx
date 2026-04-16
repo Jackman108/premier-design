@@ -2,9 +2,11 @@ import {FC} from 'react';
 import Image from 'next/image';
 
 import {TrustSignalsProps} from '../interface/TrustSignals.props';
+import {useTrustSignalsTracking} from '../hooks/useTrustSignalsTracking';
 import styles from './TrustSignals.module.css';
 
 const TrustSignals: FC<TrustSignalsProps> = ({reviews, features}) => {
+    const {sectionRef, handleMetricInteraction, handleBenefitInteraction} = useTrustSignalsTracking();
     const featuredReviews = reviews.slice(0, 3);
     const trustMetrics = [
         {label: 'Проектов завершено', value: '150+'},
@@ -13,7 +15,7 @@ const TrustSignals: FC<TrustSignalsProps> = ({reviews, features}) => {
     ];
 
     return (
-        <section className={styles.section} aria-labelledby='trust-signals-title'>
+        <section ref={sectionRef} className={styles.section} aria-labelledby='trust-signals-title'>
             <div className={styles.header}>
                 <p className={styles.eyebrow}>Trust Signals</p>
                 <h2 id='trust-signals-title' className={styles.title}>Почему нам доверяют сложные проекты</h2>
@@ -24,7 +26,19 @@ const TrustSignals: FC<TrustSignalsProps> = ({reviews, features}) => {
 
             <div className={styles.metrics}>
                 {trustMetrics.map((metric) => (
-                    <article key={metric.label} className={styles.metricCard}>
+                    <article
+                        key={metric.label}
+                        className={styles.metricCard}
+                        role='button'
+                        tabIndex={0}
+                        onClick={() => handleMetricInteraction(metric.label)}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault();
+                                handleMetricInteraction(metric.label);
+                            }
+                        }}
+                    >
                         <p className={styles.metricValue}>{metric.value}</p>
                         <p className={styles.metricLabel}>{metric.label}</p>
                     </article>
@@ -33,7 +47,19 @@ const TrustSignals: FC<TrustSignalsProps> = ({reviews, features}) => {
 
             <div className={styles.benefits}>
                 {features.map((feature) => (
-                    <article key={feature.id} className={styles.benefitCard}>
+                    <article
+                        key={feature.id}
+                        className={styles.benefitCard}
+                        role='button'
+                        tabIndex={0}
+                        onClick={() => handleBenefitInteraction(feature.title)}
+                        onKeyDown={(event) => {
+                            if (event.key === 'Enter' || event.key === ' ') {
+                                event.preventDefault();
+                                handleBenefitInteraction(feature.title);
+                            }
+                        }}
+                    >
                         <Image
                             src={feature.icon}
                             alt={feature.title}

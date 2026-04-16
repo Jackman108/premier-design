@@ -29,6 +29,14 @@
 
 ### Changed
 
+- **Wave 1 (аудит v3.1, закрытие):**
+  `A-01`: добавлен `check:ui-purity` (`scripts/check-ui-purity.mjs`) и интеграция в CI/lint-staged для контроля чистоты `features/*/ui`.
+  `A-02`: `check-architecture-boundaries.mjs` переведен на allowlist с датой снятия долга (`expiresOn`), добавлены новые зафиксированные исключения для legacy cross-feature контрактов.
+  `R-01`: принят стандарт модалок в ADR `docs/adr/0003-modal-standard-and-adapters.md` (единый контракт + legacy-adapter стратегия).
+  `P-01`: `e2e/smoke.spec.ts` дополнен проверкой отсутствия hydration warnings на `/`, `/about`, `/contacts`.
+  `D-02`: добавлены e2e mobile-checks на horizontal overflow (320/360/390/414) и min tap-target ключевых интерактивов; `MenuButton` увеличен до 40x40.
+  `F-02`: добавлен `check:noise` (`scripts/check-noise-artifacts.mjs`), обновлены `.gitignore` (в т.ч. `.next/dev/cache`), quality-gate на шумовые артефакты включен в CI.
+  `O-01`: CI-пайплайн расширен шагами `check:architecture`, `check:ui-purity`, `check:regressions`, `check:noise`; e2e-smoke дополнен базовой a11y-проверкой landmarks.
 - **S-3 / R-2 / R-3 (завершение):** закрыты оставшиеся задачи аудита по безопасности и устойчивости UI.
   `S-3`: усилен rate limiting на публичных API — добавлен общий helper `shared/lib/applyApiRateLimit.ts` с ключом `scope:ip`, едиными заголовками (`X-RateLimit-Limit/Remaining/Reset`, `Retry-After`) и подключением к `/api/feedback` и `/api/sitemap`; `shared/lib/rateLimit.ts` расширен метаданными лимита/времени сброса.
   `R-2`: внедрен централизованный глобальный store темы (`shared/store/themeStore.tsx`), интегрирован в `pages/_app.tsx` и `app/providers.tsx`; `useThemeToggle` переведен на store + синхронизацию с `next-themes`.

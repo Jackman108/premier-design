@@ -15,6 +15,7 @@ storybook-static
 
 # next.js
 /.next/
+/.next/dev/cache/
 /out/
 
 # production

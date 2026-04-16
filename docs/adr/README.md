@@ -15,3 +15,4 @@
 |---|--------|------|--------|
 | 0001 | [0001-ui-stack-and-design-tokens.md](0001-ui-stack-and-design-tokens.md) | UI-стек, токены, Storybook, путь к опциональной библиотеке компонентов | Принято |
 | 0002 | [0002-no-tailwind-panda-css.md](0002-no-tailwind-panda-css.md) | Отказ от Tailwind, выбор Panda CSS как utility/recipe-альтернативы | Принято |
+| 0003 | [0003-modal-standard-and-adapters.md](0003-modal-standard-and-adapters.md) | Единый стандарт модалок (UiDialog + legacy-adapter для `<dialog>`) | Принято |

@@ -32,6 +32,21 @@ jobs:
       - name: Lint
         run: yarn lint
 
+      - name: Check architecture boundaries
+        run: yarn check:architecture
+
+      - name: Check UI purity
+        run: yarn check:ui-purity
+
+      - name: Check style regressions
+        run: yarn check:regressions
+
+      - name: Check noise artifacts
+        run: yarn check:noise
+
+      - name: Check feature structure
+        run: yarn check:feature-structure
+
       - name: Test with coverage
         run: yarn test:coverage
 

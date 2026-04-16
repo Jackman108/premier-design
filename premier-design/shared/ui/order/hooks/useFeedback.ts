@@ -1,11 +1,13 @@
 import {useCallback, useState} from 'react';
 
+import {trackMarketingEvent} from '@shared/analytics/trackMarketingEvent';
 import {useModalState} from '@shared/hooks/useModalState';
 import {FeedbackItem} from '@shared/ui/order/interface/FeedbackModal.props';
 
 export const useFeedback = () => {
     const {isOpen, openModal, closeModal} = useModalState(false);
     const [error, setError] = useState<string>('');
+    const [isSuccess, setIsSuccess] = useState<boolean>(false);
     const [initialMessage, setInitialMessage] = useState<string>('');
 
     const sendFeedback = useCallback(async (formData: FeedbackItem) => {
@@ -21,6 +23,8 @@ export const useFeedback = () => {
     }, []);
 
     const openModalWithMessage = useCallback((message?: string) => {
+        setError('');
+        setIsSuccess(false);
         setInitialMessage(message?.trim() ?? '');
         openModal();
     }, [openModal]);
@@ -28,6 +32,7 @@ export const useFeedback = () => {
     const handleCloseModal = useCallback(() => {
         closeModal();
         setInitialMessage('');
+        setError('');
     }, [closeModal]);
 
     const handleSubmit = useCallback(
@@ -35,13 +40,20 @@ export const useFeedback = () => {
             try {
                 setError('');
                 await sendFeedback(formData);
-                handleCloseModal();
+                setIsSuccess(true);
+                trackMarketingEvent('feedback_form_submit_success', {
+                    hasEmail: Boolean(formData.email),
+                    hasPrefilledMessage: Boolean(initialMessage),
+                });
+                closeModal();
+                setInitialMessage('');
             } catch (err: unknown) {
                 const message = err instanceof Error ? err.message : 'Неизвестная ошибка';
                 setError(`Произошла ошибка при отправке формы: ${message}`);
+                trackMarketingEvent('feedback_form_submit_error', {reason: message});
             }
         },
-        [sendFeedback, handleCloseModal],
+        [closeModal, initialMessage, sendFeedback],
     );
 
     return {
@@ -52,5 +64,6 @@ export const useFeedback = () => {
         handleSubmit,
         initialMessage,
         error,
+        isSuccess,
     };
 };

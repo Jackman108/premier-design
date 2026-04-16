@@ -15,13 +15,15 @@ const News: FC<NewsComponentProps> = ({title, news, newsStyle}): ReactElement =>
     return (
         <section className={stylesToUse.news}>
             <div className={stylesToUse.news__container}>
-                <Title
-                    titleStyle='title-black'
-                    descriptionStyle='description-black'
-                    title={title?.title || ''}
-                    description={title?.description || ''}
-                    shortTitle={title?.shortTitle || ''}
-                />
+                {title ? (
+                    <Title
+                        titleStyle='title-black'
+                        descriptionStyle='description-black'
+                        title={title.title}
+                        description={title.description}
+                        shortTitle={title.shortTitle}
+                    />
+                ) : null}
                 <div className={stylesToUse.news__cards}>
                     {news.map((item, index) => (
                         <div

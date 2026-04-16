@@ -17,3 +17,5 @@ export const BusinessServices = dynamic(() => import('@features/business-service
 export const Category = dynamic(() => import('@features/category/ui/Category/Category'));
 export const RelatedServices = dynamic(() => import('@features/related-services/ui/RelatedServices/RelatedServices'));
 export const Reviews = dynamic(() => import('@shared/ui/reviews/ui/Reviews/Reviews'));
+export const TrustSignals = dynamic(() => import('@features/marketing/trust-signals/ui/TrustSignals'));
+export const LeadQuiz = dynamic(() => import('@features/marketing/lead-quiz/ui/LeadQuiz'));

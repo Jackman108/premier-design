@@ -16,6 +16,7 @@
 | Аудит и дорожная карта | [audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) | **Открытый бэклог** (незакрытые ID), ориентир по спринтам, Definition of Done |
 | ADR (архитектурные решения) | [adr/README.md](adr/README.md) | Реестр ADR, включая UI-стек без Tailwind |
 | Архитектура и нейминг кода | [guides/CODE_STRUCTURE_AND_NAMING_RU.md](guides/CODE_STRUCTURE_AND_NAMING_RU.md) | Границы слоя представления, структура модулей, единый стиль именования и правила выноса общего кода |
+| Структура feature-модулей | [guides/FEATURE_STRUCTURE_ROADMAP_RU.md](guides/FEATURE_STRUCTURE_ROADMAP_RU.md) | Шаблон `features/*`, этапы миграции и quality-gate по структуре |
 | API и Storybook | [guides/API_AND_STORYBOOK_RU.md](guides/API_AND_STORYBOOK_RU.md) | Контракт по API-валидации, тестам и обязательной документации UI-примитивов |
 | Эксплуатация и CI/CD | [guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md](guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) | Деплой по SSH/SCP; **пошагово: ключ с passphrase**, секреты, ошибки |
 | Perf и SEO | [guides/PERF_AND_SEO_CHECKLIST_RU.md](guides/PERF_AND_SEO_CHECKLIST_RU.md) | Чеклист перед релизом |
@@ -25,3 +26,4 @@
 - Runbook приложения: `premier-design/README.md`
 - История версий приложения: `premier-design/CHANGELOG.md`
 - Правила для ИИ-агента: `.cursor/rules/agent-architecture-clean-code.mdc`
+- Bootstrap-контекст агента: `.cursor/rules/agent-context-bootstrap.mdc`

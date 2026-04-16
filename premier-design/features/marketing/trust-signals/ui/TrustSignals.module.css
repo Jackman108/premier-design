@@ -44,6 +44,7 @@
     border-radius: var(--radius-md);
     border: 1px solid color-mix(in srgb, var(--color-border) 60%, transparent);
     background: color-mix(in srgb, var(--color-surface) 94%, transparent);
+    cursor: pointer;
 }
 
 .metricValue {
@@ -73,6 +74,13 @@
     border-radius: var(--radius-md);
     background: var(--color-surface);
     box-shadow: var(--shadow-sm);
+    cursor: pointer;
+}
+
+.metricCard:focus-visible,
+.benefitCard:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
 }
 
 .benefitCard p {

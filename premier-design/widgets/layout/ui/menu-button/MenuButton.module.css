@@ -6,8 +6,8 @@
 
 	.menu__button {
 		position: relative;
-		width: 30px;
-		height: 27px;
+		width: 40px;
+		height: 40px;
 		margin: 0;
 		padding: 0;
 		border: none;
@@ -39,11 +39,11 @@
 	}
 
 	.menu__button.active span:nth-child(1) {
-		transform: translateY(12px) rotate(90deg);
+		transform: translateY(14px) rotate(90deg);
 	}
 
 	.menu__button.active span:nth-child(3) {
-		transform: translateY(-12px) rotate(90deg);
+		transform: translateY(-14px) rotate(90deg);
 	}
 
 }

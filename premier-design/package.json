@@ -17,6 +17,9 @@
     "lint:fix": "node ./node_modules/eslint/bin/eslint.js . --fix --ignore-pattern styled-system/**",
     "check:regressions": "node ./scripts/check-p2-regressions.mjs --all",
     "check:architecture": "node ./scripts/check-architecture-boundaries.mjs --all",
+    "check:ui-purity": "node ./scripts/check-ui-purity.mjs --all",
+    "check:noise": "node ./scripts/check-noise-artifacts.mjs --all",
+    "check:feature-structure": "node ./scripts/check-feature-structure.mjs",
     "test": "node ./node_modules/jest/bin/jest.js",
     "test:coverage": "node ./node_modules/jest/bin/jest.js --coverage --watch=false",
     "test:e2e": "node ./node_modules/@playwright/test/cli.js test",
@@ -34,10 +37,17 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
       "node ./node_modules/eslint/bin/eslint.js --fix",
-      "node ./scripts/check-architecture-boundaries.mjs"
+      "node ./scripts/check-architecture-boundaries.mjs",
+      "node ./scripts/check-ui-purity.mjs"
     ],
     "*.css": [
       "node ./scripts/check-p2-regressions.mjs"
+    ],
+    "*": [
+      "node ./scripts/check-noise-artifacts.mjs"
+    ],
+    "features/**": [
+      "node ./scripts/check-feature-structure.mjs"
     ]
   },
   "dependencies": {

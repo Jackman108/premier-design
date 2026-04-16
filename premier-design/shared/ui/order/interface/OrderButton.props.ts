@@ -6,5 +6,6 @@ export interface OrderButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes
     buttonData: string;
     panelData?: PanelProps;
     prefilledMessage?: string;
+    trackingContext?: string;
 }
 

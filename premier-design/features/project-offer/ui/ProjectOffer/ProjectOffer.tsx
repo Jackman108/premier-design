@@ -1,13 +1,14 @@
 import styles from './ProjectOffer.module.css';
-import {FC, ReactElement, useMemo} from "react";
+import {FC, ReactElement} from "react";
 import {ProjectOfferProps} from "@features/project-offer/interface/OfferProject.props";
 import OfferCard from "../OfferCard/OfferCard";
 import SliderComponent from '@shared/ui/slider/ui/SliderLazy';
+import {useProjectOffer} from '@features/project-offer/hooks/useProjectOffer';
 
 const ProjectOffer: FC<ProjectOfferProps> = ({data, buttonData, buttonStyle}): ReactElement => {
     const slidesPerView = 1; // Настроить количество слайдов на экране (можно адаптировать для мобильных)
 
-    const memoizedData = useMemo(() => data || [], [data]);
+    const memoizedData = useProjectOffer(data);
     return (
         <section className={styles.offer}>
             <div className={styles.offer__container}>
