@@ -1,4 +1,4 @@
-import {readdirSync, statSync, existsSync} from 'node:fs';
+import {readdirSync, existsSync} from 'node:fs';
 import {join, relative, resolve} from 'node:path';
 
 const cwd = process.cwd();
@@ -6,30 +6,8 @@ const featuresRoot = resolve(cwd, 'features');
 
 const REQUIRED_DIRS = ['ui', 'hooks', 'interface', 'utils'];
 
-/**
- * Небольшой allowlist для legacy-фич:
- * - пока не имеют полного шаблона и мигрируются поэтапно.
- */
-const LEGACY_ALLOWLIST = new Set([
-	'features/address',
-	'features/approach',
-	'features/banner',
-	'features/business-services',
-	'features/buttons-panel',
-	'features/category',
-	'features/coasting',
-	'features/documents-content',
-	'features/examples',
-	'features/feedback',
-	'features/marketing',
-	'features/news',
-	'features/papers',
-	'features/partners',
-	'features/project-offer',
-	'features/related-services',
-	'features/services',
-	'features/steps-work',
-]);
+// Legacy-allowlist снят: проверка структуры обязательна для всех feature-модулей.
+const LEGACY_ALLOWLIST = new Set([]);
 
 const toUnixPath = (path) => path.split('\\').join('/');
 
@@ -55,7 +33,7 @@ for (const featureDir of featureDirs) {
 
 	for (const requiredDir of REQUIRED_DIRS) {
 		const requiredPath = join(featureDir, requiredDir);
-		if (!existsSync(requiredPath) || !statSync(requiredPath).isDirectory()) {
+		if (!existsSync(requiredPath)) {
 			missingDirs.push(`${featureRelPath}: отсутствует папка "${requiredDir}"`);
 		}
 	}

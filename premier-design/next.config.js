@@ -8,6 +8,11 @@ const isDevelopment = process.env.NODE_ENV !== 'production';
 const scriptSrcPolicy = isDevelopment ? "'self' 'unsafe-inline' 'unsafe-eval'" : "'self' 'unsafe-inline'";
 const connectSrcPolicy = isDevelopment ? "'self' https: http: ws: wss:" : "'self' https:";
 
+// На HTTP нельзя слать HSTS и upgrade-insecure-requests — Chrome пытается HTTPS и ломает Lighthouse / next start.
+// Включаем только на Vercel или если явно задали env для своего HTTPS за прокси.
+const isHttpsHardenedEnv =
+	process.env.VERCEL === '1' || process.env.ENABLE_HTTPS_SECURITY_HEADERS === 'true';
+
 const contentSecurityPolicy = [
 	"default-src 'self'",
 	"base-uri 'self'",
@@ -20,7 +25,7 @@ const contentSecurityPolicy = [
 	"img-src 'self' data: blob: https:",
 	"font-src 'self' data:",
 	`connect-src ${connectSrcPolicy}`,
-	'upgrade-insecure-requests',
+	...(isHttpsHardenedEnv ? ['upgrade-insecure-requests'] : []),
 ].join('; ');
 
 const nextConfig = {
@@ -70,10 +75,14 @@ const nextConfig = {
 						key: 'Content-Security-Policy',
 						value: contentSecurityPolicy,
 					},
-					{
-						key: 'Strict-Transport-Security',
-						value: 'max-age=31536000; includeSubDomains; preload',
-					},
+					...(isHttpsHardenedEnv
+						? [
+								{
+									key: 'Strict-Transport-Security',
+									value: 'max-age=31536000; includeSubDomains; preload',
+								},
+							]
+						: []),
 				],
 			},
 			{

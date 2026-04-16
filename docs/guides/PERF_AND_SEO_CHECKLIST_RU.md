@@ -24,4 +24,9 @@
 
 ## Наблюдаемость
 
-- Регулярный прогон Lighthouse (mobile) в CI или вручную; Search Console после выкладки.
+- В CI включен quality-gate `yarn check:perf:ci` (Lighthouse mobile + budget initial JS главной). Пороговые env: `PERF_BUDGET_SCORE`, `PERF_BUDGET_LCP_MS`, `PERF_BUDGET_CLS`, `PERF_BUDGET_INP_MS`, `PERF_BUDGET_TBT_MS`, `INITIAL_JS_BUDGET_KB`.
+- Скрипт Lighthouse поднимает production через `node .next/standalone/server.js` (конфиг `output: 'standalone'`); INP в lab-прогоне может отсутствовать — тогда порог INP не применяется.
+- **Windows:** по умолчанию шаг Lighthouse в `check:perf:lighthouse` пропускается (нестабильный headless / interstitial). В консоль всё равно выводятся **пороги CI**; фактические цифры — в логе Linux job или в файле `premier-design/.lighthouse-perf-summary.json` после прогона (на Windows при пропуске там `skipped: true`). Полный gate в CI (GitHub Actions). Локально принудительно: `PERF_AUDIT_FORCE_LIGHTHOUSE=true`. Отключить Lighthouse: `PERF_AUDIT_SKIP_LIGHTHOUSE=true`.
+- **HTTPS-заголовки:** `Strict-Transport-Security` и директива CSP `upgrade-insecure-requests` включаются только при `VERCEL=1` (деплой на Vercel) или `ENABLE_HTTPS_SECURITY_HEADERS=true` (self-hosted за HTTPS). На голом HTTP (локальный `next start`, CI без TLS) они не отправляются — иначе браузер может пытаться «улучшить» до HTTPS и ломать Lighthouse/локальные проверки.
+- Локальная проверка перед PR: `yarn build && yarn check:perf:ci` (на Windows Lighthouse может быть пропущен — см. выше).
+- Search Console и ручной Lighthouse-аудит после выкладки.

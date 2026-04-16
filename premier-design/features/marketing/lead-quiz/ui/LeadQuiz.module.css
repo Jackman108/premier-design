@@ -16,15 +16,15 @@
     margin: 0;
     text-transform: uppercase;
     letter-spacing: 0.12em;
-    font-size: 0.8rem;
+    font-size: var(--font-size-caption);
     color: var(--color-accent);
 }
 
 .title {
     margin: 0;
     font-family: var(--font-heading);
-    font-size: clamp(1.65rem, 2.4vw, 2.4rem);
-    line-height: 1.2;
+    font-size: var(--font-size-heading-sm);
+    line-height: var(--line-height-heading);
 }
 
 .description {
@@ -86,5 +86,5 @@
 .summary {
     margin: 0;
     color: var(--color-text-muted);
-    line-height: 1.5;
+    line-height: var(--line-height-body);
 }

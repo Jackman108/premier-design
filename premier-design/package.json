@@ -20,6 +20,9 @@
     "check:ui-purity": "node ./scripts/check-ui-purity.mjs --all",
     "check:noise": "node ./scripts/check-noise-artifacts.mjs --all",
     "check:feature-structure": "node ./scripts/check-feature-structure.mjs",
+    "check:perf:initial-js": "node ./scripts/check-initial-js-budget.mjs",
+    "check:perf:lighthouse": "node ./scripts/check-lighthouse-budget.mjs",
+    "check:perf:ci": "node ./scripts/check-lighthouse-budget.mjs && node ./scripts/check-initial-js-budget.mjs",
     "test": "node ./node_modules/jest/bin/jest.js",
     "test:coverage": "node ./node_modules/jest/bin/jest.js --coverage --watch=false",
     "test:e2e": "node ./node_modules/@playwright/test/cli.js test",
@@ -28,8 +31,7 @@
     "storybook": "node ./node_modules/storybook/dist/bin/dispatcher.js dev -p 6006",
     "build-storybook": "node ./node_modules/storybook/dist/bin/dispatcher.js build",
     "panda:codegen": "node ./node_modules/@pandacss/dev/bin.js codegen",
-    "panda:watch": "node ./node_modules/@pandacss/dev/bin.js codegen --watch",
-    "sync:npm-lock": "npm install --package-lock-only --ignore-scripts"
+    "panda:watch": "node ./node_modules/@pandacss/dev/bin.js codegen --watch"
   },
   "resolutions": {
     "picomatch": "^4.0.4"
@@ -100,6 +102,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^30.3.0",
     "jest-environment-jsdom": "^30.3.0",
+    "lighthouse": "^13.1.0",
     "lint-staged": "^16.2.0",
     "pg": "^8.16.0",
     "pg-query-stream": "4.14.0",

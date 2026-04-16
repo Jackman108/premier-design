@@ -2,7 +2,8 @@
 
 # dependencies
 /node_modules
-# Основной lock — yarn.lock. package-lock.json коммитим для `npm audit` в CI (синхронизация: `yarn sync:npm-lock`).
+# Только Yarn: единственный lock — `yarn.lock`. `package-lock.json` не коммитим (локально может появиться — игнор).
+package-lock.json
 /.pnp
 .pnp.js
 
@@ -17,6 +18,11 @@ storybook-static
 /.next/
 /.next/dev/cache/
 /out/
+
+# Lighthouse CLI (local perf check)
+.lighthouse-chrome-profile/
+.lighthouse-tmp/
+.lighthouse-perf-summary.json
 
 # production
 /build

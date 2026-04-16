@@ -1,31 +1,22 @@
-import {FC, useMemo} from 'react';
+import {FC} from 'react';
 
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 import {UiButton} from '@shared/ui/primitives/UiButton';
 
 import {useLeadQuiz} from '../hooks/useLeadQuiz';
 import {useLeadQuizTracking} from '../hooks/useLeadQuizTracking';
+import {useLeadQuizViewModel} from '../hooks/useLeadQuizViewModel';
 import {LeadQuizProps} from '../interface/LeadQuiz.props';
 import styles from './LeadQuiz.module.css';
 
 const LeadQuiz: FC<LeadQuizProps> = ({ctaLabel}) => {
     const {step, answers, canMoveNext, setAnswer, nextStep, prevStep, totalSteps} = useLeadQuiz();
     const {trackAnswerSelect} = useLeadQuizTracking({step, totalSteps});
-
-    const quizSummary = useMemo(
-        () => [
-            'Квиз-заявка с сайта.',
-            `Тип проекта: ${answers.projectType ?? '-'}`,
-            `Площадь: ${answers.area ?? '-'}`,
-            `Срок старта: ${answers.startWindow ?? '-'}`,
-        ].join('\n'),
-        [answers.area, answers.projectType, answers.startWindow],
-    );
-
-    const handleAnswerSelect = (key: 'projectType' | 'area' | 'startWindow', value: string) => {
-        setAnswer(key, value);
-        trackAnswerSelect(key, value);
-    };
+    const {handleAnswerSelect, quizSummary} = useLeadQuizViewModel({
+        answers,
+        setAnswer,
+        trackAnswerSelect,
+    });
 
     return (
         <section id='lead-quiz' className={styles.section} aria-labelledby='lead-quiz-title'>

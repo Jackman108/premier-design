@@ -2,6 +2,9 @@ import {useEffect, useRef} from 'react';
 
 import {trackMarketingEvent} from '@shared/analytics/trackMarketingEvent';
 
+// Инкапсулирует маркетинговый трекинг trust-блока:
+// - impression при реальном попадании в viewport,
+// - единые обработчики интеракций по метрикам/бенефитам.
 export const useTrustSignalsTracking = () => {
 	const sectionRef = useRef<HTMLElement | null>(null);
 
@@ -11,6 +14,7 @@ export const useTrustSignalsTracking = () => {
 			return;
 		}
 
+		// threshold 0.35 снижает шум от "мимолетного" появления блока.
 		const observer = new IntersectionObserver(
 			(entries) => {
 				entries.forEach((entry) => {

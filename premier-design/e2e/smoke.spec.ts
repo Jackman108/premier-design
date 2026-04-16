@@ -7,6 +7,8 @@ const assertNoHydrationWarnings = (messages: string[], route: string) => {
 	expect(hit, `Hydration warning detected on route ${route}`).toBeUndefined();
 };
 
+const CONSOLE_FUNNEL_ERROR_PATTERNS = [/uncaught/i, /typeerror/i, /hydration/i, /dialogcontent/i];
+
 test('home page smoke', async ({page}) => {
     const response = await page.goto('/');
     expect(response?.ok()).toBeTruthy();
@@ -113,4 +115,73 @@ test('contacts map iframe loads without CSP frame violations', async ({page}) =>
 		/content security policy|framing .* violates/i.test(message),
 	);
 	expect(cspFrameError, 'CSP frame warning detected on contacts map').toBeUndefined();
+});
+
+test('lead modal opens from hero and quiz CTA', async ({page}) => {
+	await page.addInitScript(() => {
+		window.localStorage.setItem('cookiesAccepted', 'true');
+	});
+	await page.goto('/');
+	await page.waitForLoadState('networkidle');
+
+	const heroOrderButton = page.getByRole('button', {name: 'Сделать заказ'}).first();
+	await expect(heroOrderButton).toBeVisible();
+	await heroOrderButton.click();
+	await expect(page.getByRole('heading', {name: 'Оставьте заявку'})).toBeVisible();
+	// Перезагружаем страницу для второго источника CTA, чтобы не зависеть от поведения modal-close
+	// в условиях конкурирующих overlay-слоев на первом экране.
+	await page.goto('/');
+	await page.waitForLoadState('networkidle');
+
+	const quizSection = page.locator('#lead-quiz');
+	await expect(quizSection).toBeVisible();
+
+	await quizSection.getByRole('radio', {name: 'Квартира'}).check();
+	await quizSection.getByRole('button', {name: 'Далее'}).click();
+	await quizSection.getByRole('radio', {name: 'до 60 м²'}).check();
+	await quizSection.getByRole('button', {name: 'Далее'}).click();
+	await quizSection.getByRole('radio', {name: 'В течение месяца'}).check();
+
+	const quizOrderButton = quizSection.getByRole('button', {name: 'Сделать заказ'});
+	await expect(quizOrderButton).toBeVisible();
+	await quizOrderButton.click();
+	await expect(page.getByRole('heading', {name: 'Оставьте заявку'})).toBeVisible();
+});
+
+test('feedback form submit shows success state and keeps console clean', async ({page}) => {
+	const consoleMessages: string[] = [];
+	page.on('console', (msg) => {
+		if (msg.type() === 'error' || msg.type() === 'warning') {
+			consoleMessages.push(msg.text());
+		}
+	});
+	await page.addInitScript(() => {
+		window.localStorage.setItem('cookiesAccepted', 'true');
+	});
+
+	await page.route('**/api/feedback', async (route) => {
+		await route.fulfill({
+			status: 200,
+			contentType: 'application/json',
+			body: JSON.stringify({status: 'success', message: 'ok'}),
+		});
+	});
+
+	await page.goto('/');
+	await page.waitForLoadState('networkidle');
+	await page.getByRole('button', {name: 'Сделать заказ'}).first().click();
+
+	await page.getByLabel('Имя').fill('Тестовый клиент');
+	await page.getByRole('textbox', {name: 'Телефон'}).fill('291112233');
+	await page.getByLabel('Сообщение').fill('Проверка smoke-сценария');
+	const consentCheckbox = page.getByRole('checkbox', {name: /пользовательским соглашением/i});
+	await consentCheckbox.setChecked(true, {force: true});
+	await page.getByRole('button', {name: 'Отправить заявку'}).click();
+
+	await expect(page.getByText('Заявка отправлена. Мы свяжемся с вами в ближайшее время.')).toBeVisible();
+
+	const consoleHit = consoleMessages.find((message) =>
+		CONSOLE_FUNNEL_ERROR_PATTERNS.some((pattern) => pattern.test(message)),
+	);
+	expect(consoleHit, 'Unexpected console issue in lead funnel').toBeUndefined();
 });

@@ -6,6 +6,8 @@ type UsePhotoViewerParams = {
 	onClose: () => void;
 };
 
+// Управляет всем интерактивом просмотрщика (клавиатура/клики/переходы),
+// чтобы UI-компонент оставался только декларативным слоем рендера.
 export const usePhotoViewer = ({images, currentImage, onClose}: UsePhotoViewerParams) => {
 	const [currentIndex, setCurrentIndex] = useState<number>(images.indexOf(currentImage));
 
@@ -31,6 +33,7 @@ export const usePhotoViewer = ({images, currentImage, onClose}: UsePhotoViewerPa
 
 	const handleKeyDown = useCallback(
 		(event: KeyboardEvent<HTMLDialogElement>) => {
+			// Поддерживаем привычные gallery-shortcuts и Escape для доступности.
 			switch (event.key) {
 				case 'ArrowLeft':
 					handlePrev();

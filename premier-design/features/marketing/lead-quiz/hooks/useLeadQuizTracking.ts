@@ -9,6 +9,8 @@ type UseLeadQuizTrackingParams = {
 	totalSteps: number;
 };
 
+// Единый слой аналитики квиза:
+// старт, просмотры шагов, выборы ответов и drop-off при уходе до завершения.
 export const useLeadQuizTracking = ({step, totalSteps}: UseLeadQuizTrackingParams) => {
 	const startedRef = useRef(false);
 
@@ -24,6 +26,7 @@ export const useLeadQuizTracking = ({step, totalSteps}: UseLeadQuizTrackingParam
 
 	useEffect(
 		() => () => {
+			// Drop-off нужен только до финального шага, чтобы не искажать завершенные сессии.
 			if (step < totalSteps) {
 				trackMarketingEvent('lead_quiz_dropoff', {step});
 			}

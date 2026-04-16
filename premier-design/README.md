@@ -7,7 +7,7 @@
 - Node.js `22.x` (см. `.nvmrc`)
 - [Yarn](https://yarnpkg.com/) Classic `1.22+` (как в CI: `yarn.lock` + `yarn install --frozen-lockfile`)
 - перед переустановкой зависимостей остановите `next dev` / `yarn dev`, иначе на Windows возможен `EPERM` при замене нативных бинарников в `node_modules` (в т.ч. `@next/swc-*`).
-- после изменения `package.json` / `yarn.lock` выполните **`yarn sync:npm-lock`** и закоммитьте обновлённый **`package-lock.json`** (нужен для `npm audit` в CI).
+- **`package-lock.json` не коммитим** — только `yarn.lock`; см. [`docs/guides/YARN_PACKAGE_MANAGER_RU.md`](../docs/guides/YARN_PACKAGE_MANAGER_RU.md).
 
 ## Быстрый старт (локально)
 
