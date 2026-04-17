@@ -4,6 +4,7 @@ import {getStaticProps} from '@lib/getStaticData';
 import {GetDataProps} from '@widgets/interface/interfaceData';
 import {ReactElement} from "react";
 import HeroBanner from "@features/banner/hero/ui/HeroBanner";
+import CompanyAboutSections from "@features/company-about/ui/CompanyAboutSections";
 import {Appeal, News, OfferBanner, Partners} from '@shared/utils/dynamicImports';
 import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
@@ -22,9 +23,10 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
 
     return (
         <>
-            <CustomHead {...titleData}/>
+            <CustomHead {...titleData} structuredDataRating={data.trustSignals.structuredDataRating}/>
             <Layout {...useLayoutProps(data)}>
                 <HeroBanner {...bannerProps}/>
+                <CompanyAboutSections content={data.companyAbout}/>
                 <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.aboutType}/>
                 <News
                     title={titles["news-shares"]}

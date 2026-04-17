@@ -15,6 +15,10 @@ export interface ExampleCardProps {
     background: string;
     address: string;
     deadlines: string;
+    /** Диапазон бюджета / сегмент (из контента). */
+    budgetRange?: string;
+    /** Метрика сдачи / соблюдения сроков. */
+    onTimeNote?: string;
     bathroomIcon: string;
     bathroomOption: number;
     areaIcon: string;

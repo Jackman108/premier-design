@@ -45,6 +45,8 @@ describe('submitFeedback', () => {
             EMAIL_PORT: '587',
             EMAIL_USERNAME: 'mailer@example.com',
             EMAIL_PASSWORD: 'secret',
+            FEEDBACK_EMAIL_TO: 'inbox@example.com',
+            FEEDBACK_EMAIL_FROM: 'noreply@example.com',
             TELEGRAM_BOT_TOKEN: 'bot-token',
             TELEGRAM_CHAT_ID: 'chat-id',
         };
@@ -61,7 +63,11 @@ describe('submitFeedback', () => {
         expect(mockedFileService.saveData).toHaveBeenCalledWith(payload);
         expect(mockedEmailService.sendMail).toHaveBeenCalledTimes(1);
         expect(mockedTelegramService.sendMessage).toHaveBeenCalledTimes(1);
-        expect(mockedEmailService.sendMail.mock.calls[0][0].from).toContain('&lt;b&gt;');
+        const mailOpts = mockedEmailService.sendMail.mock.calls[0][0];
+        expect(mailOpts.from).toBe('noreply@example.com');
+        expect(mailOpts.to).toBe('inbox@example.com');
+        expect(mailOpts.replyTo).toContain('test@example.com');
+        expect(mailOpts.text).toContain('&lt;b&gt;');
     });
 
     it('skips email and file persistence in production mode', async () => {

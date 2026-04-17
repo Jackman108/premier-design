@@ -2,6 +2,7 @@ import {useCallback, useState} from 'react';
 
 import {trackMarketingEvent} from '@shared/analytics/trackMarketingEvent';
 import {useModalState} from '@shared/hooks/useModalState';
+import {postFeedbackToApi} from '@shared/lib/postFeedbackClient';
 import {FeedbackItem} from '@shared/ui/order/interface/FeedbackModal.props';
 
 export const useFeedback = () => {
@@ -11,15 +12,7 @@ export const useFeedback = () => {
     const [initialMessage, setInitialMessage] = useState<string>('');
 
     const sendFeedback = useCallback(async (formData: FeedbackItem) => {
-        const response = await fetch('/api/feedback', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(formData),
-        });
-
-        if (!response.ok) {
-            throw new Error(`Ошибка ${response.status}: ${response.statusText}`);
-        }
+        await postFeedbackToApi(formData);
     }, []);
 
     const openModalWithMessage = useCallback((message?: string) => {

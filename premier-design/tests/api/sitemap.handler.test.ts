@@ -1,4 +1,6 @@
 /** @jest-environment node */
+import type {NextApiRequest} from 'next';
+
 import handler from '../../pages/api/sitemap';
 import {getData} from '@lib/getStaticData';
 
@@ -26,9 +28,20 @@ const createRes = (): MockResponse => {
 	return res;
 };
 
+const getReq = (method = 'GET'): Pick<NextApiRequest, 'method'> => ({method});
+
 describe('/api/sitemap handler', () => {
 	beforeEach(() => {
 		jest.clearAllMocks();
+	});
+
+	it('returns 405 for non-GET', async () => {
+		const res = createRes();
+		await handler(getReq('POST') as NextApiRequest, res as never);
+
+		expect(res.setHeader).toHaveBeenCalledWith('Allow', 'GET');
+		expect(res.status).toHaveBeenCalledWith(405);
+		expect(res.json).toHaveBeenCalledWith({message: 'Method not allowed.'});
 	});
 
 	it('returns xml sitemap with static and dynamic urls', async () => {
@@ -45,7 +58,7 @@ describe('/api/sitemap handler', () => {
 		} as never);
 
 		const res = createRes();
-		await handler({} as never, res as never);
+		await handler(getReq() as NextApiRequest, res as never);
 
 		expect(res.setHeader).toHaveBeenCalledWith('Content-Type', 'application/xml');
 		expect(res.status).toHaveBeenCalledWith(200);
@@ -53,9 +66,11 @@ describe('/api/sitemap handler', () => {
 
 		const payload = res.send.mock.calls[0][0] as string;
 		expect(payload).toContain('<urlset');
-		expect(payload).toContain('https://premier-design.by/design');
-		expect(payload).toContain('https://premier-design.by/services/renovation/flooring');
-		expect(payload).toContain('https://premier-design.by/services/related/cleaning');
+		expect(payload).toContain('https://premium-interior.by/design');
+		expect(payload).toContain('https://premium-interior.by/portfolio');
+		expect(payload).toContain('https://premium-interior.by/calculator');
+		expect(payload).toContain('https://premium-interior.by/services/renovation/flooring');
+		expect(payload).toContain('https://premium-interior.by/services/related/cleaning');
 	});
 
 	it('returns 500 when data structure is invalid', async () => {
@@ -66,7 +81,7 @@ describe('/api/sitemap handler', () => {
 		} as never);
 
 		const res = createRes();
-		await handler({} as never, res as never);
+		await handler(getReq() as NextApiRequest, res as never);
 
 		expect(res.status).toHaveBeenCalledWith(500);
 		expect(res.json).toHaveBeenCalledWith({error: 'Не удалось сформировать sitemap'});

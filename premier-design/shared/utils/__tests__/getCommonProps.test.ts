@@ -11,6 +11,10 @@ describe('getCommonProps', () => {
 			button: [{id: 5}],
 			panel: [{id: 6}],
 			shares: [{id: 7}],
+			trustSignals: {
+				metrics: [],
+				structuredDataRating: {ratingValue: '5', reviewCount: 1, bestRating: '5'},
+			},
 		} as never);
 
 		expect(result).toEqual({
@@ -21,6 +25,7 @@ describe('getCommonProps', () => {
 			buttonData: [{id: 5}],
 			panelData: [{id: 6}],
 			sharesData: [{id: 7}],
+			structuredDataRating: {ratingValue: '5', reviewCount: 1, bestRating: '5'},
 		});
 	});
 });

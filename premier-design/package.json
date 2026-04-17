@@ -23,6 +23,7 @@
     "check:perf:initial-js": "node ./scripts/check-initial-js-budget.mjs",
     "check:perf:lighthouse": "node ./scripts/check-lighthouse-budget.mjs",
     "check:perf:ci": "node ./scripts/check-lighthouse-budget.mjs && node ./scripts/check-initial-js-budget.mjs",
+    "check:deploy:local": "yarn lint && yarn test --watch=false && yarn build && node ./scripts/check-initial-js-budget.mjs && yarn check:architecture && yarn check:ui-purity && yarn check:feature-structure",
     "test": "node ./node_modules/jest/bin/jest.js",
     "test:coverage": "node ./node_modules/jest/bin/jest.js --coverage --watch=false",
     "test:e2e": "node ./node_modules/@playwright/test/cli.js test",

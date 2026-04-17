@@ -1,0 +1,42 @@
+.section {
+	padding-block: clamp(2rem, 6vw, 3.5rem);
+	max-width: min(48rem, 100%);
+	margin-inline: auto;
+}
+
+.list {
+	display: grid;
+	gap: 0.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.details {
+	border: 1px solid var(--color-border, #e5e5e5);
+	border-radius: 0.5rem;
+	background: var(--color-surface, #fff);
+}
+
+.summary {
+	cursor: pointer;
+	padding: 1rem 1.25rem;
+	font-weight: 600;
+	color: var(--color-text, #1a1a1a);
+	list-style: none;
+}
+
+.summary::-webkit-details-marker {
+	display: none;
+}
+
+.answer {
+	margin: 0;
+	padding: 0 1.25rem 1rem;
+	color: var(--color-text-muted, #444);
+	line-height: 1.55;
+}
+
+.details[open] .summary {
+	border-bottom: 1px solid var(--color-border, #e5e5e5);
+}

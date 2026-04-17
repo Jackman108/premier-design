@@ -4,9 +4,9 @@ import {join, relative, resolve} from 'node:path';
 const cwd = process.cwd();
 const featuresRoot = resolve(cwd, 'features');
 
-const REQUIRED_DIRS = ['ui', 'hooks', 'interface', 'utils'];
+// Обязательные слои: см. `docs/guides/FEATURE_STRUCTURE_ROADMAP_RU.md` — `hooks/` и `utils/` не форсируются пустыми.
+const REQUIRED_DIRS = ['ui', 'interface'];
 
-// Legacy-allowlist снят: проверка структуры обязательна для всех feature-модулей.
 const LEGACY_ALLOWLIST = new Set([]);
 
 const toUnixPath = (path) => path.split('\\').join('/');

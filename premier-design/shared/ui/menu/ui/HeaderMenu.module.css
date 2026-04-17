@@ -1,8 +1,9 @@
 .menu {
-	grid-column: 2 / 3;
-	display: grid;
+	display: flex;
 	justify-content: center;
 	align-items: center;
+	min-width: 0;
+	width: 100%;
 }
 
 .menu__link {
@@ -10,13 +11,16 @@
 }
 
 .menu__container {
-	display: grid;
-	grid-template-columns: repeat(5, minmax(0, auto));
-	grid-gap: clamp(0.75rem, 2vw, 1.5rem);
-	list-style: none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	column-gap: clamp(0.45rem, 1.2vw, 1.1rem);
+	row-gap: 0.35rem;
+	max-width: min(100%, 56rem);
 	margin: 0;
 	padding: 0;
-	justify-content: center;
+	list-style: none;
 }
 
 .menu__links {
@@ -26,7 +30,7 @@
 }
 
 .menu__item {
-	font-size: clamp(1rem, 1.1vw + 0.85rem, 1.25rem);
+	font-size: clamp(0.9rem, 0.8vw + 0.78rem, 1.15rem);
 	font-weight: 600;
 	color: var(--color-text);
 	text-align: center;

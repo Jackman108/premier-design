@@ -10,10 +10,12 @@ describe('dynamicImports', () => {
 	it('registers all dynamic feature chunks', async () => {
 		const mod = await import('../dynamicImports');
 
-		expect(dynamicMock).toHaveBeenCalledTimes(19);
+		expect(dynamicMock).toHaveBeenCalledTimes(21);
 		expect(mod.Features).toBeDefined();
 		expect(mod.Services).toBeDefined();
 		expect(mod.RelatedServices).toBeDefined();
 		expect(mod.Reviews).toBeDefined();
+		expect(mod.FaqSection).toBeDefined();
+		expect(mod.VideoSpotlight).toBeDefined();
 	});
 });

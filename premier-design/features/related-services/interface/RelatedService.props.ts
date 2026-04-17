@@ -7,7 +7,7 @@ import {ParsedUrlQuery} from "querystring";
 import {CostingCardProps} from "@features/coasting/interface/Costing.props";
 import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
 import {ShareBannerDataProps} from "@features/banner/share/interface/ShareBanner.props";
-
+import type {StructuredDataAggregateRating} from "@widgets/layout/seo/CustomHead/CustomHead.props";
 
 export interface RelatedServiceCardProps {
     id: string;
@@ -35,7 +35,8 @@ export interface RelatedServiceDetailProps {
     costingData: CostingCardProps[];
     buttonData: ButtonProps[];
     panelData: PanelProps[];
-    sharesData: ShareBannerDataProps[]
+    sharesData: ShareBannerDataProps[];
+    structuredDataRating?: StructuredDataAggregateRating;
 }
 
 export interface RelatedParams extends ParsedUrlQuery {

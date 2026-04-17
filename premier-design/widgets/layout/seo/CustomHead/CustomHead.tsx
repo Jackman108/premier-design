@@ -4,8 +4,19 @@ import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
 import Head from 'next/head';
 import Script from "next/script";
 
-const CustomHead = ({metaTitle, metaDescription, canonical}: CustomHeadProps) => {
-    const structuredData = generateStructuredData();
+const CustomHead = ({
+    metaTitle,
+    metaDescription,
+    canonical,
+    faqForStructuredData,
+    structuredDataRating,
+    serviceForStructuredData,
+}: CustomHeadProps) => {
+    const structuredData = generateStructuredData({
+        faqItems: faqForStructuredData,
+        aggregateRating: structuredDataRating,
+        service: serviceForStructuredData,
+    });
     const ogImageUrl = getFullCanonicalUrl('/logo.png');
 
     return (

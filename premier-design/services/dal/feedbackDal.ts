@@ -24,14 +24,21 @@ export const feedbackDal: FeedbackDal = {
     async sendFeedbackEmail(payload) {
         const emailPassword = taintSecretValue('EMAIL_PASSWORD', envVar('EMAIL_PASSWORD'));
         const smtpUser = taintSecretValue('EMAIL_USERNAME', envVar('EMAIL_USERNAME'));
+        const fromAddress = (process.env.FEEDBACK_EMAIL_FROM ?? '').trim() || envVar('EMAIL_USERNAME');
+        const toAddress = envVar('FEEDBACK_EMAIL_TO');
+        const replyTo =
+            payload.rawEmail.trim().length > 0
+                ? `${payload.safeName.replace(/"/g, "'")} <${payload.rawEmail.trim()}>`
+                : undefined;
 
         await emailService.sendMail({
             host: envVar('EMAIL_HOST'),
             port: parseInt(envVar('EMAIL_PORT'), 10),
             user: smtpUser,
             pass: emailPassword,
-            from: payload.safeName,
-            to: 'jivatman108@gmail.com',
+            from: fromAddress,
+            ...(replyTo ? {replyTo} : {}),
+            to: toAddress,
             subject: `New Feedback ${payload.rawEmail || ''}`.trim(),
             text: `Name: ${payload.safeName}\nPhone: ${payload.safePhone}\nEmail: ${payload.safeEmail}\nMessage: ${payload.safeMessage}`,
         });

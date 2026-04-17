@@ -2,11 +2,18 @@ import bundleAnalyzer from '@next/bundle-analyzer';
 
 const withBundleAnalyzer = bundleAnalyzer({
 	enabled: process.env.ANALYZE === 'true',
+	// Без авто-открытия браузера (удобно для CI и headless); отчёт — в выводе сборки / артефактах анализатора.
+	openAnalyzer: process.env.ANALYZE_OPEN === 'true',
 });
 
 const isDevelopment = process.env.NODE_ENV !== 'production';
+// Pages + Next: inline chunks пока требуют 'unsafe-inline'; nonce / strict-dynamic — ADR 0004.
 const scriptSrcPolicy = isDevelopment ? "'self' 'unsafe-inline' 'unsafe-eval'" : "'self' 'unsafe-inline'";
-const connectSrcPolicy = isDevelopment ? "'self' https: http: ws: wss:" : "'self' https:";
+// Prod: только same-origin (fetch форм, dataLayer); dev — HMR и отладка.
+const connectSrcPolicy = isDevelopment ? "'self' https: http: ws: wss:" : "'self'";
+// Узкий список вместо https: — карты Google (embed/thumbs), остальное с self/public.
+const imgSrcPolicy =
+	"'self' data: blob: https://www.google.com https://maps.gstatic.com https://maps.googleapis.com";
 
 // На HTTP нельзя слать HSTS и upgrade-insecure-requests — Chrome пытается HTTPS и ломает Lighthouse / next start.
 // Включаем только на Vercel или если явно задали env для своего HTTPS за прокси.
@@ -22,7 +29,7 @@ const contentSecurityPolicy = [
 	"object-src 'none'",
 	`script-src ${scriptSrcPolicy}`,
 	"style-src 'self' 'unsafe-inline'",
-	"img-src 'self' data: blob: https:",
+	`img-src ${imgSrcPolicy}`,
 	"font-src 'self' data:",
 	`connect-src ${connectSrcPolicy}`,
 	...(isHttpsHardenedEnv ? ['upgrade-insecure-requests'] : []),
@@ -31,6 +38,8 @@ const contentSecurityPolicy = [
 const nextConfig = {
 	output: 'standalone',
 	reactCompiler: true,
+	// Playwright / CI: baseURL 127.0.0.1 и dev-сервер на localhost — иначе блокируется webpack-hmr.
+	allowedDevOrigins: ['127.0.0.1', 'localhost'],
 	async rewrites() {
 		return [
 			{source: '/sitemap.xml', destination: '/api/sitemap'},
@@ -40,9 +49,10 @@ const nextConfig = {
 		];
 	},
 	images: {
+		// Только локальные SVG из `public/`; риск XSS — см. ADR 0004.
 		dangerouslyAllowSVG: true,
 		contentDispositionType: 'attachment',
-		contentSecurityPolicy: "default-src 'self'; script-src 'self'; sandbox;",
+		contentSecurityPolicy: "default-src 'none'; script-src 'none'; style-src 'none'; sandbox;",
 		formats: ['image/avif', 'image/webp'],
 		minimumCacheTTL: 60,
 		// Next.js 16: только перечисленные quality разрешены для next/image (см. docs/messages/next-image-unconfigured-qualities).
@@ -97,7 +107,7 @@ const nextConfig = {
 		];
 	},
 	compress: true,
-	pageExtensions: ['mdx', 'md', 'jsx', 'js', 'tsx', 'ts'],
+	pageExtensions: ['jsx', 'js', 'tsx', 'ts'],
 };
 
 export default withBundleAnalyzer(nextConfig);

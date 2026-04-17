@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {IMessage} from "react-chatbot-kit/build/src/interfaces/IMessages";
+import type {IMessage} from 'react-chatbot-kit/build/src/interfaces/IMessages';
 
 function loadChatMessagesFromStorage(): IMessage[] {
     try {

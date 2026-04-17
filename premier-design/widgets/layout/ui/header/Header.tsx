@@ -7,27 +7,34 @@ import Menu from '@shared/ui/menu/ui/Menu';
 import MenuButton from '../menu-button/MenuButton';
 import ThemeButton from '../theme-button/ThemeButton';
 import styles from './Header.module.css';
-import {CSSProperties, FC, ReactElement} from 'react';
+import {CSSProperties, FC, ReactElement, useRef} from 'react';
 import WorkHours from '@shared/ui/work-hours/WorkHours';
 import {HeaderProps} from '../../interface/Header.props';
 import {useStickyHeader} from '../../hooks/useStickyHeader';
 import ShareBanner from '@features/banner/share/ui/ShareBanner';
 import {useShareBanner} from '@features/banner/share/hooks/useShareBanner';
 import {useShareBannerHeight} from '@shared/hooks/useShareBannerHeight';
+import {useHeaderPlaceholderHeight} from '../../hooks/useHeaderPlaceholderHeight';
 
 const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
+    const headerRef = useRef<HTMLElement>(null);
     const {currentTheme, toggleTheme} = useThemeToggle();
     const {isMobileMenuOpen, toggleMobileMenu} = useMobileMenu(false);
     const {isSticky} = useStickyHeader();
     const {isClosed} = useShareBanner();
-    const headerHeight = isClosed ? '102px' : '162px';
+    const fallbackPlaceholderPx = isClosed ? 102 : 162;
+    const measuredHeaderPx = useHeaderPlaceholderHeight(headerRef, isSticky);
+    const placeholderHeightPx = isSticky && measuredHeaderPx != null ? measuredHeaderPx : fallbackPlaceholderPx;
     const hasShareBanner = !isClosed && !isSticky;
     useShareBannerHeight(hasShareBanner);
 
     return (
         <>
             <ShareBanner isSticky={isSticky} shares={shares}/>
-            <header className={`${styles.header} ${isSticky ? styles.sticky : ''} ${hasShareBanner ? styles.withShareBanner : ''}`}>
+            <header
+                ref={headerRef}
+                className={`${styles.header} ${isSticky ? styles.sticky : ''} ${hasShareBanner ? styles.withShareBanner : ''}`}
+            >
                 <div className={styles.header__container}>
                     <Logo/>
                     <div className={styles.contact__container}>
@@ -63,7 +70,7 @@ const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
             {isSticky && (
                 <div
                     className={styles.stickyPlaceholder}
-                    style={{'--header-placeholder-height': headerHeight} as CSSProperties}
+                    style={{'--header-placeholder-height': `${placeholderHeightPx}px`} as CSSProperties}
                 />
             )}
         </>

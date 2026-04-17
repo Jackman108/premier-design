@@ -11,6 +11,7 @@ import {
     Approach,
     Costing,
     Examples,
+    FaqSection,
     Features,
     OfferBanner,
     RelatedServices,
@@ -19,6 +20,7 @@ import {
     StepsWork,
     LeadQuiz,
     TrustSignals,
+    VideoSpotlight,
 } from '@shared/utils/dynamicImports';
 import {GetDataProps} from '@widgets/interface/interfaceData';
 import {useLayoutProps} from '@widgets/layout/hooks/useLayoutProps';
@@ -40,7 +42,12 @@ const Home: NextPage<GetDataProps> = ({data}) => {
         'home_banner',
     );
 
-    const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
+    const bannerProps: HeroBannerProps = {
+        titleData,
+        buttonData,
+        bannerData,
+        highlights: data.homeHeroHighlights,
+    };
 
     const titles = getTitleData(
         data.title,
@@ -51,11 +58,21 @@ const Home: NextPage<GetDataProps> = ({data}) => {
         'price-calculation',
         'related-services',
         'customer_reviews',
+        'faq-section',
     );
+
+    const faqForHead = data.faqContent.home.map((item) => ({
+        question: item.question,
+        answer: item.answer,
+    }));
 
     return (
         <>
-            <CustomHead {...titleData}/>
+            <CustomHead
+                {...titleData}
+                faqForStructuredData={faqForHead}
+                structuredDataRating={data.trustSignals.structuredDataRating}
+            />
             <Layout {...useLayoutProps(data)}>
                 <HomePageChrome/>
                 <section className={styles.heroShell}>
@@ -139,8 +156,26 @@ const Home: NextPage<GetDataProps> = ({data}) => {
                     className={`${styles.section} ${styles.reveal}`}
                     data-reveal='true'
                 >
-                    <TrustSignals reviews={data.reviews} features={data.features}/>
+                    <TrustSignals
+                        reviews={data.reviews}
+                        features={data.features}
+                        metrics={data.trustSignals.metrics}
+                    />
                 </section>
+
+                {data.homeVideoSpotlight.youtubeId.trim() ? (
+                    <section
+                        className={`${styles.section} ${styles.reveal}`}
+                        data-reveal='true'
+                    >
+                        <VideoSpotlight
+                            sectionId='home-video-spotlight'
+                            title={data.homeVideoSpotlight.title}
+                            description={data.homeVideoSpotlight.description}
+                            youtubeId={data.homeVideoSpotlight.youtubeId}
+                        />
+                    </section>
+                ) : null}
 
                 <section
                     id='home-costing'
@@ -168,11 +203,16 @@ const Home: NextPage<GetDataProps> = ({data}) => {
                 </section>
 
                 <section
+                    aria-label='Частые вопросы'
                     className={`${styles.section} ${styles.reveal}`}
                     data-density='compact'
                     data-reveal='true'
                 >
-                    <LeadQuiz ctaLabel={buttonData.buttonHeader}/>
+                    <FaqSection
+                        sectionId='home-faq'
+                        title={titles['faq-section']}
+                        items={data.faqContent.home}
+                    />
                 </section>
 
                 <section
@@ -185,6 +225,14 @@ const Home: NextPage<GetDataProps> = ({data}) => {
                         title={titles.customer_reviews}
                         reviews={data.reviews}
                     />
+                </section>
+
+                <section
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-density='compact'
+                    data-reveal='true'
+                >
+                    <LeadQuiz ctaLabel={buttonData.buttonHeader}/>
                 </section>
 
                 <section

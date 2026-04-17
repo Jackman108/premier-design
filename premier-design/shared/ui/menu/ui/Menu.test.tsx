@@ -9,13 +9,16 @@ jest.mock('next/link', () => ({
 		href,
 		onClick,
 		children,
-		...rest
+		className,
+		'aria-label': ariaLabel,
 	}: {
 		href: string;
 		onClick?: () => void;
 		children: ReactNode;
+		className?: string;
+		'aria-label'?: string;
 	}) => (
-		<a href={href} onClick={onClick} {...rest}>
+		<a href={href} onClick={onClick} className={className} aria-label={ariaLabel}>
 			{children}
 		</a>
 	),

@@ -20,7 +20,8 @@ const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
                                                                  costingData,
                                                                  buttonData,
                                                                  panelData,
-                                                                 sharesData
+                                                                 sharesData,
+                                                                 structuredDataRating,
                                                              }) => {
     const fallbackContent = useFallback(!!relatedService);
     const buttonHeader = findItemByTitle(buttonData, "leave_request") || {} as ButtonProps;
@@ -39,6 +40,12 @@ const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
                 metaTitle={relatedService.title}
                 metaDescription={relatedService.description}
                 canonical={getFullCanonicalUrl(relatedService.canonical)}
+                structuredDataRating={structuredDataRating}
+                serviceForStructuredData={{
+                    name: relatedService.title,
+                    description: relatedService.description,
+                    url: getFullCanonicalUrl(relatedService.canonical),
+                }}
             />
             <Layout {...layoutProps}>
                 <section className={styles.service_detail}>

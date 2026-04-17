@@ -14,4 +14,6 @@ export interface HeroBannerProps {
     bannerData: BannerImageProps;
     buttonData: ButtonProps;
     titleData: TitleProps;
+    /** Буллеты под заголовком; если не переданы — используются значения по умолчанию. */
+    highlights?: string[];
 }

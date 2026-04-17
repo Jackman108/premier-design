@@ -7,6 +7,7 @@ export const emailService = {
         user: string;
         pass: string;
         from: string;
+        replyTo?: string;
         to: string;
         subject: string;
         text: string;
@@ -22,6 +23,7 @@ export const emailService = {
 
         await transporter.sendMail({
             from: config.from,
+            ...(config.replyTo ? {replyTo: config.replyTo} : {}),
             to: config.to,
             subject: config.subject,
             text: config.text,

@@ -5,14 +5,9 @@ import {TrustSignalsProps} from '../interface/TrustSignals.props';
 import {useTrustSignalsTracking} from '../hooks/useTrustSignalsTracking';
 import styles from './TrustSignals.module.css';
 
-const TrustSignals: FC<TrustSignalsProps> = ({reviews, features}) => {
+const TrustSignals: FC<TrustSignalsProps> = ({reviews, features, metrics}) => {
     const {sectionRef, handleMetricInteraction, handleBenefitInteraction} = useTrustSignalsTracking();
     const featuredReviews = reviews.slice(0, 3);
-    const trustMetrics = [
-        {label: 'Проектов завершено', value: '150+'},
-        {label: 'Средний рейтинг клиентов', value: '4.9 / 5'},
-        {label: 'Гарантия на работы', value: '24 месяца'},
-    ];
 
     return (
         <section ref={sectionRef} className={styles.section} aria-labelledby='trust-signals-title'>
@@ -25,7 +20,7 @@ const TrustSignals: FC<TrustSignalsProps> = ({reviews, features}) => {
             </div>
 
             <div className={styles.metrics}>
-                {trustMetrics.map((metric) => (
+                {metrics.map((metric) => (
                     <article
                         key={metric.label}
                         className={styles.metricCard}

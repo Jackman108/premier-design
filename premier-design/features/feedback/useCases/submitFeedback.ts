@@ -1,6 +1,7 @@
 import {FeedbackInput} from '../schema';
 import {escapeHtml} from '../../../shared/lib/sanitize';
 import {feedbackDal, FeedbackDal} from '../../../services/dal/feedbackDal';
+import {logFeedbackSubmissionFailure, newFeedbackCorrelationId} from '../utils/feedbackErrorLog';
 
 export interface SubmitFeedbackResult {
     status: 'success' | 'error';
@@ -39,7 +40,8 @@ export const submitFeedback = async (data: FeedbackInput, dal: FeedbackDal = fee
         return {status: 'success', message: 'Feedback processed successfully.'};
     } catch (error) {
         const errorMessage = error instanceof Error ? error.message : 'Unknown error';
-        console.error('Error handling feedback:', error);
+        const correlationId = newFeedbackCorrelationId();
+        logFeedbackSubmissionFailure(errorMessage, correlationId);
         return {status: 'error', message: 'Failed to process the feedback.', error: errorMessage};
     }
 };

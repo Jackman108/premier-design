@@ -1,4 +1,10 @@
-import {expect, test} from '@playwright/test';
+import {expect, test, type Page} from '@playwright/test';
+
+/** `networkidle` в dev с HMR/long-poll часто не наступает — достаточно load + готовности main. */
+const settlePage = async (page: Page) => {
+	await page.waitForLoadState('load');
+	await expect(page.getByRole('main')).toBeVisible({timeout: 15_000});
+};
 
 const HYDRATION_PATTERNS = [/hydration/i, /did not match/i, /server-rendered html/i];
 
@@ -17,10 +23,21 @@ test('home page smoke', async ({page}) => {
     await expect(page.getByRole('button', {name: 'Сделать заказ'}).first()).toBeVisible();
 });
 
+test('portfolio and calculator pages smoke', async ({page}) => {
+	for (const path of ['/portfolio', '/calculator']) {
+		const response = await page.goto(path);
+		expect(response?.ok()).toBeTruthy();
+		await settlePage(page);
+		await expect(page.getByRole('main').getByRole('heading', {level: 1}).first()).toBeVisible();
+	}
+});
+
 test('service page smoke', async ({page}) => {
-    await page.goto('/');
-    await page.getByRole('link', {name: /Строительная экспертиза/}).first().click();
-    await expect(page).toHaveURL(/\/services\/expertise\/?$/);
+	// Категория услуг не вынесена отдельной ссылкой с именем «Строительная экспертиза» в главном меню (aria — «Перейти к разделу …»).
+	const response = await page.goto('/services/expertise');
+	expect(response?.ok()).toBeTruthy();
+	await expect(page).toHaveURL(/\/services\/expertise\/?$/);
+	await settlePage(page);
 });
 
 test('feedback api method-guard smoke', async ({request}) => {
@@ -32,8 +49,27 @@ test('feedback api method-guard smoke', async ({request}) => {
     expect(body.message).toContain('Method not allowed');
 });
 
+test('photo viewer opens and closes from home examples', async ({page}) => {
+	await page.addInitScript(() => {
+		window.localStorage.setItem('cookiesAccepted', 'true');
+	});
+	await page.goto('/');
+	await settlePage(page);
+
+	const examples = page.locator('#home-examples');
+	await expect(examples).toBeVisible();
+	await examples.getByRole('button').first().click({force: true});
+
+	const viewer = page.locator('dialog[open][aria-label="Просмотр изображений"]');
+	await expect(viewer).toHaveCount(1);
+	await expect(viewer.locator('img').first()).toBeAttached();
+
+	await page.keyboard.press('Escape');
+	await expect(viewer).toHaveCount(0);
+});
+
 test('no hydration warnings on key pages', async ({page}) => {
-	const routes = ['/', '/about', '/contacts'];
+	const routes = ['/', '/about', '/contacts', '/portfolio', '/calculator'];
 
 	for (const route of routes) {
 		const messages: string[] = [];
@@ -46,7 +82,7 @@ test('no hydration warnings on key pages', async ({page}) => {
 
 		const response = await page.goto(route);
 		expect(response?.ok()).toBeTruthy();
-		await page.waitForLoadState('networkidle');
+		await settlePage(page);
 
 		assertNoHydrationWarnings(messages, route);
 	}
@@ -60,7 +96,7 @@ test('mobile key pages have no horizontal overflow', async ({page}) => {
 		await page.setViewportSize({width, height: 844});
 		for (const route of routes) {
 			await page.goto(route);
-			await page.waitForLoadState('networkidle');
+			await settlePage(page);
 			const hasOverflow = await page.evaluate(() => {
 				return document.documentElement.scrollWidth > window.innerWidth;
 			});
@@ -72,7 +108,7 @@ test('mobile key pages have no horizontal overflow', async ({page}) => {
 test('mobile key controls keep min tap target size', async ({page}) => {
 	await page.setViewportSize({width: 390, height: 844});
 	await page.goto('/');
-	await page.waitForLoadState('networkidle');
+	await settlePage(page);
 
 	const primaryOrderButton = page.getByRole('button', {name: 'Сделать заказ'}).first();
 	await expect(primaryOrderButton).toBeVisible();
@@ -91,7 +127,7 @@ test('critical pages expose basic a11y landmarks', async ({page}) => {
 	const routes = ['/', '/about', '/contacts'];
 	for (const route of routes) {
 		await page.goto(route);
-		await page.waitForLoadState('networkidle');
+		await settlePage(page);
 		await expect(page.getByRole('main')).toBeVisible();
 		await expect(page.getByRole('heading', {level: 1}).first()).toBeVisible();
 	}
@@ -106,7 +142,7 @@ test('contacts map iframe loads without CSP frame violations', async ({page}) =>
 	});
 
 	await page.goto('/contacts');
-	await page.waitForLoadState('networkidle');
+	await settlePage(page);
 
 	const mapFrame = page.frameLocator('iframe[title="Карта офиса Premier Design"]');
 	await expect(mapFrame.locator('body')).toBeVisible();
@@ -122,16 +158,17 @@ test('lead modal opens from hero and quiz CTA', async ({page}) => {
 		window.localStorage.setItem('cookiesAccepted', 'true');
 	});
 	await page.goto('/');
-	await page.waitForLoadState('networkidle');
+	await settlePage(page);
 
 	const heroOrderButton = page.getByRole('button', {name: 'Сделать заказ'}).first();
 	await expect(heroOrderButton).toBeVisible();
-	await heroOrderButton.click();
+	// В dev Next может показывать индикатор поверх UI (`nextjs-portal` перехватывает клики).
+	await heroOrderButton.click({force: true});
 	await expect(page.getByRole('heading', {name: 'Оставьте заявку'})).toBeVisible();
 	// Перезагружаем страницу для второго источника CTA, чтобы не зависеть от поведения modal-close
 	// в условиях конкурирующих overlay-слоев на первом экране.
 	await page.goto('/');
-	await page.waitForLoadState('networkidle');
+	await settlePage(page);
 
 	const quizSection = page.locator('#lead-quiz');
 	await expect(quizSection).toBeVisible();
@@ -168,7 +205,7 @@ test('feedback form submit shows success state and keeps console clean', async (
 	});
 
 	await page.goto('/');
-	await page.waitForLoadState('networkidle');
+	await settlePage(page);
 	await page.getByRole('button', {name: 'Сделать заказ'}).first().click();
 
 	await page.getByLabel('Имя').fill('Тестовый клиент');

@@ -41,7 +41,10 @@ const mockedGetFullCanonicalUrl = jest.mocked(getFullCanonicalUrl);
 describe('CustomHead', () => {
 	beforeEach(() => {
 		jest.clearAllMocks();
-		mockedGenerateStructuredData.mockReturnValue({name: 'Premier Design'});
+		mockedGenerateStructuredData.mockReturnValue({
+			'@context': 'https://schema.org',
+			'@graph': [{'@type': 'LocalBusiness', name: 'Premier Design'}],
+		});
 		mockedGetFullCanonicalUrl.mockReturnValue('https://example.com/logo.png');
 	});
 
@@ -56,7 +59,12 @@ describe('CustomHead', () => {
 
 		expect(headMock).toHaveBeenCalledTimes(1);
 		expect(mockedGenerateStructuredData).toHaveBeenCalledTimes(1);
+		expect(mockedGenerateStructuredData).toHaveBeenCalledWith({
+			faqItems: undefined,
+			aggregateRating: undefined,
+			service: undefined,
+		});
 		expect(mockedGetFullCanonicalUrl).toHaveBeenCalledWith('/logo.png');
-		expect(container.querySelector('#structured-data')).toHaveTextContent('Premier Design');
+		expect(container.querySelector('#structured-data')).toHaveTextContent('LocalBusiness');
 	});
 });

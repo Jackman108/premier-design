@@ -5,11 +5,14 @@ import {HeroBannerProps} from '@features/banner/hero/interface/HeroBannerProps';
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 import Title from '@shared/ui/title/ui/Title';
 
+import {resolveHeroHighlights} from '../constants/defaultHeroHighlights';
+
 import styles from './HeroBanner.module.css';
 
 const HERO_BANNER_IMAGE_SIZES = '(max-width: 768px) 100vw, 1440px';
 
-const HeroBanner: FC<HeroBannerProps> = ({bannerData, buttonData, titleData}) => {
+const HeroBanner: FC<HeroBannerProps> = ({bannerData, buttonData, titleData, highlights}) => {
+    const heroHighlights = resolveHeroHighlights(highlights);
     return (
         <section className={styles.banner}>
             <Image
@@ -37,9 +40,9 @@ const HeroBanner: FC<HeroBannerProps> = ({bannerData, buttonData, titleData}) =>
                 />
 
                 <ul className={styles.banner__highlights}>
-                    <li>Индивидуальная концепция под ваш стиль жизни</li>
-                    <li>Фиксированные сроки и прозрачный бюджет</li>
-                    <li>Полное сопровождение: дизайн + реализация</li>
+                    {heroHighlights.map((line) => (
+                        <li key={line}>{line}</li>
+                    ))}
                 </ul>
 
                 <OrderButton

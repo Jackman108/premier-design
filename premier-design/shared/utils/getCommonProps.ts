@@ -10,5 +10,6 @@ export const getCommonProps = (data: DataProps) => {
         buttonData: button,
         panelData: panel,
         sharesData: shares,
+        structuredDataRating: data.trustSignals.structuredDataRating,
     };
 };

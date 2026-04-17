@@ -19,25 +19,32 @@
 }
 
 .header__container {
-	display: grid;
-	grid-template-columns: repeat(3, auto);
-	justify-items: center;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	column-gap: clamp(0.5rem, 1.5vw, 1.25rem);
+	row-gap: 0.5rem;
 	max-width: 1440px;
 	width: 100%;
+	min-width: 0;
 	margin: 0 auto;
-	gap: 0.8rem;
 }
 
 .contact__container {
 	display: flex;
 	align-items: center;
-	gap: 2rem;
+	gap: clamp(1rem, 2vw, 2rem);
+	flex: 1 1 auto;
+	min-width: 0;
+	justify-content: flex-end;
 }
 
 .buttons__container {
 	display: flex;
 	align-items: center;
-	gap: 2rem;
+	gap: clamp(1rem, 2vw, 2rem);
+	flex: 0 0 auto;
 }
 
 @media (max-width: 768px) {
@@ -47,18 +54,19 @@
 		box-shadow: var(--shadow-md);
 	}
 
-	
-.withShareBanner {
-	top: var(--share-banner-height, 0px);
-}
+	.withShareBanner {
+		top: var(--share-banner-height, 0px);
+	}
 
-.header__container {
+	.header__container {
 		padding: 0 1rem;
 	}
 
 	.contact__container {
 		flex-direction: column;
 		gap: 1rem;
+		flex: 1 1 auto;
+		justify-content: center;
 	}
 
 	.buttons__container {
@@ -73,7 +81,20 @@
 
 @media (min-width: 769px) {
 	.header {
-		height: 102px;
+		min-height: 5.5rem;
+		padding-block: 0.35rem;
+	}
+
+	/* Меню в разметке после блока контактов — переносим на отдельную строку и центрируем */
+	.header__container > nav {
+		order: 10;
+		flex: 1 0 100%;
+		min-width: 0;
+	}
+
+	.header__container > :first-child {
+		flex: 0 0 auto;
+		min-width: 0;
 	}
 
 	.header.sticky {

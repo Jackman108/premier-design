@@ -8,6 +8,7 @@
 1. Всегда считать источником правды:
 - `docs/README.md` (индекс документации),
 - `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` (только открытый backlog),
+- при релизе/деплое — `docs/audit/DEPLOY_READINESS_2026_04_RU.md`,
 - `docs/adr/README.md` + релевантные ADR.
 
 2. Если задача касается Next.js/рендеринга/производительности:

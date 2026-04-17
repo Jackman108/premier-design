@@ -65,6 +65,14 @@
 	color: var(--brown-light);
 }
 
+.card__metaLine {
+	font-size: 0.85rem;
+	line-height: 1.35;
+	text-align: center;
+	color: var(--brown);
+	opacity: 0.92;
+}
+
 .card__option {
 	display: grid;
 	grid-template-columns: repeat(2, auto);

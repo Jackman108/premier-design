@@ -16,8 +16,23 @@ jest.mock('next/link', () => ({
 
 jest.mock('next/image', () => ({
 	__esModule: true,
-	// eslint-disable-next-line @next/next/no-img-element
-	default: (props: ImgHTMLAttributes<HTMLImageElement>) => <img {...props} alt={props.alt ?? ''} />,
+	default: (props: ImgHTMLAttributes<HTMLImageElement> & {priority?: boolean; fill?: boolean}) => {
+		const {src, alt, width, height, className, sizes, loading, decoding} = props;
+		return (
+			// next/image в тесте заменён на нативный img; пропсы вроде priority не в DOM.
+			// eslint-disable-next-line @next/next/no-img-element -- намеренный мок
+			<img
+				src={typeof src === 'string' ? src : undefined}
+				alt={alt ?? ''}
+				width={width}
+				height={height}
+				className={className}
+				sizes={sizes}
+				loading={loading}
+				decoding={decoding}
+			/>
+		);
+	},
 }));
 
 jest.mock('@shared/utils/findItemByTitle', () => ({

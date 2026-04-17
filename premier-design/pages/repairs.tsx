@@ -9,6 +9,7 @@ import {
     Category,
     Costing,
     Examples,
+    FaqSection,
     Features,
     OfferBanner,
     ProjectOffer
@@ -27,11 +28,19 @@ const Repairs: NextPage<GetDataProps> = ({data}): ReactElement => {
     );
     const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
 
-    const titles = getTitleData(data.title, "our-works", "price-calculation");
+    const titles = getTitleData(data.title, "our-works", "price-calculation", "faq-section");
+    const faqForHead = data.faqContent.repairs.map((item) => ({
+        question: item.question,
+        answer: item.answer,
+    }));
 
     return (
         <>
-            <CustomHead {...titleData}/>
+            <CustomHead
+                {...titleData}
+                faqForStructuredData={faqForHead}
+                structuredDataRating={data.trustSignals.structuredDataRating}
+            />
             <Layout {...useLayoutProps(data)}>
                 <HeroBanner {...bannerProps}/>
                 <Features features={data.features}/>
@@ -60,6 +69,11 @@ const Repairs: NextPage<GetDataProps> = ({data}): ReactElement => {
                     data={data.offerProject.repairType}
                     buttonData={buttonData.buttonHeader}
                     buttonStyle='button-black'
+                />
+                <FaqSection
+                    sectionId='repairs-faq'
+                    title={titles['faq-section']}
+                    items={data.faqContent.repairs}
                 />
                 <Appeal {...usePageData(
                     data.title, data.button, data.bannersImages,

@@ -24,7 +24,8 @@
 
 ## Документация репозитория
 
-- Оглавление всех документов: [`../docs/README.md`](../docs/README.md) (аудит, гайды, ADR, деплой).
+- Оглавление: [`../docs/README.md`](../docs/README.md).
+- Перед деплоем: [`../docs/audit/DEPLOY_READINESS_2026_04_RU.md`](../docs/audit/DEPLOY_READINESS_2026_04_RU.md).
 
 ## Архитектура UI
 
@@ -43,6 +44,8 @@
 - `yarn storybook` — каталог UI (Storybook)
 - `yarn build-storybook` — статическая сборка Storybook (артефакт в CI)
 - `yarn analyze` — сборка с отчётом `@next/bundle-analyzer`
+- `yarn check:deploy:local` — сводная проверка перед релизом (lint, unit, build, initial JS, architecture, ui-purity, feature-structure); см. [`../docs/audit/DEPLOY_READINESS_2026_04_RU.md`](../docs/audit/DEPLOY_READINESS_2026_04_RU.md)
+- `yarn test:e2e` — Playwright smoke (нужен доступ к `http://127.0.0.1:3000`, см. `playwright.config.ts`)
 
 ## Переменные окружения
 
@@ -57,9 +60,14 @@
 - `EMAIL_PORT`
 - `EMAIL_USERNAME`
 - `EMAIL_PASSWORD`
+- `FEEDBACK_EMAIL_TO` — получатель писем с формы (обязателен при отправке SMTP в dev)
+- `FEEDBACK_EMAIL_FROM` — поле `From` (если не задано, берётся `EMAIL_USERNAME`; имя клиента уходит в `Reply-To` при указанном email)
 
 Системные:
 - `NODE_ENV` (`development` или `production`)
+
+Rate limit для `pages/api/*` (in-memory, см. ADR [`../docs/adr/0005-rate-limiting-storage-and-client-ip.md`](../docs/adr/0005-rate-limiting-storage-and-client-ip.md)):
+- `RATE_LIMIT_TRUST_FORWARDED_FOR=1` — доверять `x-forwarded-for` (типично Vercel / reverse proxy). Без переменной используется только IP сокета, чтобы клиент не подменял себе лимит первым хопом заголовка.
 
 Опциональные публичные:
 - `NEXT_PUBLIC_YANDEX_MAPS_API_KEY`

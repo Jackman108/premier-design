@@ -1,7 +1,7 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://premier-design.by/sitemap.xml
+Sitemap: https://premium-interior.by/sitemap.xml
 
 # Disallow: /private/
 # Disallow: /admin/

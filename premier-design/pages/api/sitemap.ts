@@ -1,17 +1,28 @@
+/**
+ * GET /api/sitemap (rewrite с `/sitemap.xml`): тело и query не используются, только rate limit по IP.
+ * Список статических путей валидируется через zod при загрузке модуля.
+ */
 import {NextApiRequest, NextApiResponse} from 'next';
+import {z} from 'zod';
+
 import {DataProps} from "@widgets/interface/interfaceData";
 import {getData} from '@lib/getStaticData';
 import {applyApiRateLimit} from '@shared/lib/applyApiRateLimit';
 
-const BASE_URL = 'https://premier-design.by';
+const BASE_URL = 'https://premium-interior.by';
 const CHANGE_FREQUENCY = 'monthly';
 const STATIC_PRIORITY = 1.0;
 const DYNAMIC_PRIORITY = 0.8;
 
-const STATIC_PAGES: readonly string[] = [
-    '', '/repairs', '/design', '/about', '/contacts',
+const STATIC_PAGES_RAW = [
+    '', '/repairs', '/design', '/portfolio', '/calculator', '/about', '/contacts',
     '/documents/privacy-policy', '/documents/public-offer', '/documents/user-agreement',
-];
+] as const;
+
+const STATIC_PAGES: readonly string[] = z
+	.array(z.string())
+	.min(1)
+	.parse([...STATIC_PAGES_RAW]);
 
 const generateUrl = (path: string, priority: number): string => {
     return `
@@ -62,8 +73,14 @@ const generateSitemap = async (): Promise<string> => {
     </urlset>`;
 };
 
-export default async function handler(_req: NextApiRequest, res: NextApiResponse): Promise<void> {
-    const rateLimit = applyApiRateLimit(_req, res, 'sitemap', {windowMs: 60_000, maxRequests: 60});
+export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
+	if (req.method !== 'GET') {
+		res.setHeader('Allow', 'GET');
+		res.status(405).json({message: 'Method not allowed.'});
+		return;
+	}
+
+    const rateLimit = applyApiRateLimit(req, res, 'sitemap', {windowMs: 60_000, maxRequests: 60});
     if (!rateLimit.allowed) {
         res.status(429).json({error: 'Too many requests. Try again later.'});
         return;

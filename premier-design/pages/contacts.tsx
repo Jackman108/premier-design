@@ -10,6 +10,8 @@ import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
 import {usePageData} from "@shared/hooks/usePageData";
 
+import contactsStyles from './ContactsPage.module.css';
+
 const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
         data.titlesPage, data.button, data.bannersImages,
@@ -19,9 +21,16 @@ const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {
 
     return (
         <>
-            <CustomHead {...titleData}/>
+            <CustomHead {...titleData} structuredDataRating={data.trustSignals.structuredDataRating}/>
             <Layout {...useLayoutProps(data)}>
                 <HeroBanner {...bannerProps}/>
+                <aside className={contactsStyles.usp} aria-label='Почему нам доверяют'>
+                    <ul className={contactsStyles.list}>
+                        {data.contactsMicroUsp.map((line) => (
+                            <li key={line} className={contactsStyles.item}>{line}</li>
+                        ))}
+                    </ul>
+                </aside>
                 <Address/>
                 <Appeal {...usePageData(
                     data.title, data.button, data.bannersImages,

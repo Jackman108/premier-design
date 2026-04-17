@@ -12,21 +12,26 @@ jest.mock('next/image', () => ({
 describe('PhotoViewer', () => {
 	it('switches slides and closes via controls', () => {
 		const onClose = jest.fn();
-		const {container} = render(
-			<PhotoViewer images={['/a.png', '/b.png', '/c.png']} currentImage="/a.png" onClose={onClose} />,
-		);
+		render(<PhotoViewer images={['/a.png', '/b.png', '/c.png']} currentImage="/a.png" onClose={onClose} />);
 
+		const dialog = screen.getByRole('dialog', {name: 'Просмотр изображений'});
 		expect(screen.getByText('1 / 3')).toBeInTheDocument();
 
-		fireEvent.keyDown(container.firstChild as HTMLElement, {key: 'ArrowRight'});
+		fireEvent.keyDown(dialog, {key: 'ArrowRight'});
 		expect(screen.getByText('2 / 3')).toBeInTheDocument();
 
-		fireEvent.keyDown(container.firstChild as HTMLElement, {key: 'ArrowLeft'});
+		fireEvent.keyDown(dialog, {key: 'ArrowLeft'});
 		expect(screen.getByText('1 / 3')).toBeInTheDocument();
 
-		fireEvent.keyDown(container.firstChild as HTMLElement, {
-			key: 'Escape',
-		});
+		fireEvent.keyDown(dialog, {key: 'Escape'});
+		expect(onClose).toHaveBeenCalledTimes(1);
+	});
+
+	it('closes when clicking scrim button', () => {
+		const onClose = jest.fn();
+		render(<PhotoViewer images={['/a.png']} currentImage="/a.png" onClose={onClose} />);
+
+		fireEvent.click(screen.getByRole('button', {name: 'Закрыть просмотр'}));
 		expect(onClose).toHaveBeenCalledTimes(1);
 	});
 });

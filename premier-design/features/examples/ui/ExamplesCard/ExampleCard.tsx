@@ -26,6 +26,12 @@ const ExampleCard: FC<ExampleCardComponentProps> = ({card, onClick}): ReactEleme
             <div className={styles.card__content}>
                 <div className={styles.card__address}>{card.address}</div>
                 <div className={styles.card__deadlines}>{card.deadlines}</div>
+                {card.budgetRange ? (
+                    <div className={styles.card__metaLine}>{card.budgetRange}</div>
+                ) : null}
+                {card.onTimeNote ? (
+                    <div className={styles.card__metaLine}>{card.onTimeNote}</div>
+                ) : null}
                 <div className={styles.card__option}>
                     <div className={styles.card__bathroom}>
                         <div className={styles.bathroom__icon}>

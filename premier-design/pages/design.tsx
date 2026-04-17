@@ -3,7 +3,7 @@ import Layout from '@widgets/layout/ui/layout/Layout';
 import {getStaticProps} from '@lib/getStaticData';
 import {ReactElement} from "react";
 import HeroBanner from "@features/banner/hero/ui/HeroBanner";
-import {Appeal, Costing, Examples, Features, OfferBanner, ProjectOffer} from '@shared/utils/dynamicImports';
+import {Appeal, Costing, Examples, FaqSection, Features, OfferBanner, ProjectOffer} from '@shared/utils/dynamicImports';
 import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 import {GetDataProps} from "@widgets/interface/interfaceData";
@@ -18,11 +18,19 @@ const Design: NextPage<GetDataProps> = ({data}): ReactElement => {
     );
     const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
 
-    const titles = getTitleData(data.title, "our-works", "price-calculation");
+    const titles = getTitleData(data.title, "our-works", "price-calculation", "faq-section");
+    const faqForHead = data.faqContent.design.map((item) => ({
+        question: item.question,
+        answer: item.answer,
+    }));
 
     return (
         <>
-            <CustomHead {...titleData}/>
+            <CustomHead
+                {...titleData}
+                faqForStructuredData={faqForHead}
+                structuredDataRating={data.trustSignals.structuredDataRating}
+            />
             <Layout {...useLayoutProps(data)}>
                 <HeroBanner {...bannerProps}/>
                 <Features features={data.features}/>
@@ -39,6 +47,11 @@ const Design: NextPage<GetDataProps> = ({data}): ReactElement => {
                     data={data.offerProject.designType}
                     buttonData={buttonData.buttonHeader}
                     buttonStyle='button-black'
+                />
+                <FaqSection
+                    sectionId='design-faq'
+                    title={titles['faq-section']}
+                    items={data.faqContent.design}
                 />
                 <Appeal {...usePageData(
                     data.title, data.button, data.bannersImages,

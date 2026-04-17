@@ -73,7 +73,7 @@ describe('OrderButton', () => {
 		expect(openModal).toHaveBeenCalledTimes(1);
 	});
 
-	it('renders modal and error from feedback hook state', () => {
+	it('renders modal and error from feedback hook state', async () => {
 		mockedUseFeedback.mockReturnValue({
 			isOpen: true,
 			openModal,
@@ -83,7 +83,7 @@ describe('OrderButton', () => {
 		});
 		render(<OrderButton buttonStyle="button-white" buttonData="Оставить заявку" />);
 
-		expect(screen.getByTestId('feedback-modal')).toBeInTheDocument();
+		expect(await screen.findByTestId('feedback-modal')).toBeInTheDocument();
 		expect(screen.getByText('Ошибка отправки')).toBeInTheDocument();
 	});
 });

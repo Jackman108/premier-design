@@ -19,6 +19,27 @@ import {BusinessServiceCard, BusinessServices} from "@features/business-services
 import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
 import {ApproachCardProps} from "@features/approach/interface/ApproachCard.props";
 import {ShareBannerDataProps} from "@features/banner/share/interface/ShareBanner.props";
+import type {CompanyAboutContent} from "@features/company-about/interface/CompanyAboutSections.props";
+import type {FaqEntry} from "@features/faq/interface/FaqSection.props";
+import type {TrustSignalMetricItem} from "@features/marketing/trust-signals/interface/TrustSignals.props";
+import type {StructuredDataAggregateRating} from "@widgets/layout/seo/CustomHead/CustomHead.props";
+
+export type FaqContentByPage = {
+    home: FaqEntry[];
+    design: FaqEntry[];
+    repairs: FaqEntry[];
+};
+
+export type TrustSignalsConfig = {
+    metrics: TrustSignalMetricItem[];
+    structuredDataRating?: StructuredDataAggregateRating;
+};
+
+export type HomeVideoSpotlightConfig = {
+    title: string;
+    description: string;
+    youtubeId: string;
+};
 
 export interface DataProps {
     titlesPage: TitlePage[]
@@ -47,6 +68,12 @@ export interface DataProps {
     relatedServices: RelatedServiceCardProps[];
     businessServices: BusinessServices;
     shares: ShareBannerDataProps[];
+    trustSignals: TrustSignalsConfig;
+    homeHeroHighlights: string[];
+    homeVideoSpotlight: HomeVideoSpotlightConfig;
+    faqContent: FaqContentByPage;
+    companyAbout: CompanyAboutContent;
+    contactsMicroUsp: string[];
 }
 
 export interface GetDataProps {

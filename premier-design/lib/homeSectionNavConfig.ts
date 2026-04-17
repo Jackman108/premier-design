@@ -9,8 +9,9 @@ export const HOME_SECTION_NAV_LINKS = [
 	{id: 'home-trust', label: 'Доверие'},
 	{id: 'home-costing', label: 'Смета'},
 	{id: 'home-related', label: 'Ещё услуги'},
-	{id: 'lead-quiz', label: 'Квиз'},
+	{id: 'home-faq', label: 'Вопросы'},
 	{id: 'home-reviews', label: 'Отзывы'},
+	{id: 'lead-quiz', label: 'Квиз'},
 	{id: 'home-appeal', label: 'Заявка'},
 ] as const;
 

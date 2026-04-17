@@ -1,0 +1,35 @@
+.section {
+	max-width: min(56rem, 100%);
+	margin-inline: auto;
+	padding-block: clamp(1.5rem, 4vw, 2.5rem);
+}
+
+.title {
+	margin: 0 0 0.5rem;
+	font-size: clamp(1.25rem, 2.8vw, 1.5rem);
+	color: var(--color-text, #1a1a1a);
+}
+
+.description {
+	margin: 0 0 1.25rem;
+	line-height: 1.55;
+	color: var(--color-text-muted, #444);
+}
+
+.ratio {
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%;
+	height: 0;
+	overflow: hidden;
+	border-radius: 0.5rem;
+	background: #000;
+}
+
+.iframe {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
