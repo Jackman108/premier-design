@@ -92,7 +92,7 @@ alwaysApply: true
 
 1. Оцени влияние на архитектуру и критические пользовательские сценарии.
 2. Минимально достаточный diff; без «прибирания» несвязных файлов.
-3. После изменений: `npm run lint`, `npm test -- --watch=false`, `npm run build` (и `npm run build-storybook` при затрагивании UI-примитивов/конфига Storybook).
+3. После изменений: `yarn lint`, `yarn test --watch=false`, `yarn build` (и `yarn build-storybook` при затрагивании UI-примитивов/конфига Storybook).
 4. Системный долг — отдельный пункт в `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` или issue, с планом снятия.
 
 # Запрещено

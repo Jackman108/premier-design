@@ -35,7 +35,7 @@ const Repairs: NextPage<GetDataProps> = ({data}): ReactElement => {
             <Layout {...useLayoutProps(data)}>
                 <HeroBanner {...bannerProps}/>
                 <Features features={data.features}/>
-                <OfferBanner offer={data.offerBanner.repairType}/>
+                <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.repairType}/>
                 <Examples
                     title={titles["our-works"]}
                     cards={data.examplesCard}

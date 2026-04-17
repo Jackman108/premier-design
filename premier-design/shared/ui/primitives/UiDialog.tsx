@@ -3,6 +3,8 @@
 import * as Dialog from '@radix-ui/react-dialog';
 import type {FC, ReactNode} from 'react';
 
+import styles from './UiDialog.module.css';
+
 type UiDialogProps = {
 	open: boolean;
 	onOpenChange: (open: boolean) => void;
@@ -27,34 +29,10 @@ export const UiDialog: FC<UiDialogProps> = ({
 			<Dialog.Portal>
 				<Dialog.Overlay className={overlayClassName} />
 				<Dialog.Content className={contentClassName}>
-					<Dialog.Title
-						style={{
-							position: 'absolute',
-							width: '1px',
-							height: '1px',
-							padding: 0,
-							margin: '-1px',
-							overflow: 'hidden',
-							clip: 'rect(0, 0, 0, 0)',
-							whiteSpace: 'nowrap',
-							border: 0,
-						}}
-					>
+					<Dialog.Title className={styles.visuallyHidden}>
 						{title}
 					</Dialog.Title>
-					<Dialog.Description
-						style={{
-							position: 'absolute',
-							width: '1px',
-							height: '1px',
-							padding: 0,
-							margin: '-1px',
-							overflow: 'hidden',
-							clip: 'rect(0, 0, 0, 0)',
-							whiteSpace: 'nowrap',
-							border: 0,
-						}}
-					>
+					<Dialog.Description className={styles.visuallyHidden}>
 						{description}
 					</Dialog.Description>
 					{children}

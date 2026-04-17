@@ -1,3 +1,7 @@
+.root {
+	display: block;
+}
+
 .brickWallLoader {
     display: flex;
     flex-direction: column;
@@ -17,6 +21,7 @@
     margin-right: 5px;
     transition: transform 0.3s ease-in-out;
     transform: translateY(0);
+    background-color: var(--brown);
 }
 
 .brickAnimation {

@@ -2,6 +2,8 @@
 
 import {Component, type ErrorInfo, type ReactNode} from 'react';
 
+import styles from './AppErrorBoundary.module.css';
+
 type Props = {
 	children: ReactNode;
 };
@@ -24,7 +26,7 @@ export class AppErrorBoundary extends Component<Props, State> {
 	public render(): ReactNode {
 		if (this.state.hasError) {
 			return (
-				<section style={{padding: '2rem', textAlign: 'center'}}>
+				<section className={styles.fallback}>
 					<h2>Произошла ошибка интерфейса</h2>
 					<p>Пожалуйста, перезагрузите страницу.</p>
 				</section>

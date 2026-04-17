@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import {useCallback, useEffect, useRef, useState} from "react";
 import {NewsProps} from "@features/news/interface/News.props";
 import {useModalState} from "@shared/hooks/useModalState";
@@ -35,6 +34,8 @@ export const useNews = (news: NewsProps[]) => {
 
     useVisibilityObserver("news-");
 
+    // Синхронизация с hash при монтировании: не добавляем handleNewsClick в deps — повторный вызов
+    // при смене expandedNews дублирует открытие модалки и ломает навигацию по списку.
     useEffect(() => {
         const hash = window.location.hash;
         if (hash) {
@@ -43,6 +44,7 @@ export const useNews = (news: NewsProps[]) => {
                 handleNewsClick(index);
             }
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps -- см. комментарий выше: не тянуть handleNewsClick в deps
     }, [news.length]);
 
     return {expandedNews, newsRef, handleNewsClick, showModal, closeModal};

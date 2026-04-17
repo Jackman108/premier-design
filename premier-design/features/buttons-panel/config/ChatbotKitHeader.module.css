@@ -1,0 +1,8 @@
+.header {
+	color: var(--color-surface);
+	font-size: 20px;
+	text-align: center;
+	background-color: var(--brown-light);
+	padding: 5px;
+	border-radius: var(--radius-sm);
+}

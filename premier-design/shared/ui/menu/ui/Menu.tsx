@@ -13,13 +13,14 @@ const styleMap: Record<string, Record<string, string>> = {
     default: headerStyles,
 };
 
-const Menu = memo(({menu, menuStyle, isMobileMenuOpen, toggleMobileMenu}: MenuProps
+const Menu = memo(({menu, menuStyle, isMobileMenuOpen, toggleMobileMenu, headerOnHero}: MenuProps
 ): ReactElement => {
     const stylesToUse = styleMap[menuStyle] || styleMap.default;
+    const onHeroNavClass = menuStyle === 'header' && headerOnHero ? headerStyles.menu_onHero : '';
 
     return (
         <nav
-            className={`${stylesToUse.menu} ${isMobileMenuOpen ? mobileStyles.open : ''}`}
+            className={`${stylesToUse.menu} ${onHeroNavClass} ${isMobileMenuOpen ? mobileStyles.open : ''}`}
             id={menuStyle === 'mobile' ? 'site-mobile-nav' : undefined}
             aria-label={menuStyle === 'mobile' ? 'Основное меню' : undefined}
         >

@@ -1,4 +1,4 @@
-import {FC, ReactElement, useRef} from 'react';
+import {CSSProperties, FC, ReactElement, useRef} from 'react';
 import Title from '@shared/ui/title/ui/Title';
 import styles from './StepsWork.module.css';
 import {StepsWorkProps} from "@features/steps-work/interface/StepsWork.props";
@@ -18,7 +18,7 @@ const StepsWork: FC<{ stepsWork: StepsWorkProps[]; title: TitleProps }> = ({step
         <div
             key={step.id}
             className={`${styles.step__item} ${isActive ? styles.step__item_active : ''}`}
-            style={{animationDelay: `${delay}ms`}}
+            style={{'--step-animation-delay': `${delay}ms`} as CSSProperties}
         >
             <div className={styles.step__icon_wrapper}>
                 <div className={styles.step__number}>{step.id}</div>

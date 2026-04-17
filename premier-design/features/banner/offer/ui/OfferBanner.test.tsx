@@ -13,7 +13,9 @@ describe('OfferBanner', () => {
 	it('renders offer text and questions list', () => {
 		render(
 			<OfferBanner
+				ctaLabel='Оставить заявку'
 				offer={{
+					id: 1,
 					title: 'Ремонт под ключ',
 					shortTitle: 'repair',
 					description: 'Описание',

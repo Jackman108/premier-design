@@ -8,6 +8,11 @@ export interface OfferType {
     shortTitle: string;
 }
 
+export interface OfferBannerViewProps {
+    offer: OfferType;
+    ctaLabel: string;
+}
+
 export interface OfferBannerProps {
     designType: OfferType;
     repairType: OfferType;

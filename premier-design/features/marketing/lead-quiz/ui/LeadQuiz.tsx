@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {CSSProperties, FC} from 'react';
 
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 import {UiButton} from '@shared/ui/primitives/UiButton';
@@ -21,13 +21,17 @@ const LeadQuiz: FC<LeadQuizProps> = ({ctaLabel}) => {
     return (
         <section id='lead-quiz' className={styles.section} aria-labelledby='lead-quiz-title'>
             <div className={styles.header}>
-                <p className={styles.eyebrow}>Interactive Funnel</p>
+                <p className={styles.eyebrow}>Подбор решения</p>
                 <h2 id='lead-quiz-title' className={styles.title}>Квиз: узнайте бюджет и план запуска за 60 секунд</h2>
                 <p className={styles.description}>Ответьте на 3 вопроса и получите персональный сценарий работ с оценкой сроков.</p>
             </div>
 
-            <div className={styles.progressTrack} aria-hidden='true'>
-                <div className={styles.progressValue} style={{width: `${(step / totalSteps) * 100}%`}}/>
+            <div
+                className={styles.progressTrack}
+                aria-hidden='true'
+                style={{'--quiz-progress': `${(step / totalSteps) * 100}%`} as CSSProperties}
+            >
+                <div className={styles.progressValue}/>
             </div>
 
             <div className={styles.card}>

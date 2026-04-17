@@ -1,8 +1,32 @@
+/* Внешний контейнер без transform — иначе position:fixed у <dialog> внутри детей привязывается к aside и ломает модалки */
 .buttonsContainer {
 	position: fixed;
-	right: 5px;
-	top: 50%;
+	left: 0;
+	right: 0;
+	/* Выше полосы cookies (footer, bottom:0), чтобы не перекрывать баннер */
+	bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
 	display: flex;
-	flex-direction: column;
-	z-index: var(--z-overlay);
+	justify-content: center;
+	align-items: center;
+	/* Ниже баннера cookies (--z-modal), чтобы куки перекрывали док */
+	z-index: var(--z-dropdown);
+	pointer-events: none;
+}
+
+.buttonsDock {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	gap: clamp(0.45rem, 1.5vw, 0.75rem);
+	padding: clamp(0.35rem, 1.2vw, 0.55rem) clamp(0.5rem, 2vw, 0.85rem);
+	max-width: min(96vw, 28rem);
+	pointer-events: auto;
+	overflow: visible;
+	background: color-mix(in srgb, var(--color-surface) 62%, transparent);
+	border: 1px solid color-mix(in srgb, var(--color-border) 40%, transparent);
+	border-radius: var(--radius-md);
+	backdrop-filter: blur(10px);
+	box-shadow: var(--shadow-md);
 }

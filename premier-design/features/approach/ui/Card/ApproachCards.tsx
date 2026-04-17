@@ -14,7 +14,7 @@ const ApproachCards: FC<{ cards: ApproachCardProps[] }> = ({cards}): ReactElemen
                             alt={title}
                             width={78}
                             height={78}
-                            style={{width: "auto", height: "auto"}}
+                            className={styles.card__thumb}
                         />
                     </div>
                     <div className={styles.card__title}>

@@ -29,7 +29,7 @@ export const Default: Story = {
 			<>
 				<UiButton onClick={() => setOpen(true)}>Open Dialog</UiButton>
 				<UiDialog open={open} onOpenChange={setOpen} overlayClassName="dialogOverlay" contentClassName="dialogContent">
-					<div style={{display: 'grid', gap: '0.75rem'}}>
+					<div className="dialogStoryBody">
 						<strong>Headless Dialog Primitive</strong>
 						<p>Dialog surface is controlled by external styles and project tokens.</p>
 						<UiButton variant="secondary" onClick={() => setOpen(false)}>
@@ -43,6 +43,10 @@ export const Default: Story = {
             inset: 0;
             background: rgba(0, 0, 0, 0.55);
             z-index: var(--z-overlay);
+          }
+          .dialogStoryBody {
+            display: grid;
+            gap: 0.75rem;
           }
           .dialogContent {
             position: fixed;

@@ -34,8 +34,6 @@ const ALLOWLIST_WITH_EXPIRY = [
 	'features/related-services/interface/RelatedService.props.ts|@features/coasting/interface/Costing.props',
 	'features/related-services/interface/RelatedService.props.ts|@features/buttons-panel/interface/PanelButton.props',
 	'features/related-services/interface/RelatedService.props.ts|@features/banner/share/interface/ShareBanner.props',
-	'features/marketing/before-after/hooks/useBeforeAfterSlider.ts|@features/examples/interface/Examples.props',
-	'features/marketing/before-after/interface/BeforeAfterShowcase.props.ts|@features/examples/interface/Examples.props',
 ].map((key) => ({key, expiresOn: LEGACY_ALLOWLIST_EXPIRES_ON}));
 
 const ALLOWLIST = new Map(ALLOWLIST_WITH_EXPIRY.map(({key, expiresOn}) => [key, expiresOn]));

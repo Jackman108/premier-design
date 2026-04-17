@@ -6,11 +6,18 @@
 
 .section {
 	--section-padding-y: clamp(2.25rem, 9vw, 4rem);
-	--section-padding-inline-start: 1rem;
-	--section-padding-inline-end: 1rem;
+	--section-padding-inline: clamp(1rem, 4vw, 2.5rem);
 	padding-block: var(--section-padding-y);
-	padding-inline: var(--section-padding-inline-start) var(--section-padding-inline-end);
+	padding-inline: var(--section-padding-inline);
 	overflow-x: clip;
+	display: grid;
+	justify-items: center;
+	box-sizing: border-box;
+}
+
+.section > * {
+	width: 100%;
+	max-width: min(90rem, 100%);
 }
 
 .section[data-density='compact'] {
@@ -19,6 +26,10 @@
 
 .section[data-width='wide'] {
 	padding-inline: 0;
+}
+
+.section[data-width='wide'] > * {
+	max-width: 100%;
 }
 
 .reveal {
@@ -40,14 +51,3 @@
 	}
 }
 
-@media (min-width: 769px) {
-	.section[data-align='left'] {
-		--section-padding-inline-start: clamp(1rem, 9vw, 10rem);
-		--section-padding-inline-end: clamp(1rem, 3vw, 3rem);
-	}
-
-	.section[data-align='right'] {
-		--section-padding-inline-start: clamp(1rem, 3vw, 3rem);
-		--section-padding-inline-end: clamp(1rem, 9vw, 10rem);
-	}
-}

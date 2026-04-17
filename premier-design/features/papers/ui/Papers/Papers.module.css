@@ -7,6 +7,8 @@
 }
 
 .paper__link {
+	display: block;
+	text-decoration: none;
 	background: transparent;
 	border: transparent;
 	font-size: 1.5rem;

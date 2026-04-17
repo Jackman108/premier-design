@@ -12,7 +12,7 @@ const PrivacyPolicyPage = () => {
 				<DocumentImage src="/logo.svg" alt="privacy-policy" />
 				<PrivacyPolicyContent />
 			</div>
-			<div style={{display: 'flex', justifyContent: 'center', marginTop: '1rem'}}>
+			<div className={styles.document__footerActions}>
 				<UiButton as="a" href="/" variant="secondary">
 					На главную
 				</UiButton>

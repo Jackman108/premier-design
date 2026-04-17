@@ -25,6 +25,7 @@ import {useLayoutProps} from '@widgets/layout/hooks/useLayoutProps';
 import CustomHead from '@widgets/layout/seo/CustomHead/CustomHead';
 import Layout from '@widgets/layout/ui/layout/Layout';
 
+import HomePageChrome from '@widgets/home-page-chrome/ui/HomePageChrome';
 import styles from './HomePage.module.css';
 
 const Home: NextPage<GetDataProps> = ({data}) => {
@@ -56,19 +57,37 @@ const Home: NextPage<GetDataProps> = ({data}) => {
         <>
             <CustomHead {...titleData}/>
             <Layout {...useLayoutProps(data)}>
+                <HomePageChrome/>
                 <section className={styles.heroShell}>
                     <HeroBanner {...bannerProps}/>
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-align='left' data-reveal='true'>
+                <section
+                    id='home-features'
+                    aria-label='Преимущества'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-reveal='true'
+                >
                     <Features features={data.features}/>
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-align='right' data-density='compact' data-reveal='true'>
-                    <OfferBanner offer={data.offerBanner.homeType}/>
+                <section
+                    id='home-offer'
+                    aria-label='Специальное предложение'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-density='compact'
+                    data-reveal='true'
+                >
+                    <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.homeType}/>
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-width='wide' data-reveal='true'>
+                <section
+                    id='home-services'
+                    aria-label='Услуги'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-width='wide'
+                    data-reveal='true'
+                >
                     <Services
                         title={titles.services}
                         buttons={data.button}
@@ -76,57 +95,105 @@ const Home: NextPage<GetDataProps> = ({data}) => {
                     />
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-align='left' data-reveal='true'>
+                <section
+                    id='home-approach'
+                    aria-label='Наш подход'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-reveal='true'
+                >
                     <Approach
                         title={titles['our-approach']}
                         cards={data.approachCard}
                     />
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-align='right' data-density='compact' data-reveal='true'>
+                <section
+                    id='home-steps'
+                    aria-label='Этапы работы'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-density='compact'
+                    data-reveal='true'
+                >
                     <StepsWork
                         title={titles['application-process']}
                         stepsWork={data.stepsWork}
                     />
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-width='wide' data-reveal='true'>
+                <section
+                    id='home-examples'
+                    aria-label='Примеры работ'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-width='wide'
+                    data-reveal='true'
+                >
                     <Examples
                         title={titles['our-works']}
                         cards={data.examplesCard}
                     />
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-align='right' data-reveal='true'>
+                <section
+                    id='home-trust'
+                    aria-label='Почему нам доверяют'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-reveal='true'
+                >
                     <TrustSignals reviews={data.reviews} features={data.features}/>
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-align='left' data-density='compact' data-reveal='true'>
+                <section
+                    id='home-costing'
+                    aria-label='Расчёт стоимости'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-density='compact'
+                    data-reveal='true'
+                >
                     <Costing
                         title={titles['price-calculation']}
                         cards={data.costingCard}
                     />
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-align='right' data-reveal='true'>
+                <section
+                    id='home-related'
+                    aria-label='Сопутствующие услуги'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-reveal='true'
+                >
                     <RelatedServices
                         title={titles['related-services']}
                         relatedServices={data.relatedServices}
                     />
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-align='left' data-density='compact' data-reveal='true'>
+                <section
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-density='compact'
+                    data-reveal='true'
+                >
                     <LeadQuiz ctaLabel={buttonData.buttonHeader}/>
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-align='right' data-reveal='true'>
+                <section
+                    id='home-reviews'
+                    aria-label='Отзывы клиентов'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-reveal='true'
+                >
                     <Reviews
                         title={titles.customer_reviews}
                         reviews={data.reviews}
                     />
                 </section>
 
-                <section className={`${styles.section} ${styles.reveal}`} data-align='left' data-density='compact' data-reveal='true'>
+                <section
+                    id='home-appeal'
+                    aria-label='Оставить заявку'
+                    className={`${styles.section} ${styles.reveal}`}
+                    data-density='compact'
+                    data-reveal='true'
+                >
                     <Appeal
                         {...usePageData(
                             data.title,

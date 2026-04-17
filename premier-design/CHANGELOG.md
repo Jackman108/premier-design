@@ -5,6 +5,28 @@
 
 ## [Unreleased]
 
+### Changed
+
+- **Крошки документов:** маршруты и заголовки вынесены в `@features/documents-content/utils/documentBreadcrumbRoutes` (UI только импортирует конфиг).
+- **Панель быстрых действий:** док по центру, `z-index: var(--z-dropdown)` ниже баннера cookies (`--z-modal`); отступ `bottom` выше полосы cookies; `FeedbackModal` и `CalculatorModal` рендерятся через `BodyPortal` в `document.body`; чат — панель над кнопкой (`position: absolute` от `.chatRoot`); внешний контейнер без `transform`; подпись `PanelButton` — всплытие вверх.
+- **Слой представления / хуки:** `useHomePageChrome` → `widgets/home-page-chrome/hooks/`; `useDocumentBreadcrumbs` → `features/documents-content/hooks/` (добавлена обязательная папка `hooks` у фичи); `useCookiesBannerWidget` — композиция модалки cookies вне `ui/CookiesBanner.tsx`.
+- **Главная (навигация по секциям):** полупрозрачный «стеклянный» блок и прогресс; активная секция по скроллу (`computeActiveHomeSectionId`, `aria-current="location"`).
+- **Документация аудита:** файлы `docs/audit/FULL_PROJECT_AUDIT_2026_04_RU.md` и `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` объединены в один [`docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](../docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md); из таблиц бэклога удалены выполненные пункты; индекс [`docs/README.md`](../docs/README.md) обновлён под единую ссылку.
+- **Главная:** секции в `pages/index.tsx` + `HomePage.module.css` выровнены по центру (`display: grid`, `justify-items: center`, общий `max-width` для контента) вместо асимметричных отступов `data-align`.
+- **Секция «Наш подход»:** в `ApproachCards.module.css` исправлена адаптивность — сетка `1 / 2 / 4` колонки по breakpoints, убраны `margin: 0 30vw` и карточки на фиксированных `vw`, типографика на `clamp` + токены.
+- **Аудит §1 (дизайн):** `app/documents/layout.tsx` + `app/documents/DocumentSiteShell.tsx` + `DocumentBreadcrumbs` — юридические страницы в общем `Layout` с крошками; главная — `HomePageChrome` (progress на мобильных, якорное меню на десктопе), `lib/homeSectionNavConfig.ts`, `id`/`aria-label` на секциях, `scroll-padding-top` на `html`; Storybook — `LeadQuiz.stories.tsx`, `TrustSignals.stories.tsx`, glob `features/marketing/**/*.stories` в `.storybook/main.ts`; уточнены токены заголовка/текста в `DocumentPage.module.css`.
+- **Шапка (десктоп):** в `HeaderMenu.module.css`, `Menu.tsx` и `Header.tsx` улучшена читаемость пунктов меню — `var(--color-text)` на «липкой» шапке и режим `headerOnHero` (светлый текст + тень) на прозрачном хедере поверх hero.
+
+### Removed
+
+- Секция **«до/после»** (`BeforeAfterShowcase`) с главной страницы; удалён модуль `features/marketing/before-after/`, экспорт из `shared/utils/dynamicImports.ts` и связанные реэкспорты; пункты allowlist в `scripts/check-architecture-boundaries.mjs`.
+
+### Fixed
+
+- **App Router `/documents/*`:** футер и баннер cookies больше не вызывают `next/router` через навигацию по документам — ссылки на юр. страницы через `next/link` и `@features/papers/utils/documentHref` (устранён prerender-краш `NextRouter was not mounted`).
+- **Главная:** `HomePageChrome` перенесён из `pages/` в `@widgets/home-page-chrome/ui/`, чтобы не создавать лишний маршрут `/HomePageChrome`.
+- **Закрытие полного аудита §1 «Несоответствие правилам» (апрель 2026):** структура `features/*` соответствует `scripts/check-feature-structure.mjs`; в `OfferBanner` добавлен CTA (`OrderButton` + проп `ctaLabel`); RU-подписи в `LeadQuiz` и `TrustSignals`; инлайн-стили вынесены в CSS-модули / CSS variables (`app/documents/*`, `ApproachCards`, `PanelButton`, `BrickWallLoader`, `UiDialog`, `Header`, `StepsWork`, `chatbotConfig`, `AppErrorBoundary`, `app/error.tsx`, Storybook `UiDialog`); в `useNews` снят глобальный `eslint-disable`, добавлен комментарий и точечный `eslint-disable-next-line`; тесты из удалённой папки `validates/` перенесены в `shared/ui/order/utils/__tests__/` и `services/__tests__/`; в правилах workflow уже зафиксирован Yarn вместо npm.
+
 ### Added
 
 - Документ `docs/mempalace/MEMPALACE_USAGE_RU.md`: проверка MemPalace после `mine`, `search`/`status`/`wake-up`, UTF-8 в Windows, цикл переиндексации.
@@ -14,7 +36,7 @@
 - Документ `docs/mempalace/MEMPALACE_AGENT_MEMORY_RU.md`: опциональная локальная память агента на базе [MemPalace](https://github.com/MemPalace/mempalace) (вне репозитория, без секретов); ссылка в `docs/README.md` и в `.cursor/rules/agent-context-bootstrap.mdc`.
 - Документ `docs/guides/MARKETING_ANALYTICS_DASHBOARD_RU.md`: карта событий `dataLayer`, формулы funnel-конверсий по шагам квиза, baseline и целевые KPI для `W4-M-01`.
 - **Sprint 16 (завершение):** закрыты `M-2`, `M-3`, `M-4`; дополнительно усилен Hero по UX-замечаниям (читабельность H1 и контраст CTA).
-  `M-2`: добавлен интерактивный блок `BeforeAfterShowcase` с диапазонным слайдером и выбором кейса (до/после) на основе реальных проектов.
+  `M-2`: добавлен интерактивный блок `BeforeAfterShowcase` (до/после) на основе реальных проектов; **снят с главной** в `[Unreleased]` по продуктовому решению — см. раздел **Removed**.
   `M-3`: добавлен блок `TrustSignals` (метрики доверия, подтверждающие преимущества, клиентские цитаты) для усиления social proof.
   `M-4`: добавлена квиз-воронка `LeadQuiz` с пошаговым сценарием (3 шага, прогресс-бар, переход к заявке через существующий модальный флоу).
   `Hero fix`: в `HeroBanner.module.css` и `Title.module.css` устранено переполнение заголовка, усилены контраст и визуальный вес CTA-кнопки.

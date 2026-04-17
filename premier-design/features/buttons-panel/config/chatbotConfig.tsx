@@ -3,6 +3,7 @@ import {createChatBotMessage} from 'react-chatbot-kit';
 import Phone from '@shared/ui/phone/Phone';
 import CustomAvatar from '@features/buttons-panel/ui/CustomAvatar/CustomAvatar';
 import {CustomAvatarProps} from '@features/buttons-panel/interface/ChatBot.props';
+import chatbotHeaderStyles from './ChatbotKitHeader.module.css';
 
 const BOT_NAME = 'Алина';
 const BOT_AVATAR_PATH = '/botAvatars/botAvatar.webp';
@@ -44,14 +45,9 @@ const chatbotConfig = {
         },
     },
     customComponents: {
-        header: () => <div style={{
-            color: 'var(--color-surface)',
-            fontSize: 20,
-            textAlign: 'center',
-            backgroundColor: 'var(--brown-light)',
-            padding: '5px',
-            borderRadius: 'var(--radius-sm)',
-        }}>Ваш консультант {BOT_NAME}</div>,
+        header: () => (
+            <div className={chatbotHeaderStyles.header}>Ваш консультант {BOT_NAME}</div>
+        ),
         botAvatar: (props: CustomAvatarProps) => (
             <CustomAvatar {...props} src={BOT_AVATAR_PATH} alt="Bot Avatar"/>
         ),

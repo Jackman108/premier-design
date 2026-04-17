@@ -1,11 +1,12 @@
 import React, {FC, ReactElement} from 'react';
 import styles from './OfferBanner.module.css';
 import Image from 'next/image';
-import {OfferType} from "@features/banner/offer/interface/OfferBanner.props";
+import {OfferBannerViewProps} from '@features/banner/offer/interface/OfferBanner.props';
+import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 
 const OFFER_BANNER_IMAGE_SIZES = '(max-width: 768px) 100vw, (max-width: 1440px) 90vw, 1563px';
 
-const OfferBanner: FC<{ offer: OfferType }> = ({offer}): ReactElement => {
+const OfferBanner: FC<OfferBannerViewProps> = ({offer, ctaLabel}): ReactElement => {
     return (
         <section className={styles.offer}>
             <div className={styles.offer__container}>
@@ -29,6 +30,13 @@ const OfferBanner: FC<{ offer: OfferType }> = ({offer}): ReactElement => {
                     </ul>
                     <p className={styles.offer__description}>{offer.description}</p>
                     <p className={styles.offer__tips}>{offer.tips}</p>
+                    <div className={styles.offer__cta}>
+                        <OrderButton
+                            buttonData={ctaLabel}
+                            buttonStyle='button-black'
+                            trackingContext='offer_banner_cta'
+                        />
+                    </div>
                 </div>
 
             </div>

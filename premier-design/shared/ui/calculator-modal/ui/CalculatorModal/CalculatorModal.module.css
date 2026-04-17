@@ -5,7 +5,8 @@
 	left: 0;
 	width: 100%;
 	height: 100%;
-	z-index: var(--z-overlay);
+	/* Выше дока быстрых действий (--z-overlay), на одном уровне с формой заявки */
+	z-index: calc(var(--z-toast) + 5);
 	display: grid;
 	place-items: center;
 	border: none;

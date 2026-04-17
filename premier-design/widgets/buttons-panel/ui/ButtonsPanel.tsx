@@ -21,18 +21,20 @@ const ButtonsPanel: FC<ButtonsPanelProps> = ({additionalData}) => {
     const chatButton = findPanelById(panelData, "chatButton");
 
     return (
-        <aside className={styles.buttonsContainer}>
-            {buttonHeader && (
-                <OrderButton
-                    buttonStyle="button-panel"
-                    buttonData={buttonHeader.buttonHeader}
-                    panelData={phoneButton}
-                />
-            )}
-            {chatButton && <ChatBotSidebar panelData={chatButton}/>}
-            {calculatorButton && (
-                <CalculatorButton costingCards={costingCards} panelData={calculatorButton}/>
-            )}
+        <aside className={styles.buttonsContainer} aria-label="Быстрые действия">
+            <div className={styles.buttonsDock}>
+                {buttonHeader && (
+                    <OrderButton
+                        buttonStyle="button-panel"
+                        buttonData={buttonHeader.buttonHeader}
+                        panelData={phoneButton}
+                    />
+                )}
+                {chatButton && <ChatBotSidebar panelData={chatButton}/>}
+                {calculatorButton && (
+                    <CalculatorButton costingCards={costingCards} panelData={calculatorButton}/>
+                )}
+            </div>
         </aside>
     );
 };

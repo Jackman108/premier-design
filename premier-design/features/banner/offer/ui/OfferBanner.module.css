@@ -70,6 +70,12 @@
 	font-weight: bolder;
 }
 
+.offer__cta {
+	display: flex;
+	justify-content: center;
+	margin-top: 0.5rem;
+}
+
 @media (max-width: 768px) {
 	.offer__container {
 		padding: 3% 5%;

@@ -17,7 +17,7 @@ const TrustSignals: FC<TrustSignalsProps> = ({reviews, features}) => {
     return (
         <section ref={sectionRef} className={styles.section} aria-labelledby='trust-signals-title'>
             <div className={styles.header}>
-                <p className={styles.eyebrow}>Trust Signals</p>
+                <p className={styles.eyebrow}>Почему нам доверяют</p>
                 <h2 id='trust-signals-title' className={styles.title}>Почему нам доверяют сложные проекты</h2>
                 <p className={styles.description}>
                     Репутация строится на прозрачном процессе, стабильном качестве и подтвержденном опыте.

@@ -31,6 +31,10 @@ dd {
 }
 
 /* Выставляем основные настройки по-умолчанию для body */
+html {
+	scroll-padding-top: clamp(5rem, 14vh, 9rem);
+}
+
 html,
 #next,
 body {

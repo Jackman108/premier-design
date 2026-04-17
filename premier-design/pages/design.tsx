@@ -26,7 +26,7 @@ const Design: NextPage<GetDataProps> = ({data}): ReactElement => {
             <Layout {...useLayoutProps(data)}>
                 <HeroBanner {...bannerProps}/>
                 <Features features={data.features}/>
-                <OfferBanner offer={data.offerBanner.designType}/>
+                <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.designType}/>
                 <Examples
                     title={titles["our-works"]}
                     cards={data.examplesCard}

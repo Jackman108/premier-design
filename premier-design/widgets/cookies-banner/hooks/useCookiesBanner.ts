@@ -25,17 +25,3 @@ export function useCookiesBanner(openModal: () => void, closeModal: () => void) 
 
     return { handleAction };
 }
-
-export function usePrivacyPolicy(privacyPolicy: { shortTitle: string }, handlePaperClick: (title: string) => void) {
-    const handlePrivacyPolicyClick = async () => {
-        if (privacyPolicy) {
-            try {
-                handlePaperClick(privacyPolicy.shortTitle);
-            } catch (error) {
-                console.error("Ошибка при переходе к политике конфиденциальности:", error);
-            }
-        }
-    };
-
-    return { handlePrivacyPolicyClick };
-}

@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 import {act, renderHook, waitFor} from '@testing-library/react';
-import {useCookiesBanner, usePrivacyPolicy} from '@widgets/cookies-banner/hooks/useCookiesBanner';
+import {useCookiesBanner} from '@widgets/cookies-banner/hooks/useCookiesBanner';
 
 describe('useCookiesBanner', () => {
     beforeEach(() => {
@@ -48,20 +48,5 @@ describe('useCookiesBanner', () => {
 
         expect(localStorage.getItem('cookiesAccepted')).toBe('true');
         expect(closeModal).toHaveBeenCalled();
-    });
-});
-
-describe('usePrivacyPolicy', () => {
-    it('invokes handlePaperClick with shortTitle', async () => {
-        const handlePaperClick = jest.fn();
-        const {result} = renderHook(() =>
-            usePrivacyPolicy({shortTitle: 'privacy'}, handlePaperClick),
-        );
-
-        await act(async () => {
-            await result.current.handlePrivacyPolicyClick();
-        });
-
-        expect(handlePaperClick).toHaveBeenCalledWith('privacy');
     });
 });

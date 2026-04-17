@@ -25,7 +25,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
             <CustomHead {...titleData}/>
             <Layout {...useLayoutProps(data)}>
                 <HeroBanner {...bannerProps}/>
-                <OfferBanner offer={data.offerBanner.aboutType}/>
+                <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.aboutType}/>
                 <News
                     title={titles["news-shares"]}
                     news={data.news}

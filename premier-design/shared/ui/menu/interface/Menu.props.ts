@@ -9,4 +9,6 @@ export interface MenuProps {
     menuStyle: 'header' | 'footer' | 'mobile';
     isMobileMenuOpen: boolean;
     toggleMobileMenu: () => void;
+    /** Прозрачный хедер поверх hero: светлые пункты меню для контраста */
+    headerOnHero?: boolean;
 }

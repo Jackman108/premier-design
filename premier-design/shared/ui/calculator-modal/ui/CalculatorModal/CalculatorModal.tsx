@@ -1,14 +1,17 @@
-'use client'
-import {FC, MouseEvent} from 'react';
+'use client';
+import type {FC, MouseEvent} from 'react';
+
 import CollapsibleContainer from '@shared/ui/calculator-modal/ui/CollapsibleContainer/CollapsibleContainer';
 import CostInput from '@shared/ui/calculator-modal/ui/CostInput/CostInput';
 import Logo from '@shared/ui/logo/Logo';
 import ModalTabs from '@shared/ui/calculator-modal/ui/ModalTabs/ModalTabs';
 import Preloader from '@shared/ui/preloader/Preloader/Preloader';
+import {BodyPortal} from '@shared/ui/portal/BodyPortal';
 import {CalculatorModalProps} from '@shared/ui/calculator-modal/interface/CalculatorModal.props';
+import {typeItemsConfig} from '@shared/ui/calculator-modal/configs/factorsConfig';
+import useCalculatorHandlers from '@shared/ui/calculator-modal/hooks/useCalculatorHandlers';
+
 import styles from './CalculatorModal.module.css';
-import {typeItemsConfig} from "@shared/ui/calculator-modal/configs/factorsConfig";
-import useCalculatorHandlers from "@shared/ui/calculator-modal/hooks/useCalculatorHandlers";
 
 const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
     const {
@@ -35,6 +38,7 @@ const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
     };
 
     return (
+        <BodyPortal>
         <dialog
             className={styles.modal_overlay}
             open
@@ -119,6 +123,7 @@ const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
                 </div>
             </div>
         </dialog>
+        </BodyPortal>
     );
 };
 

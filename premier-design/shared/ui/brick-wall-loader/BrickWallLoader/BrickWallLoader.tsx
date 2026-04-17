@@ -65,7 +65,7 @@ const BrickWallLoader = (): ReactElement => {
     }, [animationActive, animationStep, animationFinished]);
 
     return (
-        <div style={{display: animationFinished ? 'block' : 'none'}}>
+        <div className={styles.root} hidden={!animationFinished}>
             <div className={styles.brickWallLoader}>
                 {brickRows.map((brickRow, rowIndex) => (
                     <div key={rowIndex} className={styles.brickRow}>
@@ -75,8 +75,7 @@ const BrickWallLoader = (): ReactElement => {
                                 className={`${styles.brick} ${brickIndex < brick && animationActive
                                     ? styles.brickAnimation
                                     : ''}`}
-                                style={{backgroundColor: 'var(--brown)'}}
-                            ></div>
+                            />
                         ))}
                     </div>
                 ))}

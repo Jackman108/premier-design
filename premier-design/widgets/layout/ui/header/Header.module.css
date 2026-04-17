@@ -90,6 +90,7 @@
 
 	.stickyPlaceholder {
 		width: 100%;
+		height: var(--header-placeholder-height, 102px);
 	}
 
 	@keyframes slide-down {

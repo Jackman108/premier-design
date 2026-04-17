@@ -7,7 +7,7 @@ import Menu from '@shared/ui/menu/ui/Menu';
 import MenuButton from '../menu-button/MenuButton';
 import ThemeButton from '../theme-button/ThemeButton';
 import styles from './Header.module.css';
-import {FC, ReactElement} from 'react';
+import {CSSProperties, FC, ReactElement} from 'react';
 import WorkHours from '@shared/ui/work-hours/WorkHours';
 import {HeaderProps} from '../../interface/Header.props';
 import {useStickyHeader} from '../../hooks/useStickyHeader';
@@ -50,6 +50,7 @@ const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
                         toggleMobileMenu={toggleMobileMenu}
                         menu={menu}
                         menuStyle='header'
+                        headerOnHero={!isSticky}
                     />
                 </div>
             </header>
@@ -60,7 +61,10 @@ const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
                 toggleMobileMenu={toggleMobileMenu}
             />
             {isSticky && (
-                <div className={styles.stickyPlaceholder} style={{height: headerHeight}}></div>
+                <div
+                    className={styles.stickyPlaceholder}
+                    style={{'--header-placeholder-height': headerHeight} as CSSProperties}
+                />
             )}
         </>
     );

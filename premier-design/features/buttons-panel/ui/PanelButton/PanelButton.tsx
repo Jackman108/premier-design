@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {CSSProperties, FC} from "react";
 import styles from './PanelButton.module.css';
 import Image from "next/image";
 import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
@@ -8,7 +8,7 @@ const PanelButton: FC<PanelProps> = ({onClick, icon, altText, text, position}) =
     <button
         onClick={onClick}
         className={`${styles['button_common']}`}
-        style={{bottom: position.bottom}}
+        style={position.bottom ? ({'--panel-bottom': position.bottom} as CSSProperties) : undefined}
         aria-label={text}
     >
         <Image

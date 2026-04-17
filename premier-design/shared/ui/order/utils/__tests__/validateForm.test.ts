@@ -1,4 +1,4 @@
-import {validateForm} from '../../shared/ui/order/utils/validateForm';
+import {validateForm} from '../validateForm';
 
 describe('validateForm', () => {
     it('returns errors for missing required fields and consent', () => {

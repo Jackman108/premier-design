@@ -24,6 +24,8 @@
 }
 
 .step__item {
+	--step-animation-delay: 0ms;
+	animation-delay: var(--step-animation-delay);
 	display: grid;
 	grid-template-columns: auto 1fr;
 	gap: 2rem;
