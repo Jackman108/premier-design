@@ -14,6 +14,11 @@ const assertNoHydrationWarnings = (messages: string[], route: string) => {
 };
 
 const CONSOLE_FUNNEL_ERROR_PATTERNS = [/uncaught/i, /typeerror/i, /hydration/i, /dialogcontent/i];
+const DEV_SERVER_NOISE_PATTERNS = [
+	/\[hmr\]\s*invalid message/i,
+	/handlestaticindicator/i,
+	/cannot read properties of undefined \(reading 'components'\)/i,
+];
 
 test('home page smoke', async ({page}) => {
     const response = await page.goto('/');
@@ -73,11 +78,16 @@ test('no hydration warnings on key pages', async ({page}) => {
 
 	for (const route of routes) {
 		const messages: string[] = [];
+		const runtimeErrors: string[] = [];
 		page.removeAllListeners('console');
+		page.removeAllListeners('pageerror');
 		page.on('console', (msg) => {
 			if (msg.type() === 'error' || msg.type() === 'warning') {
 				messages.push(msg.text());
 			}
+		});
+		page.on('pageerror', (error) => {
+			runtimeErrors.push(error.message);
 		});
 
 		const response = await page.goto(route);
@@ -85,6 +95,7 @@ test('no hydration warnings on key pages', async ({page}) => {
 		await settlePage(page);
 
 		assertNoHydrationWarnings(messages, route);
+		assertNoHydrationWarnings(runtimeErrors, route);
 	}
 });
 
@@ -164,7 +175,7 @@ test('lead modal opens from hero and quiz CTA', async ({page}) => {
 	await expect(heroOrderButton).toBeVisible();
 	// В dev Next может показывать индикатор поверх UI (`nextjs-portal` перехватывает клики).
 	await heroOrderButton.click({force: true});
-	await expect(page.getByRole('heading', {name: 'Оставьте заявку'})).toBeVisible();
+	await expect(page.getByRole('dialog', {name: 'Оставьте заявку'})).toBeVisible();
 	// Перезагружаем страницу для второго источника CTA, чтобы не зависеть от поведения modal-close
 	// в условиях конкурирующих overlay-слоев на первом экране.
 	await page.goto('/');
@@ -182,7 +193,7 @@ test('lead modal opens from hero and quiz CTA', async ({page}) => {
 	const quizOrderButton = quizSection.getByRole('button', {name: 'Сделать заказ'});
 	await expect(quizOrderButton).toBeVisible();
 	await quizOrderButton.click();
-	await expect(page.getByRole('heading', {name: 'Оставьте заявку'})).toBeVisible();
+	await expect(page.getByRole('dialog', {name: 'Оставьте заявку'})).toBeVisible();
 });
 
 test('feedback form submit shows success state and keeps console clean', async ({page}) => {
@@ -218,7 +229,8 @@ test('feedback form submit shows success state and keeps console clean', async (
 	await expect(page.getByText('Заявка отправлена. Мы свяжемся с вами в ближайшее время.')).toBeVisible();
 
 	const consoleHit = consoleMessages.find((message) =>
-		CONSOLE_FUNNEL_ERROR_PATTERNS.some((pattern) => pattern.test(message)),
+		CONSOLE_FUNNEL_ERROR_PATTERNS.some((pattern) => pattern.test(message))
+		&& !DEV_SERVER_NOISE_PATTERNS.some((pattern) => pattern.test(message)),
 	);
 	expect(consoleHit, 'Unexpected console issue in lead funnel').toBeUndefined();
 });

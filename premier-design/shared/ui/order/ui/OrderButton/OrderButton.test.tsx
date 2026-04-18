@@ -46,11 +46,11 @@ describe('OrderButton', () => {
 		});
 	});
 
-	it('renders regular button and opens modal on mouse down', () => {
+	it('renders regular button and opens modal on click', () => {
 		render(<OrderButton buttonStyle="button-black" buttonData="Оставить заявку" />);
 		const button = screen.getByRole('button', {name: 'Сделать заказ'});
 
-		fireEvent.mouseDown(button);
+		fireEvent.click(button);
 		expect(openModal).toHaveBeenCalledTimes(1);
 	});
 

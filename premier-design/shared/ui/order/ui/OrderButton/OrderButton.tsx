@@ -42,7 +42,8 @@ const OrderButton: FC<OrderButtonProps> = ({buttonData, buttonStyle, panelData, 
                     <button
                         className={`${styles['button-base']} ${buttonClass}`}
                         type='button'
-                        onMouseDown={handleOpenModal}
+                        // `onClick` надёжнее для e2e/доступности: событие одинаково работает мышью, тачем и с клавиатуры.
+                        onClick={handleOpenModal}
                         aria-label='Сделать заказ'
                     >
                         {buttonData}

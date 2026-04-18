@@ -2,7 +2,7 @@
 
 import styles from './Layout.module.css';
 import Header from '../header/Header';
-import {Footer} from '@shared/utils/dynamicImports';
+import Footer from '../footer/Footer';
 import {FC, ReactElement} from 'react';
 import ButtonsPanel from "../../../buttons-panel/ui/ButtonsPanel";
 import {LayoutProps} from "../../interface/Layout.props";

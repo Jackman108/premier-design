@@ -2,7 +2,7 @@ import styles from "./Footer.module.css";
 import useResizeEffects from "@shared/hooks/useResizeEffects";
 import {FC} from "react";
 import Menu from "@shared/ui/menu/ui/Menu";
-import {  News} from '@shared/utils/dynamicImports';
+import News from '@features/news/ui/News/News';
 import Papers from "@features/papers/ui/Papers/Papers";
 import CookiesBanner from "../../../cookies-banner/ui/CookiesBanner";
 import {FooterProps} from "../../interface/Footer.props";

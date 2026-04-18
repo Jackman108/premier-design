@@ -5,12 +5,14 @@ import {GetDataProps} from '@widgets/interface/interfaceData';
 import {ReactElement} from "react";
 import HeroBanner from "@features/banner/hero/ui/HeroBanner";
 import CompanyAboutSections from "@features/company-about/ui/CompanyAboutSections";
-import {Appeal, News, OfferBanner, Partners} from '@shared/utils/dynamicImports';
+import {Appeal, OfferBanner} from '@shared/utils/dynamicImports';
 import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
 import {getTitleData} from "@shared/utils/findItemByTitle";
 import {usePageData} from "@shared/hooks/usePageData";
+import News from '@features/news/ui/News/News';
+import Partners from '@features/partners/ui/Partners/Partners';
 
 const About: NextPage<GetDataProps> = ({data}): ReactElement => {
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(

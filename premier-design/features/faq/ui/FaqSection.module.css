@@ -13,16 +13,16 @@
 }
 
 .details {
-	border: 1px solid var(--color-border, #e5e5e5);
+	border: 1px solid var(--color-border);
 	border-radius: 0.5rem;
-	background: var(--color-surface, #fff);
+	background: var(--color-surface);
 }
 
 .summary {
 	cursor: pointer;
 	padding: 1rem 1.25rem;
 	font-weight: 600;
-	color: var(--color-text, #1a1a1a);
+	color: var(--color-text);
 	list-style: none;
 }
 
@@ -33,10 +33,10 @@
 .answer {
 	margin: 0;
 	padding: 0 1.25rem 1rem;
-	color: var(--color-text-muted, #444);
+	color: var(--color-text-muted);
 	line-height: 1.55;
 }
 
 .details[open] .summary {
-	border-bottom: 1px solid var(--color-border, #e5e5e5);
+	border-bottom: 1px solid var(--color-border);
 }

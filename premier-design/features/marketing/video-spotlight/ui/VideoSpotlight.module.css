@@ -7,13 +7,13 @@
 .title {
 	margin: 0 0 0.5rem;
 	font-size: clamp(1.25rem, 2.8vw, 1.5rem);
-	color: var(--color-text, #1a1a1a);
+	color: var(--color-text);
 }
 
 .description {
 	margin: 0 0 1.25rem;
 	line-height: 1.55;
-	color: var(--color-text-muted, #444);
+	color: var(--color-text-muted);
 }
 
 .ratio {
@@ -23,7 +23,7 @@
 	height: 0;
 	overflow: hidden;
 	border-radius: 0.5rem;
-	background: #000;
+	background: var(--black);
 }
 
 .iframe {
