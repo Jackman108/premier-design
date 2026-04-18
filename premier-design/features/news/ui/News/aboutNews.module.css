@@ -10,7 +10,9 @@
 	grid-gap: 4vh;
 	margin: 0 auto;
 	padding: 3vh 0;
-	background-color: var(--white);
+	background-color: var(--color-surface);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-sm);
 }
 
 .news__cards {
@@ -50,21 +52,21 @@
 .content__date {
 	font-size: 0.8rem;
 	text-align: start;
-	color: var(--brown-light);
+	color: var(--color-text-muted);
 }
 
 .content__title {
 	max-width: 25vw;
 	font-size: 1rem;
 	font-weight: bolder;
-	color: var(--brown);
+	color: var(--color-text);
 	text-align: start;
 	text-decoration: none;
 }
 
 .content__title:hover,
 .content__title:focus-visible {
-	color: var(--beige-dark);
+	color: var(--color-accent);
 	cursor: pointer;
 }
 

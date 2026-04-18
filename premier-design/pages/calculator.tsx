@@ -30,7 +30,7 @@ const Calculator: NextPage<GetDataProps> = ({data}): ReactElement => {
             <Layout {...useLayoutProps(data)}>
                 <HeroBanner {...bannerProps}/>
                 <Features features={data.features}/>
-                <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.repairType}/>
+                <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.calculatorType}/>
                 <Costing cards={data.costingCard} title={titles['price-calculation']}/>
                 <Appeal
                     {...usePageData(

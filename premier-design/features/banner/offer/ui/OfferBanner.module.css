@@ -29,8 +29,9 @@
 	color: var(--color-text);
 	z-index: var(--z-content);
 	padding: 2rem;
-	background-color: var(--overlay-panel);
+	background-color: color-mix(in srgb, var(--color-surface) 86%, transparent);
 	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-md);
 }
 
 .offer__title {
@@ -57,6 +58,7 @@
 	list-style: square;
 	padding-left: 1.5rem;
 	margin: 0;
+	text-align: left;
 }
 
 .offer__questions li {
@@ -73,6 +75,11 @@
 	font-style: italic;
 	color: var(--color-text-muted);
 	font-weight: bolder;
+}
+
+:global(.dark) .offer__text,
+:global([data-theme='dark']) .offer__text {
+	background-color: color-mix(in srgb, var(--color-surface) 94%, rgb(0 0 0 / 0.72));
 }
 
 .offer__cta {

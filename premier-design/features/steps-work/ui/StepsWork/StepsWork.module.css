@@ -13,7 +13,9 @@
 	width: 100%;
 	margin: 0 auto;
 	padding: 3vh 0;
-	background-color: var(--beige-dark);
+	background-color: var(--color-surface-muted);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-sm);
 }
 
 .steps__list {
@@ -32,7 +34,7 @@
 	position: relative;
 	animation-duration: 0.5s;
 	animation-fill-mode: backwards;
-	color: var(--brown);
+	color: var(--color-text);
 	font-size: 1.1rem;
 	width: 60%;
 	opacity: 0;
@@ -61,8 +63,8 @@
 	height: 30px;
 	border-radius: 50%;
 	border: var(--gray-light) solid 1px;
-	background-color: var(--white);
-	color: var(--brown-dark);
+	background-color: var(--color-surface);
+	color: var(--color-text);
 	display: flex;
 	justify-content: center;
 	align-items: center;

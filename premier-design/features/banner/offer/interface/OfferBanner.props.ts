@@ -18,4 +18,6 @@ export interface OfferBannerProps {
     repairType: OfferType;
     aboutType: OfferType;
     homeType: OfferType;
+    portfolioType: OfferType;
+    calculatorType: OfferType;
 }

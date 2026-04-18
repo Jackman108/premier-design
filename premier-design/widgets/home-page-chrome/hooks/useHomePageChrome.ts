@@ -16,9 +16,10 @@ const getScrollProgress = (): number => {
 	return Math.min(1, Math.max(0, window.scrollY / scrollHeight));
 };
 
-export function useHomePageChrome(): {activeId: string | null; progress: number} {
+export function useHomePageChrome(): {activeId: string | null; progress: number; isHeroOutOfView: boolean} {
 	const [progress, setProgress] = useState(0);
 	const [activeId, setActiveId] = useState<string | null>(null);
+	const [isHeroOutOfView, setIsHeroOutOfView] = useState(false);
 
 	useEffect(() => {
 		const update = () => {
@@ -35,5 +36,26 @@ export function useHomePageChrome(): {activeId: string | null; progress: number}
 		};
 	}, []);
 
-	return {progress, activeId};
+	useEffect(() => {
+		const hero = document.getElementById('home-hero');
+		if (!hero) {
+			return;
+		}
+
+		const observer = new IntersectionObserver(
+			([entry]) => {
+				// Хром появляется, когда hero перестаёт быть заметен пользователю.
+				setIsHeroOutOfView(!entry.isIntersecting);
+			},
+			{
+				root: null,
+				threshold: 0.15,
+			},
+		);
+
+		observer.observe(hero);
+		return () => observer.disconnect();
+	}, []);
+
+	return {progress, activeId, isHeroOutOfView};
 }

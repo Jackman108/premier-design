@@ -56,20 +56,20 @@
 	text-align: center;
 	font-weight: 500;
 	letter-spacing: 0.002em;
-	color: var(--brown);
+	color: var(--color-text);
 }
 
 .card__deadlines {
 	font-weight: 600;
 	line-height: 28px;
-	color: var(--brown-light);
+	color: var(--color-text-muted);
 }
 
 .card__metaLine {
 	font-size: 0.85rem;
 	line-height: 1.35;
 	text-align: center;
-	color: var(--brown);
+	color: var(--color-text);
 	opacity: 0.92;
 }
 
@@ -78,7 +78,7 @@
 	grid-template-columns: repeat(2, auto);
 	align-items: center;
 	grid-gap: 4rem;
-	color: var(--brown-white);
+	color: var(--color-text-muted);
 }
 
 .card__bathroom {

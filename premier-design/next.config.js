@@ -38,8 +38,24 @@ const contentSecurityPolicy = [
 const nextConfig = {
 	output: 'standalone',
 	reactCompiler: true,
+	// Убираем unstable dev-indicator, который в Next 16 + турбо может давать шумные HMR-ошибки в гибридном pages/app.
+	devIndicators: false,
 	// Playwright / CI: baseURL 127.0.0.1 и dev-сервер на localhost — иначе блокируется webpack-hmr.
 	allowedDevOrigins: ['127.0.0.1', 'localhost'],
+	webpack: (config, {dev}) => {
+		if (dev) {
+			config.watchOptions = {
+				...config.watchOptions,
+				// На Windows-дисках (G:) watchpack иногда цепляет системные директории и падает на lstat.
+				ignored: [
+					'**/System Volume Information/**',
+					'**/$RECYCLE.BIN/**',
+					...(Array.isArray(config.watchOptions?.ignored) ? config.watchOptions.ignored : []),
+				],
+			};
+		}
+		return config;
+	},
 	async rewrites() {
 		return [
 			{source: '/sitemap.xml', destination: '/api/sitemap'},

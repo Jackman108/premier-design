@@ -10,7 +10,9 @@
 	grid-gap: 4vh;
 	margin: 0 auto;
 	padding: 3vh 0;
-	background-color: var(--white);
+	background-color: var(--color-surface);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-sm);
 }
 
 .partners__cards {
@@ -23,7 +25,7 @@
 
 .partners__card {
 	border-radius: 5px;
-	border: 3px solid var(--brown-white);
+	border: 3px solid var(--color-border);
 }
 
 .partners__image {
@@ -35,7 +37,7 @@
 
 .partners__discounts {
 	font-size: 1.4rem;
-	color: var(--brown-dark);
+	color: var(--color-text);
 	text-align: center;
 	margin: 0.5rem;
 }

@@ -1,18 +1,20 @@
 /** @jest-environment jsdom */
-import {renderHook} from '@testing-library/react';
-import {useBackgroundLoader} from '../useBackgroundLoader';
+import { renderHook } from '@testing-library/react';
+import { useBackgroundLoader } from '../useBackgroundLoader';
 
 describe('useBackgroundLoader', () => {
 	it('sets body background after image load', () => {
-		let imageOnload: null | (() => void) = null;
+		const imageOnloadRef = { current: null as (() => void) | null };
+
 		class MockImage {
 			set src(_value: string) {
-				// no-op for test
+				// no-op
 			}
 			set onload(cb: () => void) {
-				imageOnload = cb;
+				imageOnloadRef.current = cb;
 			}
 		}
+
 		Object.defineProperty(window, 'Image', {
 			writable: true,
 			value: MockImage,
@@ -23,11 +25,14 @@ describe('useBackgroundLoader', () => {
 		});
 
 		renderHook(() => useBackgroundLoader());
-		expect(imageOnload).not.toBeNull();
+		expect(imageOnloadRef.current).not.toBeNull();
 
-		imageOnload?.();
-		expect(document.body.style.backgroundImage).toBe('url("/tools.svg")');
+		// ✅ TS видит, что .current может быть функцией
+		imageOnloadRef.current?.();
+
+		expect(document.body.style.backgroundImage).toContain('url("/tools.svg")');
 		expect(document.body.style.backgroundRepeat).toBe('repeat');
 		expect(document.body.style.backgroundSize).toBe('18%');
+		expect(document.body.style.backgroundAttachment).toBe('fixed');
 	});
 });

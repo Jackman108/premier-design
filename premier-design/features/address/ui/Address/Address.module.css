@@ -1,6 +1,6 @@
 .address__contacts {
-	color: var(--brown-dark);
-	background-color: var(--beige-dark);
+	color: var(--color-text);
+	background-color: var(--color-surface-muted);
 	padding: 3% 5%;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .address__item {
-	border-left: 3px solid var(--brown);
+	border-left: 3px solid var(--color-accent);
 	padding: 10px;
 	min-height: 100%;
 	line-height: 3rem;

@@ -7,16 +7,31 @@ import {useHomePageChrome} from '../hooks/useHomePageChrome';
 import styles from './HomePageChrome.module.css';
 
 const HomePageChrome: FC = () => {
-	const {activeId, progress} = useHomePageChrome();
+	const {activeId, progress, isHeroOutOfView} = useHomePageChrome();
+
+	const scrollToTop = () => {
+		window.scrollTo({top: 0, behavior: 'smooth'});
+	};
 
 	return (
 		<>
 			<div
 				aria-hidden='true'
-				className={styles.scrollProgress}
+				className={`${styles.scrollProgress} ${isHeroOutOfView ? styles.visible : ''}`}
 				style={{transform: `scaleX(${progress})`}}
 			/>
-			<nav aria-label='По разделам главной страницы' className={styles.sectionNav}>
+			<nav
+				aria-label='По разделам главной страницы'
+				className={`${styles.sectionNav} ${isHeroOutOfView ? styles.visible : ''}`}
+			>
+				<button
+					type='button'
+					className={styles.toTopButton}
+					onClick={scrollToTop}
+					aria-label='Прокрутить страницу наверх'
+				>
+					Наверх
+				</button>
 				<ol className={styles.sectionNavList}>
 					{HOME_SECTION_NAV_LINKS.map((item) => {
 						const isActive = activeId === item.id;

@@ -21,7 +21,15 @@ const ChatBotSidebar: FC<ChatBotSidebarProps> = ({panelData}) => {
 		<div className={styles.chatRoot}>
 			<PanelButton {...panelData} onClick={toggleModal} />
 			{isBotOpen ? (
-				<div className={styles.chatbot}>
+				<div className={styles.chatbot} role='dialog' aria-label='Чат с консультантом'>
+					<button
+						type='button'
+						className={styles.closeButton}
+						onClick={toggleModal}
+						aria-label='Закрыть чат'
+					>
+						×
+					</button>
 					<ChatBotRuntime messageHistory={messageHistory} saveMessages={saveMessages} />
 				</div>
 			) : null}

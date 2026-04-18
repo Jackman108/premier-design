@@ -1,12 +1,9 @@
 'use client';
 
-import dynamic from 'next/dynamic';
-import type {SliderProps} from '@shared/ui/slider/interface/Slider.props';
+import Slider from './Slider';
 
-const SliderLazy = dynamic<SliderProps>(() => import('./Slider'), {
-    ssr: false,
-});
-
-SliderLazy.displayName = 'SliderLazy';
-
-export default SliderLazy;
+/**
+ * Оставляем стабильный экспорт "Lazy" для совместимости API,
+ * но в dev грузим компонент напрямую, чтобы избежать HMR-404 по отдельному чанку слайдера.
+ */
+export default Slider;

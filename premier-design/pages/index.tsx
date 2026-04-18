@@ -75,14 +75,14 @@ const Home: NextPage<GetDataProps> = ({data}) => {
             />
             <Layout {...useLayoutProps(data)}>
                 <HomePageChrome/>
-                <section className={styles.heroShell}>
+                <section id='home-hero' className={styles.heroShell}>
                     <HeroBanner {...bannerProps}/>
                 </section>
 
                 <section
                     id='home-features'
                     aria-label='Преимущества'
-                    className={`${styles.section} ${styles.reveal}`}
+                    className={styles.featuresShell}
                     data-reveal='true'
                 >
                     <Features features={data.features}/>

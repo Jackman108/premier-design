@@ -10,6 +10,8 @@
 	grid-gap: 4vh;
 	margin: 0 auto;
 	padding: 3vh 0;
-	background-color: var(--beige-dark);
+	background-color: var(--color-surface-muted);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-sm);
 }
     

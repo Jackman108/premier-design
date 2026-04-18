@@ -9,7 +9,7 @@
     "dev": "node ./node_modules/next/dist/bin/next dev --webpack",
     "dev:turbo": "node ./node_modules/next/dist/bin/next dev --turbo",
     "server": "node server.js",
-    "build": "node ./node_modules/next/dist/bin/next build",
+    "build": "node ./node_modules/next/dist/bin/next build --webpack",
     "analyze": "node ./node_modules/cross-env/src/bin/cross-env.js ANALYZE=true yarn build",
     "start": "node ./node_modules/next/dist/bin/next start",
     "prepare": "node ./node_modules/husky/bin.js",

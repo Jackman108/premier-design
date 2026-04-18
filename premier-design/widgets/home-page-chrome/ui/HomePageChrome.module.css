@@ -14,10 +14,16 @@
 	opacity: 0.92;
 	pointer-events: none;
 	will-change: transform;
+	opacity: 0;
+	transition: opacity var(--transition-base);
 }
 
 .sectionNav {
 	display: none;
+}
+
+.visible {
+	opacity: 1;
 }
 
 .sectionNavList {
@@ -27,6 +33,26 @@
 	display: flex;
 	flex-direction: column;
 	gap: 0.35rem;
+}
+
+.toTopButton {
+	width: 100%;
+	margin-bottom: 0.4rem;
+	padding: 0.4rem 0.5rem;
+	border: 1px solid color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+	border-radius: var(--radius-sm);
+	background: color-mix(in srgb, var(--color-surface) 78%, transparent);
+	color: var(--color-text);
+	font-size: var(--font-size-caption);
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.toTopButton:hover,
+.toTopButton:focus-visible {
+	outline: none;
+	color: var(--color-accent);
+	box-shadow: var(--focus-ring);
 }
 
 .sectionNavLink {
@@ -65,6 +91,7 @@
 @media (max-width: 768px) {
 	.scrollProgress {
 		display: block;
+		pointer-events: none;
 	}
 }
 
@@ -88,5 +115,13 @@
 		border: 1px solid color-mix(in srgb, var(--color-border) 38%, transparent);
 		backdrop-filter: blur(10px);
 		box-shadow: var(--shadow-md);
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity var(--transition-base);
+	}
+
+	.sectionNav.visible {
+		opacity: 1;
+		pointer-events: auto;
 	}
 }

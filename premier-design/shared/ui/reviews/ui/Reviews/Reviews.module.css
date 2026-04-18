@@ -12,13 +12,15 @@
 	grid-gap: 4vh;
 	margin: 0 auto;
 	padding: 2vh;
-	background-color: var(--beige-dark);
+	background-color: var(--color-surface-muted);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-sm);
 }
 
 .title {
 	font-size: 28px;
 	font-weight: bold;
-	color: var(--gray-dark);
+	color: var(--color-text);
 	line-height: 1.4;
 }
 

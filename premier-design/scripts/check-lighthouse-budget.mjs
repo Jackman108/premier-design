@@ -159,7 +159,7 @@ const extractMetrics = (lhr) => {
 
 const resolveChromePath = async () => {
 	if (process.env.CHROME_PATH) {
-		return process.env.CHROME_PATH;
+		return fs.existsSync(process.env.CHROME_PATH) ? process.env.CHROME_PATH : undefined;
 	}
 	if (process.platform === 'win32') {
 		const stable = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
@@ -169,7 +169,12 @@ const resolveChromePath = async () => {
 	}
 	try {
 		const {chromium} = await import('playwright');
-		return chromium.executablePath();
+		const playwrightChrome = chromium.executablePath();
+		// В CI браузер Playwright может быть не установлен — тогда даём chrome-launcher выбрать системный Chrome.
+		if (playwrightChrome && fs.existsSync(playwrightChrome)) {
+			return playwrightChrome;
+		}
+		return undefined;
 	} catch {
 		return undefined;
 	}

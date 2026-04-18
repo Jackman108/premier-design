@@ -13,8 +13,8 @@ export default defineConfig({
         trace: 'on-first-retry',
     },
     webServer: {
-        // Turbo-dev не использует watchpack initial scan (избавляет от EINVAL на Windows-дисках вроде G:\\System Volume Information).
-        command: 'yarn dev:turbo',
+        // Для e2e используем webpack-dev: в гибридном pages/app роутере он стабильнее Turbopack по HMR.
+        command: 'yarn dev',
         url: 'http://127.0.0.1:3000',
         reuseExistingServer: true,
         timeout: 120_000,

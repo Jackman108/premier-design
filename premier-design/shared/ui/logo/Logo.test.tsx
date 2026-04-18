@@ -1,5 +1,6 @@
 /** @jest-environment jsdom */
 import {render, screen} from '@testing-library/react';
+import React from 'react';
 import type {ImgHTMLAttributes, ReactNode} from 'react';
 import Logo from './Logo';
 
@@ -14,9 +15,8 @@ jest.mock('next/link', () => ({
 
 jest.mock('next/image', () => ({
 	__esModule: true,
-	// eslint-disable-next-line @next/next/no-img-element
 	default: ({priority: _priority, ...props}: ImgHTMLAttributes<HTMLImageElement> & {priority?: boolean}) => (
-		<img {...props} alt={props.alt ?? ''} />
+		React.createElement('img', {...props, alt: props.alt ?? ''})
 	),
 }));
 

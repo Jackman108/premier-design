@@ -30,7 +30,7 @@ const Portfolio: NextPage<GetDataProps> = ({data}): ReactElement => {
             <Layout {...useLayoutProps(data)}>
                 <HeroBanner {...bannerProps}/>
                 <Features features={data.features}/>
-                <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.designType}/>
+                <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.portfolioType}/>
                 <Examples cards={data.examplesCard} title={titles['our-works']}/>
                 <Appeal
                     {...usePageData(
