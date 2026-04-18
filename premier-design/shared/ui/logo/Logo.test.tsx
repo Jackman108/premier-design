@@ -15,7 +15,9 @@ jest.mock('next/link', () => ({
 jest.mock('next/image', () => ({
 	__esModule: true,
 	// eslint-disable-next-line @next/next/no-img-element
-	default: (props: ImgHTMLAttributes<HTMLImageElement>) => <img {...props} alt={props.alt ?? ''} />,
+	default: ({priority: _priority, ...props}: ImgHTMLAttributes<HTMLImageElement> & {priority?: boolean}) => (
+		<img {...props} alt={props.alt ?? ''} />
+	),
 }));
 
 jest.mock('../../../public/logo.svg', () => ({

@@ -16,7 +16,12 @@ export const metadata: Metadata = {
 
 const RootLayout: FC<PropsWithChildren> = ({children}) => {
 	return (
-		<html lang="ru" className={`${inter.variable} ${playfair.variable}`} data-scroll-behavior="smooth">
+		<html
+			lang="ru"
+			className={`${inter.variable} ${playfair.variable}`}
+			data-scroll-behavior="smooth"
+			suppressHydrationWarning
+		>
 			<body>
 				<Providers>{children}</Providers>
 			</body>

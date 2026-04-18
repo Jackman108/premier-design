@@ -8,7 +8,12 @@ import {ThemeStoreProvider} from '@shared/store/themeStore';
 import {AppErrorBoundary} from '@shared/ui/error-boundary/AppErrorBoundary';
 
 const MyApp: FC<AppProps> = ({Component, pageProps}) => (
-    <ThemeProvider defaultTheme="light" themes={['light', 'dark']} attribute="class">
+    <ThemeProvider
+        defaultTheme="light"
+        themes={['light', 'dark']}
+        attribute="class"
+        enableColorScheme={false}
+    >
         <Head>
             <link rel="preconnect" href="https://maps.googleapis.com"/>
             <link rel="preconnect" href="https://www.google.com"/>

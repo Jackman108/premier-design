@@ -12,7 +12,12 @@ const SEOHead = () => (
 
 export default function Document() {
     return (
-        <Html lang="ru" className={`${inter.variable} ${playfair.variable}`} data-scroll-behavior="smooth">
+        <Html
+            lang="ru"
+            className={`${inter.variable} ${playfair.variable}`}
+            data-scroll-behavior="smooth"
+            suppressHydrationWarning
+        >
             <Head>
                 <SEOHead/>
             </Head>

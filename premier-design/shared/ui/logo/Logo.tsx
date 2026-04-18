@@ -21,6 +21,7 @@ const Logo = (): ReactElement => {
                     width={2000}
                     height={160}
                     sizes={LOGO_IMAGE_SIZES}
+                    priority
                     className={styles.image}
                 />
             </Link>

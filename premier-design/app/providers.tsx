@@ -6,7 +6,12 @@ import {ThemeStoreProvider} from '@shared/store/themeStore';
 
 export const Providers: FC<PropsWithChildren> = ({children}) => {
 	return (
-		<ThemeProvider defaultTheme="light" themes={['light', 'dark']} attribute="class">
+		<ThemeProvider
+			defaultTheme="light"
+			themes={['light', 'dark']}
+			attribute="class"
+			enableColorScheme={false}
+		>
 			<ThemeStoreProvider>{children}</ThemeStoreProvider>
 		</ThemeProvider>
 	);
