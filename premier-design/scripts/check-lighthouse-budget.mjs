@@ -158,6 +158,25 @@ const waitForServer = (server, timeoutMs = 90000) =>
 		});
 	});
 
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+const warmupUrl = async (url, attempts = 10) => {
+	for (let attempt = 1; attempt <= attempts; attempt += 1) {
+		try {
+			const response = await fetch(url, {headers: {'cache-control': 'no-cache'}});
+			const html = await response.text();
+			// Ждём полноценный HTML Next.js, чтобы избежать раннего старта Lighthouse.
+			if (response.ok && /<html/i.test(html) && /__NEXT_DATA__|_next\//i.test(html)) {
+				return;
+			}
+		} catch {
+			// warmup retry
+		}
+		await sleep(500);
+	}
+	throw new Error(`Не удалось прогреть URL перед Lighthouse: ${url}`);
+};
+
 const extractMetrics = (lhr) => {
 	const score = Number(lhr?.categories?.performance?.score ?? 0);
 	const lcp = Number(lhr?.audits?.['largest-contentful-paint']?.numericValue ?? Number.POSITIVE_INFINITY);
@@ -171,20 +190,39 @@ const extractMetrics = (lhr) => {
 const runLighthouseWithRetry = async (url, flags, config, attempts = 3) => {
 	let lastError;
 	for (let attempt = 1; attempt <= attempts; attempt += 1) {
+		let localChrome;
 		try {
-			const result = await lighthouse(url, flags, config);
+			cleanupLighthouseTemps();
+			await sleep(400 * attempt);
+			localChrome = await chromeLauncher.launch({
+				chromePath: flags.chromePath,
+				chromeFlags: flags.chromeFlags,
+			});
+			const result = await lighthouse(url, {...flags, port: localChrome.port}, config);
 			if (!result?.lhr) {
 				throw new Error('Lighthouse не вернул LHR.');
 			}
 			if (result.lhr.runtimeError) {
 				throw new Error(result.lhr.runtimeError.message);
 			}
+			try {
+				await localChrome.kill();
+			} catch {
+				// ignore
+			}
 			return result;
 		} catch (error) {
 			lastError = error;
+			if (localChrome) {
+				try {
+					await localChrome.kill();
+				} catch {
+					// ignore
+				}
+			}
 			if (attempt < attempts) {
 				console.warn(`Lighthouse retry ${attempt}/${attempts - 1}:`, String(error));
-				await new Promise((resolve) => setTimeout(resolve, attempt * 1500));
+				await sleep(attempt * 2000);
 			}
 		}
 	}
@@ -225,22 +263,28 @@ if (server) {
 	});
 }
 
-let chrome;
 try {
 	printThresholdsRu();
 
 	if (server) {
 		await waitForServer(server);
 	}
+	await warmupUrl(BASE_URL, 12);
+	await sleep(1200);
 
 	const chromePath = await resolveChromePath();
-	chrome = await chromeLauncher.launch({
-		chromePath,
-		chromeFlags: ['--headless=new', '--no-sandbox', '--disable-dev-shm-usage', `--user-data-dir=${chromeUserDataDir}`],
-	});
 
 	const flags = {
-		port: chrome.port,
+		chromePath,
+		chromeFlags: [
+			'--headless=new',
+			'--no-sandbox',
+			'--disable-dev-shm-usage',
+			'--disable-gpu',
+			'--no-first-run',
+			'--no-default-browser-check',
+			`--user-data-dir=${chromeUserDataDir}`,
+		],
 		logLevel: 'error',
 		formFactor: 'mobile',
 		screenEmulation: {disabled: true},
@@ -248,14 +292,8 @@ try {
 		disableEmulatedUserAgent: true,
 	};
 
-	const runnerResult = await runLighthouseWithRetry(BASE_URL, flags, perfConfig, 3);
-
-	try {
-		await chrome.kill();
-	} catch (killErr) {
-		console.warn('Предупреждение chrome.kill (игнор):', killErr?.message ?? killErr);
-	}
-	chrome = undefined;
+	const attempts = process.env.CI ? 4 : 3;
+	const runnerResult = await runLighthouseWithRetry(BASE_URL, flags, perfConfig, attempts);
 
 	const metrics = extractMetrics(runnerResult.lhr);
 	printMetricsRu(metrics);
@@ -318,13 +356,6 @@ try {
 	});
 	process.exit(1);
 } finally {
-	if (chrome) {
-		try {
-			await chrome.kill();
-		} catch {
-			// игнор
-		}
-	}
 	if (server) {
 		server.kill();
 	}
