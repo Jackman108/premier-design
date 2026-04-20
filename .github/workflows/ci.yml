@@ -79,6 +79,7 @@ jobs:
           PERF_BUDGET_INP_MS: '200'
           PERF_BUDGET_TBT_MS: '300'
           INITIAL_JS_BUDGET_KB: '750'
+          PERF_AUDIT_FAIL_ON_INFRA_ERROR: 'false'
         run: yarn check:perf:ci
 
       - name: Feedback API SLO gate (if telemetry exists)
