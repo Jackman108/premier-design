@@ -6,43 +6,37 @@ const args = process.argv.slice(2);
 const useAllFiles = args.includes('--all');
 
 const IGNORED_DIRS = new Set(['node_modules', '.git', '.next', 'coverage', 'storybook-static', 'styled-system']);
-
-const LEGACY_ALLOWLIST_EXPIRES_ON = '2026-12-31';
-
-const ALLOWLIST_WITH_EXPIRY = [
-	// legacy cross-feature contracts still in progress
-	'shared/ui/order/interface/OrderButton.props.ts|@features/buttons-panel/interface/PanelButton.props',
-	'shared/ui/calculator-modal/hooks/useCalculatorHandlers.ts|@features/coasting/interface/Costing.props',
-	'shared/ui/calculator-modal/interface/CalculatorModal.props.ts|@features/coasting/interface/Costing.props',
-	'shared/utils/staticPropsHandler.ts|@features/related-services/utils/findRelatedService',
-	'shared/utils/staticPropsHandler.ts|@features/services/utils/findService',
-	'shared/hooks/useFallback.tsx|@features/services/ui/ServiceDetail/ServiceDetail.module.css',
-	'shared/ui/order/ui/OrderButton/OrderButton.tsx|@features/buttons-panel/ui/PanelButton/PanelButton',
-	'shared/ui/calculator-modal/ui/CalculatorModal/CalculatorModal.test.tsx|@features/coasting/interface/Costing.props',
-	'shared/utils/__tests__/staticPropsHandler.test.ts|@features/related-services/utils/findRelatedService',
-	'shared/utils/__tests__/staticPropsHandler.test.ts|@features/services/utils/findService',
-	'features/buttons-panel/interface/CalculatorButton.props.ts|@features/coasting/interface/Costing.props',
-	'features/related-services/ui/RelatedServiceDetail/RelatedServiceDetail.tsx|@features/services/ui/ServiceDetail/ServiceDetail.module.css',
-	'features/services/interface/ServiceDetail.props.ts|@features/category/interface/Category.props',
-	'features/services/interface/ServiceDetail.props.ts|@features/news/interface/News.props',
-	'features/services/interface/ServiceDetail.props.ts|@features/papers/interface/Paper.props',
-	'features/services/interface/ServiceDetail.props.ts|@features/coasting/interface/Costing.props',
-	'features/services/interface/ServiceDetail.props.ts|@features/buttons-panel/interface/PanelButton.props',
-	'features/services/interface/ServiceDetail.props.ts|@features/banner/share/interface/ShareBanner.props',
-	'features/related-services/interface/RelatedService.props.ts|@features/papers/interface/Paper.props',
-	'features/related-services/interface/RelatedService.props.ts|@features/news/interface/News.props',
-	'features/related-services/interface/RelatedService.props.ts|@features/coasting/interface/Costing.props',
-	'features/related-services/interface/RelatedService.props.ts|@features/buttons-panel/interface/PanelButton.props',
-	'features/related-services/interface/RelatedService.props.ts|@features/banner/share/interface/ShareBanner.props',
-].map((key) => ({key, expiresOn: LEGACY_ALLOWLIST_EXPIRES_ON}));
-
-const ALLOWLIST = new Map(ALLOWLIST_WITH_EXPIRY.map(({key, expiresOn}) => [key, expiresOn]));
-const today = new Date().toISOString().slice(0, 10);
-
 const IMPORT_RE = /from\s+['"]([^'"]+)['"]/g;
 
 const toUnix = (value) => value.split('\\').join('/');
 const isCodeFile = (file) => /\.(ts|tsx|js|jsx)$/.test(file);
+const today = new Date().toISOString().slice(0, 10);
+
+const allowlistPath = resolve(cwd, 'scripts/architecture-allowlist.json');
+if (!existsSync(allowlistPath)) {
+	console.error(`Architecture boundary check failed: missing ${toUnix(relative(cwd, allowlistPath))}`);
+	process.exit(1);
+}
+
+const allowlistRaw = JSON.parse(readFileSync(allowlistPath, 'utf-8'));
+const allowlistEntries = Array.isArray(allowlistRaw.entries) ? allowlistRaw.entries : [];
+const maxAllowedCount = Number(allowlistRaw.maxAllowedCount ?? allowlistEntries.length);
+
+if (!Number.isFinite(maxAllowedCount) || maxAllowedCount < 0) {
+	console.error('Architecture boundary check failed: invalid maxAllowedCount in architecture-allowlist.json');
+	process.exit(1);
+}
+
+if (allowlistEntries.length > maxAllowedCount) {
+	console.error(
+		`Architecture boundary check failed: allowlist size ${allowlistEntries.length} > maxAllowedCount ${maxAllowedCount}.`,
+	);
+	process.exit(1);
+}
+
+const ALLOWLIST = new Map(
+	allowlistEntries.map((entry) => [`${entry.source}|${entry.target}`, entry.expiresOn]),
+);
 
 const walkFiles = (dir) => {
 	const entries = readdirSync(dir, {withFileTypes: true});

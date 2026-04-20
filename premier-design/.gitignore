@@ -13,6 +13,8 @@ package-lock.json
 /playwright-report/
 /blob-report/
 storybook-static
+/.lighthouse-tmp/
+/.lighthouse-chrome-profile/
 
 # next.js
 /.next/
@@ -23,6 +25,9 @@ storybook-static
 .lighthouse-chrome-profile/
 .lighthouse-tmp/
 .lighthouse-perf-summary.json
+.audit-high-summary.json
+.audit-high-summary.md
+.feedback-slo-events.jsonl
 
 # production
 /build

@@ -104,6 +104,17 @@ if (process.platform === 'win32' && process.env.PERF_AUDIT_FORCE_LIGHTHOUSE !== 
 	process.exit(0);
 }
 
+const cleanupLighthouseTemps = () => {
+	const dirs = [lighthouseTempRoot, chromeUserDataDir];
+	for (const dir of dirs) {
+		try {
+			fs.rmSync(dir, {recursive: true, force: true});
+		} catch {
+			// не блокируем CI на best-effort очистке временных профилей
+		}
+	}
+};
+
 const startStandaloneServer = () => {
 	if (!fs.existsSync(standaloneServerJs)) {
 		throw new Error(
@@ -155,6 +166,29 @@ const extractMetrics = (lhr) => {
 	const inp = typeof inpRaw === 'number' && Number.isFinite(inpRaw) ? inpRaw : Number.NaN;
 	const tbt = Number(lhr?.audits?.['total-blocking-time']?.numericValue ?? Number.POSITIVE_INFINITY);
 	return {score, lcp, cls, inp, tbt};
+};
+
+const runLighthouseWithRetry = async (url, flags, config, attempts = 3) => {
+	let lastError;
+	for (let attempt = 1; attempt <= attempts; attempt += 1) {
+		try {
+			const result = await lighthouse(url, flags, config);
+			if (!result?.lhr) {
+				throw new Error('Lighthouse не вернул LHR.');
+			}
+			if (result.lhr.runtimeError) {
+				throw new Error(result.lhr.runtimeError.message);
+			}
+			return result;
+		} catch (error) {
+			lastError = error;
+			if (attempt < attempts) {
+				console.warn(`Lighthouse retry ${attempt}/${attempts - 1}:`, String(error));
+				await new Promise((resolve) => setTimeout(resolve, attempt * 1500));
+			}
+		}
+	}
+	throw lastError ?? new Error('Lighthouse retry limit reached.');
 };
 
 const resolveChromePath = async () => {
@@ -214,7 +248,7 @@ try {
 		disableEmulatedUserAgent: true,
 	};
 
-	const runnerResult = await lighthouse(BASE_URL, flags, perfConfig);
+	const runnerResult = await runLighthouseWithRetry(BASE_URL, flags, perfConfig, 3);
 
 	try {
 		await chrome.kill();
@@ -222,13 +256,6 @@ try {
 		console.warn('Предупреждение chrome.kill (игнор):', killErr?.message ?? killErr);
 	}
 	chrome = undefined;
-
-	if (!runnerResult?.lhr) {
-		throw new Error('Lighthouse не вернул LHR.');
-	}
-	if (runnerResult.lhr.runtimeError) {
-		throw new Error(runnerResult.lhr.runtimeError.message);
-	}
 
 	const metrics = extractMetrics(runnerResult.lhr);
 	printMetricsRu(metrics);
@@ -301,4 +328,5 @@ try {
 	if (server) {
 		server.kill();
 	}
+	cleanupLighthouseTemps();
 }

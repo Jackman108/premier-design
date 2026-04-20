@@ -1,0 +1,80 @@
+name: Security High Weekly
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  security-high-weekly:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: read
+      issues: write
+    defaults:
+      run:
+        working-directory: premier-design
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: premier-design/.nvmrc
+          cache: yarn
+          cache-dependency-path: premier-design/yarn.lock
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: Generate high severity audit report
+        run: yarn report:audit:high
+
+      - name: Upload audit artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-high-weekly
+          path: |
+            premier-design/.audit-high-summary.json
+            premier-design/.audit-high-summary.md
+
+      - name: Publish summary
+        run: cat .audit-high-summary.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Open weekly issue when high/critical > 0
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('node:fs');
+            const summary = JSON.parse(fs.readFileSync('premier-design/.audit-high-summary.json', 'utf8'));
+            const high = Number(summary.high || 0);
+            const critical = Number(summary.critical || 0);
+            if (high + critical === 0) {
+              core.info('No high/critical vulnerabilities found. Skipping issue creation.');
+              return;
+            }
+
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `[Security][Weekly] High/Critical dependency triage (${today})`;
+            const body = [
+              'Автоматически создано weekly security workflow.',
+              '',
+              `- high: **${high}**`,
+              `- critical: **${critical}**`,
+              '',
+              'Шаблон triage: `.github/ISSUE_TEMPLATE/security_high_weekly.yml`',
+              '',
+              'Действия:',
+              '1. Провести triage high/critical.',
+              '2. Создать fix-PR для critical.',
+              '3. Актуализировать docs/audit и changelog.',
+            ].join('\n');
+
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title,
+              body,
+            });

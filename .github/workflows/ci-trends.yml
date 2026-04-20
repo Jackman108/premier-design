@@ -1,0 +1,52 @@
+name: CI Trends (14d)
+
+on:
+  schedule:
+    - cron: '15 2 * * *'
+  workflow_dispatch:
+
+jobs:
+  trends:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: premier-design
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: premier-design/.nvmrc
+          cache: yarn
+          cache-dependency-path: premier-design/yarn.lock
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: Generate rolling CI trends report
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          CI_TREND_ROLLING_DAYS: '14'
+          CI_TREND_WORKFLOWS: 'CI Quality Gates,E2E Extended Nightly'
+        run: node ./scripts/report-ci-trends.mjs
+
+      - name: Enforce CI SLA budget (p95)
+        env:
+          CI_SLA_WORKFLOW_NAME: 'CI Quality Gates'
+          CI_SLA_P95_BUDGET_MIN: '25'
+        run: node ./scripts/check-ci-sla.mjs
+
+      - name: Publish job summary
+        run: cat .ci-trends-14d.md >> $GITHUB_STEP_SUMMARY
+
+      - name: Upload trends artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-trends-14d
+          path: |
+            premier-design/.ci-trends-14d.md
+            premier-design/.ci-trends-14d.json

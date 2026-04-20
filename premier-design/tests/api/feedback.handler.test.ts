@@ -1,14 +1,20 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import handler from '../../pages/api/feedback';
-import {submitFeedback} from '../../features/feedback/useCases/submitFeedback';
+import {submitFeedbackAction} from '../../features/feedback/useCases/submitFeedbackAction';
 import {checkRateLimit} from '../../shared/lib/rateLimit';
+import {getFeedbackApiTimeoutMs} from '../../shared/lib/feedbackSlo';
 
-jest.mock('../../features/feedback/useCases/submitFeedback', () => ({
-    submitFeedback: jest.fn(),
+jest.mock('../../features/feedback/useCases/submitFeedbackAction', () => ({
+    submitFeedbackAction: jest.fn(),
 }));
 
 jest.mock('../../shared/lib/rateLimit', () => ({
     checkRateLimit: jest.fn(),
+}));
+
+jest.mock('../../shared/lib/feedbackSlo', () => ({
+    getFeedbackApiTimeoutMs: jest.fn(() => 8_000),
+    recordFeedbackSloSample: jest.fn(),
 }));
 
 type MockResponse = {
@@ -60,12 +66,14 @@ const createRequest = (overrides: Partial<NextApiRequest>): NextApiRequest => {
 };
 
 describe('/api/feedback handler', () => {
-    const mockedSubmitFeedback = submitFeedback as jest.MockedFunction<typeof submitFeedback>;
+    const mockedSubmitFeedbackAction = submitFeedbackAction as jest.MockedFunction<typeof submitFeedbackAction>;
     const mockedRateLimit = checkRateLimit as jest.MockedFunction<typeof checkRateLimit>;
+    const mockedGetFeedbackApiTimeoutMs = getFeedbackApiTimeoutMs as jest.MockedFunction<typeof getFeedbackApiTimeoutMs>;
 
     beforeEach(() => {
         jest.clearAllMocks();
         mockedRateLimit.mockReturnValue({allowed: true, remaining: 4, retryAfterSec: 60});
+        mockedGetFeedbackApiTimeoutMs.mockReturnValue(8_000);
     });
 
     it('handles OPTIONS request', async () => {
@@ -127,10 +135,10 @@ describe('/api/feedback handler', () => {
     });
 
     it('returns 500 when submitFeedback fails', async () => {
-        mockedSubmitFeedback.mockResolvedValueOnce({
+        mockedSubmitFeedbackAction.mockResolvedValueOnce({
             status: 'error',
             message: 'Failed to process the feedback.',
-            error: 'boom',
+            code: 500,
         });
         const req = createRequest({
             method: 'POST',
@@ -151,7 +159,7 @@ describe('/api/feedback handler', () => {
     });
 
     it('returns 200 for valid payload and success result', async () => {
-        mockedSubmitFeedback.mockResolvedValueOnce({
+        mockedSubmitFeedbackAction.mockResolvedValueOnce({
             status: 'success',
             message: 'Feedback processed successfully.',
         });
@@ -171,8 +179,35 @@ describe('/api/feedback handler', () => {
         await handler(req, res);
 
         expect(res.statusCode).toBe(200);
-        expect(mockedSubmitFeedback).toHaveBeenCalledTimes(1);
+        expect(mockedSubmitFeedbackAction).toHaveBeenCalledTimes(1);
         expect(res.headers['x-ratelimit-remaining']).toBe('4');
         expect(res.headers['retry-after']).toBe('60');
+    });
+
+    it('returns 504 when submitFeedbackAction exceeds timeout budget', async () => {
+        mockedGetFeedbackApiTimeoutMs.mockReturnValueOnce(1);
+        mockedSubmitFeedbackAction.mockImplementationOnce(async () => {
+            await new Promise((resolve) => {
+                setTimeout(resolve, 30);
+            });
+            return {status: 'success', message: 'ok'};
+        });
+
+        const req = createRequest({
+            method: 'POST',
+            headers: {'content-type': 'application/json'},
+            body: {
+                name: 'Иван Иванов',
+                phone: '+375291234567',
+                email: 'ivan@test.by',
+                message: 'Нужен расчет',
+                consent: true,
+            },
+        });
+        const res = createMockResponse();
+
+        await handler(req, res);
+
+        expect(res.statusCode).toBe(504);
     });
 });

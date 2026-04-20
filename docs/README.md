@@ -27,6 +27,7 @@
 | [audit/README.md](audit/README.md) | Индекс папки `audit/` |
 | [audit/DEPLOY_READINESS_2026_04_RU.md](audit/DEPLOY_READINESS_2026_04_RU.md) | Финальный чеклист деплоя и улучшения для продакшена услуг |
 | [audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) | Аудит v3.0–v3.1, DoD, открытый бэклог |
+| [audit/PROJECT_RISK_REGISTER_2026_04_RU.md](audit/PROJECT_RISK_REGISTER_2026_04_RU.md) | Реестр текущих рисков (вероятность/влияние/митигации) |
 
 ### Архитектура (ADR)
 

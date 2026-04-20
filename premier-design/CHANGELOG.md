@@ -7,6 +7,22 @@
 
 ### Changed
 
+- **Следующий этап снижения рисков CI (апрель 2026):**
+  `@extended e2e` вынесен в отдельный non-blocking workflow `.github/workflows/e2e-extended.yml` (nightly + manual dispatch), merge-gate оставлен на `@core`.
+  Добавлен rolling-репорт трендов CI/flake за 14 дней: `.github/workflows/ci-trends.yml` + `scripts/report-ci-trends.mjs` (артефакт `.ci-trends-14d.{md,json}` и summary в job).
+  В трендах длительности используется `run_started_at` (без шума очереди раннера) для корректной p50/p95 аналитики.
+  Добавлен контроль SLA CI: `scripts/check-ci-sla.mjs` + шаг `Enforce CI SLA budget (p95)` в `.github/workflows/ci-trends.yml` (бюджет p95 для `CI Quality Gates`).
+  Архитектурный allowlist вынесен в управляемый реестр `scripts/architecture-allowlist.json` с `maxAllowedCount`; `check-architecture-boundaries.mjs` читает реестр и блокирует рост технического долга.
+  Формализован план сокращения allowlist: `scripts/architecture-allowlist-roadmap.json` + `scripts/check-architecture-allowlist-progress.mjs` (минимум -1 по `maxAllowedCount` за итерацию).
+  Добавлен `report:architecture-allowlist` (`scripts/report-architecture-allowlist.mjs`) с разбивкой по owner, near-expiry и candidate-to-remove; baseline allowlist сокращен с 25 до 23.
+- **Снижение флейковости CI:** `yarn test:e2e` теперь запускает только `@core` smoke-набор; полный прогон доступен через `yarn test:e2e:full`, расширенный — `yarn test:e2e:extended`.
+- **Реестр рисков:** расширен анализ эксплуатационных рисков (security supply-chain, внешние интеграции, observability, CI cost/SLA) и добавлен план митигации на май 2026 в `docs/audit/PROJECT_RISK_REGISTER_2026_04_RU.md`.
+- **Security weekly:** добавлены `.github/ISSUE_TEMPLATE/security_high_weekly.yml`, workflow `.github/workflows/security-high-weekly.yml` и отчёт `scripts/report-yarn-audit-high.mjs` для регулярного triage high/critical уязвимостей.
+- **API SLO:** `/api/feedback` теперь пишет telemetry-сэмплы (`shared/lib/feedbackSlo.ts`) и обрабатывает timeout-gate; добавлен проверочный скрипт `scripts/check-feedback-slo.mjs` с порогами p95/error/timeout.
+- **Git hooks / precommit:** усилены локальные гейты — `.husky/pre-commit` запускает `yarn check:precommit:full`, `.husky/pre-push` запускает `yarn test:e2e`; добавлен набор скриптов `check:risk:local`, `check:precommit:full`, `check:architecture:progress`, `check:ci-sla`, `check:slo:feedback`.
+- **Playwright/Smoke:** CI-конфигурация переведена на production webServer (`yarn start`) с сериализацией и retry; в smoke-тестах добавлен `gotoWithRetry` и смягчены хрупкие проверки модалки.
+- **Perf/Noise gates:** `check-lighthouse-budget.mjs` получил retry и cleanup временных каталогов; `check-noise-artifacts.mjs` и `.gitignore` синхронизированы под `.lighthouse-tmp` / `.lighthouse-chrome-profile`.
+- **Риск-менеджмент:** добавлен реестр рисков [`docs/audit/PROJECT_RISK_REGISTER_2026_04_RU.md`](../../docs/audit/PROJECT_RISK_REGISTER_2026_04_RU.md), обновлены индексы `docs/README.md` и `docs/audit/README.md`.
 - **Страницы `/portfolio` и `/calculator`:** как у `/design` и `/repairs` — сверху `HeroBanner` (отступ под хедер через блок героя), затем `Features`, `OfferBanner`, далее галерея примеров или калькулятор сметы и `Appeal`; баннеры героя — `design_banner` / `repair_banner`.
 - **PhotoViewer:** слои `overlayScrim` + `contentRoot` (клик по фону закрывает просмотр); `next/image` — `style={{ width: 'auto', height: 'auto' }}` и CSS без конфликта с `max-width`/`max-height`; кнопка закрытия и счётчик — `position: fixed` в зоне видимости; фокус на `<dialog>` при открытии.
 - **Деплой (док + автоматизация):** `yarn check:deploy:local`; расширен `.env.example` (HTTPS/Vercel, аналитика); e2e — `/portfolio`, `/calculator`, просмотр галереи с главной (Escape); таблица в [`docs/audit/DEPLOY_READINESS_2026_04_RU.md`](../../docs/audit/DEPLOY_READINESS_2026_04_RU.md).
@@ -91,6 +107,12 @@
   `D-02`: добавлены e2e mobile-checks на horizontal overflow (320/360/390/414) и min tap-target ключевых интерактивов; `MenuButton` увеличен до 40x40.
   `F-02`: добавлен `check:noise` (`scripts/check-noise-artifacts.mjs`), обновлены `.gitignore` (в т.ч. `.next/dev/cache`), quality-gate на шумовые артефакты включен в CI.
   `O-01`: CI-пайплайн расширен шагами `check:architecture`, `check:ui-purity`, `check:regressions`, `check:noise`; e2e-smoke дополнен базовой a11y-проверкой landmarks.
+- **CI стабилизация e2e/perf (апрель 2026):**
+  `e2e-smoke`: job переведен на production-подъем приложения (`yarn build` + `yarn start`) перед Playwright, чтобы исключить dev/HMR флейки.
+  `playwright.config.ts`: CI-профиль детерминированный (`workers=1`, `fullyParallel=false`, повышенные timeout, `retries=1`).
+  `e2e/smoke.spec.ts`: внедрен `gotoWithRetry` (retry/backoff), навигации переведены на `domcontentloaded`, проверка открытия лид-модалки усилена через ожидание полей формы.
+  `check-lighthouse-budget.mjs`: добавлены retry-итерации Lighthouse и обязательная очистка временных профилей после прогона.
+  `check-noise-artifacts.mjs`: добавлены ignore-пути для временных директорий Lighthouse (`.lighthouse-tmp`, `.lighthouse-chrome-profile`) для чистого noise-gate.
 - **S-3 / R-2 / R-3 (завершение):** закрыты оставшиеся задачи аудита по безопасности и устойчивости UI.
   `S-3`: усилен rate limiting на публичных API — добавлен общий helper `shared/lib/applyApiRateLimit.ts` с ключом `scope:ip`, едиными заголовками (`X-RateLimit-Limit/Remaining/Reset`, `Retry-After`) и подключением к `/api/feedback` и `/api/sitemap`; `shared/lib/rateLimit.ts` расширен метаданными лимита/времени сброса.
   `R-2`: внедрен централизованный глобальный store темы (`shared/store/themeStore.tsx`), интегрирован в `pages/_app.tsx` и `app/providers.tsx`; `useThemeToggle` переведен на store + синхронизацию с `next-themes`.

@@ -14,7 +14,18 @@ const FORBIDDEN_PATH_PARTS = [
 ];
 
 const FORBIDDEN_FILE_PATTERNS = [/\.DS_Store$/i, /\.log$/i, /\.tmp$/i];
-const IGNORED_DIRS = new Set(['node_modules', '.git', '.next', 'coverage', 'storybook-static', 'playwright-report', 'test-results', 'blob-report']);
+const IGNORED_DIRS = new Set([
+	'node_modules',
+	'.git',
+	'.next',
+	'coverage',
+	'storybook-static',
+	'playwright-report',
+	'test-results',
+	'blob-report',
+	'.lighthouse-tmp',
+	'.lighthouse-chrome-profile',
+]);
 const FORBIDDEN_DIRS = ['storybook-static', 'playwright-report', 'test-results', 'blob-report'];
 
 const toUnix = (value) => value.split('\\').join('/');

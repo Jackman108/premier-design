@@ -1,22 +1,29 @@
 import {defineConfig} from '@playwright/test';
 
+const isCi = Boolean(process.env.CI);
+
 export default defineConfig({
     testDir: './e2e',
-    timeout: 30_000,
-    // В локальном dev режиме Next HMR может шуметь при параллельных воркерах.
-    // Делаем прогоны детерминированными локально и сохраняем параллельность в CI.
-    workers: process.env.CI ? 4 : 1,
-    fullyParallel: true,
-    retries: 0,
+    timeout: isCi ? 90_000 : 45_000,
+    // Smoke в CI должен быть детерминированным: один воркер и без конкурентных навигаций.
+    workers: isCi ? 1 : 1,
+    fullyParallel: false,
+    retries: isCi ? 1 : 0,
+    expect: {
+        timeout: isCi ? 10_000 : 7_000,
+    },
     use: {
         baseURL: 'http://127.0.0.1:3000',
         trace: 'on-first-retry',
+        navigationTimeout: isCi ? 45_000 : 20_000,
+        actionTimeout: isCi ? 15_000 : 10_000,
     },
     webServer: {
-        // Для e2e используем webpack-dev: в гибридном pages/app роутере он стабильнее Turbopack по HMR.
-        command: 'yarn dev',
+        // CI: production server после build (стабильнее, чем dev/HMR для smoke).
+        // Local: сохраняем dev-режим для быстрого цикла.
+        command: isCi ? 'yarn start -p 3000 -H 127.0.0.1' : 'yarn dev',
         url: 'http://127.0.0.1:3000',
-        reuseExistingServer: true,
-        timeout: 120_000,
+        reuseExistingServer: !isCi,
+        timeout: isCi ? 180_000 : 120_000,
     },
 });

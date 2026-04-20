@@ -35,6 +35,12 @@ jobs:
       - name: Check architecture boundaries
         run: yarn check:architecture
 
+      - name: Check architecture allowlist reduction plan
+        run: yarn check:architecture:progress
+
+      - name: Report architecture allowlist debt
+        run: yarn report:architecture-allowlist
+
       - name: Check UI purity
         run: yarn check:ui-purity
 
@@ -71,6 +77,15 @@ jobs:
           PERF_BUDGET_TBT_MS: '300'
           INITIAL_JS_BUDGET_KB: '750'
         run: yarn check:perf:ci
+
+      - name: Feedback API SLO gate (if telemetry exists)
+        env:
+          FEEDBACK_SLO_ROLLING_HOURS: '24'
+          FEEDBACK_SLO_MIN_SAMPLES: '20'
+          FEEDBACK_SLO_P95_MS: '1500'
+          FEEDBACK_SLO_ERROR_RATE_PCT: '5'
+          FEEDBACK_SLO_TIMEOUT_RATE_PCT: '1'
+        run: yarn check:slo:feedback
 
       - name: Audit dependencies (Yarn)
         working-directory: premier-design
@@ -128,5 +143,8 @@ jobs:
       - name: Install Playwright browser
         run: yarn test:e2e:install
 
-      - name: Run e2e smoke tests
+      - name: Build app for production e2e server
+        run: yarn build
+
+      - name: Run e2e core smoke tests
         run: yarn test:e2e

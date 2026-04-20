@@ -1,0 +1,51 @@
+name: Security High Severity Weekly
+description: Еженедельный triage high/critical уязвимостей зависимостей
+title: "[Security][Weekly] High/Critical dependency triage"
+labels:
+  - security
+  - dependencies
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Используйте шаблон для еженедельного triage уязвимостей `high`/`critical`.
+  - type: input
+    id: audit_date
+    attributes:
+      label: Дата проверки
+      description: Укажите дату запуска weekly security check
+      placeholder: "2026-05-04"
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Сводка уязвимостей
+      description: high/critical count и ключевые пакеты
+      placeholder: |
+        high: 2
+        critical: 0
+        package-a: CVE-...
+    validations:
+      required: true
+  - type: textarea
+    id: action_plan
+    attributes:
+      label: План фикса
+      description: Что патчим сейчас и что переносим в бэклог
+      placeholder: |
+        1) patch package-a до версии x.y.z
+        2) добавить regression test
+    validations:
+      required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Контрольные пункты
+      options:
+        - label: Проверен `yarn audit --level high`
+          required: true
+        - label: Для critical создан отдельный fix-PR
+          required: false
+        - label: Риск-реестр и changelog синхронизированы
+          required: false

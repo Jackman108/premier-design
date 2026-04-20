@@ -1,0 +1,37 @@
+{
+  "description": "Каждый цикл maxAllowedCount уменьшается минимум на 1 до полного удаления legacy-исключений.",
+  "milestones": [
+    {
+      "dueOn": "2026-05-31",
+      "maxAllowedCount": 22
+    },
+    {
+      "dueOn": "2026-06-30",
+      "maxAllowedCount": 21
+    },
+    {
+      "dueOn": "2026-07-31",
+      "maxAllowedCount": 20
+    },
+    {
+      "dueOn": "2026-08-31",
+      "maxAllowedCount": 19
+    },
+    {
+      "dueOn": "2026-09-30",
+      "maxAllowedCount": 18
+    },
+    {
+      "dueOn": "2026-10-31",
+      "maxAllowedCount": 17
+    },
+    {
+      "dueOn": "2026-11-30",
+      "maxAllowedCount": 16
+    },
+    {
+      "dueOn": "2026-12-31",
+      "maxAllowedCount": 15
+    }
+  ]
+}

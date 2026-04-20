@@ -44,8 +44,14 @@
 - `yarn storybook` — каталог UI (Storybook)
 - `yarn build-storybook` — статическая сборка Storybook (артефакт в CI)
 - `yarn analyze` — сборка с отчётом `@next/bundle-analyzer`
-- `yarn check:deploy:local` — сводная проверка перед релизом (lint, unit, build, initial JS, architecture, ui-purity, feature-structure); см. [`../docs/audit/DEPLOY_READINESS_2026_04_RU.md`](../docs/audit/DEPLOY_READINESS_2026_04_RU.md)
+- `yarn check:risk:local` — сводка risk-gates (architecture, allowlist-progress, ui-purity, regressions, noise, feature-structure, SLO/CI-SLA checks)
+- `yarn check:precommit:full` — полный локальный pre-commit gate (lint, unit, risk-gates, build, initial-js)
+- `yarn check:deploy:local` — алиас на `yarn check:precommit:full` для релизной проверки
 - `yarn test:e2e` — Playwright smoke (нужен доступ к `http://127.0.0.1:3000`, см. `playwright.config.ts`)
+
+Git hooks:
+- `.husky/pre-commit` запускает `lint-staged` + `yarn check:precommit:full`
+- `.husky/pre-push` запускает `yarn test:e2e` (core smoke) перед push в удалённый git
 
 ## Переменные окружения
 

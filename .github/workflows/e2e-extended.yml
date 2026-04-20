@@ -1,0 +1,36 @@
+name: E2E Extended Nightly
+
+on:
+  schedule:
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  e2e-extended:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: premier-design
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: premier-design/.nvmrc
+          cache: yarn
+          cache-dependency-path: premier-design/yarn.lock
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-scripts
+
+      - name: Install Playwright browser
+        run: yarn test:e2e:install
+
+      - name: Build app for production e2e server
+        run: yarn build
+
+      - name: Run e2e extended smoke tests
+        run: yarn test:e2e:extended

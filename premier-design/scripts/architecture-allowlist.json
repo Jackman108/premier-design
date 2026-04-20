@@ -1,0 +1,166 @@
+{
+  "maxAllowedCount": 23,
+  "entries": [
+    {
+      "source": "shared/ui/order/interface/OrderButton.props.ts",
+      "target": "@features/buttons-panel/interface/PanelButton.props",
+      "expiresOn": "2026-12-31",
+      "owner": "ui-platform",
+      "note": "Panel contracts will be moved to shared contracts layer"
+    },
+    {
+      "source": "shared/ui/calculator-modal/hooks/useCalculatorHandlers.ts",
+      "target": "@features/coasting/interface/Costing.props",
+      "expiresOn": "2026-12-31",
+      "owner": "calc-team",
+      "note": "Move costing contracts to shared domain"
+    },
+    {
+      "source": "shared/ui/calculator-modal/interface/CalculatorModal.props.ts",
+      "target": "@features/coasting/interface/Costing.props",
+      "expiresOn": "2026-12-31",
+      "owner": "calc-team",
+      "note": "Move costing contracts to shared domain"
+    },
+    {
+      "source": "shared/utils/staticPropsHandler.ts",
+      "target": "@features/related-services/utils/findRelatedService",
+      "expiresOn": "2026-12-31",
+      "owner": "platform",
+      "note": "Extract service-finder adapter layer"
+    },
+    {
+      "source": "shared/utils/staticPropsHandler.ts",
+      "target": "@features/services/utils/findService",
+      "expiresOn": "2026-12-31",
+      "owner": "platform",
+      "note": "Extract service-finder adapter layer"
+    },
+    {
+      "source": "shared/hooks/useFallback.tsx",
+      "target": "@features/services/ui/ServiceDetail/ServiceDetail.module.css",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Replace style coupling with shared fallback styles"
+    },
+    {
+      "source": "shared/ui/order/ui/OrderButton/OrderButton.tsx",
+      "target": "@features/buttons-panel/ui/PanelButton/PanelButton",
+      "expiresOn": "2026-12-31",
+      "owner": "ui-platform",
+      "note": "Panel button migration to shared primitive"
+    },
+    {
+      "source": "shared/ui/calculator-modal/ui/CalculatorModal/CalculatorModal.test.tsx",
+      "target": "@features/coasting/interface/Costing.props",
+      "expiresOn": "2026-12-31",
+      "owner": "calc-team",
+      "note": "Remove when contracts moved to shared"
+    },
+    {
+      "source": "shared/utils/__tests__/staticPropsHandler.test.ts",
+      "target": "@features/related-services/utils/findRelatedService",
+      "expiresOn": "2026-12-31",
+      "owner": "platform",
+      "note": "Remove with adapter extraction"
+    },
+    {
+      "source": "shared/utils/__tests__/staticPropsHandler.test.ts",
+      "target": "@features/services/utils/findService",
+      "expiresOn": "2026-12-31",
+      "owner": "platform",
+      "note": "Remove with adapter extraction"
+    },
+    {
+      "source": "features/buttons-panel/interface/CalculatorButton.props.ts",
+      "target": "@features/coasting/interface/Costing.props",
+      "expiresOn": "2026-12-31",
+      "owner": "calc-team",
+      "note": "Normalize feature contracts"
+    },
+    {
+      "source": "features/related-services/ui/RelatedServiceDetail/RelatedServiceDetail.tsx",
+      "target": "@features/services/ui/ServiceDetail/ServiceDetail.module.css",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Extract shared detail styles"
+    },
+    {
+      "source": "features/services/interface/ServiceDetail.props.ts",
+      "target": "@features/category/interface/Category.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten service contracts"
+    },
+    {
+      "source": "features/services/interface/ServiceDetail.props.ts",
+      "target": "@features/news/interface/News.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten service contracts"
+    },
+    {
+      "source": "features/services/interface/ServiceDetail.props.ts",
+      "target": "@features/papers/interface/Paper.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten service contracts"
+    },
+    {
+      "source": "features/services/interface/ServiceDetail.props.ts",
+      "target": "@features/coasting/interface/Costing.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten service contracts"
+    },
+    {
+      "source": "features/services/interface/ServiceDetail.props.ts",
+      "target": "@features/buttons-panel/interface/PanelButton.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten service contracts"
+    },
+    {
+      "source": "features/services/interface/ServiceDetail.props.ts",
+      "target": "@features/banner/share/interface/ShareBanner.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten service contracts"
+    },
+    {
+      "source": "features/related-services/interface/RelatedService.props.ts",
+      "target": "@features/papers/interface/Paper.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten related-service contracts"
+    },
+    {
+      "source": "features/related-services/interface/RelatedService.props.ts",
+      "target": "@features/news/interface/News.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten related-service contracts"
+    },
+    {
+      "source": "features/related-services/interface/RelatedService.props.ts",
+      "target": "@features/coasting/interface/Costing.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten related-service contracts"
+    },
+    {
+      "source": "features/related-services/interface/RelatedService.props.ts",
+      "target": "@features/buttons-panel/interface/PanelButton.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten related-service contracts"
+    },
+    {
+      "source": "features/related-services/interface/RelatedService.props.ts",
+      "target": "@features/banner/share/interface/ShareBanner.props",
+      "expiresOn": "2026-12-31",
+      "owner": "services",
+      "note": "Flatten related-service contracts"
+    }
+  ]
+}
