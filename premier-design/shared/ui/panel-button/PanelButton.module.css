@@ -1,0 +1,71 @@
+.button_common {
+	position: relative;
+	--panel-bottom: auto;
+	bottom: var(--panel-bottom);
+	display: flex;
+	align-items: center;
+	padding: 7px;
+	background: linear-gradient(to top, var(--brown) 0%, gold 100%), linear-gradient(to left, var(--brown) 0%, gold 100%);
+	color: white;
+	border: none;
+	cursor: pointer;
+	opacity: 0.7;
+	transition: background-color 0.3s ease;
+	width: 60px;
+	height: 60px;
+	justify-content: center;
+	overflow: visible;
+}
+
+.sticky_button_text {
+	position: absolute;
+	left: 50%;
+	bottom: calc(100% + 8px);
+	transform: translateX(-50%) translateY(4px);
+	width: max-content;
+	max-width: min(280px, 72vw);
+	padding: 8px 12px;
+	border-radius: var(--radius-md);
+	background: linear-gradient(to top, var(--brown) 0%, gold 100%), linear-gradient(to left, var(--brown) 0%, gold 100%);
+	color: white;
+	font-size: 1rem;
+	line-height: 1.25;
+	height: auto;
+	min-height: 0;
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.22s ease,
+		transform 0.22s ease,
+		visibility 0.22s ease;
+	white-space: normal;
+	text-align: center;
+	box-shadow: var(--shadow-md);
+	z-index: 2;
+	pointer-events: none;
+}
+
+.button_common:hover .sticky_button_text,
+.button_common:focus-within .sticky_button_text {
+	opacity: 1;
+	visibility: visible;
+	transform: translateX(-50%) translateY(0);
+}
+
+.button_icon {
+	transition: opacity 0.25s ease-in-out;
+}
+
+@media (max-width: 768px) {
+	.button_common {
+		width: 45px;
+		height: 45px;
+		padding: 5px;
+	}
+
+	.sticky_button_text {
+		font-size: 0.9rem;
+		padding: 6px 10px;
+		max-width: min(260px, 85vw);
+	}
+}

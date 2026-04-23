@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 import {fireEvent, render, screen} from '@testing-library/react';
-import type {CostingCardProps} from '@features/coasting/interface/Costing.props';
+import type {CostingCardProps} from '@shared/interface/CostingCard.props';
 import CalculatorModal from './CalculatorModal';
 
 jest.mock('@shared/ui/calculator-modal/hooks/useCalculatorHandlers', () => ({

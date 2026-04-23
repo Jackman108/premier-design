@@ -69,11 +69,20 @@ describe('/api/feedback handler', () => {
     const mockedSubmitFeedbackAction = submitFeedbackAction as jest.MockedFunction<typeof submitFeedbackAction>;
     const mockedRateLimit = checkRateLimit as jest.MockedFunction<typeof checkRateLimit>;
     const mockedGetFeedbackApiTimeoutMs = getFeedbackApiTimeoutMs as jest.MockedFunction<typeof getFeedbackApiTimeoutMs>;
+    let consoleInfoSpy: jest.SpyInstance;
+    let consoleErrorSpy: jest.SpyInstance;
 
     beforeEach(() => {
         jest.clearAllMocks();
+        consoleInfoSpy = jest.spyOn(console, 'info').mockImplementation(() => undefined);
+        consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
         mockedRateLimit.mockReturnValue({allowed: true, remaining: 4, retryAfterSec: 60});
         mockedGetFeedbackApiTimeoutMs.mockReturnValue(8_000);
+    });
+
+    afterEach(() => {
+        consoleInfoSpy.mockRestore();
+        consoleErrorSpy.mockRestore();
     });
 
     it('handles OPTIONS request', async () => {
@@ -84,6 +93,7 @@ describe('/api/feedback handler', () => {
 
         expect(res.statusCode).toBe(200);
         expect(res.headers.allow).toEqual(['POST', 'OPTIONS']);
+        expect(res.headers['x-correlation-id']).toBeDefined();
         expect(res.ended).toBe(true);
     });
 
@@ -94,6 +104,32 @@ describe('/api/feedback handler', () => {
         await handler(req, res);
 
         expect(res.statusCode).toBe(405);
+        expect(res.headers['x-correlation-id']).toBeDefined();
+    });
+
+    it('reuses incoming x-correlation-id header', async () => {
+        const req = createRequest({
+            method: 'POST',
+            headers: {'content-type': 'application/json', 'x-correlation-id': 'external-cid-123'},
+            body: {
+                name: 'Иван Иванов',
+                phone: '+375291234567',
+                email: 'ivan@test.by',
+                message: 'Нужен расчет',
+                consent: true,
+            },
+        });
+        mockedSubmitFeedbackAction.mockResolvedValueOnce({
+            status: 'success',
+            message: 'Feedback processed successfully.',
+        });
+        const res = createMockResponse();
+
+        await handler(req, res);
+
+        expect(res.statusCode).toBe(200);
+        expect(res.headers['x-correlation-id']).toBe('external-cid-123');
+        expect((res.body as {correlationId: string}).correlationId).toBe('external-cid-123');
     });
 
     it('returns 415 for unsupported content type', async () => {
@@ -106,6 +142,7 @@ describe('/api/feedback handler', () => {
         await handler(req, res);
 
         expect(res.statusCode).toBe(415);
+        expect((res.body as {correlationId: string}).correlationId).toBeTruthy();
     });
 
     it('returns 429 when rate limit exceeded', async () => {
@@ -119,6 +156,7 @@ describe('/api/feedback handler', () => {
         await handler(req, res);
 
         expect(res.statusCode).toBe(429);
+        expect((res.body as {correlationId: string}).correlationId).toBeTruthy();
     });
 
     it('returns 400 for invalid payload', async () => {
@@ -132,6 +170,7 @@ describe('/api/feedback handler', () => {
         await handler(req, res);
 
         expect(res.statusCode).toBe(400);
+        expect((res.body as {correlationId: string}).correlationId).toBeTruthy();
     });
 
     it('returns 500 when submitFeedback fails', async () => {
@@ -156,6 +195,7 @@ describe('/api/feedback handler', () => {
         await handler(req, res);
 
         expect(res.statusCode).toBe(500);
+        expect((res.body as {correlationId: string}).correlationId).toBeTruthy();
     });
 
     it('returns 200 for valid payload and success result', async () => {
@@ -182,6 +222,7 @@ describe('/api/feedback handler', () => {
         expect(mockedSubmitFeedbackAction).toHaveBeenCalledTimes(1);
         expect(res.headers['x-ratelimit-remaining']).toBe('4');
         expect(res.headers['retry-after']).toBe('60');
+        expect((res.body as {correlationId: string}).correlationId).toBeTruthy();
     });
 
     it('returns 504 when submitFeedbackAction exceeds timeout budget', async () => {
@@ -209,5 +250,6 @@ describe('/api/feedback handler', () => {
         await handler(req, res);
 
         expect(res.statusCode).toBe(504);
+        expect((res.body as {correlationId: string}).correlationId).toBeTruthy();
     });
 });

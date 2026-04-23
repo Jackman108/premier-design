@@ -9,7 +9,8 @@
 .idea
 
 /nginx/certificates
-/premier-design/.next/dev/cache/
+# Next.js: весь build output (RISK-07, шум в git/PR; ранее — только dev/cache)
+/premier-design/.next/
 /premier-design/.lighthouse-tmp/
 /premier-design/.lighthouse-chrome-profile/
 /premier-design/.audit-high-summary.json

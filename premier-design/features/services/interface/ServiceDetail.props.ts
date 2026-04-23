@@ -5,7 +5,7 @@ import {Paper} from "@features/papers/interface/Paper.props";
 import {MenuItem} from "@shared/ui/menu/interface/Menu.props";
 import {ButtonProps} from "@shared/interface/Button.props";
 import {CostingCardProps} from "@features/coasting/interface/Costing.props";
-import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
+import {PanelProps} from "@shared/interface/Panel.props";
 import {ShareBannerDataProps} from "@features/banner/share/interface/ShareBanner.props";
 import type {StructuredDataAggregateRating} from "@widgets/layout/seo/CustomHead/CustomHead.props";
 

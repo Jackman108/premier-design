@@ -1,0 +1,23 @@
+.loader {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 140px;
+	padding: 16px;
+	color: var(--color-text);
+	font-size: 1rem;
+	box-shadow: var(--shadow-sm);
+	background: var(--color-surface);
+}
+
+.error {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 140px;
+	padding: 16px;
+	color: var(--color-error, #b71c1c);
+	font-size: 1rem;
+	box-shadow: var(--shadow-sm);
+	background: var(--color-surface);
+}

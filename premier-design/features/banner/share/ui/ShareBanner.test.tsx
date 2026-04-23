@@ -7,8 +7,8 @@ import {useShareBanner} from '@features/banner/share/hooks/useShareBanner';
 
 jest.mock('next/link', () => ({
 	__esModule: true,
-	default: ({href, children, ...rest}: {href: string; children: ReactNode}) => (
-		<a href={href} {...rest}>
+	default: ({href, children, className, rel}: {href: string; children: ReactNode; className?: string; rel?: string}) => (
+		<a href={href} className={className} rel={rel}>
 			{children}
 		</a>
 	),
@@ -16,10 +16,19 @@ jest.mock('next/link', () => ({
 
 jest.mock('next/image', () => ({
 	__esModule: true,
-	default: (props: ImgHTMLAttributes<HTMLImageElement> & {priority?: boolean; fill?: boolean}) => {
-		const {src, alt, width, height, className, sizes, loading, decoding} = props;
+	default: (
+		props: ImgHTMLAttributes<HTMLImageElement> & {
+			priority?: boolean;
+			fill?: boolean;
+			quality?: number;
+			placeholder?: string;
+		},
+	) => {
+		// next/image-специфичные пропы не на нативный <img> (см. react-dom "non-boolean attribute `priority`").
+		const {src, alt, width, height, className, sizes, loading, decoding, ...nextOnly} = props;
+		void nextOnly;
 		return (
-			// next/image в тесте заменён на нативный img; пропсы вроде priority не в DOM.
+			// next/image в тесте — нативный img; специфичные пропы Next не в DOM.
 			// eslint-disable-next-line @next/next/no-img-element -- намеренный мок
 			<img
 				src={typeof src === 'string' ? src : undefined}

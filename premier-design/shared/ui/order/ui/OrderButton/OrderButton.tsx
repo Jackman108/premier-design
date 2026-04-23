@@ -2,7 +2,7 @@ import React, {FC, useCallback} from 'react';
 import dynamic from 'next/dynamic';
 
 import {trackMarketingEvent} from '@shared/analytics/trackMarketingEvent';
-import PanelButton from '@features/buttons-panel/ui/PanelButton/PanelButton';
+import PanelButton from '@shared/ui/panel-button/PanelButton';
 import {useFeedback} from '@shared/ui/order/hooks/useFeedback';
 import {OrderButtonProps} from '@shared/ui/order/interface/OrderButton.props';
 

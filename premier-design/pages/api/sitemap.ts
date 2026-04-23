@@ -8,6 +8,7 @@ import {z} from 'zod';
 import {DataProps} from "@widgets/interface/interfaceData";
 import {getData} from '@lib/getStaticData';
 import {applyApiRateLimit} from '@shared/lib/applyApiRateLimit';
+import {createApiErrorPayload, createApiRequestObserver} from '@shared/lib/api/apiRequestRuntime';
 
 const BASE_URL = 'https://premium-interior.by';
 const CHANGE_FREQUENCY = 'monthly';
@@ -74,15 +75,22 @@ const generateSitemap = async (): Promise<string> => {
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse): Promise<void> {
-	if (req.method !== 'GET') {
-		res.setHeader('Allow', 'GET');
-		res.status(405).json({message: 'Method not allowed.'});
-		return;
-	}
+    const {correlationId, finish} = createApiRequestObserver(req, res, '/api/sitemap');
+
+    switch (req.method) {
+        case 'GET':
+            break;
+        default:
+            res.setHeader('Allow', 'GET');
+            res.status(405).json({message: 'Method not allowed.'});
+            finish(405, {status: 'error'});
+            return;
+    }
 
     const rateLimit = applyApiRateLimit(req, res, 'sitemap', {windowMs: 60_000, maxRequests: 60});
     if (!rateLimit.allowed) {
-        res.status(429).json({error: 'Too many requests. Try again later.'});
+        res.status(429).json(createApiErrorPayload(correlationId, 'Too many requests. Try again later.'));
+        finish(429, {status: 'error'});
         return;
     }
 
@@ -90,12 +98,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const sitemap = await generateSitemap();
         res.setHeader('Content-Type', 'application/xml');
         res.status(200).send(sitemap);
+        finish(200);
     } catch (error) {
-        handleError(res, error);
+        handleError(res, error, correlationId);
+        finish(500, {status: 'error'});
     }
 }
 
-const handleError = (res: NextApiResponse, error: unknown): void => {
+const handleError = (res: NextApiResponse, error: unknown, correlationId: string): void => {
 	console.error('[sitemap]', error);
-	res.status(500).json({error: 'Не удалось сформировать sitemap'});
+	res.status(500).json(createApiErrorPayload(correlationId, 'Не удалось сформировать sitemap'));
 };

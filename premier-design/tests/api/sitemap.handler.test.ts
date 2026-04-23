@@ -40,6 +40,7 @@ describe('/api/sitemap handler', () => {
 		await handler(getReq('POST') as NextApiRequest, res as never);
 
 		expect(res.setHeader).toHaveBeenCalledWith('Allow', 'GET');
+		expect(res.setHeader).toHaveBeenCalledWith('X-Correlation-Id', expect.any(String));
 		expect(res.status).toHaveBeenCalledWith(405);
 		expect(res.json).toHaveBeenCalledWith({message: 'Method not allowed.'});
 	});
@@ -60,6 +61,7 @@ describe('/api/sitemap handler', () => {
 		const res = createRes();
 		await handler(getReq() as NextApiRequest, res as never);
 
+		expect(res.setHeader).toHaveBeenCalledWith('X-Correlation-Id', expect.any(String));
 		expect(res.setHeader).toHaveBeenCalledWith('Content-Type', 'application/xml');
 		expect(res.status).toHaveBeenCalledWith(200);
 		expect(res.send).toHaveBeenCalledTimes(1);
@@ -84,7 +86,11 @@ describe('/api/sitemap handler', () => {
 		await handler(getReq() as NextApiRequest, res as never);
 
 		expect(res.status).toHaveBeenCalledWith(500);
-		expect(res.json).toHaveBeenCalledWith({error: 'Не удалось сформировать sitemap'});
+		expect(res.json).toHaveBeenCalledWith({
+			status: 'error',
+			message: 'Не удалось сформировать sitemap',
+			correlationId: expect.any(String),
+		});
 		errorSpy.mockRestore();
 	});
 });

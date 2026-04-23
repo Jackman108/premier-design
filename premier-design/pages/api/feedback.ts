@@ -3,116 +3,98 @@ import {submitFeedbackAction} from '../../features/feedback/useCases/submitFeedb
 import {feedbackSchema} from '../../features/feedback/schema';
 import {applyApiRateLimit} from '@shared/lib/applyApiRateLimit';
 import {getFeedbackApiTimeoutMs, recordFeedbackSloSample} from '@shared/lib/feedbackSlo';
+import {createApiErrorPayload, createApiRequestObserver, withTimeout} from '@shared/lib/api/apiRequestRuntime';
 import {z} from 'zod';
 
-const withTimeout = async <T>(
-	task: Promise<T>,
-	timeoutMs: number,
-): Promise<{timedOut: boolean; value?: T; error?: unknown}> => {
-	return new Promise((resolve) => {
-		const timer = setTimeout(() => {
-			resolve({timedOut: true});
-		}, timeoutMs);
-
-		void task
-			.then((value) => {
-				clearTimeout(timer);
-				resolve({timedOut: false, value});
-			})
-			.catch(() => {
-				clearTimeout(timer);
-				resolve({timedOut: false, error: new Error('Feedback processing failed before timeout')});
-			});
-	});
-};
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-    const startedAt = Date.now();
-    const finish = (statusCode: number, timedOut = false) => {
-        recordFeedbackSloSample({
-            statusCode,
-            timedOut,
-            durationMs: Date.now() - startedAt,
-        });
-    };
+    const {correlationId, finish} = createApiRequestObserver(
+        req,
+        res,
+        '/api/feedback',
+        ({statusCode, timedOut, durationMs}) => {
+            recordFeedbackSloSample({statusCode, timedOut, durationMs});
+        },
+    );
 
-    if (req.method === 'OPTIONS') {
-        res.setHeader('Allow', ['POST', 'OPTIONS']);
-        res.status(200).end();
-        finish(200);
-        return;
-    }
-
-    if (req.method !== 'POST') {
-        res.status(405).json({message: 'Method not allowed.'});
-        finish(405);
-        return;
+    switch (req.method) {
+        case 'OPTIONS':
+            res.setHeader('Allow', ['POST', 'OPTIONS']);
+            res.status(200).end();
+            finish(200);
+            return;
+        case 'POST':
+            break;
+        default:
+            res.status(405).json({message: 'Method not allowed.'});
+            finish(405, {status: 'error'});
+            return;
     }
 
     const contentType = req.headers['content-type'] || '';
     if (!contentType.includes('application/json')) {
-        res.status(415).json({
-            status: 'error',
-            message: 'Unsupported content type. Use application/json.',
-        });
-        finish(415);
+        res.status(415).json(createApiErrorPayload(correlationId, 'Unsupported content type. Use application/json.'));
+        finish(415, {status: 'error'});
         return;
     }
 
     const rateLimit = applyApiRateLimit(req, res, 'feedback', {windowMs: 60_000, maxRequests: 5});
     if (!rateLimit.allowed) {
-        res.status(429).json({
-            status: 'error',
-            message: 'Too many requests. Try again later.',
-        });
-        finish(429);
+        res.status(429).json(createApiErrorPayload(correlationId, 'Too many requests. Try again later.'));
+        finish(429, {status: 'error'});
         return;
     }
 
     const parsed = feedbackSchema.safeParse(req.body);
     if (!parsed.success) {
         res.status(400).json({
-            status: 'error',
-            message: 'Validation failed.',
+            ...createApiErrorPayload(correlationId, 'Validation failed.'),
             errors: z.treeifyError(parsed.error),
         });
-        finish(400);
+        finish(400, {status: 'error'});
         return;
     }
 
     const timedCall = await withTimeout(submitFeedbackAction(parsed.data), getFeedbackApiTimeoutMs());
     if (timedCall.error) {
         const statusCode = 500;
-        res.status(statusCode).json({
-            status: 'error',
-            message: 'Failed to process feedback.',
-            code: statusCode,
-        });
-        finish(statusCode);
+        res.status(statusCode).json(
+            createApiErrorPayload(correlationId, 'Failed to process feedback.', {code: statusCode}),
+        );
+        finish(statusCode, {status: 'error'});
         return;
     }
 
     if (timedCall.timedOut || !timedCall.value) {
         const statusCode = 504;
-        res.status(statusCode).json({
-            status: 'error',
-            message: 'Feedback processing timed out.',
-            code: statusCode,
-        });
-        finish(statusCode, true);
+        res.status(statusCode).json(
+            createApiErrorPayload(correlationId, 'Feedback processing timed out.', {code: statusCode}),
+        );
+        finish(statusCode, {status: 'error', timedOut: true});
         return;
     }
 
     const response = timedCall.value;
 
-    if (response.status === 'error') {
-        const statusCode = response.code ?? 500;
-        res.status(statusCode).json(response);
-        finish(statusCode);
-        return;
+    switch (response.status) {
+        case 'error': {
+            const statusCode = response.code ?? 500;
+            res.status(statusCode).json({...response, correlationId});
+            finish(statusCode, {status: 'error'});
+            return;
+        }
+        case 'success': {
+            const statusCode = 200;
+            res.status(statusCode).json({...response, correlationId});
+            finish(statusCode);
+            return;
+        }
+        default: {
+            const statusCode = 500;
+            res.status(statusCode).json(
+                createApiErrorPayload(correlationId, 'Unexpected feedback response status.', {code: statusCode}),
+            );
+            finish(statusCode, {status: 'error'});
+            return;
+        }
     }
-
-    const statusCode = 200;
-    res.status(statusCode).json(response);
-    finish(statusCode);
 }

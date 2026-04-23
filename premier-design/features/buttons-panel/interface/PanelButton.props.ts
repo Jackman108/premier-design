@@ -1,8 +1,3 @@
-export interface PanelProps {
-    id: string;
-    onClick?: () => void;
-    icon: string;
-    altText: string;
-    text: string;
-    position: { bottom: string };
-}
+import type {PanelProps as SharedPanelProps} from "@shared/interface/Panel.props";
+
+export type PanelProps = SharedPanelProps;

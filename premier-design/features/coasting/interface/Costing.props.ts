@@ -1,17 +1,7 @@
 import {TitleProps} from "@shared/ui/title/interface/Title.props";
-import {KeyboardEvent} from "react";
+import type {CostingCardProps as SharedCostingCardProps} from "@shared/interface/CostingCard.props";
 
-export interface CostingCardProps {
-    id: number;
-    title: string;
-    image: string;
-
-    onClick?: () => void;
-    onKeyDown?: (event: KeyboardEvent) => void;
-    role?: string;
-    tabIndex?: number;
-    ariaLabel?: string;
-}
+export type CostingCardProps = SharedCostingCardProps;
 
 export interface CostingProps {
     cards: CostingCardProps[];

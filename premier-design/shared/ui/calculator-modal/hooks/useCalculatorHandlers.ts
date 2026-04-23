@@ -1,5 +1,5 @@
 import {ChangeEvent, useCallback, useEffect, useMemo, useState} from 'react';
-import {CostingCardProps} from "@features/coasting/interface/Costing.props";
+import {CostingCardProps} from "@shared/interface/CostingCard.props";
 import {calculateEstimate, DEFAULT_TAB_COSTS, parseAreaValue} from '@shared/ui/calculator-modal/utils/calculateEstimate';
 
 const useCalculatorHandlers = (card: CostingCardProps) => {

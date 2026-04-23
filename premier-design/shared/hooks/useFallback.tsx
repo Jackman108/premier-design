@@ -1,5 +1,5 @@
 import {useRouter} from "next/router";
-import styles from '@features/services/ui/ServiceDetail/ServiceDetail.module.css';
+import styles from './useFallback.module.css';
 
 export const useFallback = (isDataAvailable: boolean) => {
     const router = useRouter();

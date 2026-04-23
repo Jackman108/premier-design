@@ -1,4 +1,4 @@
-import {PanelProps} from '@features/buttons-panel/interface/PanelButton.props';
+import {PanelProps} from '@shared/interface/Panel.props';
 
 export interface ChatBotSidebarProps {
     panelData: PanelProps;

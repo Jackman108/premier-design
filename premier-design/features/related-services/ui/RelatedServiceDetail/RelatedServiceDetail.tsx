@@ -1,6 +1,6 @@
 import {FC} from "react";
 import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
-import styles from '@features/services/ui/ServiceDetail/ServiceDetail.module.css';
+import styles from './RelatedServiceDetail.module.css';
 import {getFullCanonicalUrl} from "@widgets/layout/seo/utils/getFullCanonicalUrl";
 import Layout from "@widgets/layout/ui/layout/Layout";
 import Image from "next/image";

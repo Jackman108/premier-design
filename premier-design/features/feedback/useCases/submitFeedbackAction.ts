@@ -6,7 +6,7 @@ import {z} from 'zod';
 
 type FeedbackActionResult =
 	| {status: 'success'; message: string; data?: unknown}
-	| {status: 'error'; message: string; errors?: unknown; code?: 400 | 429 | 500};
+	| {status: 'error'; message: string; errors?: unknown; code?: 400 | 429 | 500 | 503};
 
 export const submitFeedbackAction = async (
 	payload: unknown,
@@ -25,7 +25,7 @@ export const submitFeedbackAction = async (
 	if (response.status === 'error') {
 		return {
 			status: 'error',
-			code: 500,
+			code: response.code ?? 500,
 			message: response.message,
 		};
 	}

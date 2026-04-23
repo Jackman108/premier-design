@@ -1,5 +1,5 @@
 import {ChangeEvent} from "react";
-import {CostingCardProps} from "@features/coasting/interface/Costing.props";
+import {CostingCardProps} from "@shared/interface/CostingCard.props";
 
 export interface CalculatorModalProps {
     onClose: () => void;

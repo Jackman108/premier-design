@@ -5,7 +5,7 @@ import {NewsProps} from "@features/news/interface/News.props";
 import {ButtonProps} from "@shared/interface/Button.props";
 import {ParsedUrlQuery} from "querystring";
 import {CostingCardProps} from "@features/coasting/interface/Costing.props";
-import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
+import {PanelProps} from "@shared/interface/Panel.props";
 import {ShareBannerDataProps} from "@features/banner/share/interface/ShareBanner.props";
 import type {StructuredDataAggregateRating} from "@widgets/layout/seo/CustomHead/CustomHead.props";
 

@@ -1,5 +1,5 @@
-import {CostingCardProps} from "@features/coasting/interface/Costing.props";
-import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
+import {CostingCardProps} from "@shared/interface/CostingCard.props";
+import {PanelProps} from "@shared/interface/Panel.props";
 
 export interface CalculatorButtonProps {
     costingCards: CostingCardProps[];
