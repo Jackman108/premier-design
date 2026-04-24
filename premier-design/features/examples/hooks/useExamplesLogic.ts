@@ -1,13 +1,13 @@
 import {useCallback, useMemo, useState} from 'react';
 import {ExampleCardProps} from '@features/examples/interface/Examples.props';
 import {useModalState} from '@shared/hooks/useModalState';
-import useResizeEffects from '@shared/hooks/useResizeEffects';
+import {useViewportMobile} from '@shared/hooks/useViewportMobile';
 
 export const useExamplesLogic = (cards: ExampleCardProps[]) => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
     const [viewerImages, setViewerImages] = useState<string[]>([]);
     const {isOpen: isViewerOpen, openModal, closeModal} = useModalState(false);
-    const {isMobile} = useResizeEffects();
+    const {isMobile} = useViewportMobile();
     const slidesPerView = 3;
 
     const memoizedCards = useMemo(() => cards || [], [cards]);

@@ -1,5 +1,5 @@
-import {Paper} from "@features/papers/interface/Paper.props";
-import {NewsProps} from "@features/news/interface/News.props";
+import type {NewsProps} from '@features/news';
+import type {Paper} from '@features/papers';
 import {MenuItem} from "@shared/ui/menu/interface/Menu.props";
 
 export interface FooterProps {

@@ -1,12 +1,12 @@
 import {KeyboardEvent, useEffect, useMemo, useRef, useState} from 'react';
 import {useModalState} from "@shared/hooks/useModalState";
 import {CostingCardProps} from "@features/coasting/interface/Costing.props";
-import useResizeEffects from "@shared/hooks/useResizeEffects";
+import {useViewportMobile} from '@shared/hooks/useViewportMobile';
 
 export const useCostingCardLogic = (cards: CostingCardProps[]) => {
     const {isOpen: isModalOpen, openModal, closeModal} = useModalState(false);
     const [selectedCard, setSelectedCard] = useState<CostingCardProps | null>(null);
-    const {isMobile} = useResizeEffects();
+    const {isMobile} = useViewportMobile();
 
     const memoizedCards = useMemo(() => cards || [], [cards]);
     /** Стабильный по содержимому ключ: родитель часто передаёт новый [] с теми же карточками. */

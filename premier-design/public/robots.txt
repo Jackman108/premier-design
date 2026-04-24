@@ -1,3 +1,4 @@
+# Sitemap: значение должно совпадать с SITE_OPERATOR.publicOrigin в shared/constants/company.ts
 User-agent: *
 Disallow:
 

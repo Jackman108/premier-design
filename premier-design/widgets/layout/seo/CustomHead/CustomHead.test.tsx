@@ -3,7 +3,7 @@ import {render} from '@testing-library/react';
 import type {ReactNode} from 'react';
 import CustomHead from './CustomHead';
 import {generateStructuredData} from '../utils/generateStructuredData';
-import {getFullCanonicalUrl} from '../utils/getFullCanonicalUrl';
+import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
 
 const headMock = jest.fn(({children}: {children: ReactNode}) => <div data-testid="mock-head">{children}</div>);
 
@@ -31,7 +31,7 @@ jest.mock('../utils/generateStructuredData', () => ({
 	generateStructuredData: jest.fn(),
 }));
 
-jest.mock('../utils/getFullCanonicalUrl', () => ({
+jest.mock('@shared/utils/getFullCanonicalUrl', () => ({
 	getFullCanonicalUrl: jest.fn(),
 }));
 

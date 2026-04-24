@@ -17,11 +17,11 @@ const RelatedServiceCard: React.FC<RelatedServiceCardProps> = (relatedService) =
                 <div className={styles.card}>
                     <div className={styles.imageWrapper}>
                         <Image
+                            fill
                             src={relatedService.image}
                             alt={relatedService.title}
-                            height={180}
-                            width={410}
                             loading="lazy"
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 410px"
                             className={styles.image}
                         />
                     </div>

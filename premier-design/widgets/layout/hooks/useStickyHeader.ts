@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback } from 'react';
-import useResizeEffects from "@shared/hooks/useResizeEffects";
+import {useViewportMobile} from '@shared/hooks/useViewportMobile';
 
 export const useStickyHeader = (threshold: number = 0.25) => {
     const [isSticky, setIsSticky] = useState(false);
-    const {isMobile} = useResizeEffects();
+    const {isMobile} = useViewportMobile();
 
     const handleScroll = useCallback(() => {
         const scrollY = window.scrollY;

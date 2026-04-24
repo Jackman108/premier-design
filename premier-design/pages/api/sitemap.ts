@@ -5,12 +5,13 @@
 import {NextApiRequest, NextApiResponse} from 'next';
 import {z} from 'zod';
 
-import {DataProps} from "@widgets/interface/interfaceData";
+import type {DataProps} from '@shared/validates/dataPropsSchema';
 import {getData} from '@lib/getStaticData';
 import {applyApiRateLimit} from '@shared/lib/applyApiRateLimit';
 import {createApiErrorPayload, createApiRequestObserver} from '@shared/lib/api/apiRequestRuntime';
+import {SITE_PUBLIC_ORIGIN} from '@shared/constants/company';
 
-const BASE_URL = 'https://premium-interior.by';
+const BASE_URL = SITE_PUBLIC_ORIGIN;
 const CHANGE_FREQUENCY = 'monthly';
 const STATIC_PRIORITY = 1.0;
 const DYNAMIC_PRIORITY = 0.8;

@@ -1,0 +1,25 @@
+.link {
+	display: inline-flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.35rem;
+	text-decoration: none;
+	color: var(--brown-white);
+	font-size: 0.75rem;
+	opacity: 0.9;
+	transition: opacity var(--transition-fast);
+}
+
+.link:hover,
+.link:focus-visible {
+	opacity: 1;
+	outline: none;
+}
+
+.label {
+	text-align: center;
+}
+
+.logo {
+	display: block;
+}

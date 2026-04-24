@@ -1,3 +1,4 @@
+import {execSync} from 'node:child_process';
 import {existsSync, lstatSync, readdirSync} from 'node:fs';
 import {join, resolve, relative} from 'node:path';
 
@@ -69,8 +70,23 @@ for (const folder of FORBIDDEN_DIRS) {
 	}
 }
 
-if (existsSync(resolve(cwd, '.next/dev/cache'))) {
-	violations.push('.next/dev/cache: dev-кеш должен быть очищен перед релизом/коммитом.');
+/** Локальный `yarn dev` создаёт `.next/` — не считаем нарушением; запрещено только попадание артефактов в git. */
+const trackedUnderDotNext = (() => {
+	try {
+		const out = execSync('git ls-files -- .next/', {cwd, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe']});
+		return out
+			.trim()
+			.split(/\r?\n/)
+			.filter(Boolean);
+	} catch {
+		return [];
+	}
+})();
+if (trackedUnderDotNext.length > 0) {
+	const sample = trackedUnderDotNext.slice(0, 5).join(', ');
+	violations.push(
+		`.next/: в индексе git не должно быть артефактов сборки (${sample}${trackedUnderDotNext.length > 5 ? ' …' : ''}).`,
+	);
 }
 
 for (const file of filesToCheck) {

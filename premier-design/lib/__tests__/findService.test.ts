@@ -1,3 +1,4 @@
+/** @jest-environment node */
 import {findService} from '../findService';
 
 const baseData = (): Parameters<typeof findService>[0] =>
@@ -14,7 +15,7 @@ const baseData = (): Parameters<typeof findService>[0] =>
 			],
 			design: [],
 		},
-	} as Parameters<typeof findService>[0]);
+	} as unknown as Parameters<typeof findService>[0]);
 
 describe('findService', () => {
 	it('returns service and category props when ids match canonical segment', () => {
@@ -33,7 +34,7 @@ describe('findService', () => {
 	});
 
 	it('throws when repairs data absent', () => {
-		const data = {prices: {repairs: undefined, design: []}} as Parameters<typeof findService>[0];
+		const data = {prices: {repairs: undefined, design: []}} as unknown as Parameters<typeof findService>[0];
 		expect(() => findService(data, 'cat-a', 'my-service')).toThrow('No repairs data found');
 	});
 });

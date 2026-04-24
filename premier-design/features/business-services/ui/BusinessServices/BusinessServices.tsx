@@ -4,7 +4,7 @@ import styles from './BusinessServices.module.css';
 import {BusinessServicesProps} from "@features/business-services/interface/BusinessService.props";
 import OrderButton from "@shared/ui/order/ui/OrderButton/OrderButton";
 import SliderComponent from '@shared/ui/slider/ui/SliderLazy';
-import useResizeEffects from "@shared/hooks/useResizeEffects";
+import {useViewportMobile} from '@shared/hooks/useViewportMobile';
 import {findItemByTitle} from "@shared/utils/findItemByTitle";
 import {TitleProps} from "@shared/ui/title/interface/Title.props";
 import {ButtonProps} from "@shared/interface/Button.props";
@@ -23,7 +23,7 @@ const BusinessServices: FC<BusinessServicesProps> = ({
     const titleData = findItemByTitle(titles, "business-services") || {} as TitleProps;
     const buttonHeader = findItemByTitle(buttonData, "get_counseling") || {} as ButtonProps;
     const {headline, reasons} = businessServices.callToAction;
-    const {isMobile} = useResizeEffects();
+    const {isMobile} = useViewportMobile();
 
     return (
         <section className={styles.businessServices} id={`repair-for-business`}>

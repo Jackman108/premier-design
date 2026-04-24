@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="512" viewBox="0 0 1024 512" fill="none">
+<rect width="100%" height="100%" fill="none"/>
+<g fill="rgb(16, 94, 76)">
+  <text x="50%" y="55%" font-size="220" text-anchor="middle" font-family="Inter, Geist, Arial, sans-serif" font-weight="700">Feb</text>
+</g>
+<g stroke="rgb(16, 94, 76)" stroke-width="28" stroke-linecap="round">
+  <line x1="128" y1="256" x2="228" y2="166"/>
+  <line x1="128" y1="256" x2="228" y2="346"/>
+  <line x1="896" y1="256" x2="796" y2="166"/>
+  <line x1="896" y1="256" x2="796" y2="346"/>
+</g>
+</svg>

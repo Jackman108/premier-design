@@ -1,3 +1,4 @@
+import {SITE_PUBLIC_ORIGIN} from '@shared/constants/company';
 import {generateStructuredData} from '../generateStructuredData';
 
 describe('generateStructuredData', () => {
@@ -10,7 +11,7 @@ describe('generateStructuredData', () => {
         expect(Array.isArray(data['@graph'])).toBe(true);
         const lb = data['@graph'][0] as {'@type': string; logo: string};
         expect(lb['@type']).toBe('LocalBusiness');
-        expect(lb.logo).toBe('https://premium-interior.by/logo.png');
+        expect(lb.logo).toBe(`${SITE_PUBLIC_ORIGIN}/logo.png`);
     });
 
     it('adds FAQPage when faqItems provided', () => {
@@ -34,7 +35,7 @@ describe('generateStructuredData', () => {
             service: {
                 name: 'Покраска',
                 description: 'Работы малярные',
-                url: 'https://premium-interior.by/services/renovation/paint',
+                url: `${SITE_PUBLIC_ORIGIN}/services/renovation/paint`,
             },
         }) as {'@graph': Array<Record<string, unknown>>};
         const svc = data['@graph'][1] as {'@type': string; provider: {'@id': string}};

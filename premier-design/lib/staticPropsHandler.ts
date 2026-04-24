@@ -1,13 +1,10 @@
 import {GetStaticProps} from 'next';
 import {getData} from '@lib/getStaticData';
-import {getCommonProps} from '@shared/utils/getCommonProps';
-import {findRelatedService} from '@features/related-services/utils/findRelatedService';
-import {findService} from '@features/services/utils/findService';
+import {findRelatedService} from '@lib/findRelatedService';
+import {findService} from '@lib/findService';
+import {getCommonProps} from '@lib/getCommonProps';
 
-/**
- * SSG-обвязка для страниц услуг. Размещение в `lib/`, а не `shared/`: getStaticData и finders
- * зависят от feature-модулей; `shared` не импортирует `features/`.
- */
+/** SSG-обвязка для страниц услуг: `getData`, поиск сущностей и общие пропсы лейаута в `lib/`. */
 export const staticPropsHandler = (isRelated = false): GetStaticProps => async ({params}) => {
 	try {
 		const data = await getData();

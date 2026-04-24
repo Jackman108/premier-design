@@ -2,7 +2,7 @@ import type {NextPage} from 'next';
 import Layout from '@widgets/layout/ui/layout/Layout';
 import {getStaticProps} from '@lib/getStaticData';
 import {ReactElement} from "react";
-import HeroBanner from "@features/banner/hero/ui/HeroBanner";
+import {HeroBanner} from '@features/banner';
 import {
     Appeal,
     BusinessServices,
@@ -17,7 +17,7 @@ import {
 import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 import {GetDataProps} from "@widgets/interface/interfaceData";
-import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
+import type {HeroBannerProps} from '@features/banner';
 import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
 import {getTitleData} from '@shared/utils/findItemByTitle';
 import {mapFaqEntriesToStructuredData} from '@shared/utils/faqStructuredData';

@@ -7,7 +7,7 @@ import type {Category, PriceItem} from "@shared/interface/CategoryPrice.props";
 import type {NewsProps} from "@shared/interface/NewsItem.props";
 import type {Paper} from "@shared/interface/PaperItem.props";
 import type {ShareBannerDataProps} from "@shared/interface/ShareBannerData.props";
-import type {StructuredDataAggregateRating} from "@widgets/layout/seo/CustomHead/CustomHead.props";
+import type {StructuredDataAggregateRating} from '@shared/interface/seoHead.props';
 
 export interface ServiceDetailProps {
     service: PriceItem;

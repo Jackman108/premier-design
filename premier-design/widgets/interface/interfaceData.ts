@@ -1,110 +1,19 @@
-import {Paper} from "@features/papers/interface/Paper.props";
-import {NewsProps} from "@features/news/interface/News.props";
-import {MenuItem} from "@shared/ui/menu/interface/Menu.props";
-import {ButtonProps} from "@shared/interface/Button.props";
-import {FeatureProps} from "@shared/ui/features-section/interface/Feature.props";
-import {TitlePage, TitleProps} from "@shared/ui/title/interface/Title.props";
-import {ServiceCardProps} from "@features/services/interface/ServiceCard.props";
-import {OfferBannerProps} from "@features/banner/offer/interface/OfferBanner.props";
-import {OfferProjectProps} from "@features/project-offer/interface/OfferProject.props";
-import {BannerImageProps} from "@features/banner/hero/interface/HeroBannerProps";
-import {PartnersProps} from "@features/partners/interface/Partners.props";
-import {StepsWorkProps} from "@features/steps-work/interface/StepsWork.props";
-import {Prices} from "@features/category/interface/Category.props";
-import {Review} from "@shared/ui/reviews/ui/interface/Review.props";
-import {ExampleCardProps} from "@features/examples/interface/Examples.props";
-import {CostingCardProps} from "@features/coasting/interface/Costing.props";
-import {RelatedServiceCardProps} from "@features/related-services/interface/RelatedService.props";
-import {BusinessServiceCard, BusinessServices} from "@features/business-services/interface/BusinessService.props";
-import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
-import {ApproachCardProps} from "@features/approach/interface/ApproachCard.props";
-import {ShareBannerDataProps} from "@features/banner/share/interface/ShareBanner.props";
-import type {CompanyAboutContent} from "@features/company-about/interface/CompanyAboutSections.props";
-import type {FaqEntry} from "@features/faq/interface/FaqSection.props";
-import type {TrustSignalMetricItem} from "@features/marketing/trust-signals/interface/TrustSignals.props";
-import type {StructuredDataAggregateRating} from "@widgets/layout/seo/CustomHead/CustomHead.props";
+/**
+ * Публичные алиасы к типу корня `data.json`.
+ * Источник истины: `DataProps` из `dataPropsSchema` (`@shared/validates/dataPropsSchema`).
+ */
+import type {DataProps} from '@shared/validates/dataPropsSchema';
 
-export type FaqContentByPage = {
-    home: FaqEntry[];
-    design: FaqEntry[];
-    repairs: FaqEntry[];
+export type {DataProps};
+
+export type GetDataProps = {
+	data: DataProps;
 };
 
-export type TrustSignalsConfig = {
-    metrics: TrustSignalMetricItem[];
-    structuredDataRating?: StructuredDataAggregateRating;
-};
-
-export type HomeVideoSpotlightConfig = {
-    title: string;
-    description: string;
-    youtubeId: string;
-};
-
-/** Ключи совпадают с логикой секций на `/` (см. `pages/index.tsx` + `HomePageSection`). */
-export type HomePageSectionAriaKey =
-    | 'features'
-    | 'offer'
-    | 'services'
-    | 'approach'
-    | 'steps'
-    | 'examples'
-    | 'trust'
-    | 'costing'
-    | 'related'
-    | 'faq'
-    | 'reviews'
-    | 'appeal';
-
-export type HomePageData = {
-    sectionAriaLabels: Record<HomePageSectionAriaKey, string>;
-};
-
-export type ContactsPageUspAsideData = {
-    ariaLabel: string;
-    items: string[];
-};
-
-export type ContactsPageData = {
-    uspAside: ContactsPageUspAsideData;
-};
-
-export interface DataProps {
-    titlesPage: TitlePage[]
-    menu: MenuItem[];
-    button: ButtonProps[];
-    news: NewsProps[];
-    features: FeatureProps[];
-    title: TitleProps[];
-    approachCard: ApproachCardProps[];
-    costingCard: CostingCardProps[];
-    examplesCard: ExampleCardProps[];
-    servicesCard: ServiceCardProps[];
-    businessServiceCard: BusinessServiceCard[];
-    offerBanner: OfferBannerProps;
-    offerProject: {
-        designType: OfferProjectProps[];
-        repairType: OfferProjectProps[];
-    }
-    bannersImages: BannerImageProps[];
-    partners: PartnersProps[];
-    stepsWork: StepsWorkProps[];
-    papers: Paper[];
-    prices: Prices;
-    reviews: Review[];
-    panel: PanelProps[];
-    relatedServices: RelatedServiceCardProps[];
-    businessServices: BusinessServices;
-    shares: ShareBannerDataProps[];
-    trustSignals: TrustSignalsConfig;
-    homeHeroHighlights: string[];
-    homeVideoSpotlight: HomeVideoSpotlightConfig;
-    homePage: HomePageData;
-    faqContent: FaqContentByPage;
-    companyAbout: CompanyAboutContent;
-    contactsPage: ContactsPageData;
-}
-
-export interface GetDataProps {
-    data: DataProps;
-}
+export type FaqContentByPage = DataProps['faqContent'];
+export type TrustSignalsConfig = DataProps['trustSignals'];
+export type HomeVideoSpotlightConfig = DataProps['homeVideoSpotlight'];
+export type HomePageSectionAriaKey = keyof DataProps['homePage']['sectionAriaLabels'];
+export type HomePageData = DataProps['homePage'];
+export type ContactsPageUspAsideData = DataProps['contactsPage']['uspAside'];
+export type ContactsPageData = DataProps['contactsPage'];

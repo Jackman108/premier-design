@@ -1,4 +1,4 @@
-import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
+import type {PanelProps} from '@features/buttons-panel';
 
 export const findPanelById = (panelData: PanelProps[], id: string): PanelProps => {
     const defaultPanel = {

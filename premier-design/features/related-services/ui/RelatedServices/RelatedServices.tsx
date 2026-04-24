@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './RelatedServices.module.css';
 import Title from "@shared/ui/title/ui/Title";
 import {RelatedServicesProps} from "@features/related-services/interface/RelatedService.props";
-import useResizeEffects from "@shared/hooks/useResizeEffects";
+import {useViewportMobile} from '@shared/hooks/useViewportMobile';
 import Slider from "@shared/ui/slider/ui/SliderLazy";
 import RelatedServiceCard from "../RelatedServicesCard/RelatedServiceCard";
 
 const RelatedServices: React.FC<RelatedServicesProps> = ({title, relatedServices}) => {
-    const {isMobile} = useResizeEffects();
+    const {isMobile} = useViewportMobile();
 
 
     return (

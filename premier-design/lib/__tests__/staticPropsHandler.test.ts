@@ -1,23 +1,23 @@
 /** @jest-environment node */
 import {staticPropsHandler} from '../staticPropsHandler';
 import {getData} from '@lib/getStaticData';
-import {findRelatedService} from '@features/related-services/utils/findRelatedService';
-import {findService} from '@features/services/utils/findService';
-import {getCommonProps} from '@shared/utils/getCommonProps';
+import {findRelatedService} from '@lib/findRelatedService';
+import {findService} from '@lib/findService';
+import {getCommonProps} from '@lib/getCommonProps';
 
 jest.mock('@lib/getStaticData', () => ({
 	getData: jest.fn(),
 }));
 
-jest.mock('@features/related-services/utils/findRelatedService', () => ({
+jest.mock('@lib/findRelatedService', () => ({
 	findRelatedService: jest.fn(),
 }));
 
-jest.mock('@features/services/utils/findService', () => ({
+jest.mock('@lib/findService', () => ({
 	findService: jest.fn(),
 }));
 
-jest.mock('@shared/utils/getCommonProps', () => ({
+jest.mock('@lib/getCommonProps', () => ({
 	getCommonProps: jest.fn(),
 }));
 
@@ -67,7 +67,7 @@ describe('staticPropsHandler', () => {
 
 	it('returns notFound when result is empty or on error', async () => {
 		const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
-		mockedFindService.mockReturnValue(null);
+		mockedFindService.mockReturnValue(null as never);
 		const getStaticProps = staticPropsHandler(false);
 		const notFoundResult = await getStaticProps({params: {categoryId: 'repair'}} as never);
 		expect(notFoundResult).toEqual({notFound: true});

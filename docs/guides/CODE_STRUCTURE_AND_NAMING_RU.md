@@ -33,7 +33,9 @@
   - в `shared/` — если используется в разных фичах;
   - в модуль фичи — если повторяется внутри одной фичи.
 - Нельзя смешивать в одном файле UI, доменные правила и инфраструктуру.
-- Каталог **`lib/`** (`@lib/*`): обвязка под Next.js без смешения с `shared/` — например `getStaticData.ts` (загрузка и zod-валидация `data/data.json`), **`dynamicSectionImports.ts`** (реестр `next/dynamic` для тяжёлых секций с `@features/*`). Реестр динамических импортов фич не размещать в `shared/`: граница проверяется `scripts/check-architecture-boundaries.mjs`.
+- Каталог **`lib/`** (`@lib/*`): обвязка под Next.js без смешения с `shared/` — например `getStaticData.ts` (загрузка и zod-валидация `data/data.json`), **`dynamicSectionImports.ts`** (реестр `next/dynamic` для тяжёлых секций с `@features/*`), **`staticPropsHandler.ts`** с **`getCommonProps`**, **`findService`**, **`findRelatedService`**. Тип корня **`DataProps`** = **`z.infer<typeof dataPropsSchema>`** в `@shared/validates/dataPropsSchema` (единый контракт `data.json`); `widgets/interface/interfaceData.ts` только реэкспортирует его и производные алиасы (`GetDataProps`, `FaqContentByPage`, …).
+- **Константы вне `data.json`:** `shared/constants/company.ts` — единый источник: **`SITE_OPERATOR`** (production-origin `publicOrigin`, бренд, год с копирайта, e-mail для ПДн, краткое юр. наименование, блок для JSON-LD: соцсети, адрес, `areaServed`, `priceRange`), **`SITE_PUBLIC_ORIGIN`** (алиас origin для sitemap/canonical), подрядчик **`DEVELOPER_STUDIO_FEB_CODE`**. Юридические страницы и SEO импортируют отсюда; `public/robots.txt` (строка Sitemap) вручную синхронизировать с `SITE_OPERATOR.publicOrigin`.
+- **Публичный API фичи:** корневой **`features/<slice>/index.ts`** — точка входа для слоёв выше (страницы, виджеты, `app/`): импорт **`@features/<slice>`**, а не глубоких путей к `ui/…`. Внутри слайса по-прежнему локальные импорты.
 
 ## 3) Единый стиль именования
 

@@ -21,38 +21,285 @@ const homeSectionKeySchema = z.enum([
 	'appeal',
 ]);
 
-/**
- * Runtime-проверка корня `data/data.json` перед SSG/ISR: обязательные ключи как у `DataProps`,
- * без лишних полей на верхнем уровне; углублённо — критичные блоки (FAQ, trust, about, contacts).
- */
-export const dataPropsSchema = z
+const structuredDataRatingSchema = z.object({
+	ratingValue: z.string(),
+	reviewCount: z.number(),
+	bestRating: z.string(),
+});
+
+const serviceJsonLdInputSchema = z.object({
+	name: z.string(),
+	description: z.string(),
+	url: z.string(),
+});
+
+/** Элемент `titlesPage`: SEO + опциональные поля JSON-LD; лишние ключи сохраняются (`z.looseObject`). */
+const titlePageSchema = z.looseObject({
+	id: z.number(),
+	title: z.string(),
+	shortTitle: z.string(),
+	description: z.string(),
+	metaTitle: z.string(),
+	metaDescription: z.string(),
+	canonical: z.string(),
+	faqForStructuredData: z.array(faqEntrySchema).optional(),
+	structuredDataRating: structuredDataRatingSchema.optional(),
+	serviceForStructuredData: serviceJsonLdInputSchema.optional(),
+});
+
+const menuItemSchema = z.object({
+	id: z.number(),
+	title: z.string(),
+	ruTitle: z.string(),
+});
+
+const buttonPropsSchema = z.object({
+	id: z.number().optional(),
+	buttonHeader: z.string(),
+	shortTitle: z.string(),
+});
+
+const newsItemSchema = z.object({
+	id: z.number(),
+	image: z.string(),
+	imagePng: z.string(),
+	title: z.string(),
+	text: z.string(),
+	date: z.string(),
+});
+
+const paperSchema = z.object({
+	id: z.number(),
+	title: z.string(),
+	shortTitle: z.string(),
+});
+
+const costingCardSchema = z.object({
+	id: z.number(),
+	title: z.string(),
+	image: z.string(),
+});
+
+const panelSchema = z.object({
+	id: z.string(),
+	icon: z.string(),
+	altText: z.string(),
+	text: z.string(),
+	position: z.object({bottom: z.string()}),
+});
+
+const bannerImageSchema = z.object({
+	id: z.number().optional(),
+	shortTitle: z.string(),
+	src: z.string(),
+	alt: z.string(),
+	quality: z.number(),
+	width: z.number(),
+	height: z.number(),
+});
+
+const shareBannerDataSchema = z.object({
+	shortTitle: z.string(),
+	link: z.string(),
+	imageDesc: bannerImageSchema,
+	imageMob: bannerImageSchema,
+});
+
+/** Элемент `bannersImages` (hero/thumbnail в JSON). */
+const bannerListImageSchema = z.object({
+	id: z.number(),
+	shortTitle: z.string(),
+	src: z.string(),
+	alt: z.string(),
+	quality: z.number(),
+	width: z.number(),
+	height: z.number(),
+});
+
+/** Блоки `title` (секции без полного SEO). */
+const titleBlockSchema = z.looseObject({
+	id: z.number(),
+	title: z.string(),
+	shortTitle: z.string(),
+	description: z.string(),
+});
+
+const priceItemSchema = z.object({
+	service: z.string(),
+	unit: z.string(),
+	price: z.string(),
+	canonical: z.string(),
+});
+
+const categorySchema = z.object({
+	id: z.string(),
+	title: z.string(),
+	description: z.string(),
+	image: z.object({
+		src: z.string(),
+		alt: z.string(),
+		quality: z.number(),
+		width: z.number(),
+		height: z.number(),
+	}),
+	priceList: z.array(priceItemSchema),
+});
+
+const pricesSchema = z.object({
+	repairs: z.array(categorySchema),
+	design: z.array(categorySchema),
+});
+
+const relatedServiceCardSchema = z.object({
+	id: z.string(),
+	title: z.string(),
+	subTitle: z.string(),
+	description: z.string(),
+	image: z.string(),
+	canonical: z.string(),
+	benefits: z.array(z.string()),
+	text: z.string(),
+	triggers: z.array(z.string()),
+});
+
+const offerTypeSchema = z.object({
+	id: z.number(),
+	image: z.string(),
+	title: z.string(),
+	description: z.string(),
+	questions: z.array(z.string()),
+	tips: z.string(),
+	shortTitle: z.string(),
+});
+
+const offerBannerSchema = z.strictObject({
+	homeType: offerTypeSchema,
+	designType: offerTypeSchema,
+	repairType: offerTypeSchema,
+	aboutType: offerTypeSchema,
+	portfolioType: offerTypeSchema,
+	calculatorType: offerTypeSchema,
+});
+
+const partnerItemSchema = z.object({
+	id: z.number(),
+	src: z.string(),
+	srcPng: z.string(),
+	alt: z.string(),
+	quality: z.number(),
+	width: z.number(),
+	height: z.number(),
+	discounts: z.string(),
+});
+
+const featureItemSchema = z.object({
+	id: z.number(),
+	title: z.string(),
+	iconPng: z.string(),
+	icon: z.string(),
+});
+
+const serviceCardSchema = z.object({
+	id: z.number().optional(),
+	text: z.string(),
+	image: z.string(),
+	href: z.string(),
+});
+
+const approachCardSchema = z.object({
+	id: z.number(),
+	image: z.string(),
+	title: z.string(),
+	description: z.string(),
+});
+
+const stepsWorkItemSchema = z.object({
+	id: z.number(),
+	title: z.string(),
+	description: z.string(),
+	icon: z.string(),
+});
+
+const exampleCardSchema = z.looseObject({
+	id: z.number(),
+	background: z.string(),
+	address: z.string(),
+	deadlines: z.string(),
+	budgetRange: z.string().optional(),
+	onTimeNote: z.string().optional(),
+	bathroomIcon: z.string(),
+	bathroomOption: z.number(),
+	areaIcon: z.string(),
+	areaOption: z.number(),
+	areaSquare: z.string(),
+	images: z.array(z.string()),
+});
+
+const reviewSchema = z.object({
+	id: z.number(),
+	name: z.string(),
+	city: z.string(),
+	text: z.string(),
+	photoUrl: z.string(),
+});
+
+const businessServiceCardSchema = z.object({
+	category: z.string(),
+	image: z.string(),
+	details: z.array(z.string()),
+});
+
+const businessServicesRootSchema = z
 	.object({
-		titlesPage: z.array(z.unknown()),
-		menu: z.array(z.unknown()),
-		button: z.array(z.unknown()),
-		news: z.array(z.unknown()),
-		features: z.array(z.unknown()),
-		title: z.array(z.unknown()),
-		approachCard: z.array(z.unknown()),
-		costingCard: z.array(z.unknown()),
-		examplesCard: z.array(z.unknown()),
-		servicesCard: z.array(z.unknown()),
-		businessServiceCard: z.array(z.unknown()),
-		offerBanner: z.record(z.string(), z.unknown()),
-		offerProject: z.object({
-			designType: z.array(z.unknown()),
-			repairType: z.array(z.unknown()),
+		callToAction: z.object({
+			headline: z.string(),
+			reasons: z.array(z.string()),
 		}),
-		bannersImages: z.array(z.unknown()),
-		partners: z.array(z.unknown()),
-		stepsWork: z.array(z.unknown()),
-		papers: z.array(z.unknown()),
-		prices: z.record(z.string(), z.unknown()),
-		reviews: z.array(z.unknown()),
-		panel: z.array(z.unknown()),
-		relatedServices: z.array(z.unknown()),
-		businessServices: z.record(z.string(), z.unknown()),
-		shares: z.array(z.unknown()),
+	})
+	.passthrough();
+
+const offerProjectItemSchema = z.object({
+	id: z.number(),
+	image: z.string(),
+	title: z.string(),
+	price: z.string(),
+	pros: z.string(),
+	cons: z.string(),
+	prosDescription: z.array(z.string()),
+	consDescription: z.array(z.string()),
+});
+
+/**
+ * Runtime-проверка корня `data/data.json` перед SSG/ISR: обязательные ключи,
+ * без лишних полей на верхнем уровне; тип **`DataProps` = `z.infer`** — единый контракт данных.
+ */
+export const dataPropsSchema = z.strictObject({
+		titlesPage: z.array(titlePageSchema),
+		menu: z.array(menuItemSchema),
+		button: z.array(buttonPropsSchema),
+		news: z.array(newsItemSchema),
+		features: z.array(featureItemSchema),
+		title: z.array(titleBlockSchema),
+		approachCard: z.array(approachCardSchema),
+		costingCard: z.array(costingCardSchema),
+		examplesCard: z.array(exampleCardSchema),
+		servicesCard: z.array(serviceCardSchema),
+		businessServiceCard: z.array(businessServiceCardSchema),
+		offerBanner: offerBannerSchema,
+		offerProject: z.object({
+			designType: z.array(offerProjectItemSchema),
+			repairType: z.array(offerProjectItemSchema),
+		}),
+		bannersImages: z.array(bannerListImageSchema),
+		partners: z.array(partnerItemSchema),
+		stepsWork: z.array(stepsWorkItemSchema),
+		papers: z.array(paperSchema),
+		prices: pricesSchema,
+		reviews: z.array(reviewSchema),
+		panel: z.array(panelSchema),
+		relatedServices: z.array(relatedServiceCardSchema),
+		businessServices: businessServicesRootSchema,
+		shares: z.array(shareBannerDataSchema),
 		trustSignals: z.object({
 			metrics: z.array(
 				z.object({
@@ -60,13 +307,7 @@ export const dataPropsSchema = z
 					value: z.string(),
 				}),
 			),
-			structuredDataRating: z
-				.object({
-					ratingValue: z.string(),
-					reviewCount: z.number(),
-					bestRating: z.string(),
-				})
-				.optional(),
+			structuredDataRating: structuredDataRatingSchema.optional(),
 		}),
 		homeHeroHighlights: z.array(z.string()),
 		homeVideoSpotlight: z.object({
@@ -107,8 +348,10 @@ export const dataPropsSchema = z
 				items: z.array(z.string()),
 			}),
 		}),
-	})
-	.strict();
+	});
+
+/** Тип корня `data.json` после успешного `dataPropsSchema.safeParse` (единый источник истины). */
+export type DataProps = z.infer<typeof dataPropsSchema>;
 
 export const formatDataPropsParseError = (error: z.ZodError): string => {
 	const head = error.issues.slice(0, 8).map((i) => `${i.path.join('.') || '(root)'}: ${i.message}`);

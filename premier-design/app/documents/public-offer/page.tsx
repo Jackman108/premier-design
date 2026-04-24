@@ -1,7 +1,6 @@
 'use client';
 
-import DocumentImage from '@features/documents-content/ui/document-image/DocumentImage';
-import PublicOfferContent from '@features/documents-content/ui/document-page/PublicOfferContent';
+import {DocumentImage, PublicOfferContent} from '@features/documents-content';
 import styles from '@features/documents-content/ui/document-page/DocumentPage.module.css';
 import {UiButton} from '@shared/ui/primitives/UiButton';
 

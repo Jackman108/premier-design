@@ -1,4 +1,4 @@
-import ServiceDetail from "@features/services/ui/ServiceDetail/ServiceDetail";
+import {ServiceDetail} from '@features/services';
 import {staticPathsHandler} from "@shared/utils/staticPathsHandler";
 import {staticPropsHandler} from "@lib/staticPropsHandler";
 

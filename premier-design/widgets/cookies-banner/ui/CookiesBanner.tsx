@@ -4,8 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import {documentHref} from '@features/papers/utils/documentHref';
-import type {Paper} from '@features/papers/interface/Paper.props';
+import {documentHref, type Paper} from '@features/papers';
 
 import {useCookiesBannerWidget} from '../hooks/useCookiesBannerWidget';
 import styles from './CookiesBanner.module.css';

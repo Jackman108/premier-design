@@ -1,9 +1,9 @@
 /** @jest-environment jsdom */
 import {act, renderHook} from '@testing-library/react';
 import useResizeEffects from '../useResizeEffects';
-import useMobileMenu from '@widgets/layout/hooks/useMobileMenu';
+import useMobileMenu from '../useMobileMenu';
 
-jest.mock('@widgets/layout/hooks/useMobileMenu', () => ({
+jest.mock('../useMobileMenu', () => ({
 	__esModule: true,
 	default: jest.fn(),
 }));
@@ -19,13 +19,14 @@ describe('useResizeEffects', () => {
 		});
 	});
 
-	it('tracks mobile state based on client width and resize events', () => {
+	it('combines mobile menu state with viewport mobile flag', () => {
 		Object.defineProperty(document.documentElement, 'clientWidth', {
 			configurable: true,
 			get: () => 1200,
 		});
 		const {result} = renderHook(() => useResizeEffects());
 		expect(result.current.isMobile).toBe(false);
+		expect(result.current.isMobileMenuOpen).toBe(false);
 
 		Object.defineProperty(document.documentElement, 'clientWidth', {
 			configurable: true,
@@ -36,6 +37,5 @@ describe('useResizeEffects', () => {
 		});
 
 		expect(result.current.isMobile).toBe(true);
-		expect(result.current.isMobileMenuOpen).toBe(false);
 	});
 });

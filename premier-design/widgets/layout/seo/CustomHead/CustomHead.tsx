@@ -1,6 +1,7 @@
 import {CustomHeadProps} from "./CustomHead.props";
 import {generateStructuredData} from "../utils/generateStructuredData";
-import {getFullCanonicalUrl} from "../utils/getFullCanonicalUrl";
+import {SITE_OPERATOR} from '@shared/constants/company';
+import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
 import Head from 'next/head';
 import Script from "next/script";
 
@@ -30,7 +31,7 @@ const CustomHead = ({
                 <meta property="og:type" content="website"/>
                 <meta property="og:url" content={canonical}/>
                 <meta property="og:image" content={ogImageUrl}/>
-                <meta property="og:site_name" content="Premium Interior"/>
+                <meta property="og:site_name" content={SITE_OPERATOR.brandName}/>
 
                 <meta property="twitter:card" content="summary_large_image"/>
                 <meta property="twitter:title" content={metaTitle}/>

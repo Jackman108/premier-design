@@ -3,7 +3,7 @@ import React, {FC} from "react";
 import {findItemByTitle} from "@shared/utils/findItemByTitle";
 import {findPanelById} from "../utils/findPanelById";
 import OrderButton from "@shared/ui/order/ui/OrderButton/OrderButton";
-import CalculatorButton from "@features/buttons-panel/ui/CalculatorButton/CalculatorButton";
+import {CalculatorButton} from '@features/buttons-panel';
 import styles from './ButtonsPanel.module.css';
 import {ButtonsPanelProps} from "../interface/ButtonsPanel.props";
 

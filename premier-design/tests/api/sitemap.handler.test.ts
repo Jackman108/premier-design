@@ -1,6 +1,7 @@
 /** @jest-environment node */
 import type {NextApiRequest} from 'next';
 
+import {SITE_PUBLIC_ORIGIN} from '@shared/constants/company';
 import handler from '../../pages/api/sitemap';
 import {getData} from '@lib/getStaticData';
 
@@ -68,11 +69,11 @@ describe('/api/sitemap handler', () => {
 
 		const payload = res.send.mock.calls[0][0] as string;
 		expect(payload).toContain('<urlset');
-		expect(payload).toContain('https://premium-interior.by/design');
-		expect(payload).toContain('https://premium-interior.by/portfolio');
-		expect(payload).toContain('https://premium-interior.by/calculator');
-		expect(payload).toContain('https://premium-interior.by/services/renovation/flooring');
-		expect(payload).toContain('https://premium-interior.by/services/related/cleaning');
+		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/design`);
+		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/portfolio`);
+		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/calculator`);
+		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/services/renovation/flooring`);
+		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/services/related/cleaning`);
 	});
 
 	it('returns 500 when data structure is invalid', async () => {

@@ -1,38 +1,34 @@
-/** @jest-environment jsdom */
-import {renderHook} from '@testing-library/react';
+/** @jest-environment node */
+import {SITE_PUBLIC_ORIGIN} from '@shared/constants/company';
 import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
 
-describe('usePageData', () => {
+describe('usePageData (selectPageData)', () => {
 	it('resolves title, button and banner by shortTitle', () => {
 		const titles = [{shortTitle: 'page', canonical: '/path'}];
 		const buttons = [{shortTitle: 'cta'}];
 		const banners = [{shortTitle: 'hero'}];
 
-		const {result} = renderHook(() =>
-			usePageData(titles, buttons, banners, 'page', 'cta', 'hero'),
-		);
+		const result = usePageData(titles, buttons, banners, 'page', 'cta', 'hero');
 
-		expect(result.current.titleItem.shortTitle).toBe('page');
-		expect(result.current.titleItem.canonical).toBe('https://premium-interior.by/path');
-		expect(result.current.buttonItem).toEqual({shortTitle: 'cta'});
-		expect(result.current.bannerItem).toEqual({shortTitle: 'hero'});
+		expect(result.titleItem.shortTitle).toBe('page');
+		expect(result.titleItem.canonical).toBe(`${SITE_PUBLIC_ORIGIN}/path`);
+		expect(result.buttonItem).toEqual({shortTitle: 'cta'});
+		expect(result.bannerItem).toEqual({shortTitle: 'hero'});
 	});
 
 	it('uses empty objects when items are missing', () => {
-		const {result} = renderHook(() => usePageData([], [], [], 'x', 'y', 'z'));
+		const result = usePageData([], [], [], 'x', 'y', 'z');
 
-		expect(result.current.titleItem).toEqual({canonical: ''});
-		expect(result.current.buttonItem).toEqual({});
-		expect(result.current.bannerItem).toEqual({});
+		expect(result.titleItem).toEqual({canonical: ''});
+		expect(result.buttonItem).toEqual({});
+		expect(result.bannerItem).toEqual({});
 	});
 
 	it('leaves canonical empty when title has no canonical field', () => {
 		const titles = [{shortTitle: 'only'}];
-		const {result} = renderHook(() =>
-			usePageData(titles, [], [], 'only', 'b', 'c'),
-		);
+		const result = usePageData(titles, [], [], 'only', 'b', 'c');
 
-		expect(result.current.titleItem.canonical).toBe('');
+		expect(result.titleItem.canonical).toBe('');
 	});
 
 	it('selectAppealSectionData uses fixed appeal shortTitles', () => {

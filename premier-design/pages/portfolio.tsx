@@ -1,8 +1,7 @@
 import type {NextPage} from 'next';
 import type {ReactElement} from 'react';
 
-import HeroBanner from '@features/banner/hero/ui/HeroBanner';
-import {HeroBannerProps} from '@features/banner/hero/interface/HeroBannerProps';
+import {HeroBanner, type HeroBannerProps} from '@features/banner';
 import {getStaticProps} from '@lib/getStaticData';
 import {Appeal, Examples, Features, OfferBanner} from '@lib/dynamicSectionImports';
 import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';

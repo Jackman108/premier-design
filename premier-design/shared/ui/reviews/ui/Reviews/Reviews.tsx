@@ -2,12 +2,12 @@ import React, {FC} from 'react';
 import styles from './Reviews.module.css';
 import Title from "@shared/ui/title/ui/Title";
 import {ReviewsProps} from "@shared/ui/reviews/ui/interface/Review.props";
-import useResizeEffects from "@shared/hooks/useResizeEffects";
+import {useViewportMobile} from '@shared/hooks/useViewportMobile';
 import Slider from "@shared/ui/slider/ui/SliderLazy";
 import ReviewCard from "@shared/ui/reviews/ui/ReviewCard/ReviewCard";
 
 const Reviews: FC<ReviewsProps> = ({title, reviews}) => {
-    const {isMobile} = useResizeEffects();
+    const {isMobile} = useViewportMobile();
 
     return (
         <section className={styles.reviews}>

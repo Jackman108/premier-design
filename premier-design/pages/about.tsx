@@ -3,16 +3,15 @@ import Layout from '@widgets/layout/ui/layout/Layout';
 import {getStaticProps} from '@lib/getStaticData';
 import {GetDataProps} from '@widgets/interface/interfaceData';
 import {ReactElement} from "react";
-import HeroBanner from "@features/banner/hero/ui/HeroBanner";
-import CompanyAboutSections from "@features/company-about/ui/CompanyAboutSections";
+import {HeroBanner, type HeroBannerProps} from '@features/banner';
+import {CompanyAboutSections} from '@features/company-about';
+import {News} from '@features/news';
+import {Partners} from '@features/partners';
 import {Appeal, OfferBanner} from '@lib/dynamicSectionImports';
 import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
-import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
 import {getTitleData} from "@shared/utils/findItemByTitle";
 import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
-import News from '@features/news/ui/News/News';
-import Partners from '@features/partners/ui/Partners/Partners';
 
 const About: NextPage<GetDataProps> = ({data}): ReactElement => {
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(

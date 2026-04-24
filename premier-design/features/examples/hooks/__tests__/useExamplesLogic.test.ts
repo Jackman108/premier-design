@@ -2,19 +2,18 @@
 import {act, renderHook} from '@testing-library/react';
 import {useExamplesLogic} from '../useExamplesLogic';
 import {useModalState} from '@shared/hooks/useModalState';
-import useResizeEffects from '@shared/hooks/useResizeEffects';
+import {useViewportMobile} from '@shared/hooks/useViewportMobile';
 
 jest.mock('@shared/hooks/useModalState', () => ({
 	useModalState: jest.fn(),
 }));
 
-jest.mock('@shared/hooks/useResizeEffects', () => ({
-	__esModule: true,
-	default: jest.fn(),
+jest.mock('@shared/hooks/useViewportMobile', () => ({
+	useViewportMobile: jest.fn(),
 }));
 
 const mockedUseModalState = jest.mocked(useModalState);
-const mockedUseResizeEffects = jest.mocked(useResizeEffects);
+const mockedUseViewportMobile = jest.mocked(useViewportMobile);
 
 describe('useExamplesLogic', () => {
 	const openModal = jest.fn();
@@ -29,9 +28,7 @@ describe('useExamplesLogic', () => {
 			closeModal,
 			toggleModal,
 		});
-		mockedUseResizeEffects.mockReturnValue({
-			isMobileMenuOpen: false,
-			toggleMobileMenu: jest.fn(),
+		mockedUseViewportMobile.mockReturnValue({
 			isMobile: true,
 		});
 	});

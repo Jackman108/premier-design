@@ -1,16 +1,15 @@
-import {CustomHeadProps} from "@widgets/layout/seo/CustomHead/CustomHead.props";
+import type {CustomHeadProps} from '@shared/interface/seoHead.props';
 
 export interface TitleProps {
-    id?: number;
-    title: string;
-    shortTitle: string;
-    description: string;
+	id?: number;
+	title: string;
+	shortTitle: string;
+	description: string;
 }
 
 export interface TitleStyleProps extends TitleProps {
-    titleStyle: 'title-white' | 'title-black';
-    descriptionStyle: 'description-white' | 'description-black';
+	titleStyle: 'title-white' | 'title-black';
+	descriptionStyle: 'description-white' | 'description-black';
 }
 
-export interface TitlePage extends TitleProps, CustomHeadProps {
-}
+export interface TitlePage extends TitleProps, CustomHeadProps {}

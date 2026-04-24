@@ -3,13 +3,8 @@ import {act, renderHook} from '@testing-library/react';
 import type {KeyboardEvent} from 'react';
 import {useCostingCardLogic} from '@features/coasting/hooks/useCostingCardLogic';
 
-jest.mock('@shared/hooks/useResizeEffects', () => ({
-	__esModule: true,
-	default: () => ({
-		isMobileMenuOpen: false,
-		toggleMobileMenu: jest.fn(),
-		isMobile: false,
-	}),
+jest.mock('@shared/hooks/useViewportMobile', () => ({
+	useViewportMobile: () => ({isMobile: false}),
 }));
 
 const sampleCard = {id: 1, title: 'Card A', image: '/img.jpg'};

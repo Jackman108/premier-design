@@ -8,7 +8,7 @@ import styles from './Header.module.css';
 import {FC, ReactElement} from 'react';
 import WorkHours from '@shared/ui/work-hours/WorkHours';
 import {HeaderProps} from '../../interface/Header.props';
-import ShareBanner from '@features/banner/share/ui/ShareBanner';
+import {ShareBanner} from '@features/banner';
 import {useHeaderLayout} from '../../hooks/useHeaderLayout';
 
 const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {

@@ -1,6 +1,6 @@
 'use client';
 
-import type {Paper} from '@features/papers/interface/Paper.props';
+import type {Paper} from '@features/papers';
 import {useModalState} from '@shared/hooks/useModalState';
 
 import {useCookiesBanner} from './useCookiesBanner';

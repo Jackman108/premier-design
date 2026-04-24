@@ -2,7 +2,7 @@
 
 import type {FC, ReactNode} from 'react';
 
-import DocumentBreadcrumbs from '@features/documents-content/ui/document-breadcrumbs/DocumentBreadcrumbs';
+import {DocumentBreadcrumbs} from '@features/documents-content';
 import documentStyles from '@features/documents-content/ui/document-page/DocumentPage.module.css';
 import type {LayoutProps} from '@widgets/layout/interface/Layout.props';
 import Layout from '@widgets/layout/ui/layout/Layout';

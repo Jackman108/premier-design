@@ -2,7 +2,7 @@ import {FC} from "react";
 import {ServiceDetailProps} from "@features/services/interface/ServiceDetail.props";
 import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import styles from './ServiceDetail.module.css';
-import {getFullCanonicalUrl} from "@widgets/layout/seo/utils/getFullCanonicalUrl";
+import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
 import Layout from "@widgets/layout/ui/layout/Layout";
 import Image from "next/image";
 import BackButton from "@shared/ui/back-button/BackButton";

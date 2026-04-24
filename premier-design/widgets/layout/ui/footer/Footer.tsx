@@ -1,14 +1,15 @@
 'use client';
 
 import styles from "./Footer.module.css";
-import useResizeEffects from "@shared/hooks/useResizeEffects";
+import useResizeEffects from '@widgets/layout/hooks/useResizeEffects';
 import {FC} from "react";
 import Menu from "@shared/ui/menu/ui/Menu";
-import News from '@features/news/ui/News/News';
-import Papers from "@features/papers/ui/Papers/Papers";
+import {News} from '@features/news';
+import {Papers} from '@features/papers';
 import CookiesBanner from "../../../cookies-banner/ui/CookiesBanner";
 import {FooterProps} from "../../interface/Footer.props";
 import Copyrighting from "@shared/ui/copyrighting/Copyrighting";
+import DeveloperCredit from "./DeveloperCredit/DeveloperCredit";
 
 const Footer: FC<FooterProps> = ({papers, news, menu, newsHashSyncOnMount = true}) => {
     const {isMobileMenuOpen, toggleMobileMenu,} = useResizeEffects();
@@ -19,6 +20,7 @@ const Footer: FC<FooterProps> = ({papers, news, menu, newsHashSyncOnMount = true
                 <div className={styles.footer__papers}>
                     <Papers papers={papers}/>
                     <Copyrighting/>
+                    <DeveloperCredit/>
                 </div>
                 <div className={styles.footer__news}>
                     <News news={news} newsStyle='footer' syncHashOnMount={newsHashSyncOnMount}/>

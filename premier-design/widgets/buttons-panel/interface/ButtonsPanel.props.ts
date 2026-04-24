@@ -1,6 +1,6 @@
-import {CostingCardProps} from "@features/coasting/interface/Costing.props";
+import type {CostingCardProps} from '@features/coasting';
 import {ButtonProps} from "@shared/interface/Button.props";
-import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
+import type {PanelProps} from '@features/buttons-panel';
 
 export interface ButtonsPanelProps {
     additionalData: {

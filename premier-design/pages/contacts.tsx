@@ -1,8 +1,7 @@
 import type {NextPage} from 'next';
 import type {ReactElement} from 'react';
 
-import {HeroBannerProps} from '@features/banner/hero/interface/HeroBannerProps';
-import HeroBanner from '@features/banner/hero/ui/HeroBanner';
+import {HeroBanner, type HeroBannerProps} from '@features/banner';
 import {getStaticProps} from '@lib/getStaticData';
 import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
 import {Address, Appeal} from '@lib/dynamicSectionImports';
@@ -10,7 +9,7 @@ import {GetDataProps} from '@widgets/interface/interfaceData';
 import CustomHead from '@widgets/layout/seo/CustomHead/CustomHead';
 import {useLayoutProps} from '@widgets/layout/hooks/useLayoutProps';
 import Layout from '@widgets/layout/ui/layout/Layout';
-import ContactsMicroUspAside from '@features/contacts/ui/ContactsMicroUspAside/ContactsMicroUspAside';
+import {ContactsMicroUspAside} from '@features/contacts';
 
 const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {
 	const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(

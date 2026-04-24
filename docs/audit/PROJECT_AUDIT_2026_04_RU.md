@@ -12,20 +12,18 @@
 
 ---
 
-## Таблица: код и зависимости, расходящиеся со строгим FSD
+## Таблица: отклонения от строгого FSD (актуализация)
 
-В проекте включён гейт [`scripts/check-architecture-boundaries.mjs`](../../premier-design/scripts/check-architecture-boundaries.mjs): `shared` → `@features/*` / `@services/*` (запрещено), **cross-feature** между разными слайсами `features/*` (запрещено). Ниже — случаи, которые **гейт не проверяет** или где зависимость **осознанно разрешена** документацией, но выбивается из «идеального» Feature-Sliced Design.
+Гейт [`scripts/check-architecture-boundaries.mjs`](../../premier-design/scripts/check-architecture-boundaries.mjs): запрет `shared` → `@features/*` / `@services/*`, запрет **cross-feature** между разными слайсами `features/*`.
 
-| Участок | Файл(ы) | Суть отклонения | Примечание / направление исправления |
-|--------|---------|-----------------|-------------------------------------|
-| **shared → widgets (инверсия слоя)** | `shared/ui/title/interface/Title.props.ts` | Типы из `@widgets/layout/seo/CustomHead/CustomHead.props` | Вынести общий контракт SEO-заголовка в `shared/` или в `widgets` только потреблять пропсы без обратного импорта из shared-типов виджета |
-| **shared → widgets** | `shared/utils/getCommonProps.ts` | `DataProps` из `@widgets/interface/interfaceData` | Свести тип страничных пропсов к `shared`-уровню (например `shared/types/pageData.ts`) или перенести сборку пропсов на уровень `pages`/`widgets` |
-| **shared → widgets** | `shared/hooks/useResizeEffects.ts`, `shared/hooks/usePageData.ts` | Хуки тянут `@widgets/layout/...` | Разорвать цикл: общая логика в `shared`, привязка к layout — в `widgets/layout/hooks` с композицией |
-| **shared → widgets (тест)** | `shared/hooks/__tests__/useResizeEffects.test.ts` | Мок/импорт `@widgets/layout/hooks/useMobileMenu` | После рефакторинга хуков — тест только на `shared` |
-| **lib → features** | `lib/staticPropsHandler.ts` (+ тест) | Утилиты `findService`, `findRelatedService` из `@features/.../utils` | Зафиксировано в [`docs/guides/CODE_STRUCTURE_AND_NAMING_RU.md`](../guides/CODE_STRUCTURE_AND_NAMING_RU.md) как обвязка Next; строго по FSD — вынести поиск в `shared/lib` или в тонкий «процесс» без привязки к слайсу фичи |
-| **widgets → UI фич (глубокая композиция)** | `widgets/layout/ui/footer/Footer.tsx` и др. | Прямой импорт `@features/*/ui/...` | Для строгого FSD иногда предпочитают композицию на `pages` или публичные `index` фич; текущий вариант типичен и допустим как осознанный компромисс |
+**Снято рефакторингом (ранее в таблице):** SEO-типы и `getFullCanonicalUrl` вынесены в `shared/interface/seoHead.props.ts` и `shared/utils/getFullCanonicalUrl.ts`; `getCommonProps` + finders перенесены в `lib/`; `useViewportMobile` в `shared`, композиция с меню — `widgets/layout/hooks/useResizeEffects.ts`.
 
-**Уже соблюдается гейтом:** нет `shared` → `@features` (static/dynamic), нет cross-feature между разными именами слайсов в `features/`.
+| Участок | Файл(ы) | Суть | Примечание |
+|--------|---------|------|------------|
+| **lib → shared (данные)** | `lib/getCommonProps.ts`, `lib/findService.ts`, `lib/findRelatedService.ts`, `getStaticData` | Тип **`DataProps`** из **`@shared/validates/dataPropsSchema`** (`z.infer`) | Next-обвязка и виджеты используют один контракт с JSON; см. [`CODE_STRUCTURE_AND_NAMING_RU.md`](../guides/CODE_STRUCTURE_AND_NAMING_RU.md). |
+| **widgets → UI фич** | `widgets/layout/ui/footer/Footer.tsx` и др. | Импорт **`@features/<slice>`** из баррелей `features/<slice>/index.ts` | Композиция виджетов; подпись подрядчика — отдельный `DeveloperCredit`, URL в `shared/constants/company.ts`. |
+
+**Соблюдается:** нет `shared` → `@widgets` / `@features` / `@services`; нет cross-feature; фичи не импортируют `find*` из другого слайса через `lib`.
 
 ---
 

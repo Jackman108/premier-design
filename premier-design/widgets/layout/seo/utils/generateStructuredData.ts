@@ -1,9 +1,8 @@
-import {getFullCanonicalUrl} from './getFullCanonicalUrl';
+import type {FaqStructuredDataItem, ServiceJsonLdInput, StructuredDataAggregateRating} from '@shared/interface/seoHead.props';
+import {SITE_OPERATOR} from '@shared/constants/company';
+import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
 
-import type {FaqStructuredDataItem, StructuredDataAggregateRating} from '../CustomHead/CustomHead.props';
-import type {ServiceJsonLdInput} from '../types/serviceJsonLd';
-
-const SITE = 'https://premium-interior.by';
+const SITE = SITE_OPERATOR.publicOrigin;
 
 export type GenerateStructuredDataOptions = {
     faqItems?: FaqStructuredDataItem[];
@@ -17,24 +16,17 @@ export const generateStructuredData = (options?: GenerateStructuredDataOptions) 
     const localBusiness: Record<string, unknown> = {
         '@type': 'LocalBusiness',
         '@id': `${SITE}/#localbusiness`,
-        name: 'Premium Interior',
+        name: SITE_OPERATOR.brandName,
         url: SITE,
         logo: getFullCanonicalUrl('/logo.png'),
         image: getFullCanonicalUrl('/logo.png'),
-        sameAs: [
-            'https://t.me/PremiumInterior',
-            'https://www.instagram.com/proremont_zhl',
-            'https://vk.com/premium_interior_zhl',
-        ],
+        sameAs: [...SITE_OPERATOR.structuredData.sameAs],
         address: {
             '@type': 'PostalAddress',
-            streetAddress: 'Pervomayskaya',
-            addressLocality: 'Zhlobin',
-            postalCode: '247210',
-            addressCountry: 'BY',
+            ...SITE_OPERATOR.structuredData.address,
         },
-        areaServed: [{'@type': 'City', name: 'Zhlobin'}, {'@type': 'Country', name: 'Belarus'}],
-        priceRange: '$$',
+        areaServed: SITE_OPERATOR.structuredData.areaServed,
+        priceRange: SITE_OPERATOR.structuredData.priceRange,
     };
 
     if (options?.aggregateRating) {

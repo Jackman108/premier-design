@@ -1,3 +1,4 @@
+/** @jest-environment node */
 import {findRelatedService} from '../findRelatedService';
 
 const dataWithRelated = (): Parameters<typeof findRelatedService>[0] =>
@@ -15,7 +16,7 @@ const dataWithRelated = (): Parameters<typeof findRelatedService>[0] =>
 				triggers: [],
 			},
 		],
-	} as Parameters<typeof findRelatedService>[0]);
+	} as unknown as Parameters<typeof findRelatedService>[0]);
 
 describe('findRelatedService', () => {
 	it('returns related service when canonical tail matches categoryId', () => {
@@ -24,7 +25,7 @@ describe('findRelatedService', () => {
 	});
 
 	it('throws when relatedServices missing', () => {
-		const data = {} as Parameters<typeof findRelatedService>[0];
+		const data = {} as unknown as Parameters<typeof findRelatedService>[0];
 		expect(() => findRelatedService(data, 'x')).toThrow('No related services data found');
 	});
 

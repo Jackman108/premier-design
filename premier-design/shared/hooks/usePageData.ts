@@ -1,5 +1,5 @@
 import {findItemByTitle} from '@shared/utils/findItemByTitle';
-import {getFullCanonicalUrl} from "@widgets/layout/seo/utils/getFullCanonicalUrl";
+import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
 
 type ItemWithTitle = { shortTitle: string };
 

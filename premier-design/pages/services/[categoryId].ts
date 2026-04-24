@@ -1,4 +1,4 @@
-import RelatedServiceDetail from "@features/related-services/ui/RelatedServiceDetail/RelatedServiceDetail";
+import {RelatedServiceDetail} from '@features/related-services';
 import {staticPropsHandler} from "@lib/staticPropsHandler";
 import {staticPathsHandler} from "@shared/utils/staticPathsHandler";
 

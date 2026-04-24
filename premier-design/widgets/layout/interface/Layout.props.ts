@@ -1,13 +1,13 @@
 import {ReactNode} from 'react';
 import {MenuItem} from '@shared/ui/menu/interface/Menu.props';
-import {NewsProps} from '@features/news/interface/News.props';
-import {Paper} from '@features/papers/interface/Paper.props';
+import type {NewsProps} from '@features/news';
+import type {Paper} from '@features/papers';
 import {ButtonProps} from "@shared/interface/Button.props";
-import {CostingCardProps} from "@features/coasting/interface/Costing.props";
-import {PanelProps} from "@features/buttons-panel/interface/PanelButton.props";
+import type {CostingCardProps} from '@features/coasting';
+import type {PanelProps} from '@features/buttons-panel';
 import {HeaderProps} from "./Header.props";
 import {FooterProps} from "./Footer.props";
-import {ShareBannerDataProps} from "@features/banner/share/interface/ShareBanner.props";
+import type {ShareBannerDataProps} from '@features/banner';
 
 export interface LayoutData {
     menu: MenuItem[];

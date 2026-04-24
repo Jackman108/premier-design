@@ -1,7 +1,6 @@
 import {NextPage} from 'next';
 
-import {HeroBannerProps} from '@features/banner/hero/interface/HeroBannerProps';
-import HeroBanner from '@features/banner/hero/ui/HeroBanner';
+import {HeroBanner, type HeroBannerProps} from '@features/banner';
 import {getStaticProps} from '@lib/getStaticData';
 import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
 import {useScrollReveal} from '@shared/hooks/useScrollReveal';
