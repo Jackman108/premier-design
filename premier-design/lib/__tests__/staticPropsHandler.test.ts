@@ -3,21 +3,21 @@ import {staticPropsHandler} from '../staticPropsHandler';
 import {getData} from '@lib/getStaticData';
 import {findRelatedService} from '@features/related-services/utils/findRelatedService';
 import {findService} from '@features/services/utils/findService';
-import {getCommonProps} from '../getCommonProps';
+import {getCommonProps} from '@shared/utils/getCommonProps';
 
-jest.mock('../../../lib/getStaticData', () => ({
+jest.mock('@lib/getStaticData', () => ({
 	getData: jest.fn(),
 }));
 
-jest.mock('../../../features/related-services/utils/findRelatedService', () => ({
+jest.mock('@features/related-services/utils/findRelatedService', () => ({
 	findRelatedService: jest.fn(),
 }));
 
-jest.mock('../../../features/services/utils/findService', () => ({
+jest.mock('@features/services/utils/findService', () => ({
 	findService: jest.fn(),
 }));
 
-jest.mock('../getCommonProps', () => ({
+jest.mock('@shared/utils/getCommonProps', () => ({
 	getCommonProps: jest.fn(),
 }));
 

@@ -52,11 +52,14 @@ describe('useFeedback', () => {
     });
 
     it('sets user-facing error when request fails', async () => {
+        const body = JSON.stringify({message: 'server fail', correlationId: 'err-cid'});
         const fetchMock = jest.fn().mockResolvedValue({
             ok: false,
             status: 500,
             statusText: 'Internal Server Error',
-        } as Response);
+            headers: {get: () => null},
+            text: () => Promise.resolve(body),
+        });
         global.fetch = fetchMock as unknown as typeof fetch;
 
         const { result } = renderHook(() => useFeedback());
@@ -65,5 +68,6 @@ describe('useFeedback', () => {
         });
 
         expect(result.current.error).toContain('Произошла ошибка при отправке формы');
+        expect(result.current.error).toContain('err-cid');
     });
 });

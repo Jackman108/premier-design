@@ -1,12 +1,10 @@
 'use client';
 
 import {createPortal} from 'react-dom';
-import type {FC, ReactNode} from 'react';
+import type {FC} from 'react';
 import {useSyncExternalStore} from 'react';
 
-type BodyPortalProps = {
-	children: ReactNode;
-};
+import type {BodyPortalProps} from '@shared/ui/portal/interface/BodyPortal.props';
 
 const emptySubscribe = () => () => {};
 

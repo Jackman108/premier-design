@@ -1,3 +1,5 @@
+'use client';
+
 import React, {FC, ReactElement} from 'react';
 import styles from './Examples.module.css';
 import SliderComponent from '@shared/ui/slider/ui/SliderLazy';
@@ -12,6 +14,7 @@ const Examples: FC<ExamplesProps> = ({cards, title}): ReactElement => {
         memoizedCards,
         isViewerOpen,
         selectedImage,
+        viewerImages,
         slidesPerView,
         isMobile,
         handleCardClick,
@@ -40,13 +43,13 @@ const Examples: FC<ExamplesProps> = ({cards, title}): ReactElement => {
                             ))}
                         </SliderComponent>
                     }
-                    {isViewerOpen && selectedImage && (
+                    {isViewerOpen && selectedImage && viewerImages.length > 0 ? (
                         <AsyncPhotoViewer
-                            images={cards.find((card) => card.images.includes(selectedImage))?.images ?? []}
+                            images={viewerImages}
                             currentImage={selectedImage}
                             onClose={closeViewer}
                         />
-                    )}
+                    ) : null}
                 </div>
             </div>
         </section>

@@ -1,21 +1,14 @@
 'use strict'
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './CostInput.module.css';
 import { CostInputProps } from '@shared/ui/calculator-modal/interface/CalculatorModal.props';
+import {useCostInputFieldState} from '@shared/ui/calculator-modal/hooks/useCostInputFieldState';
 
 const CostInput: FC<CostInputProps> = ({
     inputValue,
     handleInputChange
 }) => {
-    const [isEmpty, setIsEmpty] = useState<boolean>(inputValue === '');
-
-    const handleInputBlur = () => {
-        setIsEmpty(inputValue === '');
-    };
-    const handleInputClick = () => {
-        setIsEmpty(false);
-    };
-    const inputValueAsNumber = parseInt(inputValue, 10);
+    const {isEmpty, handleInputBlur, handleInputClick, inputValueAsNumber} = useCostInputFieldState(inputValue);
     return (    
             <div className={styles.input_container}>
                 <label className={styles.visually_hidden} htmlFor="calculator-area-input">

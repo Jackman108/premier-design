@@ -16,7 +16,7 @@
 	justify-content: center;
 	min-height: 140px;
 	padding: 16px;
-	color: var(--color-error, #b71c1c);
+	color: var(--color-danger);
 	font-size: 1rem;
 	box-shadow: var(--shadow-sm);
 	background: var(--color-surface);

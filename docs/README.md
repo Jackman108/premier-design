@@ -1,6 +1,6 @@
 # Документация Premier Design
 
-Материалы **вне кода приложения** (`premier-design/` — Next.js). Правила для агента: `.cursor/rules/agent-architecture-clean-code.mdc`, bootstrap: `agent-context-bootstrap.mdc`.
+Материалы **вне кода приложения** (`premier-design/` — Next.js). Правила для агента: `.cursor/rules/agent-architecture-clean-code.mdc` (темизация, модалки, моки хуков), bootstrap: `agent-context-bootstrap.mdc`. Дополнение по UI/тестам: `docs/mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md`, `07_WEB_TESTING_AND_QUALITY_RU.md`.
 
 ## Как читать этот каталог
 
@@ -28,6 +28,10 @@
 | [audit/DEPLOY_READINESS_2026_04_RU.md](audit/DEPLOY_READINESS_2026_04_RU.md) | Финальный чеклист деплоя и улучшения для продакшена услуг |
 | [audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) | Аудит v3.0–v3.1, DoD, открытый бэклог |
 | [audit/PROJECT_RISK_REGISTER_2026_04_RU.md](audit/PROJECT_RISK_REGISTER_2026_04_RU.md) | Реестр текущих рисков (вероятность/влияние/митигации) |
+| [audit/QUALITY_GATES_SYNC_RU.md](audit/QUALITY_GATES_SYNC_RU.md) | RISK-08: чеклист синхронизации `CHANGELOG` / workflow / гейты |
+| [audit/OPERATIONS_OBSERVABILITY_RU.md](audit/OPERATIONS_OBSERVABILITY_RU.md) | RISK-11: `correlationId`, логи, SLO |
+| [audit/SUPPLY_CHAIN_RU.md](audit/SUPPLY_CHAIN_RU.md) | RISK-09: `yarn audit`, triage, lockfile |
+| [audit/CI_COST_AND_TRENDS_RU.md](audit/CI_COST_AND_TRENDS_RU.md) | RISK-12: `ci-trends`, SLA, разделение job |
 
 ### Архитектура (ADR)
 

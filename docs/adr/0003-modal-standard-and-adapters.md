@@ -28,6 +28,20 @@
 - Снижается вероятность a11y/HMR-регрессий.
 - Ускоряется ревью и сопровождение UI-слоя.
 
+## Пример: новости (контролируемый `UiDialog`)
+- На странице `/about` рендерятся **два** блока `News` (основной и в футере). Оба вызывают `useNews`; синхронизация `location.hash` при монтировании должна быть **только у одного** экземпляра — в `pages/about.tsx` у `Layout` задаётся **`footerNewsHashSyncOnMount={false}`** (в футер уходит `newsHashSyncOnMount={false}` для `News`). Не использовать **`useRouter` из `next/router` в `Footer`**: общий `Layout` рендерится и под `app/documents/*`, где Pages Router не смонтирован и **падает production build**.
+- `TextViewer` на базе `UiDialog`: **`onClose={closeNewsModal}`** и `onOpenChange(false)` должны вызывать **одну** функцию полного выхода из `useNews` — закрытие модалки, сброс `expandedNews`, `resetHash`, скролл к списку (не изолированный `closeModal`, иначе карточка остаётся «развёрнутой» и рассинхрон с Radix). Кнопка «Закрыть» — `Dialog.Close` (`asChild`); тот же сценарий, что overlay/`*Esc*`.
+- `News`: у ссылки заголовка — `onClick` с `stopPropagation`, чтобы навигация по `href` не дублировала обработчик карточки.
+- Порядок: при закрытии `flushSync(() => { closeModal(); setExpandedNews(null); })` — один commit, полный сход с `UiDialog`/`open`. Затем `resetHash` / скролл, затем **`setTimeout(0)`: `focus` на `#news-list`** (не в том же тике, что снятие `hideNonModal` с `main` — иначе предупреждение a11y). `UiDialog`: `onOpenAutoFocus` с `preventDefault` + `setTimeout(0)` фокус на `Dialog.Content` с `tabIndex={-1}` (иначе `FocusScope` вешает `focus` на первую кнопку в ту же фазу, что и `hideOthers`, и виден `aria-hidden` на предке). `onCloseAutoFocus` / `closeFocusTargetId` — `setTimeout(0)`; для новостей проп `closeFocusTargetId` не задан, фокус в `useNews` после закрытия.
+
+## Пример: legacy `PhotoViewer` (нативный `<dialog>`)
+
+- Компонент `features/examples/ui/PhotoViewer/PhotoViewer.tsx` остаётся в слое **legacy `<dialog>`** (ADR, п. 2): открытие через **`showModal()`** в `useEffect` (top layer), закрытие — **`close()`** в cleanup; иначе при только `open`/абсолютных детях ломается геометрия и навигация по кадрам.
+- **Кадр изображения** — контейнер **90vw × 90dvh** (90% ширины и высоты вьюпорта), внутри — `object-fit: contain` и `max-width`/`max-height` на `img`, чтобы крупные фото не обрезались.
+- Закрытие: кнопка подложки (scrim), **Escape** (обработчик на `<dialog>`), кнопка «Close».
+- **a11y (минимум как у headless):** скрытые `h2` + `p` с `useId()`, связь через `aria-labelledby` / `aria-describedby`; подписи поверх затемнения — **`var(--white)`** + лёгкий `text-shadow` (читаемость в тёмной теме, см. правила в `.cursor/rules`).
+- Юнит-тесты: `PhotoViewer.test.tsx` (роль диалога по заголовку «Просмотр примеров работ»); в **`jest.setup.ts`** — полифилл `HTMLDialogElement.prototype.showModal`/`close` для jsdom.
+
 ## Проверка готовности
 - В кодовой базе отсутствуют новые нестандартизованные модальные реализации.
 - Для критичных модалок есть smoke-тесты закрытия по overlay и `Esc`.

@@ -87,17 +87,18 @@
 
 .th, .td {
 	padding: 12px 15px;
-	border: 1px solid var(--gray-light);
+	border: 1px solid var(--color-border);
 	font-size: 16px;
+	color: var(--color-text);
 }
 
 .th {
 	background-color: var(--color-surface-muted);
-	color: var(--gray-dark);
+	color: var(--color-text);
 }
 
 .tr:nth-child(even) {
-	background-color: var(--gray-light);
+	background-color: color-mix(in srgb, var(--color-text) 4%, var(--color-surface));
 }
 
 .tr:hover {

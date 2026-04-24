@@ -1,44 +1,40 @@
 import type {NextPage} from 'next';
-import Layout from '@widgets/layout/ui/layout/Layout';
-import {getStaticProps} from '@lib/getStaticData';
-import {GetDataProps} from '@widgets/interface/interfaceData';
-import {ReactElement} from "react";
-import HeroBanner from "@features/banner/hero/ui/HeroBanner";
-import {Address, Appeal} from '@shared/utils/dynamicImports';
-import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
-import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
-import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
-import {usePageData} from "@shared/hooks/usePageData";
+import type {ReactElement} from 'react';
 
-import contactsStyles from './ContactsPage.module.css';
+import {HeroBannerProps} from '@features/banner/hero/interface/HeroBannerProps';
+import HeroBanner from '@features/banner/hero/ui/HeroBanner';
+import {getStaticProps} from '@lib/getStaticData';
+import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
+import {Address, Appeal} from '@shared/utils/dynamicImports';
+import {GetDataProps} from '@widgets/interface/interfaceData';
+import CustomHead from '@widgets/layout/seo/CustomHead/CustomHead';
+import {useLayoutProps} from '@widgets/layout/hooks/useLayoutProps';
+import Layout from '@widgets/layout/ui/layout/Layout';
+import ContactsMicroUspAside from '@features/contacts/ui/ContactsMicroUspAside/ContactsMicroUspAside';
 
 const Contacts: NextPage<GetDataProps> = ({data}): ReactElement => {
-    const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
-        data.titlesPage, data.button, data.bannersImages,
-        "contacts", "leave_request", "contacts_banner"
-    );
-    const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
+	const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
+		data.titlesPage,
+		data.button,
+		data.bannersImages,
+		'contacts',
+		'leave_request',
+		'contacts_banner',
+	);
+	const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
 
-    return (
-        <>
-            <CustomHead {...titleData} structuredDataRating={data.trustSignals.structuredDataRating}/>
-            <Layout {...useLayoutProps(data)}>
-                <HeroBanner {...bannerProps}/>
-                <aside className={contactsStyles.usp} aria-label='Почему нам доверяют'>
-                    <ul className={contactsStyles.list}>
-                        {data.contactsMicroUsp.map((line) => (
-                            <li key={line} className={contactsStyles.item}>{line}</li>
-                        ))}
-                    </ul>
-                </aside>
-                <Address/>
-                <Appeal {...usePageData(
-                    data.title, data.button, data.bannersImages,
-                    "create-best-place", "leave_request", "appeal_banner"
-                )} />
-            </Layout>
-        </>
-    );
+	return (
+		<>
+			<CustomHead {...titleData} structuredDataRating={data.trustSignals.structuredDataRating} />
+			<Layout {...useLayoutProps(data)}>
+				<HeroBanner {...bannerProps} />
+				<ContactsMicroUspAside uspAside={data.contactsPage.uspAside} />
+				<Address />
+				<Appeal {...selectAppealSectionData(data.title, data.button, data.bannersImages)} />
+			</Layout>
+		</>
+	);
 };
+
 export {getStaticProps};
 export default Contacts;

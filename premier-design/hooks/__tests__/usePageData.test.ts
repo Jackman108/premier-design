@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 import {renderHook} from '@testing-library/react';
-import {usePageData} from '@shared/hooks/usePageData';
+import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
 
 describe('usePageData', () => {
     it('resolves title, button and banner by shortTitle', () => {
@@ -33,5 +33,17 @@ describe('usePageData', () => {
         );
 
         expect(result.current.titleItem.canonical).toBe('');
+    });
+
+    it('selectAppealSectionData uses fixed appeal shortTitles', () => {
+        const titles = [{shortTitle: 'create-best-place', canonical: '/a'}];
+        const buttons = [{shortTitle: 'leave_request'}];
+        const banners = [{shortTitle: 'appeal_banner'}];
+
+        const out = selectAppealSectionData(titles, buttons, banners);
+
+        expect(out.titleItem.shortTitle).toBe('create-best-place');
+        expect(out.buttonItem.shortTitle).toBe('leave_request');
+        expect(out.bannerItem.shortTitle).toBe('appeal_banner');
     });
 });

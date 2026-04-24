@@ -21,7 +21,15 @@ const ExampleCard: FC<ExampleCardComponentProps> = ({card, onClick}): ReactEleme
             onKeyDown={handleKeyDown}
         >
             <div className={styles.card__background}>
-                <NextImage src={card.background} alt={card.address} width={424} height={241} loading='lazy'/>
+                <NextImage
+                    src={card.background}
+                    alt={card.address}
+                    width={424}
+                    height={241}
+                    loading="lazy"
+                    sizes="(max-width: 768px) 90vw, 32vw"
+                    style={{ width: "100%", height: "auto" }}
+                />
             </div>
             <div className={styles.card__content}>
                 <div className={styles.card__address}>{card.address}</div>

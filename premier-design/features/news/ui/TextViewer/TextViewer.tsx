@@ -1,17 +1,20 @@
-import {FC} from "react";
+import { FC } from "react";
+import { Close as RdxDialogClose } from "@radix-ui/react-dialog";
 import styles from "./TextViewer.module.css";
 import Image from "next/image";
-import {formatText} from "../../utils/formatText";
-import {TextViewerProps} from "@features/news/interface/TextViewer.props";
-import {UiDialog} from "@shared/ui/primitives/UiDialog";
+import { formatText } from "../../utils/formatText";
+import { TextViewerProps } from "@features/news/interface/TextViewer.props";
+import { UiDialog } from "@shared/ui/primitives/UiDialog";
 
-
-const TextViewer: FC<TextViewerProps> = ({title, text, showModal, setShowModal, image}) => {
-
+const TextViewer: FC<TextViewerProps> = ({ title, text, showModal, onClose, image }) => {
     return (
         <UiDialog
             open={showModal}
-            onOpenChange={setShowModal}
+            onOpenChange={(open) => {
+                if (!open) {
+                    onClose();
+                }
+            }}
             overlayClassName={styles.modal}
             contentClassName={styles.modal__content}
             title={title}
@@ -28,10 +31,15 @@ const TextViewer: FC<TextViewerProps> = ({title, text, showModal, setShowModal, 
             <div className={styles.content__text}>
                 {formatText(text) || "Документ не найден"}
             </div>
-            <button className={styles.modal__close} onClick={() => setShowModal(false)}
-                    aria-label="Закрыть окно">
-                Закрыть
-            </button>
+            <RdxDialogClose asChild>
+                <button
+                    className={styles.modal__close}
+                    type="button"
+                    aria-label="Закрыть окно"
+                >
+                    Закрыть
+                </button>
+            </RdxDialogClose>
         </UiDialog>
     );
 };

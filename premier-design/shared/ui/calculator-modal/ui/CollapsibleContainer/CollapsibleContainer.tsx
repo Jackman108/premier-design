@@ -1,6 +1,6 @@
 'use client';
 
-import React, {FC, useRef} from 'react';
+import React, {FC} from 'react';
 import styles from './CollapsibleContainer.module.css';
 import {CollapsibleContainerProps} from '@shared/ui/calculator-modal/interface/CalculatorModal.props';
 import {useCollapsibleContainer} from '@shared/ui/calculator-modal/hooks/useCollapsibleContainer';
@@ -11,8 +11,7 @@ const CollapsibleContainer: FC<CollapsibleContainerProps> = ({
                                                                  activeLabel,
                                                                  onItemClick
                                                              }) => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const {isCollapsed, handleToggleCollapse, handleSelectItem} = useCollapsibleContainer(containerRef);
+    const {containerRef, isCollapsed, handleToggleCollapse, handleSelectItem} = useCollapsibleContainer();
 
     return (
         <div className={styles.collapse_container} ref={containerRef}>

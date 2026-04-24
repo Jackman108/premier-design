@@ -1,5 +1,5 @@
 import RelatedServiceDetail from "@features/related-services/ui/RelatedServiceDetail/RelatedServiceDetail";
-import {staticPropsHandler} from "@shared/utils/staticPropsHandler";
+import {staticPropsHandler} from "@lib/staticPropsHandler";
 import {staticPathsHandler} from "@shared/utils/staticPathsHandler";
 
 export const getStaticPaths = staticPathsHandler(true);

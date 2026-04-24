@@ -14,7 +14,7 @@ describe('PhotoViewer', () => {
 		const onClose = jest.fn();
 		render(<PhotoViewer images={['/a.png', '/b.png', '/c.png']} currentImage="/a.png" onClose={onClose} />);
 
-		const dialog = screen.getByRole('dialog', {name: 'Просмотр изображений'});
+		const dialog = screen.getByRole('dialog', {name: 'Просмотр примеров работ'});
 		expect(screen.getByText('1 / 3')).toBeInTheDocument();
 
 		fireEvent.keyDown(dialog, {key: 'ArrowRight'});

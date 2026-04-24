@@ -9,9 +9,15 @@ import {LayoutProps} from "../../interface/Layout.props";
 import {useBackgroundLoader} from "@shared/hooks/useBackgroundLoader";
 
 const Layout: FC<LayoutProps> = ({
-                                     children, headerProps, footerProps, additionalData
+                                     children,
+                                     headerProps,
+                                     footerProps,
+                                     additionalData,
+                                     footerNewsHashSyncOnMount,
                                  }: LayoutProps): ReactElement => {
     useBackgroundLoader();
+    const newsHashSync =
+        footerNewsHashSyncOnMount ?? footerProps.newsHashSyncOnMount ?? true;
     return (
         <>
             <Header {...headerProps}/>
@@ -19,7 +25,7 @@ const Layout: FC<LayoutProps> = ({
                 {children}
                 <ButtonsPanel additionalData={additionalData}/>
             </main>
-            <Footer {...footerProps}/>
+            <Footer {...footerProps} newsHashSyncOnMount={newsHashSync}/>
         </>
     );
 }

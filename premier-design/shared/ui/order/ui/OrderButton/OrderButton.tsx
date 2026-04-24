@@ -1,9 +1,9 @@
-import React, {FC, useCallback} from 'react';
+import React, {FC} from 'react';
 import dynamic from 'next/dynamic';
 
-import {trackMarketingEvent} from '@shared/analytics/trackMarketingEvent';
 import PanelButton from '@shared/ui/panel-button/PanelButton';
 import {useFeedback} from '@shared/ui/order/hooks/useFeedback';
+import {useOrderButtonOpenHandler} from '@shared/ui/order/hooks/useOrderButtonOpenHandler';
 import {OrderButtonProps} from '@shared/ui/order/interface/OrderButton.props';
 
 import styles from './OrderButton.module.css';
@@ -14,24 +14,15 @@ const FeedbackModal = dynamic(() => import('@shared/ui/order/ui/FeedbackModal/Fe
 });
 
 const OrderButton: FC<OrderButtonProps> = ({buttonData, buttonStyle, panelData, prefilledMessage, trackingContext}: OrderButtonProps) => {
-    const {isOpen, openModal, openModalWithMessage, closeModal, handleSubmit, initialMessage, error, isSuccess} = useFeedback();
+    const {isOpen, openModalWithMessage, closeModal, handleSubmit, initialMessage, error, isSuccess} = useFeedback();
     const buttonClass = styles[buttonStyle];
 
-    const handleOpenModal = useCallback(() => {
-        if (trackingContext) {
-            trackMarketingEvent('cta_open_order_modal', {
-                context: trackingContext,
-                buttonStyle,
-            });
-        }
-
-        if (openModalWithMessage) {
-            openModalWithMessage(prefilledMessage);
-            return;
-        }
-
-        openModal();
-    }, [buttonStyle, openModal, openModalWithMessage, prefilledMessage, trackingContext]);
+    const handleOpenModal = useOrderButtonOpenHandler(
+        buttonStyle,
+        prefilledMessage,
+        trackingContext,
+        openModalWithMessage,
+    );
 
     return (
         <>

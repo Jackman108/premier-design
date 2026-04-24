@@ -5,9 +5,10 @@ const applyBackgroundByTheme = () => {
 		document.documentElement.classList.contains('dark')
 		|| document.documentElement.getAttribute('data-theme') === 'dark';
 
+	/* Слабее оверлей, чтобы рисунок tools.svg оставался читаемым. */
 	document.body.style.backgroundImage = isDark
-		? "linear-gradient(rgb(5 5 5 / 0.9), rgb(5 5 5 / 0.9)), url('/tools.svg')"
-		: "linear-gradient(rgb(250 245 230 / 0.82), rgb(250 245 230 / 0.82)), url('/tools.svg')";
+		? "linear-gradient(rgb(5 5 5 / 0.64), rgb(5 5 5 / 0.64)), url('/tools.svg')"
+		: "linear-gradient(rgb(250 245 230 / 0.38), rgb(250 245 230 / 0.38)), url('/tools.svg')";
 	document.body.style.backgroundRepeat = 'repeat';
 	document.body.style.backgroundSize = '18%';
 	document.body.style.backgroundAttachment = 'fixed';

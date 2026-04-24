@@ -42,7 +42,8 @@
 	text-align: center;
 	background: color-mix(in srgb, var(--color-surface) 26%, rgb(0 0 0 / 0.72));
 	opacity: 1;
-	color: var(--color-surface);
+	/* light text on dimmed image; --color-surface в тёмной теме тёмный — не подходит */
+	color: var(--white);
 	z-index: var(--z-content);
 	text-shadow: 0 2px 8px rgb(0 0 0 / 0.7);
 }
@@ -56,7 +57,7 @@
 .details,
 .reasons {
 	list-style-type: none;
-	color: var(--color-surface);
+	color: var(--white);
 }
 
 @media (max-width: 1024px) {

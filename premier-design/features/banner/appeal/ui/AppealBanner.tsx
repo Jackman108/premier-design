@@ -22,6 +22,7 @@ const AppealBanner: FC<AppealBannerProps> = ({titleItem, buttonItem, bannerItem}
                 placeholder="empty"
                 className={styles.appeal__background}
             />
+            <div className={styles.appeal__scrim} aria-hidden />
             <div className={styles.appeal__container}>
                 <Title
                     titleStyle='title-black'

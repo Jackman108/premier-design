@@ -1,32 +1,27 @@
 import Logo from '@shared/ui/logo/Logo';
 import Phone from '@shared/ui/phone/Phone';
 import SocialIcons from '@shared/ui/social-icons/SocialIcons';
-import useThemeToggle from '../../hooks/useThemeToggle';
-import useMobileMenu from '../../hooks/useMobileMenu';
 import Menu from '@shared/ui/menu/ui/Menu';
 import MenuButton from '../menu-button/MenuButton';
 import ThemeButton from '../theme-button/ThemeButton';
 import styles from './Header.module.css';
-import {CSSProperties, FC, ReactElement, useRef} from 'react';
+import {FC, ReactElement} from 'react';
 import WorkHours from '@shared/ui/work-hours/WorkHours';
 import {HeaderProps} from '../../interface/Header.props';
-import {useStickyHeader} from '../../hooks/useStickyHeader';
 import ShareBanner from '@features/banner/share/ui/ShareBanner';
-import {useShareBanner} from '@features/banner/share/hooks/useShareBanner';
-import {useShareBannerHeight} from '@shared/hooks/useShareBannerHeight';
-import {useHeaderPlaceholderHeight} from '../../hooks/useHeaderPlaceholderHeight';
+import {useHeaderLayout} from '../../hooks/useHeaderLayout';
 
 const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
-    const headerRef = useRef<HTMLElement>(null);
-    const {currentTheme, toggleTheme} = useThemeToggle();
-    const {isMobileMenuOpen, toggleMobileMenu} = useMobileMenu(false);
-    const {isSticky} = useStickyHeader();
-    const {isClosed} = useShareBanner();
-    const fallbackPlaceholderPx = isClosed ? 102 : 162;
-    const measuredHeaderPx = useHeaderPlaceholderHeight(headerRef, isSticky);
-    const placeholderHeightPx = isSticky && measuredHeaderPx != null ? measuredHeaderPx : fallbackPlaceholderPx;
-    const hasShareBanner = !isClosed && !isSticky;
-    useShareBannerHeight(hasShareBanner);
+    const {
+        headerRef,
+        currentTheme,
+        toggleTheme,
+        isMobileMenuOpen,
+        toggleMobileMenu,
+        isSticky,
+        hasShareBanner,
+        placeholderStyle,
+    } = useHeaderLayout({menu, shares});
 
     return (
         <>
@@ -70,7 +65,7 @@ const Header: FC<HeaderProps> = ({menu, shares}): ReactElement => {
             {isSticky && (
                 <div
                     className={styles.stickyPlaceholder}
-                    style={{'--header-placeholder-height': `${placeholderHeightPx}px`} as CSSProperties}
+                    style={placeholderStyle}
                 />
             )}
         </>

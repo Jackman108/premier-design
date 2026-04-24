@@ -22,6 +22,7 @@ const HomePageChrome: FC = () => {
 			/>
 			<nav
 				aria-label='По разделам главной страницы'
+				/* .sectionNav.visible: opacity 1 (десктоп) — isHeroOutOfView применялся только к scrollProgress, панель оставалась прозрачной */
 				className={`${styles.sectionNav} ${isHeroOutOfView ? styles.visible : ''}`}
 			>
 				<button

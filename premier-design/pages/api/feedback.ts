@@ -25,7 +25,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         case 'POST':
             break;
         default:
-            res.status(405).json({message: 'Method not allowed.'});
+            res.status(405).json(createApiErrorPayload(correlationId, 'Method not allowed.'));
             finish(405, {status: 'error'});
             return;
     }

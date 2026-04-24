@@ -1,12 +1,12 @@
 import {TitleProps} from "@shared/ui/title/interface/Title.props";
 import {MenuItem} from "@shared/ui/menu/interface/Menu.props";
-import {Paper} from "@features/papers/interface/Paper.props";
-import {NewsProps} from "@features/news/interface/News.props";
 import {ButtonProps} from "@shared/interface/Button.props";
-import {ParsedUrlQuery} from "querystring";
-import {CostingCardProps} from "@features/coasting/interface/Costing.props";
+import {CostingCardProps} from "@shared/interface/CostingCard.props";
 import {PanelProps} from "@shared/interface/Panel.props";
-import {ShareBannerDataProps} from "@features/banner/share/interface/ShareBanner.props";
+import {ParsedUrlQuery} from "querystring";
+import type {NewsProps} from "@shared/interface/NewsItem.props";
+import type {Paper} from "@shared/interface/PaperItem.props";
+import type {ShareBannerDataProps} from "@shared/interface/ShareBannerData.props";
 import type {StructuredDataAggregateRating} from "@widgets/layout/seo/CustomHead/CustomHead.props";
 
 export interface RelatedServiceCardProps {

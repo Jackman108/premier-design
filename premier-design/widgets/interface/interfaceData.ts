@@ -41,6 +41,34 @@ export type HomeVideoSpotlightConfig = {
     youtubeId: string;
 };
 
+/** Ключи совпадают с логикой секций на `/` (см. `pages/index.tsx` + `HomePageSection`). */
+export type HomePageSectionAriaKey =
+    | 'features'
+    | 'offer'
+    | 'services'
+    | 'approach'
+    | 'steps'
+    | 'examples'
+    | 'trust'
+    | 'costing'
+    | 'related'
+    | 'faq'
+    | 'reviews'
+    | 'appeal';
+
+export type HomePageData = {
+    sectionAriaLabels: Record<HomePageSectionAriaKey, string>;
+};
+
+export type ContactsPageUspAsideData = {
+    ariaLabel: string;
+    items: string[];
+};
+
+export type ContactsPageData = {
+    uspAside: ContactsPageUspAsideData;
+};
+
 export interface DataProps {
     titlesPage: TitlePage[]
     menu: MenuItem[];
@@ -71,9 +99,10 @@ export interface DataProps {
     trustSignals: TrustSignalsConfig;
     homeHeroHighlights: string[];
     homeVideoSpotlight: HomeVideoSpotlightConfig;
+    homePage: HomePageData;
     faqContent: FaqContentByPage;
     companyAbout: CompanyAboutContent;
-    contactsMicroUsp: string[];
+    contactsPage: ContactsPageData;
 }
 
 export interface GetDataProps {

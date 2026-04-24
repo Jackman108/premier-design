@@ -28,6 +28,7 @@ const mockedUseScrollToElement = jest.mocked(useScrollToElement);
 const mockedUseVisibilityObserver = jest.mocked(useVisibilityObserver);
 
 describe('useNews', () => {
+	const openModal = jest.fn();
 	const toggleModal = jest.fn();
 	const closeModal = jest.fn();
 	const updateHash = jest.fn();
@@ -36,9 +37,12 @@ describe('useNews', () => {
 
 	beforeEach(() => {
 		jest.clearAllMocks();
-		mockedUseModalState.mockReturnValue({isOpen: false, toggleModal, closeModal});
+		mockedUseModalState.mockReturnValue({isOpen: false, openModal, toggleModal, closeModal});
 		mockedUseUrlHash.mockReturnValue({updateHash, resetHash});
-		mockedUseScrollToElement.mockReturnValue({scrollToElement});
+		mockedUseScrollToElement.mockReturnValue({
+			scrollToElement,
+			scrollToRef: {current: null},
+		});
 		mockedUseVisibilityObserver.mockImplementation(() => undefined);
 		window.location.hash = '';
 	});
@@ -50,7 +54,7 @@ describe('useNews', () => {
 		act(() => {
 			result.current.handleNewsClick(1);
 		});
-		expect(toggleModal).toHaveBeenCalledTimes(1);
+		expect(openModal).toHaveBeenCalledTimes(1);
 		expect(updateHash).toHaveBeenCalledWith('news', 1);
 		expect(scrollToElement).toHaveBeenCalledWith('news-1');
 		expect(result.current.expandedNews).toBe(1);
@@ -70,8 +74,17 @@ describe('useNews', () => {
 		const news = [{title: 'A'}] as never;
 		renderHook(() => useNews(news));
 
-		expect(toggleModal).toHaveBeenCalledTimes(1);
+		expect(openModal).toHaveBeenCalledTimes(1);
 		expect(updateHash).toHaveBeenCalledWith('news', 0);
 		expect(scrollToElement).toHaveBeenCalledWith('news-0');
+	});
+
+	it('skips hash sync when syncHashOnMount is false', () => {
+		window.location.hash = '#news-0';
+		const news = [{title: 'A'}] as never;
+		renderHook(() => useNews(news, {syncHashOnMount: false}));
+
+		expect(openModal).not.toHaveBeenCalled();
+		expect(updateHash).not.toHaveBeenCalled();
 	});
 });

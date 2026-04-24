@@ -32,6 +32,9 @@ const mockedUseFeedback = jest.mocked(useFeedback);
 
 describe('OrderButton', () => {
 	const openModal = jest.fn();
+	const openModalWithMessage = jest.fn(() => {
+		openModal();
+	});
 	const closeModal = jest.fn();
 	const handleSubmit = jest.fn();
 
@@ -40,9 +43,12 @@ describe('OrderButton', () => {
 		mockedUseFeedback.mockReturnValue({
 			isOpen: false,
 			openModal,
+			openModalWithMessage,
 			closeModal,
 			handleSubmit,
+			initialMessage: '',
 			error: '',
+			isSuccess: false,
 		});
 	});
 
@@ -77,9 +83,12 @@ describe('OrderButton', () => {
 		mockedUseFeedback.mockReturnValue({
 			isOpen: true,
 			openModal,
+			openModalWithMessage,
 			closeModal,
 			handleSubmit,
+			initialMessage: '',
 			error: 'Ошибка отправки',
+			isSuccess: false,
 		});
 		render(<OrderButton buttonStyle="button-white" buttonData="Оставить заявку" />);
 

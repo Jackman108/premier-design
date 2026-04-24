@@ -8,8 +8,9 @@ import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 import {GetDataProps} from "@widgets/interface/interfaceData";
 import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
-import {usePageData} from "@shared/hooks/usePageData";
-import {getTitleData} from "@shared/utils/findItemByTitle";
+import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
+import {getTitleData} from '@shared/utils/findItemByTitle';
+import {mapFaqEntriesToStructuredData} from '@shared/utils/faqStructuredData';
 
 const Design: NextPage<GetDataProps> = ({data}): ReactElement => {
     const {titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData} = usePageData(
@@ -19,10 +20,7 @@ const Design: NextPage<GetDataProps> = ({data}): ReactElement => {
     const bannerProps: HeroBannerProps = {titleData, buttonData, bannerData};
 
     const titles = getTitleData(data.title, "our-works", "price-calculation", "faq-section");
-    const faqForHead = data.faqContent.design.map((item) => ({
-        question: item.question,
-        answer: item.answer,
-    }));
+    const faqForHead = mapFaqEntriesToStructuredData(data.faqContent.design);
 
     return (
         <>
@@ -53,10 +51,7 @@ const Design: NextPage<GetDataProps> = ({data}): ReactElement => {
                     title={titles['faq-section']}
                     items={data.faqContent.design}
                 />
-                <Appeal {...usePageData(
-                    data.title, data.button, data.bannersImages,
-                    "create-best-place", "leave_request", "appeal_banner"
-                )} />
+                <Appeal {...selectAppealSectionData(data.title, data.button, data.bannersImages)} />
             </Layout>
         </>
     );

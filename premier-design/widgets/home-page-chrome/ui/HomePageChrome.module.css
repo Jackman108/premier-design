@@ -106,9 +106,11 @@
 		right: clamp(0.5rem, 1.2vw, 1rem);
 		top: 50%;
 		transform: translateY(-50%);
-		z-index: var(--z-raised);
-		max-height: min(78vh, 32rem);
-		overflow-y: auto;
+		/* Выше типичного z контента, чтобы панель не оказалась под section[data-reveal] */
+		z-index: var(--z-header);
+		/* Кнопки сегментов сразу видны; без внутренней прокрутки */
+		max-height: min(95vh, 40rem);
+		overflow-y: visible;
 		padding: 0.4rem;
 		border-radius: var(--radius-md);
 		background: color-mix(in srgb, var(--color-surface) 58%, transparent);

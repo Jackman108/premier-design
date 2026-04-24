@@ -1,5 +1,1 @@
-export interface Paper {
-    id: number;
-    title: string;
-    shortTitle: string;
-}
+export type {Paper} from "@shared/interface/PaperItem.props";

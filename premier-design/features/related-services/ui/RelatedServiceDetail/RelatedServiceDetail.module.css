@@ -9,6 +9,12 @@
 	background-color: var(--color-surface);
 }
 
+@media (min-width: 769px) {
+	.service_detail {
+		padding-top: max(1.25rem, clamp(5.75rem, 9vh, 7.5rem));
+	}
+}
+
 .left {
 	flex: 2;
 	min-width: 300px;

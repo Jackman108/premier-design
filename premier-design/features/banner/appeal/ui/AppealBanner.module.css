@@ -1,5 +1,6 @@
 .appeal {
 	position: relative;
+	isolation: isolate;
 	height: 50vh;
 	width: 100%;
 	padding: 2% 0;
@@ -13,12 +14,28 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: var(--z-content);
+	z-index: 0;
 	background-repeat: no-repeat;
 	object-fit: cover;
 }
 
+/* Слой затемнения: светлый текст title-black (тёмная тема) остаётся читаемым на светлом фото. */
+.appeal__scrim {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	pointer-events: none;
+	background: linear-gradient(
+		180deg,
+		rgb(0 0 0 / 0.5) 0%,
+		rgb(0 0 0 / 0.38) 40%,
+		rgb(0 0 0 / 0.45) 100%
+	);
+}
+
 .appeal__container {
+	position: relative;
+	z-index: 2;
 	display: grid;
 	justify-items: center;
 	justify-content: center;

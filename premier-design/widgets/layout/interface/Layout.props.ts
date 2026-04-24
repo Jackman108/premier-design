@@ -29,6 +29,8 @@ export interface LayoutProps {
         buttonData: ButtonProps[];
         panelData: PanelProps[];
     };
+    /** Только для `/about`: передать `false`, иначе `useRouter` в футере ломает `app/*` и не нужен. */
+    footerNewsHashSyncOnMount?: boolean;
 }
 
 

@@ -1,17 +1,13 @@
-import {CSSProperties, FC, ReactElement, useRef} from 'react';
+import {CSSProperties, FC, ReactElement} from 'react';
 import Title from '@shared/ui/title/ui/Title';
 import styles from './StepsWork.module.css';
 import {StepsWorkProps} from "@features/steps-work/interface/StepsWork.props";
-import useIntersectionObserver from "@features/steps-work/hooks/useIntersectionObserver";
 import {TitleProps} from "@shared/ui/title/interface/Title.props";
 import Image from "next/image";
-import {useStepAnimation} from "@features/steps-work/hooks/useStepAnimation";
+import {useStepsWorkListAnimation} from '@features/steps-work/hooks/useStepsWorkListAnimation';
 
 const StepsWork: FC<{ stepsWork: StepsWorkProps[]; title: TitleProps }> = ({stepsWork, title}): ReactElement => {
-    const containerRef = useRef<HTMLDivElement>(null);
-    const isVisible = useIntersectionObserver(containerRef, 0.1);
-
-    const currentStep = useStepAnimation(stepsWork.length, 800, isVisible);
+    const {containerRef, currentStep} = useStepsWorkListAnimation(stepsWork.length);
 
 
     const renderStep = (step: StepsWorkProps, isActive: boolean, delay: number) => (

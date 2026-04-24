@@ -1,6 +1,6 @@
 import ServiceDetail from "@features/services/ui/ServiceDetail/ServiceDetail";
 import {staticPathsHandler} from "@shared/utils/staticPathsHandler";
-import {staticPropsHandler} from "@shared/utils/staticPropsHandler";
+import {staticPropsHandler} from "@lib/staticPropsHandler";
 
 
 export const getStaticPaths = staticPathsHandler();

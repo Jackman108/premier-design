@@ -5,7 +5,7 @@ import HeroBanner from '@features/banner/hero/ui/HeroBanner';
 import {HeroBannerProps} from '@features/banner/hero/interface/HeroBannerProps';
 import {getStaticProps} from '@lib/getStaticData';
 import {Appeal, Costing, Features, OfferBanner} from '@shared/utils/dynamicImports';
-import {usePageData} from '@shared/hooks/usePageData';
+import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
 import {getTitleData} from '@shared/utils/findItemByTitle';
 import {GetDataProps} from '@widgets/interface/interfaceData';
 import CustomHead from '@widgets/layout/seo/CustomHead/CustomHead';
@@ -32,16 +32,7 @@ const Calculator: NextPage<GetDataProps> = ({data}): ReactElement => {
                 <Features features={data.features}/>
                 <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.calculatorType}/>
                 <Costing cards={data.costingCard} title={titles['price-calculation']}/>
-                <Appeal
-                    {...usePageData(
-                        data.title,
-                        data.button,
-                        data.bannersImages,
-                        'create-best-place',
-                        'leave_request',
-                        'appeal_banner',
-                    )}
-                />
+                <Appeal {...selectAppealSectionData(data.title, data.button, data.bannersImages)} />
             </Layout>
         </>
     );

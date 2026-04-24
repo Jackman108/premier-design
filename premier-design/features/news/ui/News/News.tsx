@@ -8,9 +8,9 @@ import {useNews} from "@features/news/hooks/useNews";
 import {getNewsStyles} from "../../utils/getNewsStyles";
 import Title from "@shared/ui/title/ui/Title";
 
-const News: FC<NewsComponentProps> = ({title, news, newsStyle}): ReactElement => {
+const News: FC<NewsComponentProps> = ({title, news, newsStyle, syncHashOnMount = true}): ReactElement => {
     const stylesToUse = getNewsStyles(newsStyle);
-    const {expandedNews, newsRef, handleNewsClick, showModal, closeModal} = useNews(news);
+    const {expandedNews, newsRef, handleNewsClick, showModal, closeNewsModal} = useNews(news, {syncHashOnMount});
 
     return (
         <section className={stylesToUse.news}>
@@ -64,7 +64,7 @@ const News: FC<NewsComponentProps> = ({title, news, newsStyle}): ReactElement =>
                                             text={item.text}
                                             image={item.image}
                                             showModal={showModal}
-                                            setShowModal={closeModal}
+                                            onClose={closeNewsModal}
                                         />
                                     ) : (
                                         item.text

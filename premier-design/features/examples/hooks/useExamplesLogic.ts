@@ -5,6 +5,7 @@ import useResizeEffects from '@shared/hooks/useResizeEffects';
 
 export const useExamplesLogic = (cards: ExampleCardProps[]) => {
     const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    const [viewerImages, setViewerImages] = useState<string[]>([]);
     const {isOpen: isViewerOpen, openModal, closeModal} = useModalState(false);
     const {isMobile} = useResizeEffects();
     const slidesPerView = 3;
@@ -12,12 +13,14 @@ export const useExamplesLogic = (cards: ExampleCardProps[]) => {
     const memoizedCards = useMemo(() => cards || [], [cards]);
 
     const openViewer = useCallback((images: string[]) => {
-        setSelectedImage(images[0]);
+        setSelectedImage(images[0] ?? null);
+        setViewerImages(images);
         openModal();
     }, [openModal]);
 
     const closeViewer = useCallback(() => {
         setSelectedImage(null);
+        setViewerImages([]);
         closeModal();
     }, [closeModal]);
 
@@ -34,6 +37,7 @@ export const useExamplesLogic = (cards: ExampleCardProps[]) => {
         memoizedCards,
         isViewerOpen,
         selectedImage,
+        viewerImages,
         slidesPerView,
         isMobile,
         handleCardClick,

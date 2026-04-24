@@ -19,6 +19,7 @@ const mockedUseResizeEffects = jest.mocked(useResizeEffects);
 describe('useExamplesLogic', () => {
 	const openModal = jest.fn();
 	const closeModal = jest.fn();
+	const toggleModal = jest.fn();
 
 	beforeEach(() => {
 		jest.clearAllMocks();
@@ -26,6 +27,7 @@ describe('useExamplesLogic', () => {
 			isOpen: false,
 			openModal,
 			closeModal,
+			toggleModal,
 		});
 		mockedUseResizeEffects.mockReturnValue({
 			isMobileMenuOpen: false,
@@ -50,11 +52,13 @@ describe('useExamplesLogic', () => {
 		});
 		expect(openModal).toHaveBeenCalledTimes(1);
 		expect(result.current.selectedImage).toBe('/a.png');
+		expect(result.current.viewerImages).toEqual(['/a.png', '/b.png']);
 
 		act(() => {
 			result.current.closeViewer();
 		});
 		expect(closeModal).toHaveBeenCalledTimes(1);
 		expect(result.current.selectedImage).toBeNull();
+		expect(result.current.viewerImages).toEqual([]);
 	});
 });

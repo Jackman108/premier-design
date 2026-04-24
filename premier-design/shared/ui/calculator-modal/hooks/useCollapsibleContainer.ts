@@ -1,6 +1,7 @@
-import {MouseEvent as ReactMouseEvent, RefObject, useEffect, useState} from 'react';
+import {MouseEvent as ReactMouseEvent, useEffect, useRef, useState} from 'react';
 
-export const useCollapsibleContainer = (containerRef: RefObject<HTMLDivElement | null>) => {
+export const useCollapsibleContainer = () => {
+    const containerRef = useRef<HTMLDivElement>(null);
     const [isCollapsed, setIsCollapsed] = useState(true);
 
     useEffect(() => {
@@ -32,6 +33,7 @@ export const useCollapsibleContainer = (containerRef: RefObject<HTMLDivElement |
     };
 
     return {
+        containerRef,
         isCollapsed,
         handleToggleCollapse,
         handleSelectItem,

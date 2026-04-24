@@ -17,7 +17,7 @@ alwaysApply: true
 
 ## 1. Чистая архитектура и границы слоёв
 
-- **Правило зависимостей:** зависимости направлены **внутрь** — от инфраструктуры и UI к прикладному ядру; `features/`, `services/`, `validates/` не импортируют `components/`, `Layout/`, `pages/` (контролируется ESLint).
+- **Правило зависимостей:** зависимости направлены **внутрь** — от инфраструктуры и UI к прикладному ядру; `features/`, `services/`, `validates/` не импортируют `components/`, `Layout/`, `pages/` (контролируется ESLint). Слой **`shared/`** не импортирует `@features/*` (контролируется `check:architecture`); сценарии вроде SSG `getStaticProps` с вызовами `findService` / finders — в **`lib/`** (`@lib/*`) или в `pages/`, не в `shared/utils`.
 - **UI — тонкий слой:** только отображение, разметка, события; без бизнес-правил и прямых вызовов внешних API (кроме явно выделенных клиентских адаптеров).
 - **Use-case и домен:** сценарии вроде `features/*/useCases/*` оркестрируют правила и портятся на абстракции (функции отправки почты/телеграма и т.д.), а не на конкретный HTTP-транспорт страницы.
 - **Инфраструктура** (`pages/api`, nodemailer, fs, БД) — за границей use-case; в API-роутах — валидация входа, коды HTTP, лимиты, без дублирования бизнес-логики.
@@ -54,6 +54,10 @@ alwaysApply: true
 - **CSS-стратегия:** не использовать Tailwind в новых изменениях; utility/recipe-подход реализуется через Panda CSS поверх проектных токенов.
 - Внешние UI-библиотеки (HeroUI/NextUI и т.д.) — **только** после отдельного ADR и оценки бандла; не подключать импульсивно.
 - **a11y:** семантика, подписи к полям, фокус-стили; для интерактива — клавиатура и `aria-*` где уместно.
+- **Светлая и тёмная тема:** легаси-палитра (`--gray-light`, `--gray-dark` и т.п. из `:root`) **не** меняется при переключении темы; для фона/текста/границ в таблицах и карточках — **семантические** токены (`--color-text`, `--color-border`, `--color-surface`, `color-mix` с ними), иначе возможны невидимые комбинации (например «светлый текст на светлой зебре»). Текст на **затемнённом фото/оверлее** — контрастный с фоном (часто `var(--white)`), не `var(--color-surface)`: в тёмной теме surface остаётся тёмным.
+- **Паттерн `body` + SVG:** `shared/hooks/useBackgroundLoader.ts` задаёт градиент поверх `tools.svg`; не завышать непрозрачность оверлея — паттерн должен оставаться читаемым.
+- **Контролируемые модалки** (`UiDialog` / Radix): `onOpenChange(false)` — `flushSync` с обновлением `open`, затем **`setTimeout(0, focus)`** на якорь вне портала: `hideOthers` (Radix) снимает `aria-hidden` с `main` при размонтировании **после** текущей задачи; иначе фокус на `#news-list` (внутри `main`) при «висящем» `aria-hidden` на `main` — предупреждение в консоли. См. `TextViewer` / ADR 0003. `closeNewsModal` — `setExpandedNews` после macrotask. Вложенный `Link` — `stopPropagation` при необходимости.
+- **Legacy `<dialog>` (галерея):** `features/examples/ui/PhotoViewer` — `showModal()`/`close()`, явный размер вьюпорта у корня, контейнер кадра **90vw×90dvh** + `contain`, подписи на scrim через `var(--white)`, заголовок/описание для SR (`aria-labelledby`/`aria-describedby`); детали в ADR 0003 и `docs/mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md`.
 
 ## 7. Безопасность (OWASP-lite для веб-приложения)
 
@@ -74,11 +78,12 @@ alwaysApply: true
 - Критические сценарии (платёжные/контактные формы, API) — тест или явное обоснование в PR.
 - Тесты API для Next — вне `pages/api/__tests__`, чтобы не создавать ложные роуты.
 - Подмена `process.env` в Jest: **не** переназначай `process.env` целиком без необходимости; TypeScript в `@types/node` может пометить `process.env.NODE_ENV` как `read-only` — присваивай через `(process.env as Record<string, string | undefined>)` или общий `assignTestEnv` (см. `features/feedback/useCases/__tests__/submitFeedback.test.ts`); в `finally` — восстанавливай или `delete` для опциональных ключей.
+- Мок **хука-обёртки** (`jest.mock` + `mockReturnValue`) должен возвращать **полный** публичный контракт хука, иначе тесты и типы разъедутся с реализацией. Пример: `useScrollToElement` — и `scrollToElement`, и `scrollToRef` (см. `features/news/hooks/__tests__/useNews.test.ts`).
 
 ## 10. Документация и сопровождение
 
 - Нетривиальные решения — короткий комментарий **почему**, а не **что** (код уже говорит что).
-- Поведение, команды, env, Docker — синхронизация с `README.md` / `CHANGELOG.md` / ADR при изменении.
+- Поведение, команды, env, Docker — синхронизация с `README.md` / `CHANGELOG.md` / ADR при изменении; смена CI-гейтов / `package.json` scripts — `docs/audit/QUALITY_GATES_SYNC_RU.md` (RISK-08).
 - Имена сущностей — самодокументируемые, без венгерской нотации и аббревиатур домена без расшифровки.
 
 ## 11. Структура файлов, представление и нейминг

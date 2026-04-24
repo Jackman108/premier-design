@@ -2,7 +2,7 @@ import {useCallback, useState} from 'react';
 
 import {trackMarketingEvent} from '@shared/analytics/trackMarketingEvent';
 import {useModalState} from '@shared/hooks/useModalState';
-import {postFeedbackToApi} from '@shared/lib/postFeedbackClient';
+import {PostFeedbackError, postFeedbackToApi} from '@shared/lib/postFeedbackClient';
 import {FeedbackItem} from '@shared/ui/order/interface/FeedbackModal.props';
 
 export const useFeedback = () => {
@@ -41,6 +41,18 @@ export const useFeedback = () => {
                 closeModal();
                 setInitialMessage('');
             } catch (err: unknown) {
+                if (err instanceof PostFeedbackError) {
+                    const ref = err.correlationId
+                        ? ` (код обращения: ${err.correlationId})`
+                        : '';
+                    setError(`Произошла ошибка при отправке формы: ${err.message}${ref}`);
+                    trackMarketingEvent('feedback_form_submit_error', {
+                        reason: err.message,
+                        status: err.statusCode,
+                        correlationId: err.correlationId,
+                    });
+                    return;
+                }
                 const message = err instanceof Error ? err.message : 'Неизвестная ошибка';
                 setError(`Произошла ошибка при отправке формы: ${message}`);
                 trackMarketingEvent('feedback_form_submit_error', {reason: message});

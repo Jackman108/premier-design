@@ -25,6 +25,15 @@ export function useHomePageChrome(): {activeId: string | null; progress: number;
 		const update = () => {
 			setProgress(getScrollProgress());
 			setActiveId(computeActiveHomeSectionId(HOME_SECTION_NAV_IDS, window.scrollY));
+			/* Без getBoundingClientRect high hero + threshold 0.15 в IO могут держать «пересечение» и не давать
+			 * .visible (opacity) боковой панели — считаем «после героя», когда низ баннера ушёл выше вьюпорта. */
+			const hero = document.getElementById('home-hero');
+			if (hero) {
+				const {bottom} = hero.getBoundingClientRect();
+				setIsHeroOutOfView(bottom < 0);
+			} else {
+				setIsHeroOutOfView(true);
+			}
 		};
 
 		update();
@@ -34,27 +43,6 @@ export function useHomePageChrome(): {activeId: string | null; progress: number;
 			window.removeEventListener('scroll', update);
 			window.removeEventListener('resize', update);
 		};
-	}, []);
-
-	useEffect(() => {
-		const hero = document.getElementById('home-hero');
-		if (!hero) {
-			return;
-		}
-
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				// Хром появляется, когда hero перестаёт быть заметен пользователю.
-				setIsHeroOutOfView(!entry.isIntersecting);
-			},
-			{
-				root: null,
-				threshold: 0.15,
-			},
-		);
-
-		observer.observe(hero);
-		return () => observer.disconnect();
 	}, []);
 
 	return {progress, activeId, isHeroOutOfView};

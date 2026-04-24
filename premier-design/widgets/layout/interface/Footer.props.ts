@@ -6,4 +6,6 @@ export interface FooterProps {
     papers: Paper[];
     news: NewsProps[];
     menu: MenuItem[];
+    /** `false` на странице `/about`: не дублировать открытие новости по `#news-N` с основным блоком. */
+    newsHashSyncOnMount?: boolean;
 }

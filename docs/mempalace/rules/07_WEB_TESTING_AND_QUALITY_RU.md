@@ -28,6 +28,15 @@
 - Новая критичная функциональность имеет тест или явное обоснование в PR.
 - Время прогона CI вменяемо: unit быстрые, e2e — параллельно и кешируемо.
 
+## Моки хуков с полным контрактом
+
+- Если тест `jest.mock('@shared/hooks/…')` подменяет хук целиком через `mockReturnValue`, набор полей **должен совпадать** с публичным return реального хука, иначе падает типизация в TS и/или сценарий в рантайме. Пример: `useScrollToElement` возвращает `{ scrollToElement, scrollToRef }` — в мок передавать **оба** (реф — `createRef<HTMLDivElement | null>()`), см. `premier-design/features/news/hooks/__tests__/useNews.test.ts`.
+- Аналогично для хуков, расширяемых в будущем: при добавлении поля в return — обновлять тесты-моки.
+
+## Нативный `<dialog>` в jsdom
+
+- В **`premier-design/jest.setup.ts`** полифилл `HTMLDialogElement.prototype.showModal` / `close` выполняется **только если** в глобальной среде есть `HTMLDialogElement` (jsdom); в среде **`node`** без DOM setup не выполняется — иначе падают чистые unit-тесты.
+
 ## Связь с чистым кодом и архитектурой
 
 - Сценарии и тестируемость портов: [`08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md`](08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md).

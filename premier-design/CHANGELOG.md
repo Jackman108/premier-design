@@ -7,6 +7,17 @@
 
 ### Changed
 
+- **DRY (страницы + данные):** вынесены `selectAppealSectionData` и `APPEAL_SECTION_PAGE_KEYS` в `shared/hooks/usePageData.ts`; `mapFaqEntriesToStructuredData` в `shared/utils/faqStructuredData.ts`; удалены пустые дубликаты-заглушки (`features/home`, `widgets/contacts-page`, `widgets/home-page` и пр.) и пустые каталоги под `features/` и `widgets/`.
+- **Контакты (секция USP):** `ContactsMicroUspAside` перенесён в фичу `features/contacts/ui/ContactsMicroUspAside/` (ранее `widgets/contacts-micro-usp-aside/`), проп-тип — `features/contacts/interface/ContactsMicroUspAside.props.ts`.
+
+- **Новости / Layout:** отключение дубля hash-sync в футере на `/about` через **`footerNewsHashSyncOnMount={false}`** в `pages/about.tsx` и проп **`newsHashSyncOnMount`** у `Footer` (без `useRouter` в футере — совместимость с `app/documents/*` и проход `yarn build`).
+
+- **PhotoViewer (примеры работ):** контейнер кадра **90vw × 90dvh** (90% ширины и высоты вьюпорта), внутри `object-fit: contain`; `next/image` — `sizes="90vw"`; текст и кнопки поверх scrim — **`var(--white)`** + лёгкая тень; **a11y:** скрытые заголовок/описание и `aria-labelledby` / `aria-describedby` (`useId`). **`jest.setup.ts`:** полифилл `<dialog>` только при наличии `HTMLDialogElement` (не ломает тесты в среде `node`). Документация: ADR `docs/adr/0003-modal-standard-and-adapters.md`, `docs/mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md`, `07_WEB_TESTING_AND_QUALITY_RU.md`.
+
+- **Документация и правила (апрель 2026):** обновлены `.cursor/rules/agent-architecture-clean-code.mdc` (темизация, контролируемые модалки, `useBackgroundLoader`, моки хуков с полным return), `agent-context-bootstrap.mdc` (проверка тёмной темы); ADR `docs/adr/0003-modal-standard-and-adapters.md` — раздел с паттерном новостей; `docs/mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md` (тёмная тема, scrim, таблицы); `07_WEB_TESTING_AND_QUALITY_RU.md` (моки `useScrollToElement` + `scrollToRef`); индекс `docs/README.md` со ссылками на mempalace-гайды.
+
+- **Риски RISK-06, 08, 09, 11, 12 (док+код):** `postFeedbackToApi` извлекает `correlationId` из тела/заголовка, `PostFeedbackError` в `useFeedback` (текст ошибки + GTM: `status`, `correlationId`); `405` на `/api/feedback` с `createApiErrorPayload`. Runbook: `docs/audit/OPERATIONS_OBSERVABILITY_RU.md`, `QUALITY_GATES_SYNC_RU.md`, `SUPPLY_CHAIN_RU.md`, `CI_COST_AND_TRENDS_RU.md`; реестр рисков — все перечисленные ID в статусе **Снижен**; индексы `docs/README.md`, `docs/audit/README.md`.
+
 - **Следующий этап снижения рисков CI (апрель 2026):**
   `@extended e2e` вынесен в отдельный non-blocking workflow `.github/workflows/e2e-extended.yml` (nightly + manual dispatch), merge-gate оставлен на `@core`.
   Добавлен rolling-репорт трендов CI/flake за 14 дней: `.github/workflows/ci-trends.yml` + `scripts/report-ci-trends.mjs` (артефакт `.ci-trends-14d.{md,json}` и summary в job).
@@ -28,6 +39,7 @@
 - **Architecture debt reduction (RISK-03):** `features/buttons-panel/interface/CalculatorButton.props.ts` переведён на `@shared/interface/CostingCard.props`; снято ещё одно legacy cross-feature исключение; `maxAllowedCount` уменьшен до `17`.
 - **Architecture debt reduction (RISK-03):** `PanelProps` вынесен в `@shared/interface/Panel.props`; сняты исключения для `shared/ui/order/interface/OrderButton.props.ts`, `features/services/interface/ServiceDetail.props.ts`, `features/related-services/interface/RelatedService.props.ts`; `maxAllowedCount` уменьшен до `14`.
 - **Architecture debt reduction (RISK-03):** `PanelButton` вынесен в `shared/ui/panel-button`, feature-компонент оставлен как re-export для совместимости; `OrderButton` теперь использует shared-реализацию напрямую, снято ещё одно legacy-исключение; `maxAllowedCount` уменьшен до `13`.
+- **Architecture (RISK-03, финал allowlist):** `scripts/architecture-allowlist.json` — `0` legacy-записей, `maxAllowedCount: 0`. Общие DTO (`NewsItem`, `PaperItem`, `Category`/`PriceItem`, `BannerImage`, `ShareBannerData`) в `shared/interface/`; re-export в feature `interface` без cross-import в `ServiceDetail`/`RelatedService`. SSG: `staticPropsHandler` в `lib/staticPropsHandler.ts`, тест `lib/__tests__/staticPropsHandler.test.ts` (старый `shared/utils/staticPropsHandler` удалён). `architecture-allowlist-roadmap.json` — новая политика вместо пошаговых вех 22→15.
 - **Cross-device stability:** добавлен `.gitattributes` с фиксацией LF для `premier-design/next-env.d.ts` для исключения EOL-диффов между ОС.
 - **Security weekly:** добавлены `.github/ISSUE_TEMPLATE/security_high_weekly.yml`, workflow `.github/workflows/security-high-weekly.yml` и отчёт `scripts/report-yarn-audit-high.mjs` для регулярного triage high/critical уязвимостей.
 - **API SLO:** `/api/feedback` теперь пишет telemetry-сэмплы (`shared/lib/feedbackSlo.ts`) и обрабатывает timeout-gate; добавлен проверочный скрипт `scripts/check-feedback-slo.mjs` с порогами p95/error/timeout.
@@ -38,7 +50,7 @@
 - **GitHub Actions runtime:** во workflow добавлен `FORCE_JAVASCRIPT_ACTIONS_TO_NODE24=true` для перехода с Node 20 runtime JS-actions и устранения предупреждений deprecation.
 - **Риск-менеджмент:** добавлен реестр рисков [`docs/audit/PROJECT_RISK_REGISTER_2026_04_RU.md`](../../docs/audit/PROJECT_RISK_REGISTER_2026_04_RU.md), обновлены индексы `docs/README.md` и `docs/audit/README.md`.
 - **Страницы `/portfolio` и `/calculator`:** как у `/design` и `/repairs` — сверху `HeroBanner` (отступ под хедер через блок героя), затем `Features`, `OfferBanner`, далее галерея примеров или калькулятор сметы и `Appeal`; баннеры героя — `design_banner` / `repair_banner`.
-- **PhotoViewer:** слои `overlayScrim` + `contentRoot` (клик по фону закрывает просмотр); `next/image` — `style={{ width: 'auto', height: 'auto' }}` и CSS без конфликта с `max-width`/`max-height`; кнопка закрытия и счётчик — `position: fixed` в зоне видимости; фокус на `<dialog>` при открытии.
+- **PhotoViewer (базовая вёрстка):** слои `overlayScrim` + `contentRoot`; `next/image` без конфликта с `max-*`; см. актуальный блок **PhotoViewer (примеры работ)** выше — `showModal`, 90vw×90dvh, a11y.
 - **Деплой (док + автоматизация):** `yarn check:deploy:local`; расширен `.env.example` (HTTPS/Vercel, аналитика); e2e — `/portfolio`, `/calculator`, просмотр галереи с главной (Escape); таблица в [`docs/audit/DEPLOY_READINESS_2026_04_RU.md`](../../docs/audit/DEPLOY_READINESS_2026_04_RU.md).
 - **Документация:** перестроен [`docs/README.md`](../../docs/README.md) (маршрут чтения, таблицы по темам без дублирования ADR); индекс [`docs/audit/README.md`](../../docs/audit/README.md); финальный аудит под деплой [`docs/audit/DEPLOY_READINESS_2026_04_RU.md`](../../docs/audit/DEPLOY_READINESS_2026_04_RU.md); ссылки в `AUDIT_AND_IMPROVEMENT_PLAN_RU.md`.
 - **Шапка (десктоп):** контейнер хедера на flex + перенос навигации на отдельную строку при длинном меню; пункты меню — flex-wrap и адаптивные отступы; высота плейсхолдера при sticky через `ResizeObserver` (`useHeaderPlaceholderHeight`).
@@ -63,6 +75,9 @@
 
 ### Fixed
 
+- **Новости / `TextViewer`:** `onOpenChange(false)`: `flushSync(onClose)` + **`setTimeout(0, () => focus #news-list`)** (после `hideOthers` / размонтирования портала, иначе `aria-hidden` на `main` или кнопка в диалоге); `setExpandedNews` — отдельный `setTimeout(0)` в `useNews`; `DialogClose`; `UiDialog` — `onCloseAutoFocus: preventDefault`.
+- **Примеры на главной:** `ExampleCard` — `next/image` для фона с `style={{ width: "100%", height: "auto" }}`, `sizes`, CSS `height: auto` + `object-fit: cover` (предупреждение next/image).
+- **Детальные страницы услуг:** отступ под хедером на `min-width: 769px`.
 - **Контент и SEO (апрель 2026):** дефолтные буллеты hero — `features/banner/hero/constants/defaultHeroHighlights.ts`; даты новостей 2025–2026; грамматика `stepsWork`; `benefits` для материалов; дубль в `designType` «Оптимальный»; контраст `title-black` / `description-black` в тёмной теме (`Title.module.css`); JSON-LD `Service` + `structuredDataRating` в common props для страниц услуг; `Sitemap` и `BASE_URL` sitemap на `premium-interior.by`; исправлены Storybook-импорты в `TrustSignals.stories.tsx` и мок `CustomHead.test`.
 - **Аудит §5.5–5.6, §5.8:** ADR [`docs/adr/0005-rate-limiting-storage-and-client-ip.md`](../docs/adr/0005-rate-limiting-storage-and-client-ip.md), [`docs/adr/0006-next-api-cors-same-origin.md`](../docs/adr/0006-next-api-cors-same-origin.md); `shared/lib/getClientIpForRateLimit.ts`, env `RATE_LIMIT_TRUST_FORWARDED_FOR`.
 - **Аудит §2.1–2.4, §2.6–2.8, §3.2–3.4, §7.4:** контент и блоки в `data/data.json`, `HeroBanner`/`TrustSignals`/`pages/index.tsx` (Reviews до квиза, FAQ, якорь `home-faq`), `features/faq`, `features/company-about`, `features/marketing/video-spotlight`, контакты, карточки портфолио; JSON-LD `@graph` в `generateStructuredData.ts` + пропсы `CustomHead`; тесты `getClientIpForRateLimit`, `generateStructuredData`, `dynamicImports`.

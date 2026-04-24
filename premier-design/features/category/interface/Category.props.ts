@@ -1,34 +1,16 @@
 import {TitleProps} from "@shared/ui/title/interface/Title.props";
 import {ButtonProps} from "@shared/interface/Button.props";
+import type {Category, PriceItem} from "@shared/interface/CategoryPrice.props";
 
-export interface PriceItem {
-    service: string;
-    unit: string;
-    price: string;
-    canonical: string;
-}
-
-export interface Category {
-    id: string;
-    title: string;
-    description: string;
-    image: {
-        src: string;
-        alt: string;
-        quality: number;
-        width: number;
-        height: number;
-    };
-    priceList: PriceItem[];
-}
+export type {Category, PriceItem};
 
 export interface Prices {
-    repairs: Category[];
-    design: Category[];
+	repairs: Category[];
+	design: Category[];
 }
 
 export interface CategoryProps {
-    titles: TitleProps[];
-    repairs: Category[];
-    buttonData: ButtonProps[];
+	titles: TitleProps[];
+	repairs: Category[];
+	buttonData: ButtonProps[];
 }

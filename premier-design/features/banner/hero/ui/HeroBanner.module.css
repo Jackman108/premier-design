@@ -55,7 +55,7 @@
 	color: color-mix(in srgb, var(--beige-dark) 94%, var(--white));
 	font-size: var(--font-size-body-md);
 	line-height: var(--line-height-body);
-	max-width: 56ch;
+	max-width: min(100%, 80ch);
 }
 
 .banner__container :global(.title-white) {
@@ -71,7 +71,7 @@
 }
 
 .banner__container :global(.description-white) {
-	max-width: 56ch;
+	max-width: min(100%, 80ch);
 	text-align: left;
 	color: color-mix(in srgb, var(--beige-dark) 90%, var(--white));
 	text-shadow: 0 1px 8px rgb(0 0 0 / 0.45);

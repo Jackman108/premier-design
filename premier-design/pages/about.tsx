@@ -10,7 +10,7 @@ import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";
 import {getTitleData} from "@shared/utils/findItemByTitle";
-import {usePageData} from "@shared/hooks/usePageData";
+import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
 import News from '@features/news/ui/News/News';
 import Partners from '@features/partners/ui/Partners/Partners';
 
@@ -26,7 +26,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
     return (
         <>
             <CustomHead {...titleData} structuredDataRating={data.trustSignals.structuredDataRating}/>
-            <Layout {...useLayoutProps(data)}>
+            <Layout {...useLayoutProps(data)} footerNewsHashSyncOnMount={false}>
                 <HeroBanner {...bannerProps}/>
                 <CompanyAboutSections content={data.companyAbout}/>
                 <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.aboutType}/>
@@ -39,10 +39,7 @@ const About: NextPage<GetDataProps> = ({data}): ReactElement => {
                     title={titles["our-partners"]}
                     partners={data.partners}
                 />
-                <Appeal {...usePageData(
-                    data.title, data.button, data.bannersImages,
-                    "create-best-place", "leave_request", "appeal_banner"
-                )} />
+                <Appeal {...selectAppealSectionData(data.title, data.button, data.bannersImages)} />
             </Layout>
         </>
     );

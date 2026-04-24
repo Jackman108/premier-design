@@ -1,68 +1,9 @@
-import React, {useState, useEffect, ReactElement} from 'react';
+import React, {ReactElement} from 'react';
 import styles from './BrickWallLoader.module.css';
+import {useBrickWallLoaderAnimation} from '@shared/ui/brick-wall-loader/hooks/useBrickWallLoaderAnimation';
 
 const BrickWallLoader = (): ReactElement => {
-    const [animationActive, setAnimationActive] = useState(false);
-    const [animationFinished, setAnimationFinished] = useState(false);
-    const [brickRows, setBrickRows] = useState([[], [], [0]]);
-    const [animationStep, setAnimationStep] = useState(0);
-
-    useEffect(() => {
-        const timer = setInterval(() => {
-            if (!animationActive) {
-                setAnimationActive(true);
-                setBrickRows((prevRows) => {
-                    // Создаем новый массив с обновленными значениями для каждого кирпича
-                    const newRows = prevRows.map((row) =>
-                        row.map((brick) => (brick > 0 ? brick - 1 : 0))
-                    );
-
-                    // Изменяем значения для следующего шага анимации
-                    if (animationFinished) {
-                        switch (animationStep) {
-                            case 0:
-                                newRows[2][0] = 1;
-                                setAnimationStep(1);
-                                break;
-                            case 1:
-                                newRows[2][1] = 2;
-                                setAnimationStep(2);
-                                break;
-                            case 2:
-                                newRows[2][2] = 3;
-                                setAnimationStep(3);
-                                break;
-                            case 3:
-                                newRows[1][0] = 1;
-                                setAnimationStep(4);
-                                break;
-                            case 4:
-                                newRows[1][1] = 2;
-                                setAnimationStep(5);
-                                break;
-                            case 5:
-                                newRows[0][0] = 1;
-                                setAnimationStep(0);
-                                break;
-                            default:
-                                newRows[0][0] = 1;
-                                setAnimationStep(0);
-                        }
-                    }
-                    if (animationStep === 0) {
-                        setAnimationFinished(true);
-                    }
-                    return newRows;
-                });
-            } else {
-                setAnimationActive(false);
-            }
-        }, 500);
-
-        return () => {
-            clearInterval(timer);
-        };
-    }, [animationActive, animationStep, animationFinished]);
+    const {animationActive, animationFinished, brickRows} = useBrickWallLoaderAnimation();
 
     return (
         <div className={styles.root} hidden={!animationFinished}>

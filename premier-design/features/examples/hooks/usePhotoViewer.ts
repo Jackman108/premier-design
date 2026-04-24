@@ -8,11 +8,16 @@ type UsePhotoViewerParams = {
 
 // Управляет всем интерактивом просмотрщика (клавиатура/клики/переходы),
 // чтобы UI-компонент оставался только декларативным слоем рендера.
+const safeIndex = (images: string[], currentImage: string) => {
+	const i = images.indexOf(currentImage);
+	return i >= 0 ? i : 0;
+};
+
 export const usePhotoViewer = ({images, currentImage, onClose}: UsePhotoViewerParams) => {
-	const [currentIndex, setCurrentIndex] = useState<number>(images.indexOf(currentImage));
+	const [currentIndex, setCurrentIndex] = useState<number>(() => safeIndex(images, currentImage));
 
 	useEffect(() => {
-		setCurrentIndex(images.indexOf(currentImage));
+		setCurrentIndex(safeIndex(images, currentImage));
 	}, [images, currentImage]);
 
 	const handleNext = useCallback(() => {

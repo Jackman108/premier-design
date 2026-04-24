@@ -17,4 +17,6 @@ export interface NewsComponentProps {
     title?: TitleProps;
     news: NewsProps[];
     newsStyle: NewsStyleProps['newsStyle'];
+    /** На `/about` блок в футере не должен открывать новость по `#news-N` — иначе две модалки и закрытие со второго раза. */
+    syncHashOnMount?: boolean;
 }

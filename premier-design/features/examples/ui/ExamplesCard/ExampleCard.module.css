@@ -36,9 +36,13 @@
 	background-size: cover;
 }
 
+/* Согласовано с `style` на next/image; `min-height` тянет фон на высоту ячейки */
 .card__background img {
 	width: 100%;
-	height: 100%;
+	height: auto;
+	min-height: 100%;
+	object-fit: cover;
+	display: block;
 }
 
 .card__content {

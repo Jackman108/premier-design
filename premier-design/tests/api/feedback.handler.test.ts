@@ -105,6 +105,9 @@ describe('/api/feedback handler', () => {
 
         expect(res.statusCode).toBe(405);
         expect(res.headers['x-correlation-id']).toBeDefined();
+        const body = res.body as {message?: string; correlationId?: string; status?: string};
+        expect(body?.correlationId).toBeTruthy();
+        expect(body?.message).toBe('Method not allowed.');
     });
 
     it('reuses incoming x-correlation-id header', async () => {

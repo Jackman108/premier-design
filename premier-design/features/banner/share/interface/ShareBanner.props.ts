@@ -1,13 +1,8 @@
-import {BannerImageProps} from "@features/banner/hero/interface/HeroBannerProps";
+import type {ShareBannerDataProps} from "@shared/interface/ShareBannerData.props";
 
-export interface ShareBannerDataProps {
-    shortTitle: string;
-    link: string;
-    imageDesc: BannerImageProps;
-    imageMob: BannerImageProps;
-}
+export type {ShareBannerDataProps} from "@shared/interface/ShareBannerData.props";
 
 export interface ShareBannerProps {
-    isSticky: boolean;
-    shares: ShareBannerDataProps[];
+	isSticky: boolean;
+	shares: ShareBannerDataProps[];
 }
