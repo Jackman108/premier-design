@@ -1,0 +1,65 @@
+/* Общая разметка таблицы прайса: страница категории услуг и раскрывающийся блок на «Ремонт». */
+
+.table {
+	width: 100%;
+	border-collapse: collapse;
+	margin-top: 10px;
+}
+
+.th,
+.td {
+	padding: 12px 15px;
+	border: 1px solid var(--color-border);
+	font-size: 16px;
+	color: var(--color-text);
+}
+
+.th {
+	background-color: var(--color-surface-muted);
+	color: var(--color-text);
+}
+
+.tr:nth-child(even) {
+	background-color: color-mix(in srgb, var(--color-text) 4%, var(--color-surface));
+}
+
+.tr:hover {
+	background-color: var(--color-surface-muted);
+	cursor: pointer;
+}
+
+.unitColumn,
+.priceColumn {
+	width: 100px;
+	text-align: right;
+}
+
+.link {
+	color: var(--brown-light);
+	text-decoration: none;
+}
+
+.table,
+.th,
+.td {
+	box-shadow: var(--shadow-sm);
+}
+
+.link:focus-visible {
+	outline: none;
+	border-radius: var(--radius-sm);
+	box-shadow: var(--focus-ring);
+}
+
+@media (max-width: 768px) {
+	.th,
+	.td {
+		font-size: 14px;
+		padding: 8px 10px;
+	}
+
+	.unitColumn,
+	.priceColumn {
+		width: 80px;
+	}
+}

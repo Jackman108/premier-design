@@ -1,5 +1,16 @@
+.content__image {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: var(--space-md);
+	background: var(--color-surface-muted);
+	border-radius: var(--radius-md);
+	border: 1px solid var(--color-border);
+}
+
 .document_image {
 	width: auto;
-	height: 20vh;
-	margin: 0 auto;
+	max-width: min(18rem, 85vw);
+	height: auto;
+	object-fit: contain;
 }

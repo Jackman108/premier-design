@@ -1,16 +1,11 @@
 /** @jest-environment node */
 import {staticPropsHandler} from '../staticPropsHandler';
 import {getData} from '@lib/getStaticData';
-import {findRelatedService} from '@lib/findRelatedService';
 import {findService} from '@lib/findService';
 import {getCommonProps} from '@lib/getCommonProps';
 
 jest.mock('@lib/getStaticData', () => ({
 	getData: jest.fn(),
-}));
-
-jest.mock('@lib/findRelatedService', () => ({
-	findRelatedService: jest.fn(),
 }));
 
 jest.mock('@lib/findService', () => ({
@@ -22,7 +17,6 @@ jest.mock('@lib/getCommonProps', () => ({
 }));
 
 const mockedGetData = jest.mocked(getData);
-const mockedFindRelatedService = jest.mocked(findRelatedService);
 const mockedFindService = jest.mocked(findService);
 const mockedGetCommonProps = jest.mocked(getCommonProps);
 
@@ -33,10 +27,10 @@ describe('staticPropsHandler', () => {
 		mockedGetCommonProps.mockReturnValue({menuData: []} as never);
 	});
 
-	it('returns props for regular service page', async () => {
+	it('returns props for service detail page', async () => {
 		mockedFindService.mockReturnValue({service: {id: 1}} as never);
 
-		const getStaticProps = staticPropsHandler(false);
+		const getStaticProps = staticPropsHandler();
 		const result = await getStaticProps({params: {categoryId: 'repair', serviceId: 'walls'}} as never);
 
 		expect(mockedFindService).toHaveBeenCalledWith({seed: true}, 'repair', 'walls');
@@ -49,26 +43,10 @@ describe('staticPropsHandler', () => {
 		});
 	});
 
-	it('returns props for related service page', async () => {
-		mockedFindRelatedService.mockReturnValue({relatedService: {id: 2}} as never);
-
-		const getStaticProps = staticPropsHandler(true);
-		const result = await getStaticProps({params: {categoryId: 'cleaning'}} as never);
-
-		expect(mockedFindRelatedService).toHaveBeenCalledWith({seed: true}, 'cleaning');
-		expect(result).toEqual({
-			props: {
-				relatedService: {id: 2},
-				menuData: [],
-			},
-			revalidate: 3600,
-		});
-	});
-
 	it('returns notFound when result is empty or on error', async () => {
 		const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
 		mockedFindService.mockReturnValue(null as never);
-		const getStaticProps = staticPropsHandler(false);
+		const getStaticProps = staticPropsHandler();
 		const notFoundResult = await getStaticProps({params: {categoryId: 'repair'}} as never);
 		expect(notFoundResult).toEqual({notFound: true});
 

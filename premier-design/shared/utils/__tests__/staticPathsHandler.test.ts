@@ -13,7 +13,7 @@ describe('staticPathsHandler', () => {
 		jest.clearAllMocks();
 	});
 
-	it('builds service paths in default mode', async () => {
+	it('builds service detail paths from repairs price lists', async () => {
 		mockedGetData.mockResolvedValue({
 			prices: {
 				repairs: [
@@ -28,7 +28,7 @@ describe('staticPathsHandler', () => {
 			},
 		} as never);
 
-		const getStaticPaths = staticPathsHandler(false);
+		const getStaticPaths = staticPathsHandler();
 		const result = await getStaticPaths({} as never);
 
 		expect(result).toEqual({
@@ -40,25 +40,11 @@ describe('staticPathsHandler', () => {
 		});
 	});
 
-	it('builds related service paths in related mode', async () => {
-		mockedGetData.mockResolvedValue({
-			relatedServices: [{canonical: '/services/related/cleaning'}],
-		} as never);
-
-		const getStaticPaths = staticPathsHandler(true);
-		const result = await getStaticPaths({} as never);
-
-		expect(result).toEqual({
-			paths: [{params: {categoryId: 'cleaning'}}],
-			fallback: 'blocking',
-		});
-	});
-
 	it('returns empty paths when getData fails', async () => {
 		const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
 		mockedGetData.mockRejectedValue(new Error('boom'));
 
-		const getStaticPaths = staticPathsHandler(false);
+		const getStaticPaths = staticPathsHandler();
 		const result = await getStaticPaths({} as never);
 
 		expect(result).toEqual({paths: [], fallback: false});

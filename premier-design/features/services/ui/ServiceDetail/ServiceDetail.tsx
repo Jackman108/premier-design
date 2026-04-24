@@ -11,6 +11,7 @@ import {findItemByTitle} from "@shared/utils/findItemByTitle";
 import {ButtonProps} from "@shared/interface/Button.props";
 import {useFallback} from "@shared/hooks/useFallback";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
+import pageShell from '@shared/ui/page-detail-shell/pageDetailShell.module.css';
 
 const SERVICE_DETAIL_IMAGE_SIZES = '(max-width: 600px) 100vw, (max-width: 1440px) 60vw, 920px';
 
@@ -52,44 +53,50 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                 }}
             />
             <Layout {...layoutProps}>
-            <section className={styles.service_detail}>
-                    <div className={styles.left}>
-                        <h1 className={styles.title}>{categoryProps.title}</h1>
-                        <div className={styles.image_wrapper}>
-                            <Image
-                                priority={true}
-                                src={categoryProps.image.src}
-                                alt={categoryProps.image.alt}
-                                quality={categoryProps.image.quality}
-                                width={categoryProps.image.width}
-                                height={categoryProps.image.height}
-                                sizes={SERVICE_DETAIL_IMAGE_SIZES}
-                                placeholder="empty"
-                                className={styles.image}
-                            />
+                <section className={pageShell.root} aria-labelledby="service-detail-title">
+                    <div className={pageShell.inner}>
+                        <div className={pageShell.card}>
+                            <div className={pageShell.layout}>
+                                <div className={pageShell.colMain}>
+                                    <h1 id="service-detail-title" className={pageShell.title}>{categoryProps.title}</h1>
+                                    <div className={pageShell.imageFrame}>
+                                        <Image
+                                            priority={true}
+                                            src={categoryProps.image.src}
+                                            alt={categoryProps.image.alt}
+                                            quality={categoryProps.image.quality}
+                                            width={categoryProps.image.width}
+                                            height={categoryProps.image.height}
+                                            sizes={SERVICE_DETAIL_IMAGE_SIZES}
+                                            placeholder="empty"
+                                            className={pageShell.image}
+                                        />
+                                    </div>
+                                </div>
+                                <div className={pageShell.colAside}>
+                                    <p className={pageShell.lead}>{categoryProps.description}</p>
+                                    <div className={`${pageShell.prose} ${styles.infoPanel}`}>
+                                        <div className={pageShell.metaGrid}>
+                                            <span className={pageShell.metaLabel}>Услуга</span>
+                                            <span className={pageShell.metaValue}>{service.service}</span>
+                                            <span className={pageShell.metaLabel}>Единица измерения</span>
+                                            <span className={pageShell.metaValue}>{service.unit}</span>
+                                            <span className={pageShell.metaLabel}>Цена</span>
+                                            <span className={pageShell.metaValue}>{service.price}</span>
+                                        </div>
+                                    </div>
+                                    <div className={pageShell.ctaRow}>
+                                        <OrderButton buttonStyle='button-black' buttonData={buttonHeader.buttonHeader}/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className={pageShell.actions}>
+                                <div className={pageShell.backRow}>
+                                    <BackButton/>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className={styles.right}>
-                        <h2 className={styles.description}>{categoryProps.description}</h2>
-                        <div className={styles.info}>
-                            <div className={styles.info_row}>
-                                <span className={styles.label}>Услуга:</span>
-                                <span className={styles.value}>{service.service}</span>
-                            </div>
-                            <div className={styles.info_row}>
-                                <span className={styles.label}>Единица измерения:</span>
-                                <span className={styles.value}>{service.unit}</span>
-                            </div>
-                            <div className={styles.info_row}>
-                                <span className={styles.label}>Цена:</span>
-                                <span className={styles.value}>{service.price}</span>
-                            </div>
-                        </div>
-                        <div className={styles.button}>
-                            <OrderButton buttonStyle='button-black' buttonData={buttonHeader.buttonHeader}/>
-                        </div>
-                    </div>
-                    <BackButton/>
                 </section>
             </Layout>
         </>

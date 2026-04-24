@@ -2,6 +2,7 @@ import {FC} from 'react';
 import Link from 'next/link';
 import {Category} from "@features/category/interface/Category.props";
 import styles from './CategoryCollapse.module.css';
+import pricingStyles from '@shared/ui/pricing-table/pricingTable.module.css';
 import {useModalState} from "@shared/hooks/useModalState";
 
 const CategoryCollapse: FC<{ category: Category }> = ({category}) => {
@@ -28,26 +29,26 @@ const CategoryCollapse: FC<{ category: Category }> = ({category}) => {
             </summary>
             {isOpen && (
                 <div className={styles.categoryBody}>
-                    <table className={styles.table}>
+                    <table className={pricingStyles.table}>
                         <thead>
-                        <tr className={styles.tr}>
-                            <th className={styles.th}>Услуга</th>
-                            <th className={`${styles.th} ${styles.unitColumn}`}>Ед.измер.</th>
-                            <th className={`${styles.th} ${styles.priceColumn}`}>Цена</th>
+                        <tr className={pricingStyles.tr}>
+                            <th className={pricingStyles.th}>Услуга</th>
+                            <th className={`${pricingStyles.th} ${pricingStyles.unitColumn}`}>Ед.измер.</th>
+                            <th className={`${pricingStyles.th} ${pricingStyles.priceColumn}`}>Цена</th>
                         </tr>
                         </thead>
                         <tbody>
                         {category.priceList.map((item, idx) => (
-                            <tr key={idx} className={styles.tr}>
-                                <td className={styles.td}>
-                                    <Link href={item.canonical} className={styles.link}
+                            <tr key={idx} className={pricingStyles.tr}>
+                                <td className={pricingStyles.td}>
+                                    <Link href={item.canonical} className={pricingStyles.link}
                                           aria-label={`Перейти к разделу ${item.service}`}
                                     >
                                         <p>{item.service}</p>
                                     </Link>
                                 </td>
-                                <td className={`${styles.td} ${styles.unitColumn}`}>{item.unit}</td>
-                                <td className={`${styles.td} ${styles.priceColumn}`}>{item.price}</td>
+                                <td className={`${pricingStyles.td} ${pricingStyles.unitColumn}`}>{item.unit}</td>
+                                <td className={`${pricingStyles.td} ${pricingStyles.priceColumn}`}>{item.price}</td>
                             </tr>
                         ))}
                         </tbody>

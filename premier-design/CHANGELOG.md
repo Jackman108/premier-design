@@ -5,8 +5,21 @@
 
 ## [Unreleased]
 
+### Added
+
+- **Страница `/services`:** каталог категорий прайса карточками (`ServiceCategoriesHub`), секция **RelatedServices** (как на главной, заголовок из блока `title` с `shortTitle: "related-services"`), **BusinessServices**, hero и призыв как на «Ремонт»; в `data.json` — пункт меню **Services** / «Услуги», запись `titlesPage` с `shortTitle: "services"`.
+- **Баррели / композиция:** `features/category/index.ts` (`@features/category`); расширен `features/services/index.ts` (`ServiceCategoryPage`); **`widgets/services-tier`** — `ServicesTierPage` для `pages/services/[categoryId].ts` (без cross-feature между `features`); **`shared/ui/pricing-table`** — общие стили таблицы прайса для `CategoryCollapse` и `ServiceCategoryPage`.
+- **HTML-карта сайта `/sitemap`:** полный перечень URL (те же pathnames, что и в `sitemap.xml` через `lib/collectSitePathnames.ts`); ссылка на XML в тексте страницы; в `titlesPage` — `shortTitle: "sitemap"`.
+- **Тесты:** `lib/__tests__/collectSitePathnames.test.ts`; расширен `tests/api/sitemap.handler.test.ts`.
+
 ### Changed
 
+- **SSG услуг:** из **`staticPathsHandler`** и **`staticPropsHandler`** удалён неиспользуемый режим **`isRelated`** (маршрут **`[categoryId]`** обслуживает **`servicesTierStatic`**); добавлены тесты **`lib/__tests__/servicesTierStatic.test.ts`**.
+- **RelatedServiceDetail:** из **`RelatedServiceDetailProps`** и пропсов SSG (`servicesTierStatic`) убрано неиспользуемое поле **`titles`**.
+- **Документы (`app/documents/*`):** хлебные крошки перенесены **внутрь** `document__container` (не под absolute-header); компактные стили `DocumentBreadcrumbs.module.css`; верхний отступ shell `calc(10vh + clamp(5rem, 14vh, 9rem))` как у `html` `scroll-padding-top`. Детальные услуги: тот же отступ в `pageDetailShell.module.css`.
+- **Шапка:** в `HeaderMenu.module.css` увеличен `max-width` контейнера ссылок для большего числа пунктов.
+- **Sitemap API:** формирование URL через `collectSitePathnames` и `STATIC_SITEMAP_PATHS` (включая `/services`, `/sitemap`); дублирования логики нет.
+- **`public/robots.txt`:** комментарий про HTML `/sitemap`.
 - **Данные сайта:** тип **`DataProps`** = **`z.infer<typeof dataPropsSchema>`** в `shared/validates/dataPropsSchema.ts` (детализированы блоки прайса, related, меню, новости, офферы, партнёры, отзывы, карточки секций и др.); `getData()` возвращает результат `safeParse` без `as unknown as`. `widgets/interface/interfaceData.ts` — реэкспорт `DataProps`/`GetDataProps` и алиасы полей; `features/category/interface/Category.props.ts`: **`Prices`** = `DataProps['prices']`.
 - **Публичный API фич:** корневые `features/*/index.ts` (banner, news, papers, contacts, company-about, partners, related-services, services, buttons-panel, coasting, documents-content) и импорты **`@features/<slice>`** из `pages/`, `widgets/`, `app/documents/*` вместо глубоких путей к `ui/`.
 - **FSD (границы слоёв):** контракты SEO в `shared/interface/seoHead.props.ts`, canonical — `shared/utils/getFullCanonicalUrl.ts`. `getCommonProps`, `findService`, `findRelatedService` в `lib/` с типом `DataProps` из схемы (см. выше). `useViewportMobile` в `shared`, `useResizeEffects` в `widgets/layout/hooks/`. Удалены старые finders в `features/*/utils`; обновлены `docs/audit/PROJECT_AUDIT_2026_04_RU.md`, `docs/guides/CODE_STRUCTURE_AND_NAMING_RU.md`.

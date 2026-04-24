@@ -1,131 +1,24 @@
-.service_detail {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 20px;
-	padding: 20px;
-	max-width: 1440px;
-	margin: 0 auto;
-	box-shadow: var(--shadow-md);
-	background-color: var(--color-surface);
+.infoPanel {
+	padding: var(--space-md);
 }
 
-@media (min-width: 769px) {
-	.service_detail {
-		padding-top: max(1.25rem, clamp(5.75rem, 9vh, 7.5rem));
-	}
+.infoPanel h2:first-of-type {
+	margin-top: 0;
 }
 
-.left {
-	flex: 2;
-	min-width: 300px;
-	display: flex;
-	flex-direction: column;
-	gap: 20px;
-	justify-content: space-around;
+.list {
+	margin: 0;
+	padding-left: 1.25rem;
+	list-style: disc;
+	color: var(--color-text);
 }
 
-.right {
-	flex: 1;
-	min-width: 300px;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
-	gap: 20px;
+.list li + li {
+	margin-top: var(--space-xs);
 }
 
-.title {
-	font-size: 2rem;
-	color: var(--gray-dark);
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-.subTitle {
-	font-size: 1.4rem;
-	color: var(--gray-dark);
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-.description {
-	font-size: 1.2rem;
-	color: var(--secondary);
-	margin-bottom: 20px;
-	padding: 0 15px;
-	box-shadow: var(--shadow-md);
-}
-
-.image_wrapper {
-	position: relative;
-	width: 100%;
-	height: auto;
-	overflow: hidden;
-}
-
-.image {
-	width: 100%;
-	height: auto;
-	object-fit: cover;
-	transition: transform var(--transition-base) ease-in-out;
-}
-
-.image:hover,
-.image_wrapper:focus-within .image {
-	transform: scale(1.05);
-}
-
-.info {
-	font-size: 1.1rem;
-	color: var(--gray-dark);
-	padding: 15px;
-	box-shadow: var(--shadow-md);
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-}
-
-.info ul {
-	padding-left: 20px;
-}
-
-.button {
-	display: flex;
-	justify-content: center;
-}
-
-@media (max-width: 768px) {
-	.service_detail {
-		flex-direction: column;
-	}
-
-	.left,
-	.right {
-		width: 100%;
-	}
-
-	.title {
-		font-size: 1.8rem;
-	}
-
-	.description {
-		font-size: 1rem;
-	}
-
-	.info {
-		font-size: 1rem;
-	}
-}
-
-@media (max-width: 480px) {
-	.title {
-		font-size: 1.5rem;
-	}
-
-	.description {
-		font-size: 0.9rem;
-	}
-
-	.info {
-		font-size: 0.9rem;
-	}
+.textBlock {
+	margin: var(--space-md) 0 0;
+	color: var(--color-text-muted);
+	line-height: var(--line-height-body-relaxed);
 }

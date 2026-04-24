@@ -10,21 +10,14 @@ import {getData} from '@lib/getStaticData';
 import {applyApiRateLimit} from '@shared/lib/applyApiRateLimit';
 import {createApiErrorPayload, createApiRequestObserver} from '@shared/lib/api/apiRequestRuntime';
 import {SITE_PUBLIC_ORIGIN} from '@shared/constants/company';
+import {STATIC_SITEMAP_PATHS, collectSitePathnames} from '@lib/collectSitePathnames';
 
 const BASE_URL = SITE_PUBLIC_ORIGIN;
 const CHANGE_FREQUENCY = 'monthly';
 const STATIC_PRIORITY = 1.0;
 const DYNAMIC_PRIORITY = 0.8;
 
-const STATIC_PAGES_RAW = [
-    '', '/repairs', '/design', '/portfolio', '/calculator', '/about', '/contacts',
-    '/documents/privacy-policy', '/documents/public-offer', '/documents/user-agreement',
-] as const;
-
-const STATIC_PAGES: readonly string[] = z
-	.array(z.string())
-	.min(1)
-	.parse([...STATIC_PAGES_RAW]);
+z.array(z.string()).min(1).parse([...STATIC_SITEMAP_PATHS]);
 
 const generateUrl = (path: string, priority: number): string => {
     return `
@@ -36,38 +29,13 @@ const generateUrl = (path: string, priority: number): string => {
     `;
 };
 
-const generateStaticPages = (): string[] => STATIC_PAGES.map(page => generateUrl(page, STATIC_PRIORITY));
-
-
-const generateDynamicPagesFromPrices = (data: DataProps): string[] => {
-    if (!data.prices || !Array.isArray(data.prices.repairs)) {
-        throw new Error('Invalid data structure: expected prices.repairs array.');
-    }
-
-    return data.prices.repairs.flatMap(category =>
-        category.priceList.map(item =>
-            generateUrl(`/services/${category.id}/${item.canonical.split('/').pop()}`, DYNAMIC_PRIORITY)
-        )
-    );
-};
-
-const generateDynamicPagesFromRelatedServices = (data: DataProps): string[] => {
-    if (!data.relatedServices || !Array.isArray(data.relatedServices)) {
-        throw new Error('Invalid data structure: expected relatedServices array.');
-    }
-
-    return data.relatedServices.map(service =>
-        generateUrl(service.canonical, DYNAMIC_PRIORITY)
-    );
-};
+const priorityForPath = (path: string): number =>
+	STATIC_SITEMAP_PATHS.includes(path) ? STATIC_PRIORITY : DYNAMIC_PRIORITY;
 
 const generateSitemap = async (): Promise<string> => {
     const data: DataProps = await getData();
-    const staticPages = generateStaticPages();
-    const dynamicPages = generateDynamicPagesFromPrices(data);
-    const dynamicRelatedPages = generateDynamicPagesFromRelatedServices(data);
-
-    const allPages = [...staticPages, ...dynamicPages, ...dynamicRelatedPages];
+    const pathnames = collectSitePathnames(data);
+    const allPages = pathnames.map((path) => generateUrl(path, priorityForPath(path)));
 
     return `<?xml version="1.0" encoding="UTF-8" ?>
     <urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9">

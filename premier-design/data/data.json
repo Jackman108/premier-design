@@ -6,6 +6,11 @@
       "ruTitle": "Главная"
     },
     {
+      "id": 8,
+      "title": "Services",
+      "ruTitle": "Услуги"
+    },
+    {
       "id": 2,
       "title": "Repairs",
       "ruTitle": "Ремонт"
@@ -532,6 +537,24 @@
       "metaTitle": "Premium Interior | Калькулятор стоимости ремонта интерьера",
       "metaDescription": "Онлайн-калькулятор ремонта под ключ: оцените бюджет по параметрам объекта. Premium Interior, Жлобин и вся Беларусь.",
       "canonical": "/calculator"
+    },
+    {
+      "id": 11,
+      "title": "Каталог услуг и цен",
+      "shortTitle": "services",
+      "description": "Все категории ремонтных и отделочных работ: выберите направление и перейдите к прайсу.",
+      "metaTitle": "Premium Interior | Услуги и цены по категориям",
+      "metaDescription": "Каталог услуг Premium Interior: демонтаж, строительство, отделка и др. Жлобин, Гомельская область и выезд по Беларуси.",
+      "canonical": "/services"
+    },
+    {
+      "id": 12,
+      "title": "Карта сайта",
+      "shortTitle": "sitemap",
+      "description": "Полный список страниц сайта для навигации.",
+      "metaTitle": "Premium Interior | Карта сайта",
+      "metaDescription": "Все разделы и страницы сайта Premium Interior: услуги, документы, основные разделы.",
+      "canonical": "/sitemap"
     }
   ],
   "bannersImages": [

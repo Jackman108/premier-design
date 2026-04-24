@@ -1,8 +1,7 @@
-import {RelatedServiceDetail} from '@features/related-services';
-import {staticPropsHandler} from "@lib/staticPropsHandler";
-import {staticPathsHandler} from "@shared/utils/staticPathsHandler";
+import {getServicesTierStaticPaths, getServicesTierStaticProps} from '@lib/servicesTierStatic';
+import {ServicesTierPage} from '@widgets/services-tier';
 
-export const getStaticPaths = staticPathsHandler(true);
-export const getStaticProps = staticPropsHandler(true);
+export const getStaticPaths = getServicesTierStaticPaths;
+export const getStaticProps = getServicesTierStaticProps;
 
-export default RelatedServiceDetail;
+export default ServicesTierPage;

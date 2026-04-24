@@ -1,9 +1,7 @@
 .backButtonWrapper {
-	position: fixed;
-	top: 15%;
-	left: 5%;
-	transform: translateY(-50%);
-	z-index: var(--z-toast);
+	position: relative;
+	display: inline-flex;
+	align-items: center;
 }
 
 .backButton {
@@ -11,20 +9,23 @@
 	align-items: center;
 	justify-content: center;
 	background-color: var(--color-surface);
-	border: 2px solid var(--gold);
+	border: 2px solid var(--color-border);
 	border-radius: 50%;
 	cursor: pointer;
 	padding: 10px;
 	font-size: 20px;
 	width: 50px;
 	height: 50px;
-	transition: background-color var(--transition-base), box-shadow var(--transition-base);
+	transition:
+		background-color var(--transition-base),
+		box-shadow var(--transition-base),
+		border-color var(--transition-base);
 	position: relative;
 }
 
 .arrowIcon {
 	font-size: 24px;
-	color: var(--brown-dark);
+	color: var(--color-text);
 	transition: transform var(--transition-base);
 }
 
@@ -33,7 +34,8 @@
 }
 
 .backButton:hover {
-	background-color: var(--gray-light);
+	background-color: var(--color-surface-muted);
+	border-color: var(--color-accent);
 }
 
 .backButton:focus-visible {
@@ -43,21 +45,30 @@
 
 .tooltip {
 	position: absolute;
-	left: 60px;
+	left: calc(100% + 10px);
 	top: 50%;
 	transform: translateY(-50%);
 	background-color: var(--overlay-scrim-strong);
-	color: var(--color-surface);
+	color: var(--white);
 	padding: 5px 10px;
-	border-radius: 5px;
-	font-size: 14px;
+	border-radius: var(--radius-sm);
+	font-size: var(--font-size-caption);
+	white-space: nowrap;
 	opacity: 0;
 	visibility: hidden;
-	transition: opacity var(--transition-base), visibility var(--transition-base);
+	transition:
+		opacity var(--transition-base),
+		visibility var(--transition-base);
 }
 
-.backButton:hover .tooltip {
+.backButton:hover .tooltip,
+.backButton:focus-visible .tooltip {
 	opacity: 1;
 	visibility: visible;
 }
 
+@media (max-width: 480px) {
+	.tooltip {
+		display: none;
+	}
+}

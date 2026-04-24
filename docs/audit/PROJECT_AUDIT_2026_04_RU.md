@@ -20,10 +20,30 @@
 
 | Участок | Файл(ы) | Суть | Примечание |
 |--------|---------|------|------------|
-| **lib → shared (данные)** | `lib/getCommonProps.ts`, `lib/findService.ts`, `lib/findRelatedService.ts`, `getStaticData` | Тип **`DataProps`** из **`@shared/validates/dataPropsSchema`** (`z.infer`) | Next-обвязка и виджеты используют один контракт с JSON; см. [`CODE_STRUCTURE_AND_NAMING_RU.md`](../guides/CODE_STRUCTURE_AND_NAMING_RU.md). |
-| **widgets → UI фич** | `widgets/layout/ui/footer/Footer.tsx` и др. | Импорт **`@features/<slice>`** из баррелей `features/<slice>/index.ts` | Композиция виджетов; подпись подрядчика — отдельный `DeveloperCredit`, URL в `shared/constants/company.ts`. |
+| **lib → shared (данные)** | `lib/getCommonProps.ts`, `lib/findService.ts`, `lib/findRelatedService.ts`, `lib/collectSitePathnames.ts`, `lib/resolveServicesTier.ts`, `lib/servicesTierStatic.ts`, `getStaticData` | Тип **`DataProps`** из **`@shared/validates/dataPropsSchema`** (`z.infer`); **`collectSitePathnames`** — единый список pathnames для **`/api/sitemap`** (`sitemap.xml`) и HTML **`/sitemap`**; **`resolveServicesTier` / `servicesTierStatic`** — пути и пропсы для **`/services/[categoryId]`** (категория прайса или **`relatedServices`**) | Next-обвязка и виджеты используют один контракт с JSON; см. [`CODE_STRUCTURE_AND_NAMING_RU.md`](../guides/CODE_STRUCTURE_AND_NAMING_RU.md). |
+| **widgets → UI фич** | `widgets/layout/ui/footer/Footer.tsx`, **`widgets/services-tier/`** и др. | Импорт **`@features/<slice>`** из баррелей `features/<slice>/index.ts`; несколько фич в одном виджете — для общих маршрутов (пример: **`ServicesTierPage`**) | Композиция виджетов; подпись подрядчика — отдельный `DeveloperCredit`, URL в `shared/constants/company.ts`. |
 
-**Соблюдается:** нет `shared` → `@widgets` / `@features` / `@services`; нет cross-feature; фичи не импортируют `find*` из другого слайса через `lib`.
+**Соблюдается (при `yarn check:architecture`, т.е. `--all`):** нет `shared` → `@features/*` / `@services/*`; **внутри `features/*` нет cross-feature** (композиция нескольких слайсов — в **`widgets/`** или **`pages/`**); фичи не импортируют `find*` из другого слайса через `lib`.
+
+**Практика CI:** в `lint-staged` скрипт границ вызывается **по списку изменённых файлов** без `--all`; полный проход — в `yarn check:risk:local` / `yarn check:architecture`.
+
+---
+
+## Ревизия незакоммиченных изменений (архитектура и чистота кода)
+
+Охват: ветка с хабом **`/services`**, HTML **`/sitemap`**, **`collectSitePathnames`**, **`page-detail-shell`**, документы **`app/documents`**, **`ServiceCategoryPage`**, SSG **`servicesTierStatic`**, правки **`RelatedServiceDetail`** / **`ServiceDetail`**, данные и тесты sitemap.
+
+| Зона | Наблюдение | Рекомендация | Статус |
+|------|------------|--------------|--------|
+| **`lib/collectSitePathnames` + `/api/sitemap`** | Один источник pathnames для XML и **`/sitemap`** | Держать синхронность с новыми публичными маршрутами в комментарии модуля | Выполнено |
+| **`lib/resolveServicesTier` + `servicesTierStatic`** | Явное разделение: категория прайса vs `relatedServices` для одного сегмента URL | Документировано в `CODE_STRUCTURE_AND_NAMING_RU.md` | Выполнено |
+| **`shared/ui/page-detail-shell`** | Общая вёрстка детальных услуг (DRY вместо дубля CSS в двух фичах) | Использовать для будущих «детальных» страниц того же паттерна | Выполнено |
+| **`shared/ui/pricing-table`** | Таблица прайса была продублирована логически в **`CategoryCollapse`** и **`ServiceCategoryPage`**; импорт CSS из `category` в `services` давал **cross-feature** при полном гейте | Вынести стили в **`shared`**, переиспользовать в **`CategoryCollapse`** и **`ServiceCategoryPage`** | Выполнено |
+| **`widgets/services-tier/ServicesTierPage`** | Композиция **`ServiceCategoryPage`** + **`RelatedServiceDetail`** ранее жила в **`features/services`** и нарушала FSD (импорт **`@features/related-services`**) | Перенести композицию в **`widgets/services-tier`**, entrypoint — **`import {ServicesTierPage} from '@widgets/services-tier'`** в **`pages/services/[categoryId].ts`** | Выполнено |
+| **`staticPathsHandler` / `staticPropsHandler`** | Режим **`isRelated`** был мёртвым после переноса **`[categoryId]`** на **`servicesTierStatic`** | Удалён флаг; хендлеры обслуживают только **`[categoryId]/[serviceId]`**; сценарии related/merge покрыты **`lib/__tests__/servicesTierStatic.test.ts`** | Выполнено |
+| **`RelatedServiceDetailProps`** | Лишнее поле **`titles`** не использовалось в **`RelatedServiceDetail`** | Удалено из типа и из **`servicesTierStatic`** | Выполнено |
+| **`app/documents` + `DocumentPage`** | Крошки и отступы унифицированы с **`scroll-padding`** | Следить за единым `padding-top` shell при смене высоты хедера | Выполнено |
+| **Документация** | `CODE_STRUCTURE`, таблица FSD в этом файле, `CHANGELOG` | При новых публичных маршрутах — обновлять **`STATIC_SITEMAP_PATHS`** / **`collectSitePathnames`** и юзер-доки | Актуализировано |
 
 ---
 
