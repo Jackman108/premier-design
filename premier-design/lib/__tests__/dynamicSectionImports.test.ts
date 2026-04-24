@@ -6,9 +6,9 @@ jest.mock('next/dynamic', () => ({
 	default: (importer: () => unknown) => dynamicMock(importer),
 }));
 
-describe('dynamicImports', () => {
+describe('dynamicSectionImports', () => {
 	it('registers all dynamic feature chunks', async () => {
-		const mod = await import('../dynamicImports');
+		const mod = await import('../dynamicSectionImports');
 
 		expect(dynamicMock).toHaveBeenCalledTimes(21);
 		expect(mod.Features).toBeDefined();

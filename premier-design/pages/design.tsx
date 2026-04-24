@@ -3,7 +3,7 @@ import Layout from '@widgets/layout/ui/layout/Layout';
 import {getStaticProps} from '@lib/getStaticData';
 import {ReactElement} from "react";
 import HeroBanner from "@features/banner/hero/ui/HeroBanner";
-import {Appeal, Costing, Examples, FaqSection, Features, OfferBanner, ProjectOffer} from '@shared/utils/dynamicImports';
+import {Appeal, Costing, Examples, FaqSection, Features, OfferBanner, ProjectOffer} from '@lib/dynamicSectionImports';
 import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 import {GetDataProps} from "@widgets/interface/interfaceData";

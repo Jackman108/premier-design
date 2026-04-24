@@ -28,6 +28,11 @@
 - Новая критичная функциональность имеет тест или явное обоснование в PR.
 - Время прогона CI вменяемо: unit быстрые, e2e — параллельно и кешируемо.
 
+## Размещение unit-тестов хуков (FSD)
+
+- Файл теста живёт в **`hooks/__tests__/` того же слайса**, что и хук: например `shared/hooks/__tests__/usePageData.test.ts`, `widgets/layout/hooks/__tests__/useThemeToggle.test.ts`, `features/coasting/hooks/__tests__/useCostingCardLogic.test.ts`.
+- Корневого каталога `premier-design/hooks/` в репозитории нет; путь-алиас `@hooks/*` не используется.
+
 ## Моки хуков с полным контрактом
 
 - Если тест `jest.mock('@shared/hooks/…')` подменяет хук целиком через `mockReturnValue`, набор полей **должен совпадать** с публичным return реального хука, иначе падает типизация в TS и/или сценарий в рантайме. Пример: `useScrollToElement` возвращает `{ scrollToElement, scrollToRef }` — в мок передавать **оба** (реф — `createRef<HTMLDivElement | null>()`), см. `premier-design/features/news/hooks/__tests__/useNews.test.ts`.

@@ -61,12 +61,12 @@ Git hooks:
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
 
-Для email (используются в development-режиме):
+Для email (опционально, в **любой** среде при полном наборе переменных): если задан `EMAIL_HOST` вместе с `EMAIL_PORT`, `EMAIL_USERNAME`, `EMAIL_PASSWORD` и `FEEDBACK_EMAIL_TO`, use-case отправляет письмо; без `EMAIL_HOST` — только Telegram. См. `.env.example`.
 - `EMAIL_HOST`
 - `EMAIL_PORT`
 - `EMAIL_USERNAME`
 - `EMAIL_PASSWORD`
-- `FEEDBACK_EMAIL_TO` — получатель писем с формы (обязателен при отправке SMTP в dev)
+- `FEEDBACK_EMAIL_TO` — получатель писем с формы (обязателен при отправке SMTP)
 - `FEEDBACK_EMAIL_FROM` — поле `From` (если не задано, берётся `EMAIL_USERNAME`; имя клиента уходит в `Reply-To` при указанном email)
 
 Системные:

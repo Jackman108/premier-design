@@ -56,12 +56,6 @@
 	font-size: 0.9rem;
 }
 
-.success {
-	margin: 0.5rem 0 0;
-	color: var(--color-accent);
-	font-size: 0.9rem;
-}
-
 @media (max-width: 768px) {
 	.button-base {
 		height: 6vh;

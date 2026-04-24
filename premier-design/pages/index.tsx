@@ -22,7 +22,7 @@ import {
 	LeadQuiz,
 	TrustSignals,
 	VideoSpotlight,
-} from '@shared/utils/dynamicImports';
+} from '@lib/dynamicSectionImports';
 import {GetDataProps} from '@widgets/interface/interfaceData';
 import {useLayoutProps} from '@widgets/layout/hooks/useLayoutProps';
 import CustomHead from '@widgets/layout/seo/CustomHead/CustomHead';

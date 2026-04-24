@@ -4,7 +4,7 @@ import type {ReactElement} from 'react';
 import HeroBanner from '@features/banner/hero/ui/HeroBanner';
 import {HeroBannerProps} from '@features/banner/hero/interface/HeroBannerProps';
 import {getStaticProps} from '@lib/getStaticData';
-import {Appeal, Examples, Features, OfferBanner} from '@shared/utils/dynamicImports';
+import {Appeal, Examples, Features, OfferBanner} from '@lib/dynamicSectionImports';
 import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
 import {getTitleData} from '@shared/utils/findItemByTitle';
 import {GetDataProps} from '@widgets/interface/interfaceData';

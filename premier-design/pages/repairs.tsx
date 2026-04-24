@@ -13,7 +13,7 @@ import {
     Features,
     OfferBanner,
     ProjectOffer
-} from '@shared/utils/dynamicImports';
+} from '@lib/dynamicSectionImports';
 import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 import {GetDataProps} from "@widgets/interface/interfaceData";

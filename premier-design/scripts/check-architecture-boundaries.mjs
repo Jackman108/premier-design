@@ -7,6 +7,8 @@ const useAllFiles = args.includes('--all');
 
 const IGNORED_DIRS = new Set(['node_modules', '.git', '.next', 'coverage', 'storybook-static', 'styled-system']);
 const IMPORT_RE = /from\s+['"]([^'"]+)['"]/g;
+/** Динамический `import()` тоже создаёт зависимость; иначе обход через `next/dynamic` в `shared/`. */
+const DYNAMIC_IMPORT_RE = /import\s*\(\s*['"](@(?:features|services)\/[^'"]+)['"]\s*\)/g;
 
 const toUnix = (value) => value.split('\\').join('/');
 const isCodeFile = (file) => /\.(ts|tsx|js|jsx)$/.test(file);
@@ -64,7 +66,10 @@ const violations = [];
 
 for (const file of files) {
 	const source = readFileSync(resolve(cwd, file), 'utf-8');
-	const imports = [...source.matchAll(IMPORT_RE)].map((m) => m[1]);
+	const imports = [
+		...[...source.matchAll(IMPORT_RE)].map((m) => m[1]),
+		...[...source.matchAll(DYNAMIC_IMPORT_RE)].map((m) => m[1]),
+	];
 	const inShared = file.startsWith('shared/');
 	const inFeature = file.startsWith('features/');
 	const featureSlice = inFeature ? file.split('/')[1] : '';

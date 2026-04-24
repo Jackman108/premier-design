@@ -1,5 +1,9 @@
 import dynamic from 'next/dynamic';
 
+/**
+ * Ленивые секции страниц: живут в `lib/`, а не в `shared/`, чтобы не тянуть `@features/*` из общего слоя
+ * (гейт `check-architecture-boundaries` запрещает это в `shared/`). Импортируют страницы из `pages/*`.
+ */
 export const Features = dynamic(() => import('@shared/ui/features-section/ui/Features'));
 export const Services = dynamic(() => import('@features/services/ui/Services/Services'));
 export const Approach = dynamic(() => import('@features/approach/ui/Approach'));

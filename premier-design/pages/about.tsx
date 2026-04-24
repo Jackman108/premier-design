@@ -5,7 +5,7 @@ import {GetDataProps} from '@widgets/interface/interfaceData';
 import {ReactElement} from "react";
 import HeroBanner from "@features/banner/hero/ui/HeroBanner";
 import CompanyAboutSections from "@features/company-about/ui/CompanyAboutSections";
-import {Appeal, OfferBanner} from '@shared/utils/dynamicImports';
+import {Appeal, OfferBanner} from '@lib/dynamicSectionImports';
 import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
 import {HeroBannerProps} from "@features/banner/hero/interface/HeroBannerProps";

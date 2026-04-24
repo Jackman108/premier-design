@@ -1,5 +1,6 @@
 /** @jest-environment jsdom */
 import {fireEvent, render, screen} from '@testing-library/react';
+import {FEEDBACK_SUCCESS_TOAST_MS} from '@shared/ui/order/constants';
 import {useFeedback} from '@shared/ui/order/hooks/useFeedback';
 import OrderButton from './OrderButton';
 
@@ -49,6 +50,7 @@ describe('OrderButton', () => {
 			initialMessage: '',
 			error: '',
 			isSuccess: false,
+			successToastMs: FEEDBACK_SUCCESS_TOAST_MS,
 		});
 	});
 
@@ -89,6 +91,7 @@ describe('OrderButton', () => {
 			initialMessage: '',
 			error: 'Ошибка отправки',
 			isSuccess: false,
+			successToastMs: FEEDBACK_SUCCESS_TOAST_MS,
 		});
 		render(<OrderButton buttonStyle="button-white" buttonData="Оставить заявку" />);
 

@@ -1,8 +1,9 @@
-import {useCallback, useState} from 'react';
+import {useCallback, useEffect, useState} from 'react';
 
 import {trackMarketingEvent} from '@shared/analytics/trackMarketingEvent';
 import {useModalState} from '@shared/hooks/useModalState';
 import {PostFeedbackError, postFeedbackToApi} from '@shared/lib/postFeedbackClient';
+import {FEEDBACK_SUCCESS_TOAST_MS} from '@shared/ui/order/constants';
 import {FeedbackItem} from '@shared/ui/order/interface/FeedbackModal.props';
 
 export const useFeedback = () => {
@@ -10,6 +11,14 @@ export const useFeedback = () => {
     const [error, setError] = useState<string>('');
     const [isSuccess, setIsSuccess] = useState<boolean>(false);
     const [initialMessage, setInitialMessage] = useState<string>('');
+
+    useEffect(() => {
+        if (!isSuccess) {
+            return;
+        }
+        const id = window.setTimeout(() => setIsSuccess(false), FEEDBACK_SUCCESS_TOAST_MS);
+        return () => window.clearTimeout(id);
+    }, [isSuccess]);
 
     const sendFeedback = useCallback(async (formData: FeedbackItem) => {
         await postFeedbackToApi(formData);
@@ -70,5 +79,6 @@ export const useFeedback = () => {
         initialMessage,
         error,
         isSuccess,
+        successToastMs: FEEDBACK_SUCCESS_TOAST_MS,
     };
 };

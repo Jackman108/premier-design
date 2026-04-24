@@ -4,10 +4,12 @@
 
 ## Как читать этот каталог
 
-1. **Перед деплоем** — [audit/DEPLOY_READINESS_2026_04_RU.md](audit/DEPLOY_READINESS_2026_04_RU.md).  
-2. **Бэклог и история аудита** — [audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) + `premier-design/CHANGELOG.md`.  
-3. **Архитектурные решения** — единый реестр [adr/README.md](adr/README.md) (не дублировать таблицу ADR здесь).  
-4. **Повседневная разработка** — раздел «Гайды» ниже.
+1. **Аудит и визуальный бэклог** — [audit/PROJECT_AUDIT_2026_04_RU.md](audit/PROJECT_AUDIT_2026_04_RU.md): статус закрытого сводного аудита, таблица FSD-отклонений, список улучшений дизайна/вёрстки.  
+2. **Перед деплоем** — [audit/DEPLOY_READINESS_2026_04_RU.md](audit/DEPLOY_READINESS_2026_04_RU.md).  
+3. **Риски и митигации** — [audit/PROJECT_RISK_REGISTER_2026_04_RU.md](audit/PROJECT_RISK_REGISTER_2026_04_RU.md) + `premier-design/CHANGELOG.md`.  
+4. **Открытый бэклог улучшений** — [audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) (только нереализованные задачи; закрытые — в `CHANGELOG.md`).  
+5. **Архитектурные решения** — единый реестр [adr/README.md](adr/README.md) (не дублировать таблицу ADR здесь).  
+6. **Повседневная разработка** — раздел «Гайды» ниже.
 
 ### Стандарт оформления документов
 
@@ -25,8 +27,9 @@
 | Документ | Описание |
 |----------|----------|
 | [audit/README.md](audit/README.md) | Индекс папки `audit/` |
+| [audit/PROJECT_AUDIT_2026_04_RU.md](audit/PROJECT_AUDIT_2026_04_RU.md) | Индекс аудита, FSD-таблица, направления улучшения UI/вёрстки |
+| [audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) | Открытый бэклог улучшений и Definition of Done |
 | [audit/DEPLOY_READINESS_2026_04_RU.md](audit/DEPLOY_READINESS_2026_04_RU.md) | Финальный чеклист деплоя и улучшения для продакшена услуг |
-| [audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) | Аудит v3.0–v3.1, DoD, открытый бэклог |
 | [audit/PROJECT_RISK_REGISTER_2026_04_RU.md](audit/PROJECT_RISK_REGISTER_2026_04_RU.md) | Реестр текущих рисков (вероятность/влияние/митигации) |
 | [audit/QUALITY_GATES_SYNC_RU.md](audit/QUALITY_GATES_SYNC_RU.md) | RISK-08: чеклист синхронизации `CHANGELOG` / workflow / гейты |
 | [audit/OPERATIONS_OBSERVABILITY_RU.md](audit/OPERATIONS_OBSERVABILITY_RU.md) | RISK-11: `correlationId`, логи, SLO |

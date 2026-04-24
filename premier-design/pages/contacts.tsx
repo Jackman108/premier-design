@@ -5,7 +5,7 @@ import {HeroBannerProps} from '@features/banner/hero/interface/HeroBannerProps';
 import HeroBanner from '@features/banner/hero/ui/HeroBanner';
 import {getStaticProps} from '@lib/getStaticData';
 import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
-import {Address, Appeal} from '@shared/utils/dynamicImports';
+import {Address, Appeal} from '@lib/dynamicSectionImports';
 import {GetDataProps} from '@widgets/interface/interfaceData';
 import CustomHead from '@widgets/layout/seo/CustomHead/CustomHead';
 import {useLayoutProps} from '@widgets/layout/hooks/useLayoutProps';

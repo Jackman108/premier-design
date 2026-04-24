@@ -1,6 +1,6 @@
 # Реестр рисков проекта (апрель 2026)
 
-Индекс: [`docs/README.md`](../README.md) · Базовый аудит: [`AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](./AUDIT_AND_IMPROVEMENT_PLAN_RU.md)
+Индекс: [`docs/README.md`](../README.md) · Сводный аудит: [`PROJECT_AUDIT_2026_04_RU.md`](./PROJECT_AUDIT_2026_04_RU.md) · Бэклог: [`AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](./AUDIT_AND_IMPROVEMENT_PLAN_RU.md)
 
 ## Цель
 Зафиксировать текущие продуктовые и инженерные риски клиент-серверного приложения, их влияние и план снижения.

@@ -5,6 +5,7 @@ import PanelButton from '@shared/ui/panel-button/PanelButton';
 import {useFeedback} from '@shared/ui/order/hooks/useFeedback';
 import {useOrderButtonOpenHandler} from '@shared/ui/order/hooks/useOrderButtonOpenHandler';
 import {OrderButtonProps} from '@shared/ui/order/interface/OrderButton.props';
+import {FeedbackSuccessToast} from '@shared/ui/order/ui/FeedbackSuccessToast/FeedbackSuccessToast';
 
 import styles from './OrderButton.module.css';
 
@@ -14,7 +15,8 @@ const FeedbackModal = dynamic(() => import('@shared/ui/order/ui/FeedbackModal/Fe
 });
 
 const OrderButton: FC<OrderButtonProps> = ({buttonData, buttonStyle, panelData, prefilledMessage, trackingContext}: OrderButtonProps) => {
-    const {isOpen, openModalWithMessage, closeModal, handleSubmit, initialMessage, error, isSuccess} = useFeedback();
+    const {isOpen, openModalWithMessage, closeModal, handleSubmit, initialMessage, error, isSuccess, successToastMs} =
+        useFeedback();
     const buttonClass = styles[buttonStyle];
 
     const handleOpenModal = useOrderButtonOpenHandler(
@@ -43,11 +45,7 @@ const OrderButton: FC<OrderButtonProps> = ({buttonData, buttonStyle, panelData, 
             )}
             {isOpen && <FeedbackModal onClose={closeModal} onSubmit={handleSubmit} initialMessage={initialMessage}/>}
             {error && <p className={styles.error}>{error}</p>}
-            {isSuccess && (
-                <p className={styles.success} role='status' aria-live='polite'>
-                    Заявка отправлена. Мы свяжемся с вами в ближайшее время.
-                </p>
-            )}
+            <FeedbackSuccessToast open={isSuccess} durationMs={successToastMs} />
         </>
     );
 };

@@ -4,11 +4,8 @@
       "@widgets/*": ["./widgets/*"],
       "@pages/*": ["./pages/*"],
       "@features/*": ["./features/*"],
-      "@entities/*": ["./entities/*"],
       "@shared/*": ["./shared/*"],
-      "@config/*": ["./config/*"],
       "@app-types/*": ["./types/*"],
-      "@hooks/*": ["./hooks/*"],
       "@lib/*": ["./lib/*"]
     }
   }
