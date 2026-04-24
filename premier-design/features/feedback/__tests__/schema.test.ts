@@ -39,4 +39,26 @@ describe('feedbackSchema', () => {
         const result = feedbackSchema.safeParse(payload);
         expect(result.success).toBe(false);
     });
+
+    it('rejects BY +375 with invalid operator (not 25/29/33/44)', () => {
+        const result = feedbackSchema.safeParse({
+            name: 'Иван Иванов',
+            phone: '+375 (17) 123-45-67',
+            email: 'test@example.com',
+            message: 'Сообщение для проверки.',
+            consent: true,
+        });
+        expect(result.success).toBe(false);
+    });
+
+    it('accepts RU +7 with valid 9XX', () => {
+        const result = feedbackSchema.safeParse({
+            name: 'Иван Иванов',
+            phone: '+7 (916) 123-45-67',
+            email: 'test@example.com',
+            message: 'Сообщение для проверки.',
+            consent: true,
+        });
+        expect(result.success).toBe(true);
+    });
 });

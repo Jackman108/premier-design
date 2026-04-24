@@ -31,17 +31,25 @@ export const feedbackDal: FeedbackDal = {
                 ? `${payload.safeName.replace(/"/g, "'")} <${payload.rawEmail.trim()}>`
                 : undefined;
 
-        await emailService.sendMail({
-            host: envVar('EMAIL_HOST'),
-            port: parseInt(envVar('EMAIL_PORT'), 10),
-            user: smtpUser,
-            pass: emailPassword,
-            from: fromAddress,
-            ...(replyTo ? {replyTo} : {}),
-            to: toAddress,
-            subject: `New Feedback ${payload.rawEmail || ''}`.trim(),
-            text: `Name: ${payload.safeName}\nPhone: ${payload.safePhone}\nEmail: ${payload.safeEmail}\nMessage: ${payload.safeMessage}`,
-        });
+        /** Короче, чем default emailService, чтобы `retry`×2 + Telegram не съедали весь SLO `FEEDBACK_API_TIMEOUT_MS`. */
+        await emailService.sendMail(
+            {
+                host: envVar('EMAIL_HOST'),
+                port: parseInt(envVar('EMAIL_PORT'), 10),
+                user: smtpUser,
+                pass: emailPassword,
+                from: fromAddress,
+                ...(replyTo ? {replyTo} : {}),
+                to: toAddress,
+                subject: `New Feedback ${payload.rawEmail || ''}`.trim(),
+                text: `Name: ${payload.safeName}\nPhone: ${payload.safePhone}\nEmail: ${payload.safeEmail}\nMessage: ${payload.safeMessage}`,
+            },
+            {
+                connectionTimeout: 5_000,
+                greetingTimeout: 5_000,
+                socketTimeout: 6_000,
+            },
+        );
     },
 
     async sendTelegramMessage(message) {

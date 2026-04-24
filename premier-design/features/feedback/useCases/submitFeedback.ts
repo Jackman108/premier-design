@@ -23,6 +23,14 @@ const resolveIntegrationCircuitConfig = (): IntegrationCircuitConfig => ({
     openDurationMs: toPositiveInt(process.env.FEEDBACK_CIRCUIT_OPEN_MS, 60_000),
 });
 
+const wantsSmtp = (): boolean => Boolean(process.env.EMAIL_HOST?.trim());
+
+/** Письмо: только при `EMAIL_HOST` и полном наборе для `sendMail` (иначе `envVar` упадёт). */
+const hasFullSmtpConfig = (): boolean => {
+    const keys = ['EMAIL_PORT', 'EMAIL_USERNAME', 'EMAIL_PASSWORD', 'FEEDBACK_EMAIL_TO'] as const;
+    return keys.every((k) => Boolean(process.env[k]?.trim()));
+};
+
 export interface SubmitFeedbackResult {
     status: 'success' | 'error';
     message: string;
@@ -43,19 +51,11 @@ export const submitFeedback = async (data: FeedbackInput, dal: FeedbackDal = fee
 
         if (dal.isDevelopment()) {
             dal.saveDebugPayload(data);
-            await runWithIntegrationCircuit(FEEDBACK_CIRCUIT_SMTP, circuitConfig, () =>
-                retryAsync(
-                    async () => {
-                        await dal.sendFeedbackEmail({
-                            safeName,
-                            safePhone,
-                            safeEmail,
-                            safeMessage,
-                            rawEmail: data.email || '',
-                        });
-                    },
-                    {maxAttempts, baseDelayMs},
-                ),
+        }
+
+        if (wantsSmtp() && !hasFullSmtpConfig()) {
+            console.warn(
+                '[submitFeedback] Задан EMAIL_HOST, но SMTP env неполный; письмо пропущено. См. .env.example: EMAIL_*, FEEDBACK_EMAIL_TO.',
             );
         }
 
@@ -67,11 +67,32 @@ export const submitFeedback = async (data: FeedbackInput, dal: FeedbackDal = fee
         - <b>Сообщение:</b> ${safeMessage}
         `.trim();
 
-        await runWithIntegrationCircuit(FEEDBACK_CIRCUIT_TELEGRAM, circuitConfig, () =>
+        /** Параллельно: иначе SMTP+Telegram с `retry` по очереди часто > `FEEDBACK_API_TIMEOUT_MS` (504). */
+        const smtpTask: Promise<unknown> =
+            wantsSmtp() && hasFullSmtpConfig()
+                ? runWithIntegrationCircuit(FEEDBACK_CIRCUIT_SMTP, circuitConfig, () =>
+                      retryAsync(
+                          async () => {
+                              await dal.sendFeedbackEmail({
+                                  safeName,
+                                  safePhone,
+                                  safeEmail,
+                                  safeMessage,
+                                  rawEmail: data.email || '',
+                              });
+                          },
+                          {maxAttempts, baseDelayMs},
+                      ),
+                  )
+                : Promise.resolve();
+
+        const tgTask = runWithIntegrationCircuit(FEEDBACK_CIRCUIT_TELEGRAM, circuitConfig, () =>
             retryAsync(async () => {
                 await dal.sendTelegramMessage(message);
             }, {maxAttempts, baseDelayMs}),
         );
+
+        await Promise.all([smtpTask, tgTask]);
 
         return {status: 'success', message: 'Feedback processed successfully.'};
     } catch (error) {

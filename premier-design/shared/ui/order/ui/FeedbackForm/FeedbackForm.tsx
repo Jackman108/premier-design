@@ -28,6 +28,8 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, initialMessage}) =>
 
     return (
         <form className={styles.form} onSubmit={handleSubmit} noValidate>
+            <div className={styles.form__main}>
+            <div className={styles.form__nameEmail}>
             <div className={styles.input__group}>
                 <UiInput
                     label="Имя"
@@ -35,7 +37,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, initialMessage}) =>
                     name="name"
                     type="text"
                     autoComplete="name"
-                    placeholder="Введите ваше имя"
+                    placeholder="Ваше имя"
                     value={formDataState.name}
                     onChange={handleInputChange}
                     className={errors.name ? styles.inputError : ''}
@@ -43,6 +45,23 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, initialMessage}) =>
                     aria-errormessage={errors.name ? 'feedback-name-error' : undefined}
                 />
                 {errors.name && <div id="feedback-name-error" className={styles.errorMessage} role="alert">{errors.name}</div>}
+            </div>
+            <div className={styles.input__group}>
+                <UiInput
+                    label="Email (необязательно)"
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="email@example.com"
+                    value={formDataState.email}
+                    onChange={handleInputChange}
+                    className={errors.email ? styles.inputError : ''}
+                    aria-invalid={errors.email ? 'true' : undefined}
+                    aria-errormessage={errors.email ? 'feedback-email-error' : undefined}
+                />
+                {errors.email && <div id="feedback-email-error" className={styles.errorMessage} role="alert">{errors.email}</div>}
+            </div>
             </div>
             <div className={styles.input__group}>
                 <div className={styles.inlineRow}>
@@ -81,36 +100,22 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, initialMessage}) =>
                 {errors.phone && <div id="phone-error" className={styles.errorMessage} role="alert">{errors.phone}</div>}
             </div>
             <div className={styles.input__group}>
-                <UiInput
-                    label="Email (необязательно)"
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    placeholder="Введите ваш email (необязательно)"
-                    value={formDataState.email}
-                    onChange={handleInputChange}
-                    className={errors.email ? styles.inputError : ''}
-                    aria-invalid={errors.email ? 'true' : undefined}
-                    aria-errormessage={errors.email ? 'feedback-email-error' : undefined}
-                />
-                {errors.email && <div id="feedback-email-error" className={styles.errorMessage} role="alert">{errors.email}</div>}
-            </div>
-            <div className={styles.input__group}>
                 <UiTextarea
                     label="Сообщение"
                     id="message"
                     name="message"
-                    placeholder="Введите ваше сообщение"
+                    placeholder="Коротко опишите запрос"
                     value={formDataState.message}
                     onChange={handleInputChange}
-                    className={errors.message ? styles.inputError : ''}
+                    className={`${styles.textareaTight} ${errors.message ? styles.inputError : ''}`.trim()}
                     aria-invalid={errors.message ? 'true' : undefined}
                     aria-errormessage={errors.message ? 'feedback-message-error' : undefined}
-                    rows={6}
+                    rows={2}
                 />
                 {errors.message && <div id="feedback-message-error" className={styles.errorMessage} role="alert">{errors.message}</div>}
             </div>
+            </div>
+            <div className={styles.form__footer}>
             <div className={styles.input__group}>
                 <UiCheckbox
                     id="feedback-consent"
@@ -139,6 +144,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, initialMessage}) =>
                 <UiButton type="submit" className={styles.submitButton} aria-label="Отправить заявку">
                     Отправить
                 </UiButton>
+            </div>
             </div>
         </form>
     );

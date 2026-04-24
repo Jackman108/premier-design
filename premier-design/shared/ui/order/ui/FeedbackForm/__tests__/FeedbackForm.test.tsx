@@ -23,10 +23,10 @@ describe('FeedbackForm', () => {
         const user = userEvent.setup();
         render(<FeedbackForm onSubmit={onSubmit}/>);
 
-        await user.type(screen.getByPlaceholderText('Введите ваше имя'), 'Иван Иванов');
+        await user.type(screen.getByPlaceholderText('Ваше имя'), 'Иван Иванов');
         await user.type(screen.getByPlaceholderText('Введите ваш номер телефона'), '291234567');
-        await user.type(screen.getByPlaceholderText('Введите ваш email (необязательно)'), 'ivan@test.by');
-        await user.type(screen.getByPlaceholderText('Введите ваше сообщение'), 'Нужен расчет и консультация');
+        await user.type(screen.getByPlaceholderText('email@example.com'), 'ivan@test.by');
+        await user.type(screen.getByPlaceholderText('Коротко опишите запрос'), 'Нужен расчет и консультация');
         await user.click(screen.getByRole('checkbox'));
         await user.click(screen.getByRole('button', {name: 'Отправить заявку'}));
 

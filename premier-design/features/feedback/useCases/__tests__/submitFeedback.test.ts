@@ -82,19 +82,48 @@ describe('submitFeedback', () => {
         expect(mockedEmailService.sendMail).toHaveBeenCalledTimes(1);
         expect(mockedTelegramService.sendMessage).toHaveBeenCalledTimes(1);
         const mailOpts = mockedEmailService.sendMail.mock.calls[0][0];
+        const mailTransport = mockedEmailService.sendMail.mock.calls[0][1];
+        expect(mailTransport).toEqual(
+            expect.objectContaining({connectionTimeout: 5_000, socketTimeout: 6_000}),
+        );
         expect(mailOpts.from).toBe('noreply@example.com');
         expect(mailOpts.to).toBe('inbox@example.com');
         expect(mailOpts.replyTo).toContain('test@example.com');
         expect(mailOpts.text).toContain('&lt;b&gt;');
     });
 
-    it('skips email and file persistence in production mode', async () => {
+    it('in development skips email when SMTP env is incomplete and still sends Telegram', async () => {
+        assignTestEnv('EMAIL_PASSWORD', undefined);
+        const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+        const result = await submitFeedback(payload);
+
+        try {
+            expect(result.status).toBe('success');
+            expect(mockedFileService.saveData).toHaveBeenCalledWith(payload);
+            expect(mockedEmailService.sendMail).not.toHaveBeenCalled();
+            expect(mockedTelegramService.sendMessage).toHaveBeenCalledTimes(1);
+            expect(warnSpy).toHaveBeenCalled();
+        } finally {
+            warnSpy.mockRestore();
+        }
+    });
+
+    it('sends email and Telegram in production when EMAIL_HOST and SMTP are complete, skips debug file', async () => {
         process.env = {...process.env, NODE_ENV: 'production'};
 
         const result = await submitFeedback(payload);
 
         expect(result.status).toBe('success');
         expect(mockedFileService.saveData).not.toHaveBeenCalled();
+        expect(mockedEmailService.sendMail).toHaveBeenCalledTimes(1);
+        expect(mockedTelegramService.sendMessage).toHaveBeenCalledTimes(1);
+    });
+
+    it('skips email when EMAIL_HOST is unset, still sends Telegram', async () => {
+        assignTestEnv('EMAIL_HOST', undefined);
+        const result = await submitFeedback(payload);
+
+        expect(result.status).toBe('success');
         expect(mockedEmailService.sendMail).not.toHaveBeenCalled();
         expect(mockedTelegramService.sendMessage).toHaveBeenCalledTimes(1);
     });

@@ -1,45 +1,74 @@
+/* Без внутренней прокрутки: плотная сетка + компактные поля, всё в одном экране на типичных вьюпортах. */
 .form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	margin: 0;
+	gap: 0;
+}
+
+/* Имя + email в одну линию на широких экранах — меньше высоты. */
+.form__nameEmail {
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-gap: 1rem;
-	max-width: 40rem;
-	width: 90%;
-	margin: 1rem auto;
+	gap: 0.45rem 1rem;
+}
+
+@media screen and (min-width: 28rem) {
+	.form__nameEmail {
+		grid-template-columns: 1fr 1fr;
+		align-items: start;
+	}
+}
+
+.form__main {
+	display: flex;
+	flex-direction: column;
+	gap: 0.45rem;
+}
+
+.form__footer {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	padding-top: 0.6rem;
+	margin-top: 0.35rem;
+	border-top: 1px solid color-mix(in srgb, var(--color-border) 80%, var(--color-surface));
+	background: linear-gradient(180deg, var(--color-surface) 0%, var(--color-surface-muted) 100%);
+	border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.form__footer .form__button {
+	margin-top: 0;
 }
 
 .fieldLabel {
-	font-size: 0.95rem;
+	font-size: 0.8rem;
 	font-weight: 600;
-	color: var(--gray-dark);
+	letter-spacing: 0.02em;
+	color: var(--color-text-muted);
 }
 
 .input__group {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
-}
-
-.input__group.inline {
-	flex-direction: row;
-	align-items: flex-end;
-	gap: 1rem;
-	flex-wrap: wrap;
+	gap: 0.2rem;
 }
 
 .inlineRow {
 	display: flex;
 	flex-direction: row;
 	align-items: flex-end;
-	gap: 1rem;
-	flex-wrap: wrap;
+	gap: 0.65rem;
+	flex-wrap: nowrap;
 	width: 100%;
 }
 
 .inlineField {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
+	gap: 0.2rem;
 	flex: 0 0 auto;
 	min-width: 0;
 }
@@ -47,8 +76,8 @@
 .inlineFieldGrow {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
-	flex: 1 1 12rem;
+	gap: 0.2rem;
+	flex: 1 1 9rem;
 	min-width: 0;
 }
 
@@ -61,29 +90,44 @@
 .input__group input:not([type="checkbox"]),
 .input__group textarea {
 	width: 100%;
-	padding: 0.8rem;
-	border: 1px solid var(--brown);
-	border-radius: 5px;
-	font-size: 1rem;
+	padding: 0.5rem 0.65rem;
+	border: 1px solid var(--color-border);
+	border-radius: var(--radius-md);
+	font-size: 0.95rem;
+	line-height: 1.4;
+	background: var(--color-surface);
+	color: var(--color-text);
 	box-shadow: var(--shadow-inset-soft);
 	transition: border-color var(--transition-base), box-shadow var(--transition-base);
 }
 
+/* См. UiTextarea: перебиваем min-height 8rem + resize, чтобы уместить форму без прокрутки */
+.textareaTight {
+	min-height: 3.35rem !important;
+	max-height: 3.35rem;
+	resize: none !important;
+	padding: 0.45rem 0.65rem !important;
+	font-size: 0.95rem !important;
+	line-height: 1.45 !important;
+}
+
 .input__group label {
-	font-size: 1rem;
-	color: var(--gray-dark);
-	line-height: 1.5;
+	font-size: 0.9rem;
+	color: var(--color-text);
+	line-height: 1.35;
 	cursor: pointer;
 }
 
 .input__group label a {
-	color: var(--brown-light);
-	text-decoration: none;
-	transition: color 0.3s;
+	color: var(--color-accent);
+	text-decoration: underline;
+	text-decoration-thickness: 1px;
+	text-underline-offset: 2px;
+	transition: color 0.2s;
 }
 
 .input__group label a:hover {
-	color: var(--brown);
+	color: var(--color-accent-hover);
 }
 
 .input__group label a:focus-visible {
@@ -95,7 +139,7 @@
 .input__group input:not([type="checkbox"]):focus-visible,
 .input__group textarea:focus-visible {
 	outline: none;
-	border-color: var(--brown-light);
+	border-color: var(--color-accent);
 	box-shadow: var(--focus-ring);
 }
 
@@ -103,33 +147,27 @@
 	border-color: var(--color-danger);
 }
 
-.input__group input:invalid ~ .error,
-.input__group textarea:invalid ~ .error {
-	color: var(--color-danger);
-	font-size: 0.85rem;
-	margin-top: 0.2rem;
-}
-
 .input__group .errorMessage {
 	color: var(--color-danger);
-	font-size: 0.85rem;
-	margin-top: 0.2rem;
-	font-weight: bold;
+	font-size: 0.78rem;
+	margin-top: 0.1rem;
+	font-weight: 600;
+	line-height: 1.25;
 }
 
 .inputError {
 	border-color: var(--color-danger) !important;
 }
 
-/* Маска телефона и select — те же отступы/граница, что у UiInput (токены). */
 .tokenControl {
 	width: 100%;
-	padding: var(--space-sm) var(--space-md);
+	padding: 0.5rem 0.6rem;
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-md);
 	background: var(--color-surface);
 	color: var(--color-text);
-	font-size: 1rem;
+	font-size: 0.95rem;
+	line-height: 1.35;
 	font-family: var(--font-family);
 	box-sizing: border-box;
 }
@@ -141,43 +179,44 @@
 }
 
 .tokenControlSelect {
-	min-width: 5.5rem;
+	min-width: 4.75rem;
 }
 
 .submitButton {
 	width: 100%;
-	max-width: 20rem;
+	max-width: 100%;
+	min-height: 2.75rem;
+	font-size: 1rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
 }
 
 .form__button {
 	width: 100%;
 	display: flex;
-	justify-content: center;
+	justify-content: stretch;
 }
 
-@media screen and (max-width: 768px) {
-	.form {
-		width: 95%;
-		padding: 1rem;
+@media screen and (min-width: 30rem) {
+	.submitButton {
+		max-width: 18rem;
+		margin-left: auto;
+		margin-right: auto;
 	}
+}
 
-	.input__group label {
-		font-size: 0.9rem;
+@media screen and (max-width: 27.99rem) {
+	.form__nameEmail {
+		grid-template-columns: 1fr;
 	}
 }
 
 @media screen and (max-width: 480px) {
-	.form {
-		grid-gap: 1rem;
-	}
 
 	.input__group input,
-	.input__group textarea {
-		font-size: 0.85rem;
-		padding: 0.6rem;
-	}
-
-	.input__group label {
-		font-size: 0.85rem;
+	.input__group textarea,
+	.tokenControl {
+		font-size: 0.9rem;
+		padding: 0.45rem 0.55rem;
 	}
 }

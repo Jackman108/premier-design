@@ -22,7 +22,16 @@ const toIntOrDefault = (raw: string | undefined, fallback: number) => {
 const SLO_ENABLED = process.env.FEEDBACK_SLO_ENABLED !== 'false';
 const DEFAULT_EVENTS_FILE = '.feedback-slo-events.jsonl';
 
-export const getFeedbackApiTimeoutMs = () => toIntOrDefault(process.env.FEEDBACK_API_TIMEOUT_MS, 8_000);
+/**
+ * Лимит `withTimeout` вокруг `submitFeedbackAction`: SMTP и Telegram в `submitFeedback` идут **параллельно**;
+ * `retryAsync` (2 попытки) + таймауты `feedbackDal` / `TELEGRAM_REQUEST_TIMEOUT_MS` — укладывайте `FEEDBACK_API_TIMEOUT_MS` с запасом.
+ * Явно задайте `FEEDBACK_API_TIMEOUT_MS` при жёстком SLO.
+ */
+const defaultFeedbackApiTimeoutMs = () =>
+	process.env.NODE_ENV === 'development' ? 30_000 : 20_000;
+
+export const getFeedbackApiTimeoutMs = () =>
+	toIntOrDefault(process.env.FEEDBACK_API_TIMEOUT_MS, defaultFeedbackApiTimeoutMs());
 
 const getEventsFilePath = () => {
 	const configuredPath = process.env.FEEDBACK_SLO_EVENTS_FILE?.trim();

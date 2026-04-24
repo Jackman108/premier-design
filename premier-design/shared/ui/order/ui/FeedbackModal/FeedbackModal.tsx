@@ -25,8 +25,8 @@ const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit, initialMessag
 				aria-describedby='feedback-modal-description'
 			>
 				<div className={styles.modal}>
-					<div className={styles.modal_top}>
-						<div className={styles.modal_text}>
+					<div className={styles.header}>
+						<div className={styles.headingBlock}>
 							<h3 id='feedback-modal-heading'>Оставьте заявку</h3>
 							<p id='feedback-modal-description'>Мы свяжемся в ближайшее время</p>
 						</div>
@@ -39,7 +39,7 @@ const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit, initialMessag
 							&times;
 						</button>
 					</div>
-					<div className={styles.modal__container}>
+					<div className={styles.content}>
 						<FeedbackForm initialMessage={initialMessage} onSubmit={onSubmit} />
 					</div>
 				</div>

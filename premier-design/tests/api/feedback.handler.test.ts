@@ -13,7 +13,7 @@ jest.mock('../../shared/lib/rateLimit', () => ({
 }));
 
 jest.mock('../../shared/lib/feedbackSlo', () => ({
-    getFeedbackApiTimeoutMs: jest.fn(() => 8_000),
+    getFeedbackApiTimeoutMs: jest.fn(() => 20_000),
     recordFeedbackSloSample: jest.fn(),
 }));
 
@@ -77,7 +77,7 @@ describe('/api/feedback handler', () => {
         consoleInfoSpy = jest.spyOn(console, 'info').mockImplementation(() => undefined);
         consoleErrorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
         mockedRateLimit.mockReturnValue({allowed: true, remaining: 4, retryAfterSec: 60});
-        mockedGetFeedbackApiTimeoutMs.mockReturnValue(8_000);
+        mockedGetFeedbackApiTimeoutMs.mockReturnValue(20_000);
     });
 
     afterEach(() => {

@@ -1,6 +1,6 @@
 import {ChangeEvent, SyntheticEvent, useState} from 'react';
 
-import {feedbackSchema} from '@shared/validates/feedbackSchema';
+import {feedbackSchema, PHONE_BY_RU_OPERATOR_ERROR, PHONE_FORMAT_ERROR} from '@shared/validates/feedbackSchema';
 import {FeedbackFormErrors, FeedbackPhoneCountry} from '@shared/ui/order/interface/FeedbackForm.types';
 import {FeedbackFormProps, FeedbackItem} from '@shared/ui/order/interface/FeedbackModal.props';
 import {getPhoneMask, normalizePhoneDigits, stripPhoneCountryCode, toPhoneWithCountryCode} from '@shared/ui/order/utils/phoneFormatting';
@@ -14,8 +14,15 @@ const mapUiError = (field: keyof FeedbackFormErrors, message?: string): string =
     switch (field) {
         case 'name':
             return 'Введите ваше имя';
-        case 'phone':
+        case 'phone': {
+            if (message === PHONE_BY_RU_OPERATOR_ERROR) {
+                return 'Мобильный +375: код 25, 29, 33 или 44. Мобильный +7: допустимый префикс 9XX (РФ).';
+            }
+            if (message === PHONE_FORMAT_ERROR) {
+                return 'Введите ваш номер телефона';
+            }
             return 'Введите ваш номер телефона';
+        }
         case 'message':
             return 'Введите сообщение';
         case 'consent':
