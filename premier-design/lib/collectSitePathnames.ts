@@ -7,7 +7,6 @@ export const STATIC_SITEMAP_PATHS: readonly string[] = [
 	'/services',
 	'/design',
 	'/portfolio',
-	'/calculator',
 	'/about',
 	'/contacts',
 	'/sitemap',

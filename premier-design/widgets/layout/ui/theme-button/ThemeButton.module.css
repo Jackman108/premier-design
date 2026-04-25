@@ -2,11 +2,13 @@
 	background-color: transparent;
 	border: 1px solid transparent;
 	color: color-mix(in srgb, var(--brown-dark) 85%, var(--white));
-	display: inline-grid;
-	place-items: center;
-	font-size: 1.8rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	/* Крупнее социконок (1.8rem): визуальный вес кнопки переключения темы. */
+	font-size: 0;
 	font-weight: bold;
-	padding: 0.35rem;
+	padding: 0;
 	margin: 0;
 	min-width: 44px;
 	min-height: 44px;
@@ -33,14 +35,15 @@
 }
 
 .theme__button svg {
-	width: 1.6rem;
-	height: 1.6rem;
+	width: 2.2rem;
+	height: 2.2rem;
+	flex-shrink: 0;
 }
 
 @media (max-width: 768px) {
 	.theme__button svg {
-		width: 1.4rem;
-		height: 1.4rem;
+		width: 1.95rem;
+		height: 1.95rem;
 	}
 }
 

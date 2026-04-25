@@ -65,7 +65,7 @@
 
 | Направление | Решение | Статус |
 |------------|---------|--------|
-| Интерактивы на touch (>=44px) | Мин. целевой размер **44×44px** (или эквивалент с padding) по интерактивам, перечисленным в `CHANGELOG` (в т.ч. `ThemeButton`, `MobileMenu`, `DocumentBreadcrumbs`, соц-иконки, стрелки, калькулятор, футер, телефон, табы). Соответствует правилу a11y в [`agent-architecture-clean-code.mdc`](../../.cursor/rules/agent-architecture-clean-code.mdc) §6. | Выполнено |
+| Интерактивы на touch (>=44px) | Мин. целевой размер **44×44px** (или эквивалент с padding) по интерактивам, перечисленным в `CHANGELOG` (в т.ч. `ThemeButton`, `MobileMenu`, `DocumentBreadcrumbs`, соц-иконки, стрелки, модалка сметы, футер, телефон, табы). Соответствует правилу a11y в [`agent-architecture-clean-code.mdc`](../../.cursor/rules/agent-architecture-clean-code.mdc) §6. | Выполнено |
 | Hover vs touch | Эффекты **:hover** для устройств с курсором: `@media (hover: hover)`; клавиатура/скринридер: **:focus-visible** не убран. Покрытие — основные `*.module.css` с интерактивом (см. `CHANGELOG`). | Выполнено |
 | Skeleton для dynamic секций | Добавлен `shared/ui/section-skeleton/*`; `lib/dynamicSectionImports.ts` переведён на `next/dynamic` с `loading: SectionSkeleton` для ленивых секций | Выполнено |
 

@@ -1,5 +1,6 @@
 .phone__container {
 	display: grid;
+	align-items: center;
 	color: var(--brown-dark);
 	grid-template-columns:  auto 1fr;
 	grid-gap: 1vh;
@@ -10,6 +11,7 @@
 	background: var(--beige);
 	padding: 0.4rem 0.7rem;
 	min-height: 44px;
+	box-sizing: border-box;
 	border-radius: var(--radius-md);
 	box-shadow: var(--shadow-sm);
 	transition: color var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base);
@@ -39,6 +41,12 @@
 .phone__number {
 	white-space: nowrap;
 	font-size: 1.2rem;
+	display: flex;
+	align-items: center;
+}
+
+.phone__number p {
+	margin: 0;
 }
 
 @media (max-width: 768px) {

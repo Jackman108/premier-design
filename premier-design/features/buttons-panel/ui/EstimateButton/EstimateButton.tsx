@@ -2,14 +2,14 @@ import React, {FC} from 'react';
 import dynamic from 'next/dynamic';
 import PanelButton from "@features/buttons-panel/ui/PanelButton/PanelButton";
 import {useModalState} from "@shared/hooks/useModalState";
-import {CalculatorButtonProps} from "@features/buttons-panel/interface/CalculatorButton.props";
+import {EstimateButtonProps} from "@features/buttons-panel/interface/EstimateButton.props";
 
-const CalculatorModal = dynamic(() => import('@shared/ui/calculator-modal/ui/CalculatorModal/CalculatorModal'), {
+const EstimateModal = dynamic(() => import('@shared/ui/estimate-modal/ui/EstimateModal/EstimateModal'), {
     ssr: false,
     loading: () => null,
 });
 
-const CalculatorButton: FC<CalculatorButtonProps> = ({costingCards, panelData}) => {
+const EstimateButton: FC<EstimateButtonProps> = ({costingCards, panelData}) => {
     const {isOpen: isModalOpen, toggleModal} = useModalState(false);
     return (
         <>
@@ -18,7 +18,7 @@ const CalculatorButton: FC<CalculatorButtonProps> = ({costingCards, panelData}) 
                 onClick={toggleModal}
             />
             {isModalOpen && (
-                <CalculatorModal
+                <EstimateModal
                     cards={costingCards}
                     card={costingCards[0]}
                     onClose={toggleModal}
@@ -28,4 +28,4 @@ const CalculatorButton: FC<CalculatorButtonProps> = ({costingCards, panelData}) 
     );
 };
 
-export default CalculatorButton;
+export default EstimateButton;

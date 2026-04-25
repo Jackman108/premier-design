@@ -71,7 +71,6 @@ describe('/api/sitemap handler', () => {
 		expect(payload).toContain('<urlset');
 		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/design`);
 		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/portfolio`);
-		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/calculator`);
 		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/services`);
 		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/sitemap`);
 		expect(payload).toContain(`${SITE_PUBLIC_ORIGIN}/services/renovation`);

@@ -1,19 +1,19 @@
 'use client';
 import type {FC, MouseEvent} from 'react';
 
-import CollapsibleContainer from '@shared/ui/calculator-modal/ui/CollapsibleContainer/CollapsibleContainer';
-import CostInput from '@shared/ui/calculator-modal/ui/CostInput/CostInput';
+import CollapsibleContainer from '@shared/ui/estimate-modal/ui/CollapsibleContainer/CollapsibleContainer';
+import CostInput from '@shared/ui/estimate-modal/ui/CostInput/CostInput';
 import Logo from '@shared/ui/logo/Logo';
-import ModalTabs from '@shared/ui/calculator-modal/ui/ModalTabs/ModalTabs';
+import ModalTabs from '@shared/ui/estimate-modal/ui/ModalTabs/ModalTabs';
 import Preloader from '@shared/ui/preloader/Preloader/Preloader';
 import {BodyPortal} from '@shared/ui/portal/BodyPortal';
-import {CalculatorModalProps} from '@shared/ui/calculator-modal/interface/CalculatorModal.props';
-import {typeItemsConfig} from '@shared/ui/calculator-modal/configs/factorsConfig';
-import useCalculatorHandlers from '@shared/ui/calculator-modal/hooks/useCalculatorHandlers';
+import {EstimateModalProps} from '@shared/ui/estimate-modal/interface/EstimateModal.props';
+import {typeItemsConfig} from '@shared/ui/estimate-modal/configs/factorsConfig';
+import useEstimateModalHandlers from '@shared/ui/estimate-modal/hooks/useEstimateModalHandlers';
 
-import styles from './CalculatorModal.module.css';
+import styles from './EstimateModal.module.css';
 
-const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
+const EstimateModal: FC<EstimateModalProps> = ({cards, card, onClose}) => {
     const {
         selectedTab,
         inputValue,
@@ -28,7 +28,7 @@ const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
         handleInputChange,
         handleTypeChange,
         handleCalculate,
-    } = useCalculatorHandlers(card);
+    } = useEstimateModalHandlers(card);
 
     const {repairTypeItems, propertyTypeItems, serviceTypeItems} = typeItemsConfig;
     const handleDialogMouseDown = (event: MouseEvent<HTMLDialogElement>) => {
@@ -44,14 +44,14 @@ const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
             open
             onCancel={onClose}
             onMouseDown={handleDialogMouseDown}
-            aria-labelledby="calculator-modal-title"
+            aria-labelledby="estimate-modal-title"
         >
             <div className={styles.modal_container}>
                 <div className={styles.modal_header}>
-                    <h2 id="calculator-modal-title" className={styles.header_title}>
+                    <h2 id="estimate-modal-title" className={styles.header_title}>
                         Рассчитайте стоимость Вашего ремонта
                     </h2>
-                    <button className={styles.header_close} onClick={() => onClose()} aria-label="Закрыть калькулятор">
+                    <button className={styles.header_close} onClick={() => onClose()} aria-label="Закрыть смету">
                         &times;
                     </button>
                 </div>
@@ -127,4 +127,4 @@ const CalculatorModal: FC<CalculatorModalProps> = ({cards, card, onClose}) => {
     );
 };
 
-export default CalculatorModal;
+export default EstimateModal;

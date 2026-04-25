@@ -3,7 +3,7 @@
 
 import React from 'react';
 import styles from './ModalTabs.module.css';
-import { ModalTabsProps } from '@shared/ui/calculator-modal/interface/CalculatorModal.props';
+import { ModalTabsProps } from '@shared/ui/estimate-modal/interface/EstimateModal.props';
 
 const ModalTabs: React.FC<ModalTabsProps> = ({
     data,

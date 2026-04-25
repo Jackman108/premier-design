@@ -2,8 +2,8 @@
 
 import React, {FC} from 'react';
 import styles from './CollapsibleContainer.module.css';
-import {CollapsibleContainerProps} from '@shared/ui/calculator-modal/interface/CalculatorModal.props';
-import {useCollapsibleContainer} from '@shared/ui/calculator-modal/hooks/useCollapsibleContainer';
+import {CollapsibleContainerProps} from '@shared/ui/estimate-modal/interface/EstimateModal.props';
+import {useCollapsibleContainer} from '@shared/ui/estimate-modal/hooks/useCollapsibleContainer';
 
 const CollapsibleContainer: FC<CollapsibleContainerProps> = ({
                                                                  items,

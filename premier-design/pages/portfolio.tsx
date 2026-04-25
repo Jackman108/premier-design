@@ -2,8 +2,9 @@ import type {NextPage} from 'next';
 import type {ReactElement} from 'react';
 
 import {HeroBanner, type HeroBannerProps} from '@features/banner';
+import PortfolioProjectSliders from '@features/examples/ui/PortfolioProjectSliders/PortfolioProjectSliders';
 import {getStaticProps} from '@lib/getStaticData';
-import {Appeal, Examples, Features, OfferBanner} from '@lib/dynamicSectionImports';
+import {Appeal, Features, OfferBanner} from '@lib/dynamicSectionImports';
 import {selectAppealSectionData, usePageData} from '@shared/hooks/usePageData';
 import {getTitleData} from '@shared/utils/findItemByTitle';
 import {GetDataProps} from '@widgets/interface/interfaceData';
@@ -30,7 +31,7 @@ const Portfolio: NextPage<GetDataProps> = ({data}): ReactElement => {
                 <HeroBanner {...bannerProps}/>
                 <Features features={data.features}/>
                 <OfferBanner ctaLabel={buttonData.buttonHeader} offer={data.offerBanner.portfolioType}/>
-                <Examples cards={data.examplesCard} title={titles['our-works']}/>
+                <PortfolioProjectSliders cards={data.examplesCard} title={titles['our-works']}/>
                 <Appeal {...selectAppealSectionData(data.title, data.button, data.bannersImages)} />
             </Layout>
         </>

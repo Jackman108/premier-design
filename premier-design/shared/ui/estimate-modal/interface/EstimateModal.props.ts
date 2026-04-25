@@ -1,7 +1,7 @@
 import {ChangeEvent} from "react";
 import {CostingCardProps} from "@shared/interface/CostingCard.props";
 
-export interface CalculatorModalProps {
+export interface EstimateModalProps {
     onClose: () => void;
     card: CostingCardProps;
     cards: CostingCardProps[];

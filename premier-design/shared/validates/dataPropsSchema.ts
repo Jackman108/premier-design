@@ -179,7 +179,7 @@ const offerBannerSchema = z.strictObject({
 	repairType: offerTypeSchema,
 	aboutType: offerTypeSchema,
 	portfolioType: offerTypeSchema,
-	calculatorType: offerTypeSchema,
+	estimateType: offerTypeSchema,
 });
 
 const partnerItemSchema = z.object({

@@ -1,4 +1,4 @@
-import {factorConfig, PropertyType, RepairType, ServiceType} from '@shared/ui/calculator-modal/configs/factorsConfig';
+import {factorConfig, PropertyType, RepairType, ServiceType} from '@shared/ui/estimate-modal/configs/factorsConfig';
 
 export interface CalculateEstimateParams {
     tabCosts: number[];

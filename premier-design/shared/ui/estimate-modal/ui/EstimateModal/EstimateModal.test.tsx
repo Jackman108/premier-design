@@ -1,9 +1,9 @@
 /** @jest-environment jsdom */
 import {fireEvent, render, screen} from '@testing-library/react';
 import type {CostingCardProps} from '@shared/interface/CostingCard.props';
-import CalculatorModal from './CalculatorModal';
+import EstimateModal from './EstimateModal';
 
-jest.mock('@shared/ui/calculator-modal/hooks/useCalculatorHandlers', () => ({
+jest.mock('@shared/ui/estimate-modal/hooks/useEstimateModalHandlers', () => ({
 	__esModule: true,
 	default: () => ({
 		selectedTab: 0,
@@ -22,17 +22,17 @@ jest.mock('@shared/ui/calculator-modal/hooks/useCalculatorHandlers', () => ({
 	}),
 }));
 
-jest.mock('@shared/ui/calculator-modal/ui/ModalTabs/ModalTabs', () => ({
+jest.mock('@shared/ui/estimate-modal/ui/ModalTabs/ModalTabs', () => ({
 	__esModule: true,
 	default: () => <div data-testid="modal-tabs" />,
 }));
 
-jest.mock('@shared/ui/calculator-modal/ui/CollapsibleContainer/CollapsibleContainer', () => ({
+jest.mock('@shared/ui/estimate-modal/ui/CollapsibleContainer/CollapsibleContainer', () => ({
 	__esModule: true,
 	default: () => <div data-testid="collapsible-container" />,
 }));
 
-jest.mock('@shared/ui/calculator-modal/ui/CostInput/CostInput', () => ({
+jest.mock('@shared/ui/estimate-modal/ui/CostInput/CostInput', () => ({
 	__esModule: true,
 	default: () => <div data-testid="cost-input" />,
 }));
@@ -47,7 +47,7 @@ jest.mock('@shared/ui/preloader/Preloader/Preloader', () => ({
 	default: () => <div data-testid="preloader" />,
 }));
 
-describe('CalculatorModal', () => {
+describe('EstimateModal', () => {
 	const card: CostingCardProps = {
 		id: 1,
 		title: 'Card 1',
@@ -57,7 +57,7 @@ describe('CalculatorModal', () => {
 
 	it('renders as dialog and closes via backdrop click', () => {
 		const onClose = jest.fn();
-		render(<CalculatorModal cards={cards} card={card} onClose={onClose} />);
+		render(<EstimateModal cards={cards} card={card} onClose={onClose} />);
 
 		const dialog = screen.getByRole('dialog', {name: 'Рассчитайте стоимость Вашего ремонта'});
 		expect(dialog).toHaveAttribute('open');
@@ -68,7 +68,7 @@ describe('CalculatorModal', () => {
 
 	it('closes via cancel event', () => {
 		const onClose = jest.fn();
-		render(<CalculatorModal cards={cards} card={card} onClose={onClose} />);
+		render(<EstimateModal cards={cards} card={card} onClose={onClose} />);
 
 		const dialog = screen.getByRole('dialog', {name: 'Рассчитайте стоимость Вашего ремонта'});
 		fireEvent(dialog, new Event('cancel', {bubbles: false, cancelable: true}));

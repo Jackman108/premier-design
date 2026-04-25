@@ -1,6 +1,6 @@
-import {calculateEstimate, DEFAULT_TAB_COSTS, parseAreaValue} from '@shared/ui/calculator-modal/utils/calculateEstimate';
+import {calculateEstimate, DEFAULT_TAB_COSTS, parseAreaValue} from '@shared/ui/estimate-modal/utils/calculateEstimate';
 
-describe('calculator estimate utils', () => {
+describe('estimate utils', () => {
     it('parses area value as integer', () => {
         expect(parseAreaValue('42')).toBe(42);
     });

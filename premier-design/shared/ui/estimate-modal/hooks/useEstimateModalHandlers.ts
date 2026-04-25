@@ -1,8 +1,8 @@
 import {ChangeEvent, useCallback, useEffect, useMemo, useState} from 'react';
 import {CostingCardProps} from "@shared/interface/CostingCard.props";
-import {calculateEstimate, DEFAULT_TAB_COSTS, parseAreaValue} from '@shared/ui/calculator-modal/utils/calculateEstimate';
+import {calculateEstimate, DEFAULT_TAB_COSTS, parseAreaValue} from '@shared/ui/estimate-modal/utils/calculateEstimate';
 
-const useCalculatorHandlers = (card: CostingCardProps) => {
+const useEstimateModalHandlers = (card: CostingCardProps) => {
     const [selectedTab, setSelectedTab] = useState<number>(card.id || 0);
     const [inputValue, setInputValue] = useState<string>('');
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -76,4 +76,4 @@ const useCalculatorHandlers = (card: CostingCardProps) => {
     };
 };
 
-export default useCalculatorHandlers;
+export default useEstimateModalHandlers;

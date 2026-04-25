@@ -45,8 +45,8 @@ test('@core home page smoke', async ({page}) => {
 	await expect(page.getByRole('button', {name: 'Сделать заказ'}).first()).toBeVisible();
 });
 
-test('@extended portfolio and calculator pages smoke', async ({page}) => {
-	for (const path of ['/portfolio', '/calculator']) {
+test('@extended portfolio page smoke', async ({page}) => {
+	for (const path of ['/portfolio']) {
 		await gotoWithRetry(page, path);
 		await expect(page.getByRole('main').getByRole('heading', {level: 1}).first()).toBeVisible();
 	}
@@ -86,7 +86,7 @@ test('@extended photo viewer opens and closes from home examples', async ({page}
 });
 
 test('@extended no hydration warnings on key pages', async ({page}) => {
-	const routes = ['/', '/about', '/contacts', '/portfolio', '/calculator'];
+	const routes = ['/', '/about', '/contacts', '/portfolio'];
 
 	for (const route of routes) {
 		const messages: string[] = [];

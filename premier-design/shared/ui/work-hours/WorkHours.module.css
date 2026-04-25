@@ -1,7 +1,7 @@
 .work__hours {
 	font-size: 1.2rem;
 	color: var(--brown-dark);
-	display: flex;
+	display: inline-flex;
 	align-items: center;
 	gap: 0.5rem;
 	white-space: nowrap;
@@ -9,9 +9,10 @@
 	line-height: 1.2;
 	background: var(--beige);
 	padding: 0.4rem 0.7rem;
+	min-height: 44px;
+	box-sizing: border-box;
 	border-radius: var(--radius-md);
 	box-shadow: var(--shadow-sm);
-
 }
 
 @media (max-width: 768px) {

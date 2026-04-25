@@ -3,7 +3,7 @@ import React, {FC} from "react";
 import {findItemByTitle} from "@shared/utils/findItemByTitle";
 import {findPanelById} from "../utils/findPanelById";
 import OrderButton from "@shared/ui/order/ui/OrderButton/OrderButton";
-import {CalculatorButton} from '@features/buttons-panel';
+import {EstimateButton} from '@features/buttons-panel';
 import styles from './ButtonsPanel.module.css';
 import {ButtonsPanelProps} from "../interface/ButtonsPanel.props";
 
@@ -17,7 +17,7 @@ const ButtonsPanel: FC<ButtonsPanelProps> = ({additionalData}) => {
 
     const buttonHeader = findItemByTitle(buttonData, "get_counseling");
     const phoneButton = findPanelById(panelData, "phoneButton");
-    const calculatorButton = findPanelById(panelData, "calculatorButton");
+    const estimateButton = findPanelById(panelData, "estimateButton");
     const chatButton = findPanelById(panelData, "chatButton");
 
     return (
@@ -31,8 +31,8 @@ const ButtonsPanel: FC<ButtonsPanelProps> = ({additionalData}) => {
                     />
                 )}
                 {chatButton && <ChatBotSidebar panelData={chatButton}/>}
-                {calculatorButton && (
-                    <CalculatorButton costingCards={costingCards} panelData={calculatorButton}/>
+                {estimateButton && (
+                    <EstimateButton costingCards={costingCards} panelData={estimateButton}/>
                 )}
             </div>
         </aside>

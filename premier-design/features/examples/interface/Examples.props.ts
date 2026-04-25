@@ -1,8 +1,14 @@
-import {TitleProps} from "@shared/ui/title/interface/Title.props";
+import type {TitleProps} from '@shared/ui/title/interface/Title.props';
 
 export interface ExamplesProps {
     cards: ExampleCardProps[];
     title: TitleProps;
+}
+
+/** Только для `pages/portfolio`: по одному крупному слайдеру на объект (остальные страницы — `Examples`). */
+export interface PortfolioProjectSlidersProps {
+	cards: ExampleCardProps[];
+	title: TitleProps;
 }
 
 export interface ExampleCardComponentProps {
