@@ -50,12 +50,12 @@
 	flex-direction: column;
 	gap: var(--space-md);
 	text-align: center;
-	color: var(--white);
+	color: var(--text-on-media);
 	z-index: var(--z-content);
 	width: min(70rem, 100%);
 	padding: clamp(var(--space-lg), 3.5vw, calc(var(--space-2xl) + var(--space-sm)));
-	background: color-mix(in srgb, var(--overlay-on-media-strong) 62%, transparent);
-	border: 1px solid color-mix(in srgb, var(--white) 24%, transparent);
+	background: var(--surface-on-media-strong);
+	border: 1px solid color-mix(in srgb, var(--text-on-media) 24%, transparent);
 	border-radius: var(--radius-lg);
 	box-shadow: var(--shadow-lg), var(--shadow-inset-soft);
 	backdrop-filter: blur(3px);
@@ -65,7 +65,7 @@
 	font-size: var(--font-size-heading-lg);
 	line-height: var(--line-height-heading);
 	font-weight: bold;
-	color: var(--white);
+	color: var(--text-on-media);
 	text-shadow: 0 2px 8px rgb(0 0 0 / 0.35);
 	margin: 0;
 }
@@ -91,7 +91,7 @@
 	text-align: left;
 	max-width: 64ch;
 	margin-inline: auto;
-	color: color-mix(in srgb, var(--white) 92%, var(--gold-light));
+	color: var(--text-on-media-muted);
 }
 
 .offer__questions li {
@@ -105,12 +105,12 @@
 	line-height: var(--line-height-body-relaxed);
 	max-width: 72ch;
 	margin-inline: auto;
-	color: color-mix(in srgb, var(--white) 94%, var(--gold-light));
+	color: var(--text-on-media-muted);
 }
 
 .offer__tips {
 	font-style: italic;
-	color: color-mix(in srgb, var(--gold-light) 88%, var(--white));
+	color: color-mix(in srgb, var(--gold-light) 88%, var(--text-on-media));
 	font-weight: bolder;
 }
 

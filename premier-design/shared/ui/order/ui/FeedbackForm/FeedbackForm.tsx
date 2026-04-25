@@ -104,6 +104,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, initialMessage}) =>
                     label="Сообщение"
                     id="message"
                     name="message"
+                    autoComplete="off"
                     placeholder="Коротко опишите запрос"
                     value={formDataState.message}
                     onChange={handleInputChange}

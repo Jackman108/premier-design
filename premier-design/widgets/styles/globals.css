@@ -77,6 +77,12 @@ select {
 	font: inherit;
 }
 
+/* Единый fallback для клавиатурного фокуса там, где модуль не задаёт свой стиль. */
+:where(a, button, [role='button'], input, textarea, select, summary, [tabindex]:not([tabindex='-1'])):focus-visible {
+	outline: var(--focus-outline-width) solid var(--focus-outline-color);
+	outline-offset: var(--focus-outline-offset);
+}
+
 /* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
 @media (prefers-reduced-motion: reduce) {
 	* {

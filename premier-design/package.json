@@ -36,6 +36,7 @@
     "test:e2e": "node ./node_modules/@playwright/test/cli.js test --grep @core",
     "test:e2e:full": "node ./node_modules/@playwright/test/cli.js test",
     "test:e2e:extended": "node ./node_modules/@playwright/test/cli.js test --grep @extended",
+    "test:e2e:visual": "node ./node_modules/@playwright/test/cli.js test e2e/visual-regression.spec.ts",
     "test:e2e:install": "node ./node_modules/@playwright/test/cli.js install chromium",
     "type": "node pages/api/importData.mjs",
     "storybook": "node ./node_modules/storybook/dist/bin/dispatcher.js dev -p 6006",

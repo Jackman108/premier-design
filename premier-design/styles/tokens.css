@@ -101,6 +101,11 @@
 
 	--overlay-on-media: rgb(13 11 11 / 0.6);
 	--overlay-on-media-strong: rgb(13 11 11 / 0.8);
+	/* Семантика: «тёмная плашка» поверх фото/видео в любых темах. */
+	--surface-on-media: color-mix(in srgb, var(--overlay-on-media) 86%, transparent);
+	--surface-on-media-strong: color-mix(in srgb, var(--overlay-on-media-strong) 86%, transparent);
+	--text-on-media: var(--white);
+	--text-on-media-muted: color-mix(in srgb, var(--white) 92%, var(--gold-light));
 	--overlay-scrim: rgb(13 11 11 / 0.5);
 	--overlay-scrim-strong: rgb(13 11 11 / 0.7);
 	--overlay-light: rgb(255 255 255 / 0.9);
@@ -121,6 +126,9 @@
 	--order-text-shadow-dark-muted: 0 1px 1px color-mix(in srgb, var(--brown) 40%, transparent);
 
 	--focus-ring: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-accent);
+	--focus-outline-width: 2px;
+	--focus-outline-color: var(--color-accent);
+	--focus-outline-offset: 2px;
 }
 
 [data-theme='dark'],
@@ -138,8 +146,13 @@
 	--color-accent-soft: rgb(212 175 55 / 0.15);
 	--overlay-light: rgb(5 5 5 / 0.85);
 	--overlay-panel: rgb(10 10 10 / 0.85);
+	--surface-on-media: color-mix(in srgb, rgb(0 0 0 / 0.78) 88%, transparent);
+	--surface-on-media-strong: color-mix(in srgb, rgb(0 0 0 / 0.9) 88%, transparent);
+	--text-on-media: #f7f7f7;
+	--text-on-media-muted: #ece7d5;
 	--shadow-sm: 0 1px 2px rgb(0 0 0 / 0.8);
 	--shadow-md: 0 4px 12px rgb(0 0 0 / 0.9);
 	--shadow-lg: 0 8px 24px rgb(0 0 0 / 0.95);
 	--focus-ring: 0 0 0 2px var(--color-surface), 0 0 0 4px var(--color-accent);
+	--focus-outline-color: var(--color-accent);
 }

@@ -39,7 +39,7 @@
 	position: relative;
 	height: 180px;
 	overflow: hidden;
-	background-color: var(--gray-light);
+	background-color: var(--color-surface-muted);
 	display: flex;
 	justify-content: center;
 }

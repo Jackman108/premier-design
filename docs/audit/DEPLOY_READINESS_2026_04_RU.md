@@ -18,6 +18,7 @@
 | Quality-gate (как в CI) | `yarn check:perf:ci` | Lighthouse + initial JS (на Windows Lighthouse может быть пропущен — см. PERF-гайд) |
 | Границы слоёв / UI-чистота | `yarn check:architecture`, `yarn check:ui-purity` | без новых нарушений |
 | E2E smoke | `yarn test:e2e` (нужен `yarn dev` или `yarn start` + `baseURL` из Playwright) | ключевые сценарии в `e2e/smoke.spec.ts` |
+| E2E visual smoke | `yarn test:e2e:visual` | базовая проверка консистентности карточек и dark-overlay контраста (`e2e/visual-regression.spec.ts`) |
 
 ---
 
@@ -52,6 +53,9 @@
 - **Lighthouse на Windows:** по умолчанию шаг может пропускаться; полный прогон — CI или `PERF_AUDIT_FORCE_LIGHTHOUSE=true` ([PERF_AND_SEO_CHECKLIST_RU.md](../guides/PERF_AND_SEO_CHECKLIST_RU.md)).
 - **Шапка (десктоп):** при росте числа пунктов меню — flex + перенос навигации на вторую строку и динамическая высота плейсхолдера при sticky (`useHeaderPlaceholderHeight`).
 - **Галерея (PhotoViewer):** закрытие по клику на полупрозрачную подложку (вне кадра изображения), по **Escape**, по кнопке «Закрыть окно»; предупреждения `next/image` по соотношению сторон — устранены.
+- **UI-консистентность карточек:** в одном скролле не смешивать «плоские» и pseudo-3D карточки; для карточек услуг/примеров/сметы/прайса использовать единый паттерн `border: 1px solid var(--color-border)` + `var(--shadow-md/--shadow-lg)`.
+- **Тёмная тема на медиа:** для плашек поверх фото/градиентов использовать только семантические токены `--surface-on-media*` и `--text-on-media*` (не `--gray*`); проверить читаемость не только hero, но и `OfferBanner`/карточек услуг/галереи.
+- **Клавиатурная навигация:** проверить, что интерактивы без локального `:focus-visible` покрываются глобальным fallback из `widgets/styles/globals.css`; токены `--focus-outline-*` и `--focus-ring` должны давать единый цвет/толщину.
 
 ---
 
@@ -69,6 +73,8 @@
 2. Отправка формы обратной связи (успех + ошибка с `correlationId` в логах, без утечки стека клиенту).
 3. `GET /api/sitemap` и `https://<домен>/sitemap.xml` (rewrite).
 4. Ручной или автоматический Lighthouse на проде (после стабилизации кэша).
+5. Ручной визуальный smoke в `light/dark`: карточки (услуги/примеры/смета/прайс) выглядят консистентно по глубине, текст на фото-плашках контрастен.
+6. Keyboard-only smoke: `Tab/Shift+Tab` по хедеру, боковой навигации, панели кнопок, модалкам (Estimate/Feedback/PhotoViewer), явное `focus-visible` на каждом шаге.
 
 ---
 

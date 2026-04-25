@@ -43,6 +43,7 @@
 .closeButton:focus-visible {
 	background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
 	outline: none;
+	box-shadow: var(--focus-ring);
 }
 
 @media (hover: hover) {

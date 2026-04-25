@@ -1,7 +1,7 @@
 .categoryCollapse {
 	max-width: var(--section-content-max);
 	margin: 10px auto;
-	border: 2px solid var(--gray-light);
+	border: 1px solid var(--color-border);
 	border-radius: var(--radius-lg);
 	overflow: hidden;
 	transition: border-color var(--transition-base), box-shadow var(--transition-slow);
@@ -16,14 +16,14 @@
 .categoryHeader {
 	cursor: pointer;
 	font-weight: bold;
-	color: var(--brown-light);
-	background-color: var(--gray-light);
+	color: var(--color-text);
+	background-color: var(--color-surface-muted);
 	padding: 18px 20px;
 	min-height: 44px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 2px solid var(--gray-light);
+	border-bottom: 1px solid var(--color-border);
 	transition: background-color var(--transition-base), transform var(--transition-base);
 }
 
@@ -42,7 +42,7 @@
 .toggleIcon {
 	width: 20px;
 	height: 20px;
-	border: 2px solid var(--gray-dark);
+	border: 2px solid var(--color-text-muted);
 	border-radius: 50%;
 	position: relative;
 	transition: transform var(--transition-base);
@@ -55,7 +55,7 @@
 	left: 50%;
 	width: 10px;
 	height: 2px;
-	background-color: var(--gray-dark);
+	background-color: var(--color-text-muted);
 	transform: translate(-50%, -50%);
 }
 

@@ -50,10 +50,10 @@
 	text-align: center;
 	font-size: 1.1rem;
 	line-height: 2rem;
-	color: var(--brown-white);
-	text-shadow: 0 0 1px var(--color-surface);
+	color: var(--text-on-media-muted);
+	text-shadow: 0 1px 4px rgb(0 0 0 / 0.7);
 	opacity: 0.8;
-	background: linear-gradient(to bottom, var(--color-text), var(--brown));
+	background: linear-gradient(to bottom, var(--surface-on-media-strong), var(--surface-on-media));
 }
 
 .offer__content_title {

@@ -45,16 +45,16 @@
 	font-size: 1.8rem;
 	margin-bottom: 1rem;
 	text-align: center;
-	background: color-mix(in srgb, var(--color-surface) 26%, rgb(0 0 0 / 0.72));
+	background: var(--surface-on-media);
 	opacity: 1;
 	/* light text on dimmed image; --color-surface в тёмной теме тёмный — не подходит */
-	color: var(--white);
+	color: var(--text-on-media);
 	z-index: var(--z-content);
 	text-shadow: 0 2px 8px rgb(0 0 0 / 0.7);
 }
 
 .details {
-	background: color-mix(in srgb, var(--color-surface) 20%, rgb(0 0 0 / 0.78));
+	background: var(--surface-on-media-strong);
 	opacity: 1;
 	text-shadow: 0 1px 4px rgb(0 0 0 / 0.68);
 }
@@ -62,7 +62,7 @@
 .details,
 .reasons {
 	list-style-type: none;
-	color: var(--white);
+	color: var(--text-on-media);
 }
 
 @media (max-width: 1024px) {

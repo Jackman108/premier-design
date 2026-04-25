@@ -26,6 +26,15 @@
 	color: var(--color-text-muted);
 }
 
+.textarea:-webkit-autofill,
+.textarea:-webkit-autofill:hover,
+.textarea:-webkit-autofill:focus-visible {
+	-webkit-text-fill-color: var(--color-text);
+	-webkit-box-shadow: 0 0 0 1000px var(--color-surface) inset;
+	box-shadow: 0 0 0 1000px var(--color-surface) inset;
+	caret-color: var(--color-text);
+}
+
 .textarea:focus-visible {
 	outline: none;
 	box-shadow: var(--focus-ring);

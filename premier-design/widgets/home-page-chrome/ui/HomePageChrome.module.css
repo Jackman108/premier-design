@@ -84,6 +84,7 @@
 	color: var(--color-accent);
 	border-color: color-mix(in srgb, var(--color-accent) 35%, var(--color-border));
 	outline: none;
+	box-shadow: var(--focus-ring);
 }
 
 @media (hover: hover) {

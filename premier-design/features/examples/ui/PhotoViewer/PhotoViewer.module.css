@@ -97,10 +97,10 @@
 	padding: 0.5rem 0.65rem;
 	pointer-events: auto;
 
-	background-color: var(--overlay-on-media);
+	background-color: var(--surface-on-media);
 	border: none;
 	/* Поверх тёмного scrim — контраст в обеих темах (см. agent-architecture-clean-code §6) */
-	color: var(--white);
+	color: var(--text-on-media);
 	text-shadow: 0 1px 2px rgb(13 11 11 / 0.85);
 	font-size: 1.5em;
 	line-height: 1;
@@ -112,7 +112,7 @@
 @media (hover: hover) {
 	.buttonPrev:hover,
 	.buttonNext:hover {
-		background-color: var(--overlay-on-media-strong);
+		background-color: var(--surface-on-media-strong);
 	}
 }
 
@@ -139,7 +139,7 @@
 	padding: 5px 10px;
 	background-color: transparent;
 	border: none;
-	color: var(--white);
+	color: var(--text-on-media);
 	text-shadow: 0 1px 2px rgb(13 11 11 / 0.85);
 	font-size: 16px;
 	cursor: pointer;
@@ -154,7 +154,7 @@
 	padding: 5px 10px;
 	background-color: transparent;
 	border: none;
-	color: var(--white);
+	color: var(--text-on-media-muted);
 	text-shadow: 0 1px 2px rgb(13 11 11 / 0.85);
 	font-size: 16px;
 	cursor: default;
