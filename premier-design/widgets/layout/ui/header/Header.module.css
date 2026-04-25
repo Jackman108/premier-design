@@ -13,6 +13,17 @@
 	box-shadow: none;
 }
 
+/* Витрина/детальные страницы без full-screen hero (токен палитры — не legacy --blue). */
+.solidDark {
+	position: relative;
+	background: var(--color-header-bar-bg);
+	border-bottom: 1px solid var(--color-header-bar-border);
+	box-shadow: var(--shadow-md);
+}
+
+.solidDark :global([class*='theme__button']) {
+	color: var(--white);
+}
 
 .withShareBanner {
 	top: var(--share-banner-height, 0px);
@@ -25,7 +36,7 @@
 	justify-content: space-between;
 	column-gap: clamp(0.5rem, 1.5vw, 1.25rem);
 	row-gap: 0.5rem;
-	max-width: 1440px;
+	max-width: var(--section-content-max);
 	width: 100%;
 	min-width: 0;
 	margin: 0 auto;
@@ -52,6 +63,10 @@
 		position: relative;
 		background: var(--color-surface);
 		box-shadow: var(--shadow-md);
+	}
+
+	.header.solidDark {
+		background: var(--blue);
 	}
 
 	.withShareBanner {
@@ -107,6 +122,12 @@
 		background: var(--color-surface);
 		opacity: 0.95;
 		animation: slide-down 0.3s ease-out;
+	}
+
+	.header.solidDark.sticky {
+		background: var(--color-header-bar-bg);
+		border-bottom: 1px solid var(--color-header-bar-border);
+		opacity: 1;
 	}
 
 	.stickyPlaceholder {

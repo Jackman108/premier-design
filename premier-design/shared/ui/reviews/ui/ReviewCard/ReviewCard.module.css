@@ -9,9 +9,14 @@
 	transition: box-shadow var(--transition-base);
 }
 
-.item:hover,
 .item:focus-within {
 	box-shadow: var(--shadow-lg);
+}
+
+@media (hover: hover) {
+	.item:hover {
+		box-shadow: var(--shadow-lg);
+	}
 }
 
 .content__photo {

@@ -20,20 +20,26 @@
 	color: var(--brown-light);
 	cursor: pointer;
 	white-space: nowrap;
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
 	transition: background-color 0.3s, color 0.3s, transform 0.3s;
-
 }
 
-.menu__item:hover,
 .menu__item:focus-visible {
 	color: var(--brown-white);
 	text-shadow: 0 0 10px var(--brown-white);
 	transform: scale(1.05);
-}
-
-.menu__item:focus-visible {
 	outline: none;
 	box-shadow: 0 0 4px 2px var(--brown-white);
+}
+
+@media (hover: hover) {
+	.menu__item:hover {
+		color: var(--brown-white);
+		text-shadow: 0 0 10px var(--brown-white);
+		transform: scale(1.05);
+	}
 }
 
 @media (max-width: 768px) {

@@ -5,9 +5,11 @@
 	display: block;
 }
 
-.itemLink:hover .card {
-	transform: translateY(-5px);
-	box-shadow: var(--shadow-lg);
+@media (hover: hover) {
+	.itemLink:hover .card {
+		transform: translateY(-5px);
+		box-shadow: var(--shadow-lg);
+	}
 }
 
 .itemLink:focus-visible .card {
@@ -58,11 +60,17 @@
 	color: var(--brown);
 }
 
-.title a:hover,
 .title a:focus-visible {
 	text-decoration: underline;
 	color: var(--brown-light);
 	outline: none;
+}
+
+@media (hover: hover) {
+	.title a:hover {
+		text-decoration: underline;
+		color: var(--brown-light);
+	}
 }
 
 .description {

@@ -29,15 +29,6 @@
 	transition: transform var(--transition-base);
 }
 
-.backButton:hover .arrowIcon {
-	transform: translateX(-5px);
-}
-
-.backButton:hover {
-	background-color: var(--color-surface-muted);
-	border-color: var(--color-accent);
-}
-
 .backButton:focus-visible {
 	outline: none;
 	box-shadow: var(--focus-ring);
@@ -61,10 +52,25 @@
 		visibility var(--transition-base);
 }
 
-.backButton:hover .tooltip,
 .backButton:focus-visible .tooltip {
 	opacity: 1;
 	visibility: visible;
+}
+
+@media (hover: hover) {
+	.backButton:hover .arrowIcon {
+		transform: translateX(-5px);
+	}
+
+	.backButton:hover {
+		background-color: var(--color-surface-muted);
+		border-color: var(--color-accent);
+	}
+
+	.backButton:hover .tooltip {
+		opacity: 1;
+		visibility: visible;
+	}
 }
 
 @media (max-width: 480px) {

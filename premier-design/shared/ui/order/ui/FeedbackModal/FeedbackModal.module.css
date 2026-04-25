@@ -109,10 +109,12 @@
 		transform var(--transition-fast);
 }
 
-.closeButton:hover {
-	color: var(--color-text);
-	background: var(--color-surface-muted);
-	border-color: var(--color-accent);
+@media (hover: hover) {
+	.closeButton:hover {
+		color: var(--color-text);
+		background: var(--color-surface-muted);
+		border-color: var(--color-accent);
+	}
 }
 
 .closeButton:focus-visible {

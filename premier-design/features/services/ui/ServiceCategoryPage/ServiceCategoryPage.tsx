@@ -1,25 +1,27 @@
-import {FC} from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import CustomHead from '@widgets/layout/seo/CustomHead/CustomHead';
-import Layout from '@widgets/layout/ui/layout/Layout';
+import { Appeal } from '@lib/dynamicSectionImports';
+import { useFallback } from '@shared/hooks/useFallback';
+import { ButtonProps } from '@shared/interface/Button.props';
+import type { Category } from '@shared/interface/CategoryPrice.props';
+import type { CostingCardProps } from '@shared/interface/CostingCard.props';
+import type { NewsProps } from '@shared/interface/NewsItem.props';
+import type { PanelProps } from '@shared/interface/Panel.props';
+import type { Paper } from '@shared/interface/PaperItem.props';
+import type { ShareBannerDataProps } from '@shared/interface/ShareBannerData.props';
+import type { AppealSectionData } from '@shared/interface/appealSectionData.props';
+import type { StructuredDataAggregateRating } from '@shared/interface/seoHead.props';
 import BackButton from '@shared/ui/back-button/BackButton';
+import type { MenuItem } from '@shared/ui/menu/interface/Menu.props';
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
-import {findItemByTitle} from '@shared/utils/findItemByTitle';
-import {ButtonProps} from '@shared/interface/Button.props';
-import {useFallback} from '@shared/hooks/useFallback';
-import {useLayoutProps} from '@widgets/layout/hooks/useLayoutProps';
-import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
-import type {Category} from '@shared/interface/CategoryPrice.props';
-import type {MenuItem} from '@shared/ui/menu/interface/Menu.props';
-import type {Paper} from '@shared/interface/PaperItem.props';
-import type {NewsProps} from '@shared/interface/NewsItem.props';
-import type {CostingCardProps} from '@shared/interface/CostingCard.props';
-import type {PanelProps} from '@shared/interface/Panel.props';
-import type {ShareBannerDataProps} from '@shared/interface/ShareBannerData.props';
-import type {StructuredDataAggregateRating} from '@shared/interface/seoHead.props';
 import pageShell from '@shared/ui/page-detail-shell/pageDetailShell.module.css';
 import pricingStyles from '@shared/ui/pricing-table/pricingTable.module.css';
+import { findItemByTitle } from '@shared/utils/findItemByTitle';
+import { getFullCanonicalUrl } from '@shared/utils/getFullCanonicalUrl';
+import { useLayoutProps } from '@widgets/layout/hooks/useLayoutProps';
+import CustomHead from '@widgets/layout/seo/CustomHead/CustomHead';
+import Layout from '@widgets/layout/ui/layout/Layout';
+import Image from 'next/image';
+import Link from 'next/link';
+import { FC } from 'react';
 import styles from './ServiceCategoryPage.module.css';
 
 const IMAGE_SIZES = '(max-width: 600px) 100vw, (max-width: 1440px) 60vw, 920px';
@@ -33,6 +35,7 @@ export interface ServiceCategoryPageProps {
 	buttonData: ButtonProps[];
 	panelData: PanelProps[];
 	sharesData: ShareBannerDataProps[];
+	appealSection: AppealSectionData;
 	structuredDataRating?: StructuredDataAggregateRating;
 }
 
@@ -45,19 +48,23 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 	buttonData,
 	panelData,
 	sharesData,
+	appealSection,
 	structuredDataRating,
 }) => {
 	const fallbackContent = useFallback(!!category);
 	const buttonHeader = findItemByTitle(buttonData, 'leave_request') || ({} as ButtonProps);
-	const layoutProps = useLayoutProps({
-		menu: menuData,
-		shares: sharesData,
-		papers: papersData,
-		news: newsData,
-		costingCard: costingData,
-		button: buttonData,
-		panel: panelData,
-	});
+	const layoutProps = useLayoutProps(
+		{
+			menu: menuData,
+			shares: sharesData,
+			papers: papersData,
+			news: newsData,
+			costingCard: costingData,
+			button: buttonData,
+			panel: panelData,
+		},
+		{ headerVariant: 'solidDark' },
+	);
 
 	const canonicalPath = `/services/${category.id}`;
 
@@ -140,6 +147,7 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 							</div>
 						</div>
 					</section>
+					<Appeal {...appealSection} />
 				</Layout>
 			</>
 		)

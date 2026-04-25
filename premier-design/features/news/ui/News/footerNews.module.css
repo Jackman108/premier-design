@@ -22,7 +22,7 @@
 .news__title {
 	font-size: 1.2rem;
 	color: var(--brown-light);
-	padding-bottom: 3vh;
+	padding-bottom: var(--space-md);
 	text-align: center;
 }
 
@@ -38,15 +38,15 @@
 }
 
 .content__image img {
-	width: 4vh;
-	height: 4vh;
+	width: 1.25rem;
+	height: 1.25rem;
 	object-fit: cover;
 }
 
 .content__wrapper {
 	display: grid;
 	grid-template-rows: auto auto;
-	grid-gap: 0.6vh;
+	gap: var(--space-xs);
 	align-items: start;
 }
 
@@ -64,10 +64,16 @@
 	text-decoration: none;
 }
 
-.content__title:hover,
 .content__title:focus-visible {
 	color: var(--beige-dark);
 	cursor: pointer;
+}
+
+@media (hover: hover) {
+	.content__title:hover {
+		color: var(--beige-dark);
+		cursor: pointer;
+	}
 }
 
 .content__text {

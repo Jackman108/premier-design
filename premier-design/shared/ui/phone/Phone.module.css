@@ -9,17 +9,24 @@
 	line-height: 1.2;
 	background: var(--beige);
 	padding: 0.4rem 0.7rem;
-	min-height: 40px;
+	min-height: 44px;
 	border-radius: var(--radius-md);
 	box-shadow: var(--shadow-sm);
 	transition: color var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base);
 }
 
-.phone__container:hover,
 .phone__container:focus-visible {
 	color: var(--brown);
 	background: var(--color-surface);
 	box-shadow: var(--shadow-md);
+}
+
+@media (hover: hover) {
+	.phone__container:hover {
+		color: var(--brown);
+		background: var(--color-surface);
+		box-shadow: var(--shadow-md);
+	}
 }
 
 .phone__logo {

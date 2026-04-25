@@ -8,13 +8,15 @@
 	transition: box-shadow var(--transition-base);
 }
 
-.offer__row:hover {
-	box-shadow: var(--shadow-md);
-}
-
 .offer__row:focus-within {
 	outline: none;
 	box-shadow: var(--shadow-md), var(--focus-ring);
+}
+
+@media (hover: hover) {
+	.offer__row:hover {
+		box-shadow: var(--shadow-md);
+	}
 }
 
 .offer__row_reversed {

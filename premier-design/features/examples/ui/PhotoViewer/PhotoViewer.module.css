@@ -109,9 +109,11 @@
 	transition: background-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
-.buttonPrev:hover,
-.buttonNext:hover {
-	background-color: var(--overlay-on-media-strong);
+@media (hover: hover) {
+	.buttonPrev:hover,
+	.buttonNext:hover {
+		background-color: var(--overlay-on-media-strong);
+	}
 }
 
 .buttonPrev:focus-visible,

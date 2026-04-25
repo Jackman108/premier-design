@@ -6,7 +6,7 @@
 
 .collapse_header {
     background-color: var(--brown-white);
-    height: 40px;
+    min-height: 44px;
     border-radius: 4px;
     border: none;
     display: grid;
@@ -39,7 +39,7 @@
 .active{
     display: grid;
     background-color: var(--beige-dark);
-    height: 40px;
+    min-height: 44px;
     border-radius: 4px;
     border: 2px solid  var(--brown-white);
     margin: 5px 0;
@@ -52,7 +52,7 @@
 .inactive{
     display: grid;
     background-color: var(--beige-dark);
-    height: 40px;
+    min-height: 44px;
     border-radius: 4px;
     border: none;
     margin: 5px 0;
@@ -62,14 +62,16 @@
     color: var(--brown-dark);
     justify-content: flex-start;
 }
-.active:hover,
-.active:focus-visible {
+.active:focus-visible,
+.inactive:focus-visible {
     background-color: var(--brown-white);
     cursor: pointer;
 }
 
-.inactive:hover,
-.inactive:focus-visible {
-    background-color: var(--brown-white);
-    cursor: pointer;
+@media (hover: hover) {
+	.active:hover,
+	.inactive:hover {
+		background-color: var(--brown-white);
+		cursor: pointer;
+	}
 }

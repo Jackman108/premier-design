@@ -20,9 +20,14 @@
 	transition: transform 0.3s ease;
 }
 
-.logo__image:hover .image,
 .logo__image:focus-visible .image {
 	transform: scale(1.05);
+}
+
+@media (hover: hover) {
+	.logo__image:hover .image {
+		transform: scale(1.05);
+	}
 }
 
 .logo__image:focus-visible {

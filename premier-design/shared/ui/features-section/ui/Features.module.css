@@ -1,13 +1,25 @@
+/* Как на главной (HomePageSection + data-rhythm=features): внешний padding 0 —
+ * карточка «поднимается» к низу hero (`features__container` + bottom), визуальное смыкание.
+ * На внутренних (repairs/design/…) — тот же блок после HeroBanner без дублирующего block-padding. */
 .features {
+	position: relative;
+	z-index: var(--z-raised);
+	isolation: isolate;
 	max-width: 100%;
 	height: auto;
+	box-sizing: border-box;
+	padding: 0;
+}
+
+:global([data-rhythm='features']) .features {
+	padding: 0;
 }
 
 .features__container {
 	position: relative;
 	display: grid;
 	grid-template-columns: 1fr;
-	max-width: 1440px;
+	max-width: var(--section-content-max);
 	width: 100%;
 	height: auto;
 	margin: 0 auto;
@@ -34,6 +46,7 @@
 	grid-template-columns: 1fr 1fr;
 	gap: 0.6rem;
 	padding: 1rem;
+	min-height: 44px;
 	justify-items: center;
 	align-items: center;
 	text-align: center;
@@ -41,9 +54,14 @@
 	transition: transform var(--transition-base) ease-in-out;
 }
 
-.features__item:hover,
 .features__item:focus-within {
 	transform: translateY(-5px);
+}
+
+@media (hover: hover) {
+	.features__item:hover {
+		transform: translateY(-5px);
+	}
 }
 
 .features__title {

@@ -2,7 +2,7 @@
 
 import {useEffect, useState} from 'react';
 
-import {HOME_SECTION_NAV_IDS} from '@lib/homeSectionNavConfig';
+import {HOME_SECTION_SCROLL_SPY_ORDER} from '@lib/homeSectionNavConfig';
 import {computeActiveHomeSectionId} from '../utils/computeActiveHomeSectionId';
 
 const getScrollProgress = (): number => {
@@ -24,7 +24,7 @@ export function useHomePageChrome(): {activeId: string | null; progress: number;
 	useEffect(() => {
 		const update = () => {
 			setProgress(getScrollProgress());
-			setActiveId(computeActiveHomeSectionId(HOME_SECTION_NAV_IDS, window.scrollY));
+			setActiveId(computeActiveHomeSectionId(HOME_SECTION_SCROLL_SPY_ORDER, window.scrollY));
 			/* Без getBoundingClientRect high hero + threshold 0.15 в IO могут держать «пересечение» и не давать
 			 * .visible (opacity) боковой панели — считаем «после героя», когда низ баннера ушёл выше вьюпорта. */
 			const hero = document.getElementById('home-hero');

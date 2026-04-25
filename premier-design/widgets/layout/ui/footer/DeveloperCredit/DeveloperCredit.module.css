@@ -10,7 +10,12 @@
 	transition: opacity var(--transition-fast);
 }
 
-.link:hover,
+@media (hover: hover) {
+	.link:hover {
+		opacity: 1;
+	}
+}
+
 .link:focus-visible {
 	opacity: 1;
 	outline: none;

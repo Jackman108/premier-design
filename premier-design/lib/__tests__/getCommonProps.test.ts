@@ -11,6 +11,8 @@ describe('getCommonProps', () => {
 			button: [{id: 5}],
 			panel: [{id: 6}],
 			shares: [{id: 7}],
+			title: [],
+			bannersImages: [],
 			trustSignals: {
 				metrics: [],
 				structuredDataRating: {ratingValue: '5', reviewCount: 1, bestRating: '5'},
@@ -26,6 +28,7 @@ describe('getCommonProps', () => {
 			panelData: [{id: 6}],
 			sharesData: [{id: 7}],
 			structuredDataRating: {ratingValue: '5', reviewCount: 1, bestRating: '5'},
+			appealSection: expect.objectContaining({titleItem: expect.anything(), buttonItem: expect.anything(), bannerItem: expect.anything()}),
 		});
 	});
 });

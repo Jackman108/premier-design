@@ -8,6 +8,7 @@ import type {NewsProps} from "@shared/interface/NewsItem.props";
 import type {Paper} from "@shared/interface/PaperItem.props";
 import type {ShareBannerDataProps} from "@shared/interface/ShareBannerData.props";
 import type {StructuredDataAggregateRating} from '@shared/interface/seoHead.props';
+import type {AppealSectionData} from '@shared/interface/appealSectionData.props';
 
 export interface ServiceDetailProps {
     service: PriceItem;
@@ -19,6 +20,7 @@ export interface ServiceDetailProps {
     buttonData: ButtonProps[];
     panelData: PanelProps[];
     sharesData: ShareBannerDataProps[];
+	appealSection: AppealSectionData;
     structuredDataRating?: StructuredDataAggregateRating;
 }
 

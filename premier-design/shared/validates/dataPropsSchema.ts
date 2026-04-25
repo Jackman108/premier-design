@@ -18,6 +18,7 @@ const homeSectionKeySchema = z.enum([
 	'related',
 	'faq',
 	'reviews',
+	'quiz',
 	'appeal',
 ]);
 

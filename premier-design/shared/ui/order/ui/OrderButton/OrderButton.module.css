@@ -1,6 +1,8 @@
 .button-base {
 	width: 36vh;
 	height: 8vh;
+	min-width: 11rem;
+	min-height: 44px;
 	border-radius: var(--radius-sm);
 	background: transparent;
 	color: var(--order-fg-muted);
@@ -19,26 +21,10 @@
 	border: 1px solid var(--order-border-soft);
 }
 
-.button-white:hover {
-	background: var(--order-bg-hover);
-	color: var(--order-fg-soft);
-	border: 1px solid transparent;
-	box-shadow: 0 1px 4px var(--brown);
-	text-shadow: var(--order-text-shadow-dark);
-}
-
 .button-black {
 	border: 2px solid var(--brown-light);
 	color: var(--brown);
 	text-shadow: var(--order-text-shadow-dark-muted);
-}
-
-.button-black:hover {
-	background: var(--brown);
-	color: var(--order-fg-muted);
-	border: 1px solid transparent;
-	box-shadow: 0 1px 4px var(--brown);
-	text-shadow: var(--order-text-shadow-dark);
 }
 
 .button-base:focus-visible {
@@ -58,7 +44,6 @@
 
 @media (max-width: 768px) {
 	.button-base {
-		height: 6vh;
 		font-size: 1.4rem;
 	}
 }
@@ -67,5 +52,23 @@
 	.button-base {
 		width: 60vw;
 		font-size: 1rem;
+	}
+}
+
+@media (hover: hover) {
+	.button-white:hover {
+		background: var(--order-bg-hover);
+		color: var(--order-fg-soft);
+		border: 1px solid transparent;
+		box-shadow: 0 1px 4px var(--brown);
+		text-shadow: var(--order-text-shadow-dark);
+	}
+
+	.button-black:hover {
+		background: var(--brown);
+		color: var(--order-fg-muted);
+		border: 1px solid transparent;
+		box-shadow: 0 1px 4px var(--brown);
+		text-shadow: var(--order-text-shadow-dark);
 	}
 }

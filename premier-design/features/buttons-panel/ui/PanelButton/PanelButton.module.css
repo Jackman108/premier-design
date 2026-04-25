@@ -46,11 +46,18 @@
 	pointer-events: none;
 }
 
-.button_common:hover .sticky_button_text,
 .button_common:focus-within .sticky_button_text {
 	opacity: 1;
 	visibility: visible;
 	transform: translateX(-50%) translateY(0);
+}
+
+@media (hover: hover) {
+	.button_common:hover .sticky_button_text {
+		opacity: 1;
+		visibility: visible;
+		transform: translateX(-50%) translateY(0);
+	}
 }
 
 .button_icon {

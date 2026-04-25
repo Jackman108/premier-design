@@ -1,12 +1,13 @@
 .address__contacts {
 	color: var(--color-text);
 	background-color: var(--color-surface-muted);
-	padding: 3% 5%;
+	padding-inline: clamp(var(--space-md), 5vw, var(--space-2xl));
+	padding-block: clamp(var(--space-lg), 4vw, var(--space-2xl));
 }
 
 .address__content {
 	margin: 0 auto;
-	max-width: 1440px;
+	max-width: var(--section-content-max);
 	display: grid;
 	grid-template-columns: repeat(3, auto);
 	justify-content: space-between;
@@ -15,9 +16,9 @@
 
 .address__item {
 	border-left: 3px solid var(--color-accent);
-	padding: 10px;
+	padding: var(--space-md);
 	min-height: 100%;
-	line-height: 3rem;
+	line-height: var(--line-height-body-relaxed);
 }
 
 .address__item:first-child svg {
@@ -29,6 +30,7 @@
 		grid-template-columns: repeat(1, auto);
 		justify-content: space-between;
 		align-items: center;
-		padding: 10% 5%;
+		padding-inline: clamp(var(--space-md), 5vw, var(--space-xl));
+		padding-block: clamp(var(--space-lg), 7vw, var(--space-2xl));
 	}
 }

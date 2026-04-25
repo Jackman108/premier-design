@@ -11,6 +11,7 @@ import {ButtonProps} from "@shared/interface/Button.props";
 import {RelatedServiceDetailProps} from "@features/related-services/interface/RelatedService.props";
 import {useFallback} from "@shared/hooks/useFallback";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
+import {Appeal} from '@lib/dynamicSectionImports';
 import pageShell from '@shared/ui/page-detail-shell/pageDetailShell.module.css';
 
 const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
@@ -22,6 +23,7 @@ const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
                                                                  buttonData,
                                                                  panelData,
                                                                  sharesData,
+                                                                 appealSection,
                                                                  structuredDataRating,
                                                              }) => {
     const fallbackContent = useFallback(!!relatedService);
@@ -34,7 +36,7 @@ const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
         costingCard: costingData,
         button: buttonData,
         panel: panelData
-    });
+    }, {headerVariant: 'solidDark'});
     return fallbackContent || (
         <>
             <CustomHead
@@ -100,7 +102,8 @@ const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
                         </div>
                     </div>
                 </section>
-            </Layout>
+				<Appeal {...appealSection} />
+			</Layout>
         </>
     );
 };

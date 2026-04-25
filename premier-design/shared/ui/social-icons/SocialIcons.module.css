@@ -11,12 +11,21 @@
 	align-content: center;
 	color: var(--brown-dark);
 	filter: drop-shadow(0 0 5px var(--brown-white));
+	min-width: 44px;
+	min-height: 44px;
+	place-items: center;
 }
 
-.icons:hover,
 .icons:focus-visible {
 	color: var(--brown-white);
 	filter: drop-shadow(0px 0px 3px var(--brown-dark));
+}
+
+@media (hover: hover) {
+	.icons:hover {
+		color: var(--brown-white);
+		filter: drop-shadow(0px 0px 3px var(--brown-dark));
+	}
 }
 
 @media (max-width: 768px) {

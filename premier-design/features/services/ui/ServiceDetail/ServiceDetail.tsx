@@ -11,6 +11,7 @@ import {findItemByTitle} from "@shared/utils/findItemByTitle";
 import {ButtonProps} from "@shared/interface/Button.props";
 import {useFallback} from "@shared/hooks/useFallback";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";
+import {Appeal} from '@lib/dynamicSectionImports';
 import pageShell from '@shared/ui/page-detail-shell/pageDetailShell.module.css';
 
 const SERVICE_DETAIL_IMAGE_SIZES = '(max-width: 600px) 100vw, (max-width: 1440px) 60vw, 920px';
@@ -25,6 +26,7 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                                                    buttonData,
                                                    panelData,
                                                    sharesData,
+                                                   appealSection,
                                                    structuredDataRating,
                                                }) => {
     const fallbackContent = useFallback(!!service && !!categoryProps);
@@ -37,7 +39,7 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
         costingCard: costingData,
         button: buttonData,
         panel: panelData
-    });
+    }, {headerVariant: 'solidDark'});
 
     return fallbackContent || (
         <>
@@ -98,7 +100,8 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
                         </div>
                     </div>
                 </section>
-            </Layout>
+				<Appeal {...appealSection} />
+			</Layout>
         </>
     );
 };

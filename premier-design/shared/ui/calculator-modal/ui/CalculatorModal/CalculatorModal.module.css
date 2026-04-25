@@ -61,8 +61,10 @@
 	transition: background-color var(--transition-base);
 }
 
-.header_close:hover {
-	background-color: var(--brown-light);
+@media (hover: hover) {
+	.header_close:hover {
+		background-color: var(--brown-light);
+	}
 }
 
 .header_close:focus-visible {
@@ -124,8 +126,10 @@
 	transition: background-color var(--transition-base);
 }
 
-.calculate_button:hover {
-	background-color: var(--brown-light);
+@media (hover: hover) {
+	.calculate_button:hover {
+		background-color: var(--brown-light);
+	}
 }
 
 .calculate_button:focus-visible {

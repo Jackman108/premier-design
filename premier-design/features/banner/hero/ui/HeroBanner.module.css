@@ -89,10 +89,12 @@
 	box-shadow: 0 10px 22px rgb(0 0 0 / 0.26);
 }
 
-.banner__container :global(.button-base.button-white:hover) {
-	background: linear-gradient(135deg, color-mix(in srgb, var(--gold-light) 95%, var(--white)), color-mix(in srgb, var(--gold) 82%, var(--white)));
-	color: var(--black);
-	box-shadow: 0 12px 24px rgb(0 0 0 / 0.3);
+@media (hover: hover) {
+	.banner__container :global(.button-base.button-white:hover) {
+		background: linear-gradient(135deg, color-mix(in srgb, var(--gold-light) 95%, var(--white)), color-mix(in srgb, var(--gold) 82%, var(--white)));
+		color: var(--black);
+		box-shadow: 0 12px 24px rgb(0 0 0 / 0.3);
+	}
 }
 
 .banner__container :global(.button-base.button-white:focus-visible) {

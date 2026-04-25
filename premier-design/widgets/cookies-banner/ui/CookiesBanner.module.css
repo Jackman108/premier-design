@@ -22,7 +22,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	max-width: 1440px;
+	max-width: var(--section-content-max);
 	padding: 0 16px;
 	margin: 0 auto;
 }
@@ -87,9 +87,11 @@
 	transition: transform var(--transition-fast);
 }
 
-.btn:hover {
-	transform: scale(1.02);
-	box-shadow: var(--shadow-md);
+@media (hover: hover) {
+	.btn:hover {
+		transform: scale(1.02);
+		box-shadow: var(--shadow-md);
+	}
 }
 
 .btn:focus-visible {

@@ -3,7 +3,13 @@
 	isolation: isolate;
 	height: 50vh;
 	width: 100%;
-	padding: 2% 0;
+	box-sizing: border-box;
+	padding-block: var(--section-padding-y);
+	padding-inline: var(--section-padding-inline);
+}
+
+:global([data-rhythm='shell']) .appeal {
+	padding: 0;
 }
 
 .appeal__background {
@@ -40,10 +46,10 @@
 	justify-items: center;
 	justify-content: center;
 	align-content: space-between;
-	max-width: 1440px;
+	max-width: var(--section-content-max);
 	height: 100%;
-	padding: 2% 0;
-	margin: 2% auto;
+	padding: var(--space-md) 0;
+	margin: var(--space-md) auto;
 
 }
 

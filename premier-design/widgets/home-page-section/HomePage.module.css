@@ -10,8 +10,7 @@
 }
 
 .section {
-	--section-padding-y: clamp(2.25rem, 9vw, 4rem);
-	--section-padding-inline: clamp(1rem, 4vw, 2.5rem);
+	/* Ритм — глобальные токены `styles/tokens.css`. */
 	padding-block: var(--section-padding-y);
 	padding-inline: var(--section-padding-inline);
 	overflow-x: clip;
@@ -22,11 +21,11 @@
 
 .section > * {
 	width: 100%;
-	max-width: min(90rem, 100%);
+	max-width: var(--section-content-max);
 }
 
 .section[data-density='compact'] {
-	--section-padding-y: clamp(2rem, 8vw, 3.5rem);
+	padding-block: var(--section-padding-y-compact);
 }
 
 .section[data-width='wide'] {

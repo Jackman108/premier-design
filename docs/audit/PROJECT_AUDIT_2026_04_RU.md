@@ -44,12 +44,30 @@
 | **`RelatedServiceDetailProps`** | Лишнее поле **`titles`** не использовалось в **`RelatedServiceDetail`** | Удалено из типа и из **`servicesTierStatic`** | Выполнено |
 | **`app/documents` + `DocumentPage`** | Крошки и отступы унифицированы с **`scroll-padding`** | Следить за единым `padding-top` shell при смене высоты хедера | Выполнено |
 | **Документация** | `CODE_STRUCTURE`, таблица FSD в этом файле, `CHANGELOG` | При новых публичных маршрутах — обновлять **`STATIC_SITEMAP_PATHS`** / **`collectSitePathnames`** и юзер-доки | Актуализировано |
+| **CTA Appeal + `app/documents`** | `AppealSectionData` в `shared/interface/`; `getCommonProps.appealSection`; `DocumentSiteShell` + `dynamic` из `@lib/dynamicSectionImports` | Контракт CTA не тянет cross-feature между слайсами; shell — client, данные — server layout | Выполнено |
+| **Главная: scroll-spy / квиз** | `id="lead-quiz"` на секции с `LeadQuiz`; `homePage.sectionAriaLabels.quiz` в `data.json` + ключ в `dataPropsSchema` | Соответствие `HOME_SECTION_NAV_LINKS` / `HOME_SECTION_SCROLL_SPY_ORDER` | Выполнено |
 
 ---
 
 ## Направления улучшения дизайна, вёрстки и визуального уровня
 
 Список основан на обзоре токенов (`styles/tokens.css`, `panda.config.ts`), глобальных стилей, фокус-состояний и паттернов секций. Не дублирует закрытый аудит perf/a11y — это **продуктово-визуальный** бэклог.
+
+### Прогресс (Этап 1: `Главная` → `services` → `repairs` → `documents` + оставшиеся страницы)
+
+| Направление | Решение | Статус |
+|------------|---------|--------|
+| Единая шкала отступов и сетка | В `styles/tokens.css`: `--section-padding-y*`, `--section-content-max`, `--section-inner-stack-gap`, `--section-card-padding-block`, `--page-content-offset-top`; главная: `HomePageSection` + `data-rhythm`; внутренние лендинги/хедер/футер/cookies/карточки секций — `var(--section-content-max)` вместо `1440px`, внутренние зазоры — токены вместо `4vh`/`2vh` (см. ADR 0001, `CHANGELOG`) | Выполнено |
+| Оптическая иерархия заголовков | `shared/ui/title/ui/Title.module.css`: единые `line-height`, `letter-spacing`, token-driven отступы и мобильные ограничения без «магических» размеров; выровнены блоковые заголовки в `CompanyAboutSections` и `OfferBanner` | Выполнено |
+| Длина строки и читаемость | Ограничена длина строки: `shared/ui/page-detail-shell/pageDetailShell.module.css` (`.prose`), `features/documents-content/ui/document-page/DocumentPage.module.css` (`.content`), а также длинные тексты в `OfferBanner`, `Partners`, `aboutNews` | Выполнено |
+
+### Прогресс (Этап 2: touch + hover + skeleton)
+
+| Направление | Решение | Статус |
+|------------|---------|--------|
+| Интерактивы на touch (>=44px) | Мин. целевой размер **44×44px** (или эквивалент с padding) по интерактивам, перечисленным в `CHANGELOG` (в т.ч. `ThemeButton`, `MobileMenu`, `DocumentBreadcrumbs`, соц-иконки, стрелки, калькулятор, футер, телефон, табы). Соответствует правилу a11y в [`agent-architecture-clean-code.mdc`](../../.cursor/rules/agent-architecture-clean-code.mdc) §6. | Выполнено |
+| Hover vs touch | Эффекты **:hover** для устройств с курсором: `@media (hover: hover)`; клавиатура/скринридер: **:focus-visible** не убран. Покрытие — основные `*.module.css` с интерактивом (см. `CHANGELOG`). | Выполнено |
+| Skeleton для dynamic секций | Добавлен `shared/ui/section-skeleton/*`; `lib/dynamicSectionImports.ts` переведён на `next/dynamic` с `loading: SectionSkeleton` для ленивых секций | Выполнено |
 
 1. **Единая шкала отступов и сетка** — свести «случайные» отступы в модулях к шагам из токенов (или Panda spacing), проверить выравнивание секций на широких экранах (max-width контейнера + ритм вертикали).
 2. **Оптическая иерархия заголовков** — `clamp` уже используется; проверить согласованность `h1–h4` между лендингом и внутренними страницами услуг, избежать скачков веса/межбуквенного без причины.

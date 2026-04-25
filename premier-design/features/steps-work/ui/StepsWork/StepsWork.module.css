@@ -1,18 +1,24 @@
 .steps {
 	max-width: 100vw;
-	padding: 2%;
+	box-sizing: border-box;
+	padding-block: var(--section-padding-y);
+	padding-inline: var(--section-padding-inline);
+}
+
+:global([data-rhythm='shell']) .steps {
+	padding: 0;
 }
 
 .steps__container {
-	max-width: 1440px;
+	max-width: var(--section-content-max);
 	display: grid;
 	justify-content: center;
 	justify-items: center;
-	gap: 2vh;
+	gap: var(--section-inner-stack-gap);
 	text-align: center;
 	width: 100%;
 	margin: 0 auto;
-	padding: 3vh 0;
+	padding: var(--section-card-padding-block) 0;
 	background-color: var(--color-surface-muted);
 	border-radius: var(--radius-md);
 	box-shadow: var(--shadow-sm);

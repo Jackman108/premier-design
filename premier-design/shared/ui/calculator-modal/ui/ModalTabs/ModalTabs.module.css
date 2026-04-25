@@ -1,13 +1,21 @@
-.tab{
-padding: 0.5rem;
-color: var(--brown-dark);
-font-size: 1.1rem;
-border-radius: 4px;
+.tab {
+	padding: 0.5rem;
+	color: var(--brown-dark);
+	font-size: 1.1rem;
+	border-radius: 4px;
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
 }
-.tab:hover,
 .tab:focus-visible {
-cursor: pointer;
-background-color: var(--beige-dark);
+	cursor: pointer;
+	background-color: var(--beige-dark);
+}
+@media (hover: hover) {
+	.tab:hover {
+		cursor: pointer;
+		background-color: var(--beige-dark);
+	}
 }
 .tab.active {
     background-color: var(--brown-white);

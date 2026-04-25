@@ -1,21 +1,22 @@
 .title-white {
-	max-width: 1440px;
+	max-width: var(--section-content-max);
 	font-size: var(--font-size-heading-xl);
 	font-weight: 600;
 	line-height: var(--line-height-heading);
-	padding-bottom: 2rem;
+	padding-bottom: var(--space-xl);
 	text-align: center;
 	color: var(--beige-dark);
 	text-shadow: var(--text-shadow-on-light);
 	font-family: var(--font-heading);
+	letter-spacing: 0.01em;
 	z-index: var(--z-content);
 }
 
 .description-white {
-	max-width: 70%;
+	max-width: 72ch;
 	font-size: var(--font-size-body-lg);
 	font-weight: 400;
-	line-height: var(--line-height-body);
+	line-height: var(--line-height-body-relaxed);
 	text-align: center;
 	color: var(--beige-dark);
 	text-shadow: var(--text-shadow-on-light-soft);
@@ -26,18 +27,20 @@
 .title-black {
 	font-size: var(--font-size-heading-lg);
 	font-weight: 600;
+	line-height: var(--line-height-heading);
 	text-align: center;
 	color: var(--brown-dark);
 	z-index: var(--z-content);
 	font-family: var(--font-heading);
+	letter-spacing: 0.01em;
 }
 
 .description-black {
 	font-size: var(--font-size-body-lg);
 	font-weight: 400;
-	line-height: var(--line-height-body);
-	max-width: 80vw;
-	width: min(80vw, 100%);
+	line-height: var(--line-height-body-relaxed);
+	max-width: 72ch;
+	width: min(72ch, 100%);
 	margin-inline: auto;
 	text-align: center;
 	color: var(--brown);
@@ -58,21 +61,15 @@
 
 @media (max-width: 768px) {
 	.title-white {
-		font-size: 1.5rem;
-	}
-
-	.title-black {
-		font-size: 1.5rem;
+		padding-bottom: var(--space-lg);
 	}
 
 	.description-white {
-		font-size: 1rem;
-		max-width: 90%;
+		max-width: 90vw;
 	}
 
 	.description-black {
-		font-size: 1rem;
-		max-width: 90%;
-		width: min(90%, 100%);
+		max-width: 90vw;
+		width: min(90vw, 100%);
 	}
 }

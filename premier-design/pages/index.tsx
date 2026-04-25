@@ -158,18 +158,20 @@ const Home: NextPage<GetDataProps> = ({data}) => {
 					<Reviews title={titles.customer_reviews} reviews={data.reviews} />
 				</HomePageSection>
 
-				<HomePageSection layout='content' density='compact'>
-					<LeadQuiz ctaLabel={buttonData.buttonHeader} />
-				</HomePageSection>
-
 				<HomePageSection
-					id='home-appeal'
-					aria-label={a11y.appeal}
+					id='lead-quiz'
+					aria-label={a11y.quiz}
 					layout='content'
 					density='compact'
 				>
-					<Appeal {...selectAppealSectionData(data.title, data.button, data.bannersImages)} />
+					<LeadQuiz ctaLabel={buttonData.buttonHeader} />
 				</HomePageSection>
+
+				<Appeal
+					sectionId='home-appeal'
+					aria-label={a11y.appeal}
+					{...selectAppealSectionData(data.title, data.button, data.bannersImages)}
+				/>
 			</Layout>
 		</>
 	);

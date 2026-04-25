@@ -2,7 +2,7 @@
 	background-color: var(--brown-dark);
 	max-width: 100%;
 	bottom: 0;
-	padding: 6vh;
+	padding: var(--section-padding-y) var(--section-padding-inline);
 }
 
 .footer__container {
@@ -10,7 +10,7 @@
 	display: grid;
 	grid-template-columns: repeat(3, auto);
 	grid-gap: 5vw;
-	max-width: 1440px;
+	max-width: var(--section-content-max);
 }
 
 .footer__papers {
@@ -22,7 +22,7 @@
 
 @media screen and (max-width: 768px) {
 	.footer {
-		padding: 2vh;
+		padding: var(--section-padding-y-compact) var(--section-padding-inline);
 	}
 
 	.footer__container {

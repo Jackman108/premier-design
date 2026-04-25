@@ -1,7 +1,7 @@
 .papers__container {
 	display: grid;
 	grid-template-columns: 1fr;
-	gap: 3vh;
+	gap: var(--section-inner-stack-gap);
 	margin-bottom: 10%;
 	align-content: center;
 }
@@ -21,14 +21,18 @@
 	white-space: wrap;
 }
 
-.paper__link:hover,
 .paper__link:focus-visible {
 	color: var(--brown-white);
 	text-shadow: 0 0 10px var(--brown-white);
 	transform: scale(1.05);
-}
-
-.paper__link:focus-visible {
 	outline: none;
 	box-shadow: 0 0 4px 2px var(--brown-white);
+}
+
+@media (hover: hover) {
+	.paper__link:hover {
+		color: var(--brown-white);
+		text-shadow: 0 0 10px var(--brown-white);
+		transform: scale(1.05);
+	}
 }

@@ -33,11 +33,17 @@
 	font-weight: bold;
 	text-transform: uppercase;
 	color: var(--brown);
-
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
+	padding-inline: var(--space-sm);
 }
 
-.menu__link:hover {
-	color: var(--brown-light);
+@media (hover: hover) {
+	.menu__link:hover {
+		color: var(--brown-light);
+	}
 }
 
 .menu__link:focus-visible {

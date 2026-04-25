@@ -19,6 +19,11 @@
     cursor: pointer;
     transition: all 0.5s ease;
     background: transparent;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .arrow__right {
@@ -26,17 +31,23 @@
     cursor: pointer;
     transition: all 0.5s ease;
     background: transparent;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.arrow__left:hover,
-.arrow__left:focus-visible {
-    opacity: 0.8;
-}
-
-.arrow__right:hover,
+.arrow__left:focus-visible,
 .arrow__right:focus-visible {
     opacity: 0.8;
+}
 
+@media (hover: hover) {
+	.arrow__left:hover,
+	.arrow__right:hover {
+		opacity: 0.8;
+	}
 }
 
 @media (max-width: 768px) {

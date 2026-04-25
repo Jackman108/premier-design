@@ -1,9 +1,10 @@
+/* Ритм с секциями: те же `section-padding-*`, что и у `HomePageSection` / внутренних лендингов. */
 .root {
 	max-width: 42rem;
-	margin-block: 0 1.5rem;
+	margin-block: 0;
 	margin-inline: auto;
-	padding-inline: clamp(1rem, 4vw, 2rem);
-	padding-block: clamp(1rem, 2vw, 1.5rem);
+	padding-inline: var(--section-padding-inline);
+	padding-block: var(--section-padding-y);
 	border-radius: var(--radius-md);
 	background: color-mix(in srgb, var(--color-surface-muted) 92%, transparent);
 	box-shadow: var(--shadow-sm);
@@ -17,5 +18,5 @@
 }
 
 .item {
-	margin-block: 0.4rem;
+	margin-block: var(--space-xs);
 }

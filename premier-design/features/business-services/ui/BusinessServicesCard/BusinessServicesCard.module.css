@@ -11,9 +11,14 @@
 	border-radius: var(--radius-md);
 }
 
-.service:hover,
 .service:focus-within {
 	box-shadow: var(--shadow-md);
+}
+
+@media (hover: hover) {
+	.service:hover {
+		box-shadow: var(--shadow-md);
+	}
 }
 
 .imageWrapper {

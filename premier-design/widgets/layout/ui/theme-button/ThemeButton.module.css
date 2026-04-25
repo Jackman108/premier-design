@@ -2,22 +2,26 @@
 	background-color: transparent;
 	border: 1px solid transparent;
 	color: color-mix(in srgb, var(--brown-dark) 85%, var(--white));
-	display: grid;
-	align-items: center;
-	justify-content: end;
+	display: inline-grid;
+	place-items: center;
 	font-size: 1.8rem;
 	font-weight: bold;
-	padding: 0.2rem;
+	padding: 0.35rem;
 	margin: 0;
+	min-width: 44px;
+	min-height: 44px;
+	box-sizing: border-box;
 	transition: color var(--transition-fast), border-color var(--transition-fast), transform var(--transition-fast);
 	white-space: nowrap;
 	filter: none;
 }
 
-.theme__button:hover {
-	color: var(--gold-light);
-	border-color: color-mix(in srgb, var(--gold-light) 60%, transparent);
-	cursor: pointer;
+@media (hover: hover) {
+	.theme__button:hover {
+		color: var(--gold-light);
+		border-color: color-mix(in srgb, var(--gold-light) 60%, transparent);
+		cursor: pointer;
+	}
 }
 
 .theme__button:focus-visible {

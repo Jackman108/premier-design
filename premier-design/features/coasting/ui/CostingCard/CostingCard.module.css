@@ -17,12 +17,18 @@
 	text-decoration: none
 }
 
-.costing__card:focus-visible,
-.costing__card:hover {
-	box-shadow: 0 0 5px var(--color-border), inset -2px -2px 5px var(--color-border),
-		var(--focus-ring);
+.costing__card:focus-visible {
+	box-shadow: 0 0 5px var(--color-border), inset -2px -2px 5px var(--color-border), var(--focus-ring);
 	opacity: 0.9;
 	transform: translateY(0);
+}
+
+@media (hover: hover) {
+	.costing__card:hover {
+		box-shadow: 0 0 5px var(--color-border), inset -2px -2px 5px var(--color-border);
+		opacity: 0.9;
+		transform: translateY(0);
+	}
 }
 
 .card__background {

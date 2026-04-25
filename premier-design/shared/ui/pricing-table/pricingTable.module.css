@@ -23,9 +23,11 @@
 	background-color: color-mix(in srgb, var(--color-text) 4%, var(--color-surface));
 }
 
-.tr:hover {
-	background-color: var(--color-surface-muted);
-	cursor: pointer;
+@media (hover: hover) {
+	.tr:hover {
+		background-color: var(--color-surface-muted);
+		cursor: pointer;
+	}
 }
 
 .unitColumn,

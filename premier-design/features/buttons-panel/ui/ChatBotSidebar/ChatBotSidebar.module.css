@@ -40,10 +40,16 @@
 	box-shadow: var(--shadow-sm);
 }
 
-.closeButton:hover,
 .closeButton:focus-visible {
 	background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
 	outline: none;
+}
+
+@media (hover: hover) {
+	.closeButton:hover {
+		background: color-mix(in srgb, var(--color-accent) 14%, var(--color-surface));
+		outline: none;
+	}
 }
 
 .chatbot :global(.react-chatbot-kit-chat-container) {

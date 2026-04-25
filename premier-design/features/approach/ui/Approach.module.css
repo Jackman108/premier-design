@@ -1,21 +1,22 @@
+/* Отступы — у оболочки `HomePageSection` на главной. */
 .approach {
 	max-width: 100%;
 	background-color: var(--color-surface-muted);
-	padding: 3% 0;
+	padding: 0;
 }
 
 .approach__container {
 	margin: 0 auto;
-	max-width: 1440px;
+	max-width: var(--section-content-max);
 	display: grid;
 	justify-content: center;
 	justify-items: center;
-	grid-gap: 4vh;
+	gap: var(--section-inner-stack-gap);
 }
 
 @media screen and (max-width: 768px) {
 	.approach__container {
-		margin: 4vh auto;
-		grid-gap: 0;
+		margin: var(--section-padding-inline) auto;
+		gap: 0;
 	}
 }

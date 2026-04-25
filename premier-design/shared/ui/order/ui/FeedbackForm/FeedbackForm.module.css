@@ -126,8 +126,10 @@
 	transition: color 0.2s;
 }
 
-.input__group label a:hover {
-	color: var(--color-accent-hover);
+@media (hover: hover) {
+	.input__group label a:hover {
+		color: var(--color-accent-hover);
+	}
 }
 
 .input__group label a:focus-visible {

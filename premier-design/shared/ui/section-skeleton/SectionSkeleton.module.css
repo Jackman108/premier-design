@@ -1,0 +1,54 @@
+.root {
+	width: min(90rem, 100%);
+	margin-inline: auto;
+	padding: clamp(var(--space-lg), 4vw, var(--space-2xl));
+	border-radius: var(--radius-lg);
+	border: 1px solid color-mix(in srgb, var(--color-border) 70%, transparent);
+	background: color-mix(in srgb, var(--color-surface-muted) 75%, transparent);
+	box-shadow: var(--shadow-sm);
+}
+
+.line {
+	height: 0.9rem;
+	border-radius: var(--radius-sm);
+	background: linear-gradient(
+		90deg,
+		color-mix(in srgb, var(--color-surface) 40%, transparent) 0%,
+		color-mix(in srgb, var(--color-surface) 78%, transparent) 45%,
+		color-mix(in srgb, var(--color-surface) 40%, transparent) 100%
+	);
+	background-size: 220% 100%;
+	animation: shimmer 1.2s linear infinite;
+}
+
+.line + .line {
+	margin-top: var(--space-sm);
+}
+
+.lineLg {
+	width: 72%;
+	height: 1.25rem;
+}
+
+.lineMd {
+	width: 94%;
+}
+
+.lineSm {
+	width: 58%;
+}
+
+@keyframes shimmer {
+	0% {
+		background-position: 100% 0;
+	}
+	100% {
+		background-position: -100% 0;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.line {
+		animation: none;
+	}
+}

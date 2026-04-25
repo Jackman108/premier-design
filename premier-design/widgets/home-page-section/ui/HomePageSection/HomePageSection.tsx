@@ -27,12 +27,17 @@ const HomePageSection: FC<HomePageSectionProps> = ({
 		extra,
 	);
 
+	/** `shell` / `features` — наружный padding только у оболочки; внутри секции отступы не дублируем. */
+	const rhythm =
+		layout === 'content' ? 'shell' : layout === 'features' ? 'features' : undefined;
+
 	return (
 		<section
 			id={id}
 			aria-label={ariaLabel}
 			className={className}
 			data-reveal={isHero ? undefined : 'true'}
+			data-rhythm={rhythm}
 			data-density={isContent && density ? density : undefined}
 			data-width={isContent && width ? width : undefined}
 		>

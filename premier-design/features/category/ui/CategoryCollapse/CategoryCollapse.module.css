@@ -1,5 +1,5 @@
 .categoryCollapse {
-	max-width: 1440px;
+	max-width: var(--section-content-max);
 	margin: 10px auto;
 	border: 2px solid var(--gray-light);
 	border-radius: var(--radius-lg);
@@ -19,6 +19,7 @@
 	color: var(--brown-light);
 	background-color: var(--gray-light);
 	padding: 18px 20px;
+	min-height: 44px;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -26,9 +27,11 @@
 	transition: background-color var(--transition-base), transform var(--transition-base);
 }
 
-.categoryHeader:hover {
-	background-color: var(--color-surface-muted);
-	transform: translateY(-3px);
+@media (hover: hover) {
+	.categoryHeader:hover {
+		background-color: var(--color-surface-muted);
+		transform: translateY(-3px);
+	}
 }
 
 .categoryHeader:focus-visible {

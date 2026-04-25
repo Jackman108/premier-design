@@ -51,8 +51,10 @@
 	transition: background-color var(--transition-base);
 }
 
-.modal__close:hover {
-	background-color: var(--brown-light);
+@media (hover: hover) {
+	.modal__close:hover {
+		background-color: var(--brown-light);
+	}
 }
 
 .modal__close:focus-visible {
