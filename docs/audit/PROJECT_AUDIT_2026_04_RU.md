@@ -2,7 +2,7 @@
 
 Индекс: [`docs/README.md`](../README.md) · Открытый бэклог: [`AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](./AUDIT_AND_IMPROVEMENT_PLAN_RU.md) · Риски: [`PROJECT_RISK_REGISTER_2026_04_RU.md`](./PROJECT_RISK_REGISTER_2026_04_RU.md) · Деплой: [`DEPLOY_READINESS_2026_04_RU.md`](./DEPLOY_READINESS_2026_04_RU.md)
 
-Правила агента: [`.cursor/rules/agent-architecture-clean-code.mdc`](../../.cursor/rules/agent-architecture-clean-code.mdc), [`.cursor/rules/agent-context-bootstrap.mdc`](../../.cursor/rules/agent-context-bootstrap.mdc). Mempalace: [`docs/mempalace/rules/`](../mempalace/rules/).
+Правила агента: [`.cursor/rules/agent-mempalace-bootstrap.mdc`](../../.cursor/rules/agent-mempalace-bootstrap.mdc), [`.cursor/rules/agent-quality-process.mdc`](../../.cursor/rules/agent-quality-process.mdc). Канон норм: [`docs/mempalace/rules/`](../mempalace/rules/).
 
 ## Статус сводного аудита по 12 направлениям
 

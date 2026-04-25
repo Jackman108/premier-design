@@ -99,7 +99,7 @@
 
 	background-color: var(--surface-on-media);
 	border: none;
-	/* Поверх тёмного scrim — контраст в обеих темах (см. agent-architecture-clean-code §6) */
+	/* Поверх тёмного scrim — контраст в обеих темах (см. docs/mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md) */
 	color: var(--text-on-media);
 	text-shadow: 0 1px 2px rgb(13 11 11 / 0.85);
 	font-size: 1.5em;

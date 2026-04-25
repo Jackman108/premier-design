@@ -25,6 +25,9 @@
 ## Документация репозитория
 
 - Оглавление: [`../docs/README.md`](../docs/README.md).
+- Нормы для агента (Cursor): [`../.cursor/rules/agent-mempalace-bootstrap.mdc`](../.cursor/rules/agent-mempalace-bootstrap.mdc), [`../.cursor/rules/agent-quality-process.mdc`](../.cursor/rules/agent-quality-process.mdc); канон текстов — [`../docs/mempalace/rules/`](../docs/mempalace/rules/).
+- Плейбук разработчика: [`../docs/DEVELOPMENT_PLAYBOOK_RU.md`](../docs/DEVELOPMENT_PLAYBOOK_RU.md).
+- Скрипты и quality-gates: [`../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md).
 - Перед деплоем: [`../docs/audit/DEPLOY_READINESS_2026_04_RU.md`](../docs/audit/DEPLOY_READINESS_2026_04_RU.md).
 
 ## Архитектура UI
@@ -34,24 +37,19 @@
 
 ## Основные команды
 
-- `yarn dev` — режим разработки (Next 16: **Webpack** по умолчанию, стабильнее HMR с Pages Router)
-- `yarn dev:turbo` — то же с **Turbopack** (быстрее, но при сбоях HMR вернитесь на `yarn dev`)
-- `yarn build` — production-сборка
-- `yarn start` — запуск production-сборки
-- `yarn lint` — проверка ESLint
-- `yarn lint:fix` — автоисправление ESLint
-- `yarn test` — тесты (Jest)
-- `yarn storybook` — каталог UI (Storybook)
-- `yarn build-storybook` — статическая сборка Storybook (артефакт в CI)
-- `yarn analyze` — сборка с отчётом `@next/bundle-analyzer`
-- `yarn check:risk:local` — сводка risk-gates (architecture, allowlist-progress, ui-purity, regressions, noise, feature-structure, SLO/CI-SLA checks)
-- `yarn check:precommit:full` — полный локальный pre-commit gate (lint, unit, risk-gates, build, initial-js)
-- `yarn check:deploy:local` — алиас на `yarn check:precommit:full` для релизной проверки
-- `yarn test:e2e` — Playwright smoke (нужен доступ к `http://127.0.0.1:3000`, см. `playwright.config.ts`)
+| Назначение | Команда |
+|------------|---------|
+| Разработка | `yarn dev` (Webpack, стабильный HMR) · `yarn dev:turbo` (Turbopack) |
+| Сборка / запуск prod | `yarn build` · `yarn start` · `yarn analyze` (bundle analyzer) |
+| Быстрый фидбек (lint + unit) | `yarn check:static` |
+| Все project-gates без «релизной» цепочки | `yarn check:risk:local` |
+| Как pre-commit: lint, unit, gates, build, initial JS | `yarn check:precommit:full` (= `check:deploy:local`) |
+| E2E smoke | `yarn test:e2e` (см. `playwright.config.ts`, `baseURL`) |
+| Storybook | `yarn storybook` · `yarn build-storybook` |
 
-Git hooks:
-- `.husky/pre-commit` запускает `lint-staged` + `yarn check:precommit:full`
-- `.husky/pre-push` запускает `yarn test:e2e` (core smoke) перед push в удалённый git
+**Полный перечень** скриптов, CI, lint-staged: [`../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md).
+
+**Git hooks:** `.husky/pre-commit` — `lint-staged` + `yarn check:precommit:full`; `.husky/pre-push` — `yarn test:e2e` (набор `@core`).
 
 ## Переменные окружения
 

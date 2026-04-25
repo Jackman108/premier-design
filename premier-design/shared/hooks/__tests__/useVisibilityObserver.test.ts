@@ -23,13 +23,13 @@ describe('useVisibilityObserver', () => {
 			trigger = (entries: IntersectionObserverEntry[]) => this.cb(entries, this as never);
 		}
 
-		let instance: MockIntersectionObserver | null = null;
+		const instanceRef: {current: MockIntersectionObserver | null} = {current: null};
 		Object.defineProperty(window, 'IntersectionObserver', {
 			writable: true,
 			value: class {
 				constructor(cb: IntersectionObserverCallback) {
-					instance = new MockIntersectionObserver(cb);
-					return instance as never;
+					instanceRef.current = new MockIntersectionObserver(cb);
+					return instanceRef.current as never;
 				}
 			},
 		});
@@ -37,7 +37,7 @@ describe('useVisibilityObserver', () => {
 		const {unmount} = renderHook(() => useVisibilityObserver('news-'));
 		expect(observe).toHaveBeenCalledTimes(2);
 
-		instance?.trigger([
+		instanceRef.current?.trigger([
 			{
 				isIntersecting: true,
 				target: observedElements[0],

@@ -39,7 +39,7 @@
 - Компонент `features/examples/ui/PhotoViewer/PhotoViewer.tsx` остаётся в слое **legacy `<dialog>`** (ADR, п. 2): открытие через **`showModal()`** в `useEffect` (top layer), закрытие — **`close()`** в cleanup; иначе при только `open`/абсолютных детях ломается геометрия и навигация по кадрам.
 - **Кадр изображения** — контейнер **90vw × 90dvh** (90% ширины и высоты вьюпорта), внутри — `object-fit: contain` и `max-width`/`max-height` на `img`, чтобы крупные фото не обрезались.
 - Закрытие: кнопка подложки (scrim), **Escape** (обработчик на `<dialog>`), кнопка «Close».
-- **a11y (минимум как у headless):** скрытые `h2` + `p` с `useId()`, связь через `aria-labelledby` / `aria-describedby`; подписи поверх затемнения — **`var(--white)`** + лёгкий `text-shadow` (читаемость в тёмной теме, см. правила в `.cursor/rules`).
+- **a11y (минимум как у headless):** скрытые `h2` + `p` с `useId()`, связь через `aria-labelledby` / `aria-describedby`; подписи поверх затемнения — **`var(--white)`** + лёгкий `text-shadow` (читаемость в тёмной теме, см. [`docs/mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md`](../mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md) и [`03_WEB_A11Y_AND_UX_RU.md`](../mempalace/rules/03_WEB_A11Y_AND_UX_RU.md)).
 - Юнит-тесты: `PhotoViewer.test.tsx` (роль диалога по заголовку «Просмотр примеров работ»); в **`jest.setup.ts`** — полифилл `HTMLDialogElement.prototype.showModal`/`close` для jsdom.
 
 ## Проверка готовности

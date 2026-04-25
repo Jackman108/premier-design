@@ -2,7 +2,7 @@
 
 Документ для **релиза сайта услуг** (ремонт и дизайн интерьеров): что проверить перед выкладкой, какие доработки дают максимум эффекта при минимальном риске, куда смотреть после деплоя.
 
-Связанные материалы: [AUDIT_AND_IMPROVEMENT_PLAN_RU.md](AUDIT_AND_IMPROVEMENT_PLAN_RU.md) · [PERF_AND_SEO_CHECKLIST_RU.md](../guides/PERF_AND_SEO_CHECKLIST_RU.md) · [DEPLOY_SSH_GITHUB_ACTIONS_RU.md](../guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) · ADR в [../adr/README.md](../adr/README.md).
+Связанные материалы: [AUDIT_AND_IMPROVEMENT_PLAN_RU.md](AUDIT_AND_IMPROVEMENT_PLAN_RU.md) · [PERF_AND_SEO_CHECKLIST_RU.md](../guides/PERF_AND_SEO_CHECKLIST_RU.md) · [DEPLOY_SSH_GITHUB_ACTIONS_RU.md](../guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) · [SCRIPTS_AND_QUALITY_GATES_RU.md](../guides/SCRIPTS_AND_QUALITY_GATES_RU.md) (все команды) · ADR в [../adr/README.md](../adr/README.md).
 
 ---
 
@@ -10,8 +10,9 @@
 
 | Проверка | Команда / артефакт | Ожидание |
 |----------|-------------------|----------|
-| **Сводная локально (из каталога `premier-design/`)** | `yarn check:deploy:local` | lint + unit + build + initial JS + architecture + ui-purity + feature-structure |
+| **Сводная локально (из каталога `premier-design/`)** | `yarn check:deploy:local` | lint + typecheck + unit + build + initial JS + architecture + ui-purity + feature-structure |
 | Линтер | `yarn lint` | без ошибок |
+| Типы (TypeScript) | `yarn typecheck` | без ошибок (`tsc --noEmit`, строже чем `next build` для `*.test.ts(x)`) |
 | Юнит-тесты | `yarn test --watch=false` | все зелёные |
 | Сборка | `yarn build` | успех |
 | Бюджет initial JS главной | `node ./scripts/check-initial-js-budget.mjs` после `yarn build` | ≤ `INITIAL_JS_BUDGET_KB` (дефолт 750 KB) |

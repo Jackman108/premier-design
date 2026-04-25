@@ -1,0 +1,55 @@
+---
+description: Нормы из docs/mempalace — обязательное подтягивание перед работой; опционально MCP MemPalace
+alwaysApply: true
+---
+
+# Premier Design: нормы через MemPalace (репозиторий)
+
+## Канонический текст
+
+Архитектура, UI, a11y, производительность, безопасность, Next.js, тесты, use-case, SOLID, ошибки, типы, рефакторинг — в **`docs/mempalace/rules/`** (`01`–`12`) и оглавлении **`docs/mempalace/README.md`**. Там же раздел **«Репозиторий Premier Design»** в `01_*` с merge-блокирующими инвариантами.
+
+**Перед изменением кода или конфигов** откройте (Read):
+
+1. `docs/mempalace/README.md` — карта правил.
+2. Один или несколько файлов из таблицы по теме задачи.
+
+| Тема | Файл |
+|------|------|
+| Слои, границы, инварианты репо | `docs/mempalace/rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md` |
+| UI, токены, темизация, модалки | `docs/mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md` |
+| a11y, UX | `docs/mempalace/rules/03_WEB_A11Y_AND_UX_RU.md` |
+| Производительность, бандл | `docs/mempalace/rules/04_WEB_PERFORMANCE_RU.md` |
+| Безопасность, данные | `docs/mempalace/rules/05_WEB_SECURITY_AND_DATA_RU.md` |
+| Next.js, данные, формы, API | `docs/mempalace/rules/06_WEB_NEXTJS_DATA_AND_FORMS_RU.md` |
+| Тесты, качество | `docs/mempalace/rules/07_WEB_TESTING_AND_QUALITY_RU.md` |
+| Use-case, порты, адаптеры | `docs/mempalace/rules/08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md` |
+| SOLID, DRY, KISS, YAGNI | `docs/mempalace/rules/09_CLEAN_CODE_SOLID_DRY_KISS_YAGNI_RU.md` |
+| Ошибки, надёжность | `docs/mempalace/rules/10_ERRORS_AND_RELIABILITY_RU.md` |
+| Типы, Zod, границы | `docs/mempalace/rules/11_TYPING_AND_VALIDATION_RU.md` |
+| Рефакторинг, долг | `docs/mempalace/rules/12_REFACTORING_AND_TECHNICAL_DEBT_RU.md` |
+
+## Остальной обязательный контекст
+
+- **Карта документации** — `docs/README.md`.
+- **Открытый бэклог** — `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`.
+- **Процесс, гейты, DoD, RISK-08** — `.cursor/rules/agent-quality-process.mdc`.
+- **Плейбук разработчика** — `docs/DEVELOPMENT_PLAYBOOK_RU.md`.
+
+## MCP MemPalace (если включён в Cursor)
+
+Сервер **`user-mempalace`** (или `mempalace`): для широкого контекста сначала семантический поиск по дворцу, затем для **точной** формулировки и цитирования — Read соответствующего `docs/mempalace/rules/*.md` в репозитории (текст в git — источник правды; дворец — дополнительный контур памяти). Установка и `mine`: `docs/mempalace/MEMPALACE_AGENT_MEMORY_RU.md`, эксплуатация: `docs/mempalace/MEMPALACE_USAGE_RU.md`. Секреты и индексы дворца в git не коммитить.
+
+## Поведение агента
+
+- Не раздувать ответы без правок в коде/доках по задаче.
+- Минимально достаточный diff; несвязные файлы не трогать.
+- Изменения процессов и гейтов — синхронизация в тех же документах, что в `agent-quality-process.mdc`.
+
+## Комментарии в коде (русский)
+
+Для новых и существенно изменённых файлов — короткие комментарии **«почему»**, не «что» (включая `premier-design/scripts/*.mjs`). В модулях `hooks/` / `utils/`, вынесенных из `ui/`, в начале — зона ответственности и контракт (вход/выход).
+
+## Зависимости
+
+Только **Yarn** — `docs/guides/YARN_PACKAGE_MANAGER_RU.md`.

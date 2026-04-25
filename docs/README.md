@@ -1,82 +1,105 @@
 # Документация Premier Design
 
-Материалы **вне кода приложения** (`premier-design/` — Next.js). Правила для агента: `.cursor/rules/agent-architecture-clean-code.mdc` (темизация, модалки, моки хуков), bootstrap: `agent-context-bootstrap.mdc`. Дополнение по UI/тестам: `docs/mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md`, `07_WEB_TESTING_AND_QUALITY_RU.md`.
+Материалы **вне кода приложения** (`premier-design/` — Next.js). Этот файл — **карта** документации; нормы и правила не дублируются здесь, а лежат в специализированных файлах ниже.
 
-## Как читать этот каталог
+## Главная страница для разработчика
 
-1. **Аудит и визуальный бэклог** — [audit/PROJECT_AUDIT_2026_04_RU.md](audit/PROJECT_AUDIT_2026_04_RU.md): статус закрытого сводного аудита, таблица FSD-отклонений, список улучшений дизайна/вёрстки.  
-2. **Перед деплоем** — [audit/DEPLOY_READINESS_2026_04_RU.md](audit/DEPLOY_READINESS_2026_04_RU.md).  
-3. **Риски и митигации** — [audit/PROJECT_RISK_REGISTER_2026_04_RU.md](audit/PROJECT_RISK_REGISTER_2026_04_RU.md) + `premier-design/CHANGELOG.md`.  
-4. **Открытый бэклог улучшений** — [audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) (только нереализованные задачи; закрытые — в `CHANGELOG.md`).  
-5. **Архитектурные решения** — единый реестр [adr/README.md](adr/README.md) (не дублировать таблицу ADR здесь).  
-6. **Повседневная разработка** — раздел «Гайды» ниже.
+1. [`DEVELOPMENT_PLAYBOOK_RU.md`](DEVELOPMENT_PLAYBOOK_RU.md) — единый плейбук: слои, поток разработки, ссылки на гейты, perf и UX.
+2. [`guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](guides/SCRIPTS_AND_QUALITY_GATES_RU.md) — все `yarn` скрипты, CI, lint‑staged, pre‑commit.
+3. Правила агента (корень репозитория): [`.cursor/rules/agent-mempalace-bootstrap.mdc`](../.cursor/rules/agent-mempalace-bootstrap.mdc) (нормы из `docs/mempalace/`, MemPalace-first), [`.cursor/rules/agent-quality-process.mdc`](../.cursor/rules/agent-quality-process.mdc) (гейты и синхронизация доков).
 
-### Стандарт оформления документов
+## Стандарт оформления документов
 
-- Язык: русский; термины на английском при необходимости в скобках.  
-- Структура: контекст → решение / действия → критерии готовности.  
-- Пути и команды в обратных кавычках.  
-- Крупные изменения: синхронизация `docs/audit`, ADR и `premier-design/CHANGELOG.md`.
-- При изменениях UI/темизации/a11y: синхронизировать минимум `PROJECT_AUDIT_2026_04_RU.md`, `DEPLOY_READINESS_2026_04_RU.md` и `premier-design/CHANGELOG.md`.
+- Язык: **русский**; термины на английском при необходимости в скобках.
+- Структура: **контекст → решение/действия → критерии готовности**.
+- Пути и команды — в обратных кавычках.
+- При изменении поведения, env, скриптов, гейтов или Docker — синхронизация в **той же задаче** с `premier-design/CHANGELOG.md`, `docs/audit/QUALITY_GATES_SYNC_RU.md` и (при необходимости) ADR.
+- При изменениях UI/темизации/a11y — добавить минимум в `PROJECT_AUDIT_2026_04_RU.md`, `DEPLOY_READINESS_2026_04_RU.md`, `CHANGELOG.md`.
+- **Без дублирования:** норма формулируется один раз — в `docs/mempalace/rules/` или `docs/guides/`. Остальные документы и `.cursor/rules/*` дают ссылки, не копируют текст.
 
 ---
 
-## Оглавление по темам
+## Навигация по разделам
 
-### Аудит и релиз
+### Аудит, риски и релиз — [`audit/`](audit/)
 
-| Документ | Описание |
-|----------|----------|
-| [audit/README.md](audit/README.md) | Индекс папки `audit/` |
-| [audit/PROJECT_AUDIT_2026_04_RU.md](audit/PROJECT_AUDIT_2026_04_RU.md) | Индекс аудита, FSD-таблица, направления улучшения UI/вёрстки |
-| [audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) | Открытый бэклог улучшений и Definition of Done |
-| [audit/DEPLOY_READINESS_2026_04_RU.md](audit/DEPLOY_READINESS_2026_04_RU.md) | Финальный чеклист деплоя и улучшения для продакшена услуг |
-| [audit/PROJECT_RISK_REGISTER_2026_04_RU.md](audit/PROJECT_RISK_REGISTER_2026_04_RU.md) | Реестр текущих рисков (вероятность/влияние/митигации) |
-| [audit/QUALITY_GATES_SYNC_RU.md](audit/QUALITY_GATES_SYNC_RU.md) | RISK-08: чеклист синхронизации `CHANGELOG` / workflow / гейты |
-| [audit/OPERATIONS_OBSERVABILITY_RU.md](audit/OPERATIONS_OBSERVABILITY_RU.md) | RISK-11: `correlationId`, логи, SLO |
-| [audit/SUPPLY_CHAIN_RU.md](audit/SUPPLY_CHAIN_RU.md) | RISK-09: `yarn audit`, triage, lockfile |
-| [audit/CI_COST_AND_TRENDS_RU.md](audit/CI_COST_AND_TRENDS_RU.md) | RISK-12: `ci-trends`, SLA, разделение job |
+| Документ | Назначение |
+|----------|------------|
+| [`audit/README.md`](audit/README.md) | Индекс папки `audit/` |
+| [`audit/PROJECT_AUDIT_2026_04_RU.md`](audit/PROJECT_AUDIT_2026_04_RU.md) | Закрытый сводный аудит, FSD‑таблица отклонений, история закрытых направлений UI |
+| [`audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) | Открытый бэклог улучшений и Definition of Done; **источник плана compliance** |
+| [`audit/DEPLOY_READINESS_2026_04_RU.md`](audit/DEPLOY_READINESS_2026_04_RU.md) | Финальный чеклист деплоя |
+| [`audit/PROJECT_RISK_REGISTER_2026_04_RU.md`](audit/PROJECT_RISK_REGISTER_2026_04_RU.md) | Реестр текущих рисков и митигаций |
+| [`audit/QUALITY_GATES_SYNC_RU.md`](audit/QUALITY_GATES_SYNC_RU.md) | RISK‑08: чеклист синхронизации `CHANGELOG` / workflow / гейтов |
+| [`audit/OPERATIONS_OBSERVABILITY_RU.md`](audit/OPERATIONS_OBSERVABILITY_RU.md) | RISK‑11: `correlationId`, логи, SLO |
+| [`audit/SUPPLY_CHAIN_RU.md`](audit/SUPPLY_CHAIN_RU.md) | RISK‑09: `yarn audit`, weekly triage, lockfile |
+| [`audit/CI_COST_AND_TRENDS_RU.md`](audit/CI_COST_AND_TRENDS_RU.md) | RISK‑12: тренды CI, p95, разделение job |
 
-### Архитектура (ADR)
+### Архитектурные решения — [`adr/`](adr/)
 
-| Документ | Описание |
-|----------|----------|
-| [adr/README.md](adr/README.md) | Полный список ADR 0001–0009 и шаблон записи |
+| Документ | Назначение |
+|----------|------------|
+| [`adr/README.md`](adr/README.md) | Индекс ADR 0001–0009 и шаблон |
 
-### Гайды разработки
+### Гайды разработки — [`guides/`](guides/)
 
-| Документ | Описание |
-|----------|----------|
-| [guides/CODE_STRUCTURE_AND_NAMING_RU.md](guides/CODE_STRUCTURE_AND_NAMING_RU.md) | Слои, структура модулей, нейминг |
-| [guides/FEATURE_STRUCTURE_ROADMAP_RU.md](guides/FEATURE_STRUCTURE_ROADMAP_RU.md) | Шаблон `features/*`, quality-gate |
-| [guides/API_AND_STORYBOOK_RU.md](guides/API_AND_STORYBOOK_RU.md) | API, валидация, Storybook |
-| [guides/YARN_PACKAGE_MANAGER_RU.md](guides/YARN_PACKAGE_MANAGER_RU.md) | Только Yarn, `yarn audit` |
+| Документ | Назначение |
+|----------|------------|
+| [`DEVELOPMENT_PLAYBOOK_RU.md`](DEVELOPMENT_PLAYBOOK_RU.md) | Точка входа для ежедневной работы |
+| [`guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](guides/SCRIPTS_AND_QUALITY_GATES_RU.md) | Все `yarn` скрипты, CI, lint‑staged, pre‑commit |
+| [`guides/CODE_STRUCTURE_AND_NAMING_RU.md`](guides/CODE_STRUCTURE_AND_NAMING_RU.md) | Слои, структура модулей, нейминг, роль `lib/` и `shared/` |
+| [`guides/FEATURE_STRUCTURE_ROADMAP_RU.md`](guides/FEATURE_STRUCTURE_ROADMAP_RU.md) | Шаблон `features/*`, quality‑gate структуры |
+| [`guides/API_AND_STORYBOOK_RU.md`](guides/API_AND_STORYBOOK_RU.md) | Контракт API, валидация, Storybook |
+| [`guides/PERF_AND_SEO_CHECKLIST_RU.md`](guides/PERF_AND_SEO_CHECKLIST_RU.md) | Чеклист перед релизом, Lighthouse, бюджеты |
+| [`guides/YARN_PACKAGE_MANAGER_RU.md`](guides/YARN_PACKAGE_MANAGER_RU.md) | Только Yarn, `yarn audit` |
+| [`guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md`](guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) | CI/CD через GitHub Actions, SSH, секреты |
+| [`guides/MARKETING_ANALYTICS_DASHBOARD_RU.md`](guides/MARKETING_ANALYTICS_DASHBOARD_RU.md) | События, KPI воронки заявок |
 
-### Эксплуатация, perf, SEO
+### Нормы для индексации (RAG / MemPalace) — [`mempalace/rules/`](mempalace/rules/)
 
-| Документ | Описание |
-|----------|----------|
-| [guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md](guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) | CI/CD, SSH, секреты |
-| [guides/PERF_AND_SEO_CHECKLIST_RU.md](guides/PERF_AND_SEO_CHECKLIST_RU.md) | Чеклист перед релизом, Lighthouse, бюджеты |
+Короткие нормы по темам, **канонический источник** правил для агента и команды.
 
-### Маркетинг
+| № | Тема | Файл |
+|---|------|------|
+| 01 | Веб‑архитектура и границы зависимостей | [`01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md`](mempalace/rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md) |
+| 02 | UI‑компоненты, токены, темизация, модалки | [`02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md`](mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md) |
+| 03 | Доступность (a11y) и UX | [`03_WEB_A11Y_AND_UX_RU.md`](mempalace/rules/03_WEB_A11Y_AND_UX_RU.md) |
+| 04 | Производительность (LCP/CLS/INP, бандл, кеш) | [`04_WEB_PERFORMANCE_RU.md`](mempalace/rules/04_WEB_PERFORMANCE_RU.md) |
+| 05 | Безопасность и данные (OWASP‑lite) | [`05_WEB_SECURITY_AND_DATA_RU.md`](mempalace/rules/05_WEB_SECURITY_AND_DATA_RU.md) |
+| 06 | Next.js: данные, формы, API/Server Actions | [`06_WEB_NEXTJS_DATA_AND_FORMS_RU.md`](mempalace/rules/06_WEB_NEXTJS_DATA_AND_FORMS_RU.md) |
+| 07 | Тестирование (пирамида, моки, env, jsdom) | [`07_WEB_TESTING_AND_QUALITY_RU.md`](mempalace/rules/07_WEB_TESTING_AND_QUALITY_RU.md) |
+| 08 | Чистая архитектура: use‑case, порты, адаптеры | [`08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md`](mempalace/rules/08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md) |
+| 09 | Чистый код: SOLID/DRY/KISS/YAGNI | [`09_CLEAN_CODE_SOLID_DRY_KISS_YAGNI_RU.md`](mempalace/rules/09_CLEAN_CODE_SOLID_DRY_KISS_YAGNI_RU.md) |
+| 10 | Ошибки и надёжность, таймауты, идемпотентность | [`10_ERRORS_AND_RELIABILITY_RU.md`](mempalace/rules/10_ERRORS_AND_RELIABILITY_RU.md) |
+| 11 | Типизация и валидация (TS, Zod, границы) | [`11_TYPING_AND_VALIDATION_RU.md`](mempalace/rules/11_TYPING_AND_VALIDATION_RU.md) |
+| 12 | Рефакторинг и технический долг | [`12_REFACTORING_AND_TECHNICAL_DEBT_RU.md`](mempalace/rules/12_REFACTORING_AND_TECHNICAL_DEBT_RU.md) |
 
-| Документ | Описание |
-|----------|----------|
-| [guides/MARKETING_ANALYTICS_DASHBOARD_RU.md](guides/MARKETING_ANALYTICS_DASHBOARD_RU.md) | `dataLayer`, воронка, KPI |
+### Инструменты (Cursor, MemPalace) — [`cursor/`](cursor/), [`mempalace/`](mempalace/)
 
-### Инструменты (Cursor, MemPalace)
+| Документ | Назначение |
+|----------|------------|
+| [`cursor/README.md`](cursor/README.md) | MCP, шаблон конфигурации |
+| [`mempalace/README.md`](mempalace/README.md) | Оглавление набора `rules/` и синхронизация с дворцом |
+| [`mempalace/MEMPALACE_AGENT_MEMORY_RU.md`](mempalace/MEMPALACE_AGENT_MEMORY_RU.md) | Установка, `init`, `mine`, MCP в Cursor |
+| [`mempalace/MEMPALACE_USAGE_RU.md`](mempalace/MEMPALACE_USAGE_RU.md) | Эксплуатация MemPalace |
 
-| Документ | Описание |
-|----------|----------|
-| [cursor/README.md](cursor/README.md) | MCP, шаблон конфигурации |
-| [mempalace/README.md](mempalace/README.md) | Правила для RAG, ссылки на `rules/` |
-| [mempalace/MEMPALACE_AGENT_MEMORY_RU.md](mempalace/MEMPALACE_AGENT_MEMORY_RU.md) | Опциональная память агента |
-| [mempalace/MEMPALACE_USAGE_RU.md](mempalace/MEMPALACE_USAGE_RU.md) | Эксплуатация MemPalace |
+---
+
+## Принцип «один источник правды»
+
+| Тема | Канонический источник | Где можно ссылаться, но **не дублировать** |
+|------|----------------------|--------------------------------------------|
+| Скрипты `package.json` | `premier-design/package.json` (поле `scripts`) | `guides/SCRIPTS_AND_QUALITY_GATES_RU.md`, `audit/QUALITY_GATES_SYNC_RU.md`, `audit/DEPLOY_READINESS_2026_04_RU.md`, `premier-design/README.md` |
+| Архитектурные нормы (слои/use‑case/SOLID) | `mempalace/rules/01, 08, 09` | `.cursor/rules/agent-mempalace-bootstrap.mdc`, `DEVELOPMENT_PLAYBOOK_RU.md`, `guides/CODE_STRUCTURE_AND_NAMING_RU.md` |
+| Производительность | `mempalace/rules/04` + `guides/PERF_AND_SEO_CHECKLIST_RU.md` | `audit/DEPLOY_READINESS_2026_04_RU.md`, ADR `0009` |
+| UI / токены / модалки | `mempalace/rules/02` + ADR `0001`/`0002`/`0003` | `audit/PROJECT_AUDIT_2026_04_RU.md`, `.cursor/rules/agent-mempalace-bootstrap.mdc` |
+| Тесты | `mempalace/rules/07` | `guides/API_AND_STORYBOOK_RU.md`, `.cursor/rules/agent-mempalace-bootstrap.mdc` |
+| Открытые задачи | `audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` | — |
+| История изменений | `premier-design/CHANGELOG.md` | — |
 
 ---
 
 ## Внутри приложения
 
-- Runbook: `premier-design/README.md`  
+- Runbook: `premier-design/README.md`
 - История версий: `premier-design/CHANGELOG.md`

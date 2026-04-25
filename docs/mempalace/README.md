@@ -1,8 +1,10 @@
 # Документация MemPalace и набор правил (Premier Design)
 
-Всё в этой папке — **в git**: гайды по установке/эксплуатации MemPalace и свод `rules/*.md` для людей и для **индексации в локальном дворце** (каталог вне репозитория + `mine`).
+Всё в этой папке — **в git**: гайды по установке/эксплуатации MemPalace и свод `rules/*.md` — **канонические нормы** для агента и команды. Их подтягивает правило Cursor [`.cursor/rules/agent-mempalace-bootstrap.mdc`](../../.cursor/rules/agent-mempalace-bootstrap.mdc) (обязательный Read + опционально MCP). Тот же набор копируется в локальный дворец (вне репозитория) и индексируется командой `mine`.
 
 ## Гайды (начните здесь)
+
+Процесс разработки и перечень `yarn`‑команд: [`../DEVELOPMENT_PLAYBOOK_RU.md`](../DEVELOPMENT_PLAYBOOK_RU.md), [`../guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../guides/SCRIPTS_AND_QUALITY_GATES_RU.md). Гейты и синхронизация доков — [`.cursor/rules/agent-quality-process.mdc`](../../.cursor/rules/agent-quality-process.mdc).
 
 | Файл | Содержание |
 |------|------------|
@@ -26,7 +28,7 @@
 | [`rules/11_TYPING_AND_VALIDATION_RU.md`](rules/11_TYPING_AND_VALIDATION_RU.md) | TypeScript, Zod, границы |
 | [`rules/12_REFACTORING_AND_TECHNICAL_DEBT_RU.md`](rules/12_REFACTORING_AND_TECHNICAL_DEBT_RU.md) | Рефакторинг, долг, PR |
 
-Документы согласованы с ADR (`docs/adr/`), гайдами (`docs/guides/`) и `.cursor/rules/`, но сформулированы как **короткие нормы** для семантического поиска.
+Документы согласованы с ADR (`docs/adr/`) и гайдами (`docs/guides/`). Полные формулировки норм — **только** в `rules/*.md`; в `.cursor/rules/` остаются короткие указатели (`agent-mempalace-bootstrap.mdc`, `agent-quality-process.mdc`).
 
 ## Синхронизация с локальным дворцом MemPalace
 

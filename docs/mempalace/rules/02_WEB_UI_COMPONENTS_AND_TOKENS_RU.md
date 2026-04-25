@@ -35,6 +35,17 @@
 
 - Область кадра задавать **и по ширине, и по высоте** (например контейнер **90vw × 90dvh**), внутри — **`object-fit: contain`** и **max-width** / **max-height** у изображения относительно контейнера, чтобы не обрезать пропорции.
 - Текст и иконки поверх **тёмного scrim** — не полагаться на `var(--color-surface)` в обеих темах; предпочтительно **`var(--white)`** и при необходимости лёгкая **тень** для контраста (как в `PhotoViewer`).
+- **Legacy `<dialog>` (галерея, `features/examples/ui/PhotoViewer`):** `showModal()` / `close()`, явный размер вьюпорта у корня, контейнер кадра **90vw × 90dvh** + `contain`, подписи на scrim — `var(--white)`, скрытые заголовок/описание для SR (`aria-labelledby` / `aria-describedby`). Полный паттерн — ADR `0003`.
+
+## Контролируемые модалки (`UiDialog` / Radix)
+
+- При закрытии (`onOpenChange(false)`) — `flushSync` с обновлением `open`, затем **`setTimeout(0, focus)`** на якорь **вне** портала: `hideOthers` (Radix) снимает `aria-hidden` с `main` при размонтировании **после** текущей задачи; иначе фокус на `#news-list` (внутри `main`) при «висящем» `aria-hidden` на `main` даёт предупреждение в консоли. См. `TextViewer` и ADR `0003`.
+- `closeNewsModal` — `setExpandedNews` после macrotask. Вложенный `Link` — `stopPropagation` при необходимости.
+
+## Хедер и фоновые паттерны
+
+- **Хедер без full‑screen hero** (`headerVariant: 'solidDark'`): фон/граница — `--color-header-bar-bg` / `--color-header-bar-border` в `tokens.css` (палитра brown/black, не ad‑hoc «синий»). **`Features` сразу под `HeroBanner`:** внешний padding у `Features` = 0, деталь в `Features.module.css` (см. ADR 0001).
+- **Паттерн `body` + SVG:** `shared/hooks/useBackgroundLoader.ts` задаёт градиент поверх `tools.svg`. Не завышать непрозрачность оверлея — паттерн должен оставаться читаемым.
 
 ## Критерии готовности
 

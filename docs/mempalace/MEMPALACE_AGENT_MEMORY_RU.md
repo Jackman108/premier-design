@@ -10,9 +10,9 @@
 | [`MEMPALACE_USAGE_RU.md`](MEMPALACE_USAGE_RU.md) | Эксплуатация: `search`, `status`, UTF-8, переиндексация, сбои |
 | [`README.md`](README.md) | Оглавление набора `rules/*.md` и синхронизация с дворцом |
 
-Источником правды для кода остаются `docs/`, ADR и `.cursor/rules/` — MemPalace дополняет **личный** контур памяти, а не заменяет репозиторий.
+**Канон норм для агента и команды** — тексты в **`docs/mempalace/rules/`** (`01`–`12`) и [`README.md`](README.md); репозиторные merge-инварианты — в конце [`rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md`](rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md). В Cursor подключается правило [`.cursor/rules/agent-mempalace-bootstrap.mdc`](../../.cursor/rules/agent-mempalace-bootstrap.mdc) (MemPalace-first: Read из репо + при наличии MCP — семантический поиск по дворцу). Процесс и гейты — [`.cursor/rules/agent-quality-process.mdc`](../../.cursor/rules/agent-quality-process.mdc). MemPalace **вне git** дополняет **личный** контур памяти (RAG), но не подменяет файлы в репозитории.
 
-**Индексация в дворец:** скопируйте в каталог `$mp` (вне git) файлы из [`rules/`](rules/) и при необходимости **эти же гайды** (`MEMPALACE_*_RU.md`), затем выполните `mine $mp` — агент в Cursor сможет опираться на ту же модель знаний, что и вы локально.
+**Индексация в дворец:** скопируйте в каталог `$mp` (вне git) файлы из [`rules/`](rules/) и при необходимости **эти же гайды** (`MEMPALACE_*_RU.md`), затем выполните `mine $mp` — агент в Cursor с MCP сможет искать по тому же содержимому, что проиндексировано локально.
 
 ---
 

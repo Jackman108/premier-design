@@ -1,0 +1,52 @@
+# Процесс, скрипты и quality‑gates (правило агента)
+
+> Контракт: локальные гейты, pre‑commit/pre‑push, синхронизация `docs/` и `CHANGELOG`. **Нормы архитектуры и кода** — только в `docs/mempalace/rules/` (см. соседний файл `agent-mempalace-bootstrap.mdc`). Полный справочник скриптов — `docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`.
+
+## Минимум локальной валидации (по типу изменения)
+
+| Тип изменения | Минимум локально |
+|---------------|------------------|
+| Документация / тексты в `docs/`, `README` | визуально + `yarn check:noise` (если задействован шум‑артефакт) |
+| Код в `shared/`, `features/`, `widgets/`, `pages/`, `lib/` | `yarn check:static` (lint + typecheck + unit) |
+| Изменение границ слоёв / новых импортов | + `yarn check:risk:local` (architecture/ui‑purity/feature‑structure/regressions/noise/SLO/CI‑SLA) |
+| Сборка/конфиг/перфоманс/Next.js | + `yarn check:precommit:full` (full pre‑commit chain) |
+| Изменение API‑роутов, форм или интеграций | + unit/API‑тесты по сценарию + `yarn test:e2e` (smoke `@core`) |
+| UI‑примитивы или конфиг Storybook | + `yarn build-storybook` |
+
+## Соответствие pre‑commit / pre‑push
+
+- `lint-staged` (через Husky `pre-commit`): ESLint `--fix` + точечно `check:architecture` / `check:ui-purity` / `check:regressions` / `check:noise` / `check:feature-structure` по glob.
+- После lint‑staged `pre-commit` всегда выполняет `yarn check:precommit:full`.
+- `pre-push` выполняет `yarn test:e2e` (`@core`).
+
+Если изменение требует расширенного e2e (`@extended`) — запустить вручную через `yarn test:e2e:extended` или nightly `e2e-extended.yml`.
+
+## Когда обязательно обновить документацию (RISK‑08)
+
+Изменили — синхронизируйте в **той же задаче**:
+
+| Изменение | Обновить |
+|-----------|----------|
+| Скрипты `package.json` (`scripts`, `lint-staged`) | `docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`, `premier-design/CHANGELOG.md`, при влиянии на риск — `docs/audit/PROJECT_RISK_REGISTER_2026_04_RU.md` |
+| Workflow в `.github/workflows/*` | `docs/audit/QUALITY_GATES_SYNC_RU.md`, `premier-design/CHANGELOG.md`, при изменении SLA — `docs/audit/CI_COST_AND_TRENDS_RU.md` |
+| Пороги Lighthouse / initial JS / SLO feedback | `docs/guides/PERF_AND_SEO_CHECKLIST_RU.md`, `docs/audit/DEPLOY_READINESS_2026_04_RU.md` |
+| Архитектурное решение (новое/смена) | новый ADR в `docs/adr/`, индекс `docs/adr/README.md` |
+| Поведение/поведение env приложения | `premier-design/README.md`, `premier-design/.env.example`, `premier-design/CHANGELOG.md` |
+| Открытие нового пункта улучшения | `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` (с ID, приоритетом, артефактом закрытия) |
+| Закрытие пункта улучшения | `premier-design/CHANGELOG.md` (Unreleased), пункт уходит из Open backlog |
+
+## Definition of Done (общая для задач)
+
+Задача закрыта, только если:
+
+1. Изменение действительно есть в коде/CI/доках (не только текстовая пометка).
+2. Пройдены минимально требуемые гейты из таблицы выше.
+3. Обновлены связанные документы (см. таблицу синхронизации).
+4. Для нетривиального решения — комментарий «почему» в коде или короткая запись в `docs/audit/`.
+
+## Запреты в процессе
+
+- Менять `git config`, форсить пуш в `master`, обходить hooks (`--no-verify`) — без явного запроса пользователя.
+- Удалять/переименовывать публичные скрипты (`yarn check:*`, `yarn test:*`) без обновления `lint-staged`, `.husky/*`, `.github/workflows/*`, документации и `CHANGELOG`.
+- Коммитить `package-lock.json`, `node_modules/`, `.next/`, секреты, артефакты тестов.
+- Создавать markdown‑файлы документации проактивно без явной просьбы — только когда задача требует фиксации в репозитории.
