@@ -1,6 +1,8 @@
-# Premier Design (Next.js)
+# Premium Design (Next.js)
 
 Сайт услуг по ремонту и дизайну интерьера на `Next.js`.
+
+**Имена в репо:** этот проект в git лежит в каталоге **`premier-design/`** (так в CI и Husky). В `package.json` имя пакета — `premium-design`. В **`deploy/docker-compose.yml`** сервис и контейнер сайта называются **`premium-design`** (образ в GHCR рекомендуется `…/premium-design`); это не связано с именем папки в клоне.
 
 ## Требования
 
@@ -93,16 +95,23 @@ Rate limit для `pages/api/*` (in-memory, см. ADR [`../docs/adr/0005-rate-li
 - Формат: [Semantic Versioning](https://semver.org/lang/ru/) и [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 - Коммиты: по возможности [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:` …) для предсказуемых нот релиза.
 
-## Docker
+## Docker и деплой на VPS
 
 Production-образ (`Dockerfile.prod`) собирает приложение с **`output: 'standalone'`** (Next.js) и запускает **`node server.js`** внутри контейнера; полный `node_modules` в рантайм-образ не копируется.
 
-Из корня репозитория доступны:
-- `docker-compose.development.yaml` - dev окружение
-- `docker-compose.yaml` - production-like окружение
+Образ публикуется в **GHCR** через CI (см. workflow в `.github/workflows/`). На VPS он только pull-ится — исходники приложения на сервер не клонируются.
 
-Пример запуска development-стека:
-- `docker compose -f docker-compose.development.yaml up --build`
+Multi-site инфраструктура (`premium-design.pro` + `febcode.pro` на одном VPS):
+- конфигурация: [`../deploy/`](../deploy/) (`docker-compose.yml`, `nginx/`, certbot);
+- операционный гайд: [`../docs/operations/MULTISITE_VPS_DEPLOY_RU.md`](../docs/operations/MULTISITE_VPS_DEPLOY_RU.md);
+- предыдущий вариант через GitHub Actions (SCP+SSH): [`../docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md`](../docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md).
+
+## Лицензия
+
+Проект распространяется на условиях проприетарной лицензии:
+- [`../LICENSE`](../LICENSE) — английская версия;
+- [`../LICENSE_RU.md`](../LICENSE_RU.md) — русская версия (преимущество для законодательства РБ);
+- обоснование: [`../docs/adr/0011-proprietary-license.md`](../docs/adr/0011-proprietary-license.md).
 
 ## Типовые проблемы
 

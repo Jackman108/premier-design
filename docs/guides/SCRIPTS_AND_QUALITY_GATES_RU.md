@@ -66,6 +66,8 @@
 | `check:precommit:full` | `lint` → `typecheck` → `test --watch=false` → `check:risk:local` → `build` → `check:perf:initial-js` |
 | `check:deploy:local` | Алиас `check:precommit:full` (ожидания «перед релизом»). |
 
+`check:risk:local` начинает прогон с `clean:test-artifacts`, чтобы старые e2e-артефакты не ломали `check:noise`.
+
 ## 5. Отчёты
 
 | Скрипт | Назначение |
@@ -82,6 +84,7 @@
 | `test:e2e:full` | Все e2e‑тесты. |
 | `test:e2e:extended` | `@extended` (nightly через `e2e-extended.yml`). |
 | `test:e2e:visual` | `e2e/visual-regression.spec.ts` (карточки, dark‑overlay). |
+| `clean:test-artifacts` | Очистка локальных e2e-артефактов (`test-results`, `playwright-report`, `blob-report`) перед noise-gate. |
 
 **Заметка:** pre‑push в репозитории запускает `yarn test:e2e` — см. `.husky/pre-push`.
 

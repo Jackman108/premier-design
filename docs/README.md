@@ -40,7 +40,7 @@
 
 | Документ | Назначение |
 |----------|------------|
-| [`adr/README.md`](adr/README.md) | Индекс ADR 0001–0010 и шаблон |
+| [`adr/README.md`](adr/README.md) | Индекс ADR 0001–0011 и шаблон |
 
 ### Гайды разработки — [`guides/`](guides/)
 
@@ -55,6 +55,12 @@
 | [`guides/YARN_PACKAGE_MANAGER_RU.md`](guides/YARN_PACKAGE_MANAGER_RU.md) | Только Yarn, `yarn audit` |
 | [`guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md`](guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) | CI/CD через GitHub Actions, SSH, секреты |
 | [`guides/MARKETING_ANALYTICS_DASHBOARD_RU.md`](guides/MARKETING_ANALYTICS_DASHBOARD_RU.md) | События, KPI воронки заявок |
+
+### Операции и инфраструктура — [`operations/`](operations/)
+
+| Документ | Назначение |
+|----------|------------|
+| [`operations/MULTISITE_VPS_DEPLOY_RU.md`](operations/MULTISITE_VPS_DEPLOY_RU.md) | Деплой `premium-design.pro` + `febcode.pro` на одном VPS (Docker + nginx + Let's Encrypt), без смешения репозиториев |
 
 ### Нормы для индексации (RAG / MemPalace) — [`mempalace/rules/`](mempalace/rules/)
 
@@ -91,6 +97,10 @@
 | Тема | Канонический источник | Где можно ссылаться, но **не дублировать** |
 |------|----------------------|--------------------------------------------|
 | Скрипты `package.json` | `premier-design/package.json` (поле `scripts`) | `guides/SCRIPTS_AND_QUALITY_GATES_RU.md`, `audit/QUALITY_GATES_SYNC_RU.md`, `audit/DEPLOY_READINESS_2026_04_RU.md`, `premier-design/README.md` |
+| Реквизиты ИП и публичные контакты | `premier-design/shared/constants/company.ts` (`SITE_OPERATOR`) | `LegalRequisites`, `Phone`, `WorkHours`, `Address`, `generateStructuredData`, юр. тексты в `features/documents-content/*` |
+| URL соцсетей (Telegram, VK, Instagram) | `premier-design/shared/constants/company.ts` (`SITE_SOCIAL` + `structuredData.sameAs`) | `shared/ui/social-icons/SocialIcons` — без литералов ссылок в UI |
+| Multi-site VPS инфраструктура | `deploy/` (`docker-compose.yml`, `nginx/`) | `docs/operations/MULTISITE_VPS_DEPLOY_RU.md`, `guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md` |
+| Лицензия и IP | корневые `LICENSE` / `LICENSE_RU.md` + `adr/0011-proprietary-license.md` | `docs/README.md`, `premier-design/README.md` |
 | Архитектурные нормы (слои/use‑case/SOLID) | `mempalace/rules/01, 08, 09` | `.cursor/rules/agent-mempalace-bootstrap.mdc`, `DEVELOPMENT_PLAYBOOK_RU.md`, `guides/CODE_STRUCTURE_AND_NAMING_RU.md` |
 | Производительность | `mempalace/rules/04` + `guides/PERF_AND_SEO_CHECKLIST_RU.md` | `audit/DEPLOY_READINESS_2026_04_RU.md`, ADR `0009` |
 | UI / токены / модалки | `mempalace/rules/02` + ADR `0001`/`0002`/`0003` | `audit/PROJECT_AUDIT_2026_04_RU.md`, `.cursor/rules/agent-mempalace-bootstrap.mdc` |
@@ -104,3 +114,9 @@
 
 - Runbook: `premier-design/README.md`
 - История версий: `premier-design/CHANGELOG.md`
+
+## Лицензия и интеллектуальная собственность
+
+- [`LICENSE`](../LICENSE) — proprietary license (EN);
+- [`LICENSE_RU.md`](../LICENSE_RU.md) — proprietary license (RU, преимущество в РБ);
+- [`adr/0011-proprietary-license.md`](adr/0011-proprietary-license.md) — мотивация и правила внутреннего использования.

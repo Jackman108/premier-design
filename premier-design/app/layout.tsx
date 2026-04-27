@@ -1,8 +1,8 @@
-import type {Metadata} from 'next';
-import type {FC, PropsWithChildren} from 'react';
+import type { Metadata } from 'next';
+import type { FC, PropsWithChildren } from 'react';
 
-import {inter, playfair} from '@lib/interFont';
-import {Providers} from './providers';
+import { inter, playfair } from '@lib/interFont';
+import { Providers } from './providers';
 import '@widgets/styles/globals.css';
 import 'keen-slider/keen-slider.min.css';
 
@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 		index: true,
 		follow: true,
 	},
-	authors: [{name: 'Premier Design'}],
+	authors: [{ name: 'Premium Design' }],
 };
 
-const RootLayout: FC<PropsWithChildren> = ({children}) => {
+const RootLayout: FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<html
 			lang="ru"

@@ -1,12 +1,12 @@
-import {Head, Html, Main, NextScript} from 'next/document';
-import {inter, playfair} from '../lib/interFont';
+import { Head, Html, Main, NextScript } from 'next/document';
+import { inter, playfair } from '../lib/interFont';
 
 const SEOHead = () => (
     <>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <meta name="robots" content="index, follow"/>
-        <meta name="author" content="Premier Design"/>
-        <link rel="icon" href="/favicon.ico"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Premium Design" />
+        <link rel="icon" href="/favicon.ico" />
     </>
 );
 
@@ -19,11 +19,11 @@ export default function Document() {
             suppressHydrationWarning
         >
             <Head>
-                <SEOHead/>
+                <SEOHead />
             </Head>
             <body>
-            <Main/>
-            <NextScript/>
+                <Main />
+                <NextScript />
             </body>
         </Html>
     );

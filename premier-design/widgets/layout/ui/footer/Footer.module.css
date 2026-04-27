@@ -3,6 +3,10 @@
 	max-width: 100%;
 	bottom: 0;
 	padding: var(--section-padding-y) var(--section-padding-inline);
+	display: flex;
+	flex-direction: column;
+	/* сетка меню/новостей + блок meta */
+	gap: var(--space-lg);
 }
 
 .footer__container {
@@ -16,13 +20,48 @@
 .footer__papers {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
+	align-items: stretch;
+	gap: 1.25rem;
+}
+
+.footer__meta {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
 	gap: 1rem;
+	box-sizing: border-box;
+	/* колонки разной высоты: реквизиты/кредит прижаты к низу относительно колонки копирайта */
+	align-items: end;
+	width: 100%;
+	max-width: var(--section-content-max);
+	margin-inline: auto;
+}
+
+.footer__metaLeft {
+	justify-self: center;
+	align-self: end;
+}
+
+.footer__metaCenter {
+	justify-self: center;
+	align-self: end;
+	/* плавающая панель быстрых действий — запас, чтобы копирайт не залезал под кнопки */
+	padding-bottom: max(4.5rem, var(--section-padding-y, 1.5rem));
+}
+
+.footer__metaRight {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	justify-self: center;
+	width: 100%;
+	align-self: end;
 }
 
 @media screen and (max-width: 768px) {
 	.footer {
 		padding: var(--section-padding-y-compact) var(--section-padding-inline);
+		gap: var(--space-xl);
 	}
 
 	.footer__container {
@@ -34,7 +73,49 @@
 		order: 2;
 	}
 
-	.footer__container > .menu {
+	/* Реквизиты → копирайт → кредит: стек, полная ширина, разделители */
+	.footer__meta {
+		display: flex;
+		flex-direction: column;
+		align-items: stretch;
+		align-content: stretch;
+		gap: 0;
+		/* плавающая панель: один общий запас, без дубля с .footer__metaCenter */
+		padding-bottom: max(4.5rem, calc(var(--section-padding-y-compact) * 0.5 + 2.5rem));
+	}
+
+	.footer__meta>* {
+		width: 100%;
+	}
+
+	.footer__meta>*+* {
+		margin-top: var(--space-lg);
+		padding-top: var(--space-lg);
+		border-top: 1px solid color-mix(in srgb, var(--brown-white) 16%, transparent);
+	}
+
+	.footer__metaLeft,
+	.footer__metaCenter,
+	.footer__metaRight {
+		justify-self: stretch;
+		align-self: stretch;
+	}
+
+	.footer__metaLeft {
+		order: 1;
+	}
+
+	.footer__metaCenter {
+		order: 2;
+		/* снято — нижний отступ переносится на .footer__meta (моб.) */
+		padding-bottom: 0;
+	}
+
+	.footer__metaRight {
+		order: 3;
+	}
+
+	.footer__container>.menu {
 		order: 1;
 	}
 

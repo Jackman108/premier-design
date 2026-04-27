@@ -12,15 +12,13 @@ export interface CollapsibleContainerProps {
     activeItem: string;
     activeLabel: string;
     onItemClick: (type: string) => void;
+    /**
+     * Имя группы для вспомогательного текста a11y (не перекрывает выбранную подпись, только `visually hidden` префикс).
+     */
+    groupLabel?: string;
 }
 
 export interface CostInputProps {
     inputValue: string;
     handleInputChange: (event: ChangeEvent<HTMLInputElement>) => void;
-}
-
-export interface ModalTabsProps {
-    selectedTab: number;
-    handleTabChange: (index: number) => void;
-    data: CostingCardProps[];
 }

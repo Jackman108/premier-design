@@ -16,15 +16,11 @@ jest.mock('@shared/ui/estimate-modal/hooks/useEstimateModalHandlers', () => ({
 		serviceType: 'all',
 		inputValueAsNumber: 10,
 		handleTabChange: jest.fn(),
+		handleObjectCardIdSelect: jest.fn(),
 		handleInputChange: jest.fn(),
 		handleTypeChange: jest.fn(),
 		handleCalculate: jest.fn(),
 	}),
-}));
-
-jest.mock('@shared/ui/estimate-modal/ui/ModalTabs/ModalTabs', () => ({
-	__esModule: true,
-	default: () => <div data-testid="modal-tabs" />,
 }));
 
 jest.mock('@shared/ui/estimate-modal/ui/CollapsibleContainer/CollapsibleContainer', () => ({

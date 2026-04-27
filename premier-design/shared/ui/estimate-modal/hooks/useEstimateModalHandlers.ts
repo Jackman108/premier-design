@@ -1,6 +1,7 @@
 import {ChangeEvent, useCallback, useEffect, useMemo, useState} from 'react';
-import {CostingCardProps} from "@shared/interface/CostingCard.props";
-import {calculateEstimate, DEFAULT_TAB_COSTS, parseAreaValue} from '@shared/ui/estimate-modal/utils/calculateEstimate';
+import {CostingCardProps} from '@shared/interface/CostingCard.props';
+import {BASE_COST_PER_SQM_BY_CARD_ID} from '@shared/ui/estimate-modal/configs/factorsConfig';
+import {calculateEstimate, parseAreaValue} from '@shared/ui/estimate-modal/utils/calculateEstimate';
 
 const useEstimateModalHandlers = (card: CostingCardProps) => {
     const [selectedTab, setSelectedTab] = useState<number>(card.id || 0);
@@ -12,20 +13,31 @@ const useEstimateModalHandlers = (card: CostingCardProps) => {
     const [repairType, setRepairType] = useState<string>('standard');
     const [serviceType, setServiceType] = useState<string>('design_repair');
 
-    const tabCosts = useMemo(() => DEFAULT_TAB_COSTS, []);
+    const tabCosts = BASE_COST_PER_SQM_BY_CARD_ID;
     const inputValueAsNumber = useMemo(() => parseAreaValue(inputValue), [inputValue]);
 
     const handleTabChange = useCallback((id: number) => {
         setSelectedTab((prevTab) => (prevTab !== id ? id : prevTab));
     }, []);
 
+    const handleObjectCardIdSelect = useCallback(
+        (id: string) => {
+            const next = Number.parseInt(id, 10);
+            if (Number.isNaN(next)) {
+                return;
+            }
+            handleTabChange(next);
+        },
+        [handleTabChange],
+    );
+
     const handleInputChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.target.value);
     }, []);
 
-    const handleTypeChange = useCallback((value: string, type: 'repair' | 'property' | 'service') => {
-        if (type === 'repair') setRepairType(value);
+    const handleTypeChange = useCallback((value: string, type: 'property' | 'repair' | 'service') => {
         if (type === 'property') setPropertyType(value);
+        if (type === 'repair') setRepairType(value);
         if (type === 'service') setServiceType(value);
     }, []);
 
@@ -53,7 +65,7 @@ const useEstimateModalHandlers = (card: CostingCardProps) => {
 
     useEffect(() => {
         setResult(0);
-    }, [selectedTab, inputValue, propertyType]);
+    }, [inputValue, propertyType, repairType, selectedTab, serviceType]);
 
     useEffect(() => {
         setSelectedTab(card.id);
@@ -70,6 +82,7 @@ const useEstimateModalHandlers = (card: CostingCardProps) => {
         serviceType,
         inputValueAsNumber,
         handleTabChange,
+        handleObjectCardIdSelect,
         handleInputChange,
         handleTypeChange,
         handleCalculate,

@@ -23,18 +23,24 @@
 
 .modal_container {
 	background-color: var(--color-surface);
-	width: auto;
-	height: auto;
-	display: grid;
-	grid-template-rows: auto 1fr auto;
-	grid-gap: clamp(1rem, 2vw, 2rem);
+	/* Высота фиксирована: раскрытие коллапсов только прокручивает `.body_control`, окно не прыгает. */
+	width: min(100%, 50rem);
+	max-width: 100%;
+	height: min(40rem, 92dvh);
+	max-height: min(92dvh, 40rem);
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+	gap: clamp(1rem, 2vw, 1.5rem);
 	padding: clamp(1rem, 2vw, 1.5rem);
 	border-radius: var(--radius-md);
 	border: 2px solid var(--color-text);
-
+	box-sizing: border-box;
+	overflow: hidden;
 }
 
 .modal_header {
+	flex: 0 0 auto;
 	display: grid;
 	grid-template-columns: 1fr auto;
 	align-items: center;
@@ -73,28 +79,44 @@
 }
 
 .modal_body {
+	flex: 1 1 auto;
+	min-height: 0;
 	display: grid;
-	grid-template-columns: auto 1fr;
-	grid-gap: 20px;
+	grid-template-columns: minmax(0, 1.1fr) minmax(12rem, 0.9fr);
+	grid-gap: 1.25rem;
+	align-items: stretch;
+	overflow: hidden;
 }
 
 .body_control {
-	display: grid;
-	grid-template-rows: auto;
-	gap: 20px;
+	display: flex;
+	flex-direction: column;
+	gap: 1.25rem;
+	min-height: 0;
+	max-height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	-webkit-overflow-scrolling: touch;
+	/* визуальный зазор у скролла */
+	padding-right: 0.15rem;
 }
 
 .body_result {
 	padding: 15px;
-	display: grid;
-	grid-template-rows: auto 1fr;
-	grid-gap: clamp(1rem, 4vw, 3rem);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: clamp(0.75rem, 2vw, 1.5rem);
 	background-color: var(--brown-white);
 	border-radius: 4px;
-	width: clamp(16rem, 45vw, 28rem);
+	width: 100%;
+	min-width: 0;
+	min-height: 12.5rem;
 	text-align: center;
 	color: var(--color-surface);
 	font-size: clamp(1rem, 1.2vw, 1.4rem);
+	box-sizing: border-box;
 }
 
 .result_direction {
@@ -107,6 +129,7 @@
 }
 
 .modal_footer {
+	flex: 0 0 auto;
 	display: grid;
 	align-items: center;
 	gap: 10px;
@@ -140,28 +163,26 @@
 @media screen and (max-width: 768px) {
 	.modal_container {
 		width: 100%;
-		height: auto;
-		grid-gap: 1rem;
-		padding: 25px;
+		height: min(38rem, 92dvh);
+		max-height: min(92dvh, 38rem);
+		gap: 1rem;
+		padding: 1.25rem;
 		border-radius: 8px;
 	}
 
 	.modal_body {
 		grid-template-columns: 1fr;
-		justify-items: center;
+		grid-template-rows: minmax(0, 1fr) auto;
+		gap: 1rem;
 	}
 
 	.body_control {
-		gap: 10px;
+		max-height: min(52dvh, 22rem);
 	}
 
 	.body_result {
-		grid-gap: 0;
-		min-height: 9rem;
+		min-height: 9.5rem;
 		font-size: clamp(1rem, 3.5vw, 1.2rem);
-	}
-
-	.body_result {
-		width: min(90vw, 28rem);
+		width: 100%;
 	}
 }

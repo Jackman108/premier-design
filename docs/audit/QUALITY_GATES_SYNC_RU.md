@@ -10,6 +10,14 @@
 - Изменение **реестра рисков** (новый гейт, снятие/добавление риска).
 - Смена порогов: Lighthouse, SLA CI (`.ci-trends-14d.json` / `check-ci-sla.mjs`), SLO feedback, architecture allowlist, бюджет initial JS.
 - Изменение `lint-staged` или `.husky/*` (pre‑commit / pre‑push).
+- Правка инфраструктуры `deploy/` (compose, nginx, certbot) — обязательно обновить
+  [`docs/operations/MULTISITE_VPS_DEPLOY_RU.md`](../operations/MULTISITE_VPS_DEPLOY_RU.md)
+  и `premier-design/CHANGELOG.md`.
+- Правка `LICENSE` / `LICENSE_RU.md` / `package.json.license` — обновить ADR
+  [`docs/adr/0011-proprietary-license.md`](../adr/0011-proprietary-license.md).
+- Правка `shared/constants/company.ts` (`SITE_OPERATOR`) — проверить, что новые/изменённые
+  поля действительно потребляются `LegalRequisites`, `Phone`, `WorkHours`, `Address`,
+  `generateStructuredData` и юридическими текстами (никаких литералов в потребителях).
 
 ## Чеклист
 

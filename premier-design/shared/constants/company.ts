@@ -1,22 +1,105 @@
 /**
  * Единый источник публичных идентификаторов сайта, оператора и внешних контрагентов (вне `data.json`).
- * При смене домена, бренда, юр. лица или контактов для ПДн — править здесь; `public/robots.txt` (Sitemap) держать в синхроне с `SITE_OPERATOR.publicOrigin`.
+ *
+ * Зачем: соответствие Постановлению Совмина РБ №31 (24.01.2014) и Закону «О защите прав потребителей»
+ * требует на сайте указывать ФИО ИП (или наименование юрлица), УНП, юр.адрес, контакты, режим работы.
+ * Все потребители (Footer/`LegalRequisites`, `Phone`, `WorkHours`, `Address`, JSON-LD, юр.тексты,
+ * `public/robots.txt`) обязаны брать значения отсюда и нигде не дублировать литералы.
+ *
+ * Поля, точное значение которых ещё не подтверждено владельцем (УНП, банковские реквизиты,
+ * регистратор/дата регистрации), задаются как `null` и UI скрывает соответствующие строки —
+ * чтобы исключить публикацию ложных данных. Заполнить по факту получения от ИП.
  */
 
+export type LegalRequisites = {
+	readonly fullName: string;
+	readonly shortName: string;
+	readonly unp: string | null;
+	readonly registrationAuthority: string | null;
+	readonly registrationDate: string | null;
+};
+
+export type ContactPoint = {
+	readonly tel: string;
+	readonly display: string;
+};
+
+export type AddressDetails = {
+	readonly full: string;
+	readonly streetAddress: string;
+	readonly addressLocality: string;
+	readonly postalCode: string;
+	readonly addressCountry: string;
+};
+
+export type WorkHoursSummary = {
+	readonly summary: string;
+	readonly slots: ReadonlyArray<{
+		readonly daysOfWeek: ReadonlyArray<'Mo' | 'Tu' | 'We' | 'Th' | 'Fr' | 'Sa' | 'Su'>;
+		readonly opens: string;
+		readonly closes: string;
+	}>;
+};
+
+export type BankDetails = {
+	readonly bankName: string;
+	readonly bic: string;
+	readonly account: string;
+} | null;
+
+/**
+ * Канонические URL соцсетей (телеграм, VK, Instagram) — единый источник для UI и JSON-LD.
+ * См. `shared/ui/social-icons/SocialIcons` и `structuredData.sameAs`.
+ */
+export const SITE_SOCIAL = {
+	telegram: 'https://t.me/PremiumDesignZhl',
+	vk: 'https://vk.com/premium_design_zhl',
+	instagram: 'https://www.instagram.com/premium_design_zhl',
+} as const;
+
 export const SITE_OPERATOR = {
-	publicOrigin: 'https://premium-interior.by',
-	brandName: 'Premium Interior',
+	publicOrigin: 'https://premium-design.pro',
+	brandName: 'Premium Design',
 	copyrightStartYear: 2012,
 	/** Контакт для вопросов по персональным данным и юридическим текстам. */
-	privacyContactEmail: 'premium-interior@tut.by',
-	/** Как в офертах и политике конфиденциальности. */
-	legalEntityShortName: 'ИП Коробова Е.В.',
-	structuredData: {
-		sameAs: [
-			'https://t.me/PremiumInterior',
-			'https://www.instagram.com/proremont_zhl',
-			'https://vk.com/premium_interior_zhl',
+	privacyContactEmail: 'admin@premium-design.pro',
+	/** Короткое юридическое имя — для оферт/политик/подвала, исторический алиас. */
+	legalEntityShortName: 'ИП Коробов Е.В.',
+	/** Юридическое лицо/ИП — для обязательной информации в подвале. */
+	legalEntity: {
+		fullName: 'ИП Коробов Евгений Викторович',
+		shortName: 'ИП Коробов Е.В.',
+		unp: '491455920',
+		registrationAuthority: null,
+		registrationDate: null,
+	} as LegalRequisites,
+	/** Публичный единый телефон (тот же, что в `Phone`-компоненте и JSON-LD). */
+	phone: {
+		tel: '+375291942881',
+		display: '+375 (29) 194-28-81',
+	} as ContactPoint,
+	/** Публичная почта (обычно совпадает с `privacyContactEmail`). */
+	publicEmail: 'admin@premium-design.pro',
+	/** Полный адрес и поля для JSON-LD. */
+	address: {
+		full: 'г. Жлобин, ул. Первомайская, д. 12а',
+		streetAddress: 'ул. Первомайская, 12а',
+		addressLocality: 'Жлобин',
+		postalCode: '247210',
+		addressCountry: 'BY',
+	} as AddressDetails,
+	/** Режим работы. Менять здесь — секция «Контакты» и Footer обновятся одновременно. */
+	workHours: {
+		summary: 'Пн–Пт: 09:00 – 18:00',
+		slots: [
+			{ daysOfWeek: ['Mo', 'Tu', 'We', 'Th', 'Fr'], opens: '09:00', closes: '18:00' },
 		],
+	} as WorkHoursSummary,
+	/** Банковские реквизиты — нужны только при онлайн-оплате/заключении договоров онлайн; пока не публикуем. */
+	bankDetails: null as BankDetails,
+	structuredData: {
+		sameAs: [SITE_SOCIAL.telegram, SITE_SOCIAL.vk, SITE_SOCIAL.instagram],
+		/** Латиница — исторический формат для JSON-LD `PostalAddress`. */
 		address: {
 			streetAddress: 'Pervomayskaya',
 			addressLocality: 'Zhlobin',
@@ -24,8 +107,8 @@ export const SITE_OPERATOR = {
 			addressCountry: 'BY',
 		},
 		areaServed: [
-			{'@type': 'City', name: 'Zhlobin'},
-			{'@type': 'Country', name: 'Belarus'},
+			{ '@type': 'City', name: 'Zhlobin' },
+			{ '@type': 'Country', name: 'Belarus' },
 		],
 		priceRange: '$$',
 	},
@@ -35,7 +118,7 @@ export const SITE_OPERATOR = {
 export const SITE_PUBLIC_ORIGIN = SITE_OPERATOR.publicOrigin;
 
 export const DEVELOPER_STUDIO_FEB_CODE = {
-	siteUrl: 'https://febcode.by',
+	siteUrl: 'https://febcode.pro',
 	logoSrc: '/images/feb_logo.svg',
 	logoAlt: 'feb-code',
 	creditLabel: 'Разработано',

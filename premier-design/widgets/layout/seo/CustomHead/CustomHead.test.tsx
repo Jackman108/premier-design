@@ -1,15 +1,15 @@
 /** @jest-environment jsdom */
-import {render} from '@testing-library/react';
-import type {ReactNode} from 'react';
+import { render } from '@testing-library/react';
+import type { ReactNode } from 'react';
 import CustomHead from './CustomHead';
-import {generateStructuredData} from '../utils/generateStructuredData';
-import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
+import { generateStructuredData } from '../utils/generateStructuredData';
+import { getFullCanonicalUrl } from '@shared/utils/getFullCanonicalUrl';
 
-const headMock = jest.fn(({children}: {children: ReactNode}) => <div data-testid="mock-head">{children}</div>);
+const headMock = jest.fn(({ children }: { children: ReactNode }) => <div data-testid="mock-head">{children}</div>);
 
 jest.mock('next/head', () => ({
 	__esModule: true,
-	default: (props: {children: ReactNode}) => headMock(props),
+	default: (props: { children: ReactNode }) => headMock(props),
 }));
 
 jest.mock('next/script', () => ({
@@ -19,7 +19,7 @@ jest.mock('next/script', () => ({
 		dangerouslySetInnerHTML,
 	}: {
 		id: string;
-		dangerouslySetInnerHTML: {__html: string};
+		dangerouslySetInnerHTML: { __html: string };
 	}) => (
 		<script id={id} type="application/ld+json">
 			{dangerouslySetInnerHTML.__html}
@@ -43,13 +43,13 @@ describe('CustomHead', () => {
 		jest.clearAllMocks();
 		mockedGenerateStructuredData.mockReturnValue({
 			'@context': 'https://schema.org',
-			'@graph': [{'@type': 'LocalBusiness', name: 'Premier Design'}],
+			'@graph': [{ '@type': 'LocalBusiness', name: 'Premium Design' }],
 		});
 		mockedGetFullCanonicalUrl.mockReturnValue('https://example.com/logo.png');
 	});
 
 	it('renders seo meta tags, canonical and structured data', () => {
-		const {container} = render(
+		const { container } = render(
 			<CustomHead
 				metaTitle="Дизайн интерьера под ключ"
 				metaDescription="Полный цикл работ по ремонту и дизайну"

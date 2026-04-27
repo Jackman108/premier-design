@@ -4,6 +4,7 @@ import SocialIcons from "@shared/ui/social-icons/SocialIcons";
 import Phone from "@shared/ui/phone/Phone";
 import GoogleMap from "@features/address/ui/GoogleMap/GoogleMap";
 import WorkHours from "@shared/ui/work-hours/WorkHours";
+import {SITE_OPERATOR} from '@shared/constants/company';
 
 const Address: FC = (): ReactElement => {
     return (
@@ -15,7 +16,7 @@ const Address: FC = (): ReactElement => {
                 </div>
                 <div className={styles.address__item}>
                     <h3>Адрес и режим работы:</h3>
-                    <p> г. Жлобин, ул. Первомайска, д. 12а</p>
+                    <p>{SITE_OPERATOR.address.full}</p>
                     <WorkHours />
                 </div>
                 <div className={styles.address__item}>

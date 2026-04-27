@@ -1,10 +1,9 @@
 'use client';
-import type {FC, KeyboardEvent, MouseEvent} from 'react';
+import {type FC, type KeyboardEvent, type MouseEvent, useMemo} from 'react';
 
 import CollapsibleContainer from '@shared/ui/estimate-modal/ui/CollapsibleContainer/CollapsibleContainer';
 import CostInput from '@shared/ui/estimate-modal/ui/CostInput/CostInput';
 import Logo from '@shared/ui/logo/Logo';
-import ModalTabs from '@shared/ui/estimate-modal/ui/ModalTabs/ModalTabs';
 import Preloader from '@shared/ui/preloader/Preloader/Preloader';
 import {BodyPortal} from '@shared/ui/portal/BodyPortal';
 import {EstimateModalProps} from '@shared/ui/estimate-modal/interface/EstimateModal.props';
@@ -12,6 +11,11 @@ import {typeItemsConfig} from '@shared/ui/estimate-modal/configs/factorsConfig';
 import useEstimateModalHandlers from '@shared/ui/estimate-modal/hooks/useEstimateModalHandlers';
 
 import styles from './EstimateModal.module.css';
+
+const labelByValue = (
+    items: readonly { value: string; label: string }[],
+    value: string,
+): string => items.find((i) => i.value === value)?.label ?? '';
 
 const EstimateModal: FC<EstimateModalProps> = ({cards, card, onClose}) => {
     const {
@@ -24,13 +28,24 @@ const EstimateModal: FC<EstimateModalProps> = ({cards, card, onClose}) => {
         repairType,
         serviceType,
         inputValueAsNumber,
-        handleTabChange,
+        handleObjectCardIdSelect,
         handleInputChange,
         handleTypeChange,
         handleCalculate,
     } = useEstimateModalHandlers(card);
 
-    const {repairTypeItems, propertyTypeItems, serviceTypeItems} = typeItemsConfig;
+    const objectTypeItems = useMemo(
+        () => cards.map((c) => ({ value: String(c.id), label: c.title })),
+        [cards],
+    );
+    const objectTypeLabel = useMemo(
+        () => cards.find((c) => c.id === selectedTab)?.title ?? '',
+        [cards, selectedTab],
+    );
+    const {propertyTypeItems, repairTypeItems, serviceTypeItems} = typeItemsConfig;
+    const serviceLabel = labelByValue(serviceTypeItems, serviceType);
+    const propertyLabel = labelByValue(propertyTypeItems, propertyType);
+    const repairLabel = labelByValue(repairTypeItems, repairType);
     const handleDialogMouseDown = (event: MouseEvent<HTMLDialogElement>) => {
         if (event.target === event.currentTarget) {
             onClose();
@@ -65,30 +80,35 @@ const EstimateModal: FC<EstimateModalProps> = ({cards, card, onClose}) => {
                 </div>
                 <div className={styles.modal_body}>
                     <div className={styles.body_control}>
-                        <ModalTabs
-                            handleTabChange={handleTabChange}
-                            selectedTab={selectedTab}
-                            data={cards}
+                        <CollapsibleContainer
+                            groupLabel="Тип объекта"
+                            items={objectTypeItems}
+                            activeItem={String(selectedTab)}
+                            activeLabel={objectTypeLabel}
+                            onItemClick={handleObjectCardIdSelect}
                         />
                         <CollapsibleContainer
+                            groupLabel="Состав заказа"
                             items={serviceTypeItems}
                             activeItem={serviceType}
-                            activeLabel={serviceTypeItems.find((item) => item.value === serviceType)?.label || ''}
+                            activeLabel={serviceLabel}
                             onItemClick={(type: string) => handleTypeChange(type, 'service')}
                         />
                         <CollapsibleContainer
+                            groupLabel="Тип жилья"
                             items={propertyTypeItems}
                             activeItem={propertyType}
-                            activeLabel={propertyTypeItems.find((item) => item.value === propertyType)?.label || ''}
+                            activeLabel={propertyLabel}
                             onItemClick={(type: string) => handleTypeChange(type, 'property')}
                         />
                         <CollapsibleContainer
+                            groupLabel="Класс ремонта"
                             items={repairTypeItems}
                             activeItem={repairType}
-                            activeLabel={repairTypeItems.find((item) => item.value === repairType)?.label || ''}
+                            activeLabel={repairLabel}
                             onItemClick={(type: string) => handleTypeChange(type, 'repair')}
                         />
-                        < CostInput
+                        <CostInput
                             handleInputChange={handleInputChange}
                             inputValue={inputValue}
                         />

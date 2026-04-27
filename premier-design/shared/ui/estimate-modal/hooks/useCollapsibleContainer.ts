@@ -1,9 +1,14 @@
+/**
+ * Аккордеон в смете: локальное раскрытие, закрытие по клику вне контейнера.
+ * Вход/выход: ref на корень, `isCollapsed`, обработчики.
+ */
 import {MouseEvent as ReactMouseEvent, useEffect, useRef, useState} from 'react';
 
 export const useCollapsibleContainer = () => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isCollapsed, setIsCollapsed] = useState(true);
 
+    // `containerRef` стабилен; подписка на mousedown вешается на mount один раз (не `[containerRef]`).
     useEffect(() => {
         const handleOutsideClick = (event: MouseEvent) => {
             const containerNode = containerRef.current;
@@ -20,7 +25,7 @@ export const useCollapsibleContainer = () => {
         return () => {
             document.removeEventListener('mousedown', handleOutsideClick);
         };
-    }, [containerRef]);
+    }, []);
 
     const handleToggleCollapse = () => {
         setIsCollapsed((prev) => !prev);

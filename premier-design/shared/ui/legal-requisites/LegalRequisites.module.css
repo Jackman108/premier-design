@@ -1,0 +1,89 @@
+.requisites {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	font-style: normal;
+	font-size: 0.78rem;
+	line-height: 1.45;
+	color: var(--brown-white);
+	max-width: 28rem;
+}
+
+.requisites__name {
+	font-weight: 600;
+	font-size: 0.85rem;
+	margin: 0;
+}
+
+.requisites__list {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	column-gap: 0.75rem;
+	row-gap: 0.25rem;
+	margin: 0;
+}
+
+.requisites__row {
+	display: contents;
+}
+
+.requisites__row dt {
+	color: color-mix(in srgb, var(--brown-white) 80%, transparent);
+	font-weight: 500;
+}
+
+.requisites__row dd {
+	margin: 0;
+}
+
+.requisites__row a {
+	color: inherit;
+	text-decoration: underline;
+	text-underline-offset: 0.15rem;
+}
+
+.requisites__row a:hover,
+.requisites__row a:focus-visible {
+	color: var(--white);
+}
+
+@media screen and (max-width: 768px) {
+	.requisites {
+		/* в колонку футера: читабельнее, чем центр — длинные строки и пары «подпись/значение» */
+		text-align: left;
+		align-items: flex-start;
+		max-width: 100%;
+		font-size: 0.8125rem;
+		line-height: 1.5;
+	}
+
+	.requisites__name {
+		font-size: 0.9rem;
+		width: 100%;
+	}
+
+	.requisites__list {
+		width: 100%;
+		/* dt слева узко, dd справа — структура как в карточке реквизитов */
+		grid-template-columns: minmax(4.5rem, 32%) 1fr;
+		column-gap: var(--space-md);
+		row-gap: var(--space-sm);
+		justify-items: start;
+		align-items: start;
+	}
+
+	.requisites__row {
+		display: contents;
+	}
+
+	.requisites__row dt {
+		font-size: 0.7rem;
+		letter-spacing: 0.03em;
+		text-transform: uppercase;
+		padding-top: 0.1rem;
+	}
+
+	.requisites__row dd {
+		word-break: break-word;
+	}
+}

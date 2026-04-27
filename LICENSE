@@ -1,0 +1,61 @@
+PROPRIETARY SOFTWARE LICENSE — Premium Design
+Copyright (c) 2012-2026 ИП Коробов Е.В. (Premium Design). All rights reserved.
+
+This repository, including its source code, design assets, configuration files,
+documentation, build tooling, and any media stored herein (collectively — the
+"Software"), is the exclusive property of ИП Коробов Е.В. ("Owner") and is
+protected by the copyright and intellectual-property laws of the Republic of
+Belarus and applicable international treaties.
+
+1. NO LICENSE BY DEFAULT.
+   No license, express or implied, is granted by the Owner to any person who
+   obtains a copy of the Software. Possession of the Software, even via a
+   public Git host, does not grant any right of use, reproduction, distribution,
+   modification, public display, performance, sublicensing, or commercial
+   exploitation.
+
+2. PROHIBITED ACTIONS.
+   Without prior written authorization from the Owner, you may NOT:
+     (a) copy, fork, mirror, or redistribute the Software in whole or in part;
+     (b) modify, translate, decompile, reverse-engineer, or create derivative
+         works based on the Software;
+     (c) use the Software, its design system, page layouts, copywriting, or
+         visual style to develop competing products or services;
+     (d) remove, obscure, or alter any proprietary notices, marks, or attributions.
+
+3. PERMITTED INTERNAL USE.
+   Authorized contributors and contractors of the Owner may access, build, and
+   modify the Software solely within the scope of their engagement with the
+   Owner and only on infrastructure approved by the Owner. All work product is
+   "work made for hire" / служебное произведение and remains the exclusive
+   property of the Owner.
+
+4. TRADEMARKS.
+   "Premium Design" and any associated logos, marks, and trade dress are the
+   trademarks of the Owner. Nothing in this License grants any right to use
+   such marks.
+
+5. THIRD-PARTY COMPONENTS.
+   The Software incorporates open-source components distributed under their
+   respective licenses (see `package.json`, `yarn.lock`, and SBOM artefacts).
+   Those licenses apply only to the corresponding components and do NOT
+   relicense the Software as a whole.
+
+6. NO WARRANTY.
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. IN NO EVENT SHALL
+   THE OWNER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM,
+   OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR ITS USE.
+
+7. GOVERNING LAW & JURISDICTION.
+   This License is governed by the laws of the Republic of Belarus. Any dispute
+   arising hereunder shall be settled exclusively in the competent courts of
+   the Republic of Belarus.
+
+8. CONTACT.
+   For licensing inquiries: admin@premium-design.pro.
+
+A Russian-language version of this License (LICENSE_RU.md) is published in the
+same repository. In case of any discrepancy, the Russian version prevails for
+matters governed by Belarusian law.

@@ -5,7 +5,52 @@
 
 ## [Unreleased]
 
+### Changed
+
+- **Соцсети — один источник:** `SITE_SOCIAL` в `shared/constants/company.ts`; `SocialIcons` и `structuredData.sameAs` читают оттуда (Telegram / VK / Instagram).
+- **EstimateModal:** фиксированы `max-height` контейнера, левый блок с коллапсами со скроллом слева, правый с результатом — стабильная зона, без скачков при раскрытии; шапка/подвал модалки `flex-shrink: 0`.
+- **Deploy (VPS):** сервис/контейнер Docker для сайта переименованы в `premium-design`, `PREMIUM_DESIGN_IMAGE` в `deploy/.env.example`, `secrets/premium-design.env`, nginx `upstream` → `premium-design:3000` (см. `deploy/README.md`).
+
+- **Домен и реквизиты:** production-origin и nginx — `https://premium-design.pro` (nginx: `deploy/nginx/conf.d/premium-design.pro.conf`, dev — `.../dev/premium-design.pro.dev.conf`). В `SITE_OPERATOR.legalEntity.unp` указан `491455920`. Футер: колонка реквизитов и блок «Разработано» прижаты к низу грида, копирайт с `padding-bottom` в запас плавающей панели, кредит — по центру в правой колонке; на мобилке — стек с разделителями, реквизиты с сеткой подпись/значение.
+
 ### Added
+
+- **Юридическое соответствие (РБ Постановление Совмина №31):** в `shared/constants/company.ts`
+  расширен `SITE_OPERATOR` до полноценного **единого источника правды** для реквизитов ИП —
+  добавлены `legalEntity` (ФИО, УНП, дата/орган регистрации; неподтверждённые поля = `null`,
+  UI скрывает строку), `phone`, `publicEmail`, `address.full`, `workHours.{summary,slots}`,
+  `bankDetails`. Добавлен компонент `shared/ui/legal-requisites/LegalRequisites.tsx` (+ unit-тесты)
+  и подключён в `widgets/layout/ui/footer/Footer.tsx`. Потребители (`Phone`, `WorkHours`, `Address`,
+  `generateStructuredData`) переведены на `SITE_OPERATOR` — литералы телефона/адреса/часов из
+  компонентов удалены; в JSON-LD добавлены `telephone`, `email`, `legalName`, `openingHoursSpecification`.
+- **Multi-site VPS deploy:** каталог [`deploy/`](../deploy/) с `docker-compose.yml` (compose v2,
+  pull-only, `nginx 1.27-alpine` + Let's Encrypt через `certbot`), мульти-доменная конфигурация
+  (`premium-design.pro`/`www`, `febcode.pro`/`www`, ACME `_acme.conf`), HSTS, упреждающий редирект
+  www → апекс, иммутабельный кеш `_next/static/`. Образы тянутся из GHCR, исходники второго сайта
+  на VPS не клонируются — репозитории и локальные папки остаются изолированными. Операционный
+  гайд — [`docs/operations/MULTISITE_VPS_DEPLOY_RU.md`](../docs/operations/MULTISITE_VPS_DEPLOY_RU.md).
+- **Лицензия и интеллектуальная собственность:** в корне репозитория опубликованы [`LICENSE`](../LICENSE)
+  (proprietary, EN) и [`LICENSE_RU.md`](../LICENSE_RU.md) (RU, преимущество для законодательства РБ).
+  Принят ADR [`0011-proprietary-license.md`](../docs/adr/0011-proprietary-license.md). В `package.json`
+  поле `license` → `SEE LICENSE IN ../LICENSE`, добавлен `author`.
+
+### Changed
+
+- **`docs/README.md`, `agent-mempalace-bootstrap.mdc`, `agent-quality-process.mdc`,
+  `audit/QUALITY_GATES_SYNC_RU.md`, `audit/DEPLOY_READINESS_2026_04_RU.md`** —
+  расширены до новых единых источников правды (`SITE_OPERATOR`, `deploy/`, `LICENSE`/`LICENSE_RU.md`).
+  Таблица «один источник правды» в `docs/README.md` пополнена тремя новыми темами.
+
+### Removed
+
+- **PostgreSQL и dev-инфраструктура (не использовалась в коде):** удалены каталоги
+  `pgdata/` (`init.sql`, `Dockerfile`), `nginx/` (legacy `nginx.conf.dev`/`prod` со ссылками на
+  отсутствующий `/pgdata`), корневые `docker-compose.yaml` и `docker-compose.development.yaml`,
+  `premier-design/openssl.cnf`. Из `package.json` удалены неиспользуемые зависимости
+  `pg-promise`, `dotenv` (deps), `pg`, `pg-query-stream`, `@types/pg` (devDeps).
+  Замена для деплоя — `deploy/` (см. выше).
+
+### Added (предыдущие)
 
 - **Правила агента и архитектура:** канон норм — [`docs/mempalace/rules/`](../docs/mempalace/rules/); в Cursor — `agent-mempalace-bootstrap.mdc` (MemPalace-first, `alwaysApply`) + `agent-quality-process.mdc` (гейты, pre‑commit, RISK‑08, DoD); дублирующие длинные `.mdc` удалены в пользу чтения `mempalace/rules` из репозитория. Проектные паттерны (`UiDialog`/`<dialog>`, `useScrollToElement`, `body` + SVG паттерн, темизация хедера) — в [`02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md`](../docs/mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md) и [`07_WEB_TESTING_AND_QUALITY_RU.md`](../docs/mempalace/rules/07_WEB_TESTING_AND_QUALITY_RU.md).
 - **Скрипт `typecheck`:** `tsc --noEmit --pretty` как отдельная команда; включён в `check:static` (lint → typecheck → unit) и в `check:precommit:full`. Удалён мёртвый скрипт `type` (ссылался на несуществующий `pages/api/importData.mjs`). Сгруппирован порядок `scripts` в `package.json` (prepare → dev/build → lint/typecheck/test → check:* → reports → e2e → storybook/panda).
@@ -32,6 +77,7 @@
 - **S3 audit sprint (QA-02 / QA-03 / SEC-01 / OBS-02 / DOC-03):** завершён аудит `jest.mock` на полноту контрактов хуков (включая `scrollToRef`), добавлена Zod-валидация `FEEDBACK_*` env в `submitFeedback` с безопасным fallback и негативным тестом, подтверждены CSP-политики по ADR `0004` без необходимости изменения `next.config.js`, зафиксирован runbook по ретраям/таймаутам SMTP+Telegram (RISK-10) и добавлен unit-test на SMTP transient retry.
 - **S4 audit sprint (PERF-01 / PERF-02 / UI-02 / DEV-01 / DEV-03):** выполнен perf-прогон `check:perf:ci` (initial JS в бюджете, Lighthouse summary сохранён), зафиксирован аудит реестра `dynamicSectionImports` без расхождений, для legacy-модалок (`FeedbackModal`, `EstimateModal`) добавлен fallback закрытия по `Escape` и unit-покрытие (PhotoViewer уже покрыт в e2e smoke), в `premier-design/README.md` добавлен блок «Первый день», создан `CONTRIBUTING.md` с коротким регламентом contribution и ссылками на правила/плейбук.
 - **Backlog closure (ARCH-03 / QA-04 / PERF-03 / SEC-03 / DEV-02):** в `check-architecture-boundaries.mjs` добавлен явный запрет `@lib/find*` в `features/*` и sentinel-test; для primitives Storybook добавлены play/a11y-проверки (`UiDialog`, `UiInput`) и подтверждена сборка `build-storybook`; обновлён ADR `0008` и добавлен RFC `RFC_CHATBOT_RUNTIME_ISOLATION_RU.md`; weekly security triage усилен обязательной triage-матрицей в issue template и синхронизацией `SUPPLY_CHAIN_RU.md`; принято ADR `0010` (без внедрения Prettier в текущем цикле).
+- **Noise-gate DX:** добавлен скрипт `clean:test-artifacts` и интегрирован в начало `check:risk:local`, чтобы `check:precommit:full` автоматически очищал `test-results`/`playwright-report`/`blob-report` перед `check:noise`.
 - **GitHub Actions:** `actions/checkout@v6`, `actions/setup-node@v6`, `actions/upload-artifact@v7` в `ci.yml`, `ci-trends.yml`, `e2e-extended.yml`, `security-high-weekly.yml`, `deploy.yml` — актуальный runtime JS-actions (меньше шума deprecation Node 20 у checkout/setup-node/upload).
 - **Смета (оценка стоимости), нейминг:** модуль `shared/ui/estimate-modal` (`EstimateModal`, `EstimateButton`, `useEstimateModalHandlers`, `public/panel/estimate.svg`, `panelData.id: estimateButton`, `offerBanner.estimateType`); публичные копии и `shortTitle` — про смету/оценку, без отдельного маркетингового URL. **ThemeButton:** иконка `2.2rem` (`1.95rem` ≤768px) — визуально крупнее блока соцсетей (`1.8rem`). **Phone:** иконка трубки и номер выровнены по вертикали.
 - **Хедер:** `WorkHours` и блок телефона — одинаковые `min-height: 44px` и `box-sizing: border-box`; `ThemeButton` — крупная иконка (см. выше) и flex-центрирование.
@@ -136,7 +182,7 @@
 - **Новости / `TextViewer`:** `onOpenChange(false)`: `flushSync(onClose)` + **`setTimeout(0, () => focus #news-list`)** (после `hideOthers` / размонтирования портала, иначе `aria-hidden` на `main` или кнопка в диалоге); `setExpandedNews` — отдельный `setTimeout(0)` в `useNews`; `DialogClose`; `UiDialog` — `onCloseAutoFocus: preventDefault`.
 - **Примеры на главной:** `ExampleCard` — `next/image` для фона с `style={{ width: "100%", height: "auto" }}`, `sizes`, CSS `height: auto` + `object-fit: cover` (предупреждение next/image).
 - **Детальные страницы услуг:** отступ под хедером на `min-width: 769px`.
-- **Контент и SEO (апрель 2026):** дефолтные буллеты hero — `features/banner/hero/constants/defaultHeroHighlights.ts`; даты новостей 2025–2026; грамматика `stepsWork`; `benefits` для материалов; дубль в `designType` «Оптимальный»; контраст `title-black` / `description-black` в тёмной теме (`Title.module.css`); JSON-LD `Service` + `structuredDataRating` в common props для страниц услуг; `Sitemap` и `BASE_URL` sitemap на `premium-interior.by`; исправлены Storybook-импорты в `TrustSignals.stories.tsx` и мок `CustomHead.test`.
+- **Контент и SEO (апрель 2026):** дефолтные буллеты hero — `features/banner/hero/constants/defaultHeroHighlights.ts`; даты новостей 2025–2026; грамматика `stepsWork`; `benefits` для материалов; дубль в `designType` «Оптимальный»; контраст `title-black` / `description-black` в тёмной теме (`Title.module.css`); JSON-LD `Service` + `structuredDataRating` в common props для страниц услуг; `Sitemap` и `BASE_URL` sitemap на `premium-design.pro`; исправлены Storybook-импорты в `TrustSignals.stories.tsx` и мок `CustomHead.test`.
 - **Аудит §5.5–5.6, §5.8:** ADR [`docs/adr/0005-rate-limiting-storage-and-client-ip.md`](../docs/adr/0005-rate-limiting-storage-and-client-ip.md), [`docs/adr/0006-next-api-cors-same-origin.md`](../docs/adr/0006-next-api-cors-same-origin.md); `shared/lib/getClientIpForRateLimit.ts`, env `RATE_LIMIT_TRUST_FORWARDED_FOR`.
 - **Аудит §2.1–2.4, §2.6–2.8, §3.2–3.4, §7.4:** контент и блоки в `data/data.json`, `HeroBanner`/`TrustSignals`/`pages/index.tsx` (Reviews до квиза, FAQ, якорь `home-faq`), `features/faq`, `features/company-about`, `features/marketing/video-spotlight`, контакты, карточки портфолио; JSON-LD `@graph` в `generateStructuredData.ts` + пропсы `CustomHead`; тесты `getClientIpForRateLimit`, `generateStructuredData`, реестр ленивых секций (сейчас `lib/dynamicSectionImports.ts`).
 - **Аудит §4.1–4.5:** клиент отправки формы — `shared/lib/postFeedbackClient.ts`; SMTP `from`/`to` из `FEEDBACK_EMAIL_*`, `replyTo` с email клиента в `services/dal/feedbackDal.ts`; `/api/sitemap` только `GET` (405 иначе), статические пути через zod, JSDoc; тест 405 в `tests/api/sitemap.handler.test.ts`.

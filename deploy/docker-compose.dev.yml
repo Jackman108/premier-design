@@ -1,0 +1,44 @@
+# Dev/test compose: та же топология, что и production (2 Next.js + 1 nginx),
+# но без TLS/certbot и с портом 8080 для локальной проверки.
+
+services:
+  premium-design:
+    image: ${PREMIUM_DESIGN_IMAGE}
+    container_name: premium-design-dev
+    restart: unless-stopped
+    env_file:
+      - ./secrets/premium-design.env
+    expose:
+      - "3000"
+    networks:
+      - web
+
+  febcode:
+    image: ${FEBCODE_IMAGE}
+    container_name: febcode-dev
+    restart: unless-stopped
+    env_file:
+      - ./secrets/febcode.env
+    expose:
+      - "3000"
+    networks:
+      - web
+
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: nginx-dev
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    depends_on:
+      - premium-design
+      - febcode
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d/dev:/etc/nginx/conf.d:ro
+    networks:
+      - web
+
+networks:
+  web:
+    driver: bridge

@@ -84,9 +84,18 @@
   ],
   "trustSignals": {
     "metrics": [
-      {"label": "Проектов завершено", "value": "150+"},
-      {"label": "Оценка по отзывам на сайте", "value": "5.0 (4 отзыва)"},
-      {"label": "Гарантия на работы", "value": "24 месяца"}
+      {
+        "label": "Проектов завершено",
+        "value": "150+"
+      },
+      {
+        "label": "Оценка по отзывам на сайте",
+        "value": "5.0 (4 отзыва)"
+      },
+      {
+        "label": "Гарантия на работы",
+        "value": "24 месяца"
+      }
     ],
     "structuredDataRating": {
       "ratingValue": "5",
@@ -210,7 +219,7 @@
     ]
   },
   "companyAbout": {
-    "intro": "Premium Interior — команда дизайнеров и производства в Жлобине. Реализуем жилые и коммерческие интерьеры премиального сегмента по Беларуси: от концепции до сдачи «под ключ».",
+    "intro": "Premium Design — команда дизайнеров и производства в Жлобине. Реализуем жилые и коммерческие интерьеры премиального сегмента по Беларуси: от концепции до сдачи «под ключ».",
     "milestonesTitle": "Вехи",
     "milestones": [
       {
@@ -372,8 +381,8 @@
     },
     {
       "id": 8,
-      "title": "Premium Interior | Ремонт и дизайн интерьеров в Беларуси",
-      "shortTitle": "premium-interior",
+      "title": "Premium Design | Ремонт и дизайн интерьеров в Беларуси",
+      "shortTitle": "premium-design",
       "description": "Уникальные авторские и индивидуальные дизайны, проектируем и делаем ремонт под ключ."
     },
     {
@@ -449,7 +458,7 @@
       "title": "Представительский ремонт и отделка под ключ — Жлобин и вся Беларусь",
       "shortTitle": "home",
       "description": "Премиальный сегмент: дизайн, смета, материалы и реализация без сюрпризов. Работаем в Жлобине, Гомельской области и выезжаем по стране.",
-      "metaTitle": "Premium Interior | Отделка под ключ премиум в Жлобине и Беларуси",
+      "metaTitle": "Premium Design | Отделка под ключ премиум в Жлобине и Беларуси",
       "metaDescription": "Ремонт и дизайн интерьеров представительского уровня: Жлобин, Гомельская область и выезд по Беларуси. Прозрачная смета, сроки и гарантия 24 месяца.",
       "canonical": "/"
     },
@@ -458,7 +467,7 @@
       "title": "Ремонт может быть приятным",
       "shortTitle": "repairs",
       "description": "Решаем самые сложные задачи, проектируем и делаем ремонт под ключ.",
-      "metaTitle": "Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
+      "metaTitle": "Premium Design | Ремонт интерьеров с гарантией качества в Беларуси",
       "metaDescription": "Качественный ремонт интерьеров с гарантией. Мы выполняем ремонтные работы любой сложности и создаем стильные и функциональные пространства.",
       "canonical": "/repairs"
     },
@@ -467,8 +476,8 @@
       "title": "Мечты о комфорте станут реальностью",
       "shortTitle": "design",
       "description": "Разработка дизайн-проекта — это первый шаг на пути к созданию стильного, функционального, современного помещения.",
-      "metaTitle": "Premium Interior | Дизайн интерьеров под ключ в Беларуси",
-      "metaDescription": "Профессиональный дизайн интерьеров в Беларуси. Premium Interior предлагает уникальные проекты для вашего дома или офиса с индивидуальным подходом.",
+      "metaTitle": "Premium Design | Дизайн интерьеров под ключ в Беларуси",
+      "metaDescription": "Профессиональный дизайн интерьеров в Беларуси. Premium Design предлагает уникальные проекты для вашего дома или офиса с индивидуальным подходом.",
       "canonical": "/design"
     },
     {
@@ -476,8 +485,8 @@
       "title": "Узнайте больше о наших ценностях!",
       "shortTitle": "about",
       "description": "Компания с многолетним опытом работы и профессиональной командой специалистов.",
-      "metaTitle": "Premium Interior | О компании и наших услугах по ремонту и дизайну интерьеров",
-      "metaDescription": "Узнайте больше о компании Premium Interior и наших услугах по ремонту и дизайну интерьеров. Высококачественные решения для вашего дома и офиса.",
+      "metaTitle": "Premium Design | О компании и наших услугах по ремонту и дизайну интерьеров",
+      "metaDescription": "Узнайте больше о компании Premium Design и наших услугах по ремонту и дизайну интерьеров. Высококачественные решения для вашего дома и офиса.",
       "canonical": "/about"
     },
     {
@@ -485,7 +494,7 @@
       "title": "Мы всегда рады помочь вам!",
       "shortTitle": "contacts",
       "description": "Свяжитесь с нами, чтобы обсудить свои идеи и сделать ваше пространство уютным и современным.",
-      "metaTitle": "Premium Interior | Контакты – свяжитесь с нами для консультаций по ремонту и дизайну",
+      "metaTitle": "Premium Design | Контакты – свяжитесь с нами для консультаций по ремонту и дизайну",
       "metaDescription": "Свяжитесь с нами для консультаций по ремонту и дизайну интерьеров в Беларуси. Мы всегда рады помочь вам создать идеальное пространство!",
       "canonical": "/contacts"
     },
@@ -493,35 +502,35 @@
       "id": 6,
       "title": "Пользовательское соглашение",
       "shortTitle": "user-agreement",
-      "description": "Пользовательское соглашение | Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
-      "metaTitle": "Premium Interior | Пользовательское соглашение",
-      "metaDescription": "Пользовательское соглашение | Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
+      "description": "Пользовательское соглашение | Premium Design | Ремонт интерьеров с гарантией качества в Беларуси",
+      "metaTitle": "Premium Design | Пользовательское соглашение",
+      "metaDescription": "Пользовательское соглашение | Premium Design | Ремонт интерьеров с гарантией качества в Беларуси",
       "canonical": "/documents/user-agreement"
     },
     {
       "id": 7,
       "title": "Политика конфиденциальности",
       "shortTitle": "privacy-policy",
-      "description": "Политика конфиденциальности | Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
-      "metaTitle": "Premium Interior | Политика конфиденциальности",
-      "metaDescription": "Политика конфиденциальности | Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
+      "description": "Политика конфиденциальности | Premium Design | Ремонт интерьеров с гарантией качества в Беларуси",
+      "metaTitle": "Premium Design | Политика конфиденциальности",
+      "metaDescription": "Политика конфиденциальности | Premium Design | Ремонт интерьеров с гарантией качества в Беларуси",
       "canonical": "/documents/privacy-policy"
     },
     {
       "id": 8,
       "title": "Публичная оферта",
       "shortTitle": "public-offer",
-      "description": "Публичная оферта | Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
-      "metaTitle": "Premium Interior | Публичная оферта",
-      "metaDescription": "Публичная оферта | Premium Interior | Ремонт интерьеров с гарантией качества в Беларуси",
+      "description": "Публичная оферта | Premium Design | Ремонт интерьеров с гарантией качества в Беларуси",
+      "metaTitle": "Premium Design | Публичная оферта",
+      "metaDescription": "Публичная оферта | Premium Design | Ремонт интерьеров с гарантией качества в Беларуси",
       "canonical": "/documents/public-offer"
     },
     {
       "id": 9,
       "title": "Портфолио выполненных проектов",
       "shortTitle": "portfolio",
-      "description": "Реализованные интерьеры: стили, площади, сроки и визуальные решения. Подборка кейсов Premium Interior.",
-      "metaTitle": "Premium Interior | Портфолио ремонта и дизайна интерьеров",
+      "description": "Реализованные интерьеры: стили, площади, сроки и визуальные решения. Подборка кейсов Premium Design.",
+      "metaTitle": "Premium Design | Портфолио ремонта и дизайна интерьеров",
       "metaDescription": "Примеры наших работ: ремонт и дизайн интерьеров премиум-сегмента в Жлобине, Гомельской области и по Беларуси.",
       "canonical": "/portfolio"
     },
@@ -530,8 +539,8 @@
       "title": "Каталог услуг и цен",
       "shortTitle": "services",
       "description": "Все категории ремонтных и отделочных работ: выберите направление и перейдите к прайсу.",
-      "metaTitle": "Premium Interior | Услуги и цены по категориям",
-      "metaDescription": "Каталог услуг Premium Interior: демонтаж, строительство, отделка и др. Жлобин, Гомельская область и выезд по Беларуси.",
+      "metaTitle": "Premium Design | Услуги и цены по категориям",
+      "metaDescription": "Каталог услуг Premium Design: демонтаж, строительство, отделка и др. Жлобин, Гомельская область и выезд по Беларуси.",
       "canonical": "/services"
     },
     {
@@ -539,8 +548,8 @@
       "title": "Карта сайта",
       "shortTitle": "sitemap",
       "description": "Полный список страниц сайта для навигации.",
-      "metaTitle": "Premium Interior | Карта сайта",
-      "metaDescription": "Все разделы и страницы сайта Premium Interior: услуги, документы, основные разделы.",
+      "metaTitle": "Premium Design | Карта сайта",
+      "metaDescription": "Все разделы и страницы сайта Premium Design: услуги, документы, основные разделы.",
       "canonical": "/sitemap"
     }
   ],
@@ -548,7 +557,7 @@
     {
       "id": 1,
       "src": "/banners/banner-home.webp",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 90,
       "width": 1935,
       "height": 684,
@@ -557,7 +566,7 @@
     {
       "id": 2,
       "src": "/banners/banner-repair.webp",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 90,
       "width": 1935,
       "height": 684,
@@ -566,7 +575,7 @@
     {
       "id": 3,
       "src": "/banners/banner-design.webp",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 90,
       "width": 1935,
       "height": 684,
@@ -575,7 +584,7 @@
     {
       "id": 4,
       "src": "/banners/banner-about.webp",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 90,
       "width": 1935,
       "height": 684,
@@ -584,7 +593,7 @@
     {
       "id": 5,
       "src": "/banners/banner-contacts.webp",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 90,
       "width": 1935,
       "height": 684,
@@ -593,7 +602,7 @@
     {
       "id": 6,
       "src": "/banners/appeal.webp",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 90,
       "width": 1935,
       "height": 684,
@@ -607,7 +616,7 @@
       "imageDesc": {
         "id": 1,
         "src": "/shares/share-el-d.webp",
-        "alt": "Premium Interior - акция электрика",
+        "alt": "Premium Design - акция электрика",
         "quality": 95,
         "width": 1920,
         "height": 78,
@@ -616,7 +625,7 @@
       "imageMob": {
         "id": 1,
         "src": "/shares/share-el-m.webp",
-        "alt": "Premium Interior - акция электрика",
+        "alt": "Premium Design - акция электрика",
         "quality": 95,
         "width": 768,
         "height": 84,
@@ -629,7 +638,7 @@
       "id": 1,
       "src": "/partners/marketBuild.webp",
       "srcPng": "/partners/marketBuild.png",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 95,
       "width": 320,
       "height": 140,
@@ -639,7 +648,7 @@
       "id": 2,
       "src": "/partners/shopOMA.webp",
       "srcPng": "/partners/shopOMA.png",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 95,
       "width": 320,
       "height": 140,
@@ -649,7 +658,7 @@
       "id": 3,
       "src": "/partners/MarketKSK.webp",
       "srcPng": "/partners/MarketKSK.png",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 95,
       "width": 320,
       "height": 140,
@@ -659,7 +668,7 @@
       "id": 4,
       "src": "/partners/electricsVolt.webp",
       "srcPng": "/partners/electricsVolt.png",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 95,
       "width": 320,
       "height": 140,
@@ -669,7 +678,7 @@
       "id": 5,
       "src": "/partners/parquetTarkett.webp",
       "srcPng": "/partners/parquetTarkett.png",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 95,
       "width": 320,
       "height": 140,
@@ -679,7 +688,7 @@
       "id": 6,
       "src": "/partners/doorsJurkas.webp",
       "srcPng": "/partners/doorsJurkas.png",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 95,
       "width": 320,
       "height": 140,
@@ -689,7 +698,7 @@
       "id": 7,
       "src": "/partners/plumbingAquarius.webp",
       "srcPng": "/partners/plumbingAquarius.png",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 95,
       "width": 320,
       "height": 140,
@@ -699,7 +708,7 @@
       "id": 8,
       "src": "/partners/fsHome.webp",
       "srcPng": "/partners/fsHome.png",
-      "alt": "Premium Interior - Ремонт и дизайн интерьеров в Беларуси",
+      "alt": "Premium Design - Ремонт и дизайн интерьеров в Беларуси",
       "quality": 95,
       "width": 320,
       "height": 140,
@@ -1069,7 +1078,7 @@
     "portfolioType": {
       "id": 4,
       "image": "/design/offerList.webp",
-      "title": "Портфолио Premier Design: реальные проекты с измеримым результатом",
+      "title": "Портфолио Premium Design: реальные проекты с измеримым результатом",
       "description": "В портфолио собраны жилые и коммерческие объекты, где мы отвечали за дизайн, ремонт и контроль качества. Это не рендеры, а выполненные работы с понятной логикой решений и материалов.",
       "questions": [
         "Какой стиль и уровень отделки вам ближе?",

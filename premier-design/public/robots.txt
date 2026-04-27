@@ -3,7 +3,7 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://premium-interior.by/sitemap.xml
+Sitemap: https://premium-design.pro/sitemap.xml
 
 # Disallow: /private/
 # Disallow: /admin/

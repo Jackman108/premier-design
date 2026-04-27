@@ -32,6 +32,9 @@
 | Пороги Lighthouse / initial JS / SLO feedback | `docs/guides/PERF_AND_SEO_CHECKLIST_RU.md`, `docs/audit/DEPLOY_READINESS_2026_04_RU.md` |
 | Архитектурное решение (новое/смена) | новый ADR в `docs/adr/`, индекс `docs/adr/README.md` |
 | Поведение/поведение env приложения | `premier-design/README.md`, `premier-design/.env.example`, `premier-design/CHANGELOG.md` |
+| Реквизиты ИП / `SITE_OPERATOR` (`shared/constants/company.ts`) | `LegalRequisites`/`Phone`/`WorkHours`/`Address`/`generateStructuredData`, юр.тексты в `features/documents-content/*`, `premier-design/CHANGELOG.md` |
+| Инфраструктура `deploy/` (compose, nginx, certbot) | `docs/operations/MULTISITE_VPS_DEPLOY_RU.md`, `docs/audit/QUALITY_GATES_SYNC_RU.md`, `premier-design/CHANGELOG.md` |
+| Лицензия (`LICENSE`, `LICENSE_RU.md`) или `package.json.license`/`author` | `docs/adr/0011-proprietary-license.md`, `docs/README.md`, `premier-design/CHANGELOG.md` |
 | Открытие нового пункта улучшения | `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md` (с ID, приоритетом, артефактом закрытия) |
 | Закрытие пункта улучшения | `premier-design/CHANGELOG.md` (Unreleased), пункт уходит из Open backlog |
 

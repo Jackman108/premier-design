@@ -17,9 +17,12 @@ export const generateStructuredData = (options?: GenerateStructuredDataOptions) 
         '@type': 'LocalBusiness',
         '@id': `${SITE}/#localbusiness`,
         name: SITE_OPERATOR.brandName,
+        legalName: SITE_OPERATOR.legalEntity.fullName,
         url: SITE,
         logo: getFullCanonicalUrl('/logo.png'),
         image: getFullCanonicalUrl('/logo.png'),
+        telephone: SITE_OPERATOR.phone.tel,
+        email: SITE_OPERATOR.publicEmail,
         sameAs: [...SITE_OPERATOR.structuredData.sameAs],
         address: {
             '@type': 'PostalAddress',
@@ -27,6 +30,12 @@ export const generateStructuredData = (options?: GenerateStructuredDataOptions) 
         },
         areaServed: SITE_OPERATOR.structuredData.areaServed,
         priceRange: SITE_OPERATOR.structuredData.priceRange,
+        openingHoursSpecification: SITE_OPERATOR.workHours.slots.map((slot) => ({
+            '@type': 'OpeningHoursSpecification',
+            dayOfWeek: [...slot.daysOfWeek],
+            opens: slot.opens,
+            closes: slot.closes,
+        })),
     };
 
     if (options?.aggregateRating) {

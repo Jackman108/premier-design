@@ -1,4 +1,4 @@
-# Contributing to Premier Design
+# Contributing to Premium Design
 
 Короткий чеклист для изменений в репозитории.
 
