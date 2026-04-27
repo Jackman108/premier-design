@@ -39,4 +39,31 @@ describe('FeedbackForm', () => {
             consent: true,
         });
     });
+
+    it('prevents double submit while first request is pending', async () => {
+        const resolveSubmitRef: { current: (() => void) | null } = {current: null};
+        const onSubmit = jest.fn().mockImplementation(
+            () =>
+                new Promise<void>((resolve) => {
+                    resolveSubmitRef.current = resolve;
+                }),
+        );
+        const user = userEvent.setup();
+        render(<FeedbackForm onSubmit={onSubmit}/>);
+
+        await user.type(screen.getByPlaceholderText('Ваше имя'), 'Иван Иванов');
+        await user.type(screen.getByPlaceholderText('Введите ваш номер телефона'), '291234567');
+        await user.type(screen.getByPlaceholderText('Коротко опишите запрос'), 'Нужен расчет');
+        await user.click(screen.getByRole('checkbox'));
+
+        const submitButton = screen.getByRole('button', {name: 'Отправить заявку'});
+        await user.click(submitButton);
+        await user.click(submitButton);
+
+        expect(onSubmit).toHaveBeenCalledTimes(1);
+        expect(screen.getByRole('button', {name: 'Отправить заявку'})).toBeDisabled();
+        expect(screen.getByRole('button', {name: 'Отправить заявку'})).toHaveTextContent('Отправка…');
+
+        resolveSubmitRef.current?.();
+    });
 });

@@ -46,6 +46,10 @@
 | **Документация** | `CODE_STRUCTURE`, таблица FSD в этом файле, `CHANGELOG` | При новых публичных маршрутах — обновлять **`STATIC_SITEMAP_PATHS`** / **`collectSitePathnames`** и юзер-доки | Актуализировано |
 | **CTA Appeal + `app/documents`** | `AppealSectionData` в `shared/interface/`; `getCommonProps.appealSection`; `DocumentSiteShell` + `dynamic` из `@lib/dynamicSectionImports` | Контракт CTA не тянет cross-feature между слайсами; shell — client, данные — server layout | Выполнено |
 | **Главная: scroll-spy / квиз** | `id="lead-quiz"` на секции с `LeadQuiz`; `homePage.sectionAriaLabels.quiz` в `data.json` + ключ в `dataPropsSchema` | Соответствие `HOME_SECTION_NAV_LINKS` / `HOME_SECTION_SCROLL_SPY_ORDER` | Выполнено |
+| **Use-case границы: feedback/quiz (S2)** | Аудит `features/feedback/useCases/*`: в use-case нет `fetch/axios` и HTTP-типов, внешние интеграции идут через DAL/порты (`FeedbackDal`). Сценарии quiz в `features/marketing/lead-quiz/*` остаются в UI/hooks и не нарушают dependency-rule | Подтверждено ревизией + зелёный `yarn check:architecture` | Выполнено |
+| **Моки хуков: полный контракт (S3)** | Проверены `jest.mock` для `useModalState`, `useUrlHash`, `useScrollToElement`, `useViewportMobile`, `useMobileMenu`: `mockReturnValue` возвращает полный публичный контракт, включая `scrollToRef` для `useScrollToElement` | Подтверждено ревизией `__tests__` + зелёный `yarn typecheck` | Выполнено |
+| **Dynamic imports реестр (S4)** | Ревизия `lib/dynamicSectionImports.ts`: тяжёлые секции держатся в реестре lazy-импортов с `SectionSkeleton`; новых «тяжёлых» модулей вне реестра в этом цикле не найдено | Подтверждено ревизией + без кода-правок | Выполнено |
+| **ARCH-03: запрет `@lib/find*` внутри features** | В `scripts/check-architecture-boundaries.mjs` добавлено явное правило на `@lib/find*`/`resolveServicesTier`/`servicesTierStatic` для `features/*`; добавлен sentinel-test для guardrail | `yarn check:architecture` + `tests/architecture/lib-cross-feature-sentinel.test.ts` | Выполнено |
 
 ---
 
@@ -64,6 +68,10 @@
 | Skeleton для динамических секций | Добавлен `shared/ui/section-skeleton/*`; `dynamicSectionImports` переведён на `loading: SectionSkeleton` | Выполнено |
 | Карточки и глубина | Карточки услуг/примеров/сметы/прайса приведены к единому `border + shadow`; убраны ключевые pseudo-3D/inset-паттерны | Выполнено |
 | Тёмная тема на фото/градиентах | Добавлены `--surface-on-media*`, `--text-on-media*`; применено в `OfferBanner`, `BusinessServicesCard`, `ServicesCards`, `PhotoViewer`, `OfferCard` | Выполнено |
+| Аудит контраста dark theme на медиа-страницах (S2) | Ревизия `OfferBanner`, `ServicesCards`, `BusinessServicesCard`, `PhotoViewer`, `OfferCard`: контрастные пары сведены к `--surface-on-media*` / `--text-on-media*`, «светлый текст / светлая зебра» не обнаружены | Выполнено |
+| CSP и trusted assets (S3) | Ревизия `next.config.js`: `script-src`, `img-src`, `connect-src` соответствуют ADR `0004`, внешние источники карт ограничены allowlist, `frame-src`/`object-src` закреплены | Выполнено |
+| Keyboard-only smoke модалок (S4) | Для `FeedbackModal` и `EstimateModal` добавлен явный fallback закрытия по `Escape` (legacy `<dialog open>`) и unit-покрытие; `PhotoViewer` уже покрыт в `e2e/smoke.spec.ts` (`Escape`) | Выполнено |
+| Storybook primitives (QA-04) | Проверено покрытие `shared/ui/primitives/*` сторями с `autodocs`; добавлены play/a11y сценарии в `UiDialog` и `UiInput`; сборка storybook проходит | Выполнено |
 | Фокус и клавиатура | Добавлены `--focus-outline-*`, включён глобальный fallback `:focus-visible`, закрыты точечные пропуски (в т.ч. `HomePageChrome`, `ChatBotSidebar`) | Выполнено |
 
 ### Открытые улучшения (следующий цикл)

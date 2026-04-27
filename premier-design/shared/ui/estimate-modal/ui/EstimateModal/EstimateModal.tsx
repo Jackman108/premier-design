@@ -1,5 +1,5 @@
 'use client';
-import type {FC, MouseEvent} from 'react';
+import type {FC, KeyboardEvent, MouseEvent} from 'react';
 
 import CollapsibleContainer from '@shared/ui/estimate-modal/ui/CollapsibleContainer/CollapsibleContainer';
 import CostInput from '@shared/ui/estimate-modal/ui/CostInput/CostInput';
@@ -36,6 +36,13 @@ const EstimateModal: FC<EstimateModalProps> = ({cards, card, onClose}) => {
             onClose();
         }
     };
+    const handleEscapeClose = (event: KeyboardEvent<HTMLDialogElement>) => {
+        // Для `<dialog open>` (без showModal) явно дублируем ESC-закрытие для предсказуемого a11y-поведения.
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            onClose();
+        }
+    };
 
     return (
         <BodyPortal>
@@ -43,6 +50,7 @@ const EstimateModal: FC<EstimateModalProps> = ({cards, card, onClose}) => {
             className={styles.modal_overlay}
             open
             onCancel={onClose}
+            onKeyDown={handleEscapeClose}
             onMouseDown={handleDialogMouseDown}
             aria-labelledby="estimate-modal-title"
         >

@@ -8,20 +8,41 @@ import {
     runWithIntegrationCircuit,
     type IntegrationCircuitConfig,
 } from '../../../shared/lib/integrationCircuit';
+import {z} from 'zod';
 
 const FEEDBACK_CIRCUIT_SMTP = 'feedback-smtp';
 const FEEDBACK_CIRCUIT_TELEGRAM = 'feedback-telegram';
 
-const toPositiveInt = (raw: string | undefined, fallback: number) => {
-    const n = raw !== undefined ? Number.parseInt(raw, 10) : NaN;
-    return Number.isFinite(n) && n > 0 ? n : fallback;
+const feedbackRuntimeEnvSchema = z.object({
+    FEEDBACK_CIRCUIT_ENABLED: z.enum(['true', 'false']).optional(),
+    FEEDBACK_CIRCUIT_FAILURE_THRESHOLD: z.coerce.number().int().positive().optional(),
+    FEEDBACK_CIRCUIT_OPEN_MS: z.coerce.number().int().positive().optional(),
+});
+
+type FeedbackRuntimeEnv = z.infer<typeof feedbackRuntimeEnvSchema>;
+
+const resolveFeedbackRuntimeEnv = (): FeedbackRuntimeEnv => {
+    const parsed = feedbackRuntimeEnvSchema.safeParse(process.env);
+    if (parsed.success) {
+        return parsed.data;
+    }
+    // При невалидных env не роняем обработчик формы: возвращаем дефолты и фиксируем причину.
+    const issueSummary = parsed.error.issues.map(({path, message}) => ({
+        key: path.join('.') || 'root',
+        message,
+    }));
+    console.warn('[submitFeedback] Invalid FEEDBACK_* env. Fallback defaults will be used.', issueSummary);
+    return {};
 };
 
-const resolveIntegrationCircuitConfig = (): IntegrationCircuitConfig => ({
-    enabled: process.env.FEEDBACK_CIRCUIT_ENABLED !== 'false',
-    failureThreshold: toPositiveInt(process.env.FEEDBACK_CIRCUIT_FAILURE_THRESHOLD, 5),
-    openDurationMs: toPositiveInt(process.env.FEEDBACK_CIRCUIT_OPEN_MS, 60_000),
-});
+const resolveIntegrationCircuitConfig = (): IntegrationCircuitConfig => {
+    const env = resolveFeedbackRuntimeEnv();
+    return {
+        enabled: env.FEEDBACK_CIRCUIT_ENABLED !== 'false',
+        failureThreshold: env.FEEDBACK_CIRCUIT_FAILURE_THRESHOLD ?? 5,
+        openDurationMs: env.FEEDBACK_CIRCUIT_OPEN_MS ?? 60_000,
+    };
+};
 
 const wantsSmtp = (): boolean => Boolean(process.env.EMAIL_HOST?.trim());
 

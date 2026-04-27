@@ -96,10 +96,10 @@
 
 ## Соответствие CI (GitHub Actions)
 
-- **`ci.yml`:** `yarn lint`, отдельные `check:*` (architecture, ui‑purity, regressions, noise, feature‑structure), `yarn test:coverage`, `yarn build`, `yarn test:e2e:install` + `yarn test:e2e`, `check:perf:ci`, `check:slo:feedback`, `build-storybook`. **Примечание:** `typecheck` пока не включён отдельным шагом — типы валидируются `next build` и локально через `check:static` / `check:precommit:full`. При расширении CI шагом `Typecheck` синхронизировать с [`QUALITY_GATES_SYNC_RU.md`](../audit/QUALITY_GATES_SYNC_RU.md).
+- **`ci.yml`:** `yarn lint` → `yarn typecheck`, отдельные `check:*` (architecture, ui‑purity, regressions, noise, feature‑structure), `yarn test:coverage`, `yarn build`, `yarn test:e2e:install` + `yarn test:e2e`, `check:perf:ci`, `check:slo:feedback`, `build-storybook`.
 - **`e2e-extended.yml`:** `build` + `test:e2e:extended`.
 - **`ci-trends.yml`:** `report-ci-trends.mjs` + `check-ci-sla.mjs`.
-- **`security-high-weekly.yml`:** `report:audit:high` + автосоздание issue при high/critical > 0.
+- **`security-high-weekly.yml`:** `report:audit:high` + автосоздание issue при high/critical > 0 (в issue добавляются ссылка на workflow run и имя artifact `security-high-weekly`).
 
 Полные шаги — в `.github/workflows/`. При изменении скриптов обновляйте этот файл и [`QUALITY_GATES_SYNC_RU.md`](../audit/QUALITY_GATES_SYNC_RU.md).
 
@@ -112,6 +112,8 @@
 - `features/**` → `check-feature-structure.mjs`;
 - `*` → `check-noise-artifacts.mjs`.
 
+Покрытие слоёв (`shared/`, `widgets/`, `app/`, `pages/`, `lib/`) закрывается паттерном `*.{js,jsx,ts,tsx}`: для всех staged TS/JS файлов выполняются ESLint + `check-architecture-boundaries` + `check-ui-purity`.
+
 Сразу после `lint-staged` Husky `pre-commit` вызывает **`yarn check:precommit:full`** (полный проход).
 
 ## Связанные документы
@@ -119,5 +121,6 @@
 - [PERF_AND_SEO_CHECKLIST_RU](PERF_AND_SEO_CHECKLIST_RU.md)
 - [YARN_PACKAGE_MANAGER_RU](YARN_PACKAGE_MANAGER_RU.md)
 - [API_AND_STORYBOOK_RU](API_AND_STORYBOOK_RU.md)
+- [ADR 0010: без Prettier](../adr/0010-formatting-policy-no-prettier.md)
 - [DEPLOY_READINESS_2026_04_RU](../audit/DEPLOY_READINESS_2026_04_RU.md)
 - [QUALITY_GATES_SYNC_RU](../audit/QUALITY_GATES_SYNC_RU.md)

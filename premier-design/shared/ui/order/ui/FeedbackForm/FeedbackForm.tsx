@@ -19,6 +19,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, initialMessage}) =>
         isConsentGiven,
         phoneMask,
         displayedPhone,
+        isSubmitting,
         setCountry,
         handleInputChange,
         handlePhoneChange,
@@ -142,8 +143,8 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({onSubmit, initialMessage}) =>
                 {errors.consent && <div id="feedback-consent-error" className={styles.errorMessage} role="alert">{errors.consent}</div>}
             </div>
             <div className={styles.form__button}>
-                <UiButton type="submit" className={styles.submitButton} aria-label="Отправить заявку">
-                    Отправить
+                <UiButton type="submit" className={styles.submitButton} aria-label="Отправить заявку" disabled={isSubmitting}>
+                    {isSubmitting ? 'Отправка…' : 'Отправить'}
                 </UiButton>
             </div>
             </div>

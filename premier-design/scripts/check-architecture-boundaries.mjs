@@ -9,6 +9,8 @@ const IGNORED_DIRS = new Set(['node_modules', '.git', '.next', 'coverage', 'stor
 const IMPORT_RE = /from\s+['"]([^'"]+)['"]/g;
 /** Динамический `import()` тоже создаёт зависимость; иначе обход через `next/dynamic` в `shared/`. */
 const DYNAMIC_IMPORT_RE = /import\s*\(\s*['"](@(?:features|services)\/[^'"]+)['"]\s*\)/g;
+/** Cross-feature «обход» через lib-finders запрещён внутри feature-слайсов. */
+const FORBIDDEN_FEATURE_LIB_IMPORT_RE = /^@lib\/(find[A-Z]|resolveServicesTier|servicesTierStatic)\b/;
 
 const toUnix = (value) => value.split('\\').join('/');
 const isCodeFile = (file) => /\.(ts|tsx|js|jsx)$/.test(file);
@@ -94,6 +96,10 @@ for (const file of files) {
 			if (targetSlice && targetSlice !== featureSlice && !allowUntil) {
 				violations.push(`${file}: cross-feature импорт нарушает FSD -> ${target}`);
 			}
+		}
+
+		if (inFeature && FORBIDDEN_FEATURE_LIB_IMPORT_RE.test(target) && !allowUntil) {
+			violations.push(`${file}: запрещён обход cross-feature через @lib/* finders -> ${target}`);
 		}
 	}
 }

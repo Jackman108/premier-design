@@ -46,6 +46,11 @@ jobs:
       - name: Publish summary
         run: cat .audit-high-summary.md >> $GITHUB_STEP_SUMMARY
 
+      - name: Build weekly triage context
+        run: |
+          echo "RUN_URL=${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> $GITHUB_ENV
+          echo "ARTIFACT_NAME=security-high-weekly" >> $GITHUB_ENV
+
       - name: Open weekly issue when high/critical > 0
         uses: actions/github-script@v7
         with:
@@ -66,6 +71,9 @@ jobs:
               '',
               `- high: **${high}**`,
               `- critical: **${critical}**`,
+              '',
+              `- workflow run: ${process.env.RUN_URL}`,
+              `- artifact: \`${process.env.ARTIFACT_NAME}\``,
               '',
               'Шаблон triage: `.github/ISSUE_TEMPLATE/security_high_weekly.yml`',
               '',

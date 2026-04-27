@@ -1,4 +1,5 @@
 import type {Meta, StoryObj} from '@storybook/nextjs-vite';
+import {expect, within} from 'storybook/test';
 
 import {UiInput} from './UiInput';
 
@@ -25,5 +26,10 @@ export const WithError: Story = {
 		label: 'Email',
 		defaultValue: 'not-an-email',
 		error: 'Введите корректный адрес',
+	},
+	play: async ({canvasElement}) => {
+		const canvas = within(canvasElement);
+		const input = canvas.getByLabelText('Email');
+		await expect(input).toHaveAttribute('aria-invalid', 'true');
 	},
 };

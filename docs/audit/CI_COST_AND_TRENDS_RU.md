@@ -5,7 +5,13 @@
 ## Что есть в репозитории
 
 - **14-дневные тренды** — `.github/workflows/ci-trends.yml` + `scripts/report-ci-trends.mjs` (артефакт `.ci-trends-14d.{md,json}`; длительность с `run_started_at`).
-- **SLA-гейт** — шаги в `ci-trends.yml` / `scripts/check-ci-sla.mjs` (см. комментарии в workflow и `CHANGELOG`).
+- **SLA-гейт** — шаги в `ci-trends.yml` / `scripts/check-ci-sla.mjs` (см. комментарии в workflow и `CHANGELOG`): для `CI Quality Gates` применяется `CI_SLA_P95_BUDGET_MIN=25`.
+
+## Текущая проверка (S2)
+
+- Источник истины по p95 — артефакт `ci-trends-14d` из workflow `CI Trends (14d)`.
+- Сравнение с бюджетом выполняется автоматически в шаге `Enforce CI SLA budget (p95)`; при `p95 > 25` workflow падает.
+- Локально без `.ci-trends-14d.json` скрипт `check-ci-sla` корректно делает `skip`; это не заменяет CI-проверку.
 
 ## Как снижать стоимость, не ломая качество
 

@@ -66,6 +66,7 @@ export const useFeedbackForm = ({onSubmit, initialMessage}: FeedbackFormProps) =
     const [country, setCountry] = useState<FeedbackPhoneCountry>('by');
     const [isConsentGiven, setIsConsentGiven] = useState(false);
     const [errors, setErrors] = useState<FeedbackFormErrors>(INITIAL_ERRORS);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = event.target;
@@ -83,8 +84,11 @@ export const useFeedbackForm = ({onSubmit, initialMessage}: FeedbackFormProps) =
         setIsConsentGiven((prev) => !prev);
     };
 
-    const handleSubmit = (event: SyntheticEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: SyntheticEvent<HTMLFormElement>) => {
         event.preventDefault();
+        if (isSubmitting) {
+            return;
+        }
         const validationResult = feedbackSchema.safeParse({
             ...formDataState,
             consent: isConsentGiven,
@@ -102,11 +106,17 @@ export const useFeedbackForm = ({onSubmit, initialMessage}: FeedbackFormProps) =
             return;
         }
 
-        onSubmit({
-            ...formDataState,
-            phone: normalizePhoneDigits(formDataState.phone),
-            consent: isConsentGiven,
-        });
+        // Защита от двойного submit: пока запрос в полёте, повторный клик игнорируется.
+        setIsSubmitting(true);
+        try {
+            await onSubmit({
+                ...formDataState,
+                phone: normalizePhoneDigits(formDataState.phone),
+                consent: isConsentGiven,
+            });
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     return {
@@ -116,6 +126,7 @@ export const useFeedbackForm = ({onSubmit, initialMessage}: FeedbackFormProps) =
         isConsentGiven,
         phoneMask: getPhoneMask(country),
         displayedPhone: stripPhoneCountryCode(formDataState.phone),
+        isSubmitting,
         setCountry,
         handleInputChange,
         handlePhoneChange,

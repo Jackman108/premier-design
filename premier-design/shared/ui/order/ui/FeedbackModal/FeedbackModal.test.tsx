@@ -31,4 +31,14 @@ describe('FeedbackModal', () => {
 
 		expect(onClose).toHaveBeenCalledTimes(1);
 	});
+
+	it('closes via Escape key fallback', () => {
+		const onClose = jest.fn();
+		render(<FeedbackModal onClose={onClose} onSubmit={onSubmit} />);
+
+		const dialog = screen.getByRole('dialog');
+		fireEvent.keyDown(dialog, {key: 'Escape'});
+
+		expect(onClose).toHaveBeenCalledTimes(1);
+	});
 });

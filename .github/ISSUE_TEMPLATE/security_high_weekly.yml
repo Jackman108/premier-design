@@ -38,6 +38,17 @@ body:
         2) добавить regression test
     validations:
       required: true
+  - type: textarea
+    id: triage_matrix
+    attributes:
+      label: Triage-матрица (high/critical)
+      description: Для каждой уязвимости укажите решение и срок
+      placeholder: |
+        | package | severity | решение (update/mitigation/accepted risk) | дедлайн | PR/issue |
+        |---------|----------|--------------------------------------------|---------|----------|
+        | example-lib | high | update до 1.2.3 | 2026-05-11 | #123 |
+    validations:
+      required: true
   - type: checkboxes
     id: checklist
     attributes:

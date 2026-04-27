@@ -22,6 +22,17 @@
 5. Откройте:
    - `http://localhost:3000`
 
+## Первый день (S4)
+
+Минимальный маршрут для нового разработчика:
+
+1. `cd premier-design`
+2. `yarn install`
+3. `yarn dev` (проверить, что главная открывается на `http://localhost:3000`)
+4. `yarn check:static` (lint + typecheck + unit)
+
+Если `check:static` зелёный, можно переходить к задачам из [`../docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](../docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md).
+
 ## Документация репозитория
 
 - Оглавление: [`../docs/README.md`](../docs/README.md).

@@ -22,3 +22,4 @@
 | 0007 | [0007-next-pages-and-app-router-split.md](0007-next-pages-and-app-router-split.md) | Гибрид `pages/` + `app/`: зоны ответственности и правила новых маршрутов | Принято |
 | 0008 | [0008-react-chatbot-kit-dependency.md](0008-react-chatbot-kit-dependency.md) | Риск и изоляция `react-chatbot-kit` в бандле | Принято |
 | 0009 | [0009-web-analytics-deferred.md](0009-web-analytics-deferred.md) | Аналитика (YM/GA4/GTM) — отложено до env, CSP и карты событий | Принято |
+| 0010 | [0010-formatting-policy-no-prettier.md](0010-formatting-policy-no-prettier.md) | Политика форматирования: остаёмся на ESLint без Prettier | Принято |

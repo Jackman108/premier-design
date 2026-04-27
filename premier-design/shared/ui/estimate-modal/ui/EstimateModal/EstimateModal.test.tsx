@@ -75,4 +75,14 @@ describe('EstimateModal', () => {
 
 		expect(onClose).toHaveBeenCalledTimes(1);
 	});
+
+	it('closes via Escape key fallback', () => {
+		const onClose = jest.fn();
+		render(<EstimateModal cards={cards} card={card} onClose={onClose} />);
+
+		const dialog = screen.getByRole('dialog', {name: 'Рассчитайте стоимость Вашего ремонта'});
+		fireEvent.keyDown(dialog, {key: 'Escape'});
+
+		expect(onClose).toHaveBeenCalledTimes(1);
+	});
 });

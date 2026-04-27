@@ -1,5 +1,6 @@
 import type {Meta, StoryObj} from '@storybook/nextjs-vite';
 import React, {useState} from 'react';
+import {expect, userEvent, within} from 'storybook/test';
 
 import {UiButton} from './UiButton';
 import {UiDialog} from './UiDialog';
@@ -64,5 +65,10 @@ export const Default: Story = {
         `}</style>
 			</>
 		);
+	},
+	play: async ({canvasElement}) => {
+		const canvas = within(canvasElement);
+		await userEvent.click(canvas.getByRole('button', {name: 'Open Dialog'}));
+		await expect(canvas.getByRole('dialog')).toBeVisible();
 	},
 };

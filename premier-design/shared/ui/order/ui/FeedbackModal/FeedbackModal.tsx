@@ -1,5 +1,5 @@
 'use client';
-import type {FC, MouseEvent} from 'react';
+import type {FC, KeyboardEvent, MouseEvent} from 'react';
 
 import {BodyPortal} from '@shared/ui/portal/BodyPortal';
 import FeedbackForm from '@shared/ui/order/ui/FeedbackForm/FeedbackForm';
@@ -13,6 +13,13 @@ const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit, initialMessag
 			onClose();
 		}
 	};
+	const handleEscapeClose = (event: KeyboardEvent<HTMLDialogElement>) => {
+		// Для `<dialog open>` (без showModal) явно дублируем ESC-закрытие для стабильной keyboard-навигации.
+		if (event.key === 'Escape') {
+			event.preventDefault();
+			onClose();
+		}
+	};
 
 	return (
 		<BodyPortal>
@@ -20,6 +27,7 @@ const FeedbackModal: FC<FeedbackModalProps> = ({onClose, onSubmit, initialMessag
 				className={styles.overlay}
 				open
 				onCancel={onClose}
+				onKeyDown={handleEscapeClose}
 				onMouseDown={handleOverlayClick}
 				aria-labelledby='feedback-modal-heading'
 				aria-describedby='feedback-modal-description'

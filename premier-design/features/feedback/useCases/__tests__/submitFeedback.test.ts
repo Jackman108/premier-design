@@ -169,6 +169,32 @@ describe('submitFeedback', () => {
         expect(mockedTelegramService.sendMessage).toHaveBeenCalledTimes(2);
     });
 
+    it('retries SMTP send once on transient error and succeeds', async () => {
+        mockedEmailService.sendMail
+            .mockRejectedValueOnce(new Error('SMTP ETIMEDOUT'))
+            .mockResolvedValueOnce(undefined);
+
+        const result = await submitFeedback(payload);
+
+        expect(result.status).toBe('success');
+        expect(mockedEmailService.sendMail).toHaveBeenCalledTimes(2);
+        expect(mockedTelegramService.sendMessage).toHaveBeenCalledTimes(1);
+    });
+
+    it('falls back to default circuit settings for invalid FEEDBACK_* env', async () => {
+        assignTestEnv('FEEDBACK_CIRCUIT_FAILURE_THRESHOLD', 'not-a-number');
+        assignTestEnv('FEEDBACK_CIRCUIT_OPEN_MS', 'oops');
+        const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => undefined);
+
+        try {
+            const result = await submitFeedback(payload);
+            expect(result.status).toBe('success');
+            expect(warnSpy).toHaveBeenCalled();
+        } finally {
+            warnSpy.mockRestore();
+        }
+    });
+
     it('opens circuit after repeated failures and returns 503 on subsequent attempts (RISK-10)', async () => {
         const envPrev = {
             nodeEnv: process.env.NODE_ENV,

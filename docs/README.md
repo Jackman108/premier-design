@@ -34,12 +34,13 @@
 | [`audit/OPERATIONS_OBSERVABILITY_RU.md`](audit/OPERATIONS_OBSERVABILITY_RU.md) | RISK‑11: `correlationId`, логи, SLO |
 | [`audit/SUPPLY_CHAIN_RU.md`](audit/SUPPLY_CHAIN_RU.md) | RISK‑09: `yarn audit`, weekly triage, lockfile |
 | [`audit/CI_COST_AND_TRENDS_RU.md`](audit/CI_COST_AND_TRENDS_RU.md) | RISK‑12: тренды CI, p95, разделение job |
+| [`audit/RFC_CHATBOT_RUNTIME_ISOLATION_RU.md`](audit/RFC_CHATBOT_RUNTIME_ISOLATION_RU.md) | RFC-план изоляции/замены chatbot runtime (PERF-03) |
 
 ### Архитектурные решения — [`adr/`](adr/)
 
 | Документ | Назначение |
 |----------|------------|
-| [`adr/README.md`](adr/README.md) | Индекс ADR 0001–0009 и шаблон |
+| [`adr/README.md`](adr/README.md) | Индекс ADR 0001–0010 и шаблон |
 
 ### Гайды разработки — [`guides/`](guides/)
 
