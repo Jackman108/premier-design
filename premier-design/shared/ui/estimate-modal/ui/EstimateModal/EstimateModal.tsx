@@ -9,13 +9,13 @@ import {BodyPortal} from '@shared/ui/portal/BodyPortal';
 import {EstimateModalProps} from '@shared/ui/estimate-modal/interface/EstimateModal.props';
 import {typeItemsConfig} from '@shared/ui/estimate-modal/configs/factorsConfig';
 import useEstimateModalHandlers from '@shared/ui/estimate-modal/hooks/useEstimateModalHandlers';
+import {
+    mapCostingCardsToObjectTypeItems,
+    objectTypeTitleBySelectedTab,
+    optionLabelByValue,
+} from '@shared/ui/estimate-modal/utils/estimateSelectOptions';
 
 import styles from './EstimateModal.module.css';
-
-const labelByValue = (
-    items: readonly { value: string; label: string }[],
-    value: string,
-): string => items.find((i) => i.value === value)?.label ?? '';
 
 const EstimateModal: FC<EstimateModalProps> = ({cards, card, onClose}) => {
     const {
@@ -35,17 +35,17 @@ const EstimateModal: FC<EstimateModalProps> = ({cards, card, onClose}) => {
     } = useEstimateModalHandlers(card);
 
     const objectTypeItems = useMemo(
-        () => cards.map((c) => ({ value: String(c.id), label: c.title })),
+        () => mapCostingCardsToObjectTypeItems(cards),
         [cards],
     );
     const objectTypeLabel = useMemo(
-        () => cards.find((c) => c.id === selectedTab)?.title ?? '',
+        () => objectTypeTitleBySelectedTab(cards, selectedTab),
         [cards, selectedTab],
     );
     const {propertyTypeItems, repairTypeItems, serviceTypeItems} = typeItemsConfig;
-    const serviceLabel = labelByValue(serviceTypeItems, serviceType);
-    const propertyLabel = labelByValue(propertyTypeItems, propertyType);
-    const repairLabel = labelByValue(repairTypeItems, repairType);
+    const serviceLabel = optionLabelByValue(serviceTypeItems, serviceType);
+    const propertyLabel = optionLabelByValue(propertyTypeItems, propertyType);
+    const repairLabel = optionLabelByValue(repairTypeItems, repairType);
     const handleDialogMouseDown = (event: MouseEvent<HTMLDialogElement>) => {
         if (event.target === event.currentTarget) {
             onClose();

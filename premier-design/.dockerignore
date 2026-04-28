@@ -1,0 +1,29 @@
+# Контекст сборки: не тащить артефакты хоста в COPY . .
+# (иначе gigabytes node_modules/.next и десятки минут на передачу + антивирус).
+
+node_modules
+.next
+out
+.git
+.gitignore
+
+coverage
+test-results
+playwright-report
+blob-report
+storybook-static
+.lighthouse-tmp
+.lighthouse-chrome-profile
+
+# .env в git не коммитится, но на хосте может быть — Next подхватит при `next build`.
+# Секреты в CI: передавайте через build-args / secrets, а не кладите в репозиторий.
+
+*.md
+
+.cursor
+.vscode
+.idea
+*.tsbuildinfo
+
+Dockerfile.dev
+docker-compose*.yml

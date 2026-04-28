@@ -1,4 +1,7 @@
+# Корень `deploy/`: теги образов и e-mail (копия из .env.example)
 .env
+
+# Секреты приложений: в репо — только `secrets/*.env.example`; рабочие `secrets/*.env` — не коммитить
 secrets/*.env
 letsencrypt/
 acme-webroot/

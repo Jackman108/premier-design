@@ -7,11 +7,13 @@
 
 ### Changed
 
+- **CSP:** директива `upgrade-insecure-requests` убрана из `Content-Security-Policy` в `next.config.js` — на HTTP без TLS (локальный `deploy/docker-compose.dev.yml`, `:8080`) Chrome иначе запрашивал `/_next/*` как `https://` → `ERR_SSL_PROTOCOL_ERROR`. Ужесточение HTTPS остаётся за TLS-прокси (nginx/Vercel) и заголовком `Strict-Transport-Security` при включённом hardened-режиме.
 - **Соцсети — один источник:** `SITE_SOCIAL` в `shared/constants/company.ts`; `SocialIcons` и `structuredData.sameAs` читают оттуда (Telegram / VK / Instagram).
 - **EstimateModal:** фиксированы `max-height` контейнера, левый блок с коллапсами со скроллом слева, правый с результатом — стабильная зона, без скачков при раскрытии; шапка/подвал модалки `flex-shrink: 0`.
 - **Deploy (VPS):** сервис/контейнер Docker для сайта переименованы в `premium-design`, `PREMIUM_DESIGN_IMAGE` в `deploy/.env.example`, `secrets/premium-design.env`, nginx `upstream` → `premium-design:3000` (см. `deploy/README.md`).
-
 - **Домен и реквизиты:** production-origin и nginx — `https://premium-design.pro` (nginx: `deploy/nginx/conf.d/premium-design.pro.conf`, dev — `.../dev/premium-design.pro.dev.conf`). В `SITE_OPERATOR.legalEntity.unp` указан `491455920`. Футер: колонка реквизитов и блок «Разработано» прижаты к низу грида, копирайт с `padding-bottom` в запас плавающей панели, кредит — по центру в правой колонке; на мобилке — стек с разделителями, реквизиты с сеткой подпись/значение.
+- **Документация процесса:** `docs/README.md`, `.cursor/rules/agent-mempalace-bootstrap.mdc`, `agent-quality-process.mdc`, `audit/QUALITY_GATES_SYNC_RU.md`, `audit/DEPLOY_READINESS_2026_04_RU.md`, `guides/PERF_AND_SEO_CHECKLIST_RU.md` — таблица «один источник правды», описание CSP/HSTS и workflow GHCR приведены к текущей схеме.
+- **Docker:** `premier-design/.dockerignore`; образ CI — [`../.github/workflows/ghcr-premium-design.yml`](../.github/workflows/ghcr-premium-design.yml); dev: `http://localhost:8080` отдаёт HTML-лендинг со ссылками на оба сайта (`deploy/nginx/dev-static/localhost.html`, volume в `docker-compose.dev.yml`).
 
 ### Added
 
@@ -33,13 +35,6 @@
   (proprietary, EN) и [`LICENSE_RU.md`](../LICENSE_RU.md) (RU, преимущество для законодательства РБ).
   Принят ADR [`0011-proprietary-license.md`](../docs/adr/0011-proprietary-license.md). В `package.json`
   поле `license` → `SEE LICENSE IN ../LICENSE`, добавлен `author`.
-
-### Changed
-
-- **`docs/README.md`, `agent-mempalace-bootstrap.mdc`, `agent-quality-process.mdc`,
-  `audit/QUALITY_GATES_SYNC_RU.md`, `audit/DEPLOY_READINESS_2026_04_RU.md`** —
-  расширены до новых единых источников правды (`SITE_OPERATOR`, `deploy/`, `LICENSE`/`LICENSE_RU.md`).
-  Таблица «один источник правды» в `docs/README.md` пополнена тремя новыми темами.
 
 ### Removed
 

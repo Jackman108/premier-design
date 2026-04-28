@@ -1,16 +1,15 @@
-name: Deploy to Local Server
+# Выкладка на **свой** VPS: только `docker compose pull` + `up` в каталоге `deploy/`
+# (см. deploy/docker-compose.yml). Исходники и сборка в образ — в GHCR (ghcr-premium-design.yml), не в этом job.
+# Деплой **на Vercel** здесь не выполняется: сайт в Vercel — через Git-интеграцию в панели Vercel.
+# См. docs/guides/DEPLOY_VERCEL_AND_VPS_RU.md
 
-# Секреты: HOST, USERNAME, SSH_PRIVATE_KEY, PORT (часто 22), при шифровании ключа — SSH_KEY_PASSPHRASE (точный пароль от ключа).
-# Ключ в SSH_PRIVATE_KEY должен быть многострочным (как в файле), с строками BEGIN/END.
-#
-# Сейчас деплой на VPS только вручную (пока продакшен на Vercel). После готовности своего сервера —
-# раскомментируйте блок push ниже и проверьте секреты HOST/USERNAME/PORT.
+name: Deploy premium-design to VPS (SSH, docker compose pull)
 
 on:
   workflow_dispatch:
+  # Автодеплой на VPS (после зелёного master и настроенного server-side deploy):
   # push:
-  #   branches:
-  #     - master
+  #   branches: [ master ]
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
@@ -20,9 +19,6 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
-
       - name: Preflight — TCP до SSH-порта
         shell: bash
         env:
@@ -32,20 +28,20 @@ jobs:
           set -euo pipefail
           PORT="${P:-22}"
           if [[ -z "${H// }" ]]; then
-            echo "::error::Секрет HOST пустой. Укажите IP или домен **вашего VPS** (сервера с Docker), куда заходите по SSH — не URL сайта и не vercel.app."
+            echo "::error::Секрет HOST пустой. Укажите IP или домен **VPS** (сервис SSH), куда кладёте `deploy/`, — не URL сайта и не vercel.app. См. docs/guides/DEPLOY_VERCEL_AND_VPS_RU.md"
             exit 1
           fi
           if [[ "$H" == *"://"* ]] || [[ "$H" == *"/"* ]] || [[ "$H" == *" "* ]]; then
-            echo "::error::HOST='…' похож на URL или содержит пробелы. Нужно только имя или IP, например \`203.0.113.10\` или \`server.example.com\` — без https:// и без пути. Деплой на Vercel этим workflow не выполняется (см. docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md)."
+            echo "::error::HOST='…' похож на URL. Нужно только `203.0.113.10` или `server.example.com` — без https://."
             exit 1
           fi
           if ! timeout 15 bash -c "exec 3<>/dev/tcp/${H}/${PORT}"; then
-            echo "::error::Нет TCP с GitHub runner до ${H}:${PORT}. Этот job подключается к **вашему серверу по SSH**, не к Vercel. Откройте порт SSH из интернета (или self-hosted runner в вашей сети), проверьте HOST/PORT и security group."
+            echo "::error::Нет TCP с runner до ${H}:${PORT}. Проверьте HOST/PORT и фаирвол. Это **не** подключение к Vercel."
             exit 1
           fi
           echo "OK: TCP ${H}:${PORT}"
 
-      - name: Preflight — ключ и passphrase
+      - name: Preflight — SSH-ключ и passphrase
         shell: bash
         env:
           KEY: ${{ secrets.SSH_PRIVATE_KEY }}
@@ -58,39 +54,30 @@ jobs:
           if ssh-keygen -yf ~/.ssh/gh_deploy_key -P "" &>/dev/null; then
             echo "OK: приватный ключ без passphrase."
           elif [[ -n "${PASS}" ]] && ssh-keygen -yf ~/.ssh/gh_deploy_key -P "${PASS}" &>/dev/null; then
-            echo "OK: ключ с passphrase, секрет SSH_KEY_PASSPHRASE подходит."
+            echo "OK: passphrase подходит."
           else
-            echo "::error::Не удалось расшифровать SSH_PRIVATE_KEY. Если ключ создавался с паролем — добавьте репозиторный секрет SSH_KEY_PASSPHRASE (точно как при ssh-add). Иначе сгенерируйте ключ только для CI без пароля: ssh-keygen -t ed25519 -N \"\" -f deploy_ci && cat deploy_ci (в секрет SSH_PRIVATE_KEY), публичную часть — в authorized_keys на сервере."
+            echo "::error::Не удалось расшифровать SSH_PRIVATE_KEY. См. docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md"
             exit 1
           fi
           rm -f ~/.ssh/gh_deploy_key
 
-      - name: Pack repository for deploy
+      - name: Preflight — путь к deploy на сервере
+        shell: bash
+        env:
+          D: ${{ secrets.VPS_DEPLOY_PATH }}
         run: |
-          # Архив вне $GITHUB_WORKSPACE — иначе tar читает растущий deploy.tar.gz и падает с "file changed as we read it"
-          tar -czf /tmp/deploy.tar.gz \
-            --exclude='./.git' \
-            --exclude='./premier-design/node_modules' \
-            --exclude='./premier-design/.next' \
-            --exclude='./premier-design/coverage' \
-            --exclude='./premier-design/storybook-static' \
-            .
+          if [[ -z "${D// }" ]]; then
+            echo "::error::Задайте репозиторный секрет VPS_DEPLOY_PATH — **абсолютный** путь к папке с docker-compose на VPS, например /srv/web/deploy (каталог deploy/ из репо)."
+            exit 1
+          fi
+          echo "OK: VPS_DEPLOY_PATH задан (значение не печатаем)."
 
-      - name: Copy bundle to server
-        uses: appleboy/scp-action@v1.0.0
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}
-          port: ${{ secrets.PORT }}
-          source: /tmp/deploy.tar.gz
-          target: /var/www/pd-app
-          timeout: 5m
-          command_timeout: 30m
-
-      - name: Extract and restart stack
+      - name: Удалённо — pull образа и перезапуск
         uses: appleboy/ssh-action@v1.2.0
+        env:
+          VPS_DEPLOY_PATH: ${{ secrets.VPS_DEPLOY_PATH }}
+          GHCR_PULL_TOKEN: ${{ secrets.GHCR_PULL_TOKEN }}
+          GHCR_USER: ${{ secrets.GHCR_USER }}
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -99,11 +86,16 @@ jobs:
           port: ${{ secrets.PORT }}
           timeout: 5m
           command_timeout: 30m
+          envs: VPS_DEPLOY_PATH,GHCR_PULL_TOKEN,GHCR_USER
           script: |
-            set -e
-            mkdir -p /var/www/pd-app
-            cd /var/www/pd-app
-            tar -xzf deploy.tar.gz
-            rm -f deploy.tar.gz
-            docker-compose down
-            docker-compose up -d --build
+            set -euo pipefail
+            cd "$VPS_DEPLOY_PATH"
+            if [ -n "${GHCR_PULL_TOKEN:-}" ] && [ -n "${GHCR_USER:-}" ]; then
+              echo "$GHCR_PULL_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
+            elif [ -n "${GHCR_PULL_TOKEN:-}" ] || [ -n "${GHCR_USER:-}" ]; then
+              echo "Задайте оба секрета GHCR_USER и GHCR_PULL_TOKEN (или оставьте оба пустыми для public-образа)" >&2
+              exit 1
+            fi
+            docker compose pull premium-design
+            docker compose up -d premium-design nginx
+            echo "OK: premium-design и nginx перезапущены."

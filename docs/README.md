@@ -54,6 +54,7 @@
 | [`guides/PERF_AND_SEO_CHECKLIST_RU.md`](guides/PERF_AND_SEO_CHECKLIST_RU.md) | Чеклист перед релизом, Lighthouse, бюджеты |
 | [`guides/YARN_PACKAGE_MANAGER_RU.md`](guides/YARN_PACKAGE_MANAGER_RU.md) | Только Yarn, `yarn audit` |
 | [`guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md`](guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) | CI/CD через GitHub Actions, SSH, секреты |
+| [`guides/DEPLOY_VERCEL_AND_VPS_RU.md`](guides/DEPLOY_VERCEL_AND_VPS_RU.md) | Vercel vs GHCR vs VPS: три пути выкладки, какие workflow и секреты |
 | [`guides/MARKETING_ANALYTICS_DASHBOARD_RU.md`](guides/MARKETING_ANALYTICS_DASHBOARD_RU.md) | События, KPI воронки заявок |
 
 ### Операции и инфраструктура — [`operations/`](operations/)

@@ -6,7 +6,7 @@
 
 ## Требования
 
-- Node.js `22.x` (см. `.nvmrc`)
+- Node.js `24.x` (см. `.nvmrc`)
 - [Yarn](https://yarnpkg.com/) Classic `1.22+` (как в CI: `yarn.lock` + `yarn install --frozen-lockfile`)
 - перед переустановкой зависимостей остановите `next dev` / `yarn dev`, иначе на Windows возможен `EPERM` при замене нативных бинарников в `node_modules` (в т.ч. `@next/swc-*`).
 - **`package-lock.json` не коммитим** — только `yarn.lock`; см. [`docs/guides/YARN_PACKAGE_MANAGER_RU.md`](../docs/guides/YARN_PACKAGE_MANAGER_RU.md).
@@ -105,6 +105,23 @@ Multi-site инфраструктура (`premium-design.pro` + `febcode.pro` н
 - конфигурация: [`../deploy/`](../deploy/) (`docker-compose.yml`, `nginx/`, certbot);
 - операционный гайд: [`../docs/operations/MULTISITE_VPS_DEPLOY_RU.md`](../docs/operations/MULTISITE_VPS_DEPLOY_RU.md);
 - предыдущий вариант через GitHub Actions (SCP+SSH): [`../docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md`](../docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md).
+
+Локальная сборка образа (из каталога приложения, где лежит `Dockerfile.prod`):
+
+```bash
+docker build -f Dockerfile.prod -t local/premium-design:dev .
+```
+
+### Диагностика медленной Docker-сборки (Windows / Docker Desktop)
+
+1. **Память движка.** Выполните `docker info` и найдите **Total Memory**. Для `next build` + проверки TypeScript разумно **не меньше ~4 GiB** у Docker (в репозитории уже отмечено, что шаг сборки Next может занимать порядка 2–3.5 GiB RAM). Если у движка **~2 GiB** (частый дефолт), сборка может идти **часами** из‑за нехватки памяти и thrashing.  
+   **Settings → Resources → Memory** в Docker Desktop — увеличьте лимит (и при необходимости **Swap**), перезапустите Docker.
+
+2. **Контекст сборки.** В каталоге приложения должен быть **`.dockerignore`**: без него в образ при `COPY . .` попадает локальный **`node_modules`** и **`.next`** — лишние сотни МБ и тысячи файлов в виртуализацию, что на том же Desktop заметно тормозит и копирование, и TypeScript.
+
+3. **Путь к проекту.** Файлы на `C:\Users\...` в Docker Desktop читаются через слой совместимости; при очень медленной сборке имеет смысл держать репозиторий во **файловой системе WSL2** (`\\wsl$\Ubuntu\home\...`) и собирать оттуда.
+
+4. **Проверка без Docker.** Если `yarn build` на хосте завершается за минуты, а в контейнере — нет, после пунктов 1–2 пересоберите образ.
 
 ## Лицензия
 

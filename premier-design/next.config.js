@@ -15,10 +15,11 @@ const connectSrcPolicy = isDevelopment ? "'self' https: http: ws: wss:" : "'self
 const imgSrcPolicy =
 	"'self' data: blob: https://www.google.com https://maps.gstatic.com https://maps.googleapis.com";
 
-// На HTTP нельзя слать HSTS и upgrade-insecure-requests — Chrome пытается HTTPS и ломает Lighthouse / next start.
-// Включаем только на Vercel или если явно задали env для своего HTTPS за прокси.
+// HSTS — только при реальном HTTPS (ниже). CSP `upgrade-insecure-requests` не используем: на HTTP (docker :8080 без TLS)
+// Chrome иначе запрашивает статику как https://… → ERR_SSL_PROTOCOL_ERROR. HTTPS на проде — редирект/TLS у nginx/Vercel.
 const isHttpsHardenedEnv =
-	process.env.VERCEL === '1' || process.env.ENABLE_HTTPS_SECURITY_HEADERS === 'true';
+	process.env.LOCAL_HTTP_STACK !== '1' &&
+	(process.env.VERCEL === '1' || process.env.ENABLE_HTTPS_SECURITY_HEADERS === 'true');
 
 const contentSecurityPolicy = [
 	"default-src 'self'",
@@ -32,7 +33,6 @@ const contentSecurityPolicy = [
 	`img-src ${imgSrcPolicy}`,
 	"font-src 'self' data:",
 	`connect-src ${connectSrcPolicy}`,
-	...(isHttpsHardenedEnv ? ['upgrade-insecure-requests'] : []),
 ].join('; ');
 
 const nextConfig = {

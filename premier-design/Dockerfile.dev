@@ -1,13 +1,14 @@
 # Dev-образ: контекст сборки — каталог приложения (`./premier-design` от корня репозитория).
-FROM node:20-alpine
+# См. Dockerfile.prod / .nvmrc — Node 24.
+FROM node:24-alpine
 
 RUN apk add --no-cache libc6-compat wget
 
 WORKDIR /app
 
 COPY package.json yarn.lock ./
-RUN npm install -g yarn@1.22.22 \
-	&& yarn install --frozen-lockfile --ignore-scripts
+# См. Dockerfile.prod — в базовом образе уже есть `yarn`
+RUN yarn install --frozen-lockfile --ignore-scripts
 
 COPY . .
 

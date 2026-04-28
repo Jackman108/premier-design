@@ -5,7 +5,7 @@
 ## Когда обязательна синхронизация
 
 - Изменение или добавление скриптов `check:*` / `test:*` / `lint` / `typecheck` в `premier-design/package.json`.
-- Правка workflow: `ci.yml`, `ci-trends.yml`, `e2e-extended.yml`, `security-high-weekly.yml`, `deploy.yml`.
+- Правка workflow: `ci.yml`, `ci-trends.yml`, `e2e-extended.yml`, `security-high-weekly.yml`, `deploy.yml`, `ghcr-premium-design.yml`.
 - Справочник [`docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../guides/SCRIPTS_AND_QUALITY_GATES_RU.md) — обновить **в той же задаче**, что и `package.json`.
 - Изменение **реестра рисков** (новый гейт, снятие/добавление риска).
 - Смена порогов: Lighthouse, SLA CI (`.ci-trends-14d.json` / `check-ci-sla.mjs`), SLO feedback, architecture allowlist, бюджет initial JS.

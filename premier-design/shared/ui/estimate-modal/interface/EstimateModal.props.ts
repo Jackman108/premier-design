@@ -1,6 +1,5 @@
-import {ChangeEvent} from "react";
-import {CostingCardProps} from "@shared/interface/CostingCard.props";
-
+import {type ChangeEvent} from 'react';
+import type {CostingCardProps} from '@shared/interface/CostingCard.props';
 export interface EstimateModalProps {
     onClose: () => void;
     card: CostingCardProps;

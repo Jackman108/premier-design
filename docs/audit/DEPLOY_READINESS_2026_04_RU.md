@@ -44,7 +44,7 @@
 ## 4. Безопасность и заголовки
 
 - CSP, `img-src`, `connect-src` — как в `next.config.js`; при подключении аналитики — отдельный PR с обновлением `script-src` (см. [0004](../adr/0004-csp-tightening-and-trusted-svg.md), [0009](../adr/0009-web-analytics-deferred.md)).
-- `Strict-Transport-Security` и `upgrade-insecure-requests` — только при HTTPS (`VERCEL=1` или `ENABLE_HTTPS_SECURITY_HEADERS=true`), иначе локальные проверки и Lighthouse ломаются.
+- `Strict-Transport-Security` — только при реальном HTTPS (`VERCEL=1` или `ENABLE_HTTPS_SECURITY_HEADERS=true`, не при `LOCAL_HTTP_STACK=1`). Директива CSP `upgrade-insecure-requests` из Next не отправляется (HTTPS обеспечивает прокси/TLS); на HTTP без TLS жёсткий режим ломает загрузку статики.
 
 ---
 

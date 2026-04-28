@@ -1,8 +1,8 @@
 # Деплой через GitHub Actions (SCP + SSH)
 
-Workflow: [`.github/workflows/deploy.yml`](../../.github/workflows/deploy.yml).
+Workflow: [`.github/workflows/deploy.yml`](../../.github/workflows/deploy.yml) (**Deploy premium-design to VPS**).
 
-**Сейчас:** автозапуск по `push` в `master` **отключён**, чтобы зелёная сборка шла через [CI](https://github.com) и Vercel без обязательного VPS. Деплой на свой сервер — только **вручную**: GitHub → **Actions** → **Deploy to Local Server** → **Run workflow**. Когда VPS будет готов — в `deploy.yml` раскомментируйте `push` / `branches` в секции `on:`.
+**Сейчас:** автозапуск **отключён** (`workflow_dispatch` только). На VPS деплой — **не** пакет исходников, а `docker compose pull` в каталоге `deploy/` (см. [`DEPLOY_VERCEL_AND_VPS_RU.md`](./DEPLOY_VERCEL_AND_VPS_RU.md), образ — [`ghcr-premium-design.yml`](../../.github/workflows/ghcr-premium-design.yml)). Нужен секрет **`VPS_DEPLOY_PATH`** (путь к `deploy/` на сервере). Когда проверите цепочку — можно раскомментировать `push` в `deploy.yml`. **Vercel** этот workflow **не** трогает.
 
 ## Vercel и этот workflow — разные вещи
 
@@ -22,9 +22,10 @@ Workflow: [`.github/workflows/deploy.yml`](../../.github/workflows/deploy.yml).
 
 ## Что делает workflow
 
-1. Упаковывает репозиторий в **`/tmp/deploy.tar.gz`** (не в корень репозитория — иначе `tar` при упаковке `.` захватывает растущий архив и падает с `file changed as we read it`), с исключениями `.git`, `node_modules`, `.next`, `coverage`, `storybook-static`.
-2. Копирует архив на сервер через **`appleboy/scp-action@v1.0.0`**.
-3. По **SSH** распаковывает архив в каталог приложения и выполняет **`docker-compose`** (или замените на `docker compose` под вашу ОС).
+1. **Preflight:** TCP до `HOST:PORT` SSH, проверка ключа, наличие **`VPS_DEPLOY_PATH`**.
+2. По **SSH** на сервере: `cd "$VPS_DEPLOY_PATH"` → при необходимости `docker login ghcr.io` (секреты `GHCR_USER` + `GHCR_PULL_TOKEN` для private-образа) → **`docker compose pull premium-design`** → **`docker compose up -d premium-design nginx`**.
+
+Сборка Docker-образа — отдельный workflow [**ghcr-premium-design.yml**](../../.github/workflows/ghcr-premium-design.yml), не в этом job.
 
 ## Пошагово: SSH-ключ с паролем (passphrase) для GitHub Actions
 
@@ -132,12 +133,9 @@ ssh -i .\github_deploy_pd -o IdentitiesOnly=yes USER@HOST "echo OK"
 
 ### Шаг 5. Проверка в GitHub Actions
 
-1. Закоммитьте любое изменение и запушьте в ветку **`master`** (так настроен `on:` в `deploy.yml`), либо запустите workflow вручную, если добавите `workflow_dispatch`.
-2. Вкладка **Actions** → откройте последний запуск **Deploy to Local Server**.
-3. Смотрите шаги:
-   - **Preflight — TCP до SSH-порта** — есть ли сеть до `HOST:PORT` с runner GitHub.
-   - **Preflight — ключ и passphrase** — расшифровывается ли ключ (совпадает ли `SSH_KEY_PASSPHRASE` с ключом в `SSH_PRIVATE_KEY`).
-   - **Copy bundle to server** — уже `appleboy/scp-action`.
+1. Сначала при успешной сборке образа: workflow [**ghcr-premium-design**](../../.github/workflows/ghcr-premium-design.yml) (или `workflow_dispatch` вручную), затем **Deploy premium-design to VPS** (`deploy.yml`, тоже вручную, пока нет `push` в `on:`).
+2. Вкладка **Actions** → **Deploy premium-design to VPS (SSH, docker compose pull)**.
+3. Смотрите шаги: **Preflight (TCP, ключ, VPS_DEPLOY_PATH)** — затем **Удалённо — pull** (`docker compose pull / up` на сервере).
 
 Если preflight **«ключ и passphrase»** падает — заново вставьте `SSH_PRIVATE_KEY` и `SSH_KEY_PASSPHRASE` (частая ошибка: лишний пробел, другой пароль, обрезанный ключ при копировании).
 
@@ -163,6 +161,9 @@ ssh -i .\github_deploy_pd -o IdentitiesOnly=yes USER@HOST "echo OK"
 | `SSH_PRIVATE_KEY` | да | Содержимое **приватного** ключа (PEM), целиком включая `BEGIN/END` |
 | `SSH_KEY_PASSPHRASE` | если ключ с паролем | Фраза от ключа. Если ключа без пароля — создайте пустой секрет или оставьте пустым в UI (см. ниже) |
 | `PORT` | рекомендуется | Порт SSH, чаще всего **`22`**. Пустое значение может ломать парсер — задайте явно |
+| `VPS_DEPLOY_PATH` | **да** (для deploy.yml) | Абсолютный путь к каталогу `deploy/` на сервере (там `docker-compose.yml` и `nginx/`) |
+| `GHCR_USER` | нет* | Для private-пакета GHCR: логин GitHub |
+| `GHCR_PULL_TOKEN` | нет* | PAT с `read:packages` (или `write:packages`); для **public**-образа оба пусты |
 
 Раньше ошибка **`ssh: this private key is passphrase protected`** означала: в `SSH_PRIVATE_KEY` лежит ключ с passphrase, а в action **не передавался** параметр `passphrase`. Сейчас в workflow передаётся `passphrase: ${{ secrets.SSH_KEY_PASSPHRASE }}`.
 
@@ -180,7 +181,7 @@ ssh -i .\github_deploy_pd -o IdentitiesOnly=yes USER@HOST "echo OK"
 1. Добавьте секрет **`SSH_KEY_PASSPHRASE`** (точный пароль от этого приватного ключа) **или**
 2. Создайте **отдельный** ключ **без** passphrase только для деплоя и положите приватную часть в **`SSH_PRIVATE_KEY`**, публичную — в `~/.ssh/authorized_keys` на сервере для пользователя из **`USERNAME`**.
 
-В workflow добавлены шаги **Preflight**: сначала проверка TCP до `HOST:PORT`, затем проверка, что ключ реально расшифровывается (как у `ssh-keygen`). Если preflight падает — сообщение в логе подскажет причину раньше, чем `appleboy/scp-action`.
+В workflow **Preflight** проверяет TCP, ключ и **`VPS_DEPLOY_PATH`**, прежде чем выполнить SSH-шаг.
 
 ## Ошибка `dial tcp … i/o timeout`
 
@@ -191,7 +192,7 @@ ssh -i .\github_deploy_pd -o IdentitiesOnly=yes USER@HOST "echo OK"
    - или использовать **self-hosted runner** в той же сети, что и сервер;
    - или VPN / bastion / jump host (тогда в action нужны `proxy_*` — см. документацию `appleboy/scp-action`).
 2. Неверный **`HOST`** или **`PORT`** (не тот порт SSH).
-3. Слишком долгая передача — уменьшен архив за счёт `tar --exclude`; при необходимости увеличьте в workflow `command_timeout` у шагов SCP/SSH.
+3. `docker compose pull` долго качает слои — при необходимости увеличьте `command_timeout` у шага `appleboy/ssh-action` в `deploy.yml`.
 
 ## Проверка вручную с машины разработчика
 
@@ -203,11 +204,10 @@ ssh -i /path/to/key -p 22 USER@HOST "echo ok"
 
 ## Имя команды Docker
 
-На сервере в скрипте используется **`docker-compose`**. Если установлен только Docker Compose V2, замените в workflow на:
+В [`deploy.yml`](../../.github/workflows/deploy.yml) используется **`docker compose`** (плагин v2). На сервере должен быть Docker Engine + Compose v2.
 
 ```bash
-docker compose down
-docker compose up -d --build
+docker compose version
 ```
 
 ## Устаревшие пути к документам
