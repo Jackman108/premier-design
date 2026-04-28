@@ -10,7 +10,7 @@
 - Изменение **реестра рисков** (новый гейт, снятие/добавление риска).
 - Смена порогов: Lighthouse, SLA CI (`.ci-trends-14d.json` / `check-ci-sla.mjs`), SLO feedback, architecture allowlist, бюджет initial JS.
 - Изменение `lint-staged` или `.husky/*` (pre‑commit / pre‑push).
-- Правка инфраструктуры `deploy/` (compose, nginx, certbot) — обязательно обновить
+- Правка инфраструктуры в репозитории **`lendings-vps-infra`** (compose, nginx, certbot) — обязательно обновить `docs/QUALITY_GATES_SYNC_INFRA_RU.md` там и ссылки в этом репозитории (`deploy/README.md`, `docs/operations/MULTISITE_VPS_DEPLOY_RU.md`).
   [`docs/operations/MULTISITE_VPS_DEPLOY_RU.md`](../operations/MULTISITE_VPS_DEPLOY_RU.md)
   и `premier-design/CHANGELOG.md`.
 - Правка `LICENSE` / `LICENSE_RU.md` / `package.json.license` — обновить ADR

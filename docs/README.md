@@ -1,6 +1,10 @@
 # Документация Premier Design
 
+**Обновлено**: 29.04.2026
+
 Материалы **вне кода приложения** (`premier-design/` — Next.js). Этот файл — **карта** документации; нормы и правила не дублируются здесь, а лежат в специализированных файлах ниже.
+
+Инфраструктура VPS и Docker (мультисайт с **febcode**): отдельный репозиторий **`lendings-vps-infra`** — см. [`deploy/README.md`](../deploy/README.md) (указатель) и [`operations/MULTISITE_VPS_DEPLOY_RU.md`](operations/MULTISITE_VPS_DEPLOY_RU.md). Кросс-репозиторное выравнивание — [`audit/CROSS_REPO_ALIGNMENT_RU.md`](audit/CROSS_REPO_ALIGNMENT_RU.md).
 
 ## Главная страница для разработчика
 
@@ -28,6 +32,7 @@
 | [`audit/README.md`](audit/README.md) | Индекс папки `audit/` |
 | [`audit/PROJECT_AUDIT_2026_04_RU.md`](audit/PROJECT_AUDIT_2026_04_RU.md) | Закрытый сводный аудит, FSD‑таблица отклонений, история закрытых направлений UI |
 | [`audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md) | Открытый бэклог улучшений и Definition of Done; **источник плана compliance** |
+| [`audit/CROSS_REPO_ALIGNMENT_RU.md`](audit/CROSS_REPO_ALIGNMENT_RU.md) | Список правок для выравнивания с репозиторием Feb Code (отдельный git); пути после переноса клонов |
 | [`audit/DEPLOY_READINESS_2026_04_RU.md`](audit/DEPLOY_READINESS_2026_04_RU.md) | Финальный чеклист деплоя |
 | [`audit/PROJECT_RISK_REGISTER_2026_04_RU.md`](audit/PROJECT_RISK_REGISTER_2026_04_RU.md) | Реестр текущих рисков и митигаций |
 | [`audit/QUALITY_GATES_SYNC_RU.md`](audit/QUALITY_GATES_SYNC_RU.md) | RISK‑08: чеклист синхронизации `CHANGELOG` / workflow / гейтов |
@@ -100,7 +105,7 @@
 | Скрипты `package.json` | `premier-design/package.json` (поле `scripts`) | `guides/SCRIPTS_AND_QUALITY_GATES_RU.md`, `audit/QUALITY_GATES_SYNC_RU.md`, `audit/DEPLOY_READINESS_2026_04_RU.md`, `premier-design/README.md` |
 | Реквизиты ИП и публичные контакты | `premier-design/shared/constants/company.ts` (`SITE_OPERATOR`) | `LegalRequisites`, `Phone`, `WorkHours`, `Address`, `generateStructuredData`, юр. тексты в `features/documents-content/*` |
 | URL соцсетей (Telegram, VK, Instagram) | `premier-design/shared/constants/company.ts` (`SITE_SOCIAL` + `structuredData.sameAs`) | `shared/ui/social-icons/SocialIcons` — без литералов ссылок в UI |
-| Multi-site VPS инфраструктура | `deploy/` (`docker-compose.yml`, `nginx/`) | `docs/operations/MULTISITE_VPS_DEPLOY_RU.md`, `guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md` |
+| Multi-site VPS инфраструктура | Репозиторий **`lendings-vps-infra`** (compose и nginx в корне) | `docs/operations/MULTISITE_VPS_DEPLOY_RU.md`, `deploy/README.md`, `guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md` |
 | Лицензия и IP | корневые `LICENSE` / `LICENSE_RU.md` + `adr/0011-proprietary-license.md` | `docs/README.md`, `premier-design/README.md` |
 | Архитектурные нормы (слои/use‑case/SOLID) | `mempalace/rules/01, 08, 09` | `.cursor/rules/agent-mempalace-bootstrap.mdc`, `DEVELOPMENT_PLAYBOOK_RU.md`, `guides/CODE_STRUCTURE_AND_NAMING_RU.md` |
 | Производительность | `mempalace/rules/04` + `guides/PERF_AND_SEO_CHECKLIST_RU.md` | `audit/DEPLOY_READINESS_2026_04_RU.md`, ADR `0009` |

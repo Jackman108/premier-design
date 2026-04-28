@@ -4,6 +4,7 @@
 |----------|------------|
 | [PROJECT_AUDIT_2026_04_RU.md](PROJECT_AUDIT_2026_04_RU.md) | **Индекс аудита** (закрытый сводный разбор), **таблица отклонений от строгого FSD**, **направления улучшения дизайна/вёрстки**; история закрытых пунктов — в `CHANGELOG.md`. |
 | [AUDIT_AND_IMPROVEMENT_PLAN_RU.md](AUDIT_AND_IMPROVEMENT_PLAN_RU.md) | **Открытый бэклог** улучшений (только нереализованные) и **Definition of Done**; закрытые пункты — в `premier-design/CHANGELOG.md`. |
+| [CROSS_REPO_ALIGNMENT_RU.md](CROSS_REPO_ALIGNMENT_RU.md) | Выравнивание с репозиторием Feb Code; соглашения по путям (`premier-design/` от корня репозитория). |
 | [DEPLOY_READINESS_2026_04_RU.md](DEPLOY_READINESS_2026_04_RU.md) | **Финальный чеклист перед деплоем** и улучшения для продакшена услуг (техника + эксплуатация + маркетинг-обвязка). |
 | [PROJECT_RISK_REGISTER_2026_04_RU.md](PROJECT_RISK_REGISTER_2026_04_RU.md) | Реестр проектных рисков и планов митигации для CI/архитектуры/эксплуатации. |
 | [QUALITY_GATES_SYNC_RU.md](QUALITY_GATES_SYNC_RU.md) | RISK-08: когда обновлять `CHANGELOG` и реестр при смене гейтов. |

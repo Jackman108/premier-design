@@ -39,7 +39,7 @@ alwaysApply: true
   `premier-design/shared/constants/company.ts` (`SITE_OPERATOR`); потребители (`LegalRequisites`,
   `Phone`, `WorkHours`, `Address`, `generateStructuredData`, юр.тексты в
   `features/documents-content/*`) **обязаны** брать значения отсюда.
-- **VPS-инфраструктура (Docker + nginx + Let's Encrypt)** — `deploy/`
+- **VPS-инфраструктура (Docker + nginx + Let's Encrypt)** — отдельный репозиторий **`lendings-vps-infra`**; в этом репо — [`deploy/README.md`](../../deploy/README.md)
   и операционный гайд `docs/operations/MULTISITE_VPS_DEPLOY_RU.md`. Принцип: образы из GHCR,
   репозитории и локальные папки сайтов не смешиваются.
 - **Лицензия и интеллектуальная собственность** — `LICENSE` (EN), `LICENSE_RU.md` (RU),

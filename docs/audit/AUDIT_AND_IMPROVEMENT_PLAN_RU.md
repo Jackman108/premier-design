@@ -1,6 +1,6 @@
 # Открытый план аудита и улучшений (compliance с новой документацией)
 
-Связанные документы: [`PROJECT_AUDIT_2026_04_RU.md`](PROJECT_AUDIT_2026_04_RU.md) · [`DEPLOY_READINESS_2026_04_RU.md`](DEPLOY_READINESS_2026_04_RU.md) · [`QUALITY_GATES_SYNC_RU.md`](QUALITY_GATES_SYNC_RU.md) · [`PROJECT_RISK_REGISTER_2026_04_RU.md`](PROJECT_RISK_REGISTER_2026_04_RU.md) · [`../../premier-design/CHANGELOG.md`](../../premier-design/CHANGELOG.md).
+Связанные документы: [`PROJECT_AUDIT_2026_04_RU.md`](PROJECT_AUDIT_2026_04_RU.md) · [`DEPLOY_READINESS_2026_04_RU.md`](DEPLOY_READINESS_2026_04_RU.md) · [`QUALITY_GATES_SYNC_RU.md`](QUALITY_GATES_SYNC_RU.md) · [`PROJECT_RISK_REGISTER_2026_04_RU.md`](PROJECT_RISK_REGISTER_2026_04_RU.md) · [`CROSS_REPO_ALIGNMENT_RU.md`](CROSS_REPO_ALIGNMENT_RU.md) · [`../../premier-design/CHANGELOG.md`](../../premier-design/CHANGELOG.md).
 
 > Документ — **исполняемый бэклог**: только открытые пункты. После закрытия — запись в `CHANGELOG.md`, перенос в «Закрытые направления» в `PROJECT_AUDIT_2026_04_RU.md` или вычеркивание здесь. Исторические выполненные пункты в этот файл не возвращаются.
 

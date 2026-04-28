@@ -1,5 +1,5 @@
-# Выкладка на **свой** VPS: только `docker compose pull` + `up` в каталоге `deploy/`
-# (см. deploy/docker-compose.yml). Исходники и сборка в образ — в GHCR (ghcr-premium-design.yml), не в этом job.
+# Выкладка на **свой** VPS: только `docker compose pull` + `up` в каталоге infra-репозитория lendings-vps-infra
+# (корень клона: docker-compose.yml). Исходники и сборка в образ — в GHCR (ghcr-premium-design.yml), не в этом job.
 # Деплой **на Vercel** здесь не выполняется: сайт в Vercel — через Git-интеграцию в панели Vercel.
 # См. docs/guides/DEPLOY_VERCEL_AND_VPS_RU.md
 
@@ -28,7 +28,7 @@ jobs:
           set -euo pipefail
           PORT="${P:-22}"
           if [[ -z "${H// }" ]]; then
-            echo "::error::Секрет HOST пустой. Укажите IP или домен **VPS** (сервис SSH), куда кладёте `deploy/`, — не URL сайта и не vercel.app. См. docs/guides/DEPLOY_VERCEL_AND_VPS_RU.md"
+            echo "::error::Секрет HOST пустой. Укажите IP или домен **VPS** (сервис SSH), куда клонирован **`lendings-vps-infra`**, — не URL сайта и не vercel.app. См. docs/guides/DEPLOY_VERCEL_AND_VPS_RU.md"
             exit 1
           fi
           if [[ "$H" == *"://"* ]] || [[ "$H" == *"/"* ]] || [[ "$H" == *" "* ]]; then
@@ -67,7 +67,7 @@ jobs:
           D: ${{ secrets.VPS_DEPLOY_PATH }}
         run: |
           if [[ -z "${D// }" ]]; then
-            echo "::error::Задайте репозиторный секрет VPS_DEPLOY_PATH — **абсолютный** путь к папке с docker-compose на VPS, например /srv/web/deploy (каталог deploy/ из репо)."
+            echo "::error::Задайте репозиторный секрет VPS_DEPLOY_PATH — **абсолютный** путь к **корню клона lendings-vps-infra** на VPS (где docker-compose.yml и nginx/), например /srv/lendings-vps-infra."
             exit 1
           fi
           echo "OK: VPS_DEPLOY_PATH задан (значение не печатаем)."

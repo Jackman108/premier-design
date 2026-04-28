@@ -5,19 +5,11 @@
 
 ## [Unreleased]
 
-### Changed
-
-- **CLS (Lighthouse):** убраны искусственная задержка `setTimeout(100)` и флаг `isReady` в `useShareBanner`; промо-баннер (`ShareBanner`) переведён на один слот с `aspect-ratio` и `next/image` `fill`, чтобы смена desktop/mobile не меняла высоту ряда; для шрифтов Google — `adjustFontFallback` в `lib/interFont.ts`.
-- **CSP:** директива `upgrade-insecure-requests` убрана из `Content-Security-Policy` в `next.config.js` — на HTTP без TLS (локальный `deploy/docker-compose.dev.yml`, `:8080`) Chrome иначе запрашивал `/_next/*` как `https://` → `ERR_SSL_PROTOCOL_ERROR`. Ужесточение HTTPS остаётся за TLS-прокси (nginx/Vercel) и заголовком `Strict-Transport-Security` при включённом hardened-режиме.
-- **Соцсети — один источник:** `SITE_SOCIAL` в `shared/constants/company.ts`; `SocialIcons` и `structuredData.sameAs` читают оттуда (Telegram / VK / Instagram).
-- **EstimateModal:** фиксированы `max-height` контейнера, левый блок с коллапсами со скроллом слева, правый с результатом — стабильная зона, без скачков при раскрытии; шапка/подвал модалки `flex-shrink: 0`.
-- **Deploy (VPS):** сервис/контейнер Docker для сайта переименованы в `premium-design`, `PREMIUM_DESIGN_IMAGE` в `deploy/.env.example`, `secrets/premium-design.env`, nginx `upstream` → `premium-design:3000` (см. `deploy/README.md`).
-- **Домен и реквизиты:** production-origin и nginx — `https://premium-design.pro` (nginx: `deploy/nginx/conf.d/premium-design.pro.conf`, dev — `.../dev/premium-design.pro.dev.conf`). В `SITE_OPERATOR.legalEntity.unp` указан `491455920`. Футер: колонка реквизитов и блок «Разработано» прижаты к низу грида, копирайт с `padding-bottom` в запас плавающей панели, кредит — по центру в правой колонке; на мобилке — стек с разделителями, реквизиты с сеткой подпись/значение.
-- **Документация процесса:** `docs/README.md`, `.cursor/rules/agent-mempalace-bootstrap.mdc`, `agent-quality-process.mdc`, `audit/QUALITY_GATES_SYNC_RU.md`, `audit/DEPLOY_READINESS_2026_04_RU.md`, `guides/PERF_AND_SEO_CHECKLIST_RU.md` — таблица «один источник правды», описание CSP/HSTS и workflow GHCR приведены к текущей схеме.
-- **Docker:** `premier-design/.dockerignore`; образ CI — [`../.github/workflows/ghcr-premium-design.yml`](../.github/workflows/ghcr-premium-design.yml); dev: `http://localhost:8080` отдаёт HTML-лендинг со ссылками на оба сайта (`deploy/nginx/dev-static/localhost.html`, volume в `docker-compose.dev.yml`).
-
 ### Added
 
+- **Инфраструктура VPS:** выделен отдельный репозиторий **`lendings-vps-infra`** (`docker-compose*.yml`, `nginx/`, `secrets/*.env.example`, `docs/`, `.cursor/rules`); выполнен `git init`. Каталог [`deploy/`](../deploy/) в этом репозитории заменён на **указатель** — compose/nginx на сервере ведутся только в infra-репо; локальные `deploy/secrets/*.env` при необходимости перенести вручную.
+- **Документация (deploy):** ранее в `deploy/README.md` — материалы перенесены в **`lendings-vps-infra`**; в этом репо остаётся указатель и миграция с секретов.
+- **Документация:** `docs/README.md` — ссылки на `deploy/README.md` и `audit/CROSS_REPO_ALIGNMENT_RU.md`; переработан `docs/audit/CROSS_REPO_ALIGNMENT_RU.md` (эталоны обоих репо, матрица унификации, ссылка на `febcode/docs/cross-repo-alignment-plan.md`, пути после переноса клонов); записи в `docs/README.md` и `docs/audit/README.md`.
 - **Юридическое соответствие (РБ Постановление Совмина №31):** в `shared/constants/company.ts`
   расширен `SITE_OPERATOR` до полноценного **единого источника правды** для реквизитов ИП —
   добавлены `legalEntity` (ФИО, УНП, дата/орган регистрации; неподтверждённые поля = `null`,
@@ -36,6 +28,17 @@
   (proprietary, EN) и [`LICENSE_RU.md`](../LICENSE_RU.md) (RU, преимущество для законодательства РБ).
   Принят ADR [`0011-proprietary-license.md`](../docs/adr/0011-proprietary-license.md). В `package.json`
   поле `license` → `SEE LICENSE IN ../LICENSE`, добавлен `author`.
+
+### Changed
+
+- **CLS (Lighthouse):** убраны искусственная задержка `setTimeout(100)` и флаг `isReady` в `useShareBanner`; промо-баннер (`ShareBanner`) переведён на один слот с `aspect-ratio` и `next/image` `fill`, чтобы смена desktop/mobile не меняла высоту ряда; для шрифтов Google — `adjustFontFallback` в `lib/interFont.ts`.
+- **CSP:** директива `upgrade-insecure-requests` убрана из `Content-Security-Policy` в `next.config.js` — на HTTP без TLS (локальный стек в **`lendings-vps-infra`**: `docker-compose.dev.yml`, `:8080`) Chrome иначе запрашивал `/_next/*` как `https://` → `ERR_SSL_PROTOCOL_ERROR`. Ужесточение HTTPS остаётся за TLS-прокси (nginx/Vercel) и заголовком `Strict-Transport-Security` при включённом hardened-режиме.
+- **Соцсети — один источник:** `SITE_SOCIAL` в `shared/constants/company.ts`; `SocialIcons` и `structuredData.sameAs` читают оттуда (Telegram / VK / Instagram).
+- **EstimateModal:** фиксированы `max-height` контейнера, левый блок с коллапсами со скроллом слева, правый с результатом — стабильная зона, без скачков при раскрытии; шапка/подвал модалки `flex-shrink: 0`.
+- **Deploy (VPS):** сервис/контейнер Docker для сайта переименованы в `premium-design`, `PREMIUM_DESIGN_IMAGE` в `deploy/.env.example`, `secrets/premium-design.env`, nginx `upstream` → `premium-design:3000` (см. `deploy/README.md`).
+- **Домен и реквизиты:** production-origin и nginx — `https://premium-design.pro` (конфиги nginx в **`lendings-vps-infra`**: `nginx/conf.d/premium-design.pro.conf`, dev — `nginx/conf.d/dev/premium-design.pro.dev.conf`). В `SITE_OPERATOR.legalEntity.unp` указан `491455920`. Футер: колонка реквизитов и блок «Разработано» прижаты к низу грида, копирайт с `padding-bottom` в запас плавающей панели, кредит — по центру в правой колонке; на мобилке — стек с разделителями, реквизиты с сеткой подпись/значение.
+- **Документация процесса:** `docs/README.md`, `.cursor/rules/agent-mempalace-bootstrap.mdc`, `agent-quality-process.mdc`, `audit/QUALITY_GATES_SYNC_RU.md`, `audit/DEPLOY_READINESS_2026_04_RU.md`, `guides/PERF_AND_SEO_CHECKLIST_RU.md` — таблица «один источник правды», описание CSP/HSTS и workflow GHCR приведены к текущей схеме.
+- **Docker:** `premier-design/.dockerignore`; образ CI — [`../.github/workflows/ghcr-premium-design.yml`](../.github/workflows/ghcr-premium-design.yml); dev: `http://localhost:8080` отдаёт HTML-лендинг со ссылками на оба сайта (`lendings-vps-infra/nginx/dev-static/localhost.html`, volume в `lendings-vps-infra/docker-compose.dev.yml`).
 
 ### Removed
 

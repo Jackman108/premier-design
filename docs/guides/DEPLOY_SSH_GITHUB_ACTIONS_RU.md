@@ -2,7 +2,7 @@
 
 Workflow: [`.github/workflows/deploy.yml`](../../.github/workflows/deploy.yml) (**Deploy premium-design to VPS**).
 
-**Сейчас:** автозапуск **отключён** (`workflow_dispatch` только). На VPS деплой — **не** пакет исходников, а `docker compose pull` в каталоге `deploy/` (см. [`DEPLOY_VERCEL_AND_VPS_RU.md`](./DEPLOY_VERCEL_AND_VPS_RU.md), образ — [`ghcr-premium-design.yml`](../../.github/workflows/ghcr-premium-design.yml)). Нужен секрет **`VPS_DEPLOY_PATH`** (путь к `deploy/` на сервере). Когда проверите цепочку — можно раскомментировать `push` в `deploy.yml`. **Vercel** этот workflow **не** трогает.
+**Сейчас:** автозапуск **отключён** (`workflow_dispatch` только). На VPS деплой — **не** пакет исходников, а `docker compose pull` в **корне клона репозитория `lendings-vps-infra`** (см. [`DEPLOY_VERCEL_AND_VPS_RU.md`](./DEPLOY_VERCEL_AND_VPS_RU.md), образ — [`ghcr-premium-design.yml`](../../.github/workflows/ghcr-premium-design.yml)). Нужен секрет **`VPS_DEPLOY_PATH`** (абсолютный путь к корню **`lendings-vps-infra`** на сервере). Когда проверите цепочку — можно раскомментировать `push` в `deploy.yml`. **Vercel** этот workflow **не** трогает.
 
 ## Vercel и этот workflow — разные вещи
 
@@ -161,7 +161,7 @@ ssh -i .\github_deploy_pd -o IdentitiesOnly=yes USER@HOST "echo OK"
 | `SSH_PRIVATE_KEY` | да | Содержимое **приватного** ключа (PEM), целиком включая `BEGIN/END` |
 | `SSH_KEY_PASSPHRASE` | если ключ с паролем | Фраза от ключа. Если ключа без пароля — создайте пустой секрет или оставьте пустым в UI (см. ниже) |
 | `PORT` | рекомендуется | Порт SSH, чаще всего **`22`**. Пустое значение может ломать парсер — задайте явно |
-| `VPS_DEPLOY_PATH` | **да** (для deploy.yml) | Абсолютный путь к каталогу `deploy/` на сервере (там `docker-compose.yml` и `nginx/`) |
+| `VPS_DEPLOY_PATH` | **да** (для deploy.yml) | Абсолютный путь к **корню клона `lendings-vps-infra`** на сервере (`docker-compose.yml` и `nginx/` в корне) |
 | `GHCR_USER` | нет* | Для private-пакета GHCR: логин GitHub |
 | `GHCR_PULL_TOKEN` | нет* | PAT с `read:packages` (или `write:packages`); для **public**-образа оба пусты |
 

@@ -1,4 +1,4 @@
-# Сборка `premier-design/Dockerfile.prod` и публикация в GHCR — основа для VPS (deploy/docker-compose.yml).
+# Сборка `premier-design/Dockerfile.prod` и публикация в GHCR — основа для VPS (репозиторий lendings-vps-infra: docker-compose.yml).
 # Vercel этот workflow не трогает: сайт на Vercel собирает их облако по пушу (см. docs/guides/DEPLOY_VERCEL_AND_VPS_RU.md).
 
 name: Build & push premium-design image (GHCR)

@@ -2,7 +2,7 @@
 
 Сайт услуг по ремонту и дизайну интерьера на `Next.js`.
 
-**Имена в репо:** этот проект в git лежит в каталоге **`premier-design/`** (так в CI и Husky). В `package.json` имя пакета — `premium-design`. В **`deploy/docker-compose.yml`** сервис и контейнер сайта называются **`premium-design`** (образ в GHCR рекомендуется `…/premium-design`); это не связано с именем папки в клоне.
+**Имена в репо:** этот проект в git лежит в каталоге **`premier-design/`** (так в CI и Husky). В `package.json` имя пакета — `premium-design`. В Docker Compose репозитория **`lendings-vps-infra`** сервис и контейнер сайта называются **`premium-design`** (образ в GHCR рекомендуется `…/premium-design`); это не связано с именем папки в клоне.
 
 ## Требования
 
@@ -102,9 +102,10 @@ Production-образ (`Dockerfile.prod`) собирает приложение 
 Образ публикуется в **GHCR** через CI (см. workflow в `.github/workflows/`). На VPS он только pull-ится — исходники приложения на сервер не клонируются.
 
 Multi-site инфраструктура (`premium-design.pro` + `febcode.pro` на одном VPS):
-- конфигурация: [`../deploy/`](../deploy/) (`docker-compose.yml`, `nginx/`, certbot);
+- отдельный репозиторий **`lendings-vps-infra`**: `docker-compose.yml`, `nginx/`, certbot в **корне** клона;
+- указатель из этого репо: [`../deploy/README.md`](../deploy/README.md);
 - операционный гайд: [`../docs/operations/MULTISITE_VPS_DEPLOY_RU.md`](../docs/operations/MULTISITE_VPS_DEPLOY_RU.md);
-- предыдущий вариант через GitHub Actions (SCP+SSH): [`../docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md`](../docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md).
+- деплой через GitHub Actions (SSH + `docker compose pull`): [`../docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md`](../docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md).
 
 Локальная сборка образа (из каталога приложения, где лежит `Dockerfile.prod`):
 
