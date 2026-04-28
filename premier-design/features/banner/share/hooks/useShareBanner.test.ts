@@ -1,26 +1,15 @@
 /** @jest-environment jsdom */
-import {act, renderHook} from '@testing-library/react';
+import {act, renderHook, waitFor} from '@testing-library/react';
 import {useShareBanner} from './useShareBanner';
 
 describe('useShareBanner', () => {
 	beforeEach(() => {
 		localStorage.clear();
-		jest.useFakeTimers();
 	});
 
-	afterEach(() => {
-		jest.useRealTimers();
-	});
-
-	it('marks banner ready and allows closing', () => {
+	it('starts open and allows closing', () => {
 		const {result} = renderHook(() => useShareBanner());
-		expect(result.current.isReady).toBe(false);
 		expect(result.current.isClosed).toBe(false);
-
-		act(() => {
-			jest.advanceTimersByTime(100);
-		});
-		expect(result.current.isReady).toBe(true);
 
 		act(() => {
 			result.current.handleClose();
@@ -29,14 +18,12 @@ describe('useShareBanner', () => {
 		expect(localStorage.getItem('shareBannerClosed')).toBe('true');
 	});
 
-	it('reads closed state from localStorage', () => {
+	it('reads closed state from localStorage', async () => {
 		localStorage.setItem('shareBannerClosed', 'true');
 		const {result} = renderHook(() => useShareBanner());
 
-		act(() => {
-			queueMicrotask(() => undefined);
-			jest.advanceTimersByTime(0);
+		await waitFor(() => {
+			expect(result.current.isClosed).toBe(true);
 		});
-		expect(result.current.isClosed).toBe(true);
 	});
 });

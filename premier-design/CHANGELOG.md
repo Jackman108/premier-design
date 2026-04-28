@@ -7,6 +7,7 @@
 
 ### Changed
 
+- **CLS (Lighthouse):** убраны искусственная задержка `setTimeout(100)` и флаг `isReady` в `useShareBanner` — промо-баннер больше не появляется после первого кадра и не даёт крупный layout shift в CI (`PERF_BUDGET_CLS`). Для шрифтов Google включён `adjustFontFallback` в `lib/interFont.ts`.
 - **CSP:** директива `upgrade-insecure-requests` убрана из `Content-Security-Policy` в `next.config.js` — на HTTP без TLS (локальный `deploy/docker-compose.dev.yml`, `:8080`) Chrome иначе запрашивал `/_next/*` как `https://` → `ERR_SSL_PROTOCOL_ERROR`. Ужесточение HTTPS остаётся за TLS-прокси (nginx/Vercel) и заголовком `Strict-Transport-Security` при включённом hardened-режиме.
 - **Соцсети — один источник:** `SITE_SOCIAL` в `shared/constants/company.ts`; `SocialIcons` и `structuredData.sameAs` читают оттуда (Telegram / VK / Instagram).
 - **EstimateModal:** фиксированы `max-height` контейнера, левый блок с коллапсами со скроллом слева, правый с результатом — стабильная зона, без скачков при раскрытии; шапка/подвал модалки `flex-shrink: 0`.

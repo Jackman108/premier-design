@@ -63,7 +63,7 @@ describe('ShareBanner', () => {
 			imageDesc: {src: '/shares/share-el-d.webp', alt: 'desktop', quality: 80, width: 1200, height: 500},
 			imageMob: {src: '/shares/share-el-m.webp', alt: 'mobile', quality: 80, width: 600, height: 400},
 		} as never);
-		mockedUseShareBanner.mockReturnValue({isClosed: false, isReady: true, handleClose});
+		mockedUseShareBanner.mockReturnValue({isClosed: false, handleClose});
 
 		render(<ShareBanner isSticky={false} shares={[]} />);
 		expect(screen.getByRole('link')).toHaveAttribute('href', 'https://example.com');
@@ -72,13 +72,13 @@ describe('ShareBanner', () => {
 		expect(handleClose).toHaveBeenCalledTimes(1);
 	});
 
-	it('returns null when not ready or sticky or closed', () => {
+	it('returns null when sticky or closed', () => {
 		mockedFindItemByTitle.mockReturnValue({} as never);
-		mockedUseShareBanner.mockReturnValue({isClosed: false, isReady: false, handleClose: jest.fn()});
-		const {container, rerender} = render(<ShareBanner isSticky={false} shares={[]} />);
+		mockedUseShareBanner.mockReturnValue({isClosed: false, handleClose: jest.fn()});
+		const {container, rerender} = render(<ShareBanner isSticky shares={[]} />);
 		expect(container.firstChild).toBeNull();
 
-		mockedUseShareBanner.mockReturnValue({isClosed: true, isReady: true, handleClose: jest.fn()});
+		mockedUseShareBanner.mockReturnValue({isClosed: true, handleClose: jest.fn()});
 		rerender(<ShareBanner isSticky={false} shares={[]} />);
 		expect(container.firstChild).toBeNull();
 	});
