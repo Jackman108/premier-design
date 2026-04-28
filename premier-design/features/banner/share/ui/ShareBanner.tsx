@@ -1,5 +1,5 @@
 // ShareBanner.tsx
-import React, {FC} from 'react';
+import React, {type CSSProperties, FC} from 'react';
 import styles from './ShareBanner.module.css';
 import Link from "next/link";
 import Image from "next/image";
@@ -17,6 +17,12 @@ const ShareBanner: FC<ShareBannerProps> = ({isSticky, shares}) => {
         return null;
     }
 
+    // Один слот по aspect-ratio + fill: иначе два img в потоке меняют высоту при switch desktop/mobile → CLS в Lighthouse mobile.
+    const mediaStyle = {
+        '--share-aspect-desktop': `${imageDesc.width} / ${imageDesc.height}`,
+        '--share-aspect-mobile': `${imageMob.width} / ${imageMob.height}`,
+    } as CSSProperties;
+
     return (
         <div id="share-banner" className={styles.share__banner}>
             <div className={styles.banner__container}>
@@ -25,26 +31,28 @@ const ShareBanner: FC<ShareBannerProps> = ({isSticky, shares}) => {
                     href={link}
                     rel="noopener noreferrer"
                 >
+                    <span className={styles.banner__media} style={mediaStyle}>
                     <Image
                         priority
+                        fill
                         src={imageDesc.src}
                         alt={imageDesc.alt}
                         quality={imageDesc.quality}
-                        width={imageDesc.width}
-                        height={imageDesc.height}
                         placeholder="empty"
-                        className={styles.banner__img + ' ' + styles.banner__imgDesktop}
+                        sizes="100vw"
+                        className={`${styles.banner__img} ${styles.banner__imgDesktop}`}
                     />
                     <Image
                         src={imageMob.src}
                         alt={imageDesc.alt}
                         quality={imageDesc.quality}
-                        width={imageDesc.width}
-                        height={imageDesc.height}
+                        fill
                         placeholder="empty"
                         loading="lazy"
-                        className={styles.banner__img + ' ' + styles.banner__imgMobile}
+                        sizes="100vw"
+                        className={`${styles.banner__img} ${styles.banner__imgMobile}`}
                     />
+                    </span>
                 </Link>
                 <button
                     className={styles.banner__close}

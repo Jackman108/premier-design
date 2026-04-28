@@ -25,8 +25,9 @@ jest.mock('next/image', () => ({
 		},
 	) => {
 		// next/image-специфичные пропы не на нативный <img> (см. react-dom "non-boolean attribute `priority`").
-		const {src, alt, width, height, className, sizes, loading, decoding, ...nextOnly} = props;
+		const {src, alt, width, height, className, sizes, loading, decoding, fill, ...nextOnly} = props;
 		void nextOnly;
+		void fill;
 		return (
 			// next/image в тесте — нативный img; специфичные пропы Next не в DOM.
 			// eslint-disable-next-line @next/next/no-img-element -- намеренный мок

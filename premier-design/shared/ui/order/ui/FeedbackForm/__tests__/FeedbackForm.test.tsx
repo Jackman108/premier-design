@@ -1,5 +1,5 @@
 /** @jest-environment jsdom */
-import {render, screen} from '@testing-library/react';
+import {render, screen, waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import FeedbackForm from '../FeedbackForm';
 
@@ -65,5 +65,8 @@ describe('FeedbackForm', () => {
         expect(screen.getByRole('button', {name: 'Отправить заявку'})).toHaveTextContent('Отправка…');
 
         resolveSubmitRef.current?.();
+        await waitFor(() => {
+            expect(screen.getByRole('button', {name: 'Отправить заявку'})).not.toBeDisabled();
+        });
     });
 });
