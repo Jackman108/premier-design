@@ -1,3 +1,3 @@
-import type {PanelProps as SharedPanelProps} from "@shared/interface/Panel.props";
+import type { PanelProps as SharedPanelProps } from '@entities/panel';
 
 export type PanelProps = SharedPanelProps;

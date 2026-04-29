@@ -2,7 +2,7 @@ import {ReactNode} from 'react';
 import {MenuItem} from '@shared/ui/menu/interface/Menu.props';
 import type {NewsProps} from '@features/news';
 import type {Paper} from '@features/papers';
-import {ButtonProps} from "@shared/interface/Button.props";
+import type { ButtonProps } from '@entities/button';
 import type {CostingCardProps} from '@features/coasting';
 import type {PanelProps} from '@features/buttons-panel';
 import {HeaderProps} from "./Header.props";

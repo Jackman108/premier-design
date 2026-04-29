@@ -1,8 +1,8 @@
-import {ButtonProps} from "@shared/interface/Button.props";
-import {TitleProps} from "@shared/ui/title/interface/Title.props";
-import type {BannerImageProps} from "@shared/interface/BannerImage.props";
+import type { BannerImageProps } from '@entities/banner';
+import type { ButtonProps } from '@entities/button';
+import type { TitleProps } from '@entities/title';
 
-export type {BannerImageProps} from "@shared/interface/BannerImage.props";
+export type { BannerImageProps } from '@entities/banner';
 
 export interface HeroBannerProps {
 	bannerData: BannerImageProps;

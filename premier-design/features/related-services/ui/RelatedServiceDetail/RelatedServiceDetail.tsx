@@ -7,7 +7,7 @@ import Image from "next/image";
 import BackButton from "@shared/ui/back-button/BackButton";
 import OrderButton from "@shared/ui/order/ui/OrderButton/OrderButton";
 import {findItemByTitle} from "@shared/utils/findItemByTitle";
-import {ButtonProps} from "@shared/interface/Button.props";
+import type { ButtonProps } from '@entities/button';
 import {RelatedServiceDetailProps} from "@features/related-services/interface/RelatedService.props";
 import {useFallback} from "@shared/hooks/useFallback";
 import {useLayoutProps} from "@widgets/layout/hooks/useLayoutProps";

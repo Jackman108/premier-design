@@ -2,7 +2,7 @@
  * Подписи и пункты выбора для сметы: чистые функции без React (граница `utils/` → тонкий UI).
  * Вход: карточки `costing` и массивы из `factorsConfig.typeItemsConfig`.
  */
-import type {CostingCardProps} from '@shared/interface/CostingCard.props';
+import type { CostingCardProps } from '@entities/costing';
 
 export type SelectOption = { value: string; label: string };
 

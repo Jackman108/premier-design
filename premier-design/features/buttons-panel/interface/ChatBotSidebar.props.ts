@@ -1,4 +1,4 @@
-import {PanelProps} from '@shared/interface/Panel.props';
+import type { PanelProps } from '@entities/panel';
 
 export interface ChatBotSidebarProps {
     panelData: PanelProps;

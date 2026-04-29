@@ -1,5 +1,5 @@
-import {CostingCardProps} from "@shared/interface/CostingCard.props";
-import {PanelProps} from "@shared/interface/Panel.props";
+import type { CostingCardProps } from '@entities/costing';
+import type { PanelProps } from '@entities/panel';
 
 export interface EstimateButtonProps {
     costingCards: CostingCardProps[];

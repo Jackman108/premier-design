@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
 import {fireEvent, render, screen} from '@testing-library/react';
-import type {CostingCardProps} from '@shared/interface/CostingCard.props';
+import type { CostingCardProps } from '@entities/costing';
 import EstimateModal from './EstimateModal';
 
 jest.mock('@shared/ui/estimate-modal/hooks/useEstimateModalHandlers', () => ({

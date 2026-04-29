@@ -2,7 +2,7 @@
 import { render } from '@testing-library/react';
 import type { ReactNode } from 'react';
 import CustomHead from './CustomHead';
-import { generateStructuredData } from '../utils/generateStructuredData';
+import { generateStructuredData } from '@shared/lib/seo/generateStructuredData';
 import { getFullCanonicalUrl } from '@shared/utils/getFullCanonicalUrl';
 
 const headMock = jest.fn(({ children }: { children: ReactNode }) => <div data-testid="mock-head">{children}</div>);
@@ -27,7 +27,7 @@ jest.mock('next/script', () => ({
 	),
 }));
 
-jest.mock('../utils/generateStructuredData', () => ({
+jest.mock('@shared/lib/seo/generateStructuredData', () => ({
 	generateStructuredData: jest.fn(),
 }));
 

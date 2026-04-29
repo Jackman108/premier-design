@@ -1,5 +1,5 @@
 import {CustomHeadProps} from "./CustomHead.props";
-import {generateStructuredData} from "../utils/generateStructuredData";
+import {generateStructuredData} from "@shared/lib/seo/generateStructuredData";
 import {SITE_OPERATOR} from '@shared/constants/company';
 import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
 import Head from 'next/head';

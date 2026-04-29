@@ -4,5 +4,5 @@ export interface PanelProps {
 	icon: string;
 	altText: string;
 	text: string;
-	position: {bottom: string};
+	position: { bottom: string };
 }

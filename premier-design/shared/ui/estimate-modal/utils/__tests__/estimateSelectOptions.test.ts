@@ -1,4 +1,4 @@
-import type {CostingCardProps} from '@shared/interface/CostingCard.props';
+import type { CostingCardProps } from '@entities/costing';
 import {
     mapCostingCardsToObjectTypeItems,
     objectTypeTitleBySelectedTab,

@@ -1,11 +1,7 @@
-import type {CustomHeadProps} from '@shared/interface/seoHead.props';
+import type { CustomHeadProps } from '@shared/interface/seoHead.props';
+import type { TitleProps } from '@entities/title';
 
-export interface TitleProps {
-	id?: number;
-	title: string;
-	shortTitle: string;
-	description: string;
-}
+export type { TitleProps };
 
 export interface TitleStyleProps extends TitleProps {
 	titleStyle: 'title-white' | 'title-black';

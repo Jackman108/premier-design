@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Title from '@shared/ui/title/ui/Title';
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 import {findItemByTitle} from '@shared/utils/findItemByTitle';
-import {ButtonProps} from '@shared/interface/Button.props';
+import type { ButtonProps } from '@entities/button';
 import {CategoryProps} from '@features/category/interface/Category.props';
 import styles from './ServiceCategoriesHub.module.css';
 

@@ -27,3 +27,12 @@
 
 - Новый внешний вызов не добавлен «напрямую» из JSX без прохождения через сценарий или явный порт.
 - Критичный сценарий покрыт **unit** на правила + **интеграционным** тестом с моком порта при необходимости.
+
+## Эталон в кодовой базе (Premier Design)
+
+**PD-R-04:** сценарий отправки обратной связи оформлен как цепочка use-case → порты → адаптеры:
+
+- `premier-design/features/feedback/useCases/submitFeedback.ts` — доменная логика и вызов портов (DAL/Telegram/email).
+- `features/feedback/useCases/submitFeedbackAction.ts` — оболочка для Server Actions / формы (граница с HTTP/UI).
+
+Инфраструктура почты/Telegram — под `services/` и `services/dal/`; при расширении новых каналов не дублировать правила из use-case (см. ADR в [`docs/adr/`](../../adr/README.md)).

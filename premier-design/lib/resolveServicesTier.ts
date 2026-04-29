@@ -1,5 +1,5 @@
 import type {DataProps} from '@shared/validates/dataPropsSchema';
-import type {Category} from '@shared/interface/CategoryPrice.props';
+import type { Category } from '@entities/service';
 import {getCanonicalPath} from '@shared/utils/getCanonicalPath';
 
 type RelatedEntry = NonNullable<DataProps['relatedServices']>[number];

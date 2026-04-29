@@ -24,6 +24,8 @@ module.exports = {
         '^@shared/(.*)$': '<rootDir>/shared/$1',
         '^@app-types/(.*)$': '<rootDir>/types/$1',
         '^@lib/(.*)$': '<rootDir>/lib/$1',
+        '^@entities$': '<rootDir>/entities/index.ts',
+        '^@entities/(.*)$': '<rootDir>/entities/$1',
     },
     testPathIgnorePatterns: ['/node_modules/', '/e2e/', '/.next/'],
     modulePathIgnorePatterns: ['<rootDir>/.next/'],

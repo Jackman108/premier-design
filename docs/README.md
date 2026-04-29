@@ -2,7 +2,7 @@
 
 **Обновлено**: 29.04.2026
 
-Каталог **`docs/`** — материалы вне кода приложения (`premier-design/` — Next.js). **Канон норм по темам:** `mempalace/rules/` и `guides/`. **Feb Code** (отдельный git): только через [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md). **VPS / multi-site:** [`deploy/README.md`](../deploy/README.md), [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md). **История изменений приложения:** [`changelog.md`](changelog.md) (не в корне `premier-design/`).
+Каталог **`docs/`** — материалы вне кода приложения (`premier-design/` — Next.js). **Канон норм по темам:** `mempalace/rules/` и `guides/`. **Feb Code** (отдельный git): только через [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md). **VPS / multi-site:** [`deploy/README.md`](../deploy/README.md), [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md). **История изменений приложения:** [`changelog.md`](changelog.md) (не в корне `premier-design/`). Краткий контекст для агента без обхода `docs/` — корневой [`AGENTS.md`](../AGENTS.md).
 
 ## С чего начать
 

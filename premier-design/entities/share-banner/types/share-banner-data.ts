@@ -1,4 +1,4 @@
-import type {BannerImageProps} from "@shared/interface/BannerImage.props";
+import type { BannerImageProps } from '@entities/banner';
 
 export interface ShareBannerDataProps {
 	shortTitle: string;

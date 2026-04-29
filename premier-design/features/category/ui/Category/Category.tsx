@@ -4,7 +4,7 @@ import styles from './Category.module.css';
 import {findItemByTitle} from "@shared/utils/findItemByTitle";
 import Title from "@shared/ui/title/ui/Title";
 import OrderButton from "@shared/ui/order/ui/OrderButton/OrderButton";
-import {ButtonProps} from "@shared/interface/Button.props";
+import type { ButtonProps } from '@entities/button';
 import {CategoryProps} from "@features/category/interface/Category.props";
 
 const Category: FC<CategoryProps> = ({titles, buttonData, repairs}): ReactElement => {

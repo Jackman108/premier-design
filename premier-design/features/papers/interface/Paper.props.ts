@@ -1,1 +1,1 @@
-export type {Paper} from "@shared/interface/PaperItem.props";
+export type { Paper } from '@entities/document';

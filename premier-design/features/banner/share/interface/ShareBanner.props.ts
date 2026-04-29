@@ -1,6 +1,6 @@
-import type {ShareBannerDataProps} from "@shared/interface/ShareBannerData.props";
+import type { ShareBannerDataProps } from '@entities/share-banner';
 
-export type {ShareBannerDataProps} from "@shared/interface/ShareBannerData.props";
+export type { ShareBannerDataProps } from '@entities/share-banner';
 
 export interface ShareBannerProps {
 	isSticky: boolean;

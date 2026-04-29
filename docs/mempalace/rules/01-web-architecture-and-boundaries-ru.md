@@ -48,7 +48,7 @@
 
 Ниже — **проектные** правила поверх общих норм выше. Нарушение блокирует merge (контроль скриптами и CI).
 
-1. **Направление зависимостей.** Слой `shared/` **не** импортирует `@features/*` и `@services/*`. Композиция нескольких фич — только в `widgets/` или в `pages/` / `app/`, не через cross-import между `features/<a>` и `features/<b>`. Контроль: `yarn check:architecture`.
+1. **Направление зависимостей.** Слой `shared/` **не** импортирует `@features/*` и `@services/*`. Доменные типы — **только** в **`entities/`** (`@entities/*`); `shared` может импортировать из `entities` лишь как **зависимости полей** составных DTO (без параллельного определения тех же сущностей) — PD-R-05; `entities` **не** импортирует `shared`. Композиция нескольких фич — только в `widgets/` или в `pages/` / `app/`, не через cross-import между `features/<a>` и `features/<b>`. Контроль: `yarn check:architecture`.
 2. **UI — тонкий слой.** В `*/ui/*` запрещены бизнес-правила, **реализация** хуков, объявление типов (кроме локальных props компонента), вызовы внешних API/IO и инфраструктуры. Сопутствующее — в `hooks/`, `interface/` (или `types/`), `utils/`, валидаторы в `shared/validates/`, обвязка Next.js в `lib/` (`@lib/*`). Контроль: `yarn check:ui-purity`. Подробности: [`02-web-ui-components-and-tokens-ru.md`](02-web-ui-components-and-tokens-ru.md).
 3. **Use-case оркестрирует.** Сценарий не знает про HTTP/JSON; внешние зависимости — за портами. См. [`08-clean-architecture-use-cases-and-ports-ru.md`](08-clean-architecture-use-cases-and-ports-ru.md).
 4. **Циклические импорты** запрещены; при риске — вынос в `shared/` или узкий util.

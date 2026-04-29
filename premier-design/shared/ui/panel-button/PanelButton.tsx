@@ -1,6 +1,6 @@
 import {CSSProperties, FC} from "react";
 import Image from "next/image";
-import {PanelProps} from "@shared/interface/Panel.props";
+import type { PanelProps } from '@entities/panel';
 import styles from "./PanelButton.module.css";
 
 const PanelButton: FC<PanelProps> = ({onClick, icon, altText, text, position}) => (

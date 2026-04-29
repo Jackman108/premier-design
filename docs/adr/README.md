@@ -24,3 +24,4 @@
 | 0009 | [0009-web-analytics-deferred.md](0009-web-analytics-deferred.md) | Аналитика (YM/GA4/GTM) — отложено до env, CSP и карты событий | Принято |
 | 0010 | [0010-formatting-policy-no-prettier.md](0010-formatting-policy-no-prettier.md) | Политика форматирования: остаёмся на ESLint без Prettier | Принято |
 | 0011 | [0011-proprietary-license.md](0011-proprietary-license.md) | Проприетарная лицензия (LICENSE / LICENSE_RU) и правила внутреннего использования | Принято |
+| 0012 | [0012-root-services-folder-vs-shared-api.md](0012-root-services-folder-vs-shared-api.md) | Роль каталога `services/` vs `shared/lib`; без массового переименования в `shared/api` | Принято |

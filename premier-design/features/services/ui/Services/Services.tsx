@@ -4,7 +4,7 @@ import ServicesCards from '../ServicesCards/ServicesCards';
 import Title from '@shared/ui/title/ui/Title';
 import {FC, ReactElement} from 'react';
 import {findItemByTitle} from '@shared/utils/findItemByTitle';
-import {ButtonProps} from "@shared/interface/Button.props";
+import type { ButtonProps } from '@entities/button';
 import {ServicesProps} from "@features/services/interface/Services.props";
 
 const Services: FC<ServicesProps> = ({title, buttons, servicesCard}): ReactElement => {

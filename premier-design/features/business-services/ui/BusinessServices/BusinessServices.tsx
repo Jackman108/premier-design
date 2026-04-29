@@ -7,7 +7,7 @@ import SliderComponent from '@shared/ui/slider/ui/SliderLazy';
 import {useViewportMobile} from '@shared/hooks/useViewportMobile';
 import {findItemByTitle} from "@shared/utils/findItemByTitle";
 import {TitleProps} from "@shared/ui/title/interface/Title.props";
-import {ButtonProps} from "@shared/interface/Button.props";
+import type { ButtonProps } from '@entities/button';
 import Title from "@shared/ui/title/ui/Title";
 import BusinessServicesCard from "@features/business-services/ui/BusinessServicesCard/BusinessServicesCard";
 import List from "@features/business-services/ui/List/List";

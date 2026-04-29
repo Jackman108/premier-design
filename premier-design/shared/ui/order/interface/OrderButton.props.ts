@@ -1,5 +1,5 @@
 import {ButtonHTMLAttributes, DetailedHTMLProps} from 'react';
-import {PanelProps} from "@shared/interface/Panel.props";
+import type { PanelProps } from '@entities/panel';
 
 export interface OrderButtonProps extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
     buttonStyle: 'button-white' | 'button-black' | 'button-panel' | 'button-none';

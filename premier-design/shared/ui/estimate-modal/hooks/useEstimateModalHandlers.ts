@@ -3,7 +3,7 @@
  * Сами расчёты — в `utils/calculateEstimate`, база/коэффициенты — в `configs/factorsConfig`.
  */
 import {type ChangeEvent, useCallback, useEffect, useMemo, useState} from 'react';
-import type {CostingCardProps} from '@shared/interface/CostingCard.props';
+import type { CostingCardProps } from '@entities/costing';
 import {BASE_COST_PER_SQM_BY_CARD_ID} from '@shared/ui/estimate-modal/configs/factorsConfig';
 import {calculateEstimate, parseAreaValue} from '@shared/ui/estimate-modal/utils/calculateEstimate';
 
