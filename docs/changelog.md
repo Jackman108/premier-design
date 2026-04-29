@@ -7,7 +7,8 @@
 
 ### Changed
 
-- **Кросс-репозиторный аудит:** в [`audit/audit-and-improvement-plan-ru.md`](audit/audit-and-improvement-plan-ru.md) добавлены DOC-06/CI-04/DEV-05; [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md) обновлён под общий rule pack, лёгкий perf gate для Feb Code и единый deploy-контракт через `lendings-vps-infra`.
+- **Кросс-репозиторное качество:** [`guides/cross-repo-rule-pack-ru.md`](guides/cross-repo-rule-pack-ru.md) — единая лестница гейтов (A–D: pre-commit → local → PR CI → nightly/deploy), границы унификации и таблица канонических источников для Premier Design (синхронные копии в febcode и lendings-vps-infra).
+- **Кросс-репозиторный аудит:** закрыты **DOC-06**, **CI-04**, **DEV-05** — см. [`guides/cross-repo-rule-pack-ru.md`](guides/cross-repo-rule-pack-ru.md); перечень закрытий и ссылки на артефакты в [`audit/audit-and-improvement-plan-ru.md`](audit/audit-and-improvement-plan-ru.md); [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md) обновлён под синхронный словарь деплоя и rule pack для трёх репозиториев.
 - **Документация:** ссылки на multi-site VPS теперь ведут в `lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`, так как `docs/operations/` в этом репозитории не является источником compose/nginx.
 - **Документация:** все файлы в `docs/` переименованы в **kebab-case** (латиница, дефисы; русскоязычные материалы — суффикс `-ru.md`); обновлены перекрёстные ссылки в репозитории и во внешних указателях (febcode, lendings-vps-infra). Исключение по традиции: `README.md`.
 - **Документация:** журнал изменений перенесён из `premier-design/CHANGELOG.md` в [`docs/changelog.md`](changelog.md); все ссылки в репозитории обновлены на единый канон «история в `docs/`».

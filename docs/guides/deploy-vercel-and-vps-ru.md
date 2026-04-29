@@ -2,6 +2,18 @@
 
 Кратко: **три независимых пути** — Vercel (PaaS), образ в **GHCI/GHCR** (сборка в GitHub), **VPS** с Docker Compose в репозитории **`lendings-vps-infra`** (два контейнера + nginx). Они **не** заменяют друг друга: не путайте `HOST` SSH с доменом сайта на Vercel.
 
+## Контракт деплоя на VPS (оба приложения)
+
+Единая цепочка для образов **premium-design** и **febcode** (задача **DEV-05**):
+
+1. В репозитории приложения: успешный workflow сборки → образ в **GHCR** (`ghcr.io/<owner>/…`).
+2. На сервере: только дерево **`lendings-vps-infra`**; переменные `PREMIUM_DESIGN_IMAGE` / `FEBCODE_IMAGE` в корневом `.env` указывают на нужные теги.
+3. Обновление: `docker compose pull <сервис>` → `docker compose up -d` (на VPS без сборки Next из исходников).
+4. Проверка: см. гайд infra ([`multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md)) — healthcheck, TLS, точечный smoke.
+5. Откат: откат тега образа в `.env` + снова `pull`/`up`; см. тот же гайд.
+
+Общий словарь и правило ведения changelog по трём репозиториям — [`cross-repo-rule-pack-ru.md`](cross-repo-rule-pack-ru.md).
+
 ## 1. Vercel (текущий частый прод)
 
 - Подключение репозитория в [Vercel](https://vercel.com) → **Import** → тот же GitHub-репозиторий.

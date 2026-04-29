@@ -35,6 +35,7 @@
 | [`guides/yarn-package-manager-ru.md`](guides/yarn-package-manager-ru.md) | Yarn, lockfile, audit |
 | [`guides/deploy-ssh-github-actions-ru.md`](guides/deploy-ssh-github-actions-ru.md) | GitHub Actions, SSH, секреты |
 | [`guides/deploy-vercel-and-vps-ru.md`](guides/deploy-vercel-and-vps-ru.md) | Vercel vs GHCR vs VPS |
+| [`guides/cross-repo-rule-pack-ru.md`](guides/cross-repo-rule-pack-ru.md) | Лестница гейтов A–D, границы унификации, канонические источники трёх репозиториев (именование, changelog, деплой) |
 | [`guides/marketing-analytics-dashboard-ru.md`](guides/marketing-analytics-dashboard-ru.md) | Аналитика, KPI воронки |
 
 **Feb Code (отдельный репозиторий)** — один вход: [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md). Оттуда — ссылки на `guides/testing-standards-cross-repo-ru.md`, `prettier-and-formatting-cross-repo-ru.md`, `layer-imports-and-public-api-cross-repo-ru.md`, `feb-code-post-release-sync-checklist-ru.md` (канон норм Feb Code не копировать).

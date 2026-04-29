@@ -41,15 +41,7 @@
 
 ## Открытые задачи
 
-| ID | Спринт | Приоритет | Источник | Задача | Артефакт закрытия | Статус |
-|----|--------|-----------|----------|--------|-------------------|--------|
-| DOC-06 | Backlog | P2 | [`cross-repo-alignment-ru.md`](cross-repo-alignment-ru.md), [`mempalace/rules/`](../mempalace/rules/) | Выделить короткий общий rule pack для трёх репозиториев: docs naming, changelog, quality ladder, secrets, GHCR/VPS deploy vocabulary. | Обновлены cross-repo docs в premier-design, febcode и lendings-vps-infra; без копирования app-кода. | Open |
-| CI-04 | Backlog | P2 | [`guides/scripts-and-quality-gates-ru.md`](../guides/scripts-and-quality-gates-ru.md), Feb Code A11 | Подготовить лёгкий шаблон perf gate для Feb Code на базе Premier-подхода: scheduled/manual, а не обязательный PR blocker. | Шаблон workflow/гайд или ADR; ссылка из `febcode/docs/audit/project-audit.md` A11. | Open |
-| DEV-05 | Backlog | P2 | Репозиторий `lendings-vps-infra` | Синхронизировать deploy-контракт для обоих приложений: GHCR publish → VPS pull/up → smoke/rollback. | Ссылки на infra docs из deploy-гайдов Premier; аналогичные указатели в Feb Code. | Open |
-
-Недавно закрыты: **DOC-05** (реквизиты регистрации в ЕГР в `SITE_OPERATOR`); ранее — **SEC-04**, **DOC-04**, **DEV-04**. История — [`changelog.md`](../changelog.md), [`project-audit-2026-04-ru.md`](project-audit-2026-04-ru.md).
-
----
+На текущий момент **открытых строк нет** — перенос закрытых пунктов в историю ниже.
 
 ## Как добавлять новую задачу
 

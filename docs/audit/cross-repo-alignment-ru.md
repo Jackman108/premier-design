@@ -71,17 +71,6 @@
 | C4 | Next config | Security headers / origins / standalone при апдейтах Next — сверка с `febcode/next.config.ts` |
 
 **Статус (выравнивание по Feb Code):** конфиг и процесс зафиксированы в коде (`premier-design/next.config.js`, `package.json`) и в гайдах выше; канон Feb Code не копируется в этом файле повторно.
-
----
-
-## Backlog после кросс-репозиторного аудита
-
-| ID | Приоритет | Задача |
-|----|-----------|--------|
-| DOC-06 | P2 | Выделить короткий общий rule pack из `docs/mempalace/rules/` для трёх репозиториев: naming, docs, changelog, quality ladder, secrets, deploy vocabulary. |
-| CI-04 | P2 | Подготовить лёгкий perf gate template для Feb Code: scheduled/manual workflow, без превращения PR CI в хрупкий Lighthouse blocker. |
-| DEV-05 | P2 | Синхронизировать deploy-контракт с `lendings-vps-infra`: GHCR publish → VPS pull/up → smoke/rollback для обоих приложений. |
-
 Принцип: Premier Design остаётся источником зрелых норм и гейтов; Feb Code берёт только минимально полезные проверки, а infra-репозиторий держит production-контракт.
 
 ---
