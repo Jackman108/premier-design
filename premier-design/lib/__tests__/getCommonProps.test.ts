@@ -1,5 +1,5 @@
 /** @jest-environment node */
-import {getCommonProps} from '../getCommonProps';
+import {getCommonProps} from '../staticProps/getCommonProps';
 
 describe('getCommonProps', () => {
 	it('maps required fields from data payload', () => {

@@ -7,7 +7,7 @@
 ## Как копать инцидент (Vercel / self-host)
 
 1. **По X-Correlation-Id** — в логах среды выполнения (функция `/api/...`) ищем строки `[api]` / JSON-объекты в структуре, где `correlationId` совпадает с клиентом.
-2. **По SLO-файлу (feedback)** — `FEEDBACK_SLO_EVENTS_FILE` (по умолчанию `.feedback-slo-events.jsonl` в CWD) при `FEEDBACK_SLO_ENABLED` — сэмплы с `statusCode`, `durationMs`, `timedOut` для `/api/feedback`.
+2. **По SLO-файлу (feedback)** — `FEEDBACK_SLO_EVENTS_FILE` (по умолчанию `.audit/feedback-slo-events.jsonl` в CWD) при `FEEDBACK_SLO_ENABLED` — сэмплы с `statusCode`, `durationMs`, `timedOut` для `/api/feedback`.
 3. **Внешние APM (опционально)** — подключение Sentry/Datadog/Log push не встроено в лендинг: при росте требований к «дашборду 5xx» вынести в ADR + интеграцию; до этого достаточно Vercel Logs + корреляции.
 
 ## Границы

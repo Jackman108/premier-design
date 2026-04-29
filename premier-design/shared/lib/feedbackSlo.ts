@@ -20,7 +20,7 @@ const toIntOrDefault = (raw: string | undefined, fallback: number) => {
 };
 
 const SLO_ENABLED = process.env.FEEDBACK_SLO_ENABLED !== 'false';
-const DEFAULT_EVENTS_FILE = '.feedback-slo-events.jsonl';
+const DEFAULT_EVENTS_FILE = '.audit/feedback-slo-events.jsonl';
 
 /**
  * Лимит `withTimeout` вокруг `submitFeedbackAction`: SMTP и Telegram в `submitFeedback` идут **параллельно**;

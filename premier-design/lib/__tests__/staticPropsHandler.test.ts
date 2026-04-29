@@ -1,18 +1,18 @@
 /** @jest-environment node */
 import {staticPropsHandler} from '../staticPropsHandler';
 import {getData} from '@lib/getStaticData';
-import {findService} from '@lib/findService';
-import {getCommonProps} from '@lib/getCommonProps';
+import {findService} from '@lib/staticProps/findService';
+import {getCommonProps} from '@lib/staticProps/getCommonProps';
 
 jest.mock('@lib/getStaticData', () => ({
 	getData: jest.fn(),
 }));
 
-jest.mock('@lib/findService', () => ({
+jest.mock('@lib/staticProps/findService', () => ({
 	findService: jest.fn(),
 }));
 
-jest.mock('@lib/getCommonProps', () => ({
+jest.mock('@lib/staticProps/getCommonProps', () => ({
 	getCommonProps: jest.fn(),
 }));
 

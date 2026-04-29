@@ -1,5 +1,5 @@
 /** @jest-environment node */
-import {findService} from '../findService';
+import {findService} from '../staticProps/findService';
 
 const baseData = (): Parameters<typeof findService>[0] =>
 	({

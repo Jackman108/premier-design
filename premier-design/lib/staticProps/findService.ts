@@ -1,7 +1,7 @@
 import type {DataProps} from '@shared/validates/dataPropsSchema';
 import {getCanonicalPath} from '@shared/utils/getCanonicalPath';
 
-/** Поиск услуги и категории для SSG (`pages/services/...`). В `lib/`, чтобы не тянуть `widgets` из `features`. */
+/** Поиск услуги и категории для SSG (`pages/services/...`). В `lib/staticProps/`, чтобы не тянуть `widgets` из `features`. */
 export const findService = (data: DataProps, categoryId: string, serviceId: string) => {
 	if (!data?.prices?.repairs) {
 		throw new Error('No repairs data found');

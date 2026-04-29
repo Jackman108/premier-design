@@ -1,7 +1,7 @@
 import {GetStaticProps} from 'next';
 import {getData} from '@lib/getStaticData';
-import {findService} from '@lib/findService';
-import {getCommonProps} from '@lib/getCommonProps';
+import {findService} from '@lib/staticProps/findService';
+import {getCommonProps} from '@lib/staticProps/getCommonProps';
 
 /** SSG для **`pages/services/[categoryId]/[serviceId]`**: детальная позиция прайса + общие пропсы лейаута. */
 export const staticPropsHandler = (): GetStaticProps => async ({params}) => {

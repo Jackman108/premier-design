@@ -1,5 +1,5 @@
-import {writeFileSync} from 'node:fs';
-import {resolve} from 'node:path';
+import {mkdirSync, writeFileSync} from 'node:fs';
+import {join, resolve} from 'node:path';
 import {spawnSync} from 'node:child_process';
 
 const commandResult = spawnSync('yarn', ['audit', '--level', 'high', '--json'], {
@@ -79,7 +79,9 @@ if (advisories.length === 0) {
 }
 
 const summaryMd = `${mdLines.join('\n')}\n`;
-writeFileSync(resolve(process.cwd(), '.audit-high-summary.json'), `${JSON.stringify(summary, null, 2)}\n`, 'utf-8');
-writeFileSync(resolve(process.cwd(), '.audit-high-summary.md'), summaryMd, 'utf-8');
+const auditDir = resolve(process.cwd(), '.audit');
+mkdirSync(auditDir, {recursive: true});
+writeFileSync(join(auditDir, 'audit-high-summary.json'), `${JSON.stringify(summary, null, 2)}\n`, 'utf-8');
+writeFileSync(join(auditDir, 'audit-high-summary.md'), summaryMd, 'utf-8');
 
 console.log(summaryMd);

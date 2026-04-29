@@ -24,10 +24,8 @@ storybook-static
 # Lighthouse CLI (local perf check)
 .lighthouse-chrome-profile/
 .lighthouse-tmp/
-.lighthouse-perf-summary.json
-.audit-high-summary.json
-.audit-high-summary.md
-.feedback-slo-events.jsonl
+# Сводки yarn audit / Lighthouse / feedback SLO — только в `.audit/` (корень репо чистый)
+.audit/
 
 # production
 /build

@@ -13,6 +13,4 @@
 /premier-design/.next/
 /premier-design/.lighthouse-tmp/
 /premier-design/.lighthouse-chrome-profile/
-/premier-design/.audit-high-summary.json
-/premier-design/.audit-high-summary.md
-/premier-design/.feedback-slo-events.jsonl
+/premier-design/.audit/

@@ -1,6 +1,6 @@
 import type {GetStaticPaths, GetStaticProps} from 'next';
 import {getData} from '@lib/getStaticData';
-import {getCommonProps} from '@lib/getCommonProps';
+import {getCommonProps} from '@lib/staticProps/getCommonProps';
 import {resolveServicesTier} from '@lib/resolveServicesTier';
 import {getCanonicalPath} from '@shared/utils/getCanonicalPath';
 

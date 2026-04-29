@@ -27,7 +27,8 @@ const BASE_URL = process.env.PERF_AUDIT_URL ?? `http://127.0.0.1:${DEFAULT_PORT}
 const reuseServer = process.env.PERF_AUDIT_REUSE_SERVER === 'true';
 const standaloneServerJs = path.join(ROOT, '.next', 'standalone', 'server.js');
 const chromeUserDataDir = path.join(ROOT, '.lighthouse-chrome-profile').replace(/\\/g, '/');
-const SUMMARY_PATH = path.join(ROOT, '.lighthouse-perf-summary.json');
+const AUDIT_DIR = path.join(ROOT, '.audit');
+const SUMMARY_PATH = path.join(AUDIT_DIR, 'lighthouse-perf-summary.json');
 const isCi = Boolean(process.env.CI);
 const failOnInfraError = process.env.PERF_AUDIT_FAIL_ON_INFRA_ERROR === 'true';
 
@@ -76,6 +77,7 @@ const printMetricsRu = (metrics) => {
 
 const writeSummary = (payload) => {
 	try {
+		fs.mkdirSync(AUDIT_DIR, {recursive: true});
 		fs.writeFileSync(SUMMARY_PATH, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 		console.log(`Сводка сохранена: ${path.relative(ROOT, SUMMARY_PATH)}`);
 	} catch (e) {

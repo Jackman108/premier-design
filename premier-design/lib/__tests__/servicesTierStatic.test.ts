@@ -1,13 +1,13 @@
 /** @jest-environment node */
 import {getServicesTierStaticPaths, getServicesTierStaticProps} from '../servicesTierStatic';
 import {getData} from '@lib/getStaticData';
-import {getCommonProps} from '@lib/getCommonProps';
+import {getCommonProps} from '@lib/staticProps/getCommonProps';
 
 jest.mock('@lib/getStaticData', () => ({
 	getData: jest.fn(),
 }));
 
-jest.mock('@lib/getCommonProps', () => ({
+jest.mock('@lib/staticProps/getCommonProps', () => ({
 	getCommonProps: jest.fn(),
 }));
 
