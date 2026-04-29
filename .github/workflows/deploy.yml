@@ -1,7 +1,7 @@
 # Выкладка на **свой** VPS: только `docker compose pull` + `up` в каталоге infra-репозитория lendings-vps-infra
 # (корень клона: docker-compose.yml). Исходники и сборка в образ — в GHCR (ghcr-premium-design.yml), не в этом job.
 # Деплой **на Vercel** здесь не выполняется: сайт в Vercel — через Git-интеграцию в панели Vercel.
-# См. docs/guides/DEPLOY_VERCEL_AND_VPS_RU.md
+# См. docs/guides/deploy-vercel-and-vps-ru.md
 
 name: Deploy premium-design to VPS (SSH, docker compose pull)
 
@@ -28,7 +28,7 @@ jobs:
           set -euo pipefail
           PORT="${P:-22}"
           if [[ -z "${H// }" ]]; then
-            echo "::error::Секрет HOST пустой. Укажите IP или домен **VPS** (сервис SSH), куда клонирован **`lendings-vps-infra`**, — не URL сайта и не vercel.app. См. docs/guides/DEPLOY_VERCEL_AND_VPS_RU.md"
+            echo "::error::Секрет HOST пустой. Укажите IP или домен **VPS** (сервис SSH), куда клонирован **`lendings-vps-infra`**, — не URL сайта и не vercel.app. См. docs/guides/deploy-vercel-and-vps-ru.md"
             exit 1
           fi
           if [[ "$H" == *"://"* ]] || [[ "$H" == *"/"* ]] || [[ "$H" == *" "* ]]; then
@@ -56,7 +56,7 @@ jobs:
           elif [[ -n "${PASS}" ]] && ssh-keygen -yf ~/.ssh/gh_deploy_key -P "${PASS}" &>/dev/null; then
             echo "OK: passphrase подходит."
           else
-            echo "::error::Не удалось расшифровать SSH_PRIVATE_KEY. См. docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md"
+            echo "::error::Не удалось расшифровать SSH_PRIVATE_KEY. См. docs/guides/deploy-ssh-github-actions-ru.md"
             exit 1
           fi
           rm -f ~/.ssh/gh_deploy_key

@@ -16,38 +16,38 @@ alwaysApply: true
 
 | Тема | Файл |
 |------|------|
-| Слои, границы, инварианты репо | `docs/mempalace/rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md` |
-| UI, токены, темизация, модалки | `docs/mempalace/rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md` |
-| a11y, UX | `docs/mempalace/rules/03_WEB_A11Y_AND_UX_RU.md` |
-| Производительность, бандл | `docs/mempalace/rules/04_WEB_PERFORMANCE_RU.md` |
-| Безопасность, данные | `docs/mempalace/rules/05_WEB_SECURITY_AND_DATA_RU.md` |
-| Next.js, данные, формы, API | `docs/mempalace/rules/06_WEB_NEXTJS_DATA_AND_FORMS_RU.md` |
-| Тесты, качество | `docs/mempalace/rules/07_WEB_TESTING_AND_QUALITY_RU.md` |
-| Use-case, порты, адаптеры | `docs/mempalace/rules/08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md` |
-| SOLID, DRY, KISS, YAGNI | `docs/mempalace/rules/09_CLEAN_CODE_SOLID_DRY_KISS_YAGNI_RU.md` |
-| Ошибки, надёжность | `docs/mempalace/rules/10_ERRORS_AND_RELIABILITY_RU.md` |
-| Типы, Zod, границы | `docs/mempalace/rules/11_TYPING_AND_VALIDATION_RU.md` |
-| Рефакторинг, долг | `docs/mempalace/rules/12_REFACTORING_AND_TECHNICAL_DEBT_RU.md` |
+| Слои, границы, инварианты репо | `docs/mempalace/rules/01-web-architecture-and-boundaries-ru.md` |
+| UI, токены, темизация, модалки | `docs/mempalace/rules/02-web-ui-components-and-tokens-ru.md` |
+| a11y, UX | `docs/mempalace/rules/03-web-a11y-and-ux-ru.md` |
+| Производительность, бандл | `docs/mempalace/rules/04-web-performance-ru.md` |
+| Безопасность, данные | `docs/mempalace/rules/05-web-security-and-data-ru.md` |
+| Next.js, данные, формы, API | `docs/mempalace/rules/06-web-nextjs-data-and-forms-ru.md` |
+| Тесты, качество | `docs/mempalace/rules/07-web-testing-and-quality-ru.md` |
+| Use-case, порты, адаптеры | `docs/mempalace/rules/08-clean-architecture-use-cases-and-ports-ru.md` |
+| SOLID, DRY, KISS, YAGNI | `docs/mempalace/rules/09-clean-code-solid-dry-kiss-yagni-ru.md` |
+| Ошибки, надёжность | `docs/mempalace/rules/10-errors-and-reliability-ru.md` |
+| Типы, Zod, границы | `docs/mempalace/rules/11-typing-and-validation-ru.md` |
+| Рефакторинг, долг | `docs/mempalace/rules/12-refactoring-and-technical-debt-ru.md` |
 
 ## Остальной обязательный контекст
 
 - **Карта документации** — `docs/README.md`.
-- **Открытый бэклог** — `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`.
+- **Открытый бэклог** — `docs/audit/audit-and-improvement-plan-ru.md`.
 - **Процесс, гейты, DoD, RISK-08** — `.cursor/rules/agent-quality-process.mdc`.
-- **Плейбук разработчика** — `docs/DEVELOPMENT_PLAYBOOK_RU.md`.
+- **Плейбук разработчика** — `docs/development-playbook-ru.md`.
 - **Реквизиты, ФИО ИП, УНП, контакты, адрес, режим работы** — единственный источник правды
   `premier-design/shared/constants/company.ts` (`SITE_OPERATOR`); потребители (`LegalRequisites`,
   `Phone`, `WorkHours`, `Address`, `generateStructuredData`, юр.тексты в
   `features/documents-content/*`) **обязаны** брать значения отсюда.
 - **VPS-инфраструктура (Docker + nginx + Let's Encrypt)** — отдельный репозиторий **`lendings-vps-infra`**; в этом репо — [`deploy/README.md`](../../deploy/README.md)
-  и операционный гайд `docs/operations/MULTISITE_VPS_DEPLOY_RU.md`. Принцип: образы из GHCR,
+  и операционный гайд `docs/operations/multisite-vps-deploy-ru.md`. Принцип: образы из GHCR,
   репозитории и локальные папки сайтов не смешиваются.
 - **Лицензия и интеллектуальная собственность** — `LICENSE` (EN), `LICENSE_RU.md` (RU),
   обоснование — `docs/adr/0011-proprietary-license.md`.
 
 ## MCP MemPalace (если включён в Cursor)
 
-Сервер **`user-mempalace`** (или `mempalace`): для широкого контекста сначала семантический поиск по дворцу, затем для **точной** формулировки и цитирования — Read соответствующего `docs/mempalace/rules/*.md` в репозитории (текст в git — источник правды; дворец — дополнительный контур памяти). Установка и `mine`: `docs/mempalace/MEMPALACE_AGENT_MEMORY_RU.md`, эксплуатация: `docs/mempalace/MEMPALACE_USAGE_RU.md`. Секреты и индексы дворца в git не коммитить.
+Сервер **`user-mempalace`** (или `mempalace`): для широкого контекста сначала семантический поиск по дворцу, затем для **точной** формулировки и цитирования — Read соответствующего `docs/mempalace/rules/*.md` в репозитории (текст в git — источник правды; дворец — дополнительный контур памяти). Установка и `mine`: `docs/mempalace/mempalace-agent-memory-ru.md`, эксплуатация: `docs/mempalace/mempalace-usage-ru.md`. Секреты и индексы дворца в git не коммитить.
 
 ## Поведение агента
 
@@ -61,4 +61,4 @@ alwaysApply: true
 
 ## Зависимости
 
-Только **Yarn** — `docs/guides/YARN_PACKAGE_MANAGER_RU.md`.
+Только **Yarn** — `docs/guides/yarn-package-manager-ru.md`.

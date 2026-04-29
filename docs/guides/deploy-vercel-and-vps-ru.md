@@ -28,7 +28,7 @@ PREMIUM_DESIGN_IMAGE=ghcr.io/<owner-lower>/premium-design:latest
 
 ## 3. VPS: два сайта (Docker) без Vercel
 
-- Инфраструктура: отдельный репозиторий **`lendings-vps-infra`** (compose и nginx в **корне** клона). Указатель из этого репо: [`deploy/README.md`](../../deploy/README.md); **пошагово** — [`docs/operations/MULTISITE_VPS_DEPLOY_RU.md`](../operations/MULTISITE_VPS_DEPLOY_RU.md).
+- Инфраструктура: отдельный репозиторий **`lendings-vps-infra`** (compose и nginx в **корне** клона). Указатель из этого репо: [`deploy/README.md`](../../deploy/README.md); **пошагово** — [`docs/operations/multisite-vps-deploy-ru.md`](../operations/multisite-vps-deploy-ru.md).
 - На сервере: только клон **`lendings-vps-infra`** и `docker compose pull` готовых образов — **без** `build` исходников сайта внутри compose.
 - Второй сайт (`febcode`) — **другой** репозиторий и свой образ; на одном nginx два `server_name`.
 
@@ -49,4 +49,4 @@ Workflow: [`.github/workflows/deploy.yml`](../../.github/workflows/deploy.yml) (
 - Это **не** Vercel: секрет `HOST` — **IP/хост сервиса SSH** сервера, не `*.vercel.app`.
 - Старый вариант «tar всего репо + `docker-compose` в корне» **снят** — используется pull-only из **`lendings-vps-infra`**.
 
-Подробнее по SSH и ключам: [`DEPLOY_SSH_GITHUB_ACTIONS_RU.md`](./DEPLOY_SSH_GITHUB_ACTIONS_RU.md) (секция про `HOST` и Vercel актуальна и здесь).
+Подробнее по SSH и ключам: [`deploy-ssh-github-actions-ru.md`](./deploy-ssh-github-actions-ru.md) (секция про `HOST` и Vercel актуальна и здесь).

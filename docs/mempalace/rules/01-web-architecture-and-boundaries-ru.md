@@ -38,21 +38,21 @@
 
 ## Связанные правила (чистая архитектура и код)
 
-- Сценарии и порты: [`08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md`](08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md).
-- SOLID / DRY / KISS / YAGNI: [`09_CLEAN_CODE_SOLID_DRY_KISS_YAGNI_RU.md`](09_CLEAN_CODE_SOLID_DRY_KISS_YAGNI_RU.md).
-- Ошибки и надёжность: [`10_ERRORS_AND_RELIABILITY_RU.md`](10_ERRORS_AND_RELIABILITY_RU.md).
-- Типы и валидация: [`11_TYPING_AND_VALIDATION_RU.md`](11_TYPING_AND_VALIDATION_RU.md).
-- Рефакторинг и долг: [`12_REFACTORING_AND_TECHNICAL_DEBT_RU.md`](12_REFACTORING_AND_TECHNICAL_DEBT_RU.md).
+- Сценарии и порты: [`08-clean-architecture-use-cases-and-ports-ru.md`](08-clean-architecture-use-cases-and-ports-ru.md).
+- SOLID / DRY / KISS / YAGNI: [`09-clean-code-solid-dry-kiss-yagni-ru.md`](09-clean-code-solid-dry-kiss-yagni-ru.md).
+- Ошибки и надёжность: [`10-errors-and-reliability-ru.md`](10-errors-and-reliability-ru.md).
+- Типы и валидация: [`11-typing-and-validation-ru.md`](11-typing-and-validation-ru.md).
+- Рефакторинг и долг: [`12-refactoring-and-technical-debt-ru.md`](12-refactoring-and-technical-debt-ru.md).
 
 ## Репозиторий Premier Design (жёсткие инварианты, merge)
 
 Ниже — **проектные** правила поверх общих норм выше. Нарушение блокирует merge (контроль скриптами и CI).
 
 1. **Направление зависимостей.** Слой `shared/` **не** импортирует `@features/*` и `@services/*`. Композиция нескольких фич — только в `widgets/` или в `pages/` / `app/`, не через cross-import между `features/<a>` и `features/<b>`. Контроль: `yarn check:architecture`.
-2. **UI — тонкий слой.** В `*/ui/*` запрещены бизнес-правила, **реализация** хуков, объявление типов (кроме локальных props компонента), вызовы внешних API/IO и инфраструктуры. Сопутствующее — в `hooks/`, `interface/` (или `types/`), `utils/`, валидаторы в `shared/validates/`, обвязка Next.js в `lib/` (`@lib/*`). Контроль: `yarn check:ui-purity`. Подробности: [`02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md`](02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md).
-3. **Use-case оркестрирует.** Сценарий не знает про HTTP/JSON; внешние зависимости — за портами. См. [`08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md`](08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md).
+2. **UI — тонкий слой.** В `*/ui/*` запрещены бизнес-правила, **реализация** хуков, объявление типов (кроме локальных props компонента), вызовы внешних API/IO и инфраструктуры. Сопутствующее — в `hooks/`, `interface/` (или `types/`), `utils/`, валидаторы в `shared/validates/`, обвязка Next.js в `lib/` (`@lib/*`). Контроль: `yarn check:ui-purity`. Подробности: [`02-web-ui-components-and-tokens-ru.md`](02-web-ui-components-and-tokens-ru.md).
+3. **Use-case оркестрирует.** Сценарий не знает про HTTP/JSON; внешние зависимости — за портами. См. [`08-clean-architecture-use-cases-and-ports-ru.md`](08-clean-architecture-use-cases-and-ports-ru.md).
 4. **Циклические импорты** запрещены; при риске — вынос в `shared/` или узкий util.
-5. **Типизация на границах** и **ввод** — см. [`11_TYPING_AND_VALIDATION_RU.md`](11_TYPING_AND_VALIDATION_RU.md); публичные API — явные сигнатуры TS; `any` без обоснования и плана замены — не допускается.
-6. **Безопасность** — см. [`05_WEB_SECURITY_AND_DATA_RU.md`](05_WEB_SECURITY_AND_DATA_RU.md).
-7. **Только Yarn.** Lock — `premier-design/yarn.lock`; `package-lock.json` в git не ведём. См. [`../../guides/YARN_PACKAGE_MANAGER_RU.md`](../../guides/YARN_PACKAGE_MANAGER_RU.md).
-8. **Структура фичи** — обязательны каталоги `ui/` и `interface/` (или `types/`), публичный баррель `features/<slice>/index.ts`, импорт снаружи через `@features/<slice>`. Контроль: `yarn check:feature-structure`. Нейминг и слои: [`../../guides/CODE_STRUCTURE_AND_NAMING_RU.md`](../../guides/CODE_STRUCTURE_AND_NAMING_RU.md).
+5. **Типизация на границах** и **ввод** — см. [`11-typing-and-validation-ru.md`](11-typing-and-validation-ru.md); публичные API — явные сигнатуры TS; `any` без обоснования и плана замены — не допускается.
+6. **Безопасность** — см. [`05-web-security-and-data-ru.md`](05-web-security-and-data-ru.md).
+7. **Только Yarn.** Lock — `premier-design/yarn.lock`; `package-lock.json` в git не ведём. См. [`../../guides/yarn-package-manager-ru.md`](../../guides/yarn-package-manager-ru.md).
+8. **Структура фичи** — обязательны каталоги `ui/` и `interface/` (или `types/`), публичный баррель `features/<slice>/index.ts`, импорт снаружи через `@features/<slice>`. Контроль: `yarn check:feature-structure`. Нейминг и слои: [`../../guides/code-structure-and-naming-ru.md`](../../guides/code-structure-and-naming-ru.md).

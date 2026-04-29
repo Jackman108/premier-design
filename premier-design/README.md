@@ -6,10 +6,10 @@
 
 ## Требования
 
-- **Node.js:** целевая версия для разработки и Docker — **`24.x`** (см. **`premier-design/.nvmrc`** и образ `node:24-alpine` в `Dockerfile.prod`). Диапазон, который объявлен в **`package.json` → `engines.node`** (минимум для devdeps вроде Lighthouse и совместимости с CI), — см. [`docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md); при несовпадении версии `yarn install` может завершиться ошибкой engine.
+- **Node.js:** целевая версия для разработки и Docker — **`24.x`** (см. **`premier-design/.nvmrc`** и образ `node:24-alpine` в `Dockerfile.prod`). Диапазон, который объявлен в **`package.json` → `engines.node`** (минимум для devdeps вроде Lighthouse и совместимости с CI), — см. [`docs/guides/scripts-and-quality-gates-ru.md`](../docs/guides/scripts-and-quality-gates-ru.md); при несовпадении версии `yarn install` может завершиться ошибкой engine.
 - [Yarn](https://yarnpkg.com/) Classic `1.22+` (как в CI: `yarn.lock` + `yarn install --frozen-lockfile`)
 - перед переустановкой зависимостей остановите `next dev` / `yarn dev`, иначе на Windows возможен `EPERM` при замене нативных бинарников в `node_modules` (в т.ч. `@next/swc-*`).
-- **`package-lock.json` не коммитим** — только `yarn.lock`; см. [`docs/guides/YARN_PACKAGE_MANAGER_RU.md`](../docs/guides/YARN_PACKAGE_MANAGER_RU.md).
+- **`package-lock.json` не коммитим** — только `yarn.lock`; см. [`docs/guides/yarn-package-manager-ru.md`](../docs/guides/yarn-package-manager-ru.md).
 
 ## Быстрый старт (локально)
 
@@ -33,11 +33,11 @@
 3. `yarn dev` (проверить, что главная открывается на `http://localhost:3000`)
 4. `yarn check:static` (lint + typecheck + unit)
 
-Если `check:static` зелёный — можно брать задачи; открытые пункты (если есть) — [`../docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](../docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md).
+Если `check:static` зелёный — можно брать задачи; открытые пункты (если есть) — [`../docs/audit/audit-and-improvement-plan-ru.md`](../docs/audit/audit-and-improvement-plan-ru.md).
 
 ## Документация репозитория
 
-**Карта всех разделов** — [`../docs/README.md`](../docs/README.md). Кратко: плейбук [`../docs/DEVELOPMENT_PLAYBOOK_RU.md`](../docs/DEVELOPMENT_PLAYBOOK_RU.md), скрипты и гейты [`../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md), деплой [`../docs/audit/DEPLOY_READINESS_2026_04_RU.md`](../docs/audit/DEPLOY_READINESS_2026_04_RU.md), Feb Code [`../docs/audit/CROSS_REPO_ALIGNMENT_RU.md`](../docs/audit/CROSS_REPO_ALIGNMENT_RU.md). Правила агента: [`../.cursor/rules/`](../.cursor/rules/), нормы — [`../docs/mempalace/rules/`](../docs/mempalace/rules/).
+**Карта всех разделов** — [`../docs/README.md`](../docs/README.md). Кратко: плейбук [`../docs/development-playbook-ru.md`](../docs/development-playbook-ru.md), скрипты и гейты [`../docs/guides/scripts-and-quality-gates-ru.md`](../docs/guides/scripts-and-quality-gates-ru.md), деплой [`../docs/audit/deploy-readiness-2026-04-ru.md`](../docs/audit/deploy-readiness-2026-04-ru.md), Feb Code [`../docs/audit/cross-repo-alignment-ru.md`](../docs/audit/cross-repo-alignment-ru.md). Правила агента: [`../.cursor/rules/`](../.cursor/rules/), нормы — [`../docs/mempalace/rules/`](../docs/mempalace/rules/).
 
 ## Архитектура UI
 
@@ -56,7 +56,7 @@
 | E2E smoke | `yarn test:e2e` (см. `playwright.config.ts`, `baseURL`) |
 | Storybook | `yarn storybook` · `yarn build-storybook` |
 
-**Полный перечень** скриптов, CI, lint-staged: [`../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md).
+**Полный перечень** скриптов, CI, lint-staged: [`../docs/guides/scripts-and-quality-gates-ru.md`](../docs/guides/scripts-and-quality-gates-ru.md).
 
 **Git hooks:** `.husky/pre-commit` — `lint-staged` + `yarn check:precommit:full`; `.husky/pre-push` — `yarn test:e2e` (набор `@core`).
 
@@ -87,7 +87,7 @@ Rate limit для `pages/api/*` (in-memory, см. ADR [`../docs/adr/0005-rate-li
 
 ## Версии и релизы
 
-- Версия приложения — поле `version` в `package.json`; история изменений — `CHANGELOG.md`.
+- Версия приложения — поле `version` в `package.json`; история изменений — [`docs/changelog.md`](../docs/changelog.md).
 - Формат: [Semantic Versioning](https://semver.org/lang/ru/) и [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/).
 - Коммиты: по возможности [Conventional Commits](https://www.conventionalcommits.org/) (`feat:`, `fix:`, `chore:` …) для предсказуемых нот релиза.
 
@@ -100,8 +100,8 @@ Production-образ (`Dockerfile.prod`) собирает приложение 
 Multi-site инфраструктура (`premium-design.pro` + `febcode.pro` на одном VPS):
 - отдельный репозиторий **`lendings-vps-infra`**: `docker-compose.yml`, `nginx/`, certbot в **корне** клона;
 - указатель из этого репо: [`../deploy/README.md`](../deploy/README.md);
-- операционный гайд: [`../docs/operations/MULTISITE_VPS_DEPLOY_RU.md`](../docs/operations/MULTISITE_VPS_DEPLOY_RU.md);
-- деплой через GitHub Actions (SSH + `docker compose pull`): [`../docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md`](../docs/guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md).
+- операционный гайд: [`../docs/operations/multisite-vps-deploy-ru.md`](../docs/operations/multisite-vps-deploy-ru.md);
+- деплой через GitHub Actions (SSH + `docker compose pull`): [`../docs/guides/deploy-ssh-github-actions-ru.md`](../docs/guides/deploy-ssh-github-actions-ru.md).
 
 Локальная сборка образа (из каталога приложения, где лежит `Dockerfile.prod`):
 

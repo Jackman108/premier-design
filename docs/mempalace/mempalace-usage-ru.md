@@ -1,12 +1,12 @@
 # MemPalace: руководство по эксплуатации
 
-Дополняет пошаговую установку в [`MEMPALACE_AGENT_MEMORY_RU.md`](MEMPALACE_AGENT_MEMORY_RU.md). Здесь — **проверка работоспособности**, повседневные команды и типовые сбои.
+Дополняет пошаговую установку в [`mempalace-agent-memory-ru.md`](mempalace-agent-memory-ru.md). Здесь — **проверка работоспособности**, повседневные команды и типовые сбои.
 
 ## Когда что читать
 
 | Документ | Назначение |
 |----------|------------|
-| [`MEMPALACE_AGENT_MEMORY_RU.md`](MEMPALACE_AGENT_MEMORY_RU.md) | Установка, `init`, `mine`, MCP в Cursor |
+| [`mempalace-agent-memory-ru.md`](mempalace-agent-memory-ru.md) | Установка, `init`, `mine`, MCP в Cursor |
 | Этот файл | Проверка после `mine`, `search`, `status`, перезапуск индекса |
 | [`README.md`](README.md) | Набор `rules/*.md` для веб-UI и чистой архитектуры, синхронизация с дворцом |
 
@@ -72,14 +72,14 @@ python -m mempalace wake-up
 
 ## Связь с репозиторием Premier Design
 
-- **Источник правил в git:** каталог [`rules/`](rules/) вместе с гайдами в этой папке (`MEMPALACE_*_RU.md`).
+- **Источник правил в git:** каталог [`rules/`](rules/) вместе с гайдами в этой папке (`mempalace-*-ru.md`).
 - **Дворец MemPalace** — локально вне git: копируйте в `$mp` нужные файлы из `docs/mempalace/`, затем `mine`. Так в индекс не попадают секреты и лишний объём репозитория.
 
 ## Если что-то не так
 
 | Симптом | Действие |
 |---------|----------|
-| `No mempalace.yaml` | `mine` запускать с корнем проекта после `init`, см. [`MEMPALACE_AGENT_MEMORY_RU.md`](MEMPALACE_AGENT_MEMORY_RU.md). |
+| `No mempalace.yaml` | `mine` запускать с корнем проекта после `init`, см. [`mempalace-agent-memory-ru.md`](mempalace-agent-memory-ru.md). |
 | Поиск пустой | Проверить, что запрос соответствует содержимому; увеличить `--results`; выполнить `status`; убедиться, что после копирования новых файлов был выполнен `mine`. |
 | Краш при выводе в консоль | UTF-8 для Python, см. раздел «Семантический поиск». |
 | MCP не отвечает | Проверить `python -m mempalace.mcp_server --palace <путь>` вручную; путь к `python` в `mcp.json` совпадает с тем, где установлен MemPalace. |

@@ -49,6 +49,6 @@
 
 ## Связь с чистым кодом и архитектурой
 
-- Сценарии и тестируемость портов: [`08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md`](08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md).
-- Качество кода и YAGNI: [`09_CLEAN_CODE_SOLID_DRY_KISS_YAGNI_RU.md`](09_CLEAN_CODE_SOLID_DRY_KISS_YAGNI_RU.md).
-- Долг и сфокусированные PR: [`12_REFACTORING_AND_TECHNICAL_DEBT_RU.md`](12_REFACTORING_AND_TECHNICAL_DEBT_RU.md).
+- Сценарии и тестируемость портов: [`08-clean-architecture-use-cases-and-ports-ru.md`](08-clean-architecture-use-cases-and-ports-ru.md).
+- Качество кода и YAGNI: [`09-clean-code-solid-dry-kiss-yagni-ru.md`](09-clean-code-solid-dry-kiss-yagni-ru.md).
+- Долг и сфокусированные PR: [`12-refactoring-and-technical-debt-ru.md`](12-refactoring-and-technical-debt-ru.md).

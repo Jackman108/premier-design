@@ -21,4 +21,4 @@
 
 ## Документация
 
-При изменении матрицы workflow обновлять RISK-12/CHANGELOG по чеклисту `QUALITY_GATES_SYNC_RU.md`.
+При изменении матрицы workflow обновлять RISK-12/CHANGELOG по чеклисту `quality-gates-sync-ru.md`.

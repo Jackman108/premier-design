@@ -13,11 +13,11 @@
 | **`premier-design/.nvmrc`** | Рекомендуемая версия для разработки (**24**) — `nvm use` / `fnm use` перед работой. |
 | **`premier-design/Dockerfile.prod`** | Образ **`node:24-alpine`** — целевой рантайм прод-сборки; локально допустим Node **≥22.19** (например для devdeps вроде Lighthouse), см. комментарий в Dockerfile. |
 
-При обновлении **`engines`** или образа Docker обновляйте этот блок и [`audit/CROSS_REPO_ALIGNMENT_RU.md`](../audit/CROSS_REPO_ALIGNMENT_RU.md) при необходимости; процесс синхронизации — [`QUALITY_GATES_SYNC_RU.md`](../audit/QUALITY_GATES_SYNC_RU.md).
+При обновлении **`engines`** или образа Docker обновляйте этот блок и [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md) при необходимости; процесс синхронизации — [`quality-gates-sync-ru.md`](../audit/quality-gates-sync-ru.md).
 
 ## Политика форматирования (кросс-репо)
 
-Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../adr/0010-formatting-policy-no-prettier.md). Согласование с Feb Code (где может использоваться Prettier) — [`PRETTIER_AND_FORMATTING_CROSS_REPO_RU.md`](PRETTIER_AND_FORMATTING_CROSS_REPO_RU.md).
+Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../adr/0010-formatting-policy-no-prettier.md). Согласование с Feb Code (где может использоваться Prettier) — [`prettier-and-formatting-cross-repo-ru.md`](prettier-and-formatting-cross-repo-ru.md).
 
 ## Быстрые маршруты
 
@@ -28,7 +28,7 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 | Все project‑gates без полной «релизной» цепочки | `yarn check:risk:local` |
 | Как перед merge / как в pre‑commit (lint, typecheck, unit, gates, build, initial JS) | `yarn check:precommit:full` |
 | То же для ожиданий «готово к деплою» | `yarn check:deploy:local` (алиас) |
-| Аналог perf‑части CI (Lighthouse + initial JS) | `yarn check:perf:ci` (на Windows Lighthouse может пропускаться — см. [PERF_AND_SEO_CHECKLIST_RU](PERF_AND_SEO_CHECKLIST_RU.md)) |
+| Аналог perf‑части CI (Lighthouse + initial JS) | `yarn check:perf:ci` (на Windows Lighthouse может пропускаться — см. [PERF_AND_SEO_CHECKLIST_RU](perf-and-seo-checklist-ru.md)) |
 | E2E smoke (`@core`) | `yarn test:e2e` (нужен сервер; см. `playwright.config.ts`) |
 | Каталог UI | `yarn storybook` / `yarn build-storybook` |
 | Стили Panda CSS после смены рецептов/темы | `yarn panda:codegen` или `yarn panda:watch` |
@@ -63,7 +63,7 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 | `check:architecture` | Границы слоёв (полный проход). В `lint-staged` тот же скрипт вызывается **по списку изменённых файлов** без `--all`. |
 | `check:architecture:progress` | План сокращения allowlist (`maxAllowedCount`). |
 | `check:ui-purity` | Чистота UI‑слоя. |
-| `check:feature-structure` | Структура `features/*` (см. [FEATURE_STRUCTURE_ROADMAP_RU](FEATURE_STRUCTURE_ROADMAP_RU.md)). |
+| `check:feature-structure` | Структура `features/*` (см. [FEATURE_STRUCTURE_ROADMAP_RU](feature-structure-roadmap-ru.md)). |
 | `check:regressions` | Регрессии P2 (стили, картинки и т.д.). |
 | `check:noise` | Следы шумовых артефактов в репозитории. |
 | `check:slo:feedback` | SLO для воронки feedback (`p95`, error/timeout rate). |
@@ -87,7 +87,7 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 | Скрипт | Назначение |
 |--------|------------|
 | `report:architecture-allowlist` | Разбивка allowlist по owner / near‑expiry / candidate‑to‑remove. |
-| `report:audit:high` | Отчёт по `yarn audit` (high/critical) для weekly триаджа (см. [SUPPLY_CHAIN](../audit/SUPPLY_CHAIN_RU.md)). |
+| `report:audit:high` | Отчёт по `yarn audit` (high/critical) для weekly триаджа (см. [SUPPLY_CHAIN](../audit/supply-chain-ru.md)). |
 
 ## 6. E2E (Playwright)
 
@@ -118,7 +118,7 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 - **`ci-trends.yml`:** `report-ci-trends.mjs` + `check-ci-sla.mjs`.
 - **`security-high-weekly.yml`:** `report:audit:high` + автосоздание issue при high/critical > 0 (в issue добавляются ссылка на workflow run и имя artifact `security-high-weekly`).
 
-Полные шаги — в `.github/workflows/`. При изменении скриптов обновляйте этот файл и [`QUALITY_GATES_SYNC_RU.md`](../audit/QUALITY_GATES_SYNC_RU.md).
+Полные шаги — в `.github/workflows/`. При изменении скриптов обновляйте этот файл и [`quality-gates-sync-ru.md`](../audit/quality-gates-sync-ru.md).
 
 ## Lint‑staged (pre‑commit)
 
@@ -135,9 +135,9 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 
 ## Связанные документы
 
-- [PERF_AND_SEO_CHECKLIST_RU](PERF_AND_SEO_CHECKLIST_RU.md)
-- [YARN_PACKAGE_MANAGER_RU](YARN_PACKAGE_MANAGER_RU.md)
-- [API_AND_STORYBOOK_RU](API_AND_STORYBOOK_RU.md)
-- [ADR 0010: без Prettier](../adr/0010-formatting-policy-no-prettier.md) — форматирование; кросс-репо Feb Code — [`audit/CROSS_REPO_ALIGNMENT_RU.md`](../audit/CROSS_REPO_ALIGNMENT_RU.md)
-- [DEPLOY_READINESS_2026_04_RU](../audit/DEPLOY_READINESS_2026_04_RU.md)
-- [QUALITY_GATES_SYNC_RU](../audit/QUALITY_GATES_SYNC_RU.md)
+- [PERF_AND_SEO_CHECKLIST_RU](perf-and-seo-checklist-ru.md)
+- [YARN_PACKAGE_MANAGER_RU](yarn-package-manager-ru.md)
+- [API_AND_STORYBOOK_RU](api-and-storybook-ru.md)
+- [ADR 0010: без Prettier](../adr/0010-formatting-policy-no-prettier.md) — форматирование; кросс-репо Feb Code — [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md)
+- [DEPLOY_READINESS_2026_04_RU](../audit/deploy-readiness-2026-04-ru.md)
+- [QUALITY_GATES_SYNC_RU](../audit/quality-gates-sync-ru.md)

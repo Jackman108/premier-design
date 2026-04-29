@@ -26,7 +26,7 @@
 4. **Фаза 3 (migration gate):** замена только после сравнения bundle delta, smoke e2e и отсутствия regressions по lead funnel.
 5. **Rollback:** фича-флаг/быстрый откат на текущий runtime до закрытия регрессий.
 
-Детализация этапов и критериев — в [`docs/audit/RFC_CHATBOT_RUNTIME_ISOLATION_RU.md`](../audit/RFC_CHATBOT_RUNTIME_ISOLATION_RU.md).
+Детализация этапов и критериев — в [`docs/audit/rfc-chatbot-runtime-isolation-ru.md`](../audit/rfc-chatbot-runtime-isolation-ru.md).
 
 ## Проверка готовности
 
@@ -40,4 +40,4 @@
 |------|---------------------------|----------------------------------|--------|
 | 2026-04-29 | 2.2.2 (lockfile) | 0 уязвимостей по дереву зависимостей | Критичных CVE по пакету в отчёте нет; митигация из ADR (ленивая загрузка `ChatBotRuntime` через `dynamic`, отсутствие импорта кита в `useChatBotSidebar`) сохраняется. Повторять триаж при обновлении lockfile / еженедельном `security-high-weekly`. |
 
-При появлении **high/critical** без патча — следовать разделу «План изоляции/замены» и [`RFC_CHATBOT_RUNTIME_ISOLATION_RU.md`](../audit/RFC_CHATBOT_RUNTIME_ISOLATION_RU.md).
+При появлении **high/critical** без патча — следовать разделу «План изоляции/замены» и [`rfc-chatbot-runtime-isolation-ru.md`](../audit/rfc-chatbot-runtime-isolation-ru.md).

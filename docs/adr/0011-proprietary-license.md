@@ -45,4 +45,4 @@
 - [x] `LICENSE` и `LICENSE_RU.md` существуют в корне;
 - [x] `package.json` указывает на `LICENSE`;
 - [x] `docs/README.md` ссылается на лицензию;
-- [x] `CHANGELOG.md` содержит запись о принятии ADR.
+- [x] [`changelog.md`](../changelog.md) содержит запись о принятии ADR.

@@ -9,7 +9,7 @@
 
 ## Решение
 
-1. Карта событий и KPI — в [`docs/guides/MARKETING_ANALYTICS_DASHBOARD_RU.md`](../guides/MARKETING_ANALYTICS_DASHBOARD_RU.md).
+1. Карта событий и KPI — в [`docs/guides/marketing-analytics-dashboard-ru.md`](../guides/marketing-analytics-dashboard-ru.md).
 2. Перед внедрением скриптов в `pages/_app.tsx` или `app/layout.tsx`: отдельный PR с `NEXT_PUBLIC_*` ID, обновлением CSP (`script-src` при необходимости), согласованием с баннером cookies.
 3. Предпочтительно **один** контейнер (например GTM) или прямой счётчик с минимальным `Script`/`strategy="lazyOnload"` после согласия пользователя, если это требуется правовой моделью.
 

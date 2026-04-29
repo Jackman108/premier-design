@@ -12,7 +12,7 @@
 
 В **Feb Code** принят другой контур: в `package.json` есть **`prettier`**, скрипты вроде `format`, в pre-commit — **`prettier --check`** по staged-файлам (подробности — в том репозитории: `package.json`, `lint-staged`, `docs/changelog.md`).
 
-Это **не противоречие**, а осознанное различие между проектами; матрица унификации в [`audit/CROSS_REPO_ALIGNMENT_RU.md`](../audit/CROSS_REPO_ALIGNMENT_RU.md) закрывается формулировкой «одна политика **на репозиторий**».
+Это **не противоречие**, а осознанное различие между проектами; матрица унификации в [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md) закрывается формулировкой «одна политика **на репозиторий**».
 
 ## Как работать при правках в обоих репо
 
@@ -27,5 +27,5 @@
 ## Связанные документы
 
 - [ADR 0010: без Prettier](../adr/0010-formatting-policy-no-prettier.md)
-- [`guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](SCRIPTS_AND_QUALITY_GATES_RU.md)
-- [`audit/CROSS_REPO_ALIGNMENT_RU.md`](../audit/CROSS_REPO_ALIGNMENT_RU.md)
+- [`guides/scripts-and-quality-gates-ru.md`](scripts-and-quality-gates-ru.md)
+- [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md)

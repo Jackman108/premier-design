@@ -7,12 +7,12 @@
 | Файл | Назначение |
 |------|------------|
 | Этот файл | Установка, `init`, `mine`, MCP, безопасность |
-| [`MEMPALACE_USAGE_RU.md`](MEMPALACE_USAGE_RU.md) | Эксплуатация: `search`, `status`, UTF-8, переиндексация, сбои |
+| [`mempalace-usage-ru.md`](mempalace-usage-ru.md) | Эксплуатация: `search`, `status`, UTF-8, переиндексация, сбои |
 | [`README.md`](README.md) | Оглавление набора `rules/*.md` и синхронизация с дворцом |
 
-**Канон норм для агента и команды** — тексты в **`docs/mempalace/rules/`** (`01`–`12`) и [`README.md`](README.md); репозиторные merge-инварианты — в конце [`rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md`](rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md). В Cursor подключается правило [`.cursor/rules/agent-mempalace-bootstrap.mdc`](../../.cursor/rules/agent-mempalace-bootstrap.mdc) (MemPalace-first: Read из репо + при наличии MCP — семантический поиск по дворцу). Процесс и гейты — [`.cursor/rules/agent-quality-process.mdc`](../../.cursor/rules/agent-quality-process.mdc). MemPalace **вне git** дополняет **личный** контур памяти (RAG), но не подменяет файлы в репозитории.
+**Канон норм для агента и команды** — тексты в **`docs/mempalace/rules/`** (`01`–`12`) и [`README.md`](README.md); репозиторные merge-инварианты — в конце [`rules/01-web-architecture-and-boundaries-ru.md`](rules/01-web-architecture-and-boundaries-ru.md). В Cursor подключается правило [`.cursor/rules/agent-mempalace-bootstrap.mdc`](../../.cursor/rules/agent-mempalace-bootstrap.mdc) (MemPalace-first: Read из репо + при наличии MCP — семантический поиск по дворцу). Процесс и гейты — [`.cursor/rules/agent-quality-process.mdc`](../../.cursor/rules/agent-quality-process.mdc). MemPalace **вне git** дополняет **личный** контур памяти (RAG), но не подменяет файлы в репозитории.
 
-**Индексация в дворец:** скопируйте в каталог `$mp` (вне git) файлы из [`rules/`](rules/) и при необходимости **эти же гайды** (`MEMPALACE_*_RU.md`), затем выполните `mine $mp` — агент в Cursor с MCP сможет искать по тому же содержимому, что проиндексировано локально.
+**Индексация в дворец:** скопируйте в каталог `$mp` (вне git) файлы из [`rules/`](rules/) и при необходимости **эти же гайды** (`mempalace-*-ru.md`), затем выполните `mine $mp` — агент в Cursor с MCP сможет искать по тому же содержимому, что проиндексировано локально.
 
 ---
 
@@ -48,7 +48,7 @@ python -c "import mempalace; print('ok')"
 $env:PYTHONIOENCODING='utf-8'
 ```
 
-**Зачем:** справка CLI может содержать символы вне cp1251; на **работу MCP-сервера** это обычно не влияет. Для **`search`** и других команд с Unicode в выводе задайте также `PYTHONUTF8=1` (см. [`MEMPALACE_USAGE_RU.md`](MEMPALACE_USAGE_RU.md)).
+**Зачем:** справка CLI может содержать символы вне cp1251; на **работу MCP-сервера** это обычно не влияет. Для **`search`** и других команд с Unicode в выводе задайте также `PYTHONUTF8=1` (см. [`mempalace-usage-ru.md`](mempalace-usage-ru.md)).
 
 ---
 
@@ -142,7 +142,7 @@ python -m mempalace mine $mp
 python -m mempalace status
 ```
 
-**Зачем:** быстро убедиться, что «что-то уже положено в дворец». Подробнее — [`MEMPALACE_USAGE_RU.md`](MEMPALACE_USAGE_RU.md).
+**Зачем:** быстро убедиться, что «что-то уже положено в дворец». Подробнее — [`mempalace-usage-ru.md`](mempalace-usage-ru.md).
 
 ---
 

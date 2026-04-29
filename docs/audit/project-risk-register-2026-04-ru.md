@@ -1,6 +1,6 @@
 # Реестр рисков проекта (апрель 2026)
 
-Индекс: [`docs/README.md`](../README.md) · Сводный аудит: [`PROJECT_AUDIT_2026_04_RU.md`](./PROJECT_AUDIT_2026_04_RU.md) · Бэклог: [`AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](./AUDIT_AND_IMPROVEMENT_PLAN_RU.md)
+Индекс: [`docs/README.md`](../README.md) · Сводный аудит: [`project-audit-2026-04-ru.md`](./project-audit-2026-04-ru.md) · Бэклог: [`audit-and-improvement-plan-ru.md`](./audit-and-improvement-plan-ru.md)
 
 ## Цель
 Зафиксировать текущие продуктовые и инженерные риски клиент-серверного приложения, их влияние и план снижения.
@@ -20,11 +20,11 @@
 | RISK-05 | Перегрузка CI времени выполнения из-за расширения проверок | Medium | Medium | Увеличение времени job > SLA | Блокирующий `@core` smoke, `@extended` запускать отдельно (manual/nightly) | Снижен |
 | RISK-06 | Регрессии контрактов API/форм (feedback funnel) | Low | High | Рост 4xx/5xx, падение completion rate | Unit/API; клиент `PostFeedbackError` + `correlationId` в GTM/ошибке; 405/ошибки с `createApiErrorPayload` | Снижен |
 | RISK-07 | Накопление шумовых артефактов в workspace/PR | Medium | Medium | Появление `.next/`, test artifacts, временных логов | `check:noise`, `.gitignore` (корень: `/premier-design/.next/`), pre-commit контроль | Снижен |
-| RISK-08 | Несогласованность документов и реального состояния quality-gates | Medium | Medium | Разночтение между CI, audit и changelog | [Чеклист синхронизации](QUALITY_GATES_SYNC_RU.md) | Снижен |
-| RISK-09 | Скрытые уязвимости зависимостей и транзитивных пакетов | Medium | High | `yarn audit`/GH Dependabot alerts, CVE в prod-chain | [Процесс supply-chain](SUPPLY_CHAIN_RU.md), weekly workflow, SLA patch critical/high | Снижен |
+| RISK-08 | Несогласованность документов и реального состояния quality-gates | Medium | Medium | Разночтение между CI, audit и changelog | [Чеклист синхронизации](quality-gates-sync-ru.md) | Снижен |
+| RISK-09 | Скрытые уязвимости зависимостей и транзитивных пакетов | Medium | High | `yarn audit`/GH Dependabot alerts, CVE в prod-chain | [Процесс supply-chain](supply-chain-ru.md), weekly workflow, SLA patch critical/high | Снижен |
 | RISK-10 | Деградация backend SLO из-за внешних интеграций (SMTP/Telegram/API) | Medium | High | Рост таймаутов API, spike retry в feedback-воронке | Timeouts + retry policy + circuit для интеграций, алерты по latency/error-rate | Снижен (см. [политику RISK-10](#политика-внешних-интеграций-risk-10) и `shared/lib/integrationCircuit.ts`) |
-| RISK-11 | Недостаточная наблюдаемость продакшена (ошибки без корреляции) | Medium | High | Ошибки в логах без route/correlation, медленное RCA | [Runbook наблюдаемости](OPERATIONS_OBSERVABILITY_RU.md): `X-Correlation-Id` + SLO-файл/логи; опциональный APM — вне scope лендинга | Снижен |
-| RISK-12 | Рост стоимости и времени CI из-за расширения матрицы проверок | Medium | Medium | Нестабильный lead time PR, очереди раннеров | [Тренды и SLA](CI_COST_AND_TRENDS_RU.md), p95, разделение job | Снижен |
+| RISK-11 | Недостаточная наблюдаемость продакшена (ошибки без корреляции) | Medium | High | Ошибки в логах без route/correlation, медленное RCA | [Runbook наблюдаемости](operations-observability-ru.md): `X-Correlation-Id` + SLO-файл/логи; опциональный APM — вне scope лендинга | Снижен |
+| RISK-12 | Рост стоимости и времени CI из-за расширения матрицы проверок | Medium | Medium | Нестабильный lead time PR, очереди раннеров | [Тренды и SLA](ci-cost-and-trends-ru.md), p95, разделение job | Снижен |
 
 ## Реализованные шаги
 1. ✅ Вынесен `@extended` e2e в отдельный non-blocking workflow `.github/workflows/e2e-extended.yml` (nightly + `workflow_dispatch`).
@@ -34,7 +34,7 @@
 5. ✅ Этап 2 RISK-11: введён общий runtime-наблюдатель `shared/lib/api/apiRequestRuntime.ts` и подключён в `/api/feedback` и `/api/sitemap`.
 6. ✅ Для RISK-10 добавлен retry policy в `submitFeedback` для SMTP/Telegram (только для транзиентных ошибок, ограниченные попытки).
 7. ✅ Для RISK-10 добавлен in-process **circuit** для путей SMTP (dev) и Telegram: N подряд неуспехов операции (после исчерпания retry) — пауза `openDuration`, затем half-open/проба. HTTP **503** при fast-fail; `FEEDBACK_CIRCUIT_*` (см. ниже).
-8. ✅ RISK-06/11/08/09/12: [runbook](OPERATIONS_OBSERVABILITY_RU.md), [синхронизация гейтов](QUALITY_GATES_SYNC_RU.md), [supply-chain](SUPPLY_CHAIN_RU.md), [CI/тренды](CI_COST_AND_TRENDS_RU.md); `405` с `createApiErrorPayload` на feedback; `postFeedbackToApi` + `PostFeedbackError` с `correlationId` в UI/аналитике.
+8. ✅ RISK-06/11/08/09/12: [runbook](operations-observability-ru.md), [синхронизация гейтов](quality-gates-sync-ru.md), [supply-chain](supply-chain-ru.md), [CI/тренды](ci-cost-and-trends-ru.md); `405` с `createApiErrorPayload` на feedback; `postFeedbackToApi` + `PostFeedbackError` с `correlationId` в UI/аналитике.
 
 ## Политика внешних интеграций (RISK-10)
 

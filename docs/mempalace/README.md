@@ -4,38 +4,38 @@
 
 ## Гайды (начните здесь)
 
-Процесс разработки и перечень `yarn`‑команд: [`../DEVELOPMENT_PLAYBOOK_RU.md`](../DEVELOPMENT_PLAYBOOK_RU.md), [`../guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../guides/SCRIPTS_AND_QUALITY_GATES_RU.md). Гейты и синхронизация доков — [`.cursor/rules/agent-quality-process.mdc`](../../.cursor/rules/agent-quality-process.mdc).
+Процесс разработки и перечень `yarn`‑команд: [`../development-playbook-ru.md`](../development-playbook-ru.md), [`../guides/scripts-and-quality-gates-ru.md`](../guides/scripts-and-quality-gates-ru.md). Гейты и синхронизация доков — [`.cursor/rules/agent-quality-process.mdc`](../../.cursor/rules/agent-quality-process.mdc).
 
 | Файл | Содержание |
 |------|------------|
-| [`MEMPALACE_AGENT_MEMORY_RU.md`](MEMPALACE_AGENT_MEMORY_RU.md) | Установка, `init`, `mine`, MCP в Cursor, безопасность, пошаговая настройка |
-| [`MEMPALACE_USAGE_RU.md`](MEMPALACE_USAGE_RU.md) | Проверка после `mine`, `search` / `status` / `wake-up`, UTF-8 в Windows, цикл переиндексации, типовые сбои |
+| [`mempalace-agent-memory-ru.md`](mempalace-agent-memory-ru.md) | Установка, `init`, `mine`, MCP в Cursor, безопасность, пошаговая настройка |
+| [`mempalace-usage-ru.md`](mempalace-usage-ru.md) | Проверка после `mine`, `search` / `status` / `wake-up`, UTF-8 в Windows, цикл переиндексации, типовые сбои |
 
 ## Правила для RAG: веб и чистая архитектура
 
 | Файл | Тема |
 |------|------|
-| [`rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md`](rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md) | Слои Next.js/React, границы зависимостей |
-| [`rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md`](rules/02_WEB_UI_COMPONENTS_AND_TOKENS_RU.md) | Токены, примитивы, стили |
-| [`rules/03_WEB_A11Y_AND_UX_RU.md`](rules/03_WEB_A11Y_AND_UX_RU.md) | Доступность, UX |
-| [`rules/04_WEB_PERFORMANCE_RU.md`](rules/04_WEB_PERFORMANCE_RU.md) | LCP, бандл, CLS, INP |
-| [`rules/05_WEB_SECURITY_AND_DATA_RU.md`](rules/05_WEB_SECURITY_AND_DATA_RU.md) | Секреты, валидация, заголовки |
-| [`rules/06_WEB_NEXTJS_DATA_AND_FORMS_RU.md`](rules/06_WEB_NEXTJS_DATA_AND_FORMS_RU.md) | Данные, формы, API |
-| [`rules/07_WEB_TESTING_AND_QUALITY_RU.md`](rules/07_WEB_TESTING_AND_QUALITY_RU.md) | Пирамида тестов, CI |
-| [`rules/08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md`](rules/08_CLEAN_ARCHITECTURE_USE_CASES_AND_PORTS_RU.md) | Use-case, порты, адаптеры, DIP |
-| [`rules/09_CLEAN_CODE_SOLID_DRY_KISS_YAGNI_RU.md`](rules/09_CLEAN_CODE_SOLID_DRY_KISS_YAGNI_RU.md) | SOLID, DRY, KISS, YAGNI |
-| [`rules/10_ERRORS_AND_RELIABILITY_RU.md`](rules/10_ERRORS_AND_RELIABILITY_RU.md) | Ожидаемые/неожиданные ошибки, таймауты |
-| [`rules/11_TYPING_AND_VALIDATION_RU.md`](rules/11_TYPING_AND_VALIDATION_RU.md) | TypeScript, Zod, границы |
-| [`rules/12_REFACTORING_AND_TECHNICAL_DEBT_RU.md`](rules/12_REFACTORING_AND_TECHNICAL_DEBT_RU.md) | Рефакторинг, долг, PR |
+| [`rules/01-web-architecture-and-boundaries-ru.md`](rules/01-web-architecture-and-boundaries-ru.md) | Слои Next.js/React, границы зависимостей |
+| [`rules/02-web-ui-components-and-tokens-ru.md`](rules/02-web-ui-components-and-tokens-ru.md) | Токены, примитивы, стили |
+| [`rules/03-web-a11y-and-ux-ru.md`](rules/03-web-a11y-and-ux-ru.md) | Доступность, UX |
+| [`rules/04-web-performance-ru.md`](rules/04-web-performance-ru.md) | LCP, бандл, CLS, INP |
+| [`rules/05-web-security-and-data-ru.md`](rules/05-web-security-and-data-ru.md) | Секреты, валидация, заголовки |
+| [`rules/06-web-nextjs-data-and-forms-ru.md`](rules/06-web-nextjs-data-and-forms-ru.md) | Данные, формы, API |
+| [`rules/07-web-testing-and-quality-ru.md`](rules/07-web-testing-and-quality-ru.md) | Пирамида тестов, CI |
+| [`rules/08-clean-architecture-use-cases-and-ports-ru.md`](rules/08-clean-architecture-use-cases-and-ports-ru.md) | Use-case, порты, адаптеры, DIP |
+| [`rules/09-clean-code-solid-dry-kiss-yagni-ru.md`](rules/09-clean-code-solid-dry-kiss-yagni-ru.md) | SOLID, DRY, KISS, YAGNI |
+| [`rules/10-errors-and-reliability-ru.md`](rules/10-errors-and-reliability-ru.md) | Ожидаемые/неожиданные ошибки, таймауты |
+| [`rules/11-typing-and-validation-ru.md`](rules/11-typing-and-validation-ru.md) | TypeScript, Zod, границы |
+| [`rules/12-refactoring-and-technical-debt-ru.md`](rules/12-refactoring-and-technical-debt-ru.md) | Рефакторинг, долг, PR |
 
 Документы согласованы с ADR (`docs/adr/`) и гайдами (`docs/guides/`). Полные формулировки норм — **только** в `rules/*.md`; в `.cursor/rules/` остаются короткие указатели (`agent-mempalace-bootstrap.mdc`, `agent-quality-process.mdc`).
 
 ## Синхронизация с локальным дворцом MemPalace
 
-1. Каталог `$mp` **вне git** — один раз `init` (см. [`MEMPALACE_AGENT_MEMORY_RU.md`](MEMPALACE_AGENT_MEMORY_RU.md)).
-2. Скопировать в `$mp`: все `rules/*.md` и при желании **`MEMPALACE_*_RU.md`** из этой папки, плюс выборочно файлы из `docs/guides/` (без секретов).
+1. Каталог `$mp` **вне git** — один раз `init` (см. [`mempalace-agent-memory-ru.md`](mempalace-agent-memory-ru.md)).
+2. Скопировать в `$mp`: все `rules/*.md` и при желании гайды **`mempalace-*-ru.md`** из этой папки, плюс выборочно файлы из `docs/guides/` (без секретов).
 3. `python -m mempalace mine $mp` (сначала `--dry-run` по желанию).
-4. Проверка: [`MEMPALACE_USAGE_RU.md`](MEMPALACE_USAGE_RU.md).
+4. Проверка: [`mempalace-usage-ru.md`](mempalace-usage-ru.md).
 
 **Cursor MCP:** шаблон [`../cursor/mcp.mempalace.example.json`](../cursor/mcp.mempalace.example.json).
 

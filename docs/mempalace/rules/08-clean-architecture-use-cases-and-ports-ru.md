@@ -1,6 +1,6 @@
 # Чистая архитектура: сценарии, порты и адаптеры
 
-Дополняет [`01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md`](01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md) акцентом на **прикладном ядре** и инверсии зависимостей.
+Дополняет [`01-web-architecture-and-boundaries-ru.md`](01-web-architecture-and-boundaries-ru.md) акцентом на **прикладном ядре** и инверсии зависимостей.
 
 ## Сценарии (use cases)
 

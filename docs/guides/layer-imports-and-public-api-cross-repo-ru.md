@@ -2,7 +2,7 @@
 
 **Обновлено**: 29.04.2026
 
-Канон Feb Code по слоям и направлению зависимостей — **`febcode/docs/architecture.md`** (FSD + App Router, `pages-layer`, алиасы). Здесь — **как сверять** этот канон с **Premier Design** (Pages Router, Panda, свои алиасы) без дублирования текста.
+Канон Feb Code по слоям и направлению зависимостей — **`febcode/docs/guides/architecture.md`** (FSD + App Router, `pages-layer`, алиасы). Здесь — **как сверять** этот канон с **Premier Design** (Pages Router, Panda, свои алиасы) без дублирования текста.
 
 ## C1 — документация слоёв и смена роутинга
 
@@ -11,9 +11,9 @@
 | `src/app/` — роутинг Next + композиция | `pages/`, `pages/api/`, при необходимости лёгкая обвязка в корне приложения; тяжёлая композиция — в виджетах/фичах |
 | `pages-layer/` — страницы как композиция (обход конфликта с `pages/`) | Страницы в `pages/*`; секции через виджеты и реестры динамики в `lib/` |
 | `widgets/` → `features/` → `entities/` → `shared/` | `widgets/` → `features/` → `shared/`; доменные типы — внутри фич и `shared/` (строгого `entities/` может не быть — см. аудит FSD) |
-| Направление импортов «вниз по слою» | То же по смыслу: [`mempalace/rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md`](../mempalace/rules/01_WEB_ARCHITECTURE_AND_BOUNDARIES_RU.md), [`CODE_STRUCTURE_AND_NAMING_RU.md`](CODE_STRUCTURE_AND_NAMING_RU.md) |
+| Направление импортов «вниз по слою» | То же по смыслу: [`mempalace/rules/01-web-architecture-and-boundaries-ru.md`](../mempalace/rules/01-web-architecture-and-boundaries-ru.md), [`code-structure-and-naming-ru.md`](code-structure-and-naming-ru.md) |
 
-**Правило при любом рефакторинге роутинга** (в т.ч. будущий перенос на App Router): заново пройти **`febcode/docs/architecture.md`** (разделы «Структура», «Правила зависимостей», «Алиасы») и проверить, что новые файлы не ломают направление зависимостей и не тащат домен «вверх» в слой роутинга.
+**Правило при любом рефакторинге роутинга** (в т.ч. будущий перенос на App Router): заново пройти **`febcode/docs/guides/architecture.md`** (разделы «Структура», «Правила зависимостей», «Алиасы») и проверить, что новые файлы не ломают направление зависимостей и не тащат домен «вверх» в слой роутинга.
 
 ## C2 — публичный API срезов и автоматические границы
 
@@ -23,7 +23,7 @@
 
 ### Как у Premier Design
 
-- **Публичный API фичи:** корневой **`features/<slice>/index.ts`** — импорт **`@features/<slice>`**, не глубоких `ui/…` снаружи слайса — см. [`CODE_STRUCTURE_AND_NAMING_RU.md`](CODE_STRUCTURE_AND_NAMING_RU.md) §2.
+- **Публичный API фичи:** корневой **`features/<slice>/index.ts`** — импорт **`@features/<slice>`**, не глубоких `ui/…` снаружи слайса — см. [`code-structure-and-naming-ru.md`](code-structure-and-naming-ru.md) §2.
 - **Границы в CI и pre-commit:** скрипт **`scripts/check-architecture-boundaries.mjs`** (`yarn check:architecture`) + **`scripts/architecture-allowlist.json`** (исключения с датой истечения). В `lint-staged` границы гоняются **по изменённым файлам**.
 - Дополнительные правила (например запрет обходов через `@lib/find*`) заданы в том же скрипте — при расширении импортов новые нарушения либо исправляются, либо заносятся в allowlist осознанно с планом снятия.
 
@@ -31,7 +31,7 @@
 
 ## Связанные документы
 
-- [`audit/CROSS_REPO_ALIGNMENT_RU.md`](../audit/CROSS_REPO_ALIGNMENT_RU.md) (строки C1, C2)
-- [`CODE_STRUCTURE_AND_NAMING_RU.md`](CODE_STRUCTURE_AND_NAMING_RU.md)
-- [`guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](SCRIPTS_AND_QUALITY_GATES_RU.md)
+- [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md) (строки C1, C2)
+- [`code-structure-and-naming-ru.md`](code-structure-and-naming-ru.md)
+- [`guides/scripts-and-quality-gates-ru.md`](scripts-and-quality-gates-ru.md)
 - Feb Code (отдельный git): `docs/architecture.md`

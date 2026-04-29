@@ -1,8 +1,8 @@
 # Открытый план аудита и улучшений (compliance с новой документацией)
 
-Связанные документы: [`PROJECT_AUDIT_2026_04_RU.md`](PROJECT_AUDIT_2026_04_RU.md) · [`DEPLOY_READINESS_2026_04_RU.md`](DEPLOY_READINESS_2026_04_RU.md) · [`QUALITY_GATES_SYNC_RU.md`](QUALITY_GATES_SYNC_RU.md) · [`PROJECT_RISK_REGISTER_2026_04_RU.md`](PROJECT_RISK_REGISTER_2026_04_RU.md) · [`CROSS_REPO_ALIGNMENT_RU.md`](CROSS_REPO_ALIGNMENT_RU.md) · [`../../premier-design/CHANGELOG.md`](../../premier-design/CHANGELOG.md).
+Связанные документы: [`project-audit-2026-04-ru.md`](project-audit-2026-04-ru.md) · [`deploy-readiness-2026-04-ru.md`](deploy-readiness-2026-04-ru.md) · [`quality-gates-sync-ru.md`](quality-gates-sync-ru.md) · [`project-risk-register-2026-04-ru.md`](project-risk-register-2026-04-ru.md) · [`cross-repo-alignment-ru.md`](cross-repo-alignment-ru.md) · [`changelog.md`](../changelog.md).
 
-> Документ — **исполняемый бэклог**: только открытые пункты. После закрытия — запись в `CHANGELOG.md`, перенос в «Закрытые направления» в `PROJECT_AUDIT_2026_04_RU.md` или вычеркивание здесь. Исторические выполненные пункты в этот файл не возвращаются.
+> Документ — **исполняемый бэклог**: только открытые пункты. После закрытия — запись в [`changelog.md`](../changelog.md), перенос в «Закрытые направления» в `project-audit-2026-04-ru.md` или вычеркивание здесь. Исторические выполненные пункты в этот файл не возвращаются.
 
 ## Definition of Done (DoD)
 
@@ -10,8 +10,8 @@
 
 1. Есть реальное изменение в коде или CI‑процессе (не только текстовая пометка).
 2. Пройдены минимально требуемые гейты: для кода — `yarn check:static` минимум; для границ — `yarn check:risk:local`; для сборки/perf — `yarn check:precommit:full`.
-3. Обновлены релевантные документы (`PROJECT_AUDIT_2026_04_RU.md`, `DEPLOY_READINESS_2026_04_RU.md`, `mempalace/rules/*`, ADR — по таблице синхронизации в `QUALITY_GATES_SYNC_RU.md`).
-4. Есть запись в `premier-design/CHANGELOG.md` (`[Unreleased]`).
+3. Обновлены релевантные документы (`project-audit-2026-04-ru.md`, `deploy-readiness-2026-04-ru.md`, `mempalace/rules/*`, ADR — по таблице синхронизации в `quality-gates-sync-ru.md`).
+4. Есть запись в [`changelog.md`](../changelog.md) (`[Unreleased]`).
 5. Для нетривиального решения — короткий комментарий «почему» в коде или ADR.
 
 ## Формат записи
@@ -35,7 +35,7 @@
 2. Затем `P2` с прямым влиянием на merge/деплой (`QA`, `CI`, `ARCH`, `SEC`).
 3. Затем `P2/P3` по UX/perf долгу.
 
-Открытые строки — в таблице ниже. История закрытий — в `PROJECT_AUDIT_2026_04_RU.md` и `premier-design/CHANGELOG.md`. Новые задачи — по формату в конце документа.
+Открытые строки — в таблице ниже. История закрытий — в `project-audit-2026-04-ru.md` и [`changelog.md`](../changelog.md). Новые задачи — по формату в конце документа.
 
 ---
 
@@ -45,7 +45,7 @@
 |----|--------|-----------|----------|--------|-------------------|--------|
 | — | — | — | — | Открытых задач нет. | — | — |
 
-Недавно закрыты: **DOC-05** (реквизиты регистрации в ЕГР в `SITE_OPERATOR`); ранее — **SEC-04**, **DOC-04**, **DEV-04**. История — `premier-design/CHANGELOG.md`, [`PROJECT_AUDIT_2026_04_RU.md`](PROJECT_AUDIT_2026_04_RU.md).
+Недавно закрыты: **DOC-05** (реквизиты регистрации в ЕГР в `SITE_OPERATOR`); ранее — **SEC-04**, **DOC-04**, **DEV-04**. История — [`changelog.md`](../changelog.md), [`project-audit-2026-04-ru.md`](project-audit-2026-04-ru.md).
 
 ---
 
@@ -53,7 +53,7 @@
 
 1. Сформулировать строку по формату выше (ID, спринт, приоритет, источник правила, задача, артефакт, статус).
 2. Поместить в соответствующий раздел (1–9). Если темы нет — завести новый раздел.
-3. При закрытии: вычеркнуть из этого файла → запись в `CHANGELOG.md` → при необходимости перенести в «Закрытые направления» в `PROJECT_AUDIT_2026_04_RU.md`.
+3. При закрытии: вычеркнуть из этого файла → запись в [`changelog.md`](../changelog.md) → при необходимости перенести в «Закрытые направления» в `project-audit-2026-04-ru.md`.
 
 ## Как не раздувать бэклог
 
@@ -63,4 +63,4 @@
 
 ## Связь с реестром рисков
 
-Задачи из этого плана могут быть связаны с конкретным `RISK-XX` в [`PROJECT_RISK_REGISTER_2026_04_RU.md`](PROJECT_RISK_REGISTER_2026_04_RU.md). При закрытии — обновлять колонку «Статус» / «Митигирующие действия» в реестре.
+Задачи из этого плана могут быть связаны с конкретным `RISK-XX` в [`project-risk-register-2026-04-ru.md`](project-risk-register-2026-04-ru.md). При закрытии — обновлять колонку «Статус» / «Митигирующие действия» в реестре.

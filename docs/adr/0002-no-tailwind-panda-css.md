@@ -32,4 +32,4 @@
 
 - Новый UI-код использует токены и не содержит raw hex вне `styles/tokens.css`.
 - Для интерактива сохраняются требования a11y (`:focus-visible`, клавиатурная навигация, ARIA).
-- Изменения отражаются в Storybook и в `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`.
+- Изменения отражаются в Storybook и в `docs/audit/audit-and-improvement-plan-ru.md`.

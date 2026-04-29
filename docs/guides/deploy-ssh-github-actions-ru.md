@@ -2,7 +2,7 @@
 
 Workflow: [`.github/workflows/deploy.yml`](../../.github/workflows/deploy.yml) (**Deploy premium-design to VPS**).
 
-**Сейчас:** автозапуск **отключён** (`workflow_dispatch` только). На VPS деплой — **не** пакет исходников, а `docker compose pull` в **корне клона репозитория `lendings-vps-infra`** (см. [`DEPLOY_VERCEL_AND_VPS_RU.md`](./DEPLOY_VERCEL_AND_VPS_RU.md), образ — [`ghcr-premium-design.yml`](../../.github/workflows/ghcr-premium-design.yml)). Нужен секрет **`VPS_DEPLOY_PATH`** (абсолютный путь к корню **`lendings-vps-infra`** на сервере). Когда проверите цепочку — можно раскомментировать `push` в `deploy.yml`. **Vercel** этот workflow **не** трогает.
+**Сейчас:** автозапуск **отключён** (`workflow_dispatch` только). На VPS деплой — **не** пакет исходников, а `docker compose pull` в **корне клона репозитория `lendings-vps-infra`** (см. [`deploy-vercel-and-vps-ru.md`](./deploy-vercel-and-vps-ru.md), образ — [`ghcr-premium-design.yml`](../../.github/workflows/ghcr-premium-design.yml)). Нужен секрет **`VPS_DEPLOY_PATH`** (абсолютный путь к корню **`lendings-vps-infra`** на сервере). Когда проверите цепочку — можно раскомментировать `push` в `deploy.yml`. **Vercel** этот workflow **не** трогает.
 
 ## Vercel и этот workflow — разные вещи
 
@@ -212,5 +212,5 @@ docker compose version
 
 ## Устаревшие пути к документам
 
-- Чеклист perf/SEO: `docs/guides/PERF_AND_SEO_CHECKLIST_RU.md`
-- Аудит: `docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`
+- Чеклист perf/SEO: `docs/guides/perf-and-seo-checklist-ru.md`
+- Аудит: `docs/audit/audit-and-improvement-plan-ru.md`

@@ -4,7 +4,7 @@ import {join, relative, resolve} from 'node:path';
 const cwd = process.cwd();
 const featuresRoot = resolve(cwd, 'features');
 
-// Обязательные слои: см. `docs/guides/FEATURE_STRUCTURE_ROADMAP_RU.md` — `hooks/` и `utils/` не форсируются пустыми.
+// Обязательные слои: см. `docs/guides/feature-structure-roadmap-ru.md` — `hooks/` и `utils/` не форсируются пустыми.
 const REQUIRED_DIRS = ['ui', 'interface'];
 
 const LEGACY_ALLOWLIST = new Set([]);

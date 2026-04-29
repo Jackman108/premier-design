@@ -19,9 +19,9 @@
 
 Если меняете скрипты, workflow, пороги качества или поведение API:
 
-- обновите `docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`;
-- пройдите чеклист `docs/audit/QUALITY_GATES_SYNC_RU.md`;
-- добавьте запись в `premier-design/CHANGELOG.md` (`[Unreleased]`).
+- обновите `docs/guides/scripts-and-quality-gates-ru.md`;
+- пройдите чеклист `docs/audit/quality-gates-sync-ru.md`;
+- добавьте запись в [`docs/changelog.md`](docs/changelog.md) (`[Unreleased]`).
 
 ## Стандарты качества
 

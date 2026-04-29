@@ -2,7 +2,7 @@
 
 Документ для **релиза сайта услуг** (ремонт и дизайн интерьеров): что проверить перед выкладкой, какие доработки дают максимум эффекта при минимальном риске, куда смотреть после деплоя.
 
-Связанные материалы: [AUDIT_AND_IMPROVEMENT_PLAN_RU.md](AUDIT_AND_IMPROVEMENT_PLAN_RU.md) · [PERF_AND_SEO_CHECKLIST_RU.md](../guides/PERF_AND_SEO_CHECKLIST_RU.md) · [DEPLOY_SSH_GITHUB_ACTIONS_RU.md](../guides/DEPLOY_SSH_GITHUB_ACTIONS_RU.md) · [SCRIPTS_AND_QUALITY_GATES_RU.md](../guides/SCRIPTS_AND_QUALITY_GATES_RU.md) (все команды) · ADR в [../adr/README.md](../adr/README.md).
+Связанные материалы: [audit-and-improvement-plan-ru.md](audit-and-improvement-plan-ru.md) · [perf-and-seo-checklist-ru.md](../guides/perf-and-seo-checklist-ru.md) · [deploy-ssh-github-actions-ru.md](../guides/deploy-ssh-github-actions-ru.md) · [scripts-and-quality-gates-ru.md](../guides/scripts-and-quality-gates-ru.md) (все команды) · ADR в [../adr/README.md](../adr/README.md).
 
 ---
 
@@ -52,7 +52,7 @@
 
 - **LCP:** hero с `next/image`, `priority` на главной; без лишних тяжёлых скриптов в первом экране.
 - **Анализ бандла:** `yarn analyze`; при необходимости открыть отчёт — `ANALYZE_OPEN=true` (см. комментарий в `next.config.js`).
-- **Lighthouse на Windows:** по умолчанию шаг может пропускаться; полный прогон — CI или `PERF_AUDIT_FORCE_LIGHTHOUSE=true` ([PERF_AND_SEO_CHECKLIST_RU.md](../guides/PERF_AND_SEO_CHECKLIST_RU.md)).
+- **Lighthouse на Windows:** по умолчанию шаг может пропускаться; полный прогон — CI или `PERF_AUDIT_FORCE_LIGHTHOUSE=true` ([perf-and-seo-checklist-ru.md](../guides/perf-and-seo-checklist-ru.md)).
 - **Шапка (десктоп):** при росте числа пунктов меню — flex + перенос навигации на вторую строку и динамическая высота плейсхолдера при sticky (`useHeaderPlaceholderHeight`).
 - **Галерея (PhotoViewer):** закрытие по клику на полупрозрачную подложку (вне кадра изображения), по **Escape**, по кнопке «Закрыть окно»; предупреждения `next/image` по соотношению сторон — устранены.
 - **UI-консистентность карточек:** в одном скролле не смешивать «плоские» и pseudo-3D карточки; для карточек услуг/примеров/сметы/прайса использовать единый паттерн `border: 1px solid var(--color-border)` + `var(--shadow-md/--shadow-lg)`.
@@ -64,7 +64,7 @@
 ## 6. Маркетинг и конверсия (услуги)
 
 - **Заявки и CTA:** smoke всех точек входа в форму (hero, панель, офферы, услуги).
-- **Аналитика:** до внедрения счётчиков — [MARKETING_ANALYTICS_DASHBOARD_RU.md](../guides/MARKETING_ANALYTICS_DASHBOARD_RU.md) и ADR [0009](../adr/0009-web-analytics-deferred.md); после внедрения — проверка событий в превью/проде и согласование с cookies.
+- **Аналитика:** до внедрения счётчиков — [marketing-analytics-dashboard-ru.md](../guides/marketing-analytics-dashboard-ru.md) и ADR [0009](../adr/0009-web-analytics-deferred.md); после внедрения — проверка событий в превью/проде и согласование с cookies.
 - **Контент:** актуальность телефонов, адреса, блока доверия и FAQ под реальные процессы приёма заявок.
 
 ---
@@ -83,7 +83,7 @@
 ## 8. Оставшийся техдолг (не блокирует первый деплой)
 
 - Замена или изоляция `react-chatbot-kit` при появлении рисков по CVE — ADR [0008](../adr/0008-react-chatbot-kit-dependency.md).
-- Multi-site VPS: проверить TLS-сертификаты, healthcheck и rollback по [`docs/operations/MULTISITE_VPS_DEPLOY_RU.md`](../operations/MULTISITE_VPS_DEPLOY_RU.md) — для совмещённого хостинга `premium-design.pro` + `febcode.pro`.
+- Multi-site VPS: проверить TLS-сертификаты, healthcheck и rollback по [`docs/operations/multisite-vps-deploy-ru.md`](../operations/multisite-vps-deploy-ru.md) — для совмещённого хостинга `premium-design.pro` + `febcode.pro`.
 
 ---
 
