@@ -40,7 +40,7 @@ alwaysApply: true
   `Phone`, `WorkHours`, `Address`, `generateStructuredData`, юр.тексты в
   `features/documents-content/*`) **обязаны** брать значения отсюда.
 - **VPS-инфраструктура (Docker + nginx + Let's Encrypt)** — отдельный репозиторий **`lendings-vps-infra`**; в этом репо — [`deploy/README.md`](../../deploy/README.md)
-  и операционный гайд `docs/operations/multisite-vps-deploy-ru.md`. Принцип: образы из GHCR,
+  и операционный гайд `lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`. Принцип: образы из GHCR,
   репозитории и локальные папки сайтов не смешиваются.
 - **Лицензия и интеллектуальная собственность** — `LICENSE` (EN), `LICENSE_RU.md` (RU),
   обоснование — `docs/adr/0011-proprietary-license.md`.

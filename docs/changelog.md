@@ -7,6 +7,8 @@
 
 ### Changed
 
+- **Кросс-репозиторный аудит:** в [`audit/audit-and-improvement-plan-ru.md`](audit/audit-and-improvement-plan-ru.md) добавлены DOC-06/CI-04/DEV-05; [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md) обновлён под общий rule pack, лёгкий perf gate для Feb Code и единый deploy-контракт через `lendings-vps-infra`.
+- **Документация:** ссылки на multi-site VPS теперь ведут в `lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`, так как `docs/operations/` в этом репозитории не является источником compose/nginx.
 - **Документация:** все файлы в `docs/` переименованы в **kebab-case** (латиница, дефисы; русскоязычные материалы — суффикс `-ru.md`); обновлены перекрёстные ссылки в репозитории и во внешних указателях (febcode, lendings-vps-infra). Исключение по традиции: `README.md`.
 - **Документация:** журнал изменений перенесён из `premier-design/CHANGELOG.md` в [`docs/changelog.md`](changelog.md); все ссылки в репозитории обновлены на единый канон «история в `docs/`».
 - **Документация (кросс-репо C3):** в [`guides/testing-standards-cross-repo-ru.md`](guides/testing-standards-cross-repo-ru.md) уточнён путь к канону Feb Code — `docs/guides/testing-standards.md` (отдельный репозиторий).
@@ -14,7 +16,7 @@
 ### Added
 
 - **Чеклист DOC-04:** [`docs/guides/feb-code-post-release-sync-checklist-ru.md`](guides/feb-code-post-release-sync-checklist-ru.md) — сверка с Feb Code после их релизов; ссылка из [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md).
-- **Инфра DEV-04:** в [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md) — таблица контрольного прогона после выкладки (TLS, healthcheck, rollback); указатель в [`docs/operations/multisite-vps-deploy-ru.md`](operations/multisite-vps-deploy-ru.md).
+- **Инфра DEV-04:** в [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md) — таблица контрольного прогона после выкладки (TLS, healthcheck, rollback); указатель из этого репозитория — [`deploy/README.md`](../deploy/README.md).
 - **Кросс-репо с Feb Code (C1/C2/форматирование):** [`docs/guides/prettier-and-formatting-cross-repo-ru.md`](guides/prettier-and-formatting-cross-repo-ru.md) — политика ESLint vs Prettier по репозиториям; [`docs/guides/layer-imports-and-public-api-cross-repo-ru.md`](guides/layer-imports-and-public-api-cross-repo-ru.md) — слои/импорты и публичный API на фоне `febcode/docs/guides/architecture.md`. ADR [`0010`](adr/0010-formatting-policy-no-prettier.md) — раздел «Кросс-репозиторий Feb Code».
 - **Кросс-репо с Feb Code (C3):** [`docs/guides/testing-standards-cross-repo-ru.md`](guides/testing-standards-cross-repo-ru.md) — принципы тестирования и ссылки на канон Feb Code без дублирования; [`docs/audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md) — строка статуса по C3/C4.
 - **Инфраструктура VPS:** выделен отдельный репозиторий **`lendings-vps-infra`** (`docker-compose*.yml`, `nginx/`, `secrets/*.env.example`, `docs/`, `.cursor/rules`); выполнен `git init`. Каталог [`deploy/`](../deploy/) в этом репозитории заменён на **указатель** — compose/nginx на сервере ведутся только в infra-репо; локальные `deploy/secrets/*.env` при необходимости перенести вручную.
@@ -33,7 +35,7 @@
   (`premium-design.pro`/`www`, `febcode.pro`/`www`, ACME `_acme.conf`), HSTS, упреждающий редирект
   www → апекс, иммутабельный кеш `_next/static/`. Образы тянутся из GHCR, исходники второго сайта
   на VPS не клонируются — репозитории и локальные папки остаются изолированными. Операционный
-  гайд — [`docs/operations/multisite-vps-deploy-ru.md`](operations/multisite-vps-deploy-ru.md).
+  гайд — [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md).
 - **Лицензия и интеллектуальная собственность:** в корне репозитория опубликованы [`LICENSE`](../LICENSE)
   (proprietary, EN) и [`LICENSE_RU.md`](../LICENSE_RU.md) (RU, преимущество для законодательства РБ).
   Принят ADR [`0011-proprietary-license.md`](adr/0011-proprietary-license.md). В `package.json`

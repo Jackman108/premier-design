@@ -10,8 +10,8 @@
 - Изменение **реестра рисков** (новый гейт, снятие/добавление риска).
 - Смена порогов: Lighthouse, SLA CI (`.ci-trends-14d.json` / `check-ci-sla.mjs`), SLO feedback, architecture allowlist, бюджет initial JS.
 - Изменение `lint-staged` или `.husky/*` (pre‑commit / pre‑push).
-- Правка инфраструктуры в репозитории **`lendings-vps-infra`** (compose, nginx, certbot) — обязательно обновить `docs/audit/quality-gates-sync-infra-ru.md` там и ссылки в этом репозитории (`deploy/README.md`, `docs/operations/multisite-vps-deploy-ru.md`).
-  [`docs/operations/multisite-vps-deploy-ru.md`](../operations/multisite-vps-deploy-ru.md)
+- Правка инфраструктуры в репозитории **`lendings-vps-infra`** (compose, nginx, certbot) — обязательно обновить `docs/audit/quality-gates-sync-infra-ru.md` там и ссылки в этом репозитории (`deploy/README.md`, `lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`).
+  [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md)
   и [`changelog.md`](../changelog.md).
 - Правка `LICENSE` / `LICENSE_RU.md` / `package.json.license` — обновить ADR
   [`docs/adr/0011-proprietary-license.md`](../adr/0011-proprietary-license.md).

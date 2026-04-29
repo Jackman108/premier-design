@@ -20,11 +20,11 @@
 
 | Тема | Где у Feb Code |
 |------|----------------|
-| Next.js App Router + FSD, `pages-layer`, алиасы, запрет `@/`, домен вне `app/` | `docs/architecture.md` |
+| Next.js App Router + FSD, `pages-layer`, алиасы, запрет `@/`, домен вне `app/` | `docs/guides/architecture.md` |
 | `next.config.ts`: standalone, security headers, bundle analyzer, dev-origins, watcher под Windows | `next.config.ts` |
 | Arch-lint как `yarn lint`, pre-commit | `scripts/lint-architecture.mjs`, `.husky/` |
-| Стандарты тестов | `docs/testing-standards.md` |
-| Индекс доков, engines в `package.json` | `docs/index.md`, `package.json` |
+| Стандарты тестов | `docs/guides/testing-standards.md` |
+| Индекс доков, engines в `package.json` | `docs/README.md`, `package.json` |
 
 ---
 
@@ -33,12 +33,12 @@
 | Тема | Где у нас |
 |------|-----------|
 | Карта документации, один источник правды | [README.md](../README.md) |
-| Плейбук, скрипты, гейты, деплой SSH / Vercel / VPS, multisite | `development-playbook-ru.md`, `guides/deploy-vercel-and-vps-ru.md`, [operations/multisite-vps-deploy-ru.md](../operations/multisite-vps-deploy-ru.md), [deploy/README.md](../../deploy/README.md) (указатель на **`lendings-vps-infra`**) |
+| Плейбук, скрипты, гейты, деплой SSH / Vercel / VPS, multisite | `development-playbook-ru.md`, `guides/deploy-vercel-and-vps-ru.md`, [lendings-vps-infra docs](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md), [deploy/README.md](../../deploy/README.md) (указатель на **`lendings-vps-infra`**) |
 | MemPalace 08 / 09 / 11 | `docs/mempalace/rules/` |
 | ESLint + lint-staged + архитектурные скрипты | `premier-design/package.json`, `eslint.config.mjs` |
 | CI: архитектура, UI purity, perf, audit, Storybook | `.github/workflows/ci.yml` |
 | Docker prod: non-root, telemetry off, healthcheck Node | `premier-design/Dockerfile.prod` |
-| VPS: nginx + compose (multisite) | Репозиторий **`lendings-vps-infra`** — см. [deploy/README.md](../../deploy/README.md), [operations/multisite-vps-deploy-ru.md](../operations/multisite-vps-deploy-ru.md) |
+| VPS: nginx + compose (multisite) | Репозиторий **`lendings-vps-infra`** — см. [deploy/README.md](../../deploy/README.md), [multisite-vps-deploy-ru.md](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md) |
 | CSP / HSTS, rewrites | `premier-design/next.config.js`, `docs/adr/` |
 | Синхронизация релиза и гейтов | [quality-gates-sync-ru.md](quality-gates-sync-ru.md) |
 
@@ -71,6 +71,18 @@
 | C4 | Next config | Security headers / origins / standalone при апдейтах Next — сверка с `febcode/next.config.ts` |
 
 **Статус (выравнивание по Feb Code):** конфиг и процесс зафиксированы в коде (`premier-design/next.config.js`, `package.json`) и в гайдах выше; канон Feb Code не копируется в этом файле повторно.
+
+---
+
+## Backlog после кросс-репозиторного аудита
+
+| ID | Приоритет | Задача |
+|----|-----------|--------|
+| DOC-06 | P2 | Выделить короткий общий rule pack из `docs/mempalace/rules/` для трёх репозиториев: naming, docs, changelog, quality ladder, secrets, deploy vocabulary. |
+| CI-04 | P2 | Подготовить лёгкий perf gate template для Feb Code: scheduled/manual workflow, без превращения PR CI в хрупкий Lighthouse blocker. |
+| DEV-05 | P2 | Синхронизировать deploy-контракт с `lendings-vps-infra`: GHCR publish → VPS pull/up → smoke/rollback для обоих приложений. |
+
+Принцип: Premier Design остаётся источником зрелых норм и гейтов; Feb Code берёт только минимально полезные проверки, а infra-репозиторий держит production-контракт.
 
 ---
 

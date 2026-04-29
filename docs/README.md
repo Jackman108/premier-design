@@ -2,7 +2,7 @@
 
 **Обновлено**: 29.04.2026
 
-Каталог **`docs/`** — материалы вне кода приложения (`premier-design/` — Next.js). **Канон норм по темам:** `mempalace/rules/` и `guides/`. **Feb Code** (отдельный git): только через [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md). **VPS / multi-site:** [`deploy/README.md`](../deploy/README.md), [`operations/multisite-vps-deploy-ru.md`](operations/multisite-vps-deploy-ru.md). **История изменений приложения:** [`changelog.md`](changelog.md) (не в корне `premier-design/`).
+Каталог **`docs/`** — материалы вне кода приложения (`premier-design/` — Next.js). **Канон норм по темам:** `mempalace/rules/` и `guides/`. **Feb Code** (отдельный git): только через [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md). **VPS / multi-site:** [`deploy/README.md`](../deploy/README.md), [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md). **История изменений приложения:** [`changelog.md`](changelog.md) (не в корне `premier-design/`).
 
 ## С чего начать
 
@@ -62,11 +62,11 @@
 |----------|------------|
 | [`adr/README.md`](adr/README.md) | Индекс ADR и шаблон |
 
-### Операции и инфраструктура — [`operations/`](operations/)
+### Операции и инфраструктура
 
 | Документ | Назначение |
 |----------|------------|
-| [`operations/multisite-vps-deploy-ru.md`](operations/multisite-vps-deploy-ru.md) | Указатель на `lendings-vps-infra`, multi-site |
+| [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md) | Multi-site VPS: nginx, compose, TLS, rollback |
 
 ### Нормы MemPalace — [`mempalace/rules/`](mempalace/rules/)
 
@@ -101,10 +101,10 @@
 | Тема | Канон | Ссылки без копирования |
 |------|--------|-------------------------|
 | Скрипты, `engines`, `.nvmrc` | `premier-design/package.json`, `.nvmrc` | [`guides/scripts-and-quality-gates-ru.md`](guides/scripts-and-quality-gates-ru.md), [`audit/quality-gates-sync-ru.md`](audit/quality-gates-sync-ru.md), `premier-design/README.md` |
-| Feb Code | [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md) | `guides/*_CROSS_REPO_*.md`, репозиторий **febcode** |
+| Feb Code | [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md) | `guides/*cross-repo*.md`, репозиторий **febcode** |
 | Реквизиты и контакты ИП | `premier-design/shared/constants/company.ts` | `LegalRequisites`, юр. тексты, JSON-LD |
 | Соцсети | `SITE_SOCIAL` в `company.ts` | `SocialIcons` |
-| Multi-site VPS | Репозиторий **`lendings-vps-infra`** | [`operations/multisite-vps-deploy-ru.md`](operations/multisite-vps-deploy-ru.md), [`guides/deploy-ssh-github-actions-ru.md`](guides/deploy-ssh-github-actions-ru.md) |
+| Multi-site VPS | Репозиторий **`lendings-vps-infra`** | [`multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md), [`guides/deploy-ssh-github-actions-ru.md`](guides/deploy-ssh-github-actions-ru.md) |
 | Лицензия | `LICENSE`, `LICENSE_RU.md`, ADR 0011 | этот файл, `premier-design/README.md` |
 | Слои / use-case / SOLID | `mempalace/rules/01`, `08`, `09` | плейбук, [`guides/code-structure-and-naming-ru.md`](guides/code-structure-and-naming-ru.md) |
 | Perf | `mempalace/rules/04`, [`guides/perf-and-seo-checklist-ru.md`](guides/perf-and-seo-checklist-ru.md) | [`audit/deploy-readiness-2026-04-ru.md`](audit/deploy-readiness-2026-04-ru.md) |

@@ -83,7 +83,7 @@
 ## 8. Оставшийся техдолг (не блокирует первый деплой)
 
 - Замена или изоляция `react-chatbot-kit` при появлении рисков по CVE — ADR [0008](../adr/0008-react-chatbot-kit-dependency.md).
-- Multi-site VPS: проверить TLS-сертификаты, healthcheck и rollback по [`docs/operations/multisite-vps-deploy-ru.md`](../operations/multisite-vps-deploy-ru.md) — для совмещённого хостинга `premium-design.pro` + `febcode.pro`.
+- Multi-site VPS: проверить TLS-сертификаты, healthcheck и rollback по [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md) — для совмещённого хостинга `premium-design.pro` + `febcode.pro`.
 
 ---
 

@@ -34,4 +34,4 @@
 - [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md) (строки C1, C2)
 - [`code-structure-and-naming-ru.md`](code-structure-and-naming-ru.md)
 - [`guides/scripts-and-quality-gates-ru.md`](scripts-and-quality-gates-ru.md)
-- Feb Code (отдельный git): `docs/architecture.md`
+- Feb Code (отдельный git): `docs/guides/architecture.md`

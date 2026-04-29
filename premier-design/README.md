@@ -100,7 +100,7 @@ Production-образ (`Dockerfile.prod`) собирает приложение 
 Multi-site инфраструктура (`premium-design.pro` + `febcode.pro` на одном VPS):
 - отдельный репозиторий **`lendings-vps-infra`**: `docker-compose.yml`, `nginx/`, certbot в **корне** клона;
 - указатель из этого репо: [`../deploy/README.md`](../deploy/README.md);
-- операционный гайд: [`../docs/operations/multisite-vps-deploy-ru.md`](../docs/operations/multisite-vps-deploy-ru.md);
+- операционный гайд: [`../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md);
 - деплой через GitHub Actions (SSH + `docker compose pull`): [`../docs/guides/deploy-ssh-github-actions-ru.md`](../docs/guides/deploy-ssh-github-actions-ru.md).
 
 Локальная сборка образа (из каталога приложения, где лежит `Dockerfile.prod`):
