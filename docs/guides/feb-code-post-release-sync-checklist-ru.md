@@ -2,7 +2,7 @@
 
 **Обновлено**: 29.04.2026
 
-Канон слоёв и конфигурации Feb Code — в **отдельном репозитории** (`febcode/docs/guides/architecture.md`, `febcode/next.config.ts`). Этот файл — **что проверить у нас**, чтобы не расходиться по смыслу (C1–C4 из [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md)).
+Канон слоёв и конфигурации Feb Code — в **отдельном репозитории** (`febcode/docs/guides/architecture-ru.md`, `febcode/next.config.ts`). Этот файл — **что проверить у нас**, чтобы не расходиться по смыслу (C1–C4 из [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md)).
 
 ## Когда запускать
 

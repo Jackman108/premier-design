@@ -10,7 +10,7 @@
 2. **Эталоны Premier Design** — что уже является образцом процесса и гейтов.
 3. **Матрица унификации** — согласованный с Feb Code бэклог по инструментам и архитектуре (без слияния репозиториев).
 
-Детальные нормы Feb Code не дублируются: **канон** — `febcode/docs/guides/architecture.md`, `febcode/docs/guides/testing-standards.md`, `febcode/docs/guides/cross-repo-alignment-plan.md`.
+Детальные нормы Feb Code не дублируются: **канон** — `febcode/docs/guides/architecture-ru.md`, `febcode/docs/guides/testing-standards-ru.md`, `febcode/docs/guides/cross-repo-alignment-plan-ru.md`.
 
 **Гайды в этом репозитории:** [`testing-standards-cross-repo-ru.md`](../guides/testing-standards-cross-repo-ru.md) (C3), [`prettier-and-formatting-cross-repo-ru.md`](../guides/prettier-and-formatting-cross-repo-ru.md), [`layer-imports-and-public-api-cross-repo-ru.md`](../guides/layer-imports-and-public-api-cross-repo-ru.md) (C1/C2), [`feb-code-post-release-sync-checklist-ru.md`](../guides/feb-code-post-release-sync-checklist-ru.md) (чеклист после релизов Feb Code).
 
@@ -20,10 +20,10 @@
 
 | Тема | Где у Feb Code |
 |------|----------------|
-| Next.js App Router + FSD, `pages-layer`, алиасы, запрет `@/`, домен вне `app/` | `docs/guides/architecture.md` |
+| Next.js App Router + FSD, `pages-layer`, алиасы, запрет `@/`, домен вне `app/` | `docs/guides/architecture-ru.md` |
 | `next.config.ts`: standalone, security headers, bundle analyzer, dev-origins, watcher под Windows | `next.config.ts` |
 | Arch-lint как `yarn lint`, pre-commit | `scripts/lint-architecture.mjs`, `.husky/` |
-| Стандарты тестов | `docs/guides/testing-standards.md` |
+| Стандарты тестов | `docs/guides/testing-standards-ru.md` |
 | Индекс доков, engines в `package.json` | `docs/README.md`, `package.json` |
 
 ---
@@ -46,7 +46,7 @@
 
 ## Матрица унификации (зеркало Feb Code)
 
-Подробные строки и статус задач — в **`febcode/docs/guides/cross-repo-alignment-plan.md`** (матрица «Инструменты», «Архитектура», «Next/Docker/CI», «Документация»). Здесь — кратко:
+Подробные строки и статус задач — в **`febcode/docs/guides/cross-repo-alignment-plan-ru.md`** (матрица «Инструменты», «Архитектура», «Next/Docker/CI», «Документация»). Здесь — кратко:
 
 | Направление | Действие |
 |-------------|----------|
@@ -65,9 +65,9 @@
 
 | № | Область | Правка |
 |---|---------|--------|
-| C1 | Документация слоёв | Сверять импорты с `febcode/docs/guides/architecture.md` при смене роутинга |
+| C1 | Документация слоёв | Сверять импорты с `febcode/docs/guides/architecture-ru.md` при смене роутинга |
 | C2 | Алиасы и публичный API срезов | Дисциплина как у Feb Code + наш `check-architecture-boundaries.mjs` |
-| C3 | Тесты | Имена сценариев и smoke «лид» — ориентир `febcode/docs/guides/testing-standards.md` |
+| C3 | Тесты | Имена сценариев и smoke «лид» — ориентир `febcode/docs/guides/testing-standards-ru.md` |
 | C4 | Next config | Security headers / origins / standalone при апдейтах Next — сверка с `febcode/next.config.ts` |
 
 **Статус (выравнивание по Feb Code):** конфиг и процесс зафиксированы в коде (`premier-design/next.config.js`, `package.json`) и в гайдах выше; канон Feb Code не копируется в этом файле повторно.

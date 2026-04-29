@@ -2,7 +2,7 @@
 
 **Обновлено**: 29.04.2026
 
-Канонические нормы Feb Code не дублируются: см. репозиторий **Feb Code** — `docs/guides/testing-standards.md` (в отдельном git; при локальном монорепо путь к клону — рядом с `premier-design`). Здесь — как это соотносится с **Premier Design** (Pages Router, Panda, расширенные гейты).
+Канонические нормы Feb Code не дублируются: см. репозиторий **Feb Code** — `docs/guides/testing-standards-ru.md` (в отдельном git; при локальном монорепо путь к клону — рядом с `premier-design`). Здесь — как это соотносится с **Premier Design** (Pages Router, Panda, расширенные гейты).
 
 ## Зачем этот документ
 

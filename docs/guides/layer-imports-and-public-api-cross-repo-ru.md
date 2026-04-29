@@ -2,7 +2,7 @@
 
 **Обновлено**: 29.04.2026
 
-Канон Feb Code по слоям и направлению зависимостей — **`febcode/docs/guides/architecture.md`** (FSD + App Router, `pages-layer`, алиасы). Здесь — **как сверять** этот канон с **Premier Design** (Pages Router, Panda, свои алиасы) без дублирования текста.
+Канон Feb Code по слоям и направлению зависимостей — **`febcode/docs/guides/architecture-ru.md`** (FSD + App Router, `pages-layer`, алиасы). Здесь — **как сверять** этот канон с **Premier Design** (Pages Router, Panda, свои алиасы) без дублирования текста.
 
 ## C1 — документация слоёв и смена роутинга
 
@@ -13,7 +13,7 @@
 | `widgets/` → `features/` → `entities/` → `shared/` | `widgets/` → `features/` → `shared/`; доменные типы — внутри фич и `shared/` (строгого `entities/` может не быть — см. аудит FSD) |
 | Направление импортов «вниз по слою» | То же по смыслу: [`mempalace/rules/01-web-architecture-and-boundaries-ru.md`](../mempalace/rules/01-web-architecture-and-boundaries-ru.md), [`code-structure-and-naming-ru.md`](code-structure-and-naming-ru.md) |
 
-**Правило при любом рефакторинге роутинга** (в т.ч. будущий перенос на App Router): заново пройти **`febcode/docs/guides/architecture.md`** (разделы «Структура», «Правила зависимостей», «Алиасы») и проверить, что новые файлы не ломают направление зависимостей и не тащат домен «вверх» в слой роутинга.
+**Правило при любом рефакторинге роутинга** (в т.ч. будущий перенос на App Router): заново пройти **`febcode/docs/guides/architecture-ru.md`** (разделы «Структура», «Правила зависимостей», «Алиасы») и проверить, что новые файлы не ломают направление зависимостей и не тащат домен «вверх» в слой роутинга.
 
 ## C2 — публичный API срезов и автоматические границы
 
