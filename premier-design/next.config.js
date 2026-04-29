@@ -1,4 +1,10 @@
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+
 import bundleAnalyzer from '@next/bundle-analyzer';
+
+/** Корень приложения для ESM (`next.config.js` — `type: module`). */
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const withBundleAnalyzer = bundleAnalyzer({
 	enabled: process.env.ANALYZE === 'true',
@@ -37,6 +43,8 @@ const contentSecurityPolicy = [
 
 const nextConfig = {
 	output: 'standalone',
+	// Ограничение file tracing для монорепо/соседних папок — как у Feb Code (`febcode/next.config.ts`).
+	outputFileTracingRoot: path.join(__dirname),
 	reactCompiler: true,
 	// Убираем unstable dev-indicator, который в Next 16 + турбо может давать шумные HMR-ошибки в гибридном pages/app.
 	devIndicators: false,
@@ -45,16 +53,18 @@ const nextConfig = {
 	webpack: (config, {dev}) => {
 		if (dev) {
 			config.watchOptions = {
-				...config.watchOptions,
-				// На Windows-дисках (G:) watchpack иногда цепляет системные директории и падает на lstat.
-				ignored: [
-					'**/System Volume Information/**',
-					'**/$RECYCLE.BIN/**',
-					...(Array.isArray(config.watchOptions?.ignored) ? config.watchOptions.ignored : []),
-				],
+				...(config.watchOptions || {}),
+				followSymlinks: false,
+				// Согласовано с Feb Code: игнор системных путей и тяжёлых каталогов на Windows (EINVAL/lstat).
+				ignored:
+					/[/\\]?(node_modules|\.next|\.git|dist|System Volume Information|\$RECYCLE\.BIN|pagefile\.sys|DumpStack\.log\.tmp)([/\\]|$)/,
 			};
 		}
 		return config;
+	},
+	// Явный root снимает предупреждение «Webpack is configured while Turbopack is not» при `yarn dev:turbo`.
+	turbopack: {
+		root: path.join(__dirname),
 	},
 	async rewrites() {
 		return [

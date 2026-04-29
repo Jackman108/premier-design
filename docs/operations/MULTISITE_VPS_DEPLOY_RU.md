@@ -9,6 +9,7 @@
 | Материал | Путь |
 |----------|------|
 | Полный гайд по VPS, DNS, первому запуску | Репозиторий **`lendings-vps-infra`**: [`docs/MULTISITE_VPS_DEPLOY_RU.md`](../../../lendings-vps-infra/docs/MULTISITE_VPS_DEPLOY_RU.md) (работает при клоне **рядом** с этим репо: общий родитель `lendings/`). |
+| Контрольный прогон после деплоя (TLS, healthcheck, rollback) — шаблон таблицы **DEV-04** | В том же файле — раздел **«Контрольный прогон после выкладки (DEV-04)»**. |
 | Локальный dev Docker (`:8080`, hosts, сбои nginx на Windows) | [`docs/LOCAL_DOCKER_DEV_RU.md`](../../../lendings-vps-infra/docs/LOCAL_DOCKER_DEV_RU.md) в том же infra-репозитории. |
 | Указатель и миграция с каталога `deploy/` | [`deploy/README.md`](../../deploy/README.md). |
 

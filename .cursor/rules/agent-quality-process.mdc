@@ -27,7 +27,8 @@
 
 | Изменение | Обновить |
 |-----------|----------|
-| Скрипты `package.json` (`scripts`, `lint-staged`) | `docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`, `premier-design/CHANGELOG.md`, при влиянии на риск — `docs/audit/PROJECT_RISK_REGISTER_2026_04_RU.md` |
+| Скрипты `package.json` (`scripts`, `engines`, `lint-staged`) или **`premier-design/.nvmrc`** | `docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`, `premier-design/README.md`, `premier-design/CHANGELOG.md`, при влиянии на риск — `docs/audit/PROJECT_RISK_REGISTER_2026_04_RU.md` |
+| Матрица выравнивания с Feb Code / гайды `*_CROSS_REPO_*` | `docs/audit/CROSS_REPO_ALIGNMENT_RU.md`, затронутые гайды в `docs/guides/`, `premier-design/CHANGELOG.md` |
 | Workflow в `.github/workflows/*` | `docs/audit/QUALITY_GATES_SYNC_RU.md`, `premier-design/CHANGELOG.md`, при изменении SLA — `docs/audit/CI_COST_AND_TRENDS_RU.md` |
 | Пороги Lighthouse / initial JS / SLO feedback | `docs/guides/PERF_AND_SEO_CHECKLIST_RU.md`, `docs/audit/DEPLOY_READINESS_2026_04_RU.md` |
 | Архитектурное решение (новое/смена) | новый ADR в `docs/adr/`, индекс `docs/adr/README.md` |

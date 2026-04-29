@@ -12,6 +12,8 @@
 
 Детальные нормы Feb Code не дублируются: **канон** — `febcode/docs/architecture.md`, `febcode/docs/testing-standards.md`, `febcode/docs/cross-repo-alignment-plan.md`.
 
+**Гайды в этом репозитории:** [`TESTING_STANDARDS_CROSS_REPO_RU.md`](../guides/TESTING_STANDARDS_CROSS_REPO_RU.md) (C3), [`PRETTIER_AND_FORMATTING_CROSS_REPO_RU.md`](../guides/PRETTIER_AND_FORMATTING_CROSS_REPO_RU.md), [`LAYER_IMPORTS_AND_PUBLIC_API_CROSS_REPO_RU.md`](../guides/LAYER_IMPORTS_AND_PUBLIC_API_CROSS_REPO_RU.md) (C1/C2), [`FEB_CODE_POST_RELEASE_SYNC_CHECKLIST_RU.md`](../guides/FEB_CODE_POST_RELEASE_SYNC_CHECKLIST_RU.md) (чеклист после релизов Feb Code).
+
 ---
 
 ## Эталоны Feb Code (распространять при совместной эксплуатации)
@@ -49,7 +51,7 @@
 | Направление | Действие |
 |-------------|----------|
 | Линтинг | Feb Code: ESLint + arch-lint **или** явное решение «только arch-lint + Prettier» |
-| Форматирование | Согласовать Prettier vs `eslint --fix` между репозиториями |
+| Форматирование | **Согласовано:** Premier — ESLint; Feb Code — Prettier + lint (детали — список гайдов в начале этого файла) |
 | Тесты / CI | Общий минимум: typecheck, unit, e2e smoke, build; расширения из нашего `ci.yml` — поэтапно в Feb Code |
 | `.nvmrc` | В Feb Code для паритета с нашим `premier-design/.nvmrc` |
 | FSD / порты / контент | Таблица слоёв — Feb Code `architecture.md`; use-case/адаптеры — `mempalace/rules/08_*`; единый источник реквизитов — паттерн как у `shared/constants/company.ts` |
@@ -67,6 +69,8 @@
 | C2 | Алиасы и публичный API срезов | Дисциплина как у Feb Code + наш `check-architecture-boundaries.mjs` |
 | C3 | Тесты | Имена сценариев и smoke «лид» — ориентир `febcode/docs/testing-standards.md` |
 | C4 | Next config | Security headers / origins / standalone при апдейтах Next — сверка с `febcode/next.config.ts` |
+
+**Статус (выравнивание по Feb Code):** конфиг и процесс зафиксированы в коде (`premier-design/next.config.js`, `package.json`) и в гайдах выше; канон Feb Code не копируется в этом файле повторно.
 
 ---
 

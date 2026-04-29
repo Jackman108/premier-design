@@ -6,7 +6,7 @@
 
 ## Требования
 
-- Node.js `24.x` (см. `.nvmrc`)
+- **Node.js:** целевая версия для разработки и Docker — **`24.x`** (см. **`premier-design/.nvmrc`** и образ `node:24-alpine` в `Dockerfile.prod`). Диапазон, который объявлен в **`package.json` → `engines.node`** (минимум для devdeps вроде Lighthouse и совместимости с CI), — см. [`docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md); при несовпадении версии `yarn install` может завершиться ошибкой engine.
 - [Yarn](https://yarnpkg.com/) Classic `1.22+` (как в CI: `yarn.lock` + `yarn install --frozen-lockfile`)
 - перед переустановкой зависимостей остановите `next dev` / `yarn dev`, иначе на Windows возможен `EPERM` при замене нативных бинарников в `node_modules` (в т.ч. `@next/swc-*`).
 - **`package-lock.json` не коммитим** — только `yarn.lock`; см. [`docs/guides/YARN_PACKAGE_MANAGER_RU.md`](../docs/guides/YARN_PACKAGE_MANAGER_RU.md).
@@ -33,15 +33,11 @@
 3. `yarn dev` (проверить, что главная открывается на `http://localhost:3000`)
 4. `yarn check:static` (lint + typecheck + unit)
 
-Если `check:static` зелёный, можно переходить к задачам из [`../docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](../docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md).
+Если `check:static` зелёный — можно брать задачи; открытые пункты (если есть) — [`../docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](../docs/audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md).
 
 ## Документация репозитория
 
-- Оглавление: [`../docs/README.md`](../docs/README.md).
-- Нормы для агента (Cursor): [`../.cursor/rules/agent-mempalace-bootstrap.mdc`](../.cursor/rules/agent-mempalace-bootstrap.mdc), [`../.cursor/rules/agent-quality-process.mdc`](../.cursor/rules/agent-quality-process.mdc); канон текстов — [`../docs/mempalace/rules/`](../docs/mempalace/rules/).
-- Плейбук разработчика: [`../docs/DEVELOPMENT_PLAYBOOK_RU.md`](../docs/DEVELOPMENT_PLAYBOOK_RU.md).
-- Скрипты и quality-gates: [`../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md).
-- Перед деплоем: [`../docs/audit/DEPLOY_READINESS_2026_04_RU.md`](../docs/audit/DEPLOY_READINESS_2026_04_RU.md).
+**Карта всех разделов** — [`../docs/README.md`](../docs/README.md). Кратко: плейбук [`../docs/DEVELOPMENT_PLAYBOOK_RU.md`](../docs/DEVELOPMENT_PLAYBOOK_RU.md), скрипты и гейты [`../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md), деплой [`../docs/audit/DEPLOY_READINESS_2026_04_RU.md`](../docs/audit/DEPLOY_READINESS_2026_04_RU.md), Feb Code [`../docs/audit/CROSS_REPO_ALIGNMENT_RU.md`](../docs/audit/CROSS_REPO_ALIGNMENT_RU.md). Правила агента: [`../.cursor/rules/`](../.cursor/rules/), нормы — [`../docs/mempalace/rules/`](../docs/mempalace/rules/).
 
 ## Архитектура UI
 

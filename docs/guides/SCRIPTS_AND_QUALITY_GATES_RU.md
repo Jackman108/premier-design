@@ -5,6 +5,20 @@
 
 > Скрипты сгруппированы по назначению. Группы: **prepare → dev/build → lint/typecheck/test → check:* (атомарные) → check:risk:local / precommit → perf → e2e → reports → storybook/panda**. Соответствует порядку в `package.json`.
 
+## Node.js и поле `engines`
+
+| Артефакт | Назначение |
+|----------|------------|
+| `premier-design/package.json` → **`engines.node`** | Диапазон поддерживаемых версий Node для `yarn install` (Yarn v1 проверяет совместимость и может завершить установку с ошибкой при несоответствии). |
+| **`premier-design/.nvmrc`** | Рекомендуемая версия для разработки (**24**) — `nvm use` / `fnm use` перед работой. |
+| **`premier-design/Dockerfile.prod`** | Образ **`node:24-alpine`** — целевой рантайм прод-сборки; локально допустим Node **≥22.19** (например для devdeps вроде Lighthouse), см. комментарий в Dockerfile. |
+
+При обновлении **`engines`** или образа Docker обновляйте этот блок и [`audit/CROSS_REPO_ALIGNMENT_RU.md`](../audit/CROSS_REPO_ALIGNMENT_RU.md) при необходимости; процесс синхронизации — [`QUALITY_GATES_SYNC_RU.md`](../audit/QUALITY_GATES_SYNC_RU.md).
+
+## Политика форматирования (кросс-репо)
+
+Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../adr/0010-formatting-policy-no-prettier.md). Согласование с Feb Code (где может использоваться Prettier) — [`PRETTIER_AND_FORMATTING_CROSS_REPO_RU.md`](PRETTIER_AND_FORMATTING_CROSS_REPO_RU.md).
+
 ## Быстрые маршруты
 
 | Ситуация | Команда |
@@ -124,6 +138,6 @@
 - [PERF_AND_SEO_CHECKLIST_RU](PERF_AND_SEO_CHECKLIST_RU.md)
 - [YARN_PACKAGE_MANAGER_RU](YARN_PACKAGE_MANAGER_RU.md)
 - [API_AND_STORYBOOK_RU](API_AND_STORYBOOK_RU.md)
-- [ADR 0010: без Prettier](../adr/0010-formatting-policy-no-prettier.md)
+- [ADR 0010: без Prettier](../adr/0010-formatting-policy-no-prettier.md) — форматирование; кросс-репо Feb Code — [`audit/CROSS_REPO_ALIGNMENT_RU.md`](../audit/CROSS_REPO_ALIGNMENT_RU.md)
 - [DEPLOY_READINESS_2026_04_RU](../audit/DEPLOY_READINESS_2026_04_RU.md)
 - [QUALITY_GATES_SYNC_RU](../audit/QUALITY_GATES_SYNC_RU.md)

@@ -4,7 +4,7 @@
 
 ## Когда обязательна синхронизация
 
-- Изменение или добавление скриптов `check:*` / `test:*` / `lint` / `typecheck` в `premier-design/package.json`.
+- Изменение или добавление скриптов `check:*` / `test:*` / `lint` / `typecheck` в `premier-design/package.json`, а также поля **`engines`** или файла **`premier-design/.nvmrc`**.
 - Правка workflow: `ci.yml`, `ci-trends.yml`, `e2e-extended.yml`, `security-high-weekly.yml`, `deploy.yml`, `ghcr-premium-design.yml`.
 - Справочник [`docs/guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](../guides/SCRIPTS_AND_QUALITY_GATES_RU.md) — обновить **в той же задаче**, что и `package.json`.
 - Изменение **реестра рисков** (новый гейт, снятие/добавление риска).

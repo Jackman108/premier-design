@@ -14,6 +14,14 @@ describe('LegalRequisites (Belarusian compliance footer block)', () => {
 			expect(screen.getByText('УНП')).toBeInTheDocument();
 			expect(screen.getByText(SITE_OPERATOR.legalEntity.unp)).toBeInTheDocument();
 		}
+		if (SITE_OPERATOR.legalEntity.registrationAuthority && SITE_OPERATOR.legalEntity.registrationDate) {
+			expect(screen.getByText('Регистрация')).toBeInTheDocument();
+			expect(
+				screen.getByText(
+					`${SITE_OPERATOR.legalEntity.registrationAuthority}, ${SITE_OPERATOR.legalEntity.registrationDate}`,
+				),
+			).toBeInTheDocument();
+		}
 	});
 
 	it('hides bank details when not yet set (null)', () => {

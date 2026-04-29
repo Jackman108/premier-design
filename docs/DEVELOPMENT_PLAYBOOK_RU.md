@@ -14,6 +14,7 @@
 | Операционные чеклисты | Деплой, риски, синхронизация гейтов, observability | [`audit/`](audit/) |
 | Скрипты и CI | Полный справочник `yarn` команд и соответствие CI | [`guides/SCRIPTS_AND_QUALITY_GATES_RU.md`](guides/SCRIPTS_AND_QUALITY_GATES_RU.md) |
 | Структура и нейминг | Слои, модули, роль `lib/` и `shared/` | [`guides/CODE_STRUCTURE_AND_NAMING_RU.md`](guides/CODE_STRUCTURE_AND_NAMING_RU.md) |
+| Выравнивание с Feb Code | Матрица C1–C4 и ссылки на гайды | [`audit/CROSS_REPO_ALIGNMENT_RU.md`](audit/CROSS_REPO_ALIGNMENT_RU.md) |
 | Производительность / SEO | Чеклист и пороги бюджетов | [`guides/PERF_AND_SEO_CHECKLIST_RU.md`](guides/PERF_AND_SEO_CHECKLIST_RU.md) |
 
 **Принцип DRY для документов:** бизнес‑правила и use‑case живут в **коде** (`features/*/useCases/`, `shared/lib/`, валидаторы); документы фиксируют **границы, процесс и необратимые решения** (ADR), а не пересказывают код.
@@ -84,6 +85,5 @@
 
 ## 7. Дополнительно
 
-- Полный индекс документации: [`README.md`](README.md).
-- Runbook приложения: `premier-design/README.md`.
-- Открытый бэклог: [`audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md).
+- Полный индекс: [`README.md`](README.md). Runbook кода: `premier-design/README.md`.
+- Бэклог (если есть открытые строки): [`audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md`](audit/AUDIT_AND_IMPROVEMENT_PLAN_RU.md); иначе — [`premier-design/CHANGELOG.md`](../premier-design/CHANGELOG.md).

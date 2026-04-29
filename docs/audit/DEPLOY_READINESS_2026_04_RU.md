@@ -37,7 +37,7 @@
 - **Canonical и sitemap:** базовый URL `https://premium-design.pro` в `pages/api/sitemap.ts`, `public/robots.txt`, JSON-LD — согласованы с продакшен-доменом.
 - **Портфолио** (`/portfolio`): в меню, в `data.json` (`titlesPage`), в sitemap; smoke вручную или e2e. Отдельной страницы **сметы/оценки** в `pages/` нет — расчёт остаётся в модалке (панель, блок сметы).
 - **Юр. документы** (`app/documents/*`): открытие с основного сайта, крошки, отсутствие регрессий `next/router` на App Router.
-- **Обязательные реквизиты ИП в подвале** (Постановление Совмина РБ №31): ФИО, адрес и e-mail видны на каждой странице (`Footer` → `LegalRequisites`); телефон и режим работы не дублируются в подвале (они уже в хедере). Единственный источник — `shared/constants/company.ts`. Поле УНП заполнено реальным значением до релиза (а не `null`), иначе строка скрыта.
+- **Обязательные реквизиты ИП в подвале** (Постановление Совмина РБ №31): ФИО, адрес и e-mail видны на каждой странице (`Footer` → `LegalRequisites`); телефон и режим работы не дублируются в подвале (они уже в хедере). Единственный источник — `shared/constants/company.ts`. УНП и строка «Регистрация» (ЕГР: орган и дата) задаются в `legalEntity`; при `null` необязательные строки скрываются.
 
 ---
 
@@ -83,7 +83,6 @@
 ## 8. Оставшийся техдолг (не блокирует первый деплой)
 
 - Замена или изоляция `react-chatbot-kit` при появлении рисков по CVE — ADR [0008](../adr/0008-react-chatbot-kit-dependency.md).
-- Заполнить `legalEntity.unp`, `registrationAuthority`, `registrationDate` в `shared/constants/company.ts` фактическими значениями (свидетельство о регистрации ИП).
 - Multi-site VPS: проверить TLS-сертификаты, healthcheck и rollback по [`docs/operations/MULTISITE_VPS_DEPLOY_RU.md`](../operations/MULTISITE_VPS_DEPLOY_RU.md) — для совмещённого хостинга `premium-design.pro` + `febcode.pro`.
 
 ---
