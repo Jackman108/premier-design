@@ -1,3 +1,5 @@
+'use client';
+
 import { Appeal } from '@lib/dynamicSectionImports';
 import { useFallback } from '@shared/hooks/useFallback';
 import type { ButtonProps } from '@entities/button';
@@ -15,9 +17,7 @@ import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 import pageShell from '@shared/ui/page-detail-shell/pageDetailShell.module.css';
 import pricingStyles from '@shared/ui/pricing-table/pricingTable.module.css';
 import { findItemByTitle } from '@shared/utils/findItemByTitle';
-import { getFullCanonicalUrl } from '@shared/utils/getFullCanonicalUrl';
 import { useLayoutProps } from '@widgets/layout/hooks/useLayoutProps';
-import CustomHead from '@widgets/layout/seo/CustomHead/CustomHead';
 import Layout from '@widgets/layout/ui/layout/Layout';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -49,7 +49,6 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 	panelData,
 	sharesData,
 	appealSection,
-	structuredDataRating,
 }) => {
 	const fallbackContent = useFallback(!!category);
 	const buttonHeader = findItemByTitle(buttonData, 'leave_request') || ({} as ButtonProps);
@@ -66,22 +65,9 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 		{ headerVariant: 'solidDark' },
 	);
 
-	const canonicalPath = `/services/${category.id}`;
-
 	return (
 		fallbackContent || (
 			<>
-				<CustomHead
-					metaTitle={category.title}
-					metaDescription={category.description}
-					canonical={getFullCanonicalUrl(canonicalPath)}
-					structuredDataRating={structuredDataRating}
-					serviceForStructuredData={{
-						name: category.title,
-						description: category.description,
-						url: getFullCanonicalUrl(canonicalPath),
-					}}
-				/>
 				<Layout {...layoutProps}>
 					<section className={pageShell.root} aria-labelledby="service-category-title">
 						<div className={pageShell.inner}>

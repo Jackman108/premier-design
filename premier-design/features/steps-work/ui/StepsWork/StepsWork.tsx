@@ -1,3 +1,5 @@
+'use client';
+
 import {CSSProperties, FC, ReactElement} from 'react';
 import Title from '@shared/ui/title/ui/Title';
 import styles from './StepsWork.module.css';

@@ -1,8 +1,8 @@
+'use client';
+
 import {FC} from "react";
 import {ServiceDetailProps} from "@features/services/interface/ServiceDetail.props";
-import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import styles from './ServiceDetail.module.css';
-import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
 import Layout from "@widgets/layout/ui/layout/Layout";
 import Image from "next/image";
 import BackButton from "@shared/ui/back-button/BackButton";
@@ -17,18 +17,17 @@ import pageShell from '@shared/ui/page-detail-shell/pageDetailShell.module.css';
 const SERVICE_DETAIL_IMAGE_SIZES = '(max-width: 600px) 100vw, (max-width: 1440px) 60vw, 920px';
 
 const ServiceDetail: FC<ServiceDetailProps> = ({
-                                                   service,
-                                                   categoryProps,
-                                                   menuData,
-                                                   papersData,
-                                                   newsData,
-                                                   costingData,
-                                                   buttonData,
-                                                   panelData,
-                                                   sharesData,
-                                                   appealSection,
-                                                   structuredDataRating,
-                                               }) => {
+	service,
+	categoryProps,
+	menuData,
+	papersData,
+	newsData,
+	costingData,
+	buttonData,
+	panelData,
+	sharesData,
+	appealSection,
+}) => {
     const fallbackContent = useFallback(!!service && !!categoryProps);
     const buttonHeader = findItemByTitle(buttonData, "leave_request") || {} as ButtonProps;
     const layoutProps = useLayoutProps({
@@ -43,17 +42,6 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
 
     return fallbackContent || (
         <>
-            <CustomHead
-                metaTitle={service.service}
-                metaDescription={categoryProps.description}
-                canonical={getFullCanonicalUrl(service.canonical)}
-                structuredDataRating={structuredDataRating}
-                serviceForStructuredData={{
-                    name: categoryProps.title,
-                    description: categoryProps.description,
-                    url: getFullCanonicalUrl(service.canonical),
-                }}
-            />
             <Layout {...layoutProps}>
                 <section className={pageShell.root} aria-labelledby="service-detail-title">
                     <div className={pageShell.inner}>

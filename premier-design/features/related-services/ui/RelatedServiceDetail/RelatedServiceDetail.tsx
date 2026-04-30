@@ -1,7 +1,7 @@
+'use client';
+
 import {FC} from "react";
-import CustomHead from "@widgets/layout/seo/CustomHead/CustomHead";
 import styles from './RelatedServiceDetail.module.css';
-import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
 import Layout from "@widgets/layout/ui/layout/Layout";
 import Image from "next/image";
 import BackButton from "@shared/ui/back-button/BackButton";
@@ -15,17 +15,16 @@ import {Appeal} from '@lib/dynamicSectionImports';
 import pageShell from '@shared/ui/page-detail-shell/pageDetailShell.module.css';
 
 const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
-                                                                 relatedService,
-                                                                 menuData,
-                                                                 papersData,
-                                                                 newsData,
-                                                                 costingData,
-                                                                 buttonData,
-                                                                 panelData,
-                                                                 sharesData,
-                                                                 appealSection,
-                                                                 structuredDataRating,
-                                                             }) => {
+	relatedService,
+	menuData,
+	papersData,
+	newsData,
+	costingData,
+	buttonData,
+	panelData,
+	sharesData,
+	appealSection,
+}) => {
     const fallbackContent = useFallback(!!relatedService);
     const buttonHeader = findItemByTitle(buttonData, "leave_request") || {} as ButtonProps;
     const layoutProps = useLayoutProps({
@@ -39,17 +38,6 @@ const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
     }, {headerVariant: 'solidDark'});
     return fallbackContent || (
         <>
-            <CustomHead
-                metaTitle={relatedService.title}
-                metaDescription={relatedService.description}
-                canonical={getFullCanonicalUrl(relatedService.canonical)}
-                structuredDataRating={structuredDataRating}
-                serviceForStructuredData={{
-                    name: relatedService.title,
-                    description: relatedService.description,
-                    url: getFullCanonicalUrl(relatedService.canonical),
-                }}
-            />
             <Layout {...layoutProps}>
                 <section className={pageShell.root} aria-labelledby="related-service-title">
                     <div className={pageShell.inner}>

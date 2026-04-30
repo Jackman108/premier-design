@@ -1,3 +1,5 @@
+'use client';
+
 import React, {FC} from 'react';
 import styles from './Reviews.module.css';
 import Title from "@shared/ui/title/ui/Title";

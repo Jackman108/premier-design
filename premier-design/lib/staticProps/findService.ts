@@ -19,10 +19,6 @@ export const findService = (data: DataProps, categoryId: string, serviceId: stri
 
 	return {
 		service,
-		categoryProps: {
-			title: category?.title || '',
-			description: category?.description || '',
-			image: category?.image || '',
-		},
+		categoryProps: category,
 	};
 };

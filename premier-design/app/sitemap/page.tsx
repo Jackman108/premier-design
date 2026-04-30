@@ -1,20 +1,29 @@
-import type {NextPage} from 'next';
-import type {ReactElement} from 'react';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import {collectSitePathnames} from '@lib/collectSitePathnames';
-import {getStaticProps} from '@lib/getStaticData';
-import {usePageData} from '@shared/hooks/usePageData';
-import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
-import {GetDataProps} from '@widgets/interface/interfaceData';
-import CustomHead from '@widgets/layout/seo/CustomHead/CustomHead';
-import {useLayoutProps} from '@widgets/layout/hooks/useLayoutProps';
+import { buildSitemapHeadProps } from '@lib/app-router/seo/marketingPagesHead';
+import { collectSitePathnames } from '@lib/collectSitePathnames';
+import { getCachedData } from '@lib/getStaticData';
+import { selectPageData } from '@shared/hooks/usePageData';
+import { customHeadPropsToMetadata } from '@shared/lib/seo/customHeadPropsToMetadata';
+import { getFullCanonicalUrl } from '@shared/utils/getFullCanonicalUrl';
+import { buildLayoutProps } from '@widgets/layout/lib/buildLayoutProps';
+import { StructuredDataScript } from '@widgets/layout/seo/StructuredDataScript';
 import Layout from '@widgets/layout/ui/layout/Layout';
 
 import styles from './sitemap.module.css';
 
-const SitemapPage: NextPage<GetDataProps> = ({data}): ReactElement => {
-	const {titleItem: titleData} = usePageData(
+export const revalidate = 3600;
+
+export async function generateMetadata(): Promise<Metadata> {
+	const data = await getCachedData();
+	return customHeadPropsToMetadata(buildSitemapHeadProps(data));
+}
+
+export default async function SitemapHtmlPage() {
+	const data = await getCachedData();
+	const head = buildSitemapHeadProps(data);
+	const { titleItem: titleData } = selectPageData(
 		data.titlesPage,
 		data.button,
 		data.bannersImages,
@@ -23,11 +32,11 @@ const SitemapPage: NextPage<GetDataProps> = ({data}): ReactElement => {
 		'repair_banner',
 	);
 	const paths = collectSitePathnames(data);
-	const layoutProps = useLayoutProps(data);
+	const layoutProps = buildLayoutProps(data);
 
 	return (
 		<>
-			<CustomHead {...titleData} structuredDataRating={data.trustSignals.structuredDataRating} />
+			<StructuredDataScript {...head} />
 			<Layout {...layoutProps}>
 				<div className={styles.page}>
 					<div className={styles.inner}>
@@ -61,7 +70,4 @@ const SitemapPage: NextPage<GetDataProps> = ({data}): ReactElement => {
 			</Layout>
 		</>
 	);
-};
-
-export {getStaticProps};
-export default SitemapPage;
+}

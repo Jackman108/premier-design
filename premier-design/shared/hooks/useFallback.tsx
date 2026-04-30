@@ -1,16 +1,12 @@
-import {useRouter} from "next/router";
+'use client';
+
 import styles from './useFallback.module.css';
 
+/** App Router: нет `router.isFallback`; индикатор загрузки fallback не используется. */
 export const useFallback = (isDataAvailable: boolean) => {
-    const router = useRouter();
+	if (!isDataAvailable) {
+		return <div className={styles.error}>Service not found.</div>;
+	}
 
-    if (router.isFallback) {
-        return <div className={styles.loader}>Подгружаем данные...</div>;
-    }
-
-    if (!isDataAvailable) {
-        return <div className={styles.error}>Service not found.</div>;
-    }
-
-    return null;
+	return null;
 };

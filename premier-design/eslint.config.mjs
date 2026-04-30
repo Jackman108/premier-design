@@ -28,7 +28,8 @@ const eslintConfig = [
 					patterns: [
 						{
 							group: ['**/pages/**'],
-							message: 'Импорты из pages разрешены только внутри pages (entrypoint слой).',
+							message:
+								'Каталог Pages Router `pages/` не используется — маршруты в `app/`, композиция страниц в `pages-layer/`.',
 						},
 					],
 				},
@@ -57,7 +58,7 @@ const eslintConfig = [
 		},
 	},
 	{
-		files: ['pages/**/*.{ts,tsx,js,jsx}'],
+		files: ['app/**/*.{ts,tsx,js,jsx}', 'pages-layer/**/*.{ts,tsx,js,jsx}'],
 		rules: {
 			'no-restricted-imports': 'off',
 		},
@@ -80,8 +81,9 @@ const eslintConfig = [
 							message: 'Бизнес-слой не должен зависеть от UI-слоя.',
 						},
 						{
-							group: ['**/pages/**'],
-							message: 'Бизнес-слой не должен зависеть от entrypoint слоя pages.',
+							group: ['**/pages/**', '@pages/**', '@pages-layer/**'],
+							message:
+								'Бизнес-слой не должен зависеть от слоя страниц (`pages-layer`, `@pages/*`).',
 						},
 					],
 				},
@@ -104,8 +106,9 @@ const eslintConfig = [
 							message: 'Бизнес-слой не должен зависеть от легаси components/.',
 						},
 						{
-							group: ['**/pages/**'],
-							message: 'Бизнес-слой не должен зависеть от entrypoint слоя pages.',
+							group: ['**/pages/**', '@pages/**', '@pages-layer/**'],
+							message:
+								'Бизнес-слой не должен зависеть от слоя страниц (`pages-layer`, `@pages/*`).',
 						},
 					],
 				},

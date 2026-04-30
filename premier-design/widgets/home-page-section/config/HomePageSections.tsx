@@ -1,6 +1,7 @@
 import type {ReactElement} from 'react';
 
-import {HeroBanner, type HeroBannerProps} from '@features/banner';
+import HeroBanner from '@features/banner/hero/ui/HeroBanner';
+import type {HeroBannerProps} from '@features/banner/hero/interface/HeroBannerProps';
 import {
 	Appeal,
 	Approach,

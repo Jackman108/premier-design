@@ -2,7 +2,7 @@
 
 import {CSSProperties, useRef} from 'react';
 
-import {useShareBanner} from '@features/banner';
+import {useShareBanner} from '@features/banner/share/hooks/useShareBanner';
 import {useShareBannerHeight} from '@shared/hooks/useShareBannerHeight';
 import type {HeaderProps} from '@widgets/layout/interface/Header.props';
 import {useHeaderPlaceholderHeight} from '@widgets/layout/hooks/useHeaderPlaceholderHeight';

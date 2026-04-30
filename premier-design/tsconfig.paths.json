@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
     "paths": {
+      "@app": ["./app"],
+      "@app/*": ["./app/*"],
       "@widgets/*": ["./widgets/*"],
-      "@pages/*": ["./pages/*"],
+      "@pages": ["./pages-layer"],
+      "@pages/*": ["./pages-layer/*"],
+      "@pages-layer/*": ["./pages-layer/*"],
       "@features/*": ["./features/*"],
       "@shared/*": ["./shared/*"],
       "@app-types/*": ["./types/*"],

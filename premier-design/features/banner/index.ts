@@ -6,5 +6,4 @@ export type {
 	OfferBannerViewProps,
 	ShareBannerProps,
 } from './interface';
-export {useShareBanner} from './share/hooks/useShareBanner';
 export type {ShareBannerDataProps} from './share/interface/ShareBanner.props';

@@ -79,7 +79,7 @@
 Системные:
 - `NODE_ENV` (`development` или `production`)
 
-Rate limit для `pages/api/*` (in-memory, см. ADR [`../docs/adr/0005-rate-limiting-storage-and-client-ip.md`](../docs/adr/0005-rate-limiting-storage-and-client-ip.md)):
+Rate limit для `app/api/*` (Route Handlers, in-memory, см. ADR [`../docs/adr/0005-rate-limiting-storage-and-client-ip.md`](../docs/adr/0005-rate-limiting-storage-and-client-ip.md)):
 - `RATE_LIMIT_TRUST_FORWARDED_FOR=1` — доверять `x-forwarded-for` (типично Vercel / reverse proxy). Без переменной используется только IP сокета, чтобы клиент не подменял себе лимит первым хопом заголовка.
 
 Опциональные публичные:

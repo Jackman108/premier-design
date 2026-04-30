@@ -1,3 +1,5 @@
+'use client';
+
 import {CSSProperties, FC} from 'react';
 
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';

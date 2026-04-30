@@ -3,7 +3,7 @@ import SectionSkeleton from '@shared/ui/section-skeleton/SectionSkeleton';
 
 /**
  * Ленивые секции страниц: живут в `lib/`, а не в `shared/`, чтобы не тянуть `@features/*` из общего слоя
- * (гейт `check-architecture-boundaries` запрещает это в `shared/`). Импортируют страницы из `pages/*`.
+ * (гейт `check-architecture-boundaries` запрещает это в `shared/`). Используются из `app/` и `@pages-layer/*`.
  */
 export const Features = dynamic(() => import('@shared/ui/features-section/ui/Features'), {loading: SectionSkeleton});
 export const Services = dynamic(() => import('@features/services/ui/Services/Services'), {loading: SectionSkeleton});

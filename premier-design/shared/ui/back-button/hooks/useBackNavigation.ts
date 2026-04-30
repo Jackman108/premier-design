@@ -1,11 +1,13 @@
-import {useRouter} from 'next/router';
+'use client';
+
+import { useRouter } from 'next/navigation';
 
 export const useBackNavigation = () => {
-    const router = useRouter();
+	const router = useRouter();
 
-    const handleBackClick = () => {
-        router.back();
-    };
+	const handleBackClick = () => {
+		router.back();
+	};
 
-    return {handleBackClick};
+	return { handleBackClick };
 };
