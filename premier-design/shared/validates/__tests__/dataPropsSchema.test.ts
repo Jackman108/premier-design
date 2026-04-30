@@ -1,9 +1,9 @@
 /** @jest-environment node */
-import data from '../../../data/data.json';
+import data from '../../../data/locales/ru/data.json';
 import {dataPropsSchema, formatDataPropsParseError} from '../dataPropsSchema';
 
 describe('dataPropsSchema', () => {
-	it('accepts production data/data.json', () => {
+	it('accepts production data/locales/ru/data.json', () => {
 		const parsed = dataPropsSchema.safeParse(data);
 		expect(parsed.success).toBe(true);
 	});

@@ -271,7 +271,7 @@ const offerProjectItemSchema = z.object({
 });
 
 /**
- * Runtime-проверка корня `data/data.json` перед SSG/ISR: обязательные ключи,
+ * Runtime-проверка корня `data/locales/<locale>/data.json` перед SSG/ISR: обязательные ключи,
  * без лишних полей на верхнем уровне; тип **`DataProps` = `z.infer`** — единый контракт данных.
  */
 export const dataPropsSchema = z.strictObject({
@@ -351,7 +351,7 @@ export const dataPropsSchema = z.strictObject({
 		}),
 	});
 
-/** Тип корня `data.json` после успешного `dataPropsSchema.safeParse` (единый источник истины). */
+/** Тип корня JSON после успешного `dataPropsSchema.safeParse` (единый источник истины). */
 export type DataProps = z.infer<typeof dataPropsSchema>;
 
 export const formatDataPropsParseError = (error: z.ZodError): string => {
