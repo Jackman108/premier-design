@@ -63,7 +63,7 @@
 }
 
 .offer__content_title::after {
-	content: "";
+	content: '';
 	display: block;
 	height: 2px;
 	width: 80%;

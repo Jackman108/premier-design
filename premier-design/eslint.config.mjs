@@ -1,6 +1,7 @@
 // Next.js 16 ships flat ESLint presets (`eslint-config-next`); do not use FlatCompat + legacy `extends: 'next'` (circular config with ESLint 9).
 // Storybook: https://github.com/storybookjs/eslint-plugin-storybook#configuration-flat-config-format
-import {createRequire} from 'node:module';
+import { createRequire } from 'node:module';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import storybook from 'eslint-plugin-storybook';
 import reactCompiler from 'eslint-plugin-react-compiler';
 
@@ -11,13 +12,7 @@ const nextCoreWebVitals = require('eslint-config-next/core-web-vitals');
 
 const eslintConfig = [
 	{
-		ignores: [
-			'node_modules/**',
-			'coverage/**',
-			'storybook-static/**',
-			'.next/**',
-			'next-env.d.ts',
-		],
+		ignores: ['node_modules/**', 'coverage/**', 'storybook-static/**', '.next/**', 'next-env.d.ts'],
 	},
 	...nextCoreWebVitals,
 	{
@@ -82,8 +77,7 @@ const eslintConfig = [
 						},
 						{
 							group: ['**/pages/**', '@pages/**', '@pages-layer/**'],
-							message:
-								'Бизнес-слой не должен зависеть от слоя страниц (`pages-layer`, `@pages/*`).',
+							message: 'Бизнес-слой не должен зависеть от слоя страниц (`pages-layer`, `@pages/*`).',
 						},
 					],
 				},
@@ -92,10 +86,7 @@ const eslintConfig = [
 	},
 	{
 		// FSD: страницы-детали собирают `@widgets/*`; не блокируем `**/Layout/**` (на Windows совпадает с `layout`).
-		files: [
-			'features/related-services/**/*.{ts,tsx,js,jsx}',
-			'features/services/**/*.{ts,tsx,js,jsx}',
-		],
+		files: ['features/related-services/**/*.{ts,tsx,js,jsx}', 'features/services/**/*.{ts,tsx,js,jsx}'],
 		rules: {
 			'no-restricted-imports': [
 				'error',
@@ -107,8 +98,7 @@ const eslintConfig = [
 						},
 						{
 							group: ['**/pages/**', '@pages/**', '@pages-layer/**'],
-							message:
-								'Бизнес-слой не должен зависеть от слоя страниц (`pages-layer`, `@pages/*`).',
+							message: 'Бизнес-слой не должен зависеть от слоя страниц (`pages-layer`, `@pages/*`).',
 						},
 					],
 				},
@@ -116,6 +106,7 @@ const eslintConfig = [
 		},
 	},
 	...storybook.configs['flat/recommended'],
+	eslintConfigPrettier,
 ];
 
 export default eslintConfig;

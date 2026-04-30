@@ -1,4 +1,4 @@
-import {KeyboardEvent, MouseEvent, useCallback, useEffect, useState} from 'react';
+import { KeyboardEvent, MouseEvent, useCallback, useEffect, useState } from 'react';
 
 type UsePhotoViewerParams = {
 	images: string[];
@@ -13,7 +13,7 @@ const safeIndex = (images: string[], currentImage: string) => {
 	return i >= 0 ? i : 0;
 };
 
-export const usePhotoViewer = ({images, currentImage, onClose}: UsePhotoViewerParams) => {
+export const usePhotoViewer = ({ images, currentImage, onClose }: UsePhotoViewerParams) => {
 	const [currentIndex, setCurrentIndex] = useState<number>(() => safeIndex(images, currentImage));
 
 	useEffect(() => {

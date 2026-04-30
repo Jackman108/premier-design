@@ -1,7 +1,7 @@
 /** @jest-environment jsdom */
 import { render, screen } from '@testing-library/react';
 import type { ReactNode } from 'react';
-import {SITE_SOCIAL} from '@shared/constants/company';
+import { SITE_SOCIAL } from '@shared/constants/company';
 import SocialIcons from './SocialIcons';
 
 jest.mock('next/link', () => ({

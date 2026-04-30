@@ -76,7 +76,9 @@
 	top: 50%;
 	right: 2%;
 	transform: translateY(-50%);
-	transition: background-color 0.3s, color 0.3s;
+	transition:
+		background-color 0.3s,
+		color 0.3s;
 }
 
 .banner__close:focus-visible {

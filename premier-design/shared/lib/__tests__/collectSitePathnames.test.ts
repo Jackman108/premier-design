@@ -1,6 +1,6 @@
 /** @jest-environment node */
-import {collectSitePathnames, STATIC_SITEMAP_PATHS} from '../collectSitePathnames';
-import type {DataProps} from '@shared/validates/dataPropsSchema';
+import { collectSitePathnames, STATIC_SITEMAP_PATHS } from '../collectSitePathnames';
+import type { DataProps } from '@shared/validates/dataPropsSchema';
 
 describe('collectSitePathnames', () => {
 	it('includes static hub paths', () => {
@@ -16,12 +16,12 @@ describe('collectSitePathnames', () => {
 						id: 'cat-a',
 						title: 'A',
 						description: '',
-						image: {src: '/x.webp', alt: '', quality: 90, width: 1, height: 1},
-						priceList: [{canonical: '/services/cat-a/job-one', service: 'J', unit: 'm', price: '1'}],
+						image: { src: '/x.webp', alt: '', quality: 90, width: 1, height: 1 },
+						priceList: [{ canonical: '/services/cat-a/job-one', service: 'J', unit: 'm', price: '1' }],
 					},
 				],
 			},
-			relatedServices: [{canonical: '/services/related/cleaning'}],
+			relatedServices: [{ canonical: '/services/related/cleaning' }],
 		} as unknown as DataProps;
 
 		const paths = collectSitePathnames(data);

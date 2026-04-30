@@ -1,17 +1,17 @@
 'use client';
 
-import {FC, useId, useRef} from 'react';
+import { FC, useId, useRef } from 'react';
 import styles from './PhotoViewer.module.css';
 import NextImage from 'next/image';
-import {PhotoViewerProps} from '@features/examples/interface/PhotoViewer.props';
-import {usePhotoViewer} from '@features/examples/hooks/usePhotoViewer';
-import {usePhotoViewerDialog} from '@features/examples/hooks/usePhotoViewerDialog';
+import { PhotoViewerProps } from '@features/examples/interface/PhotoViewer.props';
+import { usePhotoViewer } from '@features/examples/hooks/usePhotoViewer';
+import { usePhotoViewerDialog } from '@features/examples/hooks/usePhotoViewerDialog';
 
-const PhotoViewer: FC<PhotoViewerProps> = ({images, currentImage, onClose}) => {
+const PhotoViewer: FC<PhotoViewerProps> = ({ images, currentImage, onClose }) => {
 	const dialogRef = useRef<HTMLDialogElement>(null);
 	const titleId = useId();
 	const descriptionId = useId();
-	const {currentIndex, handleClose, handleImageClick, handleKeyDown, handleNext, handlePrev} = usePhotoViewer({
+	const { currentIndex, handleClose, handleImageClick, handleKeyDown, handleNext, handlePrev } = usePhotoViewer({
 		images,
 		currentImage,
 		onClose,
@@ -21,7 +21,9 @@ const PhotoViewer: FC<PhotoViewerProps> = ({images, currentImage, onClose}) => {
 
 	const src = currentIndex >= 0 && currentIndex < images.length ? images[currentIndex] : '';
 	const slideLabel =
-		images.length > 0 ? `Фото ${currentIndex + 1} из ${images.length}, полноэкранный просмотр` : 'Просмотр изображения';
+		images.length > 0
+			? `Фото ${currentIndex + 1} из ${images.length}, полноэкранный просмотр`
+			: 'Просмотр изображения';
 
 	return (
 		<dialog
@@ -39,7 +41,7 @@ const PhotoViewer: FC<PhotoViewerProps> = ({images, currentImage, onClose}) => {
 				Полноэкранный просмотр фотографий объекта. Стрелки или клик по левой и правой части кадра — предыдущее и
 				следующее фото. Escape или клик по затемнению — закрыть.
 			</p>
-			<button type="button" className={styles.overlayScrim} aria-label="Закрыть просмотр" onClick={handleClose}/>
+			<button type="button" className={styles.overlayScrim} aria-label="Закрыть просмотр" onClick={handleClose} />
 			<div className={styles.contentRoot}>
 				<div className={styles.stage}>
 					<div className={styles.imageHit} onMouseDown={handleImageClick} role="presentation">
@@ -52,7 +54,7 @@ const PhotoViewer: FC<PhotoViewerProps> = ({images, currentImage, onClose}) => {
 								width={1800}
 								height={1080}
 								sizes="90vw"
-								style={{width: 'auto', height: 'auto'}}
+								style={{ width: 'auto', height: 'auto' }}
 							/>
 						) : null}
 					</div>

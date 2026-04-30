@@ -1,14 +1,14 @@
 import type { Metadata } from 'next';
 
-import { buildPortfolioHeadProps } from '@lib/app-router/seo/marketingPagesHead';
-import { getCachedData } from '@lib/getStaticData';
+import { buildPortfolioHeadProps } from '@shared/lib/app-router/seo/marketingPagesHead';
+import { getCachedData } from '@shared/lib/getStaticData';
 import HeroBanner from '@features/banner/hero/ui/HeroBanner';
 import type { HeroBannerProps } from '@features/banner/hero/interface/HeroBannerProps';
 import PortfolioProjectSliders from '@features/examples/ui/PortfolioProjectSliders/PortfolioProjectSliders';
 import { selectAppealSectionData, selectPageData } from '@shared/hooks/usePageData';
 import { customHeadPropsToMetadata } from '@shared/lib/seo/customHeadPropsToMetadata';
 import { getTitleData } from '@shared/utils/findItemByTitle';
-import { Appeal, Features, OfferBanner } from '@lib/dynamicSectionImports';
+import { Appeal, Features, OfferBanner } from '@shared/lib/dynamicSectionImports';
 import { buildLayoutProps } from '@widgets/layout/lib/buildLayoutProps';
 import { StructuredDataScript } from '@widgets/layout/seo/StructuredDataScript';
 import Layout from '@widgets/layout/ui/layout/Layout';
@@ -23,14 +23,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function PortfolioPage() {
 	const data = await getCachedData();
 	const head = buildPortfolioHeadProps(data);
-	const { titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData } = selectPageData(
-		data.titlesPage,
-		data.button,
-		data.bannersImages,
-		'portfolio',
-		'leave_request',
-		'design_banner',
-	);
+	const {
+		titleItem: titleData,
+		buttonItem: buttonData,
+		bannerItem: bannerData,
+	} = selectPageData(data.titlesPage, data.button, data.bannersImages, 'portfolio', 'leave_request', 'design_banner');
 	const bannerProps: HeroBannerProps = { titleData, buttonData, bannerData };
 	const titles = getTitleData(data.title, 'our-works');
 

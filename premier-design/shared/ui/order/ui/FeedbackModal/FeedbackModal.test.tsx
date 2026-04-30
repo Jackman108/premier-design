@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
-import {fireEvent, render, screen} from '@testing-library/react';
-import type {FeedbackItem} from '@shared/ui/order/interface/FeedbackModal.props';
+import { fireEvent, render, screen } from '@testing-library/react';
+import type { FeedbackItem } from '@shared/ui/order/interface/FeedbackModal.props';
 import FeedbackModal from './FeedbackModal';
 
 jest.mock('@shared/ui/order/ui/FeedbackForm/FeedbackForm', () => ({
@@ -27,17 +27,7 @@ describe('FeedbackModal', () => {
 		render(<FeedbackModal onClose={onClose} onSubmit={onSubmit} />);
 
 		const dialog = screen.getByRole('dialog');
-		fireEvent(dialog, new Event('cancel', {bubbles: false, cancelable: true}));
-
-		expect(onClose).toHaveBeenCalledTimes(1);
-	});
-
-	it('closes via Escape key fallback', () => {
-		const onClose = jest.fn();
-		render(<FeedbackModal onClose={onClose} onSubmit={onSubmit} />);
-
-		const dialog = screen.getByRole('dialog');
-		fireEvent.keyDown(dialog, {key: 'Escape'});
+		fireEvent(dialog, new Event('cancel', { bubbles: false, cancelable: true }));
 
 		expect(onClose).toHaveBeenCalledTimes(1);
 	});

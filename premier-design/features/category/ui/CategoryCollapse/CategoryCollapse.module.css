@@ -4,7 +4,9 @@
 	border: 1px solid var(--color-border);
 	border-radius: var(--radius-lg);
 	overflow: hidden;
-	transition: border-color var(--transition-base), box-shadow var(--transition-slow);
+	transition:
+		border-color var(--transition-base),
+		box-shadow var(--transition-slow);
 	background-color: var(--color-surface);
 	box-shadow: var(--shadow-md);
 }
@@ -24,7 +26,9 @@
 	justify-content: space-between;
 	align-items: center;
 	border-bottom: 1px solid var(--color-border);
-	transition: background-color var(--transition-base), transform var(--transition-base);
+	transition:
+		background-color var(--transition-base),
+		transform var(--transition-base);
 }
 
 @media (hover: hover) {

@@ -19,7 +19,9 @@ jest.mock('../../shared/lib/feedbackSlo', () => ({
 describe('/api/feedback Route Handler', () => {
 	const mockedSubmitFeedbackAction = submitFeedbackAction as jest.MockedFunction<typeof submitFeedbackAction>;
 	const mockedRateLimit = checkRateLimit as jest.MockedFunction<typeof checkRateLimit>;
-	const mockedGetFeedbackApiTimeoutMs = getFeedbackApiTimeoutMs as jest.MockedFunction<typeof getFeedbackApiTimeoutMs>;
+	const mockedGetFeedbackApiTimeoutMs = getFeedbackApiTimeoutMs as jest.MockedFunction<
+		typeof getFeedbackApiTimeoutMs
+	>;
 
 	beforeEach(() => {
 		jest.clearAllMocks();

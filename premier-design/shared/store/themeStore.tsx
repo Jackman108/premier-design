@@ -1,6 +1,6 @@
 'use client';
 
-import {createContext, useContext, useMemo, useState, type FC, type PropsWithChildren} from 'react';
+import { createContext, useContext, useMemo, useState, type FC, type PropsWithChildren } from 'react';
 
 type ThemeName = 'light' | 'dark';
 
@@ -11,9 +11,9 @@ type ThemeStoreValue = {
 
 const ThemeStoreContext = createContext<ThemeStoreValue | null>(null);
 
-export const ThemeStoreProvider: FC<PropsWithChildren> = ({children}) => {
+export const ThemeStoreProvider: FC<PropsWithChildren> = ({ children }) => {
 	const [currentTheme, setCurrentTheme] = useState<ThemeName>('light');
-	const value = useMemo(() => ({currentTheme, setCurrentTheme}), [currentTheme]);
+	const value = useMemo(() => ({ currentTheme, setCurrentTheme }), [currentTheme]);
 
 	return <ThemeStoreContext.Provider value={value}>{children}</ThemeStoreContext.Provider>;
 };

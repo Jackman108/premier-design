@@ -1,4 +1,4 @@
-import {useLayoutEffect} from 'react';
+import { useLayoutEffect } from 'react';
 
 const SHARE_BANNER_ID = 'share-banner';
 const SHARE_BANNER_HEIGHT_VAR = '--share-banner-height';

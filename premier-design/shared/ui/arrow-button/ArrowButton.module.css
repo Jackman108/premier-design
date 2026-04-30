@@ -1,46 +1,43 @@
 .arrow__buttons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 3rem;
-
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 3rem;
 }
 
 .arrow__button {
-    transition: color 0.5s ease;
-    border: none;
-    background: transparent;
+	transition: color 0.5s ease;
+	border: none;
+	background: transparent;
 }
 
-
-
 .arrow__left {
-    font-size: 3.2rem;
-    transform: rotate(180deg);
-    cursor: pointer;
-    transition: all 0.5s ease;
-    background: transparent;
-    min-width: 44px;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+	font-size: 3.2rem;
+	transform: rotate(180deg);
+	cursor: pointer;
+	transition: all 0.5s ease;
+	background: transparent;
+	min-width: 44px;
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .arrow__right {
-    font-size: 3.2rem;
-    cursor: pointer;
-    transition: all 0.5s ease;
-    background: transparent;
-    min-width: 44px;
-    min-height: 44px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+	font-size: 3.2rem;
+	cursor: pointer;
+	transition: all 0.5s ease;
+	background: transparent;
+	min-width: 44px;
+	min-height: 44px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
 }
 
 .arrow__left:focus-visible,
 .arrow__right:focus-visible {
-    opacity: 0.8;
+	opacity: 0.8;
 }
 
 @media (hover: hover) {
@@ -51,7 +48,7 @@
 }
 
 @media (max-width: 768px) {
-    .arrow__buttons {
-        display: none;
-    }
+	.arrow__buttons {
+		display: none;
+	}
 }

@@ -7,7 +7,7 @@
  *
  * Windows: headless часто падает с interstitial — по умолчанию шаг пропускается; полный замер в Linux CI. Принудительно: `PERF_AUDIT_FORCE_LIGHTHOUSE=true`.
  */
-import {spawn} from 'node:child_process';
+import { spawn } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 
@@ -18,7 +18,7 @@ import perfConfig from 'lighthouse/core/config/perf-config.js';
 const ROOT = process.cwd();
 // TMP внутри репо — меньше EPERM у chrome-launcher на Windows при очистке профиля.
 const lighthouseTempRoot = path.join(ROOT, '.lighthouse-tmp');
-fs.mkdirSync(lighthouseTempRoot, {recursive: true});
+fs.mkdirSync(lighthouseTempRoot, { recursive: true });
 process.env.TMP = lighthouseTempRoot;
 process.env.TEMP = lighthouseTempRoot;
 
@@ -77,7 +77,7 @@ const printMetricsRu = (metrics) => {
 
 const writeSummary = (payload) => {
 	try {
-		fs.mkdirSync(AUDIT_DIR, {recursive: true});
+		fs.mkdirSync(AUDIT_DIR, { recursive: true });
 		fs.writeFileSync(SUMMARY_PATH, `${JSON.stringify(payload, null, 2)}\n`, 'utf8');
 		console.log(`Сводка сохранена: ${path.relative(ROOT, SUMMARY_PATH)}`);
 	} catch (e) {
@@ -88,7 +88,7 @@ const writeSummary = (payload) => {
 if (process.env.PERF_AUDIT_SKIP_LIGHTHOUSE === 'true') {
 	printThresholdsRu();
 	console.log('Статус: PERF_AUDIT_SKIP_LIGHTHOUSE — прогон отключён.');
-	writeSummary({skipped: true, reason: 'PERF_AUDIT_SKIP_LIGHTHOUSE', thresholds, baseUrl: BASE_URL});
+	writeSummary({ skipped: true, reason: 'PERF_AUDIT_SKIP_LIGHTHOUSE', thresholds, baseUrl: BASE_URL });
 	process.exit(0);
 }
 
@@ -112,7 +112,7 @@ const cleanupLighthouseTemps = () => {
 	const dirs = [lighthouseTempRoot, chromeUserDataDir];
 	for (const dir of dirs) {
 		try {
-			fs.rmSync(dir, {recursive: true, force: true});
+			fs.rmSync(dir, { recursive: true, force: true });
 		} catch {
 			// не блокируем CI на best-effort очистке временных профилей
 		}
@@ -121,9 +121,7 @@ const cleanupLighthouseTemps = () => {
 
 const startStandaloneServer = () => {
 	if (!fs.existsSync(standaloneServerJs)) {
-		throw new Error(
-			`Нет ${path.relative(ROOT, standaloneServerJs)} — сначала yarn build.`,
-		);
+		throw new Error(`Нет ${path.relative(ROOT, standaloneServerJs)} — сначала yarn build.`);
 	}
 	return spawn(process.execPath, [standaloneServerJs], {
 		stdio: ['ignore', 'pipe', 'pipe'],
@@ -167,7 +165,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const warmupUrl = async (url, attempts = 10) => {
 	for (let attempt = 1; attempt <= attempts; attempt += 1) {
 		try {
-			const response = await fetch(url, {headers: {'cache-control': 'no-cache'}});
+			const response = await fetch(url, { headers: { 'cache-control': 'no-cache' } });
 			const html = await response.text();
 			// Ждём полноценный HTML Next.js, чтобы избежать раннего старта Lighthouse.
 			if (response.ok && /<html/i.test(html) && /__NEXT_DATA__|_next\//i.test(html)) {
@@ -188,7 +186,7 @@ const extractMetrics = (lhr) => {
 	const inpRaw = lhr?.audits?.['interaction-to-next-paint']?.numericValue;
 	const inp = typeof inpRaw === 'number' && Number.isFinite(inpRaw) ? inpRaw : Number.NaN;
 	const tbt = Number(lhr?.audits?.['total-blocking-time']?.numericValue ?? Number.POSITIVE_INFINITY);
-	return {score, lcp, cls, inp, tbt};
+	return { score, lcp, cls, inp, tbt };
 };
 
 const runLighthouseWithRetry = async (url, flags, config, attempts = 3) => {
@@ -202,7 +200,7 @@ const runLighthouseWithRetry = async (url, flags, config, attempts = 3) => {
 				chromePath: flags.chromePath,
 				chromeFlags: flags.chromeFlags,
 			});
-			const result = await lighthouse(url, {...flags, port: localChrome.port}, config);
+			const result = await lighthouse(url, { ...flags, port: localChrome.port }, config);
 			if (!result?.lhr) {
 				throw new Error('Lighthouse не вернул LHR.');
 			}
@@ -248,7 +246,7 @@ const resolveChromePath = async () => {
 		}
 	}
 	try {
-		const {chromium} = await import('playwright');
+		const { chromium } = await import('playwright');
 		const playwrightChrome = chromium.executablePath();
 		// В CI браузер Playwright может быть не установлен — тогда даём chrome-launcher выбрать системный Chrome.
 		if (playwrightChrome && fs.existsSync(playwrightChrome)) {
@@ -295,7 +293,7 @@ try {
 		],
 		logLevel: 'error',
 		formFactor: 'mobile',
-		screenEmulation: {disabled: true},
+		screenEmulation: { disabled: true },
 		throttlingMethod: 'provided',
 		disableEmulatedUserAgent: true,
 	};
@@ -353,7 +351,9 @@ try {
 	const isInfraAborted = /net::ERR_ABORTED/i.test(errorText);
 
 	if (isCi && isInfraAborted && !failOnInfraError) {
-		console.warn('::warning::Lighthouse недоступен из-за инфраструктурной ошибки (net::ERR_ABORTED). Gate переведён в fail-open для CI.');
+		console.warn(
+			'::warning::Lighthouse недоступен из-за инфраструктурной ошибки (net::ERR_ABORTED). Gate переведён в fail-open для CI.',
+		);
 		writeSummary({
 			skipped: true,
 			passed: true,

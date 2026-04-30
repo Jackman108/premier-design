@@ -1,14 +1,14 @@
-import {existsSync, readdirSync, readFileSync, statSync} from 'node:fs';
-import {join, relative, resolve} from 'node:path';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
+import { join, relative, resolve } from 'node:path';
 
 const root = process.cwd();
 const featuresRoot = resolve(root, 'features');
-const forbiddenImportPattern = /from\s+['"]@lib\/(find[A-Z][^'"]*|resolveServicesTier|servicesTierStatic)['"]/g;
+const forbiddenImportPattern = /from\s+['"]@shared\/lib\/(find[A-Z][^'"]*|resolveServicesTier|servicesTierStatic)['"]/g;
 
 const toUnix = (value: string) => value.split('\\').join('/');
 
 const walkCodeFiles = (dir: string): string[] => {
-	const entries = readdirSync(dir, {withFileTypes: true});
+	const entries = readdirSync(dir, { withFileTypes: true });
 	const result: string[] = [];
 	for (const entry of entries) {
 		const abs = join(dir, entry.name);
@@ -24,7 +24,7 @@ const walkCodeFiles = (dir: string): string[] => {
 };
 
 describe('feature boundaries', () => {
-	it('does not import cross-feature finders from @lib', () => {
+	it('does not import cross-feature finders from @shared/lib', () => {
 		expect(existsSync(featuresRoot)).toBe(true);
 
 		const offenders: string[] = [];

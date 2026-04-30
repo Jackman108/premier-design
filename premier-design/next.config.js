@@ -1,5 +1,5 @@
 import path from 'node:path';
-import {fileURLToPath} from 'node:url';
+import { fileURLToPath } from 'node:url';
 
 import bundleAnalyzer from '@next/bundle-analyzer';
 
@@ -18,8 +18,7 @@ const scriptSrcPolicy = isDevelopment ? "'self' 'unsafe-inline' 'unsafe-eval'" :
 // Prod: только same-origin (fetch форм, dataLayer); dev — HMR и отладка.
 const connectSrcPolicy = isDevelopment ? "'self' https: http: ws: wss:" : "'self'";
 // Узкий список вместо https: — карты Google (embed/thumbs), остальное с self/public.
-const imgSrcPolicy =
-	"'self' data: blob: https://www.google.com https://maps.gstatic.com https://maps.googleapis.com";
+const imgSrcPolicy = "'self' data: blob: https://www.google.com https://maps.gstatic.com https://maps.googleapis.com";
 
 // HSTS — только при реальном HTTPS (ниже). CSP `upgrade-insecure-requests` не используем: на HTTP (docker :8080 без TLS)
 // Chrome иначе запрашивает статику как https://… → ERR_SSL_PROTOCOL_ERROR. HTTPS на проде — редирект/TLS у nginx/Vercel.
@@ -50,7 +49,7 @@ const nextConfig = {
 	devIndicators: false,
 	// Playwright / CI: baseURL 127.0.0.1 и dev-сервер на localhost — иначе блокируется webpack-hmr.
 	allowedDevOrigins: ['127.0.0.1', 'localhost'],
-	webpack: (config, {dev}) => {
+	webpack: (config, { dev }) => {
 		if (dev) {
 			config.watchOptions = {
 				...(config.watchOptions || {}),
@@ -68,10 +67,10 @@ const nextConfig = {
 	},
 	async rewrites() {
 		return [
-			{source: '/sitemap.xml', destination: '/api/sitemap'},
-			{source: '/user-agreement', destination: '/documents/user-agreement'},
-			{source: '/privacy-policy', destination: '/documents/privacy-policy'},
-			{source: '/public-offer', destination: '/documents/public-offer'},
+			{ source: '/sitemap.xml', destination: '/api/sitemap' },
+			{ source: '/user-agreement', destination: '/documents/user-agreement' },
+			{ source: '/privacy-policy', destination: '/documents/privacy-policy' },
+			{ source: '/public-offer', destination: '/documents/public-offer' },
 		];
 	},
 	images: {
@@ -137,4 +136,3 @@ const nextConfig = {
 };
 
 export default withBundleAnalyzer(nextConfig);
-

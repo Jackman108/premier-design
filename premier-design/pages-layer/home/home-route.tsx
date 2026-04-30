@@ -1,5 +1,5 @@
-import { buildHomeHeadProps } from '@lib/app-router/seo/marketingPagesHead';
-import { getCachedData } from '@lib/getStaticData';
+import { buildHomeHeadProps } from '@shared/lib/app-router/seo/marketingPagesHead';
+import { getCachedData } from '@shared/lib/getStaticData';
 import { StructuredDataScript } from '@widgets/layout/seo/StructuredDataScript';
 
 import HomePageClient from './HomePageClient';

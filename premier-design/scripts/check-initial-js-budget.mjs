@@ -1,12 +1,13 @@
 /**
- * Бюджет размера initial JS для главной `/` по данным `next build` (build-manifest).
- * Суммирует размер `.js` чанков из манифеста — грубый, но стабильный gate без браузера.
+ * Бюджет размера initial JS по данным `next build` (build-manifest.json).
+ * Pages Router: суммирует `.js` для маршрута `/` из `pages['/']`.
+ * App Router (Next 15+): в корневом манифесте часто нет per-route чанков — берём
+ * оболочку первой загрузки: `polyfillFiles` + `rootMainFiles` (стабильный gate без браузера).
  */
 import fs from 'node:fs';
 import path from 'node:path';
 
-const ROOT = process.cwd();
-const NEXT_DIR = path.join(ROOT, '.next');
+const NEXT_DIR = path.join(process.cwd(), '.next');
 const BUILD_MANIFEST_PATH = path.join(NEXT_DIR, 'build-manifest.json');
 const HOME_ROUTE = '/';
 // Дефолт под текущий бандл; сужать через INITIAL_JS_BUDGET_KB в CI при оптимизациях.
@@ -21,14 +22,30 @@ if (!fs.existsSync(BUILD_MANIFEST_PATH)) {
 }
 
 const manifest = JSON.parse(fs.readFileSync(BUILD_MANIFEST_PATH, 'utf8'));
-const pageChunks = manifest?.pages?.[HOME_ROUTE];
 
-if (!Array.isArray(pageChunks) || pageChunks.length === 0) {
-	console.error(`::error::В манифесте нет чанков для маршрута "${HOME_ROUTE}".`);
+/** @returns {{ relPaths: string[], mode: 'pages-home' | 'app-shell' }} */
+function resolveChunkRelPaths() {
+	const pages = manifest?.pages ?? {};
+	const pageKeys = [HOME_ROUTE, '/page'];
+	for (const key of pageKeys) {
+		const chunks = pages[key];
+		if (Array.isArray(chunks) && chunks.some((e) => typeof e === 'string' && e.endsWith('.js'))) {
+			return { relPaths: chunks.filter((e) => e.endsWith('.js')), mode: 'pages-home' };
+		}
+	}
+	const shell = [...(manifest.polyfillFiles ?? []), ...(manifest.rootMainFiles ?? [])].filter(
+		(e) => typeof e === 'string' && e.endsWith('.js'),
+	);
+	return { relPaths: shell, mode: 'app-shell' };
+}
+
+const { relPaths: jsChunks, mode } = resolveChunkRelPaths();
+
+if (jsChunks.length === 0) {
+	console.error('::error::Не удалось определить initial JS: нет чанков ни для `/`, ни для App Router shell.');
 	process.exit(1);
 }
 
-const jsChunks = pageChunks.filter((entry) => entry.endsWith('.js'));
 const totalBytes = jsChunks.reduce((acc, relPath) => {
 	const absolutePath = path.join(NEXT_DIR, relPath);
 	if (!fs.existsSync(absolutePath)) {
@@ -40,12 +57,13 @@ const totalBytes = jsChunks.reduce((acc, relPath) => {
 
 const totalKb = toKb(totalBytes);
 if (totalKb > budgetKb) {
-	console.error(`::error::Initial JS для "${HOME_ROUTE}": ${totalKb} KB > лимит ${budgetKb} KB`);
+	console.error(`::error::Initial JS (${mode}): ${totalKb} KB > лимит ${budgetKb} KB`);
 	process.exit(1);
 }
 
 console.log('');
-console.log('=== Initial JS (главная `/`) ===');
+console.log('=== Initial JS ===');
+console.log(`  Режим: ${mode === 'app-shell' ? 'App Router (polyfills + root main)' : `Pages Router (${HOME_ROUTE})`}`);
 console.log(`  Сумма .js чанков: ${totalKb} KB (лимит ≤ ${budgetKb} KB)`);
 console.log(`  Число чанков: ${jsChunks.length}`);
 console.log('');

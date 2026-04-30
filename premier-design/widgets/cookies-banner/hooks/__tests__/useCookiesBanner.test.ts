@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
-import {act, renderHook, waitFor} from '@testing-library/react';
-import {useCookiesBanner} from '@widgets/cookies-banner/hooks/useCookiesBanner';
+import { act, renderHook, waitFor } from '@testing-library/react';
+import { useCookiesBanner } from '@widgets/cookies-banner/hooks/useCookiesBanner';
 
 describe('useCookiesBanner', () => {
 	beforeEach(() => {
@@ -40,7 +40,7 @@ describe('useCookiesBanner', () => {
 	it('handleAction stores acceptance and closes modal', () => {
 		const openModal = jest.fn();
 		const closeModal = jest.fn();
-		const {result} = renderHook(() => useCookiesBanner(openModal, closeModal));
+		const { result } = renderHook(() => useCookiesBanner(openModal, closeModal));
 
 		act(() => {
 			result.current.handleAction(true);

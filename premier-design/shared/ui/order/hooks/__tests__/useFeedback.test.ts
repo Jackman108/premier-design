@@ -1,7 +1,7 @@
 /** @jest-environment jsdom */
-import {act, renderHook} from '@testing-library/react';
-import {FEEDBACK_SUCCESS_TOAST_MS} from '@shared/ui/order/constants';
-import {useFeedback} from '@shared/ui/order/hooks/useFeedback';
+import { act, renderHook } from '@testing-library/react';
+import { FEEDBACK_SUCCESS_TOAST_MS } from '@shared/ui/order/constants';
+import { useFeedback } from '@shared/ui/order/hooks/useFeedback';
 
 describe('useFeedback', () => {
 	const payload = {
@@ -17,7 +17,7 @@ describe('useFeedback', () => {
 	});
 
 	it('opens and closes modal state', () => {
-		const {result} = renderHook(() => useFeedback());
+		const { result } = renderHook(() => useFeedback());
 
 		expect(result.current.isOpen).toBe(false);
 		act(() => {
@@ -38,7 +38,7 @@ describe('useFeedback', () => {
 		} as Response);
 		global.fetch = fetchMock as unknown as typeof fetch;
 
-		const {result} = renderHook(() => useFeedback());
+		const { result } = renderHook(() => useFeedback());
 		act(() => {
 			result.current.openModal();
 		});
@@ -53,7 +53,7 @@ describe('useFeedback', () => {
 	});
 
 	it('exposes successToastMs matching FEEDBACK_SUCCESS_TOAST_MS', () => {
-		const {result} = renderHook(() => useFeedback());
+		const { result } = renderHook(() => useFeedback());
 		expect(result.current.successToastMs).toBe(FEEDBACK_SUCCESS_TOAST_MS);
 	});
 
@@ -66,7 +66,7 @@ describe('useFeedback', () => {
 		} as Response);
 		global.fetch = fetchMock as unknown as typeof fetch;
 
-		const {result} = renderHook(() => useFeedback());
+		const { result } = renderHook(() => useFeedback());
 		act(() => {
 			result.current.openModal();
 		});
@@ -84,17 +84,17 @@ describe('useFeedback', () => {
 	});
 
 	it('sets user-facing error when request fails', async () => {
-		const body = JSON.stringify({message: 'server fail', correlationId: 'err-cid'});
+		const body = JSON.stringify({ message: 'server fail', correlationId: 'err-cid' });
 		const fetchMock = jest.fn().mockResolvedValue({
 			ok: false,
 			status: 500,
 			statusText: 'Internal Server Error',
-			headers: {get: () => null},
+			headers: { get: () => null },
 			text: () => Promise.resolve(body),
 		});
 		global.fetch = fetchMock as unknown as typeof fetch;
 
-		const {result} = renderHook(() => useFeedback());
+		const { result } = renderHook(() => useFeedback());
 		await act(async () => {
 			await result.current.handleSubmit(payload);
 		});

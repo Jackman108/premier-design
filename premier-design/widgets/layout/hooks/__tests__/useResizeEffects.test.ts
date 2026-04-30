@@ -1,5 +1,5 @@
 /** @jest-environment jsdom */
-import {act, renderHook} from '@testing-library/react';
+import { act, renderHook } from '@testing-library/react';
 import useResizeEffects from '../useResizeEffects';
 import useMobileMenu from '../useMobileMenu';
 
@@ -24,7 +24,7 @@ describe('useResizeEffects', () => {
 			configurable: true,
 			get: () => 1200,
 		});
-		const {result} = renderHook(() => useResizeEffects());
+		const { result } = renderHook(() => useResizeEffects());
 		expect(result.current.isMobile).toBe(false);
 		expect(result.current.isMobileMenuOpen).toBe(false);
 

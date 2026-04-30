@@ -1,14 +1,14 @@
-import type {Meta, StoryObj} from '@storybook/nextjs-vite';
-import React, {useState} from 'react';
-import {expect, userEvent, within} from 'storybook/test';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import React, { useState } from 'react';
+import { expect, userEvent, within } from 'storybook/test';
 
-import {UiButton} from './UiButton';
-import {UiDialog} from './UiDialog';
+import { UiButton } from './UiButton';
+import { UiDialog } from './UiDialog';
 
 const meta = {
 	title: 'Primitives/UiDialog',
 	component: UiDialog,
-	parameters: {layout: 'centered'},
+	parameters: { layout: 'centered' },
 	tags: ['autodocs'],
 } satisfies Meta<typeof UiDialog>;
 
@@ -29,7 +29,12 @@ export const Default: Story = {
 		return (
 			<>
 				<UiButton onClick={() => setOpen(true)}>Open Dialog</UiButton>
-				<UiDialog open={open} onOpenChange={setOpen} overlayClassName="dialogOverlay" contentClassName="dialogContent">
+				<UiDialog
+					open={open}
+					onOpenChange={setOpen}
+					overlayClassName="dialogOverlay"
+					contentClassName="dialogContent"
+				>
 					<div className="dialogStoryBody">
 						<strong>Headless Dialog Primitive</strong>
 						<p>Dialog surface is controlled by external styles and project tokens.</p>
@@ -66,9 +71,9 @@ export const Default: Story = {
 			</>
 		);
 	},
-	play: async ({canvasElement}) => {
+	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
-		await userEvent.click(canvas.getByRole('button', {name: 'Open Dialog'}));
+		await userEvent.click(canvas.getByRole('button', { name: 'Open Dialog' }));
 		await expect(canvas.getByRole('dialog')).toBeVisible();
 	},
 };

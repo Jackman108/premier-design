@@ -1,1 +1,1 @@
-export {useShareBanner} from '@features/banner/share/hooks/useShareBanner';
+export { useShareBanner } from '@features/banner/share/hooks/useShareBanner';

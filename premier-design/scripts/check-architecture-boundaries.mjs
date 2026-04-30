@@ -1,5 +1,5 @@
-import {existsSync, readFileSync, readdirSync, statSync} from 'node:fs';
-import {join, relative, resolve} from 'node:path';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { join, relative, resolve } from 'node:path';
 
 const cwd = process.cwd();
 const args = process.argv.slice(2);
@@ -10,7 +10,7 @@ const IMPORT_RE = /from\s+['"]([^'"]+)['"]/g;
 /** Динамический `import()` тоже создаёт зависимость; иначе обход через `next/dynamic` в `shared/`. */
 const DYNAMIC_IMPORT_RE = /import\s*\(\s*['"](@(?:features|services)\/[^'"]+)['"]\s*\)/g;
 /** Cross-feature «обход» через lib-finders запрещён внутри feature-слайсов. */
-const FORBIDDEN_FEATURE_LIB_IMPORT_RE = /^@lib\/(find[A-Z]|resolveServicesTier|servicesTierStatic)\b/;
+const FORBIDDEN_FEATURE_LIB_IMPORT_RE = /^@shared\/lib\/(find[A-Z]|resolveServicesTier|servicesTierStatic)\b/;
 
 const toUnix = (value) => value.split('\\').join('/');
 const isCodeFile = (file) => /\.(ts|tsx|js|jsx)$/.test(file);
@@ -38,12 +38,10 @@ if (allowlistEntries.length > maxAllowedCount) {
 	process.exit(1);
 }
 
-const ALLOWLIST = new Map(
-	allowlistEntries.map((entry) => [`${entry.source}|${entry.target}`, entry.expiresOn]),
-);
+const ALLOWLIST = new Map(allowlistEntries.map((entry) => [`${entry.source}|${entry.target}`, entry.expiresOn]));
 
 const walkFiles = (dir) => {
-	const entries = readdirSync(dir, {withFileTypes: true});
+	const entries = readdirSync(dir, { withFileTypes: true });
 	const result = [];
 	for (const entry of entries) {
 		const abs = join(dir, entry.name);
@@ -72,7 +70,8 @@ for (const file of files) {
 		...[...source.matchAll(IMPORT_RE)].map((m) => m[1]),
 		...[...source.matchAll(DYNAMIC_IMPORT_RE)].map((m) => m[1]),
 	];
-	const inShared = file.startsWith('shared/');
+	/** `shared/lib/` — бывший корень `lib/`: допускает `@features/*` (динамические секции, app-router). Остальной `shared/` — нет. */
+	const inShared = file.startsWith('shared/') && !file.startsWith('shared/lib/');
 	const inFeature = file.startsWith('features/');
 	const featureSlice = inFeature ? file.split('/')[1] : '';
 
@@ -99,7 +98,7 @@ for (const file of files) {
 		}
 
 		if (inFeature && FORBIDDEN_FEATURE_LIB_IMPORT_RE.test(target) && !allowUntil) {
-			violations.push(`${file}: запрещён обход cross-feature через @lib/* finders -> ${target}`);
+			violations.push(`${file}: запрещён обход cross-feature через @shared/lib/* finders -> ${target}`);
 		}
 	}
 }

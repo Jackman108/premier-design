@@ -1,7 +1,7 @@
-import {useCallback} from 'react';
+import { useCallback } from 'react';
 
-import {trackMarketingEvent} from '@shared/analytics/trackMarketingEvent';
-import type {OrderButtonProps} from '@shared/ui/order/interface/OrderButton.props';
+import { trackMarketingEvent } from '@shared/analytics/trackMarketingEvent';
+import type { OrderButtonProps } from '@shared/ui/order/interface/OrderButton.props';
 
 type OpenModalWithMessage = (message?: string) => void;
 

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import type { FC, PropsWithChildren } from 'react';
 
-import { inter, playfair } from '@lib/interFont';
+import { inter, playfair } from '@shared/lib/interFont';
 import { SITE_OPERATOR } from '@shared/constants/company';
 
 import { RootProviders } from './root-providers';
@@ -24,7 +24,12 @@ export const viewport: Viewport = {
 };
 
 const RootLayout: FC<PropsWithChildren> = ({ children }) => (
-	<html lang="ru" className={`${inter.variable} ${playfair.variable}`} data-scroll-behavior="smooth" suppressHydrationWarning>
+	<html
+		lang="ru"
+		className={`${inter.variable} ${playfair.variable}`}
+		data-scroll-behavior="smooth"
+		suppressHydrationWarning
+	>
 		<body>
 			<RootProviders>{children}</RootProviders>
 		</body>

@@ -6,12 +6,12 @@
  *   - строки с `null` (УНП/регистрация/банк) скрываются — публикуем только подтверждённое.
  *   - семантика: `<address>` для контактных данных, `<dl>` для пар «реквизит → значение».
  */
-import {FC} from 'react';
+import { FC } from 'react';
 import styles from './LegalRequisites.module.css';
-import {SITE_OPERATOR} from '@shared/constants/company';
+import { SITE_OPERATOR } from '@shared/constants/company';
 
 const LegalRequisites: FC = () => {
-	const {legalEntity, address, publicEmail, bankDetails} = SITE_OPERATOR;
+	const { legalEntity, address, publicEmail, bankDetails } = SITE_OPERATOR;
 
 	return (
 		<address className={styles.requisites} aria-label="Реквизиты и контактная информация">

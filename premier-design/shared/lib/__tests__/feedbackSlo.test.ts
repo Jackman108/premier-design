@@ -1,4 +1,4 @@
-import {getFeedbackApiTimeoutMs} from '@shared/lib/feedbackSlo';
+import { getFeedbackApiTimeoutMs } from '@shared/lib/feedbackSlo';
 
 const assign = (key: string, value: string | undefined) => {
 	const e = process.env as Record<string, string | undefined>;
@@ -10,7 +10,7 @@ const assign = (key: string, value: string | undefined) => {
 };
 
 describe('getFeedbackApiTimeoutMs', () => {
-	const prev = {timeout: process.env.FEEDBACK_API_TIMEOUT_MS, nodeEnv: process.env.NODE_ENV};
+	const prev = { timeout: process.env.FEEDBACK_API_TIMEOUT_MS, nodeEnv: process.env.NODE_ENV };
 
 	afterEach(() => {
 		assign('FEEDBACK_API_TIMEOUT_MS', prev.timeout);

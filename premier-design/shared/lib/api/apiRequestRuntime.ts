@@ -1,6 +1,6 @@
-import type {IncomingHttpHeaders} from 'node:http';
-import type {NextApiRequest, NextApiResponse} from 'next';
-import {createCorrelationId} from '@shared/lib/correlationId';
+import type { IncomingHttpHeaders } from 'node:http';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { createCorrelationId } from '@shared/lib/correlationId';
 
 type ApiStatus = 'success' | 'error';
 
@@ -31,17 +31,17 @@ export const withTimeout = async <T>(task: Promise<T>, timeoutMs: number): Promi
 	return new Promise((resolve) => {
 		// Защита от зависания внешних вызовов: timeout обеспечивает предсказуемый SLA ответа API.
 		const timer = setTimeout(() => {
-			resolve({timedOut: true});
+			resolve({ timedOut: true });
 		}, timeoutMs);
 
 		void task
 			.then((value) => {
 				clearTimeout(timer);
-				resolve({timedOut: false, value});
+				resolve({ timedOut: false, value });
 			})
 			.catch((error) => {
 				clearTimeout(timer);
-				resolve({timedOut: false, error});
+				resolve({ timedOut: false, error });
 			});
 	});
 };
@@ -50,7 +50,7 @@ export const createApiRequestObserver = (
 	req: NextApiRequest,
 	res: NextApiResponse,
 	route: string,
-	onFinish?: (payload: {statusCode: number; timedOut: boolean; durationMs: number}) => void,
+	onFinish?: (payload: { statusCode: number; timedOut: boolean; durationMs: number }) => void,
 ) => {
 	const correlationId = resolveCorrelationId(req.headers);
 	const startedAt = Date.now();
@@ -61,7 +61,7 @@ export const createApiRequestObserver = (
 		const status = options.status ?? 'success';
 		const timedOut = options.timedOut ?? false;
 
-		onFinish?.({statusCode, timedOut, durationMs});
+		onFinish?.({ statusCode, timedOut, durationMs });
 
 		const eventPayload = {
 			route,
@@ -83,14 +83,10 @@ export const createApiRequestObserver = (
 		console.info(`[api] ${JSON.stringify(eventPayload)}`);
 	};
 
-	return {correlationId, finish};
+	return { correlationId, finish };
 };
 
-export const createApiErrorPayload = (
-	correlationId: string,
-	message: string,
-	extra: Record<string, unknown> = {},
-) => {
+export const createApiErrorPayload = (correlationId: string, message: string, extra: Record<string, unknown> = {}) => {
 	return {
 		status: 'error' as const,
 		message,

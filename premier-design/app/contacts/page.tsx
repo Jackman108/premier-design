@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
-import { buildContactsHeadProps } from '@lib/app-router/seo/marketingPagesHead';
-import { getCachedData } from '@lib/getStaticData';
+import { buildContactsHeadProps } from '@shared/lib/app-router/seo/marketingPagesHead';
+import { getCachedData } from '@shared/lib/getStaticData';
 import HeroBanner from '@features/banner/hero/ui/HeroBanner';
 import type { HeroBannerProps } from '@features/banner/hero/interface/HeroBannerProps';
 import { ContactsMicroUspAside } from '@features/contacts';
 import { selectAppealSectionData, selectPageData } from '@shared/hooks/usePageData';
 import { customHeadPropsToMetadata } from '@shared/lib/seo/customHeadPropsToMetadata';
-import { Address, Appeal } from '@lib/dynamicSectionImports';
+import { Address, Appeal } from '@shared/lib/dynamicSectionImports';
 import { buildLayoutProps } from '@widgets/layout/lib/buildLayoutProps';
 import { StructuredDataScript } from '@widgets/layout/seo/StructuredDataScript';
 import Layout from '@widgets/layout/ui/layout/Layout';
@@ -22,7 +22,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ContactsPage() {
 	const data = await getCachedData();
 	const head = buildContactsHeadProps(data);
-	const { titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData } = selectPageData(
+	const {
+		titleItem: titleData,
+		buttonItem: buttonData,
+		bannerItem: bannerData,
+	} = selectPageData(
 		data.titlesPage,
 		data.button,
 		data.bannersImages,

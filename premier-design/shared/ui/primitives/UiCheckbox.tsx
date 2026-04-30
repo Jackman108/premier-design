@@ -1,5 +1,5 @@
-import type {InputHTMLAttributes, ReactNode} from 'react';
-import {useId} from 'react';
+import type { InputHTMLAttributes, ReactNode } from 'react';
+import { useId } from 'react';
 
 import styles from './UiCheckbox.module.css';
 
@@ -8,7 +8,7 @@ export type UiCheckboxProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'
 	error?: ReactNode;
 };
 
-export const UiCheckbox = ({label, error, className = '', id, ...rest}: UiCheckboxProps) => {
+export const UiCheckbox = ({ label, error, className = '', id, ...rest }: UiCheckboxProps) => {
 	const autoId = useId();
 	const inputId = id ?? autoId;
 	return (

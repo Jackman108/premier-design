@@ -1,4 +1,4 @@
 {
-  "description": "Начиная с апреля 2026: legacy-исключения allowlist сняты (DTO в @shared/interface, SSG-обвязка в @lib). Новые нарушения FSD/границ `shared`↔`features` не вносятся без рефакторинга. При необходимости временного исключения — завести запись с expiresOn, owner, note и согласовать с RISK-03; maxAllowedCount держать на фактическом числе записей.",
-  "milestones": []
+	"description": "Начиная с апреля 2026: legacy-исключения allowlist сняты (DTO в @shared/interface, SSG-обвязка в @lib). Новые нарушения FSD/границ `shared`↔`features` не вносятся без рефакторинга. При необходимости временного исключения — завести запись с expiresOn, owner, note и согласовать с RISK-03; maxAllowedCount держать на фактическом числе записей.",
+	"milestones": []
 }

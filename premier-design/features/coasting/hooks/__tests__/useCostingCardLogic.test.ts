@@ -1,17 +1,17 @@
 /** @jest-environment jsdom */
-import {act, renderHook} from '@testing-library/react';
-import type {KeyboardEvent} from 'react';
-import {useCostingCardLogic} from '@features/coasting/hooks/useCostingCardLogic';
+import { act, renderHook } from '@testing-library/react';
+import type { KeyboardEvent } from 'react';
+import { useCostingCardLogic } from '@features/coasting/hooks/useCostingCardLogic';
 
 jest.mock('@shared/hooks/useViewportMobile', () => ({
-	useViewportMobile: () => ({isMobile: false}),
+	useViewportMobile: () => ({ isMobile: false }),
 }));
 
-const sampleCard = {id: 1, title: 'Card A', image: '/img.jpg'};
+const sampleCard = { id: 1, title: 'Card A', image: '/img.jpg' };
 
 describe('useCostingCardLogic', () => {
 	it('exposes cards and slider settings', () => {
-		const {result} = renderHook(() => useCostingCardLogic([sampleCard]));
+		const { result } = renderHook(() => useCostingCardLogic([sampleCard]));
 
 		expect(result.current.memoizedCards).toEqual([sampleCard]);
 		expect(result.current.slidesPerView).toBe(3);
@@ -20,7 +20,7 @@ describe('useCostingCardLogic', () => {
 	});
 
 	it('opens modal and selects card on handleCardClick', () => {
-		const {result} = renderHook(() => useCostingCardLogic([sampleCard]));
+		const { result } = renderHook(() => useCostingCardLogic([sampleCard]));
 
 		act(() => {
 			result.current.handleCardClick(sampleCard);
@@ -31,14 +31,11 @@ describe('useCostingCardLogic', () => {
 	});
 
 	it('handles Enter and Space on handleKeyDown', () => {
-		const {result} = renderHook(() => useCostingCardLogic([sampleCard]));
+		const { result } = renderHook(() => useCostingCardLogic([sampleCard]));
 		const preventDefault = jest.fn();
 
 		act(() => {
-			result.current.handleKeyDown(
-				{key: 'Enter', preventDefault} as unknown as KeyboardEvent,
-				sampleCard,
-			);
+			result.current.handleKeyDown({ key: 'Enter', preventDefault } as unknown as KeyboardEvent, sampleCard);
 		});
 		expect(preventDefault).toHaveBeenCalled();
 		expect(result.current.selectedCard).toEqual(sampleCard);
@@ -48,16 +45,13 @@ describe('useCostingCardLogic', () => {
 		});
 
 		act(() => {
-			result.current.handleKeyDown(
-				{key: ' ', preventDefault} as unknown as KeyboardEvent,
-				sampleCard,
-			);
+			result.current.handleKeyDown({ key: ' ', preventDefault } as unknown as KeyboardEvent, sampleCard);
 		});
 		expect(result.current.isModalOpen).toBe(true);
 	});
 
 	it('closes modal from closeModal', () => {
-		const {result} = renderHook(() => useCostingCardLogic([sampleCard]));
+		const { result } = renderHook(() => useCostingCardLogic([sampleCard]));
 
 		act(() => {
 			result.current.handleCardClick(sampleCard);

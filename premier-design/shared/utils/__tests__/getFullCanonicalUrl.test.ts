@@ -1,6 +1,6 @@
 /** @jest-environment node */
-import {SITE_PUBLIC_ORIGIN} from '@shared/constants/company';
-import {getFullCanonicalUrl} from '../getFullCanonicalUrl';
+import { SITE_PUBLIC_ORIGIN } from '@shared/constants/company';
+import { getFullCanonicalUrl } from '../getFullCanonicalUrl';
 
 describe('getFullCanonicalUrl', () => {
 	it('prefixes path with site origin', () => {

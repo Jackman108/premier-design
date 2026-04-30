@@ -30,10 +30,8 @@ export type WorkHoursSummary = {
 	}>;
 };
 
-export type BankDetails =
-	| {
-			readonly bankName: string;
-			readonly bic: string;
-			readonly account: string;
-	  }
-	| null;
+export type BankDetails = {
+	readonly bankName: string;
+	readonly bic: string;
+	readonly account: string;
+} | null;

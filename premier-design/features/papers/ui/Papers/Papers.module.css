@@ -15,7 +15,10 @@
 	font-weight: bold;
 	color: var(--brown-light);
 	cursor: pointer;
-	transition: background-color 0.3s, color 0.3s, transform 0.3s;
+	transition:
+		background-color 0.3s,
+		color 0.3s,
+		transform 0.3s;
 	width: 100%;
 	text-align: start;
 	white-space: wrap;

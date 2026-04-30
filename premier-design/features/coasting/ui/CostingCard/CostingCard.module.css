@@ -1,4 +1,3 @@
-
 .costing__card {
 	width: auto;
 	max-width: 32vw;
@@ -13,11 +12,13 @@
 	border-radius: var(--radius-lg);
 	background: var(--color-surface);
 	box-shadow: var(--shadow-md);
-	transition: transform var(--transition-slow), opacity var(--transition-base),
+	transition:
+		transform var(--transition-slow),
+		opacity var(--transition-base),
 		box-shadow var(--transition-base);
 	opacity: 1;
 	transform: translateY(20px);
-	text-decoration: none
+	text-decoration: none;
 }
 
 .costing__card:focus-visible {
@@ -60,7 +61,6 @@
 	text-shadow: 1px 1px 1px var(--color-text);
 	pointer-events: none;
 }
-
 
 @media screen and (max-width: 768px) {
 	.costing__card {

@@ -1,4 +1,4 @@
-import type {DataProps} from '@shared/validates/dataPropsSchema';
+import type { DataProps } from '@shared/validates/dataPropsSchema';
 
 /** Локальные «якорные» пути лендинга и юр. страниц; полный список для sitemap — **`collectSitePathnames`**. */
 export const STATIC_SITEMAP_PATHS: readonly string[] = [

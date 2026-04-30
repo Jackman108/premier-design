@@ -1,5 +1,5 @@
-import {useChatMessages} from '@features/buttons-panel/hooks/useChatMessages';
-import {useModalState} from '@shared/hooks/useModalState';
+import { useChatMessages } from '@features/buttons-panel/hooks/useChatMessages';
+import { useModalState } from '@shared/hooks/useModalState';
 
 /**
  * Не импортируем `chatbotConfig` (и тем более `react-chatbot-kit`) здесь —
@@ -7,14 +7,14 @@ import {useModalState} from '@shared/hooks/useModalState';
  * Стартовые сообщения подставляет `ChatBotRuntime` при пустой истории.
  */
 export const useChatBotSidebar = () => {
-    const {isOpen: isBotOpen, toggleModal} = useModalState();
-    const [messages, saveMessages] = useChatMessages();
+	const { isOpen: isBotOpen, toggleModal } = useModalState();
+	const [messages, saveMessages] = useChatMessages();
 
-    return {
-        isBotOpen,
-        toggleModal,
-        messages,
-        saveMessages,
-        messageHistory: messages,
-    };
+	return {
+		isBotOpen,
+		toggleModal,
+		messages,
+		saveMessages,
+		messageHistory: messages,
+	};
 };

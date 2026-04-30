@@ -1,15 +1,15 @@
 'use client';
 
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 import styles from './error.module.css';
 
 type Props = {
-	error: Error & {digest?: string};
+	error: Error & { digest?: string };
 	reset: () => void;
 };
 
-const GlobalError = ({error, reset}: Props) => {
+const GlobalError = ({ error, reset }: Props) => {
 	useEffect(() => {
 		console.error('[app/error]', error);
 	}, [error]);

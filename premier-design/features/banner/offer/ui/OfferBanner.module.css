@@ -71,7 +71,7 @@
 }
 
 .offer__title::after {
-	content: "";
+	content: '';
 	display: block;
 	height: 2px;
 	width: min(22rem, 72%);

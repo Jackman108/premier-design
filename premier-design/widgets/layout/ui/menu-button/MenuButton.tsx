@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './MenuButton.module.css';
-import {MenuButtonProps} from '../../interface/MenuButton.props';
+import { MenuButtonProps } from '../../interface/MenuButton.props';
 
 const MOBILE_NAV_PANEL_ID = 'site-mobile-nav';
 
-const MenuButton: React.FC<MenuButtonProps> = ({isMobileMenuOpen, toggleMobileMenu}) => (
+const MenuButton: React.FC<MenuButtonProps> = ({ isMobileMenuOpen, toggleMobileMenu }) => (
 	<button
 		type="button"
 		className={`${styles.menu__button} ${isMobileMenuOpen ? styles.active : ''}`}
@@ -19,4 +19,4 @@ const MenuButton: React.FC<MenuButtonProps> = ({isMobileMenuOpen, toggleMobileMe
 	</button>
 );
 
-export default MenuButton; 
+export default MenuButton;

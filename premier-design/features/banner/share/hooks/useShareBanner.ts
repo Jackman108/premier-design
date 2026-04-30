@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 /**
  * Состояние промо-баннера (localStorage). Раньше была задержка `isReady` + setTimeout(100) —

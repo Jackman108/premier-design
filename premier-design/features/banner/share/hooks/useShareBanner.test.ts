@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
-import {act, renderHook, waitFor} from '@testing-library/react';
-import {useShareBanner} from './useShareBanner';
+import { act, renderHook, waitFor } from '@testing-library/react';
+import { useShareBanner } from './useShareBanner';
 
 describe('useShareBanner', () => {
 	beforeEach(() => {
@@ -8,7 +8,7 @@ describe('useShareBanner', () => {
 	});
 
 	it('starts open and allows closing', () => {
-		const {result} = renderHook(() => useShareBanner());
+		const { result } = renderHook(() => useShareBanner());
 		expect(result.current.isClosed).toBe(false);
 
 		act(() => {
@@ -20,7 +20,7 @@ describe('useShareBanner', () => {
 
 	it('reads closed state from localStorage', async () => {
 		localStorage.setItem('shareBannerClosed', 'true');
-		const {result} = renderHook(() => useShareBanner());
+		const { result } = renderHook(() => useShareBanner());
 
 		await waitFor(() => {
 			expect(result.current.isClosed).toBe(true);

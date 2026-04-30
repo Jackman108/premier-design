@@ -1,19 +1,19 @@
-import {type FC, type ReactElement} from 'react';
+import { type FC, type ReactElement } from 'react';
 
-import {ShareBanner} from '@features/banner';
+import { ShareBanner } from '@features/banner';
 import Logo from '@shared/ui/logo/Logo';
 import Menu from '@shared/ui/menu/ui/Menu';
 import Phone from '@shared/ui/phone/Phone';
 import SocialIcons from '@shared/ui/social-icons/SocialIcons';
 import WorkHours from '@shared/ui/work-hours/WorkHours';
-import {useHeaderLayout} from '@widgets/layout/hooks/useHeaderLayout';
+import { useHeaderLayout } from '@widgets/layout/hooks/useHeaderLayout';
 
-import type {HeaderProps} from '../../interface/Header.props';
+import type { HeaderProps } from '../../interface/Header.props';
 import MenuButton from '../menu-button/MenuButton';
 import ThemeButton from '../theme-button/ThemeButton';
 import styles from './Header.module.css';
 
-const Header: FC<HeaderProps> = ({menu, shares, variant = 'default'}): ReactElement => {
+const Header: FC<HeaderProps> = ({ menu, shares, variant = 'default' }): ReactElement => {
 	const {
 		headerRef,
 		currentTheme,
@@ -23,7 +23,7 @@ const Header: FC<HeaderProps> = ({menu, shares, variant = 'default'}): ReactElem
 		isSticky,
 		hasShareBanner,
 		placeholderStyle,
-	} = useHeaderLayout({menu, shares});
+	} = useHeaderLayout({ menu, shares });
 	const isSolidDark = variant === 'solidDark';
 	const headerOnHero = isSolidDark || !isSticky;
 
@@ -42,14 +42,8 @@ const Header: FC<HeaderProps> = ({menu, shares, variant = 'default'}): ReactElem
 						<SocialIcons />
 					</div>
 					<div className={styles.buttons__container}>
-						<ThemeButton
-							currentTheme={currentTheme}
-							toggleTheme={toggleTheme}
-						/>
-						<MenuButton
-							isMobileMenuOpen={isMobileMenuOpen}
-							toggleMobileMenu={toggleMobileMenu}
-						/>
+						<ThemeButton currentTheme={currentTheme} toggleTheme={toggleTheme} />
+						<MenuButton isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
 					</div>
 					<Menu
 						headerOnHero={headerOnHero}
@@ -66,12 +60,7 @@ const Header: FC<HeaderProps> = ({menu, shares, variant = 'default'}): ReactElem
 				menuStyle="mobile"
 				toggleMobileMenu={toggleMobileMenu}
 			/>
-			{isSticky && (
-				<div
-					className={styles.stickyPlaceholder}
-					style={placeholderStyle}
-				/>
-			)}
+			{isSticky && <div className={styles.stickyPlaceholder} style={placeholderStyle} />}
 		</>
 	);
 };

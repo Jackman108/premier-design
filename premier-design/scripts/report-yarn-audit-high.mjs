@@ -1,6 +1,6 @@
-import {mkdirSync, writeFileSync} from 'node:fs';
-import {join, resolve} from 'node:path';
-import {spawnSync} from 'node:child_process';
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { join, resolve } from 'node:path';
+import { spawnSync } from 'node:child_process';
 
 const commandResult = spawnSync('yarn', ['audit', '--level', 'high', '--json'], {
 	cwd: process.cwd(),
@@ -80,7 +80,7 @@ if (advisories.length === 0) {
 
 const summaryMd = `${mdLines.join('\n')}\n`;
 const auditDir = resolve(process.cwd(), '.audit');
-mkdirSync(auditDir, {recursive: true});
+mkdirSync(auditDir, { recursive: true });
 writeFileSync(join(auditDir, 'audit-high-summary.json'), `${JSON.stringify(summary, null, 2)}\n`, 'utf-8');
 writeFileSync(join(auditDir, 'audit-high-summary.md'), summaryMd, 'utf-8');
 

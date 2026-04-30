@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
-import {render, screen} from '@testing-library/react';
-import type {ImgHTMLAttributes} from 'react';
+import { render, screen } from '@testing-library/react';
+import type { ImgHTMLAttributes } from 'react';
 import OfferBanner from './OfferBanner';
 
 jest.mock('next/image', () => ({
@@ -13,7 +13,7 @@ describe('OfferBanner', () => {
 	it('renders offer text and questions list', () => {
 		render(
 			<OfferBanner
-				ctaLabel='Оставить заявку'
+				ctaLabel="Оставить заявку"
 				offer={{
 					id: 1,
 					title: 'Ремонт под ключ',

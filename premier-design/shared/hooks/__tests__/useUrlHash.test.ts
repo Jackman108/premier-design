@@ -1,11 +1,11 @@
 /** @jest-environment jsdom */
-import {act, renderHook} from '@testing-library/react';
-import {useUrlHash} from '../useUrlHash';
+import { act, renderHook } from '@testing-library/react';
+import { useUrlHash } from '../useUrlHash';
 
 describe('useUrlHash', () => {
 	it('updates and resets browser hash', () => {
 		const replaceStateSpy = jest.spyOn(window.history, 'replaceState');
-		const {result} = renderHook(() => useUrlHash());
+		const { result } = renderHook(() => useUrlHash());
 
 		act(() => {
 			result.current.updateHash('news', 2);

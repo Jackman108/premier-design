@@ -1,1 +1,1 @@
-export {default as ContactsMicroUspAside} from './ui/ContactsMicroUspAside/ContactsMicroUspAside';
+export { default as ContactsMicroUspAside } from './ui/ContactsMicroUspAside/ContactsMicroUspAside';

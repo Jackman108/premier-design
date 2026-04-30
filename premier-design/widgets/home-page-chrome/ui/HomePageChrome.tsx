@@ -1,35 +1,35 @@
 'use client';
 
-import type {FC} from 'react';
+import type { FC } from 'react';
 
-import {HOME_SECTION_NAV_LINKS} from '@lib/homeSectionNavConfig';
-import {useHomePageChrome} from '../hooks/useHomePageChrome';
+import { HOME_SECTION_NAV_LINKS } from '@shared/lib/homeSectionNavConfig';
+import { useHomePageChrome } from '../hooks/useHomePageChrome';
 import styles from './HomePageChrome.module.css';
 
 const HomePageChrome: FC = () => {
-	const {activeId, progress, isHeroOutOfView} = useHomePageChrome();
+	const { activeId, progress, isHeroOutOfView } = useHomePageChrome();
 
 	const scrollToTop = () => {
-		window.scrollTo({top: 0, behavior: 'smooth'});
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
 	return (
 		<>
 			<div
-				aria-hidden='true'
+				aria-hidden="true"
 				className={`${styles.scrollProgress} ${isHeroOutOfView ? styles.visible : ''}`}
-				style={{transform: `scaleX(${progress})`}}
+				style={{ transform: `scaleX(${progress})` }}
 			/>
 			<nav
-				aria-label='По разделам главной страницы'
+				aria-label="По разделам главной страницы"
 				/* .sectionNav.visible: opacity 1 (десктоп) — isHeroOutOfView применялся только к scrollProgress, панель оставалась прозрачной */
 				className={`${styles.sectionNav} ${isHeroOutOfView ? styles.visible : ''}`}
 			>
 				<button
-					type='button'
+					type="button"
 					className={styles.toTopButton}
 					onClick={scrollToTop}
-					aria-label='Прокрутить страницу наверх'
+					aria-label="Прокрутить страницу наверх"
 				>
 					Наверх
 				</button>

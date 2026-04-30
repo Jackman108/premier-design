@@ -1,18 +1,16 @@
-import type {FeedbackInput} from '@shared/validates/feedbackSchema';
+import type { FeedbackInput } from '@shared/validates/feedbackSchema';
 
 const readCorrelation = (h: string | null): string | undefined => {
 	const t = h?.trim();
 	return t && t.length > 0 ? t : undefined;
 };
 
-const parseErrorBody = (
-	text: string,
-): {message?: string; correlationId?: string} => {
+const parseErrorBody = (text: string): { message?: string; correlationId?: string } => {
 	if (!text) {
 		return {};
 	}
 	try {
-		return JSON.parse(text) as {message?: string; correlationId?: string; status?: string};
+		return JSON.parse(text) as { message?: string; correlationId?: string; status?: string };
 	} catch {
 		return {};
 	}
@@ -35,7 +33,7 @@ export class PostFeedbackError extends Error {
 export async function postFeedbackToApi(payload: FeedbackInput): Promise<void> {
 	const response = await fetch('/api/feedback', {
 		method: 'POST',
-		headers: {'Content-Type': 'application/json'},
+		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(payload),
 	});
 
@@ -47,14 +45,10 @@ export async function postFeedbackToApi(payload: FeedbackInput): Promise<void> {
 	const bodyText = await response.text();
 	const parsed = parseErrorBody(bodyText);
 	const message =
-		typeof parsed.message === 'string' && parsed.message.length > 0
-			? parsed.message
-			: `Ошибка ${response.status}`;
+		typeof parsed.message === 'string' && parsed.message.length > 0 ? parsed.message : `Ошибка ${response.status}`;
 
 	const correlationId =
-		typeof parsed.correlationId === 'string' && parsed.correlationId.length > 0
-			? parsed.correlationId
-			: fromHeader;
+		typeof parsed.correlationId === 'string' && parsed.correlationId.length > 0 ? parsed.correlationId : fromHeader;
 
 	throw new PostFeedbackError(response.status, message, correlationId);
 }

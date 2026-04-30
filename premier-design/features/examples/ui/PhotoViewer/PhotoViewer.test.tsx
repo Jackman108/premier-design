@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
-import {fireEvent, render, screen} from '@testing-library/react';
-import type {ImgHTMLAttributes} from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import type { ImgHTMLAttributes } from 'react';
 import PhotoViewer from './PhotoViewer';
 
 jest.mock('next/image', () => ({
@@ -14,16 +14,16 @@ describe('PhotoViewer', () => {
 		const onClose = jest.fn();
 		render(<PhotoViewer images={['/a.png', '/b.png', '/c.png']} currentImage="/a.png" onClose={onClose} />);
 
-		const dialog = screen.getByRole('dialog', {name: 'Просмотр примеров работ'});
+		const dialog = screen.getByRole('dialog', { name: 'Просмотр примеров работ' });
 		expect(screen.getByText('1 / 3')).toBeInTheDocument();
 
-		fireEvent.keyDown(dialog, {key: 'ArrowRight'});
+		fireEvent.keyDown(dialog, { key: 'ArrowRight' });
 		expect(screen.getByText('2 / 3')).toBeInTheDocument();
 
-		fireEvent.keyDown(dialog, {key: 'ArrowLeft'});
+		fireEvent.keyDown(dialog, { key: 'ArrowLeft' });
 		expect(screen.getByText('1 / 3')).toBeInTheDocument();
 
-		fireEvent.keyDown(dialog, {key: 'Escape'});
+		fireEvent.keyDown(dialog, { key: 'Escape' });
 		expect(onClose).toHaveBeenCalledTimes(1);
 	});
 
@@ -31,7 +31,7 @@ describe('PhotoViewer', () => {
 		const onClose = jest.fn();
 		render(<PhotoViewer images={['/a.png']} currentImage="/a.png" onClose={onClose} />);
 
-		fireEvent.click(screen.getByRole('button', {name: 'Закрыть просмотр'}));
+		fireEvent.click(screen.getByRole('button', { name: 'Закрыть просмотр' }));
 		expect(onClose).toHaveBeenCalledTimes(1);
 	});
 });

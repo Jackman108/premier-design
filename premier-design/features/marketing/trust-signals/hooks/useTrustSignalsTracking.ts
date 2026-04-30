@@ -1,6 +1,6 @@
-import {useEffect, useRef} from 'react';
+import { useEffect, useRef } from 'react';
 
-import {trackMarketingEvent} from '@shared/analytics/trackMarketingEvent';
+import { trackMarketingEvent } from '@shared/analytics/trackMarketingEvent';
 
 // Инкапсулирует маркетинговый трекинг trust-блока:
 // - impression при реальном попадании в viewport,
@@ -19,12 +19,12 @@ export const useTrustSignalsTracking = () => {
 			(entries) => {
 				entries.forEach((entry) => {
 					if (entry.isIntersecting) {
-						trackMarketingEvent('trust_signals_view', {block: 'trust_signals'});
+						trackMarketingEvent('trust_signals_view', { block: 'trust_signals' });
 						observer.unobserve(entry.target);
 					}
 				});
 			},
-			{threshold: 0.35},
+			{ threshold: 0.35 },
 		);
 
 		observer.observe(section);
@@ -32,11 +32,11 @@ export const useTrustSignalsTracking = () => {
 	}, []);
 
 	const handleMetricInteraction = (metric: string) => {
-		trackMarketingEvent('trust_metric_click', {metric});
+		trackMarketingEvent('trust_metric_click', { metric });
 	};
 
 	const handleBenefitInteraction = (benefit: string) => {
-		trackMarketingEvent('trust_benefit_click', {benefit});
+		trackMarketingEvent('trust_benefit_click', { benefit });
 	};
 
 	return {

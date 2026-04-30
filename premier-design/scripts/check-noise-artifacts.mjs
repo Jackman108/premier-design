@@ -1,8 +1,16 @@
-import {execSync} from 'node:child_process';
-import {existsSync, lstatSync, readdirSync} from 'node:fs';
-import {join, resolve, relative} from 'node:path';
+import { execSync } from 'node:child_process';
+import { existsSync, lstatSync, readdirSync, rmSync } from 'node:fs';
+import { join, resolve, relative } from 'node:path';
 
 const cwd = process.cwd();
+
+/** Локальные артефакты (`yarn build-storybook`, Playwright и т.д.) — удаляем перед проверкой, чтобы не блокировать CI/pre-commit. */
+for (const folder of ['storybook-static', 'playwright-report', 'test-results', 'blob-report']) {
+	const abs = resolve(cwd, folder);
+	if (existsSync(abs)) {
+		rmSync(abs, { recursive: true, force: true });
+	}
+}
 const args = process.argv.slice(2);
 const useAll = args.includes('--all');
 
@@ -39,7 +47,7 @@ const hasForbiddenPathPart = (file) => {
 const hasForbiddenFilePattern = (file) => FORBIDDEN_FILE_PATTERNS.some((pattern) => pattern.test(file));
 
 const walk = (dir, out) => {
-	for (const entry of readdirSync(dir, {withFileTypes: true})) {
+	for (const entry of readdirSync(dir, { withFileTypes: true })) {
 		const absolute = join(dir, entry.name);
 		const rel = toUnix(relative(cwd, absolute));
 		if (entry.isDirectory()) {
@@ -73,11 +81,8 @@ for (const folder of FORBIDDEN_DIRS) {
 /** Локальный `yarn dev` создаёт `.next/` — не считаем нарушением; запрещено только попадание артефактов в git. */
 const trackedUnderDotNext = (() => {
 	try {
-		const out = execSync('git ls-files -- .next/', {cwd, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe']});
-		return out
-			.trim()
-			.split(/\r?\n/)
-			.filter(Boolean);
+		const out = execSync('git ls-files -- .next/', { cwd, encoding: 'utf8', stdio: ['pipe', 'pipe', 'pipe'] });
+		return out.trim().split(/\r?\n/).filter(Boolean);
 	} catch {
 		return [];
 	}

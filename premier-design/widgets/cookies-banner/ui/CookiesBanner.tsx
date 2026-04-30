@@ -4,15 +4,15 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import {documentHref, type Paper} from '@features/papers';
+import { documentHref, type Paper } from '@features/papers';
 
-import {useCookiesBannerWidget} from '../hooks/useCookiesBannerWidget';
+import { useCookiesBannerWidget } from '../hooks/useCookiesBannerWidget';
 import styles from './CookiesBanner.module.css';
 
 const CheckmarkIcon = '/checkmark.svg';
 
-const CookiesBanner = ({papers}: {papers: Paper[]}) => {
-	const {handleAction, isOpen, privacyPolicy} = useCookiesBannerWidget(papers);
+const CookiesBanner = ({ papers }: { papers: Paper[] }) => {
+	const { handleAction, isOpen, privacyPolicy } = useCookiesBannerWidget(papers);
 
 	if (!isOpen) {
 		return null;
@@ -24,15 +24,15 @@ const CookiesBanner = ({papers}: {papers: Paper[]}) => {
 				<div className={styles.cookiesLeft}>
 					<h2 className={styles.cookiesTitle}>Ваша конфиденциальность важна для нас</h2>
 					<p className={styles.cookiesContent}>
-						Мы используем cookie-файлы для улучшения удобства просмотра и
-						предоставления наиболее подходящего персонального контента для вас.
+						Мы используем cookie-файлы для улучшения удобства просмотра и предоставления наиболее
+						подходящего персонального контента для вас.
 					</p>
 					<p className={styles.cookiesContent}>
 						{privacyPolicy ? (
 							<Link
 								href={documentHref(privacyPolicy.shortTitle)}
 								className={styles.link}
-								aria-label='Открыть Политику конфиденциальности'
+								aria-label="Открыть Политику конфиденциальности"
 							>
 								Политика конфиденциальности
 							</Link>
@@ -43,12 +43,12 @@ const CookiesBanner = ({papers}: {papers: Paper[]}) => {
 					<button
 						className={`${styles.btn} ${styles.accent}`}
 						onClick={() => handleAction(true)}
-						aria-label='Принять все куки'
-						type='button'
+						aria-label="Принять все куки"
+						type="button"
 					>
 						<Image
 							src={CheckmarkIcon}
-							alt='Checkmark'
+							alt="Checkmark"
 							className={styles.checkboxIcon}
 							width={19}
 							height={14}
@@ -58,8 +58,8 @@ const CookiesBanner = ({papers}: {papers: Paper[]}) => {
 					<button
 						className={`${styles.btn} ${styles.white}`}
 						onClick={() => handleAction(false)}
-						aria-label='Отклонить все куки'
-						type='button'
+						aria-label="Отклонить все куки"
+						type="button"
 					>
 						Отклонить
 					</button>

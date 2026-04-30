@@ -1,8 +1,8 @@
 /** @jest-environment node */
-import {staticPathsHandler} from '../staticPathsHandler';
-import {getData} from '@lib/getStaticData';
+import { staticPathsHandler } from '../staticPathsHandler';
+import { getData } from '@shared/lib/getStaticData';
 
-jest.mock('../../../lib/getStaticData', () => ({
+jest.mock('@shared/lib/getStaticData', () => ({
 	getData: jest.fn(),
 }));
 
@@ -19,10 +19,7 @@ describe('staticPathsHandler', () => {
 				repairs: [
 					{
 						id: 'repair',
-						priceList: [
-							{canonical: '/services/repair/walls'},
-							{canonical: '/services/repair/floor'},
-						],
+						priceList: [{ canonical: '/services/repair/walls' }, { canonical: '/services/repair/floor' }],
 					},
 				],
 			},
@@ -33,8 +30,8 @@ describe('staticPathsHandler', () => {
 
 		expect(result).toEqual({
 			paths: [
-				{params: {categoryId: 'repair', serviceId: 'walls'}},
-				{params: {categoryId: 'repair', serviceId: 'floor'}},
+				{ params: { categoryId: 'repair', serviceId: 'walls' } },
+				{ params: { categoryId: 'repair', serviceId: 'floor' } },
 			],
 			fallback: 'blocking',
 		});
@@ -47,7 +44,7 @@ describe('staticPathsHandler', () => {
 		const getStaticPaths = staticPathsHandler();
 		const result = await getStaticPaths({} as never);
 
-		expect(result).toEqual({paths: [], fallback: false});
+		expect(result).toEqual({ paths: [], fallback: false });
 		errorSpy.mockRestore();
 	});
 });

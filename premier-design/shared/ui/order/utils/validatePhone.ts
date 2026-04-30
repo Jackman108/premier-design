@@ -1,3 +1,3 @@
-import {isValidByOrRuMobilePhone} from '@shared/validates/byRuPhone';
+import { isValidByOrRuMobilePhone } from '@shared/validates/byRuPhone';
 
 export const validatePhone = (phone: string) => isValidByOrRuMobilePhone(phone);

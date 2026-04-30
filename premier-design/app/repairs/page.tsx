@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
-import { buildRepairsHeadProps } from '@lib/app-router/seo/marketingPagesHead';
-import { getCachedData } from '@lib/getStaticData';
+import { buildRepairsHeadProps } from '@shared/lib/app-router/seo/marketingPagesHead';
+import { getCachedData } from '@shared/lib/getStaticData';
 import HeroBanner from '@features/banner/hero/ui/HeroBanner';
 import type { HeroBannerProps } from '@features/banner/hero/interface/HeroBannerProps';
 import {
@@ -14,7 +14,7 @@ import {
 	Features,
 	OfferBanner,
 	ProjectOffer,
-} from '@lib/dynamicSectionImports';
+} from '@shared/lib/dynamicSectionImports';
 import { selectAppealSectionData, selectPageData } from '@shared/hooks/usePageData';
 import { customHeadPropsToMetadata } from '@shared/lib/seo/customHeadPropsToMetadata';
 import { getTitleData } from '@shared/utils/findItemByTitle';
@@ -32,14 +32,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function RepairsPage() {
 	const data = await getCachedData();
 	const head = buildRepairsHeadProps(data);
-	const { titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData } = selectPageData(
-		data.titlesPage,
-		data.button,
-		data.bannersImages,
-		'repairs',
-		'leave_request',
-		'repair_banner',
-	);
+	const {
+		titleItem: titleData,
+		buttonItem: buttonData,
+		bannerItem: bannerData,
+	} = selectPageData(data.titlesPage, data.button, data.bannersImages, 'repairs', 'leave_request', 'repair_banner');
 	const bannerProps: HeroBannerProps = { titleData, buttonData, bannerData };
 	const titles = getTitleData(data.title, 'our-works', 'price-calculation', 'faq-section');
 

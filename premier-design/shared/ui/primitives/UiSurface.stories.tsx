@@ -1,11 +1,11 @@
-import type {Meta, StoryObj} from '@storybook/nextjs-vite';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import {UiSurface} from './UiSurface';
+import { UiSurface } from './UiSurface';
 
 const meta = {
 	title: 'Primitives/UiSurface',
 	component: UiSurface,
-	parameters: {layout: 'padded'},
+	parameters: { layout: 'padded' },
 	tags: ['autodocs'],
 } satisfies Meta<typeof UiSurface>;
 

@@ -1,4 +1,4 @@
-import {z} from 'zod';
+import { z } from 'zod';
 
 const faqEntrySchema = z.object({
 	id: z.string(),
@@ -86,7 +86,7 @@ const panelSchema = z.object({
 	icon: z.string(),
 	altText: z.string(),
 	text: z.string(),
-	position: z.object({bottom: z.string()}),
+	position: z.object({ bottom: z.string() }),
 });
 
 const bannerImageSchema = z.object({
@@ -275,81 +275,81 @@ const offerProjectItemSchema = z.object({
  * без лишних полей на верхнем уровне; тип **`DataProps` = `z.infer`** — единый контракт данных.
  */
 export const dataPropsSchema = z.strictObject({
-		titlesPage: z.array(titlePageSchema),
-		menu: z.array(menuItemSchema),
-		button: z.array(buttonPropsSchema),
-		news: z.array(newsItemSchema),
-		features: z.array(featureItemSchema),
-		title: z.array(titleBlockSchema),
-		approachCard: z.array(approachCardSchema),
-		costingCard: z.array(costingCardSchema),
-		examplesCard: z.array(exampleCardSchema),
-		servicesCard: z.array(serviceCardSchema),
-		businessServiceCard: z.array(businessServiceCardSchema),
-		offerBanner: offerBannerSchema,
-		offerProject: z.object({
-			designType: z.array(offerProjectItemSchema),
-			repairType: z.array(offerProjectItemSchema),
-		}),
-		bannersImages: z.array(bannerListImageSchema),
-		partners: z.array(partnerItemSchema),
-		stepsWork: z.array(stepsWorkItemSchema),
-		papers: z.array(paperSchema),
-		prices: pricesSchema,
-		reviews: z.array(reviewSchema),
-		panel: z.array(panelSchema),
-		relatedServices: z.array(relatedServiceCardSchema),
-		businessServices: businessServicesRootSchema,
-		shares: z.array(shareBannerDataSchema),
-		trustSignals: z.object({
-			metrics: z.array(
-				z.object({
-					label: z.string(),
-					value: z.string(),
-				}),
-			),
-			structuredDataRating: structuredDataRatingSchema.optional(),
-		}),
-		homeHeroHighlights: z.array(z.string()),
-		homeVideoSpotlight: z.object({
-			title: z.string(),
-			description: z.string(),
-			youtubeId: z.string(),
-		}),
-		homePage: z.object({
-			sectionAriaLabels: z.record(homeSectionKeySchema, z.string()),
-		}),
-		faqContent: z.object({
-			home: z.array(faqEntrySchema),
-			design: z.array(faqEntrySchema),
-			repairs: z.array(faqEntrySchema),
-		}),
-		companyAbout: z.object({
-			intro: z.string(),
-			milestonesTitle: z.string(),
-			milestones: z.array(
-				z.object({
-					year: z.string(),
-					text: z.string(),
-				}),
-			),
-			teamTitle: z.string(),
-			team: z.array(
-				z.object({
-					name: z.string(),
-					role: z.string(),
-					note: z.string(),
-				}),
-			),
-			licensesNote: z.string(),
-		}),
-		contactsPage: z.object({
-			uspAside: z.object({
-				ariaLabel: z.string(),
-				items: z.array(z.string()),
+	titlesPage: z.array(titlePageSchema),
+	menu: z.array(menuItemSchema),
+	button: z.array(buttonPropsSchema),
+	news: z.array(newsItemSchema),
+	features: z.array(featureItemSchema),
+	title: z.array(titleBlockSchema),
+	approachCard: z.array(approachCardSchema),
+	costingCard: z.array(costingCardSchema),
+	examplesCard: z.array(exampleCardSchema),
+	servicesCard: z.array(serviceCardSchema),
+	businessServiceCard: z.array(businessServiceCardSchema),
+	offerBanner: offerBannerSchema,
+	offerProject: z.object({
+		designType: z.array(offerProjectItemSchema),
+		repairType: z.array(offerProjectItemSchema),
+	}),
+	bannersImages: z.array(bannerListImageSchema),
+	partners: z.array(partnerItemSchema),
+	stepsWork: z.array(stepsWorkItemSchema),
+	papers: z.array(paperSchema),
+	prices: pricesSchema,
+	reviews: z.array(reviewSchema),
+	panel: z.array(panelSchema),
+	relatedServices: z.array(relatedServiceCardSchema),
+	businessServices: businessServicesRootSchema,
+	shares: z.array(shareBannerDataSchema),
+	trustSignals: z.object({
+		metrics: z.array(
+			z.object({
+				label: z.string(),
+				value: z.string(),
 			}),
+		),
+		structuredDataRating: structuredDataRatingSchema.optional(),
+	}),
+	homeHeroHighlights: z.array(z.string()),
+	homeVideoSpotlight: z.object({
+		title: z.string(),
+		description: z.string(),
+		youtubeId: z.string(),
+	}),
+	homePage: z.object({
+		sectionAriaLabels: z.record(homeSectionKeySchema, z.string()),
+	}),
+	faqContent: z.object({
+		home: z.array(faqEntrySchema),
+		design: z.array(faqEntrySchema),
+		repairs: z.array(faqEntrySchema),
+	}),
+	companyAbout: z.object({
+		intro: z.string(),
+		milestonesTitle: z.string(),
+		milestones: z.array(
+			z.object({
+				year: z.string(),
+				text: z.string(),
+			}),
+		),
+		teamTitle: z.string(),
+		team: z.array(
+			z.object({
+				name: z.string(),
+				role: z.string(),
+				note: z.string(),
+			}),
+		),
+		licensesNote: z.string(),
+	}),
+	contactsPage: z.object({
+		uspAside: z.object({
+			ariaLabel: z.string(),
+			items: z.array(z.string()),
 		}),
-	});
+	}),
+});
 
 /** Тип корня JSON после успешного `dataPropsSchema.safeParse` (единый источник истины). */
 export type DataProps = z.infer<typeof dataPropsSchema>;

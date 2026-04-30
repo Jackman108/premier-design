@@ -1,7 +1,7 @@
 /** @jest-environment jsdom */
-import {fireEvent, render, screen} from '@testing-library/react';
-import {FEEDBACK_SUCCESS_TOAST_MS} from '@shared/ui/order/constants';
-import {useFeedback} from '@shared/ui/order/hooks/useFeedback';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { FEEDBACK_SUCCESS_TOAST_MS } from '@shared/ui/order/constants';
+import { useFeedback } from '@shared/ui/order/hooks/useFeedback';
 import OrderButton from './OrderButton';
 
 jest.mock('@shared/ui/order/hooks/useFeedback', () => ({
@@ -10,7 +10,7 @@ jest.mock('@shared/ui/order/hooks/useFeedback', () => ({
 
 jest.mock('@shared/ui/order/ui/FeedbackModal/FeedbackModal', () => ({
 	__esModule: true,
-	default: ({onClose}: {onClose: () => void}) => (
+	default: ({ onClose }: { onClose: () => void }) => (
 		<div>
 			<div data-testid="feedback-modal">feedback-modal</div>
 			<button type="button" onClick={onClose}>
@@ -22,7 +22,7 @@ jest.mock('@shared/ui/order/ui/FeedbackModal/FeedbackModal', () => ({
 
 jest.mock('@features/buttons-panel/ui/PanelButton/PanelButton', () => ({
 	__esModule: true,
-	default: ({onClick, text}: {onClick: () => void; text: string}) => (
+	default: ({ onClick, text }: { onClick: () => void; text: string }) => (
 		<button type="button" onClick={onClick} aria-label={text}>
 			{text}
 		</button>
@@ -56,7 +56,7 @@ describe('OrderButton', () => {
 
 	it('renders regular button and opens modal on click', () => {
 		render(<OrderButton buttonStyle="button-black" buttonData="Оставить заявку" />);
-		const button = screen.getByRole('button', {name: 'Сделать заказ'});
+		const button = screen.getByRole('button', { name: 'Сделать заказ' });
 
 		fireEvent.click(button);
 		expect(openModal).toHaveBeenCalledTimes(1);
@@ -72,12 +72,12 @@ describe('OrderButton', () => {
 					icon: '/panel/phone.svg',
 					altText: 'Позвонить',
 					text: 'Заказать звонок',
-					position: {bottom: '24px'},
+					position: { bottom: '24px' },
 				}}
 			/>,
 		);
 
-		fireEvent.click(screen.getByRole('button', {name: 'Заказать звонок'}));
+		fireEvent.click(screen.getByRole('button', { name: 'Заказать звонок' }));
 		expect(openModal).toHaveBeenCalledTimes(1);
 	});
 

@@ -2,7 +2,7 @@
 	display: grid;
 	align-items: center;
 	color: var(--brown-dark);
-	grid-template-columns:  auto 1fr;
+	grid-template-columns: auto 1fr;
 	grid-gap: 1vh;
 	justify-content: center;
 	text-decoration: none;
@@ -14,7 +14,10 @@
 	box-sizing: border-box;
 	border-radius: var(--radius-md);
 	box-shadow: var(--shadow-sm);
-	transition: color var(--transition-base), background-color var(--transition-base), box-shadow var(--transition-base);
+	transition:
+		color var(--transition-base),
+		background-color var(--transition-base),
+		box-shadow var(--transition-base);
 }
 
 .phone__container:focus-visible {

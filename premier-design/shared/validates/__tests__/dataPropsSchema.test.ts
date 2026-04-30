@@ -1,6 +1,6 @@
 /** @jest-environment node */
 import data from '../../../data/locales/ru/data.json';
-import {dataPropsSchema, formatDataPropsParseError} from '../dataPropsSchema';
+import { dataPropsSchema, formatDataPropsParseError } from '../dataPropsSchema';
 
 describe('dataPropsSchema', () => {
 	it('accepts production data/locales/ru/data.json', () => {
@@ -9,7 +9,7 @@ describe('dataPropsSchema', () => {
 	});
 
 	it('rejects missing top-level key with readable message', () => {
-		const broken = {...(data as Record<string, unknown>)};
+		const broken = { ...(data as Record<string, unknown>) };
 		delete broken.menu;
 		const parsed = dataPropsSchema.safeParse(broken);
 		expect(parsed.success).toBe(false);
@@ -20,7 +20,7 @@ describe('dataPropsSchema', () => {
 	});
 
 	it('rejects extra top-level key (.strict)', () => {
-		const broken = {...(data as Record<string, unknown>), typoKey: 1};
+		const broken = { ...(data as Record<string, unknown>), typoKey: 1 };
 		const parsed = dataPropsSchema.safeParse(broken);
 		expect(parsed.success).toBe(false);
 	});

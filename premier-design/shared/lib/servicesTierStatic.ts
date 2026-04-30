@@ -1,20 +1,20 @@
-import type {GetStaticPaths, GetStaticProps} from 'next';
-import {getData} from '@lib/getStaticData';
-import {getCommonProps} from '@lib/staticProps/getCommonProps';
-import {resolveServicesTier} from '@lib/resolveServicesTier';
-import {getCanonicalPath} from '@shared/utils/getCanonicalPath';
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import { getData } from '@shared/lib/getStaticData';
+import { getCommonProps } from '@shared/lib/staticProps/getCommonProps';
+import { resolveServicesTier } from '@shared/lib/resolveServicesTier';
+import { getCanonicalPath } from '@shared/utils/getCanonicalPath';
 
 export const getServicesTierStaticPaths: GetStaticPaths = async () => {
 	try {
 		const data = await getData();
-		if (!data) return {paths: [], fallback: false};
+		if (!data) return { paths: [], fallback: false };
 
 		const repairPaths = (data.prices?.repairs ?? []).map((c) => ({
-			params: {categoryId: c.id},
+			params: { categoryId: c.id },
 		}));
 
 		const relatedPaths = (data.relatedServices ?? []).map((s) => ({
-			params: {categoryId: getCanonicalPath(s.canonical)},
+			params: { categoryId: getCanonicalPath(s.canonical) },
 		}));
 
 		const seen = new Set(repairPaths.map((p) => p.params.categoryId));
@@ -27,21 +27,21 @@ export const getServicesTierStaticPaths: GetStaticPaths = async () => {
 			}
 		}
 
-		return {paths, fallback: 'blocking'};
+		return { paths, fallback: 'blocking' };
 	} catch (error) {
 		console.error(error);
-		return {paths: [], fallback: false};
+		return { paths: [], fallback: false };
 	}
 };
 
-export const getServicesTierStaticProps: GetStaticProps = async ({params}) => {
+export const getServicesTierStaticProps: GetStaticProps = async ({ params }) => {
 	try {
 		const data = await getData();
-		if (!data) return {notFound: true};
+		if (!data) return { notFound: true };
 
 		const categoryId = params?.categoryId as string;
 		const resolved = resolveServicesTier(data, categoryId);
-		if (!resolved) return {notFound: true};
+		if (!resolved) return { notFound: true };
 
 		if (resolved.kind === 'repair') {
 			return {
@@ -64,6 +64,6 @@ export const getServicesTierStaticProps: GetStaticProps = async ({params}) => {
 		};
 	} catch (error) {
 		console.error(error);
-		return {notFound: true};
+		return { notFound: true };
 	}
 };

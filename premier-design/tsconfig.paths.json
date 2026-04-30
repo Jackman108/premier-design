@@ -1,18 +1,17 @@
 {
-  "compilerOptions": {
-    "paths": {
-      "@app": ["./app"],
-      "@app/*": ["./app/*"],
-      "@widgets/*": ["./widgets/*"],
-      "@pages": ["./pages-layer"],
-      "@pages/*": ["./pages-layer/*"],
-      "@pages-layer/*": ["./pages-layer/*"],
-      "@features/*": ["./features/*"],
-      "@shared/*": ["./shared/*"],
-      "@app-types/*": ["./types/*"],
-      "@lib/*": ["./lib/*"],
-      "@entities": ["./entities/index.ts"],
-      "@entities/*": ["./entities/*"]
-    }
-  }
+	"compilerOptions": {
+		"paths": {
+			"@app": ["./app"],
+			"@app/*": ["./app/*"],
+			"@widgets/*": ["./widgets/*"],
+			"@pages": ["./pages-layer"],
+			"@pages/*": ["./pages-layer/*"],
+			"@pages-layer/*": ["./pages-layer/*"],
+			"@features/*": ["./features/*"],
+			"@shared/*": ["./shared/*"],
+			"@app-types/*": ["./types/*"],
+			"@entities": ["./entities/index.ts"],
+			"@entities/*": ["./entities/*"]
+		}
+	}
 }

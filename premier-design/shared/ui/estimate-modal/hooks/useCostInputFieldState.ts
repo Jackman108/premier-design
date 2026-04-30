@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from 'react';
 
 /** Подсветка «пустого» поля площади и связка с контролируемым `value` родителя. */
 export const useCostInputFieldState = (inputValue: string) => {
@@ -14,5 +14,5 @@ export const useCostInputFieldState = (inputValue: string) => {
 
 	const inputValueAsNumber = parseInt(inputValue, 10);
 
-	return {isEmpty, handleInputBlur, handleInputClick, inputValueAsNumber};
+	return { isEmpty, handleInputBlur, handleInputClick, inputValueAsNumber };
 };

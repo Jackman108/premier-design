@@ -82,12 +82,12 @@
 }
 
 .input__group select,
-.input__group input:not([type="checkbox"]) {
+.input__group input:not([type='checkbox']) {
 	flex: auto;
 	max-width: 100%;
 }
 
-.input__group input:not([type="checkbox"]),
+.input__group input:not([type='checkbox']),
 .input__group textarea {
 	width: 100%;
 	padding: 0.5rem 0.65rem;
@@ -98,7 +98,9 @@
 	background: var(--color-surface);
 	color: var(--color-text);
 	box-shadow: var(--shadow-inset-soft);
-	transition: border-color var(--transition-base), box-shadow var(--transition-base);
+	transition:
+		border-color var(--transition-base),
+		box-shadow var(--transition-base);
 }
 
 /* См. UiTextarea: перебиваем min-height 8rem + resize, чтобы уместить форму без прокрутки */
@@ -138,7 +140,7 @@
 	box-shadow: var(--focus-ring);
 }
 
-.input__group input:not([type="checkbox"]):focus-visible,
+.input__group input:not([type='checkbox']):focus-visible,
 .input__group textarea:focus-visible {
 	outline: none;
 	border-color: var(--color-accent);
@@ -214,7 +216,6 @@
 }
 
 @media screen and (max-width: 480px) {
-
 	.input__group input,
 	.input__group textarea,
 	.tokenControl {

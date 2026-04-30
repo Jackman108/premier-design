@@ -23,7 +23,10 @@
 	min-height: 44px;
 	display: inline-flex;
 	align-items: center;
-	transition: background-color 0.3s, color 0.3s, transform 0.3s;
+	transition:
+		background-color 0.3s,
+		color 0.3s,
+		transform 0.3s;
 }
 
 .menu__item:focus-visible {
@@ -47,7 +50,4 @@
 		max-width: 80vw;
 		margin: 0 auto;
 	}
-
-
 }
-

@@ -1,5 +1,5 @@
-import {existsSync, readFileSync} from 'node:fs';
-import {resolve} from 'node:path';
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 const cwd = process.cwd();
 const trendsPath = resolve(cwd, '.ci-trends-14d.json');

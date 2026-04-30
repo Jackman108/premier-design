@@ -84,11 +84,11 @@
 		padding-bottom: max(4.5rem, calc(var(--section-padding-y-compact) * 0.5 + 2.5rem));
 	}
 
-	.footer__meta>* {
+	.footer__meta > * {
 		width: 100%;
 	}
 
-	.footer__meta>*+* {
+	.footer__meta > * + * {
 		margin-top: var(--space-lg);
 		padding-top: var(--space-lg);
 		border-top: 1px solid color-mix(in srgb, var(--brown-white) 16%, transparent);
@@ -115,7 +115,7 @@
 		order: 3;
 	}
 
-	.footer__container>.menu {
+	.footer__container > .menu {
 		order: 1;
 	}
 

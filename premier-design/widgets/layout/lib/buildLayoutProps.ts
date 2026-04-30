@@ -1,5 +1,5 @@
-import type {LayoutData, LayoutProps} from '../interface/Layout.props';
-import type {HeaderVariant} from '../interface/Header.props';
+import type { LayoutData, LayoutProps } from '../interface/Layout.props';
+import type { HeaderVariant } from '../interface/Header.props';
 
 export type BuildLayoutPropsOptions = {
 	headerVariant?: HeaderVariant;
@@ -12,7 +12,7 @@ export const buildLayoutProps = (
 	headerProps: {
 		menu: data.menu,
 		shares: data.shares,
-		...(options?.headerVariant && {variant: options.headerVariant}),
+		...(options?.headerVariant && { variant: options.headerVariant }),
 	},
 	footerProps: {
 		papers: data.papers,

@@ -1,7 +1,7 @@
 /** @jest-environment jsdom */
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import LegalRequisites from './LegalRequisites';
-import {SITE_OPERATOR} from '@shared/constants/company';
+import { SITE_OPERATOR } from '@shared/constants/company';
 
 describe('LegalRequisites (Belarusian compliance footer block)', () => {
 	it('renders mandatory IP info from SITE_OPERATOR (full name, address, email, UNP when set)', () => {

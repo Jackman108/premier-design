@@ -1,5 +1,5 @@
-import type {DataProps} from '@shared/validates/dataPropsSchema';
-import {getCanonicalPath} from '@shared/utils/getCanonicalPath';
+import type { DataProps } from '@shared/validates/dataPropsSchema';
+import { getCanonicalPath } from '@shared/utils/getCanonicalPath';
 
 /** Поиск связанной услуги для SSG. См. `lib/staticProps/findService.ts`. */
 export const findRelatedService = (data: DataProps, categoryId: string) => {
@@ -12,5 +12,5 @@ export const findRelatedService = (data: DataProps, categoryId: string) => {
 		throw new Error(`Related service with id ${categoryId} not found`);
 	}
 
-	return {relatedService};
+	return { relatedService };
 };

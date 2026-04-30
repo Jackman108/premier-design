@@ -1,4 +1,4 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 /** Интервальная анимация «кирпичной стены» — состояние вне `ui/BrickWallLoader`. */
 export const useBrickWallLoaderAnimation = () => {
@@ -60,5 +60,5 @@ export const useBrickWallLoaderAnimation = () => {
 		};
 	}, [animationActive, animationStep, animationFinished]);
 
-	return {animationActive, animationFinished, brickRows};
+	return { animationActive, animationFinished, brickRows };
 };

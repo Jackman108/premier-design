@@ -1,4 +1,4 @@
-import type {ReactElement} from 'react';
+import type { ReactElement } from 'react';
 import styles from './SectionSkeleton.module.css';
 
 /** Плейсхолдер для ленивых секций (`next/dynamic`) без резкого "прыжка" контента. */

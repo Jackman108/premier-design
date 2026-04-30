@@ -1,1 +1,1 @@
-export {default as RelatedServiceDetail} from './ui/RelatedServiceDetail/RelatedServiceDetail';
+export { default as RelatedServiceDetail } from './ui/RelatedServiceDetail/RelatedServiceDetail';

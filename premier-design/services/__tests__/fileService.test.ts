@@ -60,12 +60,9 @@ describe('fileService', () => {
 		jest.spyOn(fs, 'readFileSync').mockReturnValue(JSON.stringify([validRow]) as never);
 		const writeSpy = jest.spyOn(fs, 'writeFileSync').mockImplementation(() => undefined);
 
-		const second = {...validRow, name: 'Other'};
+		const second = { ...validRow, name: 'Other' };
 		fileService.saveData(second);
 
-		expect(writeSpy).toHaveBeenCalledWith(
-			'C:/tmp/formData.test.json',
-			JSON.stringify([validRow, second], null, 2),
-		);
+		expect(writeSpy).toHaveBeenCalledWith('C:/tmp/formData.test.json', JSON.stringify([validRow, second], null, 2));
 	});
 });

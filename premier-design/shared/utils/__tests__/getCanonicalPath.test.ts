@@ -1,4 +1,4 @@
-import {getCanonicalPath} from '../getCanonicalPath';
+import { getCanonicalPath } from '../getCanonicalPath';
 
 describe('getCanonicalPath', () => {
 	it('returns last path segment', () => {

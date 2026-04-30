@@ -1,4 +1,4 @@
 export interface DocumentImageProps {
-    alt: string;
-    src: string;
+	alt: string;
+	src: string;
 }

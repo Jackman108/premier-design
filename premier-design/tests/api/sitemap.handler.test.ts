@@ -2,9 +2,9 @@
 
 import { SITE_PUBLIC_ORIGIN } from '@shared/constants/company';
 import { GET } from '../../app/api/sitemap/route';
-import { getData } from '@lib/getStaticData';
+import { getData } from '@shared/lib/getStaticData';
 
-jest.mock('@lib/getStaticData', () => ({
+jest.mock('@shared/lib/getStaticData', () => ({
 	getData: jest.fn(),
 }));
 

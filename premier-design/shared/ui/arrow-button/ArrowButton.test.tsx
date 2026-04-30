@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
-import {render, screen} from '@testing-library/react';
-import type {ImgHTMLAttributes} from 'react';
+import { render, screen } from '@testing-library/react';
+import type { ImgHTMLAttributes } from 'react';
 import ArrowButton from './ArrowButton';
 
 jest.mock('next/image', () => ({
@@ -17,7 +17,7 @@ jest.mock('../../../public/arrow.svg', () => ({
 describe('ArrowButton', () => {
 	it('renders left and right arrow buttons', () => {
 		render(<ArrowButton />);
-		expect(screen.getByRole('button', {name: 'Стрелка влево'})).toBeInTheDocument();
-		expect(screen.getByRole('button', {name: 'Стрелка вправо'})).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: 'Стрелка влево' })).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: 'Стрелка вправо' })).toBeInTheDocument();
 	});
 });

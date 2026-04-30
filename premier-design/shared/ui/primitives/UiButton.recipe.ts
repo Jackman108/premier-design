@@ -1,4 +1,4 @@
-import {cva} from '../../../styled-system/css';
+import { cva } from '../../../styled-system/css';
 
 export const buttonRecipe = cva({
 	base: {
@@ -12,7 +12,8 @@ export const buttonRecipe = cva({
 		fontFamily: 'var(--font-family)',
 		fontWeight: '600',
 		cursor: 'pointer',
-		transition: 'background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast)',
+		transition:
+			'background-color var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast)',
 		_disabled: {
 			opacity: 0.55,
 			cursor: 'not-allowed',

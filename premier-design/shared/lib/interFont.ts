@@ -1,4 +1,4 @@
-import {Inter, Playfair_Display} from 'next/font/google';
+import { Inter, Playfair_Display } from 'next/font/google';
 
 export const inter = Inter({
 	subsets: ['latin', 'cyrillic'],

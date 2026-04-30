@@ -1,5 +1,5 @@
-import {findItemByTitle} from '@shared/utils/findItemByTitle';
-import {getFullCanonicalUrl} from '@shared/utils/getFullCanonicalUrl';
+import { findItemByTitle } from '@shared/utils/findItemByTitle';
+import { getFullCanonicalUrl } from '@shared/utils/getFullCanonicalUrl';
 
 type ItemWithTitle = { shortTitle: string };
 
@@ -17,9 +17,11 @@ export const selectPageData = <T extends ItemWithTitle, U extends ItemWithTitle,
 	const bannerItem = findItemByTitle(banners, bannerShort) ?? ({} as V);
 
 	const canonical =
-		'canonical' in titleItem && typeof titleItem.canonical === 'string' ? getFullCanonicalUrl(titleItem.canonical) : '';
+		'canonical' in titleItem && typeof titleItem.canonical === 'string'
+			? getFullCanonicalUrl(titleItem.canonical)
+			: '';
 
-	return {titleItem: {...titleItem, canonical}, buttonItem, bannerItem};
+	return { titleItem: { ...titleItem, canonical }, buttonItem, bannerItem };
 };
 
 /** Единый набор `shortTitle` для CTA «Appeal» на релевантных страницах (см. `data.json`). */

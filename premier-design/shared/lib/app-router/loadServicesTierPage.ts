@@ -1,9 +1,9 @@
 import { cache } from 'react';
 import { notFound } from 'next/navigation';
 
-import { getCachedData } from '@lib/getStaticData';
-import { getCommonProps } from '@lib/staticProps/getCommonProps';
-import { resolveServicesTier } from '@lib/resolveServicesTier';
+import { getCachedData } from '@shared/lib/getStaticData';
+import { getCommonProps } from '@shared/lib/staticProps/getCommonProps';
+import { resolveServicesTier } from '@shared/lib/resolveServicesTier';
 import type { ServicesTierPageProps } from '@widgets/services-tier/ui/ServicesTierPage/ServicesTierPage';
 
 export const loadServicesTierPageProps = cache(async (categoryId: string): Promise<ServicesTierPageProps> => {

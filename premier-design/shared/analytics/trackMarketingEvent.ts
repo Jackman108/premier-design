@@ -14,7 +14,7 @@ export const trackMarketingEvent = (eventName: string, payload: MarketingPayload
 	}
 
 	const browserWindow = window as WindowWithDataLayer;
-	const eventPayload: DataLayerEvent = {event: eventName, ...payload};
+	const eventPayload: DataLayerEvent = { event: eventName, ...payload };
 
 	if (Array.isArray(browserWindow.dataLayer)) {
 		browserWindow.dataLayer.push(eventPayload);

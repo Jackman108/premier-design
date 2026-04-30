@@ -1,11 +1,11 @@
 /** @jest-environment jsdom */
-import {render, screen} from '@testing-library/react';
-import {UiButton} from './UiButton';
+import { render, screen } from '@testing-library/react';
+import { UiButton } from './UiButton';
 
 describe('UiButton', () => {
 	it('renders with default props', () => {
 		render(<UiButton>Отправить</UiButton>);
-		const button = screen.getByRole('button', {name: 'Отправить'});
+		const button = screen.getByRole('button', { name: 'Отправить' });
 
 		expect(button).toHaveAttribute('type', 'button');
 		expect(button).toHaveClass('root');
@@ -18,7 +18,7 @@ describe('UiButton', () => {
 				Сохранить
 			</UiButton>,
 		);
-		const button = screen.getByRole('button', {name: 'Сохранить'});
+		const button = screen.getByRole('button', { name: 'Сохранить' });
 
 		expect(button).toHaveAttribute('type', 'submit');
 		expect(button).toHaveClass('root');

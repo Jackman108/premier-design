@@ -1,6 +1,6 @@
-import {FC, type ReactElement} from 'react';
+import { FC, type ReactElement } from 'react';
 
-import type {HomePageSectionProps} from '@widgets/home-page-section/interface/HomePageSection.props';
+import type { HomePageSectionProps } from '@widgets/home-page-section/interface/HomePageSection.props';
 import homeStyles from '@widgets/home-page-section/HomePage.module.css';
 
 const join = (...parts: Array<string | false | undefined>): string => parts.filter(Boolean).join(' ');
@@ -28,8 +28,7 @@ const HomePageSection: FC<HomePageSectionProps> = ({
 	);
 
 	/** `shell` / `features` — наружный padding только у оболочки; внутри секции отступы не дублируем. */
-	const rhythm =
-		layout === 'content' ? 'shell' : layout === 'features' ? 'features' : undefined;
+	const rhythm = layout === 'content' ? 'shell' : layout === 'features' ? 'features' : undefined;
 
 	return (
 		<section

@@ -1,13 +1,23 @@
 /** @jest-environment jsdom */
-import {fireEvent, render, screen} from '@testing-library/react';
-import type {ImgHTMLAttributes, ReactNode} from 'react';
+import { fireEvent, render, screen } from '@testing-library/react';
+import type { ImgHTMLAttributes, ReactNode } from 'react';
 import ShareBanner from './ShareBanner';
-import {findItemByTitle} from '@shared/utils/findItemByTitle';
-import {useShareBanner} from '@features/banner/share/hooks/useShareBanner';
+import { findItemByTitle } from '@shared/utils/findItemByTitle';
+import { useShareBanner } from '@features/banner/share/hooks/useShareBanner';
 
 jest.mock('next/link', () => ({
 	__esModule: true,
-	default: ({href, children, className, rel}: {href: string; children: ReactNode; className?: string; rel?: string}) => (
+	default: ({
+		href,
+		children,
+		className,
+		rel,
+	}: {
+		href: string;
+		children: ReactNode;
+		className?: string;
+		rel?: string;
+	}) => (
 		<a href={href} className={className} rel={rel}>
 			{children}
 		</a>
@@ -25,7 +35,7 @@ jest.mock('next/image', () => ({
 		},
 	) => {
 		// next/image-специфичные пропы не на нативный <img> (см. react-dom "non-boolean attribute `priority`").
-		const {src, alt, width, height, className, sizes, loading, decoding, fill, ...nextOnly} = props;
+		const { src, alt, width, height, className, sizes, loading, decoding, fill, ...nextOnly } = props;
 		void nextOnly;
 		void fill;
 		return (
@@ -61,10 +71,10 @@ describe('ShareBanner', () => {
 		const handleClose = jest.fn();
 		mockedFindItemByTitle.mockReturnValue({
 			link: 'https://example.com',
-			imageDesc: {src: '/shares/share-el-d.webp', alt: 'desktop', quality: 80, width: 1200, height: 500},
-			imageMob: {src: '/shares/share-el-m.webp', alt: 'mobile', quality: 80, width: 600, height: 400},
+			imageDesc: { src: '/shares/share-el-d.webp', alt: 'desktop', quality: 80, width: 1200, height: 500 },
+			imageMob: { src: '/shares/share-el-m.webp', alt: 'mobile', quality: 80, width: 600, height: 400 },
 		} as never);
-		mockedUseShareBanner.mockReturnValue({isClosed: false, handleClose});
+		mockedUseShareBanner.mockReturnValue({ isClosed: false, handleClose });
 
 		render(<ShareBanner isSticky={false} shares={[]} />);
 		expect(screen.getByRole('link')).toHaveAttribute('href', 'https://example.com');
@@ -75,11 +85,11 @@ describe('ShareBanner', () => {
 
 	it('returns null when sticky or closed', () => {
 		mockedFindItemByTitle.mockReturnValue({} as never);
-		mockedUseShareBanner.mockReturnValue({isClosed: false, handleClose: jest.fn()});
-		const {container, rerender} = render(<ShareBanner isSticky shares={[]} />);
+		mockedUseShareBanner.mockReturnValue({ isClosed: false, handleClose: jest.fn() });
+		const { container, rerender } = render(<ShareBanner isSticky shares={[]} />);
 		expect(container.firstChild).toBeNull();
 
-		mockedUseShareBanner.mockReturnValue({isClosed: true, handleClose: jest.fn()});
+		mockedUseShareBanner.mockReturnValue({ isClosed: true, handleClose: jest.fn() });
 		rerender(<ShareBanner isSticky={false} shares={[]} />);
 		expect(container.firstChild).toBeNull();
 	});

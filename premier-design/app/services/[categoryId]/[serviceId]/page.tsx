@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 
-import { loadServiceDetailPageProps } from '@lib/app-router/loadServiceDetailPage';
-import { generateStaticParamsServiceDetail } from '@lib/app-router/generateStaticParams/services';
-import { serviceDetailPageToHeadProps } from '@lib/app-router/seo/serviceDetailHead';
+import { loadServiceDetailPageProps } from '@shared/lib/app-router/loadServiceDetailPage';
+import { generateStaticParamsServiceDetail } from '@shared/lib/app-router/generateStaticParams/services';
+import { serviceDetailPageToHeadProps } from '@shared/lib/app-router/seo/serviceDetailHead';
 import { customHeadPropsToMetadata } from '@shared/lib/seo/customHeadPropsToMetadata';
 import { ServiceDetail } from '@features/services';
 import { StructuredDataScript } from '@widgets/layout/seo/StructuredDataScript';

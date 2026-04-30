@@ -1,1 +1,1 @@
-export {default as CompanyAboutSections} from './ui/CompanyAboutSections';
+export { default as CompanyAboutSections } from './ui/CompanyAboutSections';

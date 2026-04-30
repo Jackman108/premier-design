@@ -1,3 +1,3 @@
 export interface BackButtonProps {
-    label?: string;
+	label?: string;
 }

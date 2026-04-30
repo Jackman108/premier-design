@@ -15,11 +15,7 @@ export const isRetryableIntegrationError = (error: unknown): boolean => {
 };
 
 export const retryAsync = async <T>(task: () => Promise<T>, options: RetryOptions): Promise<T> => {
-	const {
-		maxAttempts,
-		baseDelayMs,
-		isRetryable = isRetryableIntegrationError,
-	} = options;
+	const { maxAttempts, baseDelayMs, isRetryable = isRetryableIntegrationError } = options;
 
 	let lastError: unknown;
 	for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {

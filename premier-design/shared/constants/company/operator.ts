@@ -1,12 +1,6 @@
-import type {
-	AddressDetails,
-	BankDetails,
-	ContactPoint,
-	LegalRequisites,
-	WorkHoursSummary,
-} from './types';
+import type { AddressDetails, BankDetails, ContactPoint, LegalRequisites, WorkHoursSummary } from './types';
 
-import {SITE_SOCIAL} from './social';
+import { SITE_SOCIAL } from './social';
 
 /**
  * Оператор сайта (ИП), контакты, JSON-LD-фрагменты.
@@ -39,7 +33,7 @@ export const SITE_OPERATOR = {
 	} as AddressDetails,
 	workHours: {
 		summary: 'Пн–Пт: 09:00 – 18:00',
-		slots: [{daysOfWeek: ['Mo', 'Tu', 'We', 'Th', 'Fr'], opens: '09:00', closes: '18:00'}],
+		slots: [{ daysOfWeek: ['Mo', 'Tu', 'We', 'Th', 'Fr'], opens: '09:00', closes: '18:00' }],
 	} as WorkHoursSummary,
 	bankDetails: null as BankDetails,
 	structuredData: {
@@ -51,8 +45,8 @@ export const SITE_OPERATOR = {
 			addressCountry: 'BY',
 		},
 		areaServed: [
-			{'@type': 'City', name: 'Zhlobin'},
-			{'@type': 'Country', name: 'Belarus'},
+			{ '@type': 'City', name: 'Zhlobin' },
+			{ '@type': 'Country', name: 'Belarus' },
 		],
 		priceRange: '$$',
 	},

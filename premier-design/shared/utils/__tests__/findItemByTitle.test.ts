@@ -1,10 +1,10 @@
-import type {TitleProps} from '@shared/ui/title/interface/Title.props';
+import type { TitleProps } from '@shared/ui/title/interface/Title.props';
 
-import {findItemByTitle, getTitleData} from '../findItemByTitle';
+import { findItemByTitle, getTitleData } from '../findItemByTitle';
 
 const titles: TitleProps[] = [
-	{shortTitle: 'home', title: 'H', description: 'd'},
-	{shortTitle: 'about', title: 'A', description: 'd'},
+	{ shortTitle: 'home', title: 'H', description: 'd' },
+	{ shortTitle: 'about', title: 'A', description: 'd' },
 ];
 
 describe('findItemByTitle', () => {

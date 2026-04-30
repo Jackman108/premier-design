@@ -1,5 +1,5 @@
-import {existsSync, readFileSync, readdirSync, statSync} from 'node:fs';
-import {join, relative, resolve} from 'node:path';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { join, relative, resolve } from 'node:path';
 
 const cwd = process.cwd();
 const args = process.argv.slice(2);
@@ -27,7 +27,7 @@ const toDaysLeft = (dateText) => {
 };
 
 const soonToExpire = entries
-	.map((entry) => ({...entry, daysLeft: toDaysLeft(entry.expiresOn)}))
+	.map((entry) => ({ ...entry, daysLeft: toDaysLeft(entry.expiresOn) }))
 	.filter((entry) => entry.daysLeft <= thresholdDays)
 	.sort((a, b) => a.daysLeft - b.daysLeft);
 
@@ -38,7 +38,7 @@ const byOwner = entries.reduce((acc, entry) => {
 }, {});
 
 const walkFiles = (dir, out) => {
-	for (const entry of readdirSync(dir, {withFileTypes: true})) {
+	for (const entry of readdirSync(dir, { withFileTypes: true })) {
 		const absolute = join(dir, entry.name);
 		if (entry.isDirectory()) {
 			if (!IGNORED_DIRS.has(entry.name)) {
@@ -78,7 +78,9 @@ if (soonToExpire.length === 0) {
 	console.log('- none');
 } else {
 	for (const entry of soonToExpire) {
-		console.log(`- ${entry.source} -> ${entry.target} | owner=${entry.owner} | expires=${entry.expiresOn} | daysLeft=${entry.daysLeft}`);
+		console.log(
+			`- ${entry.source} -> ${entry.target} | owner=${entry.owner} | expires=${entry.expiresOn} | daysLeft=${entry.daysLeft}`,
+		);
 	}
 }
 

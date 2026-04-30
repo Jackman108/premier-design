@@ -1,16 +1,14 @@
 'use server';
 
-import {feedbackSchema} from '@features/feedback/schema';
-import {submitFeedback} from '@features/feedback/useCases/submitFeedback';
-import {z} from 'zod';
+import { feedbackSchema } from '@features/feedback/schema';
+import { submitFeedback } from '@features/feedback/useCases/submitFeedback';
+import { z } from 'zod';
 
 type FeedbackActionResult =
-	| {status: 'success'; message: string; data?: unknown}
-	| {status: 'error'; message: string; errors?: unknown; code?: 400 | 429 | 500 | 503};
+	| { status: 'success'; message: string; data?: unknown }
+	| { status: 'error'; message: string; errors?: unknown; code?: 400 | 429 | 500 | 503 };
 
-export const submitFeedbackAction = async (
-	payload: unknown,
-): Promise<FeedbackActionResult> => {
+export const submitFeedbackAction = async (payload: unknown): Promise<FeedbackActionResult> => {
 	const parsed = feedbackSchema.safeParse(payload);
 	if (!parsed.success) {
 		return {

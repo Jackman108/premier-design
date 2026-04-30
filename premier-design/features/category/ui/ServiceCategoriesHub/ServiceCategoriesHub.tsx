@@ -1,16 +1,16 @@
-import {FC, ReactElement} from 'react';
+import { FC, ReactElement } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import Title from '@shared/ui/title/ui/Title';
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
-import {findItemByTitle} from '@shared/utils/findItemByTitle';
+import { findItemByTitle } from '@shared/utils/findItemByTitle';
 import type { ButtonProps } from '@entities/button';
-import {CategoryProps} from '@features/category/interface/Category.props';
+import { CategoryProps } from '@features/category/interface/Category.props';
 import styles from './ServiceCategoriesHub.module.css';
 
 /** Каталог категорий прайса карточками (страница `/services`), по смыслу как блок категорий на «Ремонт», но с переходом в `/services/[id]`. */
-const ServiceCategoriesHub: FC<CategoryProps> = ({titles, buttonData, repairs}): ReactElement => {
-	const {title = '', description = '', shortTitle = ''} = findItemByTitle(titles, 'repair-categories') || {};
+const ServiceCategoriesHub: FC<CategoryProps> = ({ titles, buttonData, repairs }): ReactElement => {
+	const { title = '', description = '', shortTitle = '' } = findItemByTitle(titles, 'repair-categories') || {};
 	const buttonHeader = findItemByTitle(buttonData, 'leave_request') || ({} as ButtonProps);
 
 	return (

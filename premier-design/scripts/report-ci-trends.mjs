@@ -1,5 +1,5 @@
-import {writeFileSync} from 'node:fs';
-import {resolve} from 'node:path';
+import { writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 const token = process.env.GITHUB_TOKEN;
 const repository = process.env.GITHUB_REPOSITORY;

@@ -6,13 +6,7 @@ import { getFullCanonicalUrl } from '@shared/utils/getFullCanonicalUrl';
 
 jest.mock('next/script', () => ({
 	__esModule: true,
-	default: ({
-		id,
-		dangerouslySetInnerHTML,
-	}: {
-		id: string;
-		dangerouslySetInnerHTML: { __html: string };
-	}) => (
+	default: ({ id, dangerouslySetInnerHTML }: { id: string; dangerouslySetInnerHTML: { __html: string } }) => (
 		<script id={id} type="application/ld+json">
 			{dangerouslySetInnerHTML.__html}
 		</script>

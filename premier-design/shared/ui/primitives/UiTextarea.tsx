@@ -1,5 +1,5 @@
-import type {ReactNode, TextareaHTMLAttributes} from 'react';
-import {forwardRef, useId} from 'react';
+import type { ReactNode, TextareaHTMLAttributes } from 'react';
+import { forwardRef, useId } from 'react';
 
 import styles from './UiTextarea.module.css';
 
@@ -10,7 +10,7 @@ export type UiTextareaProps = Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 
 };
 
 export const UiTextarea = forwardRef<HTMLTextAreaElement, UiTextareaProps>(
-	({label, hint, error, className = '', id, ...rest}, ref) => {
+	({ label, hint, error, className = '', id, ...rest }, ref) => {
 		const autoId = useId();
 		const inputId = id ?? autoId;
 		return (

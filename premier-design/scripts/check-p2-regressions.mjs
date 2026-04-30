@@ -65,9 +65,7 @@ for (const absoluteFile of filesToCheck) {
 	const relativeFile = toUnixPath(relative(cwd, absoluteFile));
 
 	if (!isTokensFile(absoluteFile) && HEX_COLOR_PATTERN.test(raw) && !LEGACY_HEX_ALLOWLIST.has(relativeFile)) {
-		violations.push(
-			`${relativeFile}: найден "сырой" hex-цвет. Используйте CSS-токены из styles/tokens.css.`,
-		);
+		violations.push(`${relativeFile}: найден "сырой" hex-цвет. Используйте CSS-токены из styles/tokens.css.`);
 	}
 
 	const hasHover = HOVER_PATTERN.test(raw);

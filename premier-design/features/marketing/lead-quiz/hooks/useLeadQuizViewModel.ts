@@ -1,6 +1,6 @@
-import {useMemo} from 'react';
+import { useMemo } from 'react';
 
-import {QuizAnswer} from '../interface/LeadQuiz.props';
+import { QuizAnswer } from '../interface/LeadQuiz.props';
 
 type LeadQuizQuestion = 'projectType' | 'area' | 'startWindow';
 
@@ -12,7 +12,7 @@ type UseLeadQuizViewModelParams = {
 
 // Хранит "view-model" квиза (summary + обработчик ответов), чтобы UI-компонент
 // оставался преимущественно декларативным слоем.
-export const useLeadQuizViewModel = ({answers, setAnswer, trackAnswerSelect}: UseLeadQuizViewModelParams) => {
+export const useLeadQuizViewModel = ({ answers, setAnswer, trackAnswerSelect }: UseLeadQuizViewModelParams) => {
 	const quizSummary = useMemo(
 		() =>
 			[

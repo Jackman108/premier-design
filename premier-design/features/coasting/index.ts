@@ -1,1 +1,1 @@
-export type {CostingCardProps} from './interface/Costing.props';
+export type { CostingCardProps } from './interface/Costing.props';

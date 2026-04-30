@@ -1,9 +1,9 @@
 'use client';
 
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
-import {HOME_SECTION_SCROLL_SPY_ORDER} from '@lib/homeSectionNavConfig';
-import {computeActiveHomeSectionId} from '../utils/computeActiveHomeSectionId';
+import { HOME_SECTION_SCROLL_SPY_ORDER } from '@shared/lib/homeSectionNavConfig';
+import { computeActiveHomeSectionId } from '../utils/computeActiveHomeSectionId';
 
 const getScrollProgress = (): number => {
 	if (typeof document === 'undefined') {
@@ -16,7 +16,7 @@ const getScrollProgress = (): number => {
 	return Math.min(1, Math.max(0, window.scrollY / scrollHeight));
 };
 
-export function useHomePageChrome(): {activeId: string | null; progress: number; isHeroOutOfView: boolean} {
+export function useHomePageChrome(): { activeId: string | null; progress: number; isHeroOutOfView: boolean } {
 	const [progress, setProgress] = useState(0);
 	const [activeId, setActiveId] = useState<string | null>(null);
 	const [isHeroOutOfView, setIsHeroOutOfView] = useState(false);
@@ -29,7 +29,7 @@ export function useHomePageChrome(): {activeId: string | null; progress: number;
 			 * .visible (opacity) боковой панели — считаем «после героя», когда низ баннера ушёл выше вьюпорта. */
 			const hero = document.getElementById('home-hero');
 			if (hero) {
-				const {bottom} = hero.getBoundingClientRect();
+				const { bottom } = hero.getBoundingClientRect();
 				setIsHeroOutOfView(bottom < 0);
 			} else {
 				setIsHeroOutOfView(true);
@@ -37,13 +37,13 @@ export function useHomePageChrome(): {activeId: string | null; progress: number;
 		};
 
 		update();
-		window.addEventListener('scroll', update, {passive: true});
-		window.addEventListener('resize', update, {passive: true});
+		window.addEventListener('scroll', update, { passive: true });
+		window.addEventListener('resize', update, { passive: true });
 		return () => {
 			window.removeEventListener('scroll', update);
 			window.removeEventListener('resize', update);
 		};
 	}, []);
 
-	return {progress, activeId, isHeroOutOfView};
+	return { progress, activeId, isHeroOutOfView };
 }

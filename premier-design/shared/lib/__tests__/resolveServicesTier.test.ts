@@ -1,20 +1,32 @@
 /** @jest-environment node */
-import {resolveServicesTier} from '../resolveServicesTier';
-import type {DataProps} from '@shared/validates/dataPropsSchema';
+import { resolveServicesTier } from '../resolveServicesTier';
+import type { DataProps } from '@shared/validates/dataPropsSchema';
 
 const baseCategory = {
 	id: 'construction-works',
 	title: 'Строительные работы',
 	description: 'Описание',
-	image: {src: '/c.webp', alt: '', quality: 90, width: 1, height: 1},
+	image: { src: '/c.webp', alt: '', quality: 90, width: 1, height: 1 },
 	priceList: [],
 };
 
 describe('resolveServicesTier', () => {
 	it('resolves repair category by id first', () => {
 		const data = {
-			prices: {repairs: [baseCategory]},
-			relatedServices: [{canonical: '/services/expertise', id: 'x', title: '', subTitle: '', description: '', image: '', benefits: [], text: '', triggers: []}],
+			prices: { repairs: [baseCategory] },
+			relatedServices: [
+				{
+					canonical: '/services/expertise',
+					id: 'x',
+					title: '',
+					subTitle: '',
+					description: '',
+					image: '',
+					benefits: [],
+					text: '',
+					triggers: [],
+				},
+			],
 		} as unknown as DataProps;
 
 		expect(resolveServicesTier(data, 'construction-works')).toEqual({
@@ -25,7 +37,7 @@ describe('resolveServicesTier', () => {
 
 	it('resolves related service by canonical tail', () => {
 		const data = {
-			prices: {repairs: []},
+			prices: { repairs: [] },
 			relatedServices: [
 				{
 					id: 'expertise',
@@ -49,7 +61,7 @@ describe('resolveServicesTier', () => {
 	});
 
 	it('returns null when slug missing', () => {
-		const data = {prices: {repairs: []}, relatedServices: []} as unknown as DataProps;
+		const data = { prices: { repairs: [] }, relatedServices: [] } as unknown as DataProps;
 		expect(resolveServicesTier(data, 'unknown')).toBeNull();
 	});
 });

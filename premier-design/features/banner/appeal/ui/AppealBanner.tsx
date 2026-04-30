@@ -1,6 +1,6 @@
-import {type FC, type ReactElement} from 'react';
+import { type FC, type ReactElement } from 'react';
 
-import type {AppealBannerProps} from '../interface/AppealBannerProps';
+import type { AppealBannerProps } from '../interface/AppealBannerProps';
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 import Title from '@shared/ui/title/ui/Title';
 import NextImage from 'next/image';
@@ -17,11 +17,7 @@ const AppealBanner: FC<AppealBannerProps> = ({
 	'aria-label': ariaLabel,
 }): ReactElement => {
 	return (
-		<section
-			aria-label={ariaLabel}
-			className={styles.appeal}
-			id={sectionId}
-		>
+		<section aria-label={ariaLabel} className={styles.appeal} id={sectionId}>
 			<NextImage
 				alt={bannerItem.alt}
 				className={styles.appeal__background}
@@ -42,10 +38,7 @@ const AppealBanner: FC<AppealBannerProps> = ({
 					title={titleItem.title}
 					titleStyle="title-black"
 				/>
-				<OrderButton
-					buttonData={buttonItem.buttonHeader}
-					buttonStyle="button-black"
-				/>
+				<OrderButton buttonData={buttonItem.buttonHeader} buttonStyle="button-black" />
 			</div>
 		</section>
 	);

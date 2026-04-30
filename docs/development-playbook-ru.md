@@ -75,7 +75,7 @@
 
 - **Web Vitals** в фокусе: LCP, CLS, INP — пороги через `yarn check:perf:ci`. Бюджет initial JS — `INITIAL_JS_BUDGET_KB`.
 - `next/image`: явные `width/height` или `fill` + `priority` для LCP‑элемента. Удалённые источники — только через `images.remotePatterns`.
-- Тяжёлые клиентские пакеты — `dynamic(..., { ssr: false })` (см. реестр `@lib/dynamicSectionImports`).
+- Тяжёлые клиентские пакеты — `dynamic(..., { ssr: false })` (см. реестр `@shared/lib/dynamicSectionImports`).
 - a11y: видимый focus‑ring, клавиатура, уважение `prefers-reduced-motion`, контраст в **обеих темах**.
 - UI / темизация / модалки — [`mempalace/rules/02_*`](mempalace/rules/02-web-ui-components-and-tokens-ru.md), ADR `0001`/`0002`/`0003`.
 

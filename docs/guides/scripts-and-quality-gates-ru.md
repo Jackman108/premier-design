@@ -17,7 +17,7 @@
 
 ## Политика форматирования (кросс-репо)
 
-Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../adr/0010-formatting-policy-no-prettier.md). Согласование с Feb Code (где может использоваться Prettier) — [`prettier-and-formatting-cross-repo-ru.md`](prettier-and-formatting-cross-repo-ru.md).
+**Prettier + ESLint** (`yarn format` / `yarn format:check`, **`eslint-config-prettier`**) — [**ADR 0013**](../adr/0013-shared-lib-react-query-prettier.md); исторический контекст — [**ADR 0010**](../adr/0010-formatting-policy-no-prettier.md). Кросс-репо — [`prettier-and-formatting-cross-repo-ru.md`](prettier-and-formatting-cross-repo-ru.md). Сводки в **`premier-design/.audit/`** не проходят через Prettier — каталог в **`.prettierignore`** (генерируется скриптами аудита локально/в CI).
 
 ## Быстрые маршруты
 
@@ -38,7 +38,7 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 | Скрипт | Назначение |
 |--------|------------|
 | `prepare` | Husky (установка git hooks) — выполняется автоматически после `yarn install`. |
-| `dev` | `next dev` с **Webpack**: стабильный HMR с Pages Router. |
+| `dev` | `next dev` с **Webpack** (App Router): стабильный HMR. |
 | `dev:turbo` | `next dev` с **Turbopack**; при сбоях HMR — вернуться на `dev`. |
 | `build` | Production‑сборка (`next build` с Webpack). |
 | `start` | Запуск production‑сборки. |
@@ -51,10 +51,12 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 |--------|------------|
 | `lint` | ESLint по проекту (`styled-system/**` игнорируется). |
 | `lint:fix` | То же с `--fix`. |
+| `format` | Prettier `--write` по маске в `package.json` (учитывает `.prettierignore`). |
+| `format:check` | Prettier `--check` — без изменения файлов (CI / `check:static`). |
 | `typecheck` | `tsc --noEmit --pretty` — строгая типизация всего проекта (стрицее, чем `next build` для `*.test.ts(x)`). |
 | `test` | Jest (по умолчанию интерактивный). |
 | `test:coverage` | Jest с coverage и без watch (как в CI). |
-| **`check:static`** | **`lint` → `typecheck` → `test --watch=false`:** быстрый минимум перед `check:risk:local` или PR. |
+| **`check:static`** | **`format:check` → `lint` → `typecheck` → `test --watch=false`:** быстрый минимум перед `check:risk:local` или PR. |
 
 ## 3. Атомарные project‑gates
 
@@ -68,7 +70,7 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 | `check:noise` | Следы шумовых артефактов в репозитории. |
 | `check:slo:feedback` | SLO для воронки feedback (`p95`, error/timeout rate). |
 | `check:ci-sla` | Соответствие SLA трендам CI. |
-| `check:perf:initial-js` | Бюджет initial JS главной после `yarn build`. |
+| `check:perf:initial-js` | Бюджет initial JS после `yarn build` (`build-manifest.json`): при **App Router** Next 15+ — сумма `.js` из **`polyfillFiles` + `rootMainFiles`** (оболочка первой загрузки); при Pages Router — чанки маршрута `/`, если они есть в манифесте. |
 | `check:perf:lighthouse` | Бюджет Lighthouse (`PERF_BUDGET_*`). |
 | `check:perf:ci` | Lighthouse + initial JS (как в CI). |
 
@@ -77,7 +79,7 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 | Скрипт | Состав (упрощённо) |
 |--------|---------------------|
 | `check:risk:local` | `check:architecture` → `architecture:progress` → `report:architecture-allowlist` → `ui-purity` → `regressions` → `noise` → `feature-structure` → `slo:feedback` → `ci-sla` |
-| `check:precommit:full` | `lint` → `typecheck` → `test --watch=false` → `check:risk:local` → `build` → `check:perf:initial-js` |
+| `check:precommit:full` | `format:check` → `lint` → `typecheck` → `test --watch=false` → `check:risk:local` → `build` → `check:perf:initial-js` (паритет с «статикой» + релизной цепочкой; Lighthouse в этот скрипт не входит — см. `check:perf:ci`) |
 | `check:deploy:local` | Алиас `check:precommit:full` (ожидания «перед релизом»). |
 
 `check:risk:local` начинает прогон с `clean:test-artifacts`, чтобы старые e2e-артефакты не ломали `check:noise`.
@@ -100,7 +102,7 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 | `test:e2e:visual` | `e2e/visual-regression.spec.ts` (карточки, dark‑overlay). |
 | `clean:test-artifacts` | Очистка локальных e2e-артефактов (`test-results`, `playwright-report`, `blob-report`) перед noise-gate. |
 
-**Заметка:** pre‑push в репозитории запускает `yarn test:e2e` — см. `.husky/pre-push`.
+**Заметки:** при **`CI=true`** Playwright поднимает **`node .next/standalone/server.js`** (проект с **`output: 'standalone'`**; не `next start`) — см. `playwright.config.ts`. Локально без `CI` — `yarn dev` и **`reuseExistingServer`**: освободите порт **3000** перед прогоном с **`CI=true`**, иначе standalone не поднимется (`EADDRINUSE`). Если в логе webServer **`The requested resource isn't a valid image … received null`** для многих путей — в **`public/`** не хватает медиа (полный репозиторий содержит каталоги вроде `banners/`, `news/`); smoke обычно проходит, но страница визуально неполная. Pre‑push: **`yarn test:e2e`** — см. `.husky/pre-push`.
 
 ## 7. Дизайн‑система и стили
 
@@ -129,7 +131,7 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 - `features/**` → `check-feature-structure.mjs`;
 - `*` → `check-noise-artifacts.mjs`.
 
-Покрытие слоёв (`shared/`, `widgets/`, `app/`, `pages/`, `lib/`) закрывается паттерном `*.{js,jsx,ts,tsx}`: для всех staged TS/JS файлов выполняются ESLint + `check-architecture-boundaries` + `check-ui-purity`.
+Покрытие слоёв (`shared/`, `widgets/`, `app/`, `pages-layer/`) закрывается паттерном `*.{js,jsx,ts,tsx}`: для staged файлов — Prettier, затем ESLint + `check-architecture-boundaries` + `check-ui-purity`.
 
 Сразу после `lint-staged` Husky `pre-commit` вызывает **`yarn check:precommit:full`** (полный проход).
 
@@ -138,6 +140,6 @@ Premier остаётся на **ESLint** без Prettier — [**ADR 0010**](../a
 - [PERF_AND_SEO_CHECKLIST_RU](perf-and-seo-checklist-ru.md)
 - [YARN_PACKAGE_MANAGER_RU](yarn-package-manager-ru.md)
 - [API_AND_STORYBOOK_RU](api-and-storybook-ru.md)
-- [ADR 0010: без Prettier](../adr/0010-formatting-policy-no-prettier.md) — форматирование; кросс-репо Feb Code — [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md)
+- [ADR 0013](../adr/0013-shared-lib-react-query-prettier.md) — форматирование и tooling; [ADR 0010](../adr/0010-formatting-policy-no-prettier.md) — история; кросс-репо Feb Code — [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md)
 - [DEPLOY_READINESS_2026_04_RU](../audit/deploy-readiness-2026-04-ru.md)
 - [QUALITY_GATES_SYNC_RU](../audit/quality-gates-sync-ru.md)

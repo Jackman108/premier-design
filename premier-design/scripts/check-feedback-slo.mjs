@@ -1,12 +1,9 @@
-import {existsSync, readFileSync} from 'node:fs';
-import {resolve} from 'node:path';
+import { existsSync, readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 
 const cwd = process.cwd();
 const now = Date.now();
-const eventsFilePath = resolve(
-	cwd,
-	process.env.FEEDBACK_SLO_EVENTS_FILE?.trim() || '.audit/feedback-slo-events.jsonl',
-);
+const eventsFilePath = resolve(cwd, process.env.FEEDBACK_SLO_EVENTS_FILE?.trim() || '.audit/feedback-slo-events.jsonl');
 
 const rollingHours = Number(process.env.FEEDBACK_SLO_ROLLING_HOURS ?? 24);
 const minSamples = Number(process.env.FEEDBACK_SLO_MIN_SAMPLES ?? 20);

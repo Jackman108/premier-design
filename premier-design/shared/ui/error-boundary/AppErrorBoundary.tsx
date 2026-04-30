@@ -1,6 +1,6 @@
 'use client';
 
-import {Component, type ErrorInfo, type ReactNode} from 'react';
+import { Component, type ErrorInfo, type ReactNode } from 'react';
 
 import styles from './AppErrorBoundary.module.css';
 
@@ -13,10 +13,10 @@ type State = {
 };
 
 export class AppErrorBoundary extends Component<Props, State> {
-	public state: State = {hasError: false};
+	public state: State = { hasError: false };
 
 	public static getDerivedStateFromError(): State {
-		return {hasError: true};
+		return { hasError: true };
 	}
 
 	public componentDidCatch(error: Error, errorInfo: ErrorInfo): void {

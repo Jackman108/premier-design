@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 
-import { buildServicesIndexHeadProps } from '@lib/app-router/seo/marketingPagesHead';
-import { getCachedData } from '@lib/getStaticData';
+import { buildServicesIndexHeadProps } from '@shared/lib/app-router/seo/marketingPagesHead';
+import { getCachedData } from '@shared/lib/getStaticData';
 import HeroBanner from '@features/banner/hero/ui/HeroBanner';
 import type { HeroBannerProps } from '@features/banner/hero/interface/HeroBannerProps';
 import { ServiceCategoriesHub } from '@features/category';
-import { Appeal, BusinessServices, RelatedServices } from '@lib/dynamicSectionImports';
+import { Appeal, BusinessServices, RelatedServices } from '@shared/lib/dynamicSectionImports';
 import { selectAppealSectionData, selectPageData } from '@shared/hooks/usePageData';
 import { customHeadPropsToMetadata } from '@shared/lib/seo/customHeadPropsToMetadata';
 import { getTitleData } from '@shared/utils/findItemByTitle';
@@ -23,14 +23,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function ServicesIndexPage() {
 	const data = await getCachedData();
 	const head = buildServicesIndexHeadProps(data);
-	const { titleItem: titleData, buttonItem: buttonData, bannerItem: bannerData } = selectPageData(
-		data.titlesPage,
-		data.button,
-		data.bannersImages,
-		'services',
-		'leave_request',
-		'repair_banner',
-	);
+	const {
+		titleItem: titleData,
+		buttonItem: buttonData,
+		bannerItem: bannerData,
+	} = selectPageData(data.titlesPage, data.button, data.bannersImages, 'services', 'leave_request', 'repair_banner');
 	const bannerProps: HeroBannerProps = { titleData, buttonData, bannerData };
 	const titles = getTitleData(data.title, 'related-services');
 

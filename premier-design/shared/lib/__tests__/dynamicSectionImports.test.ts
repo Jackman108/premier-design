@@ -1,5 +1,5 @@
 /** @jest-environment node */
-const dynamicMock = jest.fn((importer: () => unknown) => ({importer}));
+const dynamicMock = jest.fn((importer: () => unknown) => ({ importer }));
 
 jest.mock('next/dynamic', () => ({
 	__esModule: true,

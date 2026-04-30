@@ -2,12 +2,12 @@
  * GET /api/sitemap (rewrite с `/sitemap.xml`): machine-readable sitemap.
  */
 import type { DataProps } from '@shared/validates/dataPropsSchema';
-import { getData } from '@lib/getStaticData';
+import { getData } from '@shared/lib/getStaticData';
 import { applyApiRateLimitWeb } from '@shared/lib/applyApiRateLimit.web';
 import { createApiErrorPayload } from '@shared/lib/api/apiRequestRuntime';
 import { createCorrelationId } from '@shared/lib/correlationId';
 import { SITE_PUBLIC_ORIGIN } from '@shared/constants/company';
-import { STATIC_SITEMAP_PATHS, collectSitePathnames } from '@lib/collectSitePathnames';
+import { STATIC_SITEMAP_PATHS, collectSitePathnames } from '@shared/lib/collectSitePathnames';
 import { z } from 'zod';
 
 const BASE_URL = SITE_PUBLIC_ORIGIN;
@@ -15,7 +15,9 @@ const CHANGE_FREQUENCY = 'monthly';
 const STATIC_PRIORITY = 1.0;
 const DYNAMIC_PRIORITY = 0.8;
 
-z.array(z.string()).min(1).parse([...STATIC_SITEMAP_PATHS]);
+z.array(z.string())
+	.min(1)
+	.parse([...STATIC_SITEMAP_PATHS]);
 
 const generateUrl = (path: string, priority: number): string => `
         <url>

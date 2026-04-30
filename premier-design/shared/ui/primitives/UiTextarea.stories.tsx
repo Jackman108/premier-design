@@ -1,11 +1,11 @@
-import type {Meta, StoryObj} from '@storybook/nextjs-vite';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import {UiTextarea} from './UiTextarea';
+import { UiTextarea } from './UiTextarea';
 
 const meta = {
 	title: 'Primitives/UiTextarea',
 	component: UiTextarea,
-	parameters: {layout: 'padded'},
+	parameters: { layout: 'padded' },
 	tags: ['autodocs'],
 } satisfies Meta<typeof UiTextarea>;
 

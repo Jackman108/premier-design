@@ -1,5 +1,5 @@
-import type {MenuItem} from '@shared/ui/menu/interface/Menu.props';
-import type {ShareBannerDataProps} from '@features/banner';
+import type { MenuItem } from '@shared/ui/menu/interface/Menu.props';
+import type { ShareBannerDataProps } from '@features/banner';
 
 export type HeaderVariant = 'default' | 'solidDark';
 
@@ -13,4 +13,3 @@ export interface HeaderProps {
 	 */
 	variant?: HeaderVariant;
 }
-

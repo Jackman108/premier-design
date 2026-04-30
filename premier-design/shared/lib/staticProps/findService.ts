@@ -1,5 +1,5 @@
-import type {DataProps} from '@shared/validates/dataPropsSchema';
-import {getCanonicalPath} from '@shared/utils/getCanonicalPath';
+import type { DataProps } from '@shared/validates/dataPropsSchema';
+import { getCanonicalPath } from '@shared/utils/getCanonicalPath';
 
 /** Поиск услуги и категории для SSG (`pages/services/...`). В `lib/staticProps/`, чтобы не тянуть `widgets` из `features`. */
 export const findService = (data: DataProps, categoryId: string, serviceId: string) => {

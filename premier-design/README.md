@@ -14,15 +14,15 @@
 ## Быстрый старт (локально)
 
 1. Перейдите в директорию приложения:
-   - `cd premier-design`
+    - `cd premier-design`
 2. Установите зависимости:
-   - `yarn install`
+    - `yarn install`
 3. Создайте файл окружения:
-   - скопируйте `.env.example` в `.env.local`
+    - скопируйте `.env.example` в `.env.local`
 4. Запустите дев-сервер:
-   - `yarn dev`
+    - `yarn dev`
 5. Откройте:
-   - `http://localhost:3000`
+    - `http://localhost:3000`
 
 ## Первый день (S4)
 
@@ -46,15 +46,15 @@
 
 ## Основные команды
 
-| Назначение | Команда |
-|------------|---------|
-| Разработка | `yarn dev` (Webpack, стабильный HMR) · `yarn dev:turbo` (Turbopack) |
-| Сборка / запуск prod | `yarn build` · `yarn start` · `yarn analyze` (bundle analyzer) |
-| Быстрый фидбек (lint + unit) | `yarn check:static` |
-| Все project-gates без «релизной» цепочки | `yarn check:risk:local` |
-| Как pre-commit: lint, unit, gates, build, initial JS | `yarn check:precommit:full` (= `check:deploy:local`) |
-| E2E smoke | `yarn test:e2e` (см. `playwright.config.ts`, `baseURL`) |
-| Storybook | `yarn storybook` · `yarn build-storybook` |
+| Назначение                                           | Команда                                                             |
+| ---------------------------------------------------- | ------------------------------------------------------------------- |
+| Разработка                                           | `yarn dev` (Webpack, стабильный HMR) · `yarn dev:turbo` (Turbopack) |
+| Сборка / запуск prod                                 | `yarn build` · `yarn start` · `yarn analyze` (bundle analyzer)      |
+| Быстрый фидбек (lint + unit)                         | `yarn check:static`                                                 |
+| Все project-gates без «релизной» цепочки             | `yarn check:risk:local`                                             |
+| Как pre-commit: lint, unit, gates, build, initial JS | `yarn check:precommit:full` (= `check:deploy:local`)                |
+| E2E smoke                                            | `yarn test:e2e` (см. `playwright.config.ts`, `baseURL`)             |
+| Storybook                                            | `yarn storybook` · `yarn build-storybook`                           |
 
 **Полный перечень** скриптов, CI, lint-staged: [`../docs/guides/scripts-and-quality-gates-ru.md`](../docs/guides/scripts-and-quality-gates-ru.md).
 
@@ -65,10 +65,12 @@
 Шаблон переменных находится в `.env.example`.
 
 Обязательные для API обратной связи:
+
 - `TELEGRAM_BOT_TOKEN`
 - `TELEGRAM_CHAT_ID`
 
 Для email (опционально, в **любой** среде при полном наборе переменных): если задан `EMAIL_HOST` вместе с `EMAIL_PORT`, `EMAIL_USERNAME`, `EMAIL_PASSWORD` и `FEEDBACK_EMAIL_TO`, use-case отправляет письмо; без `EMAIL_HOST` — только Telegram. См. `.env.example`.
+
 - `EMAIL_HOST`
 - `EMAIL_PORT`
 - `EMAIL_USERNAME`
@@ -77,12 +79,15 @@
 - `FEEDBACK_EMAIL_FROM` — поле `From` (если не задано, берётся `EMAIL_USERNAME`; имя клиента уходит в `Reply-To` при указанном email)
 
 Системные:
+
 - `NODE_ENV` (`development` или `production`)
 
 Rate limit для `app/api/*` (Route Handlers, in-memory, см. ADR [`../docs/adr/0005-rate-limiting-storage-and-client-ip.md`](../docs/adr/0005-rate-limiting-storage-and-client-ip.md)):
+
 - `RATE_LIMIT_TRUST_FORWARDED_FOR=1` — доверять `x-forwarded-for` (типично Vercel / reverse proxy). Без переменной используется только IP сокета, чтобы клиент не подменял себе лимит первым хопом заголовка.
 
 Опциональные публичные:
+
 - `NEXT_PUBLIC_YANDEX_MAPS_API_KEY`
 
 ## Версии и релизы
@@ -98,6 +103,7 @@ Production-образ (`Dockerfile.prod`) собирает приложение 
 Образ публикуется в **GHCR** через CI (см. workflow в `.github/workflows/`). На VPS он только pull-ится — исходники приложения на сервер не клонируются.
 
 Multi-site инфраструктура (`premium-design.pro` + `febcode.pro` на одном VPS):
+
 - отдельный репозиторий **`lendings-vps-infra`**: `docker-compose.yml`, `nginx/`, certbot в **корне** клона;
 - указатель из этого репо: [`../deploy/README.md`](../deploy/README.md);
 - операционный гайд: [`../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md);
@@ -123,6 +129,7 @@ docker build -f Dockerfile.prod -t local/premium-design:dev .
 ## Лицензия
 
 Проект распространяется на условиях проприетарной лицензии:
+
 - [`../LICENSE`](../LICENSE) — английская версия;
 - [`../LICENSE_RU.md`](../LICENSE_RU.md) — русская версия (преимущество для законодательства РБ);
 - обоснование: [`../docs/adr/0011-proprietary-license.md`](../docs/adr/0011-proprietary-license.md).
@@ -130,10 +137,10 @@ docker build -f Dockerfile.prod -t local/premium-design:dev .
 ## Типовые проблемы
 
 - Ошибка `"next" не является ... командой` (или пустой `node_modules/.bin`):
-  - остановите `yarn dev` / другие процессы Node, затем в `premier-design` выполните **`yarn install`** (при необходимости удалите `node_modules` и повторите). Скрипты в `package.json` вызывают CLI через `node ./node_modules/...`, чтобы команды работали даже без шимов в `.bin`.
+    - остановите `yarn dev` / другие процессы Node, затем в `premier-design` выполните **`yarn install`** (при необходимости удалите `node_modules` и повторите). Скрипты в `package.json` вызывают CLI через `node ./node_modules/...`, чтобы команды работали даже без шимов в `.bin`.
 - После установки при **`lockfileTryAcquireSync is not a function`** или **`EPERM` на `.node`**: полная переустановка (`удалить node_modules` → `yarn install` без `--ignore-scripts` локально), закрыть IDE/антивирус на время или исключить папку проекта из проверки в реальном времени.
-- **Next.js 16:** сообщение *Another next dev server is already running* — уже запущен `next dev` в этом каталоге (часто на `:3000`). Остановите старый процесс (Ctrl+C в том терминале или `taskkill /PID <pid> /F` из вывода Next), затем снова `yarn dev`. Второй экземпляр для той же папки не поддерживается.
+- **Next.js 16:** сообщение _Another next dev server is already running_ — уже запущен `next dev` в этом каталоге (часто на `:3000`). Остановите старый процесс (Ctrl+C в том терминале или `taskkill /PID <pid> /F` из вывода Next), затем снова `yarn dev`. Второй экземпляр для той же папки не поддерживается.
 - Ошибка по переменным окружения:
-  - проверьте, что `.env.local` создан из `.env.example` и заполнен.
+    - проверьте, что `.env.local` создан из `.env.example` и заполнен.
 - `yarn test` завершился без тестов:
-  - проверьте, что тесты лежат в `**/__tests__/**` или `tests/**`, и что команда запускается из каталога приложения.
+    - проверьте, что тесты лежат в `**/__tests__/**` или `tests/**`, и что команда запускается из каталога приложения.

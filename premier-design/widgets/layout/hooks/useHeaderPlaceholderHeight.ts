@@ -1,6 +1,6 @@
 'use client';
 
-import {useLayoutEffect, useState, type RefObject} from 'react';
+import { useLayoutEffect, useState, type RefObject } from 'react';
 
 /**
  * Высота «липкого» хедера для плейсхолдера: при переносе меню на вторую строку

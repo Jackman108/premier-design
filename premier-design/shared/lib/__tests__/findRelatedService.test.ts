@@ -1,5 +1,5 @@
 /** @jest-environment node */
-import {findRelatedService} from '../findRelatedService';
+import { findRelatedService } from '../findRelatedService';
 
 const dataWithRelated = (): Parameters<typeof findRelatedService>[0] =>
 	({
@@ -16,11 +16,11 @@ const dataWithRelated = (): Parameters<typeof findRelatedService>[0] =>
 				triggers: [],
 			},
 		],
-	} as unknown as Parameters<typeof findRelatedService>[0]);
+	}) as unknown as Parameters<typeof findRelatedService>[0];
 
 describe('findRelatedService', () => {
 	it('returns related service when canonical tail matches categoryId', () => {
-		const {relatedService} = findRelatedService(dataWithRelated(), 'bar-baz');
+		const { relatedService } = findRelatedService(dataWithRelated(), 'bar-baz');
 		expect(relatedService.id).toBe('1');
 	});
 

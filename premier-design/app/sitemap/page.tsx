@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
-import { buildSitemapHeadProps } from '@lib/app-router/seo/marketingPagesHead';
-import { collectSitePathnames } from '@lib/collectSitePathnames';
-import { getCachedData } from '@lib/getStaticData';
+import { buildSitemapHeadProps } from '@shared/lib/app-router/seo/marketingPagesHead';
+import { collectSitePathnames } from '@shared/lib/collectSitePathnames';
+import { getCachedData } from '@shared/lib/getStaticData';
 import { selectPageData } from '@shared/hooks/usePageData';
 import { customHeadPropsToMetadata } from '@shared/lib/seo/customHeadPropsToMetadata';
 import { getFullCanonicalUrl } from '@shared/utils/getFullCanonicalUrl';
@@ -60,7 +60,9 @@ export default async function SitemapHtmlPage() {
 										<Link className={styles.link} href={href}>
 											{label}
 										</Link>
-										<span className={styles.url}>{getFullCanonicalUrl(path === '' ? '/' : path)}</span>
+										<span className={styles.url}>
+											{getFullCanonicalUrl(path === '' ? '/' : path)}
+										</span>
 									</li>
 								);
 							})}

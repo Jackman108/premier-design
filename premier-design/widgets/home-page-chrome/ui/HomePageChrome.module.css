@@ -6,9 +6,11 @@
 	height: 3px;
 	z-index: var(--z-overlay);
 	transform-origin: 0 50%;
-	background: linear-gradient(90deg,
-			color-mix(in srgb, var(--color-accent) 82%, transparent),
-			color-mix(in srgb, var(--gold-light) 78%, transparent));
+	background: linear-gradient(
+		90deg,
+		color-mix(in srgb, var(--color-accent) 82%, transparent),
+		color-mix(in srgb, var(--gold-light) 78%, transparent)
+	);
 	opacity: 0.92;
 	pointer-events: none;
 	will-change: transform;
@@ -104,7 +106,9 @@
 	font-weight: 600;
 	background: color-mix(in srgb, var(--color-surface) 72%, transparent);
 	border-color: color-mix(in srgb, var(--color-accent) 42%, var(--color-border));
-	box-shadow: var(--shadow-sm), 0 0 0 1px color-mix(in srgb, var(--color-accent) 22%, transparent);
+	box-shadow:
+		var(--shadow-sm),
+		0 0 0 1px color-mix(in srgb, var(--color-accent) 22%, transparent);
 }
 
 @media (max-width: 768px) {

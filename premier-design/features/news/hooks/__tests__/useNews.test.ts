@@ -1,10 +1,10 @@
 /** @jest-environment jsdom */
-import {act, renderHook} from '@testing-library/react';
-import {useNews} from '../useNews';
-import {useModalState} from '@shared/hooks/useModalState';
-import {useUrlHash} from '@shared/hooks/useUrlHash';
-import {useScrollToElement} from '@shared/hooks/useScrollToElement';
-import {useVisibilityObserver} from '@shared/hooks/useVisibilityObserver';
+import { act, renderHook } from '@testing-library/react';
+import { useNews } from '../useNews';
+import { useModalState } from '@shared/hooks/useModalState';
+import { useUrlHash } from '@shared/hooks/useUrlHash';
+import { useScrollToElement } from '@shared/hooks/useScrollToElement';
+import { useVisibilityObserver } from '@shared/hooks/useVisibilityObserver';
 
 jest.mock('@shared/hooks/useModalState', () => ({
 	useModalState: jest.fn(),
@@ -37,19 +37,19 @@ describe('useNews', () => {
 
 	beforeEach(() => {
 		jest.clearAllMocks();
-		mockedUseModalState.mockReturnValue({isOpen: false, openModal, toggleModal, closeModal});
-		mockedUseUrlHash.mockReturnValue({updateHash, resetHash});
+		mockedUseModalState.mockReturnValue({ isOpen: false, openModal, toggleModal, closeModal });
+		mockedUseUrlHash.mockReturnValue({ updateHash, resetHash });
 		mockedUseScrollToElement.mockReturnValue({
 			scrollToElement,
-			scrollToRef: {current: null},
+			scrollToRef: { current: null },
 		});
 		mockedUseVisibilityObserver.mockImplementation(() => undefined);
 		window.location.hash = '';
 	});
 
 	it('expands and collapses news items', () => {
-		const news = [{title: 'A'}, {title: 'B'}] as never;
-		const {result} = renderHook(() => useNews(news));
+		const news = [{ title: 'A' }, { title: 'B' }] as never;
+		const { result } = renderHook(() => useNews(news));
 
 		act(() => {
 			result.current.handleNewsClick(1);
@@ -71,7 +71,7 @@ describe('useNews', () => {
 
 	it('opens item from url hash on mount', () => {
 		window.location.hash = '#news-0';
-		const news = [{title: 'A'}] as never;
+		const news = [{ title: 'A' }] as never;
 		renderHook(() => useNews(news));
 
 		expect(openModal).toHaveBeenCalledTimes(1);
@@ -81,8 +81,8 @@ describe('useNews', () => {
 
 	it('skips hash sync when syncHashOnMount is false', () => {
 		window.location.hash = '#news-0';
-		const news = [{title: 'A'}] as never;
-		renderHook(() => useNews(news, {syncHashOnMount: false}));
+		const news = [{ title: 'A' }] as never;
+		renderHook(() => useNews(news, { syncHashOnMount: false }));
 
 		expect(openModal).not.toHaveBeenCalled();
 		expect(updateHash).not.toHaveBeenCalled();

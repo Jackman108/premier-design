@@ -1,4 +1,4 @@
 export interface ThemeButtonProps {
-    currentTheme: string;
-    toggleTheme: () => void;
+	currentTheme: string;
+	toggleTheme: () => void;
 }

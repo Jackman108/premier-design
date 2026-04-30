@@ -1,9 +1,9 @@
 export interface LeadQuizProps {
-    ctaLabel: string;
+	ctaLabel: string;
 }
 
 export interface QuizAnswer {
-    projectType?: string;
-    area?: string;
-    startWindow?: string;
+	projectType?: string;
+	area?: string;
+	startWindow?: string;
 }

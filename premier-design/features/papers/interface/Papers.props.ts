@@ -1,5 +1,5 @@
-import {Paper} from '@features/papers/interface/Paper.props';
+import { Paper } from '@features/papers/interface/Paper.props';
 
 export interface PapersProps {
-    papers: Paper[];
+	papers: Paper[];
 }

@@ -1,13 +1,13 @@
 /** @jest-environment node */
-import {getServicesTierStaticPaths, getServicesTierStaticProps} from '../servicesTierStatic';
-import {getData} from '@lib/getStaticData';
-import {getCommonProps} from '@lib/staticProps/getCommonProps';
+import { getServicesTierStaticPaths, getServicesTierStaticProps } from '../servicesTierStatic';
+import { getData } from '@shared/lib/getStaticData';
+import { getCommonProps } from '@shared/lib/staticProps/getCommonProps';
 
-jest.mock('@lib/getStaticData', () => ({
+jest.mock('@shared/lib/getStaticData', () => ({
 	getData: jest.fn(),
 }));
 
-jest.mock('@lib/staticProps/getCommonProps', () => ({
+jest.mock('@shared/lib/staticProps/getCommonProps', () => ({
 	getCommonProps: jest.fn(),
 }));
 
@@ -18,8 +18,8 @@ const repairCategory = {
 	id: 'cat-a',
 	title: 'A',
 	description: 'd',
-	image: {src: '/x.webp', alt: '', quality: 90, width: 1, height: 1},
-	priceList: [{canonical: '/services/cat-a/job', service: 'J', unit: 'm', price: '1'}],
+	image: { src: '/x.webp', alt: '', quality: 90, width: 1, height: 1 },
+	priceList: [{ canonical: '/services/cat-a/job', service: 'J', unit: 'm', price: '1' }],
 };
 
 const relatedEntry = {
@@ -42,27 +42,27 @@ describe('servicesTierStatic', () => {
 	describe('getServicesTierStaticPaths', () => {
 		it('merges repair category ids and related canonical tails; repairs win on duplicate slug', async () => {
 			mockedGetData.mockResolvedValue({
-				prices: {repairs: [{...repairCategory, id: 'expertise'}]},
+				prices: { repairs: [{ ...repairCategory, id: 'expertise' }] },
 				relatedServices: [relatedEntry],
 			} as never);
 
 			const result = await getServicesTierStaticPaths({} as never);
 
 			expect(result).toEqual({
-				paths: [{params: {categoryId: 'expertise'}}],
+				paths: [{ params: { categoryId: 'expertise' } }],
 				fallback: 'blocking',
 			});
 		});
 
 		it('includes related-only slugs when not overlapping repairs', async () => {
 			mockedGetData.mockResolvedValue({
-				prices: {repairs: [repairCategory]},
+				prices: { repairs: [repairCategory] },
 				relatedServices: [relatedEntry],
 			} as never);
 
 			const result = await getServicesTierStaticPaths({} as never);
 			expect(result).toEqual({
-				paths: [{params: {categoryId: 'cat-a'}}, {params: {categoryId: 'expertise'}}],
+				paths: [{ params: { categoryId: 'cat-a' } }, { params: { categoryId: 'expertise' } }],
 				fallback: 'blocking',
 			});
 		});
@@ -71,24 +71,24 @@ describe('servicesTierStatic', () => {
 			const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
 			mockedGetData.mockRejectedValue(new Error('boom'));
 			const result = await getServicesTierStaticPaths({} as never);
-			expect(result).toEqual({paths: [], fallback: false});
+			expect(result).toEqual({ paths: [], fallback: false });
 			errorSpy.mockRestore();
 		});
 	});
 
 	describe('getServicesTierStaticProps', () => {
 		beforeEach(() => {
-			mockedGetCommonProps.mockReturnValue({menuData: []} as never);
+			mockedGetCommonProps.mockReturnValue({ menuData: [] } as never);
 		});
 
 		it('returns repair tier props when category matches repairs', async () => {
 			mockedGetData.mockResolvedValue({
-				prices: {repairs: [repairCategory]},
+				prices: { repairs: [repairCategory] },
 				relatedServices: [],
 			} as never);
 
 			const result = await getServicesTierStaticProps({
-				params: {categoryId: 'cat-a'},
+				params: { categoryId: 'cat-a' },
 			} as never);
 
 			expect(result).toEqual({
@@ -103,12 +103,12 @@ describe('servicesTierStatic', () => {
 
 		it('returns related tier props when slug matches relatedServices', async () => {
 			mockedGetData.mockResolvedValue({
-				prices: {repairs: []},
+				prices: { repairs: [] },
 				relatedServices: [relatedEntry],
 			} as never);
 
 			const result = await getServicesTierStaticProps({
-				params: {categoryId: 'expertise'},
+				params: { categoryId: 'expertise' },
 			} as never);
 
 			expect(result).toEqual({
@@ -123,15 +123,15 @@ describe('servicesTierStatic', () => {
 
 		it('returns notFound for unknown slug', async () => {
 			mockedGetData.mockResolvedValue({
-				prices: {repairs: []},
+				prices: { repairs: [] },
 				relatedServices: [],
 			} as never);
 
 			const result = await getServicesTierStaticProps({
-				params: {categoryId: 'nope'},
+				params: { categoryId: 'nope' },
 			} as never);
 
-			expect(result).toEqual({notFound: true});
+			expect(result).toEqual({ notFound: true });
 		});
 	});
 });

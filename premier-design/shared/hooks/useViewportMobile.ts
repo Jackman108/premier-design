@@ -1,11 +1,11 @@
 'use client';
 
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 
 const MOBILE_BREAKPOINT = 768;
 
 /** Только breakpoint окна; без состояния меню — для фич и `shared` без импорта `widgets`. */
-export function useViewportMobile(): {isMobile: boolean} {
+export function useViewportMobile(): { isMobile: boolean } {
 	const [isMobile, setIsMobile] = useState(false);
 
 	useEffect(() => {
@@ -20,5 +20,5 @@ export function useViewportMobile(): {isMobile: boolean} {
 		};
 	}, []);
 
-	return {isMobile};
+	return { isMobile };
 }

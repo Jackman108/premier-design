@@ -1,8 +1,4 @@
-import {
-	CircuitOpenError,
-	resetIntegrationCircuitsForTests,
-	runWithIntegrationCircuit,
-} from '../integrationCircuit';
+import { CircuitOpenError, resetIntegrationCircuitsForTests, runWithIntegrationCircuit } from '../integrationCircuit';
 
 const baseConfig = {
 	enabled: true,
@@ -21,7 +17,7 @@ describe('runWithIntegrationCircuit', () => {
 	});
 
 	it('trips to open after threshold failures, then short-circuits with CircuitOpenError', async () => {
-		const c = {cb: 0, name: 'test-telegram'};
+		const c = { cb: 0, name: 'test-telegram' };
 
 		await expect(
 			runWithIntegrationCircuit(c.name, baseConfig, async () => {
@@ -48,11 +44,11 @@ describe('runWithIntegrationCircuit', () => {
 	});
 
 	it('if disabled, always runs the operation', async () => {
-		const c = {n: 0, name: 't2'};
+		const c = { n: 0, name: 't2' };
 		for (let i = 0; i < 5; i += 1) {
 			await runWithIntegrationCircuit(
 				c.name,
-				{enabled: false, failureThreshold: 1, openDurationMs: 1},
+				{ enabled: false, failureThreshold: 1, openDurationMs: 1 },
 				async () => {
 					c.n += 1;
 					throw new Error('nope');

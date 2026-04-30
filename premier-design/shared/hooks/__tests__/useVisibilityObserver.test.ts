@@ -1,6 +1,6 @@
 /** @jest-environment jsdom */
-import {renderHook} from '@testing-library/react';
-import {useVisibilityObserver} from '../useVisibilityObserver';
+import { renderHook } from '@testing-library/react';
+import { useVisibilityObserver } from '../useVisibilityObserver';
 
 describe('useVisibilityObserver', () => {
 	it('observes prefixed elements and resets url for visible entries', () => {
@@ -23,7 +23,7 @@ describe('useVisibilityObserver', () => {
 			trigger = (entries: IntersectionObserverEntry[]) => this.cb(entries, this as never);
 		}
 
-		const instanceRef: {current: MockIntersectionObserver | null} = {current: null};
+		const instanceRef: { current: MockIntersectionObserver | null } = { current: null };
 		Object.defineProperty(window, 'IntersectionObserver', {
 			writable: true,
 			value: class {
@@ -34,7 +34,7 @@ describe('useVisibilityObserver', () => {
 			},
 		});
 
-		const {unmount} = renderHook(() => useVisibilityObserver('news-'));
+		const { unmount } = renderHook(() => useVisibilityObserver('news-'));
 		expect(observe).toHaveBeenCalledTimes(2);
 
 		instanceRef.current?.trigger([

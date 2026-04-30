@@ -1,9 +1,9 @@
 'use client';
 
-import type {FC} from 'react';
+import type { FC } from 'react';
 
-import {FEEDBACK_SUCCESS_TOAST_MS} from '@shared/ui/order/constants';
-import {BodyPortal} from '@shared/ui/portal/BodyPortal';
+import { FEEDBACK_SUCCESS_TOAST_MS } from '@shared/ui/order/constants';
+import { BodyPortal } from '@shared/ui/portal/BodyPortal';
 
 import styles from './FeedbackSuccessToast.module.css';
 
@@ -28,10 +28,10 @@ export const FeedbackSuccessToast: FC<FeedbackSuccessToastProps> = ({
 		<BodyPortal>
 			<div
 				className={styles.wrap}
-				role='status'
-				aria-live='polite'
-				aria-atomic='true'
-				data-testid='feedback-success-toast'
+				role="status"
+				aria-live="polite"
+				aria-atomic="true"
+				data-testid="feedback-success-toast"
 			>
 				<div className={styles.card}>
 					<div className={styles.inner}>
@@ -43,11 +43,7 @@ export const FeedbackSuccessToast: FC<FeedbackSuccessToastProps> = ({
 							<p className={styles.subtitle}>Мы свяжемся с вами в ближайшее время.</p>
 						</div>
 					</div>
-					<div
-						className={styles.progress}
-						style={{animationDuration: `${durationMs}ms`}}
-						aria-hidden
-					/>
+					<div className={styles.progress} style={{ animationDuration: `${durationMs}ms` }} aria-hidden />
 				</div>
 			</div>
 		</BodyPortal>

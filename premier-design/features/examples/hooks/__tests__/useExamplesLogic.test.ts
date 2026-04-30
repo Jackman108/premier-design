@@ -1,8 +1,8 @@
 /** @jest-environment jsdom */
-import {act, renderHook} from '@testing-library/react';
-import {useExamplesLogic} from '../useExamplesLogic';
-import {useModalState} from '@shared/hooks/useModalState';
-import {useViewportMobile} from '@shared/hooks/useViewportMobile';
+import { act, renderHook } from '@testing-library/react';
+import { useExamplesLogic } from '../useExamplesLogic';
+import { useModalState } from '@shared/hooks/useModalState';
+import { useViewportMobile } from '@shared/hooks/useViewportMobile';
 
 jest.mock('@shared/hooks/useModalState', () => ({
 	useModalState: jest.fn(),
@@ -35,10 +35,10 @@ describe('useExamplesLogic', () => {
 
 	it('opens and closes photo viewer for card images', () => {
 		const cards = [
-			{id: 1, images: ['/a.png', '/b.png']},
-			{id: 2, images: []},
+			{ id: 1, images: ['/a.png', '/b.png'] },
+			{ id: 2, images: [] },
 		] as never;
-		const {result} = renderHook(() => useExamplesLogic(cards));
+		const { result } = renderHook(() => useExamplesLogic(cards));
 
 		expect(result.current.memoizedCards).toHaveLength(2);
 		expect(result.current.slidesPerView).toBe(3);

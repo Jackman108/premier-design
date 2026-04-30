@@ -1,12 +1,12 @@
-import type {Meta, StoryObj} from '@storybook/nextjs-vite';
-import {expect, within} from 'storybook/test';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
+import { expect, within } from 'storybook/test';
 
-import {UiInput} from './UiInput';
+import { UiInput } from './UiInput';
 
 const meta = {
 	title: 'Primitives/UiInput',
 	component: UiInput,
-	parameters: {layout: 'padded'},
+	parameters: { layout: 'padded' },
 	tags: ['autodocs'],
 } satisfies Meta<typeof UiInput>;
 
@@ -27,7 +27,7 @@ export const WithError: Story = {
 		defaultValue: 'not-an-email',
 		error: 'Введите корректный адрес',
 	},
-	play: async ({canvasElement}) => {
+	play: async ({ canvasElement }) => {
 		const canvas = within(canvasElement);
 		const input = canvas.getByLabelText('Email');
 		await expect(input).toHaveAttribute('aria-invalid', 'true');

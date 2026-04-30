@@ -1,22 +1,22 @@
-import {TitleProps} from "@shared/ui/title/interface/Title.props";
+import { TitleProps } from '@shared/ui/title/interface/Title.props';
 
 export interface NewsProps {
-    id: number;
-    image: string;
-    imagePng: string;
-    title: string;
-    text: string;
-    date: string;
+	id: number;
+	image: string;
+	imagePng: string;
+	title: string;
+	text: string;
+	date: string;
 }
 
 export interface NewsStyleProps {
-    newsStyle: 'about' | 'footer' | 'body';
+	newsStyle: 'about' | 'footer' | 'body';
 }
 
 export interface NewsComponentProps {
-    title?: TitleProps;
-    news: NewsProps[];
-    newsStyle: NewsStyleProps['newsStyle'];
-    /** На `/about` блок в футере не должен открывать новость по `#news-N` — иначе две модалки и закрытие со второго раза. */
-    syncHashOnMount?: boolean;
+	title?: TitleProps;
+	news: NewsProps[];
+	newsStyle: NewsStyleProps['newsStyle'];
+	/** На `/about` блок в футере не должен открывать новость по `#news-N` — иначе две модалки и закрытие со второго раза. */
+	syncHashOnMount?: boolean;
 }

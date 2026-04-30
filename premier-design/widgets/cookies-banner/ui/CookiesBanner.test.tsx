@@ -7,14 +7,7 @@ import CookiesBanner from './CookiesBanner';
 
 jest.mock('next/link', () => ({
 	__esModule: true,
-	default: ({
-		href,
-		children,
-		...rest
-	}: {
-		href: string;
-		children: ReactNode;
-	}) => (
+	default: ({ href, children, ...rest }: { href: string; children: ReactNode }) => (
 		<a href={href} {...rest}>
 			{children}
 		</a>
@@ -62,7 +55,9 @@ describe('CookiesBanner', () => {
 		});
 
 		render(<CookiesBanner papers={[]} />);
-		expect(screen.queryByRole('heading', { name: 'Ваша конфиденциальность важна для нас' })).not.toBeInTheDocument();
+		expect(
+			screen.queryByRole('heading', { name: 'Ваша конфиденциальность важна для нас' }),
+		).not.toBeInTheDocument();
 	});
 
 	it('renders privacy link and delegates cookie actions to hooks', () => {

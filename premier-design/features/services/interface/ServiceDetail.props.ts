@@ -1,5 +1,5 @@
-import {ParsedUrlQuery} from "querystring";
-import {MenuItem} from "@shared/ui/menu/interface/Menu.props";
+import { ParsedUrlQuery } from 'querystring';
+import { MenuItem } from '@shared/ui/menu/interface/Menu.props';
 import type { ButtonProps } from '@entities/button';
 import type { CostingCardProps } from '@entities/costing';
 import type { PanelProps } from '@entities/panel';
@@ -11,20 +11,20 @@ import type { StructuredDataAggregateRating } from '@entities/review';
 import type { AppealSectionData } from '@entities/appeal';
 
 export interface ServiceDetailProps {
-    service: PriceItem;
-    categoryProps: Category;
-    menuData: MenuItem[];
-    papersData: Paper[];
-    newsData: NewsProps[];
-    costingData: CostingCardProps[];
-    buttonData: ButtonProps[];
-    panelData: PanelProps[];
-    sharesData: ShareBannerDataProps[];
+	service: PriceItem;
+	categoryProps: Category;
+	menuData: MenuItem[];
+	papersData: Paper[];
+	newsData: NewsProps[];
+	costingData: CostingCardProps[];
+	buttonData: ButtonProps[];
+	panelData: PanelProps[];
+	sharesData: ShareBannerDataProps[];
 	appealSection: AppealSectionData;
-    structuredDataRating?: StructuredDataAggregateRating;
+	structuredDataRating?: StructuredDataAggregateRating;
 }
 
 export interface Params extends ParsedUrlQuery {
-    categoryId: string;
-    serviceId: string;
+	categoryId: string;
+	serviceId: string;
 }

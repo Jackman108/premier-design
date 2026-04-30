@@ -1,5 +1,5 @@
 export interface UseResizeEffectsProps {
-    isMobileMenuOpen: boolean;
-    toggleMobileMenu: () => void;
-    isMobile: boolean;
+	isMobileMenuOpen: boolean;
+	toggleMobileMenu: () => void;
+	isMobile: boolean;
 }

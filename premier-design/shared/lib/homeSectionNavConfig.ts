@@ -19,18 +19,18 @@ export const HOME_SECTION_SCROLL_SPY_ORDER = [
 
 /** Якоря боковой навигации главной — подмножество `HOME_SECTION_SCROLL_SPY_ORDER` (без «Преимущества»). */
 export const HOME_SECTION_NAV_LINKS = [
-	{id: 'home-offer', label: 'Предложение'},
-	{id: 'home-services', label: 'Услуги'},
-	{id: 'home-approach', label: 'Подход'},
-	{id: 'home-steps', label: 'Этапы'},
-	{id: 'home-examples', label: 'Работы'},
-	{id: 'home-trust', label: 'Доверие'},
-	{id: 'home-costing', label: 'Смета'},
-	{id: 'home-related', label: 'Ещё услуги'},
-	{id: 'home-faq', label: 'Вопросы'},
-	{id: 'home-reviews', label: 'Отзывы'},
-	{id: 'lead-quiz', label: 'Квиз'},
-	{id: 'home-appeal', label: 'Заявка'},
+	{ id: 'home-offer', label: 'Предложение' },
+	{ id: 'home-services', label: 'Услуги' },
+	{ id: 'home-approach', label: 'Подход' },
+	{ id: 'home-steps', label: 'Этапы' },
+	{ id: 'home-examples', label: 'Работы' },
+	{ id: 'home-trust', label: 'Доверие' },
+	{ id: 'home-costing', label: 'Смета' },
+	{ id: 'home-related', label: 'Ещё услуги' },
+	{ id: 'home-faq', label: 'Вопросы' },
+	{ id: 'home-reviews', label: 'Отзывы' },
+	{ id: 'lead-quiz', label: 'Квиз' },
+	{ id: 'home-appeal', label: 'Заявка' },
 ] as const;
 
 export type HomeSectionNavLink = (typeof HOME_SECTION_NAV_LINKS)[number];

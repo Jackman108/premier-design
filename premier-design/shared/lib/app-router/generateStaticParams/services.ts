@@ -1,4 +1,4 @@
-import { getCachedData } from '@lib/getStaticData';
+import { getCachedData } from '@shared/lib/getStaticData';
 import { getCanonicalPath } from '@shared/utils/getCanonicalPath';
 
 export async function generateStaticParamsServiceDetail() {

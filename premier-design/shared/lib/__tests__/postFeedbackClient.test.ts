@@ -1,5 +1,5 @@
 /** @jest-environment node */
-import {PostFeedbackError, postFeedbackToApi} from '../postFeedbackClient';
+import { PostFeedbackError, postFeedbackToApi } from '../postFeedbackClient';
 
 const payload = {
 	name: 'Test',
@@ -9,27 +9,25 @@ const payload = {
 	consent: true,
 };
 
-const mockResponse = (init: {ok: boolean; status: number; body: string; correlationHeader?: string}): Response =>
+const mockResponse = (init: { ok: boolean; status: number; body: string; correlationHeader?: string }): Response =>
 	({
 		ok: init.ok,
 		status: init.status,
 		statusText: 'test',
-		headers: {get: (k: string) => (k === 'X-Correlation-Id' ? init.correlationHeader ?? null : null)},
+		headers: { get: (k: string) => (k === 'X-Correlation-Id' ? (init.correlationHeader ?? null) : null) },
 		text: () => Promise.resolve(init.body),
 	}) as unknown as Response;
 
 describe('postFeedbackToApi', () => {
 	beforeEach(() => {
-		(global as unknown as {fetch: typeof fetch}).fetch = jest.fn() as unknown as typeof fetch;
+		(global as unknown as { fetch: typeof fetch }).fetch = jest.fn() as unknown as typeof fetch;
 	});
 	afterEach(() => {
 		jest.clearAllMocks();
 	});
 
 	it('resolves on 200', async () => {
-		(global.fetch as jest.Mock).mockResolvedValue(
-			mockResponse({ok: true, status: 200, body: '{}'}),
-		);
+		(global.fetch as jest.Mock).mockResolvedValue(mockResponse({ ok: true, status: 200, body: '{}' }));
 		await expect(postFeedbackToApi(payload)).resolves.toBeUndefined();
 	});
 
@@ -39,9 +37,7 @@ describe('postFeedbackToApi', () => {
 			message: 'Validation failed.',
 			correlationId: 'abc-123',
 		});
-		(global.fetch as jest.Mock).mockResolvedValue(
-			mockResponse({ok: false, status: 400, body}),
-		);
+		(global.fetch as jest.Mock).mockResolvedValue(mockResponse({ ok: false, status: 400, body }));
 		try {
 			await postFeedbackToApi(payload);
 		} catch (e) {
@@ -58,7 +54,7 @@ describe('postFeedbackToApi', () => {
 			mockResponse({
 				ok: false,
 				status: 429,
-				body: JSON.stringify({message: 'Too many requests. Try again later.'}),
+				body: JSON.stringify({ message: 'Too many requests. Try again later.' }),
 				correlationHeader: 'from-header',
 			}),
 		);

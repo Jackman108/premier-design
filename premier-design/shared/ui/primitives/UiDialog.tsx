@@ -1,7 +1,7 @@
 'use client';
 
 import * as Dialog from '@radix-ui/react-dialog';
-import type {FC, ReactNode} from 'react';
+import type { FC, ReactNode } from 'react';
 
 import styles from './UiDialog.module.css';
 
@@ -29,12 +29,8 @@ export const UiDialog: FC<UiDialogProps> = ({
 			<Dialog.Portal>
 				<Dialog.Overlay className={overlayClassName} />
 				<Dialog.Content className={contentClassName}>
-					<Dialog.Title className={styles.visuallyHidden}>
-						{title}
-					</Dialog.Title>
-					<Dialog.Description className={styles.visuallyHidden}>
-						{description}
-					</Dialog.Description>
+					<Dialog.Title className={styles.visuallyHidden}>{title}</Dialog.Title>
+					<Dialog.Description className={styles.visuallyHidden}>{description}</Dialog.Description>
 					{children}
 				</Dialog.Content>
 			</Dialog.Portal>

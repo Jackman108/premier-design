@@ -1,4 +1,4 @@
-import React, {ReactElement} from 'react';
+import React, { ReactElement } from 'react';
 import Link from 'next/link';
 import LogoImage from '../../../public/logo.svg';
 import styles from './Logo.module.css';
@@ -7,26 +7,22 @@ import Image from 'next/image';
 const LOGO_IMAGE_SIZES = '(max-width: 600px) 100vw, (max-width: 1440px) 60vw, 1935px';
 
 const Logo = (): ReactElement => {
-    return (
-        <div className={styles.logo}>
-            <Link
-                href="/"
-                className={styles.logo__image}
-                aria-label="Перейти на главную"
-            >
-                <Image
-                    src={LogoImage}
-                    alt="Logo"
-                    placeholder='empty'
-                    width={2000}
-                    height={160}
-                    sizes={LOGO_IMAGE_SIZES}
-                    priority
-                    className={styles.image}
-                />
-            </Link>
-        </div>
-    );
-}
+	return (
+		<div className={styles.logo}>
+			<Link href="/" className={styles.logo__image} aria-label="Перейти на главную">
+				<Image
+					src={LogoImage}
+					alt="Logo"
+					placeholder="empty"
+					width={2000}
+					height={160}
+					sizes={LOGO_IMAGE_SIZES}
+					priority
+					className={styles.image}
+				/>
+			</Link>
+		</div>
+	);
+};
 
 export default Logo;

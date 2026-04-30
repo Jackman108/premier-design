@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import type { ReactNode } from 'react';
 
 /**
  * Сетка и reveal для секций главной: `HomePage.module.css` + `data-reveal` для `useScrollReveal`.

@@ -1,5 +1,5 @@
-import {existsSync, readFileSync, readdirSync, statSync} from 'node:fs';
-import {join, relative, resolve} from 'node:path';
+import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
+import { join, relative, resolve } from 'node:path';
 
 const cwd = process.cwd();
 const args = process.argv.slice(2);
@@ -9,17 +9,17 @@ const ROOTS = ['features'];
 const UI_FOLDER_MARKER = '/ui/';
 const FILE_RE = /\.(ts|tsx|js|jsx)$/;
 const FORBIDDEN_PATTERNS = [
-	{re: /\blocalStorage\b/, label: 'localStorage'},
-	{re: /\bsessionStorage\b/, label: 'sessionStorage'},
-	{re: /\bwindow\./, label: 'window.* in first render layer'},
-	{re: /\bdocument\./, label: 'document.* in first render layer'},
+	{ re: /\blocalStorage\b/, label: 'localStorage' },
+	{ re: /\bsessionStorage\b/, label: 'sessionStorage' },
+	{ re: /\bwindow\./, label: 'window.* in first render layer' },
+	{ re: /\bdocument\./, label: 'document.* in first render layer' },
 ];
 
 const IGNORED_DIRS = new Set(['node_modules', '.git', '.next', 'coverage', 'storybook-static', 'styled-system']);
 const toUnix = (value) => value.split('\\').join('/');
 
 const walkFiles = (dir, out) => {
-	const entries = readdirSync(dir, {withFileTypes: true});
+	const entries = readdirSync(dir, { withFileTypes: true });
 	for (const entry of entries) {
 		const absolute = join(dir, entry.name);
 		if (entry.isDirectory()) {
@@ -48,9 +48,7 @@ const filesToCheck = (() => {
 		}
 		return files;
 	}
-	return args
-		.map((item) => toUnix(item))
-		.filter((item) => FILE_RE.test(item) && item.includes(UI_FOLDER_MARKER));
+	return args.map((item) => toUnix(item)).filter((item) => FILE_RE.test(item) && item.includes(UI_FOLDER_MARKER));
 })();
 
 const violations = [];
@@ -61,7 +59,7 @@ for (const file of filesToCheck) {
 		continue;
 	}
 	const source = readFileSync(abs, 'utf-8');
-	for (const {re, label} of FORBIDDEN_PATTERNS) {
+	for (const { re, label } of FORBIDDEN_PATTERNS) {
 		if (re.test(source)) {
 			violations.push(`${file}: найдено "${label}". Вынесите логику в hooks/useCases.`);
 		}

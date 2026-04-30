@@ -1,5 +1,5 @@
 /** @jest-environment jsdom */
-import {fireEvent, render, screen} from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import type { CostingCardProps } from '@entities/costing';
 import EstimateModal from './EstimateModal';
 
@@ -55,7 +55,7 @@ describe('EstimateModal', () => {
 		const onClose = jest.fn();
 		render(<EstimateModal cards={cards} card={card} onClose={onClose} />);
 
-		const dialog = screen.getByRole('dialog', {name: 'Рассчитайте стоимость Вашего ремонта'});
+		const dialog = screen.getByRole('dialog', { name: 'Рассчитайте стоимость Вашего ремонта' });
 		expect(dialog).toHaveAttribute('open');
 
 		fireEvent.mouseDown(dialog);
@@ -66,8 +66,8 @@ describe('EstimateModal', () => {
 		const onClose = jest.fn();
 		render(<EstimateModal cards={cards} card={card} onClose={onClose} />);
 
-		const dialog = screen.getByRole('dialog', {name: 'Рассчитайте стоимость Вашего ремонта'});
-		fireEvent(dialog, new Event('cancel', {bubbles: false, cancelable: true}));
+		const dialog = screen.getByRole('dialog', { name: 'Рассчитайте стоимость Вашего ремонта' });
+		fireEvent(dialog, new Event('cancel', { bubbles: false, cancelable: true }));
 
 		expect(onClose).toHaveBeenCalledTimes(1);
 	});
@@ -76,8 +76,8 @@ describe('EstimateModal', () => {
 		const onClose = jest.fn();
 		render(<EstimateModal cards={cards} card={card} onClose={onClose} />);
 
-		const dialog = screen.getByRole('dialog', {name: 'Рассчитайте стоимость Вашего ремонта'});
-		fireEvent.keyDown(dialog, {key: 'Escape'});
+		const dialog = screen.getByRole('dialog', { name: 'Рассчитайте стоимость Вашего ремонта' });
+		fireEvent.keyDown(dialog, { key: 'Escape' });
 
 		expect(onClose).toHaveBeenCalledTimes(1);
 	});

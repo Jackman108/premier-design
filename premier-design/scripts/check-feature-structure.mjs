@@ -1,5 +1,5 @@
-import {readdirSync, existsSync} from 'node:fs';
-import {join, relative, resolve} from 'node:path';
+import { readdirSync, existsSync } from 'node:fs';
+import { join, relative, resolve } from 'node:path';
 
 const cwd = process.cwd();
 const featuresRoot = resolve(cwd, 'features');
@@ -16,7 +16,7 @@ const listFeatureDirs = (root) => {
 		return [];
 	}
 
-	return readdirSync(root, {withFileTypes: true})
+	return readdirSync(root, { withFileTypes: true })
 		.filter((entry) => entry.isDirectory())
 		.map((entry) => join(root, entry.name));
 };

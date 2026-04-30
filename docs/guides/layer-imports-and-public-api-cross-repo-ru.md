@@ -9,7 +9,7 @@
 | Концепция Feb Code | Premier Design (фактическое расположение) |
 |--------------------|-------------------------------------------|
 | `src/app/` — роутинг Next + тонкие `page.tsx` | **`app/`** (`@app`, `@app/*`), Route Handlers `app/api/*/route.ts`; типичный паттерн — реэкспорт из **`@pages/...`** (febcode: `home-metadata` + `home-route`) |
-| `pages-layer/` — композиция страниц без конфликта с резервом `pages/` | **[`pages-layer/`](../../premier-design/pages-layer/)** (`@pages`, `@pages/*`, `@pages-layer/*`): клиентские страницы и RSC-сборка (например [`home/home-route.tsx`](../../premier-design/pages-layer/home/home-route.tsx) + [`home/home-metadata.ts`](../../premier-design/pages-layer/home/home-metadata.ts)); услуги — [`services-detail/`](../../premier-design/pages-layer/services-detail/) и загрузчики в `@lib/app-router/` |
+| `pages-layer/` — композиция страниц без конфликта с резервом `pages/` | **[`pages-layer/`](../../premier-design/pages-layer/)** (`@pages`, `@pages/*`, `@pages-layer/*`): клиентские страницы и RSC-сборка (например [`home/home-route.tsx`](../../premier-design/pages-layer/home/home-route.tsx) + [`home/home-metadata.ts`](../../premier-design/pages-layer/home/home-metadata.ts)); услуги — [`services-detail/`](../../premier-design/pages-layer/services-detail/) и загрузчики в **`@shared/lib/app-router/`** |
 | `widgets/` → `features/` → `entities/` → `shared/` | `widgets/` → `features/` → `entities/` → `shared/` (**PD-R-05**) |
 | Контент и сообщения | Premier (RU): **`@shared/site-data`** (`loadSiteData`), **`data/locales/ru/data.json`**; тексты ошибок формы — **`@shared/i18n/messages`**; Feb: **`shared/site-content`**, словари |
 | Направление импортов «вниз по слою» | То же по смыслу: [`mempalace/rules/01-web-architecture-and-boundaries-ru.md`](../mempalace/rules/01-web-architecture-and-boundaries-ru.md), [`code-structure-and-naming-ru.md`](code-structure-and-naming-ru.md) |
@@ -26,7 +26,7 @@
 
 - **Публичный API фичи:** корневой **`features/<slice>/index.ts`** — импорт **`@features/<slice>`**, не глубоких `ui/…` снаружи слайса — см. [`code-structure-and-naming-ru.md`](code-structure-and-naming-ru.md) §2.
 - **Границы в CI и pre-commit:** скрипт **`scripts/check-architecture-boundaries.mjs`** (`yarn check:architecture`) + **`scripts/architecture-allowlist.json`** (исключения с датой истечения). В `lint-staged` границы гоняются **по изменённым файлам**.
-- Дополнительные правила (например запрет обходов через `@lib/find*`) заданы в том же скрипте — при расширении импортов новые нарушения либо исправляются, либо заносятся в allowlist осознанно с планом снятия.
+- Дополнительные правила (например запрет обходов через `@shared/lib/find*`) заданы в том же скрипте — при расширении импортов новые нарушения либо исправляются, либо заносятся в allowlist осознанно с планом снятия.
 
 Сверка с Feb Code: та же дисциплина «один вход на срез», но инструмент у нас — **ESLint + кастомный boundary-check**, у них — отдельный **arch-lint** в `yarn lint`; смысл совпадает.
 

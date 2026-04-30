@@ -1,11 +1,11 @@
-import type {Meta, StoryObj} from '@storybook/nextjs-vite';
+import type { Meta, StoryObj } from '@storybook/nextjs-vite';
 
-import {UiCheckbox} from './UiCheckbox';
+import { UiCheckbox } from './UiCheckbox';
 
 const meta = {
 	title: 'Primitives/UiCheckbox',
 	component: UiCheckbox,
-	parameters: {layout: 'padded'},
+	parameters: { layout: 'padded' },
 	tags: ['autodocs'],
 } satisfies Meta<typeof UiCheckbox>;
 

@@ -97,7 +97,6 @@ select {
 	display: flex;
 	justify-content: center;
 	height: 10px;
-
 }
 
 .dot {
@@ -109,7 +108,9 @@ select {
 	margin: 0 5px;
 	padding: 5px;
 	cursor: pointer;
-	transition: background-color var(--transition-fast), transform var(--transition-fast);
+	transition:
+		background-color var(--transition-fast),
+		transform var(--transition-fast);
 }
 
 .dot:focus-visible {
@@ -133,7 +134,9 @@ select {
 	fill: var(--brown);
 	background-color: var(--beige-dark);
 	cursor: pointer;
-	transition: fill var(--transition-fast), background-color var(--transition-fast),
+	transition:
+		fill var(--transition-fast),
+		background-color var(--transition-fast),
 		box-shadow var(--transition-fast);
 }
 

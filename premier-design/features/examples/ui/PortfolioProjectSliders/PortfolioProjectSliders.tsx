@@ -1,11 +1,11 @@
 'use client';
 
-import {type FC, type ReactElement, useMemo, useState} from 'react';
+import { type FC, type ReactElement, useMemo, useState } from 'react';
 
 import Image from 'next/image';
-import {useKeenSlider} from 'keen-slider/react';
+import { useKeenSlider } from 'keen-slider/react';
 
-import type {ExampleCardProps, PortfolioProjectSlidersProps} from '../../interface/Examples.props';
+import type { ExampleCardProps, PortfolioProjectSlidersProps } from '../../interface/Examples.props';
 import Arrow from '@shared/ui/slider/ui/Arrow';
 import Title from '@shared/ui/title/ui/Title';
 
@@ -16,7 +16,7 @@ const HERO_SIZES = '(max-width: 768px) 100vw, min(90rem, 100%)';
 const ProjectKeenSlider: FC<{
 	card: ExampleCardProps;
 	sources: string[];
-}> = ({card, sources}): ReactElement => {
+}> = ({ card, sources }): ReactElement => {
 	const [loaded, setLoaded] = useState(false);
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
 		initial: 0,
@@ -69,7 +69,7 @@ const ProjectKeenSlider: FC<{
 	);
 };
 
-const ProjectBlock: FC<{card: ExampleCardProps}> = ({card}): ReactElement => {
+const ProjectBlock: FC<{ card: ExampleCardProps }> = ({ card }): ReactElement => {
 	const sources = useMemo(
 		() => (card.images.length > 0 ? card.images : [card.background]),
 		[card.background, card.images],
@@ -122,7 +122,7 @@ const ProjectBlock: FC<{card: ExampleCardProps}> = ({card}): ReactElement => {
 	);
 };
 
-const PortfolioProjectSliders: FC<PortfolioProjectSlidersProps> = ({cards, title}): ReactElement => {
+const PortfolioProjectSliders: FC<PortfolioProjectSlidersProps> = ({ cards, title }): ReactElement => {
 	return (
 		<section className={styles.root} aria-label={title.title}>
 			<div className={styles.inner}>

@@ -1,5 +1,5 @@
 /** @jest-environment jsdom */
-import {render, screen} from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Title from './Title';
 
 describe('Title', () => {
@@ -14,7 +14,7 @@ describe('Title', () => {
 			/>,
 		);
 
-		expect(screen.getByRole('heading', {name: 'Заголовок'})).toBeInTheDocument();
+		expect(screen.getByRole('heading', { name: 'Заголовок' })).toBeInTheDocument();
 		expect(screen.getByText('Описание')).toBeInTheDocument();
 	});
 });

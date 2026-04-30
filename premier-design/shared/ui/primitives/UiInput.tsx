@@ -1,5 +1,5 @@
-import type {InputHTMLAttributes, ReactNode} from 'react';
-import {forwardRef, useId} from 'react';
+import type { InputHTMLAttributes, ReactNode } from 'react';
+import { forwardRef, useId } from 'react';
 
 import styles from './UiInput.module.css';
 
@@ -10,7 +10,7 @@ export type UiInputProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> &
 };
 
 export const UiInput = forwardRef<HTMLInputElement, UiInputProps>(
-	({label, hint, error, className = '', id, ...rest}, ref) => {
+	({ label, hint, error, className = '', id, ...rest }, ref) => {
 		const autoId = useId();
 		const inputId = id ?? autoId;
 		return (

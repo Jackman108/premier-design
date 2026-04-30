@@ -9,16 +9,10 @@
  * PD-R-03: модули `types`, `social`, `operator`, `developer`; публичный API — отсюда (`@shared/constants/company`).
  */
 
-import {DEVELOPER_STUDIO_FEB_CODE} from './developer';
-import {SITE_OPERATOR, SITE_PUBLIC_ORIGIN} from './operator';
-import {SITE_SOCIAL} from './social';
+import { DEVELOPER_STUDIO_FEB_CODE } from './developer';
+import { SITE_OPERATOR, SITE_PUBLIC_ORIGIN } from './operator';
+import { SITE_SOCIAL } from './social';
 
-export type {
-	AddressDetails,
-	BankDetails,
-	ContactPoint,
-	LegalRequisites,
-	WorkHoursSummary,
-} from './types';
+export type { AddressDetails, BankDetails, ContactPoint, LegalRequisites, WorkHoursSummary } from './types';
 
-export {DEVELOPER_STUDIO_FEB_CODE, SITE_OPERATOR, SITE_PUBLIC_ORIGIN, SITE_SOCIAL};
+export { DEVELOPER_STUDIO_FEB_CODE, SITE_OPERATOR, SITE_PUBLIC_ORIGIN, SITE_SOCIAL };

@@ -24,6 +24,20 @@ const gotoWithRetry = async (page: Page, path: string, attempts = 3) => {
 	throw lastError ?? new Error(`Navigation failed for ${path}`);
 };
 
+/**
+ * До применения `cookiesAccepted` из `addInitScript` баннер может успеть перекрыть экран — принимаем куки.
+ * Если баннер не показался (уже «Принять» в storage), таймаут и игнор.
+ */
+async function acceptCookiesBannerIfShown(page: Page) {
+	try {
+		const accept = page.getByRole('button', { name: 'Принять все куки' });
+		await accept.waitFor({ state: 'visible', timeout: 600 });
+		await accept.click();
+	} catch {
+		/* баннер не появился — ок */
+	}
+}
+
 const HYDRATION_PATTERNS = [/hydration/i, /did not match/i, /server-rendered html/i];
 
 const assertNoHydrationWarnings = (messages: string[], route: string) => {
@@ -164,9 +178,7 @@ test('@extended contacts map iframe loads without CSP frame violations', async (
 	const mapFrame = page.frameLocator('iframe[title="Карта офиса Premium Design"]');
 	await expect(mapFrame.locator('body')).toBeVisible();
 
-	const cspFrameError = messages.find((message) =>
-		/content security policy|framing .* violates/i.test(message),
-	);
+	const cspFrameError = messages.find((message) => /content security policy|framing .* violates/i.test(message));
 	expect(cspFrameError, 'CSP frame warning detected on contacts map').toBeUndefined();
 });
 
@@ -175,12 +187,16 @@ test('@core lead modal opens from hero CTA', async ({ page }) => {
 		window.localStorage.setItem('cookiesAccepted', 'true');
 	});
 	await gotoWithRetry(page, '/');
+	await acceptCookiesBannerIfShown(page);
 
-	const heroOrderButton = page.getByRole('button', { name: 'Сделать заказ' }).first();
+	// Только CTA из hero (`#home-hero`), не нижний док / другие «Оставить заявку».
+	const heroOrderButton = page.locator('#home-hero').getByTestId('hero-order-cta');
 	await expect(heroOrderButton).toBeVisible();
-	// В dev Next может показывать индикатор поверх UI (`nextjs-portal` перехватывает клики).
-	await heroOrderButton.click({ force: true });
-	await expect(page.getByRole('textbox', { name: 'Телефон' })).toBeVisible();
+	await heroOrderButton.scrollIntoViewIfNeeded();
+	await heroOrderButton.click();
+	await expect(page.locator('#feedback-modal-heading')).toBeVisible({ timeout: 15_000 });
+	// `PatternFormat` для телефона не всегда попадает в `role=textbox` в a11y-дереве Playwright.
+	await expect(page.locator('#phone')).toBeVisible();
 });
 
 test('@extended feedback form submit shows success state and keeps console clean', async ({ page }) => {
@@ -203,7 +219,10 @@ test('@extended feedback form submit shows success state and keeps console clean
 	});
 
 	await gotoWithRetry(page, '/');
-	await page.getByRole('button', { name: 'Сделать заказ' }).first().click();
+	await acceptCookiesBannerIfShown(page);
+	const heroOrderButton = page.locator('#home-hero').getByTestId('hero-order-cta');
+	await expect(heroOrderButton).toBeVisible();
+	await heroOrderButton.click();
 
 	await page.getByLabel('Имя').fill('Тестовый клиент');
 	await page.getByRole('textbox', { name: 'Телефон' }).fill('291112233');
@@ -212,11 +231,16 @@ test('@extended feedback form submit shows success state and keeps console clean
 	await consentCheckbox.setChecked(true, { force: true });
 	await page.getByRole('button', { name: 'Отправить заявку' }).click();
 
-	await expect(page.getByText('Заявка отправлена. Мы свяжемся с вами в ближайшее время.')).toBeVisible();
+	// `FeedbackSuccessToast` рендерит заголовок и подпись отдельными `<p>` — ловим тост по `data-testid` и проверяем тексты.
+	const successToast = page.getByTestId('feedback-success-toast');
+	await expect(successToast).toBeVisible();
+	await expect(successToast.getByText('Заявка отправлена')).toBeVisible();
+	await expect(successToast.getByText('Мы свяжемся с вами в ближайшее время.')).toBeVisible();
 
-	const consoleHit = consoleMessages.find((message) =>
-		CONSOLE_FUNNEL_ERROR_PATTERNS.some((pattern) => pattern.test(message))
-		&& !DEV_SERVER_NOISE_PATTERNS.some((pattern) => pattern.test(message)),
+	const consoleHit = consoleMessages.find(
+		(message) =>
+			CONSOLE_FUNNEL_ERROR_PATTERNS.some((pattern) => pattern.test(message)) &&
+			!DEV_SERVER_NOISE_PATTERNS.some((pattern) => pattern.test(message)),
 	);
 	expect(consoleHit, 'Unexpected console issue in lead funnel').toBeUndefined();
 });

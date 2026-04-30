@@ -12,8 +12,7 @@ export class CircuitOpenError extends Error {
 	}
 }
 
-export const isIntegrationCircuitOpenError = (e: unknown): e is CircuitOpenError =>
-	e instanceof CircuitOpenError;
+export const isIntegrationCircuitOpenError = (e: unknown): e is CircuitOpenError => e instanceof CircuitOpenError;
 
 export type IntegrationCircuitConfig = {
 	/** Включить (для отладки можно отключить через env). */
@@ -37,7 +36,7 @@ const getState = (name: string): CircuitState => {
 	if (existing) {
 		return existing;
 	}
-	const initial: CircuitState = {state: 'closed', consecutiveFailures: 0, openUntil: 0};
+	const initial: CircuitState = { state: 'closed', consecutiveFailures: 0, openUntil: 0 };
 	circuits.set(name, initial);
 	return initial;
 };
@@ -48,7 +47,9 @@ export const resetIntegrationCircuitsForTests = (): void => {
 };
 
 /** Только для unit-тестов: снимок состояния (без чувствительных данных). */
-export const getIntegrationCircuitStateForTest = (circuitName: string): {
+export const getIntegrationCircuitStateForTest = (
+	circuitName: string,
+): {
 	state: CircuitState['state'];
 	consecutiveFailures: number;
 } | null => {
@@ -56,13 +57,11 @@ export const getIntegrationCircuitStateForTest = (circuitName: string): {
 	if (!s) {
 		return null;
 	}
-	return {state: s.state, consecutiveFailures: s.consecutiveFailures};
+	return { state: s.state, consecutiveFailures: s.consecutiveFailures };
 };
 
 const logTripped = (name: string, openUntilEpochMs: number) => {
-	console.error(
-		`[integration-circuit] name=${name} state=open reopenAt=${new Date(openUntilEpochMs).toISOString()}`,
-	);
+	console.error(`[integration-circuit] name=${name} state=open reopenAt=${new Date(openUntilEpochMs).toISOString()}`);
 };
 
 export const runWithIntegrationCircuit = async <T>(

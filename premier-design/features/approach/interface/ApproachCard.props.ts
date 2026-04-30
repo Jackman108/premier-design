@@ -1,6 +1,6 @@
 export interface ApproachCardProps {
-    id: number;
-    image: string;
-    title: string;
-    description: string;
+	id: number;
+	image: string;
+	title: string;
+	description: string;
 }

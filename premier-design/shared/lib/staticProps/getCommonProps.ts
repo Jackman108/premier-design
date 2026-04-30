@@ -1,9 +1,9 @@
-import type {DataProps} from '@shared/validates/dataPropsSchema';
-import {selectAppealSectionData} from '@shared/hooks/usePageData';
+import type { DataProps } from '@shared/validates/dataPropsSchema';
+import { selectAppealSectionData } from '@shared/hooks/usePageData';
 
 /** Фрагмент пропсов лейаута для SSG-страниц (`DataProps` из `dataPropsSchema`). */
 export const getCommonProps = (data: DataProps) => {
-	const {menu, papers, news, costingCard, button, panel, shares} = data;
+	const { menu, papers, news, costingCard, button, panel, shares } = data;
 	return {
 		menuData: menu,
 		papersData: papers,

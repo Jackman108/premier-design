@@ -1,9 +1,9 @@
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 
 const applyBackgroundByTheme = () => {
 	const isDark =
-		document.documentElement.classList.contains('dark')
-		|| document.documentElement.getAttribute('data-theme') === 'dark';
+		document.documentElement.classList.contains('dark') ||
+		document.documentElement.getAttribute('data-theme') === 'dark';
 
 	/* Слабее оверлей, чтобы рисунок tools.svg оставался читаемым. */
 	document.body.style.backgroundImage = isDark

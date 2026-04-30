@@ -22,6 +22,7 @@
 | 0007 | [0007-next-pages-and-app-router-split.md](0007-next-pages-and-app-router-split.md) | Гибрид `pages/` + `app/`: зоны ответственности и правила новых маршрутов | Принято |
 | 0008 | [0008-react-chatbot-kit-dependency.md](0008-react-chatbot-kit-dependency.md) | Риск и изоляция `react-chatbot-kit` в бандле | Принято |
 | 0009 | [0009-web-analytics-deferred.md](0009-web-analytics-deferred.md) | Аналитика (YM/GA4/GTM) — отложено до env, CSP и карты событий | Принято |
-| 0010 | [0010-formatting-policy-no-prettier.md](0010-formatting-policy-no-prettier.md) | Политика форматирования: остаёмся на ESLint без Prettier | Принято |
+| 0010 | [0010-formatting-policy-no-prettier.md](0010-formatting-policy-no-prettier.md) | Исторически: без Prettier; по форматированию см. **0013** | Принято (частично замещён) |
 | 0011 | [0011-proprietary-license.md](0011-proprietary-license.md) | Проприетарная лицензия (LICENSE / LICENSE_RU) и правила внутреннего использования | Принято |
 | 0012 | [0012-root-services-folder-vs-shared-api.md](0012-root-services-folder-vs-shared-api.md) | Роль каталога `services/` vs `shared/lib`; без массового переименования в `shared/api` | Принято |
+| 0013 | [0013-shared-lib-react-query-prettier.md](0013-shared-lib-react-query-prettier.md) | Единый `shared/lib` (бывший `lib/`), React Query, Prettier + eslint-config-prettier | Принято |

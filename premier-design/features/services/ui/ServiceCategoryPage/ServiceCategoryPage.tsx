@@ -1,6 +1,6 @@
 'use client';
 
-import { Appeal } from '@lib/dynamicSectionImports';
+import { Appeal } from '@shared/lib/dynamicSectionImports';
 import { useFallback } from '@shared/hooks/useFallback';
 import type { ButtonProps } from '@entities/button';
 import type { Category } from '@entities/service';
@@ -94,7 +94,9 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 									<div className={pageShell.colAside}>
 										<p className={pageShell.lead}>{category.description}</p>
 										<div className={`${pageShell.prose} ${styles.tableIntro}`}>
-											<p className={styles.tableIntroText}>Перечень работ и ориентировочные цены по категории:</p>
+											<p className={styles.tableIntroText}>
+												Перечень работ и ориентировочные цены по категории:
+											</p>
 										</div>
 									</div>
 								</div>
@@ -103,8 +105,12 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 										<thead>
 											<tr className={pricingStyles.tr}>
 												<th className={pricingStyles.th}>Услуга</th>
-												<th className={`${pricingStyles.th} ${pricingStyles.unitColumn}`}>Ед. изм.</th>
-												<th className={`${pricingStyles.th} ${pricingStyles.priceColumn}`}>Цена</th>
+												<th className={`${pricingStyles.th} ${pricingStyles.unitColumn}`}>
+													Ед. изм.
+												</th>
+												<th className={`${pricingStyles.th} ${pricingStyles.priceColumn}`}>
+													Цена
+												</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -119,8 +125,12 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 															{item.service}
 														</Link>
 													</td>
-													<td className={`${pricingStyles.td} ${pricingStyles.unitColumn}`}>{item.unit}</td>
-													<td className={`${pricingStyles.td} ${pricingStyles.priceColumn}`}>{item.price}</td>
+													<td className={`${pricingStyles.td} ${pricingStyles.unitColumn}`}>
+														{item.unit}
+													</td>
+													<td className={`${pricingStyles.td} ${pricingStyles.priceColumn}`}>
+														{item.price}
+													</td>
 												</tr>
 											))}
 										</tbody>
