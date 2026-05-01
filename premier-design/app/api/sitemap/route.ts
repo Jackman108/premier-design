@@ -42,17 +42,20 @@ const generateSitemap = async (): Promise<string> => {
 };
 
 export async function GET(request: Request) {
-	if (request.method !== 'GET') {
-		return Response.json({ message: 'Method not allowed.' }, { status: 405, headers: { Allow: 'GET' } });
-	}
-
 	const correlationId = request.headers.get('x-correlation-id')?.trim() || createCorrelationId('cid');
+
+	if (request.method !== 'GET') {
+		return Response.json(
+			createApiErrorPayload(correlationId, 'METHOD_NOT_ALLOWED', 'Method not allowed. Use GET.'),
+			{ status: 405, headers: { Allow: 'GET', 'X-Correlation-Id': correlationId } },
+		);
+	}
 
 	const rate = applyApiRateLimitWeb(request, 'sitemap', { windowMs: 60_000, maxRequests: 60 });
 	if (!rate.allowed) {
-		return Response.json(createApiErrorPayload(correlationId, 'Too many requests. Try again later.'), {
+		return Response.json(createApiErrorPayload(correlationId, 'RATE_LIMITED', 'Too many requests. Try again later.'), {
 			status: 429,
-			headers: rate.limitHeaders,
+			headers: { ...rate.limitHeaders, 'X-Correlation-Id': correlationId },
 		});
 	}
 
@@ -62,14 +65,18 @@ export async function GET(request: Request) {
 			status: 200,
 			headers: {
 				'Content-Type': 'application/xml',
+				'X-Correlation-Id': correlationId,
 				...rate.limitHeaders,
 			},
 		});
 	} catch (error) {
 		console.error('[sitemap]', error);
-		return Response.json(createApiErrorPayload(correlationId, 'Не удалось сформировать sitemap'), {
-			status: 500,
-			headers: rate.limitHeaders,
-		});
+		return Response.json(
+			createApiErrorPayload(correlationId, 'SITEMAP_FAILED', 'Не удалось сформировать sitemap'),
+			{
+				status: 500,
+				headers: { ...rate.limitHeaders, 'X-Correlation-Id': correlationId },
+			},
+		);
 	}
 }

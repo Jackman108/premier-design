@@ -1,7 +1,10 @@
 import type { Metadata, Viewport } from 'next';
 import type { FC, PropsWithChildren } from 'react';
 
+import { validateStartupEnv } from '../services/validateStartupEnv';
 import { inter, playfair } from '@shared/lib/interFont';
+
+validateStartupEnv();
 import { SITE_OPERATOR } from '@shared/constants/company';
 
 import { RootProviders } from './root-providers';

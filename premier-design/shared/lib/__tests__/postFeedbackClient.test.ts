@@ -31,10 +31,11 @@ describe('postFeedbackToApi', () => {
 		await expect(postFeedbackToApi(payload)).resolves.toBeUndefined();
 	});
 
-	it('throws PostFeedbackError with message and correlationId from JSON', async () => {
+	it('throws PostFeedbackError with error and correlationId from JSON', async () => {
 		const body = JSON.stringify({
-			status: 'error',
-			message: 'Validation failed.',
+			success: false,
+			errorCode: 'VALIDATION_FAILED',
+			error: 'Validation failed.',
 			correlationId: 'abc-123',
 		});
 		(global.fetch as jest.Mock).mockResolvedValue(mockResponse({ ok: false, status: 400, body }));
@@ -49,12 +50,12 @@ describe('postFeedbackToApi', () => {
 		}
 	});
 
-	it('falls back to X-Correlation-Id if body has no id', async () => {
+	it('falls back to legacy message field when error is absent', async () => {
 		(global.fetch as jest.Mock).mockResolvedValue(
 			mockResponse({
 				ok: false,
 				status: 429,
-				body: JSON.stringify({ message: 'Too many requests. Try again later.' }),
+				body: JSON.stringify({ success: false, errorCode: 'RATE_LIMITED', message: 'Too many requests.' }),
 				correlationHeader: 'from-header',
 			}),
 		);
@@ -62,6 +63,7 @@ describe('postFeedbackToApi', () => {
 			await postFeedbackToApi(payload);
 		} catch (e) {
 			const err = e as PostFeedbackError;
+			expect(err.message).toBe('Too many requests.');
 			expect(err.correlationId).toBe('from-header');
 		}
 	});

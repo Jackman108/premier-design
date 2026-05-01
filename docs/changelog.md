@@ -5,8 +5,15 @@
 
 ## [Unreleased]
 
+### Added
+
+- **BP-34 / спринт S1 (портфельный аудит):** [`premier-design/services/validateStartupEnv.ts`](../premier-design/services/validateStartupEnv.ts) (Zod) — в **production** обязательны **`TELEGRAM_BOT_TOKEN`** и **`TELEGRAM_CHAT_ID`**; при заданном **`EMAIL_HOST`** — полный набор SMTP env; проверка отключена в **`GITHUB_ACTIONS`** (как в CI). Вызов из [`app/layout.tsx`](../premier-design/app/layout.tsx); тесты [`services/__tests__/validateStartupEnv.test.ts`](../premier-design/services/__tests__/validateStartupEnv.test.ts).
+- **§9 этап 1.3 / единый JSON API (портфель = febcode эталон):** [`createApiErrorPayload`](../premier-design/shared/lib/api/apiRequestRuntime.ts) возвращает **`{ success: false, errorCode, error, correlationId }`**; **`POST /api/feedback`** — успех **`{ success: true, correlationId, message }`**; **`GET /api/sitemap`** — JSON-ошибки в том же контракте + **`X-Correlation-Id`**. Клиент [`postFeedbackClient.ts`](../premier-design/shared/lib/postFeedbackClient.ts) читает **`error`**, иначе legacy **`message`**. Правило [`.cursor/rules/api-conventions.mdc`](../.cursor/rules/api-conventions.mdc); тесты/e2e обновлены.
+
 ### Changed
 
+- **§5 сводного аудита (`lendings-vps-infra`):** атомарные правила Cursor — `.cursor/rules/project-overview.mdc`, `frontend-fsd.mdc`, `architecture-patterns.mdc`, `react-patterns.mdc`, `api-conventions.mdc`, `testing.mdc`, `docs-standards.mdc`; перекрёстная отсылка в `agent-quality-process.mdc`.
+- **Node (паритет портфеля):** [`.nvmrc`](../premier-design/.nvmrc) зафиксирован на **24.14.1**; в [`package.json`](../premier-design/package.json) поле **`engines.node`**: **`>=24.14.1 <25`** (как в febcode и локальной среде CI).
 - **E2E smoke:** тест «lead modal opens from hero CTA» кликает CTA внутри **`#home-hero`** (не **`.first()`** среди всех «Сделать заказ» на странице), ждёт **`#feedback-modal-heading`**, затем **`#phone`** (**`PatternFormat`** не всегда **`role=textbox`** в Playwright).
 - **E2E / feedback API:** в **`playwright.config.ts`** для **`CI=true`** вместо **`yarn start`** используется **`node .next/standalone/server.js`** (совместимо с **`output: 'standalone'`**). В **`app/api/feedback/route.ts`** добавлен **`GET`** с ответом **405** и JSON **`{ message: '…Method not allowed…' }`** — smoke-тест не падает на пустом теле ответа.
 - **Quality gates / perf:** `scripts/check-initial-js-budget.mjs` приведён к **Next.js 15+ App Router**: если в `build-manifest.json` нет чанков для `/`, считается оболочка (**`polyfillFiles` + `rootMainFiles`**). В **`check:precommit:full`** добавлен **`yarn format:check`** в начало цепочки (паритет с **`check:static`** и CI). В **`.prettierignore`** добавлен каталог **`.audit/`** (сводки аудита не должны ломать **`yarn format:check`**).
@@ -28,6 +35,7 @@
 
 ### Added
 
+- **`GET /api/health`:** [`app/api/health/route.ts`](../premier-design/app/api/health/route.ts) — лёгкий JSON (`status`, `version`, `timestamp`), **`Cache-Control: no-store`**; контракт с **`lendings-vps-infra`** (`docker-compose`: healthcheck не дергает главную страницу); паритет с Feb Code (`febcode/src/app/api/health/route.ts`).
 - **PD-R-05 (портфельный аудит §3.1):** слой **`entities/`** — [`premier-design/entities/`](../premier-design/entities/index.ts): `service`, `document`, `review`; алиасы `@entities` в [`tsconfig.paths.json`](../premier-design/tsconfig.paths.json), [`jest.config.cjs`](../premier-design/jest.config.cjs). Доменные типы **только** в `entities`, без дублей в `shared/interface` (удалены совместимые заглушки `CategoryPrice.props.ts`, `PaperItem.props.ts`; рейтинг JSON-LD — импорт из `@entities/review`, без реэкспорта из [`seoHead.props.ts`](../premier-design/shared/interface/seoHead.props.ts)). Документация: [`guides/code-structure-and-naming-ru.md`](guides/code-structure-and-naming-ru.md), [`mempalace/rules/01-web-architecture-and-boundaries-ru.md`](mempalace/rules/01-web-architecture-and-boundaries-ru.md).
 - **BP-27 (кросс-репо аудит §6.2):** корневой [`AGENTS.md`](../AGENTS.md) — точка входа для агента (структура репо, ссылки на `docs/`, кросс-репо, деплой); паритет с `lendings-vps-infra/AGENTS.md`.
 - **Сводный кросс-репо аудит:** канон — `lendings-vps-infra/docs/audit/cross-repo-portfolio-audit-2026-04-ru.md` (12 направлений, нэйминг, декомпозиция, дедупликация, унификация правил, лучшие практики, roadmap). В этом репо таблицы не дублируются; backlog — в [`audit/audit-and-improvement-plan-ru.md`](audit/audit-and-improvement-plan-ru.md).

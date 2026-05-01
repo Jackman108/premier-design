@@ -6,7 +6,7 @@ import { z } from 'zod';
 
 type FeedbackActionResult =
 	| { status: 'success'; message: string; data?: unknown }
-	| { status: 'error'; message: string; errors?: unknown; code?: 400 | 429 | 500 | 503 };
+	| { status: 'error'; message: string; error?: string; errors?: unknown; code?: 400 | 429 | 500 | 503 };
 
 export const submitFeedbackAction = async (payload: unknown): Promise<FeedbackActionResult> => {
 	const parsed = feedbackSchema.safeParse(payload);
@@ -25,6 +25,7 @@ export const submitFeedbackAction = async (payload: unknown): Promise<FeedbackAc
 			status: 'error',
 			code: response.code ?? 500,
 			message: response.message,
+			error: response.error,
 		};
 	}
 

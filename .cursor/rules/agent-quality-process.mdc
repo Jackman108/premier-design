@@ -1,6 +1,6 @@
 # Процесс, скрипты и quality‑gates (правило агента)
 
-> Контракт: локальные гейты, pre‑commit/pre‑push, синхронизация `docs/` и `docs/changelog.md`. **Нормы архитектуры и кода** — только в `docs/mempalace/rules/` (см. соседний файл `agent-mempalace-bootstrap.mdc`). Полный справочник скриптов — `docs/guides/scripts-and-quality-gates-ru.md`.
+> Контракт: локальные гейты, pre‑commit/pre‑push, синхронизация `docs/` и `docs/changelog.md`. **Нормы архитектуры и кода** — `docs/mempalace/rules/` (см. `agent-mempalace-bootstrap.mdc`) и атомарные правила в этом каталоге: `project-overview.mdc`, `frontend-fsd.mdc`, `architecture-patterns.mdc`, `react-patterns.mdc`, `api-conventions.mdc`, `testing.mdc`, `docs-standards.mdc`. Полный справочник скриптов — `docs/guides/scripts-and-quality-gates-ru.md`.
 
 ## Минимум локальной валидации (по типу изменения)
 

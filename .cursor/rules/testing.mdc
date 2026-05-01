@@ -1,0 +1,16 @@
+---
+description: Smoke / unit / e2e / perf — MemPalace 07 и локальные скрипты
+globs: premier-design/**/*.{ts,tsx,spec.ts}
+alwaysApply: false
+---
+
+# Тестирование и качество
+
+## Канон
+[`docs/mempalace/rules/07-web-testing-and-quality-ru.md`](../docs/mempalace/rules/07-web-testing-and-quality-ru.md)
+
+## Команды репозитория
+Полная матрица — [`docs/guides/scripts-and-quality-gates-ru.md`](../docs/guides/scripts-and-quality-gates-ru.md): `check:static`, `test:e2e` (`@core`), nightly extended, Lighthouse / initial-js по CI.
+
+## Связь с процессом
+Pre-commit / pre-push / PR — см. **`.cursor/rules/agent-quality-process.mdc`**.

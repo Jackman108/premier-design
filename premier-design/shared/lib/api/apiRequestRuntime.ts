@@ -86,11 +86,23 @@ export const createApiRequestObserver = (
 	return { correlationId, finish };
 };
 
-export const createApiErrorPayload = (correlationId: string, message: string, extra: Record<string, unknown> = {}) => {
-	return {
-		status: 'error' as const,
-		message,
-		correlationId,
-		...extra,
-	};
-};
+/** Публичный JSON-контракт портфеля (febcode эталон): `{ success, errorCode, error }` + `correlationId` для поддержки. */
+export type PublicApiErrorJson = {
+	success: false;
+	errorCode: string;
+	error: string;
+	correlationId: string;
+} & Record<string, unknown>;
+
+export const createApiErrorPayload = (
+	correlationId: string,
+	errorCode: string,
+	error: string,
+	extra: Record<string, unknown> = {},
+): PublicApiErrorJson => ({
+	success: false,
+	errorCode,
+	error,
+	correlationId,
+	...extra,
+});

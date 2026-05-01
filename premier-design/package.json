@@ -7,7 +7,7 @@
 	"description": "Website for premium repair and interior design",
 	"type": "module",
 	"engines": {
-		"node": ">=22.19 <25"
+		"node": ">=24.14.1 <25"
 	},
 	"scripts": {
 		"prepare": "node ./node_modules/husky/bin.js",

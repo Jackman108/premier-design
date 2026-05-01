@@ -1,0 +1,20 @@
+---
+description: API Routes, Zod, rate-limit — MemPalace 05–06, 11
+globs: premier-design/**/app/api/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# API conventions
+
+## Канон
+- **Безопасность и данные:** [`docs/mempalace/rules/05-web-security-and-data-ru.md`](../docs/mempalace/rules/05-web-security-and-data-ru.md)
+- **Next.js, формы, API:** [`docs/mempalace/rules/06-web-nextjs-data-and-forms-ru.md`](../docs/mempalace/rules/06-web-nextjs-data-and-forms-ru.md)
+- **Zod и типы:** [`docs/mempalace/rules/11-typing-and-validation-ru.md`](../docs/mempalace/rules/11-typing-and-validation-ru.md)
+
+## Обязательное
+Валидация тела запроса **Zod**; rate-limit на публичных endpoint’ах по политике репозитория.
+
+## Единый JSON (портфель / febcode эталон)
+- **Ошибка:** `{ success: false, errorCode, error, correlationId, … }` — см. `createApiErrorPayload` в [`premier-design/shared/lib/api/apiRequestRuntime.ts`](../premier-design/shared/lib/api/apiRequestRuntime.ts).
+- **Успех (формы / feedback):** `{ success: true, correlationId, message? }` — `POST /api/feedback`.
+- Клиент формы: [`postFeedbackClient.ts`](../premier-design/shared/lib/postFeedbackClient.ts) читает `error`, иначе legacy `message`.

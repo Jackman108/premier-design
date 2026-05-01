@@ -1,0 +1,18 @@
+---
+description: React/компоненты, контент не в коде UI — см. MemPalace 02–03
+globs: premier-design/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# React и UI-паттерны
+
+## Канон
+- **UI и токены:** [`docs/mempalace/rules/02-web-ui-components-and-tokens-ru.md`](../docs/mempalace/rules/02-web-ui-components-and-tokens-ru.md)
+- **a11y и UX:** [`docs/mempalace/rules/03-web-a11y-and-ux-ru.md`](../docs/mempalace/rules/03-web-a11y-and-ux-ru.md)
+
+## Инварианты
+- Контент пользователю — из данных/i18n/`site-content`, не строками в JSX без необходимости.
+- Реквизиты ИП — единый источник `premier-design/shared/constants/company.ts` (см. `agent-quality-process.mdc`).
+
+## Эталон cross-repo
+Feb Code — `.cursor/rules/react-patterns.mdc` в репозитории **febcode**.

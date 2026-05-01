@@ -5,18 +5,23 @@ const readCorrelation = (h: string | null): string | undefined => {
 	return t && t.length > 0 ? t : undefined;
 };
 
-const parseErrorBody = (text: string): { message?: string; correlationId?: string } => {
+const parseErrorBody = (text: string): { error?: string; message?: string; correlationId?: string } => {
 	if (!text) {
 		return {};
 	}
 	try {
-		return JSON.parse(text) as { message?: string; correlationId?: string; status?: string };
+		return JSON.parse(text) as {
+			error?: string;
+			message?: string;
+			correlationId?: string;
+			status?: string;
+		};
 	} catch {
 		return {};
 	}
 };
 
-/** Сопоставимо с `createApiErrorPayload` и успешным телом `submitFeedbackAction`. */
+/** Сопоставимо с `createApiErrorPayload` / портфельным `{ success, errorCode, error }`. */
 export class PostFeedbackError extends Error {
 	readonly name = 'PostFeedbackError';
 
@@ -45,7 +50,9 @@ export async function postFeedbackToApi(payload: FeedbackInput): Promise<void> {
 	const bodyText = await response.text();
 	const parsed = parseErrorBody(bodyText);
 	const message =
-		typeof parsed.message === 'string' && parsed.message.length > 0 ? parsed.message : `Ошибка ${response.status}`;
+		(typeof parsed.error === 'string' && parsed.error.length > 0 && parsed.error) ||
+		(typeof parsed.message === 'string' && parsed.message.length > 0 && parsed.message) ||
+		`Ошибка ${response.status}`;
 
 	const correlationId =
 		typeof parsed.correlationId === 'string' && parsed.correlationId.length > 0 ? parsed.correlationId : fromHeader;

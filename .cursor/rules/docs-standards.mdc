@@ -1,0 +1,19 @@
+---
+description: Доки — kebab-case, -ru.md, changelog, без лишних файлов
+globs: docs/**/*.md
+alwaysApply: true
+---
+
+# Стандарты документации (Premium Design)
+
+## Именование
+- `docs/**` — **kebab-case**; русскоязычные материалы — суффикс **`-ru.md`**.
+- Исключения: `README.md`, `changelog.md`.
+
+## Changelog
+[Keep a Changelog](https://keepachangelog.com/ru/1.1.0/): сверху **`[Unreleased]`**, категории **`Added` / `Changed` / `Deprecated` / `Removed` / `Fixed` / `Security`** по необходимости.
+
+## Дисциплина
+- Один источник правды; не дублировать длинные процедуры — ссылаться на гайды.
+- Новые `.md` — только по явной задаче (см. также `agent-quality-process.mdc`).
+- Перекрёстные правила трёх репо — [`docs/guides/cross-repo-rule-pack-ru.md`](../docs/guides/cross-repo-rule-pack-ru.md).

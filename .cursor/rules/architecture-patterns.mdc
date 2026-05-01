@@ -1,0 +1,17 @@
+---
+description: Use-case, порты, чистый view — канон MemPalace 08
+globs: premier-design/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Архитектурные паттерны
+
+## Канон
+**[`docs/mempalace/rules/08-clean-architecture-use-cases-and-ports-ru.md`](../docs/mempalace/rules/08-clean-architecture-use-cases-and-ports-ru.md)** — use-case, адаптеры, границы домена.
+
+## Практика в репозитории
+- Формы и интеграции (Telegram и др.) — сценарии в `features/*/`, контракт отделён от адаптера.
+- **Pure view:** крупные презентационные компоненты без бизнес-логики и побочных эффектов в том же файле — ориентир см. [`docs/mempalace/rules/09-clean-code-solid-dry-kiss-yagni-ru.md`](../docs/mempalace/rules/09-clean-code-solid-dry-kiss-yagni-ru.md).
+
+## Эталон cross-repo
+Feb Code — зеркало в их `.cursor/rules/architecture-patterns.mdc` (отдельный репозиторий).

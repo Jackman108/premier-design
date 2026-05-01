@@ -24,13 +24,16 @@ export async function OPTIONS() {
 
 export async function GET() {
 	const correlationId = createCorrelationId('cid');
-	return NextResponse.json(createApiErrorPayload(correlationId, 'Method not allowed. Use POST.'), {
-		status: 405,
-		headers: {
-			Allow: ['POST', 'OPTIONS'].join(', '),
-			'X-Correlation-Id': correlationId,
+	return NextResponse.json(
+		createApiErrorPayload(correlationId, 'METHOD_NOT_ALLOWED', 'Method not allowed. Use POST.'),
+		{
+			status: 405,
+			headers: {
+				Allow: ['POST', 'OPTIONS'].join(', '),
+				'X-Correlation-Id': correlationId,
+			},
 		},
-	});
+	);
 }
 
 export async function POST(request: Request) {
@@ -52,7 +55,11 @@ export async function POST(request: Request) {
 	if (!contentType.includes('application/json')) {
 		finish(415, { status: 'error' });
 		return NextResponse.json(
-			createApiErrorPayload(correlationId, 'Unsupported content type. Use application/json.'),
+			createApiErrorPayload(
+				correlationId,
+				'UNSUPPORTED_MEDIA_TYPE',
+				'Unsupported content type. Use application/json.',
+			),
 			{ status: 415, headers: jsonHeaders() },
 		);
 	}
@@ -60,10 +67,13 @@ export async function POST(request: Request) {
 	const rate = applyApiRateLimitWeb(request, 'feedback', { windowMs: 60_000, maxRequests: 5 });
 	if (!rate.allowed) {
 		finish(429, { status: 'error' });
-		return NextResponse.json(createApiErrorPayload(correlationId, 'Too many requests. Try again later.'), {
-			status: 429,
-			headers: jsonHeaders(rate.limitHeaders),
-		});
+		return NextResponse.json(
+			createApiErrorPayload(correlationId, 'RATE_LIMITED', 'Too many requests. Try again later.'),
+			{
+				status: 429,
+				headers: jsonHeaders(rate.limitHeaders),
+			},
+		);
 	}
 
 	let body: unknown;
@@ -71,7 +81,7 @@ export async function POST(request: Request) {
 		body = await request.json();
 	} catch {
 		finish(400, { status: 'error' });
-		return NextResponse.json(createApiErrorPayload(correlationId, 'Invalid JSON body.'), {
+		return NextResponse.json(createApiErrorPayload(correlationId, 'INVALID_JSON', 'Invalid JSON body.'), {
 			status: 400,
 			headers: jsonHeaders(rate.limitHeaders),
 		});
@@ -81,10 +91,9 @@ export async function POST(request: Request) {
 	if (!parsed.success) {
 		finish(400, { status: 'error' });
 		return NextResponse.json(
-			{
-				...createApiErrorPayload(correlationId, 'Validation failed.'),
+			createApiErrorPayload(correlationId, 'VALIDATION_FAILED', 'Validation failed.', {
 				errors: z.treeifyError(parsed.error),
-			},
+			}),
 			{ status: 400, headers: jsonHeaders(rate.limitHeaders) },
 		);
 	}
@@ -94,7 +103,7 @@ export async function POST(request: Request) {
 		const statusCode = 500;
 		finish(statusCode, { status: 'error' });
 		return NextResponse.json(
-			createApiErrorPayload(correlationId, 'Failed to process feedback.', { code: statusCode }),
+			createApiErrorPayload(correlationId, 'INTERNAL_ERROR', 'Failed to process feedback.'),
 			{
 				status: statusCode,
 				headers: jsonHeaders(rate.limitHeaders),
@@ -106,7 +115,7 @@ export async function POST(request: Request) {
 		const statusCode = 504;
 		finish(statusCode, { status: 'error', timedOut: true });
 		return NextResponse.json(
-			createApiErrorPayload(correlationId, 'Feedback processing timed out.', { code: statusCode }),
+			createApiErrorPayload(correlationId, 'GATEWAY_TIMEOUT', 'Feedback processing timed out.'),
 			{
 				status: statusCode,
 				headers: jsonHeaders(rate.limitHeaders),
@@ -120,15 +129,22 @@ export async function POST(request: Request) {
 		case 'error': {
 			const statusCode = response.code ?? 500;
 			finish(statusCode, { status: 'error' });
+			const errorCode =
+				statusCode === 503 ? 'SERVICE_UNAVAILABLE' : statusCode === 429 ? 'RATE_LIMITED' : 'FEEDBACK_FAILED';
+			const userMessage = response.error ?? response.message;
 			return NextResponse.json(
-				{ ...response, correlationId },
+				createApiErrorPayload(correlationId, errorCode, userMessage),
 				{ status: statusCode, headers: jsonHeaders(rate.limitHeaders) },
 			);
 		}
 		case 'success': {
 			finish(200);
 			return NextResponse.json(
-				{ ...response, correlationId },
+				{
+					success: true as const,
+					correlationId,
+					message: response.message,
+				},
 				{ status: 200, headers: jsonHeaders(rate.limitHeaders) },
 			);
 		}
@@ -136,7 +152,7 @@ export async function POST(request: Request) {
 			const statusCode = 500;
 			finish(statusCode, { status: 'error' });
 			return NextResponse.json(
-				createApiErrorPayload(correlationId, 'Unexpected feedback response status.', { code: statusCode }),
+				createApiErrorPayload(correlationId, 'INTERNAL_ERROR', 'Unexpected feedback response status.'),
 				{ status: statusCode, headers: jsonHeaders(rate.limitHeaders) },
 			);
 		}

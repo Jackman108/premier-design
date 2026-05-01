@@ -78,7 +78,7 @@ test('@core feedback api method-guard smoke', async ({ request }) => {
 	});
 	expect(response.status()).toBe(405);
 	const body = await response.json();
-	expect(body.message).toContain('Method not allowed');
+	expect(body.error ?? body.message).toContain('Method not allowed');
 });
 
 test('@extended photo viewer opens and closes from home examples', async ({ page }) => {
@@ -214,7 +214,7 @@ test('@extended feedback form submit shows success state and keeps console clean
 		await route.fulfill({
 			status: 200,
 			contentType: 'application/json',
-			body: JSON.stringify({ status: 'success', message: 'ok' }),
+			body: JSON.stringify({ success: true, message: 'ok', correlationId: 'smoke-mock' }),
 		});
 	});
 

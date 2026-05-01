@@ -1,0 +1,28 @@
+---
+description: Premium Design — назначение репозитория, стек, где лежит код
+alwaysApply: true
+---
+
+# Premium Design — обзор
+
+## Назначение
+Лендинг premium-design.pro (ремонт и дизайн интерьера): маркетинг, лиды, юр.страницы, контент RU.
+
+## Структура (важное)
+```
+premier-design/          # корень git
+├── docs/                # гайды, аудит, ADR, MemPalace rules
+├── premier-design/      # приложение Next.js (App Router)
+│   ├── app/ widgets/ features/ entities/ shared/ pages-layer/ …
+│   └── package.json
+├── .cursor/rules/       # правила агента (этот каталог)
+└── .github/workflows/
+```
+
+## Канон перед кодом
+1. **MemPalace** — `docs/mempalace/rules/` — см. `agent-mempalace-bootstrap.mdc`.
+2. **Процесс и гейты** — `agent-quality-process.mdc`, `docs/guides/scripts-and-quality-gates-ru.md`.
+3. **Карта доков** — `docs/README.md`.
+
+## Стек (кратко)
+Next.js App Router, Panda CSS, Radix, Storybook — детали в `premier-design/README.md` и `docs/development-playbook-ru.md`.

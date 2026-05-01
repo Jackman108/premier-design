@@ -57,7 +57,8 @@ describe('/api/feedback Route Handler', () => {
 		const res = await POST(req);
 		expect(res.status).toBe(200);
 		expect(res.headers.get('x-correlation-id')).toBe('external-cid-123');
-		const json = (await res.json()) as { correlationId: string };
+		const json = (await res.json()) as { success: boolean; correlationId: string; message?: string };
+		expect(json.success).toBe(true);
 		expect(json.correlationId).toBe('external-cid-123');
 	});
 

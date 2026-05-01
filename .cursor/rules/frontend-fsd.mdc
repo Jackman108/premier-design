@@ -1,0 +1,20 @@
+---
+description: FSD-границы, алиасы, публичный API срезов (Premium Design)
+globs: premier-design/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# Frontend — слои и импорты
+
+## Направление слоёв
+`app/` → `pages-layer/` → `widgets/` → `features/` → `entities/` → `shared/`  
+Композиция роутов без доменной логики — в `app/`; страницы — `pages-layer/` (см. ADR и гайды импорта).
+
+## Публичный API
+Экспорт фичи/сущности только через **`index.ts`** среза; запрет «прорыва» внутренних путей — см. arch-lint и [`docs/guides/layer-imports-and-public-api-cross-repo-ru.md`](../docs/guides/layer-imports-and-public-api-cross-repo-ru.md).
+
+## Алиасы
+Канон в [`premier-design/tsconfig.paths.json`](../premier-design/tsconfig.paths.json) и [`docs/guides/code-structure-and-naming-ru.md`](../docs/guides/code-structure-and-naming-ru.md). Не использовать **`@/`** там, где политика репозитория запрещает.
+
+## Сверка с Feb Code
+Общая терминология слоёв — репозиторий **febcode** (`docs/guides/architecture-ru.md`; отдельный git).

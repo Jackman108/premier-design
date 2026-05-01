@@ -62,8 +62,10 @@ describe('/api/sitemap Route Handler', () => {
 		const res = await GET(req);
 
 		expect(res.status).toBe(500);
-		const json = (await res.json()) as { message?: string };
-		expect(json.message).toContain('sitemap');
+		const json = (await res.json()) as { success?: boolean; error?: string; errorCode?: string };
+		expect(json.success).toBe(false);
+		expect(json.errorCode).toBe('SITEMAP_FAILED');
+		expect(json.error).toContain('sitemap');
 		errorSpy.mockRestore();
 	});
 });
