@@ -1920,10 +1920,10 @@
   resolved "https://registry.npmjs.org/@pandacss/types/-/types-1.9.1.tgz"
   integrity sha512-v7t9+GDBw904KwrexerFZ9Elx/xcc6Hh64iRizAo40qLtpPq4YpLBLOerFtcpUMNICdo0uCbKWnbJOMToNC2NA==
 
-"@paulirish/trace_engine@0.0.61":
-  version "0.0.61"
-  resolved "https://registry.npmjs.org/@paulirish/trace_engine/-/trace_engine-0.0.61.tgz"
-  integrity sha512-/O08DwmUqIlJjUSPSZbNF8lWnlxaMsIOV6sS+uDKCxBd5i1psAmjEoG3JAqR6+nHD8X+YY474NW7SxUH/K+/kQ==
+"@paulirish/trace_engine@0.0.64":
+  version "0.0.64"
+  resolved "https://registry.yarnpkg.com/@paulirish/trace_engine/-/trace_engine-0.0.64.tgz#d7cbb7029e84f409ac844e75f5594c3271d0bc3f"
+  integrity sha512-M1krpfOXJcIQPb6TI6iA+9hHRPv3AxFNHPp/iewzUqbfPL5VnTAqkt6xyqwVGmsuQrko7nV1O3MvLZ3SXfPxbA==
   dependencies:
     legacy-javascript latest
     third-party-web latest
@@ -3247,10 +3247,10 @@ available-typed-arrays@^1.0.7:
   dependencies:
     possible-typed-array-names "^1.0.0"
 
-axe-core@^4.10.0, axe-core@^4.11.2, axe-core@^4.2.0:
-  version "4.11.3"
-  resolved "https://registry.npmjs.org/axe-core/-/axe-core-4.11.3.tgz"
-  integrity sha512-zBQouZixDTbo3jMGqHKyePxYxr1e5W8UdTmBQ7sNtaA9M2bE32daxxPLS/jojhKOHxQ7LWwPjfiwf/fhaJWzlg==
+axe-core@^4.10.0, axe-core@^4.11.4, axe-core@^4.2.0:
+  version "4.11.4"
+  resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.11.4.tgz#5b535e381ff1e61ffdd615e5483d16186d3b46a5"
+  integrity sha512-KunSNx+TVpkAw/6ULfhnx+HWRecjqZGTOyquAoWHYLRSdK1tB5Ihce1ZW+UY3fj33bYAFWPu7W/GRSmmrCGuxA==
 
 axios@^1.12.0:
   version "1.15.0"
@@ -3992,10 +3992,10 @@ devtools-protocol@0.0.1595872:
   resolved "https://registry.npmjs.org/devtools-protocol/-/devtools-protocol-0.0.1595872.tgz"
   integrity sha512-kRfgp8vWVjBu/fbYCiVFiOqsCk3CrMKEo3WbgGT2NXK2dG7vawWPBljixajVgGK9II8rDO9G0oD0zLt3I1daRg==
 
-devtools-protocol@0.0.1608973:
-  version "0.0.1608973"
-  resolved "https://registry.npmjs.org/devtools-protocol/-/devtools-protocol-0.0.1608973.tgz"
-  integrity sha512-Tpm17fxYzt+J7VrGdc1k8YdRqS3YV7se/M6KeemEqvUbq/n7At1rWVuXMxQgpWkdwSdIEKYbU//Bve+Shm4YNQ==
+devtools-protocol@0.0.1621552:
+  version "0.0.1621552"
+  resolved "https://registry.yarnpkg.com/devtools-protocol/-/devtools-protocol-0.0.1621552.tgz#03486587aaede81f53a6599a4c1ab2247c8f954c"
+  integrity sha512-uaHF17cjNtGKOVZUoh8W0PGuEwR3pWzY5kz3sj7PK8N/SyBKG3cPnQIehVDDJkSdph6Omv+GlP7GdM/b4DTgJQ==
 
 doctrine@^2.1.0:
   version "2.1.0"
@@ -6262,18 +6262,18 @@ lighthouse-stack-packs@1.12.3:
   resolved "https://registry.npmjs.org/lighthouse-stack-packs/-/lighthouse-stack-packs-1.12.3.tgz"
   integrity sha512-d8IsOpE83kbANgnM+Tp8+x6HcMpX9o2ITBiUERssgzAIFdZCQzs/f4k6D0DLQTE59enml9mbAOU52Wu35exWtg==
 
-lighthouse@^13.1.0:
-  version "13.1.0"
-  resolved "https://registry.npmjs.org/lighthouse/-/lighthouse-13.1.0.tgz"
-  integrity sha512-H3Qi4fJBXbaCTdE3XzdONq6kH5wMoG4v5sv+1BgG4H+0nivSo35eTp/yryHEU7G4xepUJmmlvjS10OWGHFwU+Q==
+lighthouse@^13.2.0:
+  version "13.2.0"
+  resolved "https://registry.yarnpkg.com/lighthouse/-/lighthouse-13.2.0.tgz#1b626275c169f44d6334a13245daa574ed062c63"
+  integrity sha512-Ra4GsuF+iPRMPUUAARD+zqFMLatr8lI9U3FnFaftsTAcIsi++oAXszlgrcFTpkJk7HYdYQRnhn57EuYUPgQCkQ==
   dependencies:
-    "@paulirish/trace_engine" "0.0.61"
+    "@paulirish/trace_engine" "0.0.64"
     "@sentry/node" "^9.28.1"
-    axe-core "^4.11.2"
+    axe-core "^4.11.4"
     chrome-launcher "^1.2.1"
     configstore "^7.0.0"
     csp_evaluator "1.1.5"
-    devtools-protocol "0.0.1608973"
+    devtools-protocol "0.0.1621552"
     enquirer "^2.3.6"
     http-link-header "^1.1.1"
     intl-messageformat "^10.5.3"
@@ -6284,12 +6284,12 @@ lighthouse@^13.1.0:
     lodash-es "^4.17.21"
     lookup-closest-locale "6.2.0"
     open "^8.4.0"
-    puppeteer-core "^24.40.0"
+    puppeteer-core "^24.42.0"
     robots-parser "^3.0.1"
     speedline-core "^1.4.3"
     third-party-web "^0.29.0"
-    tldts-icann "^7.0.27"
-    web-features "^3.21.0"
+    tldts-icann "^7.0.29"
+    web-features "^3.25.0"
     ws "^7.0.0"
     yargs "^17.3.1"
     yargs-parser "^21.0.0"
@@ -7400,10 +7400,10 @@ punycode@^2.1.0, punycode@^2.3.1:
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz"
   integrity sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==
 
-puppeteer-core@^24.40.0:
-  version "24.41.0"
-  resolved "https://registry.npmjs.org/puppeteer-core/-/puppeteer-core-24.41.0.tgz"
-  integrity sha512-rLIUri7E/NQ3APSEYCCozaSJx0u8Tu9wxO6BJwnvXmIgILSK3L0TombaVh3izp1njAGrO6H2ru0hcIrLF+gWLw==
+puppeteer-core@^24.42.0:
+  version "24.42.0"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-24.42.0.tgz#85c1f6c73e6225be0d50fc6a4f2914690280e8cf"
+  integrity sha512-T4zXokk/izH01fYPhyyev1A4piWiOKrYq7CUFpdoYQxmOnXoV6YjUabmfIjCYkNspSoAXIxRid3Tw+Vg0fthYg==
   dependencies:
     "@puppeteer/browsers" "2.13.0"
     chromium-bidi "14.0.0"
@@ -8426,17 +8426,17 @@ tldts-core@^6.1.86:
   resolved "https://registry.npmjs.org/tldts-core/-/tldts-core-6.1.86.tgz"
   integrity sha512-Je6p7pkk+KMzMv2XXKmAE3McmolOQFdxkKw0R8EYNr7sELW46JqnNeTX8ybPiQgvg1ymCoF8LXs5fzFaZvJPTA==
 
-tldts-core@^7.0.28:
-  version "7.0.28"
-  resolved "https://registry.npmjs.org/tldts-core/-/tldts-core-7.0.28.tgz"
-  integrity sha512-7W5Efjhsc3chVdFhqtaU0KtK32J37Zcr9RKtID54nG+tIpcY79CQK/veYPODxtD/LJ4Lue66jvrQzIX2Z2/pUQ==
+tldts-core@^7.0.29:
+  version "7.0.29"
+  resolved "https://registry.yarnpkg.com/tldts-core/-/tldts-core-7.0.29.tgz#c3806f5af57b0351ed9415899be2a8dafa3f56dc"
+  integrity sha512-W99NuU7b1DcG3uJ3v9k9VztCH3WialNbBkBft5wCs8V8mexu0XQqaZEYb9l9RNNzK8+3EJ9PKWB0/RUtTQ/o+Q==
 
-tldts-icann@^7.0.27:
-  version "7.0.28"
-  resolved "https://registry.npmjs.org/tldts-icann/-/tldts-icann-7.0.28.tgz"
-  integrity sha512-brkN3yIgYTzBpSxB71XYBwUMDgutmKmA+6TWzgGD/EPcvCc6LHMTRaYj9ik1u3BxhSW53qIK/7cgjA2rF7BgbA==
+tldts-icann@^7.0.29:
+  version "7.0.29"
+  resolved "https://registry.yarnpkg.com/tldts-icann/-/tldts-icann-7.0.29.tgz#97dbe96fea2ca65eaff9c2ea4917a03bbb9cd246"
+  integrity sha512-+nmAzuVPQO6j50dVE1/c8tnTGEyvvfU1+/6EWF1C6YZQ2M+qH/LfIet0pWHFkKphZIOvjQHdk2NqLKduGTjRDA==
   dependencies:
-    tldts-core "^7.0.28"
+    tldts-core "^7.0.29"
 
 tldts@^6.1.32:
   version "6.1.86"
@@ -8827,10 +8827,10 @@ walker@^1.0.8:
   dependencies:
     makeerror "1.0.12"
 
-web-features@^3.21.0:
-  version "3.23.1"
-  resolved "https://registry.npmjs.org/web-features/-/web-features-3.23.1.tgz"
-  integrity sha512-oNnrhMYcYswjguZXXAH1P7Q1oj8TfonYGQhuBn7/BvoDl7ExxqBFvZQkpZThcDufPaL5rCZg0SV6OE3Yo2r6Sw==
+web-features@^3.25.0:
+  version "3.26.0"
+  resolved "https://registry.yarnpkg.com/web-features/-/web-features-3.26.0.tgz#0d4f3b78336ed6069fad6270779e879e282a428c"
+  integrity sha512-1qXkBvgi2H1uZ3AmP9GOOF5+LrlO94bJxgh6Kh12yW6wYQQtjXv7ou3ADo3dIuHB98WlHtGp8bjd/w8UQI6tHw==
 
 webdriver-bidi-protocol@0.4.1:
   version "0.4.1"
