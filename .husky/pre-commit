@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
-
+set -e
 cd "premier-design" || exit 1
+# A: lint-staged (Prettier, ESLint, точечные check:* на staged) + полный typecheck — без build / risk / perf (§9 этап 2.2; полная цепочка — `yarn check:precommit:full` вручную или CI).
 node ./node_modules/lint-staged/bin/lint-staged.js
-yarn check:precommit:full
+yarn typecheck

@@ -1,0 +1,29 @@
+# BP-28 / §9 этап 7: проверка ссылок в markdown (паритет с lendings-vps-infra).
+name: Docs Markdown Links
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  markdown-link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: "premier-design/.nvmrc"
+
+      - name: Check Markdown links
+        run: |
+          set -euo pipefail
+          mapfile -t FILES < <(git ls-files "*.md")
+          if [ "${#FILES[@]}" -eq 0 ]; then echo "No tracked .md files"; exit 0; fi
+          npx --yes markdown-link-check@3.12.2 -c .markdown-link-check.json -q "${FILES[@]}"

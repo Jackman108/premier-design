@@ -1,0 +1,18 @@
+# §9 этап 4.1 (портфельный аудит): регулярные bump зависимостей и GitHub Actions.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/premier-design"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 8
+    labels:
+      - "dependencies"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"

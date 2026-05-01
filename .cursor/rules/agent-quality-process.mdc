@@ -16,7 +16,7 @@
 ## Соответствие pre‑commit / pre‑push
 
 - `lint-staged` (через Husky `pre-commit`): ESLint `--fix` + точечно `check:architecture` / `check:ui-purity` / `check:regressions` / `check:noise` / `check:feature-structure` по glob.
-- После lint‑staged `pre-commit` всегда выполняет `yarn check:precommit:full`.
+- После `lint-staged` — **`yarn typecheck`** (полный проект). **`yarn check:precommit:full`** (format/lint/test/risk/build/perf) — вручную перед релизом или в **PR CI**, не на каждый коммит.
 - `pre-push` выполняет `yarn test:e2e` (`@core`).
 
 Если изменение требует расширенного e2e (`@extended`) — запустить вручную через `yarn test:e2e:extended` или nightly `e2e-extended.yml`.
@@ -29,8 +29,8 @@
 |-----------|----------|
 | Скрипты `package.json` (`scripts`, `engines`, `lint-staged`) или **`premier-design/.nvmrc`** | `docs/guides/scripts-and-quality-gates-ru.md`, `premier-design/README.md`, `docs/changelog.md`, при влиянии на риск — `docs/audit/project-risk-register-2026-04-ru.md` |
 | Матрица выравнивания с Feb Code / гайды `*_CROSS_REPO_*` | `docs/audit/cross-repo-alignment-ru.md`, затронутые гайды в `docs/guides/`, `docs/changelog.md` |
-| Workflow в `.github/workflows/*` | `docs/audit/quality-gates-sync-ru.md`, `docs/changelog.md`, при изменении SLA — `docs/audit/ci-cost-and-trends-ru.md` |
-| Пороги Lighthouse / initial JS / SLO feedback | `docs/guides/perf-and-seo-checklist-ru.md`, `docs/audit/deploy-readiness-2026-04-ru.md` |
+| Workflow в `.github/workflows/*` (в т.ч. `codeql.yml`, `ghcr-premium-design.yml`, `docs-markdown-links.yml`) или **`.github/dependabot.yml`** / **`.markdown-link-check.json`** | `docs/audit/quality-gates-sync-ru.md`, `docs/changelog.md`, при изменении SLA — `docs/audit/ci-cost-and-trends-ru.md` |
+| Пороги Lighthouse / initial JS / SLO feedback | `docs/guides/perf-and-seo-checklist-ru.md`, `docs/audit/deploy-readiness-ru.md` |
 | Архитектурное решение (новое/смена) | новый ADR в `docs/adr/`, индекс `docs/adr/README.md` |
 | Поведение/поведение env приложения | `premier-design/README.md`, `premier-design/.env.example`, `docs/changelog.md` |
 | Реквизиты ИП / `SITE_OPERATOR` (`shared/constants/company.ts`) | `LegalRequisites`/`Phone`/`WorkHours`/`Address`/`generateStructuredData`, юр.тексты в `features/documents-content/*`, `docs/changelog.md` |

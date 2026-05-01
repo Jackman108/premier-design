@@ -37,7 +37,7 @@
 
 ## Документация репозитория
 
-**Карта всех разделов** — [`../docs/README.md`](../docs/README.md). Кратко: плейбук [`../docs/development-playbook-ru.md`](../docs/development-playbook-ru.md), скрипты и гейты [`../docs/guides/scripts-and-quality-gates-ru.md`](../docs/guides/scripts-and-quality-gates-ru.md), деплой [`../docs/audit/deploy-readiness-2026-04-ru.md`](../docs/audit/deploy-readiness-2026-04-ru.md), Feb Code [`../docs/audit/cross-repo-alignment-ru.md`](../docs/audit/cross-repo-alignment-ru.md). Правила агента: [`../.cursor/rules/`](../.cursor/rules/), нормы — [`../docs/mempalace/rules/`](../docs/mempalace/rules/).
+**Карта всех разделов** — [`../docs/README.md`](../docs/README.md). Кратко: плейбук [`../docs/development-playbook-ru.md`](../docs/development-playbook-ru.md), скрипты и гейты [`../docs/guides/scripts-and-quality-gates-ru.md`](../docs/guides/scripts-and-quality-gates-ru.md), деплой [`../docs/audit/deploy-readiness-ru.md`](../docs/audit/deploy-readiness-ru.md), Feb Code [`../docs/audit/cross-repo-alignment-ru.md`](../docs/audit/cross-repo-alignment-ru.md). Правила агента: [`../.cursor/rules/`](../.cursor/rules/), нормы — [`../docs/mempalace/rules/`](../docs/mempalace/rules/).
 
 ## Архитектура UI
 
@@ -46,15 +46,15 @@
 
 ## Основные команды
 
-| Назначение                                           | Команда                                                             |
-| ---------------------------------------------------- | ------------------------------------------------------------------- |
-| Разработка                                           | `yarn dev` (Webpack, стабильный HMR) · `yarn dev:turbo` (Turbopack) |
-| Сборка / запуск prod                                 | `yarn build` · `yarn start` · `yarn analyze` (bundle analyzer)      |
-| Быстрый фидбек (lint + unit)                         | `yarn check:static`                                                 |
-| Все project-gates без «релизной» цепочки             | `yarn check:risk:local`                                             |
-| Как pre-commit: lint, unit, gates, build, initial JS | `yarn check:precommit:full` (= `check:deploy:local`)                |
-| E2E smoke                                            | `yarn test:e2e` (см. `playwright.config.ts`, `baseURL`)             |
-| Storybook                                            | `yarn storybook` · `yarn build-storybook`                           |
+| Назначение                                           | Команда                                                        |
+| ---------------------------------------------------- | -------------------------------------------------------------- |
+| Разработка                                           | `yarn dev` (Turbopack) · `yarn dev:webpack` (Webpack)          |
+| Сборка / запуск prod                                 | `yarn build` · `yarn start` · `yarn analyze` (bundle analyzer) |
+| Быстрый фидбек (lint + unit)                         | `yarn check:static`                                            |
+| Все project-gates без «релизной» цепочки             | `yarn check:risk:local`                                        |
+| Как pre-commit: lint, unit, gates, build, initial JS | `yarn check:precommit:full` (= `check:deploy:local`)           |
+| E2E smoke                                            | `yarn test:e2e` (см. `playwright.config.ts`, `baseURL`)        |
+| Storybook                                            | `yarn storybook` · `yarn build-storybook`                      |
 
 **Полный перечень** скриптов, CI, lint-staged: [`../docs/guides/scripts-and-quality-gates-ru.md`](../docs/guides/scripts-and-quality-gates-ru.md).
 

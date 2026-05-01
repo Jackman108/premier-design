@@ -16,10 +16,22 @@ const smtpWhenEmailHostSchema = z.object({
 
 /**
  * Проверка критичных переменных до обработки запросов (BP-34, паритет с febcode `validateEnvOrThrow`).
- * В GitHub Actions отключается, чтобы `yarn build` / тесты проходили без секретов.
+ * Не выполняется при `next build` / сборке образа (нет секретов) и в GitHub Actions без strict.
+ * Рантайм `next start` / serverless — проверка включена при `NODE_ENV=production`.
  */
 export function validateStartupEnv(): void {
 	if (validated) {
+		return;
+	}
+
+	const nextPhase = process.env.NEXT_PHASE;
+	const isNextCompilePhase =
+		nextPhase === 'phase-production-build' ||
+		nextPhase === 'phase-development-build' ||
+		process.env.SKIP_STARTUP_ENV_VALIDATION === '1';
+
+	if (isNextCompilePhase) {
+		validated = true;
 		return;
 	}
 
@@ -43,9 +55,7 @@ export function validateStartupEnv(): void {
 		const smtp = smtpWhenEmailHostSchema.safeParse(process.env);
 		if (!smtp.success) {
 			const msg = smtp.error.issues.map((i) => `${i.path.join('.')}: ${i.message}`).join('; ');
-			throw new Error(
-				`[startup-env] EMAIL_HOST is set but SMTP env is incomplete (see .env.example). ${msg}`,
-			);
+			throw new Error(`[startup-env] EMAIL_HOST is set but SMTP env is incomplete (see .env.example). ${msg}`);
 		}
 	}
 

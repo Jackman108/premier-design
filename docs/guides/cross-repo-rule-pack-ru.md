@@ -1,6 +1,6 @@
 # Общий rule pack (три репозитория)
 
-**Обновлено**: 29.04.2026
+**Обновлено**: 30.04.2026
 
 Одинаковый смысл в репозиториях **premier-design**, **febcode**, **lendings-vps-infra**. Длинные процессы здесь не дублируются: канон Premier — [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md); Feb Code — [`cross-repo-alignment-plan-ru.md`](../../../febcode/docs/guides/cross-repo-alignment-plan-ru.md) (отдельный git); infra — [`README.md`](../../../lendings-vps-infra/README.md) и [`multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md).
 
@@ -21,7 +21,7 @@
 | **C — PR CI** | Обязательный контур merge | Полный **quality gate** репозитория, **e2e core** (критический контур воронки / смоук), **audit зависимостей** |
 | **D — Nightly / deploy** | Регулярно или по выкладке | **Perf-бюджеты**, при наличии — **SLO**/обратная связь API; **расширенный e2e**; **smoke после деплоя** |
 
-**Premier Design (факт):** в [`.husky/pre-commit`](../../.husky/pre-commit) после `lint-staged` выполняется широкий локальный прогон (`yarn check:precommit:full`) — это сознательно подтягивает к верхним уровням уже на коммите; целевое разделение уровней A/B сохраняется в семантике таблицы и в [`guides/scripts-and-quality-gates-ru.md`](scripts-and-quality-gates-ru.md).
+**Premier Design (факт):** в [`.husky/pre-commit`](../../.husky/pre-commit) после **`lint-staged`** выполняется **`yarn typecheck`** (уровень A); **`yarn check:precommit:full`** (format, unit, risk, build, perf) — вручную или в **PR CI** ([`ci.yml`](../../.github/workflows/ci.yml)). **Dev:** по умолчанию **`yarn dev`** (Turbopack), **`yarn dev:webpack`** — Webpack. Подробности — [`guides/scripts-and-quality-gates-ru.md`](scripts-and-quality-gates-ru.md).
 
 ## Границы унификации
 
@@ -47,7 +47,7 @@
 
 | Термин | Значение |
 |--------|----------|
-| **GHCR** | GitHub Container Registry; образы приложений собираются CI репозитория приложения и публикуются туда. |
+| **GHCR** | GitHub Container Registry; **premium-design** — [`.github/workflows/ghcr-premium-design.yml`](../../.github/workflows/ghcr-premium-design.yml) (**Trivy** + **SBOM** до push). |
 | **Тег образа** | Например `:latest` и тег по SHA коммита; на VPS в `.env` infra задаются `PREMIUM_DESIGN_IMAGE`, `FEBCODE_IMAGE` и т.д. |
 | **lendings-vps-infra** | Канон Docker Compose + nginx на VPS; на сервере без сборки исходников Next.js — только `pull` готовых образов. |
 | **VPS_DEPLOY_PATH** | Абсолютный путь к корню клона infra на сервере (секрет workflow деплоя). |

@@ -26,3 +26,4 @@
 | 0011 | [0011-proprietary-license.md](0011-proprietary-license.md) | Проприетарная лицензия (LICENSE / LICENSE_RU) и правила внутреннего использования | Принято |
 | 0012 | [0012-root-services-folder-vs-shared-api.md](0012-root-services-folder-vs-shared-api.md) | Роль каталога `services/` vs `shared/lib`; без массового переименования в `shared/api` | Принято |
 | 0013 | [0013-shared-lib-react-query-prettier.md](0013-shared-lib-react-query-prettier.md) | Единый `shared/lib` (бывший `lib/`), React Query, Prettier + eslint-config-prettier | Принято |
+| 0014 | [0014-fsd-entities-slice-and-public-api.md](0014-fsd-entities-slice-and-public-api.md) | Срез `entities/`, публичный API barrel; дополняет 0012/0013 | Принято |

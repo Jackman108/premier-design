@@ -1,6 +1,6 @@
-# Аудит проекта — Premier Design (индекс, апрель 2026)
+# Аудит проекта — Premier Design (индекс)
 
-Полный индекс документации — [`docs/README.md`](../README.md). Здесь — сводный статус аудита и UI; бэклог: [`audit-and-improvement-plan-ru.md`](./audit-and-improvement-plan-ru.md) · риски: [`project-risk-register-2026-04-ru.md`](./project-risk-register-2026-04-ru.md) · деплой: [`deploy-readiness-2026-04-ru.md`](./deploy-readiness-2026-04-ru.md).
+Полный индекс документации — [`docs/README.md`](../README.md). Здесь — сводный статус аудита и UI; бэклог: [`audit-and-improvement-plan-ru.md`](./audit-and-improvement-plan-ru.md) · риски: [`project-risk-register-2026-04-ru.md`](./project-risk-register-2026-04-ru.md) · деплой: [`deploy-readiness-ru.md`](./deploy-readiness-ru.md).
 
 Правила агента: [`.cursor/rules/agent-mempalace-bootstrap.mdc`](../../.cursor/rules/agent-mempalace-bootstrap.mdc), [`.cursor/rules/agent-quality-process.mdc`](../../.cursor/rules/agent-quality-process.mdc). Канон норм: [`docs/mempalace/rules/`](../mempalace/rules/).
 
@@ -17,7 +17,7 @@
 
 ### Открытые улучшения (следующий цикл)
 
-На текущий момент **открытых задач нет**. Оперативный список ведётся в [`audit-and-improvement-plan-ru.md`](./audit-and-improvement-plan-ru.md).
+Открытые пункты по сводному портфельному аудиту (PART) — в [`audit-and-improvement-plan-ru.md`](./audit-and-improvement-plan-ru.md). Прочие мелкие задачи — там же.
 
 | Задача | Статус |
 |--------|--------|
@@ -29,6 +29,6 @@
 **Как вести раздел дальше:**
 - новые незакрытые UI-задачи — в [`audit-and-improvement-plan-ru.md`](./audit-and-improvement-plan-ru.md);
 - после реализации — фикс в [`changelog.md`](../changelog.md) и перевод пункта в блок «Выполнено» здесь;
-- если меняются гейты/процесс релиза — синхронизировать с [`quality-gates-sync-ru.md`](./quality-gates-sync-ru.md) и [`deploy-readiness-2026-04-ru.md`](./deploy-readiness-2026-04-ru.md).
+- если меняются гейты/процесс релиза — синхронизировать с [`quality-gates-sync-ru.md`](./quality-gates-sync-ru.md) и [`deploy-readiness-ru.md`](./deploy-readiness-ru.md).
 
 ---

@@ -1,5 +1,7 @@
 # Сборка `premier-design/Dockerfile.prod` и публикация в GHCR — основа для VPS (репозиторий lendings-vps-infra: docker-compose.yml).
 # Vercel этот workflow не трогает: сайт на Vercel собирает их облако по пушу (см. docs/guides/deploy-vercel-and-vps-ru.md).
+#
+# §9 этап 4.3–4.4: Trivy (HIGH/CRITICAL) на локально загруженном образе до push; SBOM (CycloneDX) как артефакт.
 
 name: Build & push premium-design image (GHCR)
 
@@ -9,11 +11,11 @@ on:
     branches:
       - master
     paths:
-      - 'premier-design/**'
-      - '.github/workflows/ghcr-premium-design.yml'
+      - "premier-design/**"
+      - ".github/workflows/ghcr-premium-design.yml"
 
 env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
   IMAGE_NAME: premium-design
 
 permissions:
@@ -44,12 +46,54 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build (load into daemon — для Trivy / SBOM)
+        uses: docker/build-push-action@v5
+        with:
+          context: ./premier-design
+          file: ./premier-design/Dockerfile.prod
+          push: false
+          load: true
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          tags: |
+            ${{ steps.image.outputs.name }}:${{ github.sha }}
+            ${{ steps.image.outputs.name }}:latest
+
+      - name: Trivy — блокирующие HIGH / CRITICAL (BP-08)
+        uses: aquasecurity/trivy-action@0.36.0
+        with:
+          image-ref: "${{ steps.image.outputs.name }}:${{ github.sha }}"
+          scan-type: image
+          vuln-type: os,library
+          severity: CRITICAL,HIGH
+          ignore-unfixed: true
+          exit-code: "1"
+          format: table
+
+      - name: SBOM (CycloneDX) — BP-09
+        uses: aquasecurity/trivy-action@0.36.0
+        with:
+          image-ref: "${{ steps.image.outputs.name }}:${{ github.sha }}"
+          scan-type: image
+          format: cyclonedx
+          output: sbom-premium-design.cdx.json
+          severity: UNKNOWN
+          exit-code: "0"
+
+      - name: Upload SBOM artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: sbom-premium-design-cyclonedx
+          path: sbom-premium-design.cdx.json
+          retention-days: 90
+
+      - name: Push to GHCR
         uses: docker/build-push-action@v5
         with:
           context: ./premier-design
           file: ./premier-design/Dockerfile.prod
           push: true
+          cache-from: type=gha
           tags: |
             ${{ steps.image.outputs.name }}:latest
             ${{ steps.image.outputs.name }}:${{ github.sha }}

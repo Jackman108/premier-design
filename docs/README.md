@@ -16,7 +16,7 @@
 - Структура: **контекст → решение/действия → критерии готовности**.
 - Пути и команды — в обратных кавычках.
 - При изменении поведения, env, скриптов, гейтов или Docker — в **той же задаче:** [`changelog.md`](changelog.md), [`audit/quality-gates-sync-ru.md`](audit/quality-gates-sync-ru.md), при необходимости ADR.
-- При смене UI/темизации/a11y — минимальная запись в [`audit/project-audit-2026-04-ru.md`](audit/project-audit-2026-04-ru.md), [`audit/deploy-readiness-2026-04-ru.md`](audit/deploy-readiness-2026-04-ru.md), [`changelog.md`](changelog.md).
+- При смене UI/темизации/a11y — минимальная запись в [`audit/project-audit-ru.md`](audit/project-audit-ru.md), [`audit/deploy-readiness-ru.md`](audit/deploy-readiness-ru.md), [`changelog.md`](changelog.md).
 - **Без дублирования:** норма один раз — в `mempalace/rules/` или `guides/`; остальное — ссылки.
 
 ---
@@ -46,10 +46,10 @@
 
 | Документ | Назначение |
 |----------|------------|
-| [`audit/project-audit-2026-04-ru.md`](audit/project-audit-2026-04-ru.md) | Сводный статус аудита, UI-направления |
+| [`audit/project-audit-ru.md`](audit/project-audit-ru.md) | Сводный статус аудита, UI-направления |
 | [`audit/audit-and-improvement-plan-ru.md`](audit/audit-and-improvement-plan-ru.md) | Открытый бэклог, Definition of Done |
 | [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md) | Выравнивание с Feb Code, матрица C1–C4 |
-| [`audit/deploy-readiness-2026-04-ru.md`](audit/deploy-readiness-2026-04-ru.md) | Чеклист перед деплоем |
+| [`audit/deploy-readiness-ru.md`](audit/deploy-readiness-ru.md) | Чеклист перед деплоем |
 | [`audit/project-risk-register-2026-04-ru.md`](audit/project-risk-register-2026-04-ru.md) | Реестр рисков |
 | [`audit/quality-gates-sync-ru.md`](audit/quality-gates-sync-ru.md) | RISK-08: синхронизация гейтов и CHANGELOG |
 | [`audit/operations-observability-ru.md`](audit/operations-observability-ru.md) | RISK-11: observability |
@@ -108,8 +108,8 @@
 | Multi-site VPS | Репозиторий **`lendings-vps-infra`** | [`multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md), [`guides/deploy-ssh-github-actions-ru.md`](guides/deploy-ssh-github-actions-ru.md) |
 | Лицензия | `LICENSE`, `LICENSE_RU.md`, ADR 0011 | этот файл, `premier-design/README.md` |
 | Слои / use-case / SOLID | `mempalace/rules/01`, `08`, `09` | плейбук, [`guides/code-structure-and-naming-ru.md`](guides/code-structure-and-naming-ru.md) |
-| Perf | `mempalace/rules/04`, [`guides/perf-and-seo-checklist-ru.md`](guides/perf-and-seo-checklist-ru.md) | [`audit/deploy-readiness-2026-04-ru.md`](audit/deploy-readiness-2026-04-ru.md) |
-| UI / токены | `mempalace/rules/02`, ADR 0001–0003 | [`audit/project-audit-2026-04-ru.md`](audit/project-audit-2026-04-ru.md) |
+| Perf | `mempalace/rules/04`, [`guides/perf-and-seo-checklist-ru.md`](guides/perf-and-seo-checklist-ru.md) | [`audit/deploy-readiness-ru.md`](audit/deploy-readiness-ru.md) |
+| UI / токены | `mempalace/rules/02`, ADR 0001–0003 | [`audit/project-audit-ru.md`](audit/project-audit-ru.md) |
 | Тесты | `mempalace/rules/07` | [`guides/api-and-storybook-ru.md`](guides/api-and-storybook-ru.md) |
 | Бэклог | [`audit/audit-and-improvement-plan-ru.md`](audit/audit-and-improvement-plan-ru.md) | — |
 | История | [`changelog.md`](changelog.md) | — |

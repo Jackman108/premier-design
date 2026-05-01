@@ -61,7 +61,7 @@ const nextConfig = {
 		}
 		return config;
 	},
-	// Явный root снимает предупреждение «Webpack is configured while Turbopack is not» при `yarn dev:turbo`.
+	// Явный root снимает предупреждение «Webpack is configured while Turbopack is not» при `yarn dev:webpack`.
 	turbopack: {
 		root: path.join(__dirname),
 	},

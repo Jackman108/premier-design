@@ -1,8 +1,10 @@
 # Открытый план аудита и улучшений (compliance с новой документацией)
 
-Связанные документы: [`project-audit-2026-04-ru.md`](project-audit-2026-04-ru.md) · [`deploy-readiness-2026-04-ru.md`](deploy-readiness-2026-04-ru.md) · [`quality-gates-sync-ru.md`](quality-gates-sync-ru.md) · [`project-risk-register-2026-04-ru.md`](project-risk-register-2026-04-ru.md) · [`cross-repo-alignment-ru.md`](cross-repo-alignment-ru.md) · [`changelog.md`](../changelog.md).
+**Обновлено**: 01.05.2026
 
-> Документ — **исполняемый бэклог**: только открытые пункты. После закрытия — запись в [`changelog.md`](../changelog.md), перенос в «Закрытые направления» в `project-audit-2026-04-ru.md` или вычеркивание здесь. Исторические выполненные пункты в этот файл не возвращаются.
+Связанные документы: [`project-audit-ru.md`](project-audit-ru.md) · [`deploy-readiness-ru.md`](deploy-readiness-ru.md) · [`quality-gates-sync-ru.md`](quality-gates-sync-ru.md) · [`project-risk-register-2026-04-ru.md`](project-risk-register-2026-04-ru.md) · [`cross-repo-alignment-ru.md`](cross-repo-alignment-ru.md) · [`changelog.md`](../changelog.md) · сводный портфельный аудит — [`cross-repo-portfolio-audit-2026-04-ru.md`](../../../lendings-vps-infra/docs/audit/cross-repo-portfolio-audit-2026-04-ru.md) (`lendings-vps-infra`).
+
+> Документ — **исполняемый бэклог**: только открытые пункты. После закрытия — запись в [`changelog.md`](../changelog.md), перенос в «Закрытые направления» в `project-audit-ru.md` или вычеркивание здесь. Исторические выполненные пункты в этот файл не возвращаются.
 
 ## Definition of Done (DoD)
 
@@ -10,7 +12,7 @@
 
 1. Есть реальное изменение в коде или CI‑процессе (не только текстовая пометка).
 2. Пройдены минимально требуемые гейты: для кода — `yarn check:static` минимум; для границ — `yarn check:risk:local`; для сборки/perf — `yarn check:precommit:full`.
-3. Обновлены релевантные документы (`project-audit-2026-04-ru.md`, `deploy-readiness-2026-04-ru.md`, `mempalace/rules/*`, ADR — по таблице синхронизации в `quality-gates-sync-ru.md`).
+3. Обновлены релевантные документы (`project-audit-ru.md`, `deploy-readiness-ru.md`, `mempalace/rules/*`, ADR — по таблице синхронизации в `quality-gates-sync-ru.md`).
 4. Есть запись в [`changelog.md`](../changelog.md) (`[Unreleased]`).
 5. Для нетривиального решения — короткий комментарий «почему» в коде или ADR.
 
@@ -35,19 +37,25 @@
 2. Затем `P2` с прямым влиянием на merge/деплой (`QA`, `CI`, `ARCH`, `SEC`).
 3. Затем `P2/P3` по UX/perf долгу.
 
-Открытые строки — в таблице ниже. История закрытий — в `project-audit-2026-04-ru.md` и [`changelog.md`](../changelog.md). Новые задачи — по формату в конце документа.
+Открытые строки — в таблице ниже. История закрытий — в `project-audit-ru.md` и [`changelog.md`](../changelog.md). Новые задачи — по формату в конце документа.
 
 ---
 
 ## Открытые задачи
 
-На текущий момент **открытых строк нет** — перенос закрытых пунктов в историю ниже.
+Таблицы **§1.1 / §1.2** сводного аудита портфеля не дублируются целиком — канон в [`cross-repo-portfolio-audit-2026-04-ru.md`](../../../lendings-vps-infra/docs/audit/cross-repo-portfolio-audit-2026-04-ru.md). Ниже — **живой перенос** строк со статусом **PART** по колонке **premier-design** (§9 этап 3.1).
+
+| ID | Спринт | Приоритет | Источник | Задача | Артефакт закрытия | Статус |
+|----|--------|-----------|----------|--------|-------------------|--------|
+| ARCH-PREM-01 | Backlog | P2 | cross-repo §1.1 п.4; §1.2.4 | Двойная вложенность `premier-design/premier-design/` — снизить трение путей CI / DX | README, CI, `docs/` | Open |
+| DATA-PREM-01 | S5 | P3 | cross-repo §1.1 п.3; BP-21 §7.3 | Мультиязычность контента и UI (не только RU) | ADR, `data/`, i18n | Open |
+| REF-PREM-01 | Backlog | P2 | cross-repo §1.1 п.5; §1.2.5 | Порог декомпозиции LOC + отчёт по allowlist (паритет с febcode) | `scripts/`, `development.mdc` | Open |
 
 ## Как добавлять новую задачу
 
 1. Сформулировать строку по формату выше (ID, спринт, приоритет, источник правила, задача, артефакт, статус).
 2. Поместить в соответствующий раздел (1–9). Если темы нет — завести новый раздел.
-3. При закрытии: вычеркнуть из этого файла → запись в [`changelog.md`](../changelog.md) → при необходимости перенести в «Закрытые направления» в `project-audit-2026-04-ru.md`.
+3. При закрытии: вычеркнуть из этого файла → запись в [`changelog.md`](../changelog.md) → при необходимости перенести в «Закрытые направления» в `project-audit-ru.md`.
 
 ## Как не раздувать бэклог
 

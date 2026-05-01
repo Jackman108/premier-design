@@ -26,6 +26,24 @@ describe('validateStartupEnv', () => {
 		expect(() => validateStartupEnv()).not.toThrow();
 	});
 
+	it('does not enforce when SKIP_STARTUP_ENV_VALIDATION=1 (Dockerfile builder)', async () => {
+		env().NODE_ENV = 'production';
+		delete env().GITHUB_ACTIONS;
+		env().SKIP_STARTUP_ENV_VALIDATION = '1';
+		delete env().TELEGRAM_BOT_TOKEN;
+		const { validateStartupEnv } = await import('../validateStartupEnv');
+		expect(() => validateStartupEnv()).not.toThrow();
+	});
+
+	it('does not enforce during Next compile phase', async () => {
+		env().NODE_ENV = 'production';
+		delete env().GITHUB_ACTIONS;
+		env().NEXT_PHASE = 'phase-production-build';
+		delete env().TELEGRAM_BOT_TOKEN;
+		const { validateStartupEnv } = await import('../validateStartupEnv');
+		expect(() => validateStartupEnv()).not.toThrow();
+	});
+
 	it('throws in production when Telegram env is missing', async () => {
 		env().NODE_ENV = 'production';
 		delete env().GITHUB_ACTIONS;

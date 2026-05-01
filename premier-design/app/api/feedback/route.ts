@@ -132,10 +132,10 @@ export async function POST(request: Request) {
 			const errorCode =
 				statusCode === 503 ? 'SERVICE_UNAVAILABLE' : statusCode === 429 ? 'RATE_LIMITED' : 'FEEDBACK_FAILED';
 			const userMessage = response.error ?? response.message;
-			return NextResponse.json(
-				createApiErrorPayload(correlationId, errorCode, userMessage),
-				{ status: statusCode, headers: jsonHeaders(rate.limitHeaders) },
-			);
+			return NextResponse.json(createApiErrorPayload(correlationId, errorCode, userMessage), {
+				status: statusCode,
+				headers: jsonHeaders(rate.limitHeaders),
+			});
 		}
 		case 'success': {
 			finish(200);

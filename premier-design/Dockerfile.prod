@@ -15,6 +15,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
+# `next build` грузит layout без секретов; проверка TELEGRAM_* только на рантайме (`next start`).
+ENV SKIP_STARTUP_ENV_VALIDATION=1
 
 RUN yarn build
 

@@ -23,7 +23,7 @@
 
 | Ситуация | Команда |
 |----------|---------|
-| Локальная разработка | `yarn dev` (Webpack, стабильный HMR) или `yarn dev:turbo` (Turbopack) |
+| Локальная разработка | **`yarn dev`** — по умолчанию **Turbopack** (стабильный HMR); **`yarn dev:webpack`** — **Webpack** (если нужен классический bundler или обход проблем Turbo) |
 | Быстрая проверка кода (lint + typecheck + unit) | `yarn check:static` |
 | Все project‑gates без полной «релизной» цепочки | `yarn check:risk:local` |
 | Как перед merge / как в pre‑commit (lint, typecheck, unit, gates, build, initial JS) | `yarn check:precommit:full` |
@@ -38,9 +38,9 @@
 | Скрипт | Назначение |
 |--------|------------|
 | `prepare` | Husky (установка git hooks) — выполняется автоматически после `yarn install`. |
-| `dev` | `next dev` с **Webpack** (App Router): стабильный HMR. |
-| `dev:turbo` | `next dev` с **Turbopack**; при сбоях HMR — вернуться на `dev`. |
-| `build` | Production‑сборка (`next build` с Webpack). |
+| `dev` | **Канон по умолчанию:** `next dev` с **Turbopack** (быстрый dev / HMR). |
+| `dev:webpack` | **Webpack:** `next dev --webpack`; второй сценарий рядом с Turbopack по умолчанию. |
+| `build` | Production‑сборка (`next build`; см. вывод CLI по bundler). |
 | `start` | Запуск production‑сборки. |
 | `server` | Кастомный `server.js` (`output: 'standalone'`). |
 | `analyze` | Сборка с `@next/bundle-analyzer` (`ANALYZE=true`). |
@@ -102,7 +102,7 @@
 | `test:e2e:visual` | `e2e/visual-regression.spec.ts` (карточки, dark‑overlay). |
 | `clean:test-artifacts` | Очистка локальных e2e-артефактов (`test-results`, `playwright-report`, `blob-report`) перед noise-gate. |
 
-**Заметки:** при **`CI=true`** Playwright поднимает **`node .next/standalone/server.js`** (проект с **`output: 'standalone'`**; не `next start`) — см. `playwright.config.ts`. Локально без `CI` — `yarn dev` и **`reuseExistingServer`**: освободите порт **3000** перед прогоном с **`CI=true`**, иначе standalone не поднимется (`EADDRINUSE`). Если в логе webServer **`The requested resource isn't a valid image … received null`** для многих путей — в **`public/`** не хватает медиа (полный репозиторий содержит каталоги вроде `banners/`, `news/`); smoke обычно проходит, но страница визуально неполная. Pre‑push: **`yarn test:e2e`** — см. `.husky/pre-push`.
+**Заметки:** при **`CI=true`** Playwright поднимает **`node .next/standalone/server.js`** (проект с **`output: 'standalone'`**; не `next start`) — см. `playwright.config.ts`. Локально без `CI` — `yarn dev` и **`reuseExistingServer`**: освободите порт **3000** перед прогоном с **`CI=true`**, иначе standalone не поднимется (`EADDRINUSE`). Если в логе webServer **`The requested resource isn't a valid image … received null`** для многих путей — в **`public/`** не хватает медиа (полный репозиторий содержит каталоги вроде `banners/`, `news/`); smoke обычно проходит, но страница визуально неполная. **Pre‑push:** **`yarn test:e2e`** — см. `.husky/pre-push` (полный прогон **`yarn check:precommit:full`** — в CI или вручную).
 
 ## 7. Дизайн‑система и стили
 
@@ -119,6 +119,10 @@
 - **`e2e-extended.yml`:** `build` + `test:e2e:extended`.
 - **`ci-trends.yml`:** `report-ci-trends.mjs` + `check-ci-sla.mjs`.
 - **`security-high-weekly.yml`:** `report:audit:high` + автосоздание issue при high/critical > 0 (в issue добавляются ссылка на workflow run и имя artifact `security-high-weekly`).
+- **`codeql.yml`:** CodeQL **JavaScript/TypeScript** (`security-extended`) после `yarn build` в `premier-design/` (§9 этап 4.2 / BP-07).
+- **`ghcr-premium-design.yml`:** сборка `Dockerfile.prod` → **Trivy** (HIGH/CRITICAL, `ignore-unfixed`) до push в GHCR → **SBOM** CycloneDX (artifact) → push (§9 этап 4.3–4.4).
+- **`docs-markdown-links.yml`:** `markdown-link-check` по всем tracked **`*.md`** (§9 этап 7 / BP-28); конфиг **`.markdown-link-check.json`** в корне репозитория.
+- **`.github/dependabot.yml`:** **npm** (`/premier-design`) + **github-actions** еженедельно (§9 этап 4.1 / BP-06).
 
 Полные шаги — в `.github/workflows/`. При изменении скриптов обновляйте этот файл и [`quality-gates-sync-ru.md`](../audit/quality-gates-sync-ru.md).
 
@@ -133,7 +137,7 @@
 
 Покрытие слоёв (`shared/`, `widgets/`, `app/`, `pages-layer/`) закрывается паттерном `*.{js,jsx,ts,tsx}`: для staged файлов — Prettier, затем ESLint + `check-architecture-boundaries` + `check-ui-purity`.
 
-Сразу после `lint-staged` Husky `pre-commit` вызывает **`yarn check:precommit:full`** (полный проход).
+Сразу после `lint-staged` Husky `pre-commit` вызывает **`yarn typecheck`** (весь проект). Полная цепочка **`yarn check:precommit:full`** — перед merge / в CI (см. `ci.yml`), не на каждый коммит.
 
 ## Связанные документы
 
@@ -141,5 +145,5 @@
 - [YARN_PACKAGE_MANAGER_RU](yarn-package-manager-ru.md)
 - [API_AND_STORYBOOK_RU](api-and-storybook-ru.md)
 - [ADR 0013](../adr/0013-shared-lib-react-query-prettier.md) — форматирование и tooling; [ADR 0010](../adr/0010-formatting-policy-no-prettier.md) — история; кросс-репо Feb Code — [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md)
-- [DEPLOY_READINESS_2026_04_RU](../audit/deploy-readiness-2026-04-ru.md)
+- [DEPLOY_READINESS_RU](../audit/deploy-readiness-ru.md)
 - [QUALITY_GATES_SYNC_RU](../audit/quality-gates-sync-ru.md)

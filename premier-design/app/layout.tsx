@@ -1,16 +1,16 @@
 import type { Metadata, Viewport } from 'next';
 import type { FC, PropsWithChildren } from 'react';
 
-import { validateStartupEnv } from '../services/validateStartupEnv';
-import { inter, playfair } from '@shared/lib/interFont';
-
-validateStartupEnv();
 import { SITE_OPERATOR } from '@shared/constants/company';
+import { inter, playfair } from '@shared/lib/interFont';
+import { validateStartupEnv } from '../services/validateStartupEnv';
 
 import { RootProviders } from './root-providers';
 
 import '@widgets/styles/globals.css';
 import 'keen-slider/keen-slider.min.css';
+
+validateStartupEnv();
 
 export const metadata: Metadata = {
 	metadataBase: new URL(SITE_OPERATOR.publicOrigin),
