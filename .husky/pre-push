@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 
-cd "premier-design" || exit 1
+# Репозиторий без вложенной папки premier-design/ — скрипты из корня клона (см. README).
 yarn test:e2e

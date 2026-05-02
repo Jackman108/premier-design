@@ -94,17 +94,18 @@
 
 | Скрипт             | Состав (упрощённо)                                                                                                                                                                                                                                                                  |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `check:risk:local` | `check:architecture` → `architecture:progress` → `report:architecture-allowlist` → `ui-purity` → `regressions` → `noise` → `feature-structure` → `slo:feedback` → `ci-sla`                                                                                                          |
+| `check:risk:local` | `check:architecture` → `architecture:progress` → `report:architecture-allowlist` → **`report:decomposition-threshold --fail-on-violations`** (REF-PREM-01) → `ui-purity` → `regressions` → `noise` → `feature-structure` → `slo:feedback` → `ci-sla`                                |
 | `ci:quality`       | **Канон в кросс‑репо** ([`cross-repo-rule-pack-ru.md`](cross-repo-rule-pack-ru.md)): полная цепочка в `package.json`. Состав: `format:check` → `lint` → `typecheck` → `test --watch=false` → `check:risk:local` → `build` → `check:perf:initial-js` (Lighthouse — `check:perf:ci`). |
 
 `check:risk:local` начинает прогон с `clean:test-artifacts`, чтобы старые e2e-артефакты не ломали `check:noise`.
 
 ## 5. Отчёты
 
-| Скрипт                          | Назначение                                                                                                  |
-| ------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `report:architecture-allowlist` | Разбивка allowlist по owner / near‑expiry / candidate‑to‑remove.                                            |
-| `report:audit:high`             | Отчёт по `yarn audit` (high/critical) для weekly триаджа (см. [SUPPLY_CHAIN](../audit/supply-chain-ru.md)). |
+| Скрипт                           | Назначение                                                                                                                                                                                                                                                                                                                                                |
+| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `report:architecture-allowlist`  | Разбивка allowlist по owner / near‑expiry / candidate‑to‑remove.                                                                                                                                                                                                                                                                                          |
+| `report:decomposition-threshold` | Файлы **`features` / `widgets` / `pages-layer`** длиннее порога (**`DECOMPOSITION_MAX_LINES`**, по умолчанию **`scripts/decomposition-allowlist.json` → threshold**); allowlist с **`expiresOn`** (паритет процесса с arch-allowlist). Флаги: **`--fail-on-violations`** (в **`check:risk:local`**), **`--fail-on-near-expiry`**, **`--fail-on-unused`**. |
+| `report:audit:high`              | Отчёт по `yarn audit` (high/critical) для weekly триаджа (см. [SUPPLY_CHAIN](../audit/supply-chain-ru.md)).                                                                                                                                                                                                                                               |
 
 ## 6. E2E (Playwright)
 

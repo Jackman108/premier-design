@@ -1,0 +1,27 @@
+{
+	"threshold": 200,
+	"maxAllowedCount": 6,
+	"entries": [
+		{
+			"path": "src/features/documents-content/ui/document-page/UserAgreementContent.tsx",
+			"maxLines": 380,
+			"expiresOn": "2026-10-31",
+			"owner": "legal-content",
+			"reason": "Юридический текст; дробление по секциям — отдельная задача"
+		},
+		{
+			"path": "src/features/documents-content/ui/document-page/PrivacyPolicyContent.tsx",
+			"maxLines": 320,
+			"expiresOn": "2026-10-31",
+			"owner": "legal-content",
+			"reason": "Юридический текст; дробление по секциям — отдельная задача"
+		},
+		{
+			"path": "src/widgets/home-page-section/config/home-page-slot-registry.tsx",
+			"maxLines": 280,
+			"expiresOn": "2026-10-31",
+			"owner": "platform",
+			"reason": "Реестр слотов главной; декомпозиция при расширении набора слотов"
+		}
+	]
+}

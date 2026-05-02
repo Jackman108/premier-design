@@ -53,6 +53,10 @@
 
 **BP-39:** [`.vscode/extensions.json`](../../.vscode/extensions.json), [`.vscode/settings.json`](../../.vscode/settings.json) (в git только эти файлы; остальное в `.vscode/*` — в [`.gitignore`](../../.gitignore)).
 
+**REF-PREM-01 / декомпозиция view:** [`scripts/decomposition-allowlist.json`](../../scripts/decomposition-allowlist.json), **`yarn report:decomposition-threshold`** (в **`yarn check:risk:local`** — **`--fail-on-violations`**); порог **`DECOMPOSITION_MAX_LINES`** или поле **`threshold`** в JSON.
+
+**Feb Code (FB-R-06):** доменный текст лендинга живёт в **`entities/<slice>/content`** и собирается в **`entities/site-data`**; публичный фасад приложения — **`@shared/site-content`** (репозиторий **febcode**).
+
 **Сводный аудит портфеля (BP):** [`cross-repo-portfolio-audit-2026-04-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/audit/cross-repo-portfolio-audit-2026-04-ru.md) — **§6.2.1** (остаток), **§6.2.2** (полный реестр). Ориентиры в **lendings-vps-infra:** [**BP-12**](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/guides/release-automation-github-ru.md), [**BP-04**](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/guides/observability-next-steps-ru.md).
 
 ### Словарь деплоя (кратко)

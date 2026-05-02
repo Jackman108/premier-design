@@ -3,37 +3,37 @@
 		{
 			"id": 1,
 			"title": "Home",
-			"ruTitle": "Home"
+			"ruTitle": "Главная"
 		},
 		{
 			"id": 8,
 			"title": "Services",
-			"ruTitle": "Services"
+			"ruTitle": "Услуги"
 		},
 		{
 			"id": 2,
 			"title": "Repairs",
-			"ruTitle": "Repairs"
+			"ruTitle": "Ремонт"
 		},
 		{
 			"id": 3,
 			"title": "Design",
-			"ruTitle": "Design"
+			"ruTitle": "Дизайн"
 		},
 		{
 			"id": 4,
 			"title": "Portfolio",
-			"ruTitle": "Portfolio"
+			"ruTitle": "Портфолио"
 		},
 		{
 			"id": 6,
 			"title": "About",
-			"ruTitle": "About the company"
+			"ruTitle": "О компании"
 		},
 		{
 			"id": 7,
 			"title": "Contacts",
-			"ruTitle": "Contacts"
+			"ruTitle": "Контакты"
 		}
 	],
 	"button": [
@@ -89,7 +89,7 @@
 				"value": "150+"
 			},
 			{
-				"label": "Rating based on reviews on the website",
+				"label": "Average rating (reviews on this site)",
 				"value": "5.0 (4 reviews)"
 			},
 			{
@@ -104,13 +104,13 @@
 		}
 	},
 	"homeHeroHighlights": [
-		"Turnkey finishing and renovation: Zhlobin, Gomel region and travel throughout Belarus",
-		"Executive level of finishing, fixed estimate and deadlines",
-		"Design, supply and supervision in one loop"
+		"Turnkey finishing and renovation: Zhlobin, Gomel region and projects across Belarus",
+		"Executive-grade finishes, fixed estimates and clear timelines",
+		"Design, procurement and author supervision in one workflow"
 	],
 	"homeVideoSpotlight": {
-		"title": "On-site work format",
-		"description": "When a branded video appears, specify its `youtubeId` in the data - the section will be connected automatically.",
+		"title": "How we work on site",
+		"description": "When you have a brand video ready, add its `youtubeId` here — the section will render automatically.",
 		"youtubeId": ""
 	},
 	"homePage": {

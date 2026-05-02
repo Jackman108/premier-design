@@ -18,7 +18,7 @@ export async function pathnameForMetadata(): Promise<string> {
 }
 
 /**
- * **DATA-PREM-01:** без отдельных URL на локаль — `ru` / `en` / `x-default` указывают на один канонический URL (выбор языка cookie; префикс `/en` не используется).
+ * Без отдельных URL на локаль (политика i18n ~~DATA-PREM-01~~): `ru` / `en` / `x-default` указывают на один канонический URL (язык — cookie **`pd_site_locale`**; префикс **`/en`** не используется).
  */
 export function hreflangAlternatesForPath(pathname: string): Pick<Metadata, 'alternates'> {
 	const base = SITE_OPERATOR.publicOrigin.replace(/\/$/, '');

@@ -1,10 +1,16 @@
 /** @jest-environment node */
+import dataEn from '../../../data/locales/en/data.json';
 import data from '../../../data/locales/ru/data.json';
 import { dataPropsSchema, formatDataPropsParseError } from '../dataPropsSchema';
 
 describe('dataPropsSchema', () => {
 	it('accepts production data/locales/ru/data.json', () => {
 		const parsed = dataPropsSchema.safeParse(data);
+		expect(parsed.success).toBe(true);
+	});
+
+	it('accepts production data/locales/en/data.json', () => {
+		const parsed = dataPropsSchema.safeParse(dataEn);
 		expect(parsed.success).toBe(true);
 	});
 

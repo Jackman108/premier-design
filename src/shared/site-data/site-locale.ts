@@ -1,5 +1,5 @@
 /**
- * Локаль контента: **`ru`** — канон; **`en`** — валидный бандл. Выбор — cookie **`pd_site_locale`**, переключатель в хедере, `<html lang>`; полный продуктовый перевод и `hreflang` — **DATA-PREM-01**.
+ * Локаль контента: **`ru`** — канон; **`en`** — полный бандл **`data.json`** + **`ui.json`** (базовая редакционная вычитка EN — ~~DATA-PREM-01~~). Выбор — cookie **`pd_site_locale`**, переключатель в хедере, `<html lang>`; **`hreflang`** без префикса **`/en`** — см. **`hreflangAlternates`**.
  */
 export type SiteLocale = 'ru' | 'en';
 
