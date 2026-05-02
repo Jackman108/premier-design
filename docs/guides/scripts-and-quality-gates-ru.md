@@ -23,11 +23,11 @@
 
 Канон Feb Code — [`testing-standards-ru.md`](https://github.com/Jackman108/febcode/blob/master/docs/guides/testing-standards-ru.md) (отдельный git). Матрица **Premier ↔ имена команд** — [`cross-repo-rule-pack-ru.md`](cross-repo-rule-pack-ru.md) §1.
 
-| Уровень                             | Premier Design               | Команды                                                                 |
-| ----------------------------------- | ---------------------------- | ----------------------------------------------------------------------- |
-| Unit / компоненты                   | Jest (см. `jest.config.cjs`) | `yarn test`, `yarn test:coverage`                                       |
-| E2e                                 | `src/e2e/*.spec.ts`          | `yarn test:e2e` (@core), `yarn test:e2e:full`, `yarn test:e2e:extended` |
-| Статический минимум / полный контур | CI + Husky                   | **`yarn check:static`**, **`yarn ci:quality`**                          |
+| Уровень                             | Premier Design               | Команды                                                                                                                                  |
+| ----------------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Unit / компоненты                   | Jest (см. `jest.config.cjs`) | `yarn test`, `yarn test:coverage`                                                                                                        |
+| E2e                                 | `src/e2e/*.spec.ts`          | `yarn test:e2e` (@core), `yarn test:e2e:full`, `yarn test:e2e:extended`, `yarn test:e2e:visual` (**`visual-regression.spec.ts`**, BP-01) |
+| Статический минимум / полный контур | CI + Husky                   | **`yarn check:static`**, **`yarn ci:quality`**                                                                                           |
 
 **Публичный API фич из `pages-layer` и `widgets` (BP-48 / §9 этап 6 + §9 этап 9):** в [`eslint.config.mjs`](../../eslint.config.mjs) для **`src/pages-layer/**/_`** и **`src/widgets/\*\*/_`** действует **`no-restricted-imports`** с шаблоном **`@features/\*/**`** — импортировать только **`@features/<slice>`** (без внутренних сегментов `ui/`, `interface/` и т.д.), паритет с febcode **`scripts/lint-architecture.mjs`**.
 
@@ -46,16 +46,16 @@
 
 ## 1. Подготовка и dev‑сервер
 
-| Скрипт          | Назначение                                                                         |
-| --------------- | ---------------------------------------------------------------------------------- |
-| `prepare`       | Husky (установка git hooks) — выполняется автоматически после `yarn install`.      |
-| `dev`           | **Канон по умолчанию:** `next dev` с **Turbopack** (быстрый dev / HMR).            |
-| `dev:webpack`   | **Webpack:** `next dev --webpack`; второй сценарий рядом с Turbopack по умолчанию. |
-| `build`         | Production‑сборка (`next build`; см. вывод CLI по bundler).                        |
-| `start`         | Запуск production‑сборки.                                                          |
-| `server`        | Кастомный `server.js` (`output: 'standalone'`).                                    |
-| `build:analyze` | Сборка с `@next/bundle-analyzer` (`ANALYZE=true`).                                 |
-| `analyze`       | Алиас на **`build:analyze`** (имя как в **febcode**).                              |
+| Скрипт          | Назначение                                                                                                                                             |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `prepare`       | Husky (установка git hooks) — выполняется автоматически после `yarn install`. **`commit-msg`** — **`yarn commitlint`** (BP-11 / Conventional Commits). |
+| `dev`           | **Канон по умолчанию:** `next dev` с **Turbopack** (быстрый dev / HMR).                                                                                |
+| `dev:webpack`   | **Webpack:** `next dev --webpack`; второй сценарий рядом с Turbopack по умолчанию.                                                                     |
+| `build`         | Production‑сборка (`next build`; см. вывод CLI по bundler).                                                                                            |
+| `start`         | Запуск production‑сборки.                                                                                                                              |
+| `server`        | Кастомный `server.js` (`output: 'standalone'`).                                                                                                        |
+| `build:analyze` | Сборка с `@next/bundle-analyzer` (`ANALYZE=true`).                                                                                                     |
+| `analyze`       | Алиас на **`build:analyze`** (имя как в **febcode**).                                                                                                  |
 
 ## 2. Линтер, типы, unit‑тесты
 
@@ -72,23 +72,23 @@
 
 ## 3. Атомарные project‑gates
 
-| Скрипт                        | Назначение                                                                                                                                                                                                                                     |
-| ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `check:architecture`          | Границы слоёв (полный проход). В `lint-staged` тот же скрипт вызывается **по списку изменённых файлов** без `--all`.                                                                                                                           |
-| `check:architecture:progress` | План сокращения allowlist (`maxAllowedCount`).                                                                                                                                                                                                 |
-| `check:ui-purity`             | Чистота UI‑слоя.                                                                                                                                                                                                                               |
-| `check:feature-structure`     | Структура `features/*` (см. [FEATURE_STRUCTURE_ROADMAP_RU](feature-structure-roadmap-ru.md)).                                                                                                                                                  |
-| `check:regressions`           | Регрессии P2 (стили, картинки и т.д.).                                                                                                                                                                                                         |
-| `check:noise`                 | Следы шумовых артефактов в репозитории.                                                                                                                                                                                                        |
-| `check:slo:feedback`          | SLO для воронки feedback (`p95`, error/timeout rate).                                                                                                                                                                                          |
-| `check:ci-sla`                | Соответствие SLA трендам CI.                                                                                                                                                                                                                   |
-| `check:perf:initial-js`       | Бюджет initial JS после `yarn build` (`build-manifest.json`): при **App Router** Next 15+ — сумма `.js` из **`polyfillFiles` + `rootMainFiles`** (оболочка первой загрузки); при Pages Router — чанки маршрута `/`, если они есть в манифесте. |
-| `check:perf:lighthouse`       | Бюджет Lighthouse (`PERF_BUDGET_*`).                                                                                                                                                                                                           |
-| `check:perf:ci`               | Lighthouse + initial JS (как в CI).                                                                                                                                                                                                            |
-| `perf:local`                  | Сборка **`yarn build`** → `.next/standalone` → Lighthouse на **`http://127.0.0.1:${PERF_LOCAL_PORT:-3001}/`** (паритет **febcode**). Дочерний **`next start`** получает **`SKIP_STARTUP_ENV_VALIDATION=1`**, если не задано **`PERF_LOCAL_STRICT_ENV=1`** (иначе нужны **`TELEGRAM_*`** как в проде). |
-| `perf:prod`                   | Lighthouse против **`PERF_URL`** (по умолчанию прод-домен сайта); отчёт в **`.perf/lh-prod.json`**.                                                                                                                                            |
-| `perf:prod:ci`                | То же с порогом **`PERF_MIN_SCORE=90`** и **`--ci`** (несколько прогонов).                                                                                                                                                                     |
-| `kpi:post-release`            | Markdown KPI из JSON (`--input` / `--output`); шаблон — **`yarn kpi:post-release:template`** (паритет **febcode**).                                                                                                                            |
+| Скрипт                        | Назначение                                                                                                                                                                                                                                                                                                                                              |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `check:architecture`          | Границы слоёв (полный проход). В `lint-staged` тот же скрипт вызывается **по списку изменённых файлов** без `--all`.                                                                                                                                                                                                                                    |
+| `check:architecture:progress` | План сокращения allowlist (`maxAllowedCount`).                                                                                                                                                                                                                                                                                                          |
+| `check:ui-purity`             | Чистота UI‑слоя.                                                                                                                                                                                                                                                                                                                                        |
+| `check:feature-structure`     | Структура `features/*` (см. [FEATURE_STRUCTURE_ROADMAP_RU](feature-structure-roadmap-ru.md)).                                                                                                                                                                                                                                                           |
+| `check:regressions`           | Регрессии P2 (стили, картинки и т.д.).                                                                                                                                                                                                                                                                                                                  |
+| `check:noise`                 | Следы шумовых артефактов в репозитории.                                                                                                                                                                                                                                                                                                                 |
+| `check:slo:feedback`          | SLO для воронки feedback (`p95`, error/timeout rate).                                                                                                                                                                                                                                                                                                   |
+| `check:ci-sla`                | Соответствие SLA трендам CI.                                                                                                                                                                                                                                                                                                                            |
+| `check:perf:initial-js`       | Бюджет initial JS после `yarn build` (`build-manifest.json`): при **App Router** Next 15+ — сумма `.js` из **`polyfillFiles` + `rootMainFiles`** (оболочка первой загрузки); при Pages Router — чанки маршрута `/`, если они есть в манифесте. Опционально **per-chunk**: **`INITIAL_JS_MAX_CHUNK_KB`** (в **`ci.yml`** для gate — **1024** KB; BP-02). |
+| `check:perf:lighthouse`       | Бюджет Lighthouse (`PERF_BUDGET_*`).                                                                                                                                                                                                                                                                                                                    |
+| `check:perf:ci`               | Lighthouse + initial JS (как в CI).                                                                                                                                                                                                                                                                                                                     |
+| `perf:local`                  | Сборка **`yarn build`** → `.next/standalone` → Lighthouse на **`http://127.0.0.1:${PERF_LOCAL_PORT:-3001}/`** (паритет **febcode**). Дочерний **`next start`** получает **`SKIP_STARTUP_ENV_VALIDATION=1`**, если не задано **`PERF_LOCAL_STRICT_ENV=1`** (иначе нужны **`TELEGRAM_*`** как в проде).                                                   |
+| `perf:prod`                   | Lighthouse против **`PERF_URL`** (по умолчанию прод-домен сайта); отчёт в **`.perf/lh-prod.json`**.                                                                                                                                                                                                                                                     |
+| `perf:prod:ci`                | То же с порогом **`PERF_MIN_SCORE=90`** и **`--ci`** (несколько прогонов).                                                                                                                                                                                                                                                                              |
+| `kpi:post-release`            | Markdown KPI из JSON (`--input` / `--output`); шаблон — **`yarn kpi:post-release:template`** (паритет **febcode**).                                                                                                                                                                                                                                     |
 
 ## 4. Составные quality‑gates
 
@@ -130,7 +130,7 @@
 
 ## Соответствие CI (GitHub Actions)
 
-- **`ci.yml`:** `yarn lint` → `yarn typecheck`, отдельные `check:*` (architecture, ui‑purity, regressions, noise, feature‑structure), `yarn test:coverage`, `yarn build`, `yarn test:e2e:install` + `yarn test:e2e`, `check:perf:ci`, `check:slo:feedback`, `build-storybook`.
+- **`ci.yml`:** `yarn lint` → `yarn typecheck`, отдельные `check:*` (architecture, ui‑purity, regressions, noise, feature‑structure), `yarn test:coverage`, `yarn build`, `yarn test:e2e:install` + `yarn test:e2e`, `check:perf:ci` (**`INITIAL_JS_BUDGET_KB`** + **`INITIAL_JS_MAX_CHUNK_KB`**), `check:slo:feedback`, `build-storybook`.
 - **`e2e-extended.yml`:** `build` + `test:e2e:extended`.
 - **`ci-trends.yml`:** `report-ci-trends.mjs` + `check-ci-sla.mjs`.
 - **`security-high-weekly.yml`:** `report:audit:high` + автосоздание issue при high/critical > 0 (в issue добавляются ссылка на workflow run и имя artifact `security-high-weekly`).

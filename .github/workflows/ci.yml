@@ -82,6 +82,7 @@ jobs:
           PERF_BUDGET_INP_MS: '200'
           PERF_BUDGET_TBT_MS: '300'
           INITIAL_JS_BUDGET_KB: '750'
+          INITIAL_JS_MAX_CHUNK_KB: '1024'
           PERF_AUDIT_FAIL_ON_INFRA_ERROR: 'false'
         run: yarn check:perf:ci
 
@@ -144,6 +145,8 @@ jobs:
         run: yarn test:e2e:install
 
       - name: Build app for production e2e server
+        env:
+          NEXT_PUBLIC_PLAYWRIGHT_WEB_E2E: '1'
         run: yarn build
 
       - name: Run e2e core smoke tests

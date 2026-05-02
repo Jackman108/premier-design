@@ -21,7 +21,7 @@
 
 .news__title {
 	font-size: 1.2rem;
-	color: var(--brown-light);
+	color: var(--beige-dark);
 	padding-bottom: var(--space-md);
 	text-align: center;
 }
@@ -52,7 +52,8 @@
 .content__date {
 	font-size: 0.8rem;
 	text-align: start;
-	color: var(--brown-light);
+	/* WCAG AA на фоне футера `--brown-dark`: `--brown-light` даёт ~3.18:1 */
+	color: var(--beige-dark);
 }
 
 .content__title {

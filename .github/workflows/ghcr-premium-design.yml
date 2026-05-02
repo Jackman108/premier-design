@@ -97,6 +97,27 @@ jobs:
           path: sbom-premium-design.cdx.json
           retention-days: 90
 
+      - name: Smoke — контейнер отвечает GET /api/health (BP-42)
+        run: |
+          set -euo pipefail
+          IMAGE="${{ steps.image.outputs.name }}:${{ github.sha }}"
+          CID="$(docker run -d --rm -p 127.0.0.1:3999:3000 \
+            -e NODE_ENV=production \
+            -e TELEGRAM_BOT_TOKEN=ghcr_smoke_dummy \
+            -e TELEGRAM_CHAT_ID=000000000 \
+            "$IMAGE")"
+          trap 'docker rm -f "$CID" >/dev/null 2>&1 || true' EXIT
+          for _ in $(seq 1 60); do
+            if curl -sf "http://127.0.0.1:3999/api/health" >/dev/null; then
+              echo "GET /api/health OK"
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "--- container logs (tail) ---"
+          docker logs "$CID" 2>&1 | tail -n 80 || true
+          exit 1
+
       - name: Push to GHCR
         uses: docker/build-push-action@v5
         with:

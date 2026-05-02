@@ -1,6 +1,6 @@
 # Общий rule pack (три репозитория)
 
-**Обновлено**: 02.05.2026
+**Обновлено**: 30.04.2026
 
 Общая терминология для **premier-design**, **febcode**, **lendings-vps-infra**. Длинные сценарии не копируем — у каждого репо свой `README` и операционные гайды.
 
@@ -10,12 +10,13 @@
 
 Имена **одинаковые**. Состав цепочек — поле `scripts` в корневом `package.json` (**premier-design** и **febcode** — зависимости и скрипты в корне репо; исходники приложения premier — в **`src/`**).
 
-| Команда                     | Назначение                                                                                                                                                         |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **`yarn check:static`**     | Быстрый минимум (format + lint + types + тесты; в **febcode** в цепочке есть `test:smoke`)                                                                         |
-| **`yarn ci:quality`**       | Уровень **B**: полный контур перед PR; в **premier-design** включает **`check:risk:local`**, в **febcode** — до **`check:perf:initial-js`** без premier-only gates |
-| **`yarn test:e2e:install`** | Установка Chromium для Playwright                                                                                                                                  |
-| **`yarn analyze`**          | Bundle analyzer: в `package.json` — **`build:analyze`**, вход — **`yarn analyze`** (оба приложения)                                                                |
+| Команда                      | Назначение                                                                                                                                                         |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`yarn check:static`**      | Быстрый минимум (format + lint + types + тесты; в **febcode** в цепочке есть `test:smoke`)                                                                         |
+| **`yarn ci:quality`**        | Уровень **B**: полный контур перед PR; в **premier-design** включает **`check:risk:local`**, в **febcode** — до **`check:perf:initial-js`** без premier-only gates |
+| **`yarn test:e2e:install`**  | Установка Chromium для Playwright                                                                                                                                  |
+| **`yarn test:e2e:extended`** | Playwright: **`--grep @extended`** (axe / visual / расширенный smoke — см. e2e в репозитории)                                                                      |
+| **`yarn analyze`**           | Bundle analyzer: в `package.json` — **`build:analyze`**, вход — **`yarn analyze`** (оба приложения)                                                                |
 
 Детали шагов: [premier-design — скрипты и гейты](https://github.com/Jackman108/premier-design/blob/master/docs/guides/scripts-and-quality-gates-ru.md) · [febcode — README](https://github.com/Jackman108/febcode/blob/master/README.md) · [febcode — стандарты тестирования](https://github.com/Jackman108/febcode/blob/master/docs/guides/testing-standards-ru.md).
 
@@ -23,7 +24,7 @@
 
 | Уровень                  | Назначение                                                                                     |
 | ------------------------ | ---------------------------------------------------------------------------------------------- |
-| **A — Pre-commit**       | Быстрый фидбек: `lint-staged`, ESLint, узкие проверки; не заменяет PR CI                       |
+| **A — Pre-commit**       | Быстрый фидбек: **`lint-staged`**, затем **`yarn typecheck`**; не заменяет PR CI               |
 | **B — Local**            | **`yarn check:static`** (коротко) · **`yarn ci:quality`** (полный локальный контур приложения) |
 | **C — PR CI**            | Обязательный merge-контур репозитория приложения                                               |
 | **D — Nightly / deploy** | Perf-бюджеты, расширенный e2e, SLO/аналитика, smoke после выкладки                             |
@@ -44,11 +45,15 @@
 
 | Уровень              | Где                                                                                                                                                                                             |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| A                    | [`.husky/pre-commit`](../../.husky/pre-commit): `lint-staged` + **`yarn typecheck`** (корень репо; паритет febcode §5.4)                                                                        |
+| A                    | [`.husky/pre-commit`](../../.husky/pre-commit): `lint-staged` + **`yarn typecheck`**; [`.husky/commit-msg`](../../.husky/commit-msg): **`yarn commitlint`** (BP-11; паритет febcode §5.4)       |
 | B                    | **`yarn ci:quality`**, **`yarn check:static`**, **`yarn check:risk:local`** — [`scripts-and-quality-gates-ru.md`](scripts-and-quality-gates-ru.md)                                              |
 | C                    | [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)                                                                                                                                    |
 | D                    | [`ci-trends.yml`](../../.github/workflows/ci-trends.yml), [`e2e-extended.yml`](../../.github/workflows/e2e-extended.yml); деплой — [`deploy-vercel-and-vps-ru.md`](deploy-vercel-and-vps-ru.md) |
 | Кросс-репо alignment | [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md)                                                                                                                       |
+
+**BP-39:** [`.vscode/extensions.json`](../../.vscode/extensions.json), [`.vscode/settings.json`](../../.vscode/settings.json) (в git только эти файлы; остальное в `.vscode/*` — в [`.gitignore`](../../.gitignore)).
+
+**Сводный аудит портфеля (BP):** [`cross-repo-portfolio-audit-2026-04-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/audit/cross-repo-portfolio-audit-2026-04-ru.md) — **§6.2.1** (остаток), **§6.2.2** (полный реестр). Ориентиры в **lendings-vps-infra:** [**BP-12**](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/guides/release-automation-github-ru.md), [**BP-04**](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/guides/observability-next-steps-ru.md).
 
 ### Словарь деплоя (кратко)
 

@@ -17,6 +17,7 @@ const ExampleCard: FC<ExampleCardComponentProps> = ({ card, onClick }): ReactEle
 			className={styles.examples__card}
 			role="button"
 			tabIndex={0}
+			aria-label={card.address}
 			onClick={() => onClick(card)}
 			onKeyDown={handleKeyDown}
 		>

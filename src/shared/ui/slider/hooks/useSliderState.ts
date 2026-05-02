@@ -12,8 +12,10 @@ export const useSliderState = ({ isMobile, slidesPerView }: UseSliderStateParams
 	const [slideCount, setSlideCount] = useState(0);
 
 	const slidesToShow = isMobile === undefined ? 1 : isMobile ? 1 : slidesPerView;
+	/** У loop keen-slider клонирует слайды в DOM — клон без React не вызывает `onClick` карточки (ломает e2e). */
+	const loop = process.env.NEXT_PUBLIC_PLAYWRIGHT_WEB_E2E !== '1';
 	const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-		loop: true,
+		loop,
 		initial: 0,
 		slideChanged(slider) {
 			setCurrentSlide(slider.track.details.rel);

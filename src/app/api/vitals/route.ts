@@ -24,7 +24,7 @@ export async function POST(request: Request): Promise<NextResponse> {
 		return NextResponse.json({ error: 'Unsupported content type' }, { status: 415 });
 	}
 
-	const rate = applyApiRateLimitWeb(request, 'vitals', { windowMs: 60_000, maxRequests: 120 });
+	const rate = await applyApiRateLimitWeb(request, 'vitals', { windowMs: 60_000, maxRequests: 120 });
 	if (!rate.allowed) {
 		return NextResponse.json({ error: 'Too many requests' }, { status: 429, headers: rate.limitHeaders });
 	}

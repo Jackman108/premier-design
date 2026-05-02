@@ -51,7 +51,7 @@ export async function GET(request: Request) {
 		);
 	}
 
-	const rate = applyApiRateLimitWeb(request, 'sitemap', { windowMs: 60_000, maxRequests: 60 });
+	const rate = await applyApiRateLimitWeb(request, 'sitemap', { windowMs: 60_000, maxRequests: 60 });
 	if (!rate.allowed) {
 		return Response.json(
 			createApiErrorPayload(correlationId, 'RATE_LIMITED', 'Too many requests. Try again later.'),

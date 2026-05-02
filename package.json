@@ -54,11 +54,12 @@
 		"test:e2e": "node ./node_modules/@playwright/test/cli.js test --grep @core",
 		"test:e2e:full": "node ./node_modules/@playwright/test/cli.js test",
 		"test:e2e:extended": "node ./node_modules/@playwright/test/cli.js test --grep @extended",
-		"test:e2e:visual": "node ./node_modules/@playwright/test/cli.js test e2e/visual-regression.spec.ts",
+		"test:e2e:visual": "node ./node_modules/@playwright/test/cli.js test visual-regression.spec.ts",
 		"storybook": "node ./node_modules/storybook/dist/bin/dispatcher.js dev -p 6006",
 		"build-storybook": "node ./node_modules/storybook/dist/bin/dispatcher.js build",
 		"panda:codegen": "node ./node_modules/@pandacss/dev/bin.js codegen",
-		"panda:watch": "node ./node_modules/@pandacss/dev/bin.js codegen --watch"
+		"panda:watch": "node ./node_modules/@pandacss/dev/bin.js codegen --watch",
+		"commitlint": "commitlint --edit"
 	},
 	"resolutions": {
 		"picomatch": "^4.0.4",
@@ -102,6 +103,9 @@
 		"zod": "^4.3.6"
 	},
 	"devDependencies": {
+		"@axe-core/playwright": "^4.10.0",
+		"@commitlint/cli": "^20.2.0",
+		"@commitlint/config-conventional": "^20.2.0",
 		"@next/bundle-analyzer": "^16.2.3",
 		"@pandacss/dev": "^1.9.1",
 		"@playwright/test": "^1.56.0",

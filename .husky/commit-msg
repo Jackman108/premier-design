@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+set -e
+# BP-11: Conventional Commits — см. commitlint.config.mjs
+yarn commitlint --edit "$1"

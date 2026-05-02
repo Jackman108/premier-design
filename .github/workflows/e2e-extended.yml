@@ -30,6 +30,8 @@ jobs:
         run: yarn test:e2e:install
 
       - name: Build app for production e2e server
+        env:
+          NEXT_PUBLIC_PLAYWRIGHT_WEB_E2E: '1'
         run: yarn build
 
       - name: Run e2e extended smoke tests

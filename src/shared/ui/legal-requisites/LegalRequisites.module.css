@@ -28,7 +28,8 @@
 }
 
 .requisites__row dt {
-	color: color-mix(in srgb, var(--brown-white) 80%, transparent);
+	/* На фоне `--brown-dark` в футере полупрозрачный mix не добирает 4.5:1 */
+	color: var(--beige-dark);
 	font-weight: 500;
 }
 

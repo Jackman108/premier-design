@@ -1,8 +1,18 @@
 # Документация Premier Design
 
-**Обновлено**: 29.04.2026
+**Обновлено**: 30.04.2026
 
-Каталог **`docs/`** — материалы вне кода приложения; Next.js и исходники — в **`src/`**, зависимости и скрипты — в корневом **`package.json`**. **Канон норм по темам:** `mempalace/rules/` и `guides/`. **Feb Code** (отдельный git): только через [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md). **VPS / multi-site:** [`guides/deploy-vercel-and-vps-ru.md`](guides/deploy-vercel-and-vps-ru.md), [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md). **История изменений приложения:** [`changelog.md`](changelog.md) (не в корне репозитория — только в `docs/`). Краткий контекст для агента без обхода `docs/` — корневой [`AGENTS.md`](../AGENTS.md).
+Каталог **`docs/`** — материалы вне **`src/`**; зависимости и скрипты — в корневом **`package.json`**. **Канон по темам:** `mempalace/rules/` и [`guides/`](guides/). **История:** [`changelog.md`](changelog.md). Агент без обхода `docs/` — [`AGENTS.md`](../AGENTS.md).
+
+## Портфель и соседние репозитории
+
+| Тема                                                 | Где                                                                                                                                                                                                                |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Общие правила **A–D**, **`yarn`** (**§1–§5**)        | [`guides/cross-repo-rule-pack-ru.md`](guides/cross-repo-rule-pack-ru.md)                                                                                                                                           |
+| Выравнивание с Feb Code                              | [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md)                                                                                                                                             |
+| План паритета (репо **febcode**)                     | [febcode … `cross-repo-alignment-plan-ru.md`](https://github.com/Jackman108/febcode/blob/master/docs/guides/cross-repo-alignment-plan-ru.md)                                                                       |
+| Сводный аудит трёх репо (**§1.1**, **§6**, **§9.2**) | [lendings-vps-infra … `cross-repo-portfolio-audit-2026-04-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/audit/cross-repo-portfolio-audit-2026-04-ru.md)                                |
+| VPS / multi-site                                     | [`guides/deploy-vercel-and-vps-ru.md`](guides/deploy-vercel-and-vps-ru.md) · [multisite-vps-deploy-ru.md](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md) |
 
 ## С чего начать
 
@@ -38,7 +48,7 @@
 | [`guides/cross-repo-rule-pack-ru.md`](guides/cross-repo-rule-pack-ru.md)                   | §1–§5 с **febcode** (дословно); §6 — канон **premier-design** |
 | [`guides/marketing-analytics-dashboard-ru.md`](guides/marketing-analytics-dashboard-ru.md) | Аналитика, KPI воронки                                        |
 
-**Feb Code (отдельный репозиторий)** — один вход: [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md); скрипты и C3 — [`guides/scripts-and-quality-gates-ru.md`](guides/scripts-and-quality-gates-ru.md); слои — [`guides/layer-imports-and-public-api-cross-repo-ru.md`](guides/layer-imports-and-public-api-cross-repo-ru.md); пост-релиз — [`guides/feb-code-post-release-sync-checklist-ru.md`](guides/feb-code-post-release-sync-checklist-ru.md).
+**Feb Code:** см. раздел «Портфель» выше; слои — [`guides/layer-imports-and-public-api-cross-repo-ru.md`](guides/layer-imports-and-public-api-cross-repo-ru.md); пост-релиз — [`guides/feb-code-post-release-sync-checklist-ru.md`](guides/feb-code-post-release-sync-checklist-ru.md).
 
 ### Аудит, риски и релиз — [`audit/`](audit/)
 
@@ -102,7 +112,7 @@
 | Тема                         | Канон                                                                                              | Ссылки без копирования                                                                                                                                                                                                      |
 | ---------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Скрипты, `engines`, `.nvmrc` | Корневой `package.json`, `.nvmrc`                                                                  | [`guides/scripts-and-quality-gates-ru.md`](guides/scripts-and-quality-gates-ru.md), [`audit/quality-gates-sync-ru.md`](audit/quality-gates-sync-ru.md), [`README.md`](../README.md)                                         |
-| Feb Code                     | [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md)                             | `guides/*cross-repo*.md`, репозиторий **febcode**                                                                                                                                                                           |
+| Feb Code                     | [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md)                             | [`guides/cross-repo-rule-pack-ru.md`](guides/cross-repo-rule-pack-ru.md), репозиторий **febcode**                                                                                                                           |
 | Реквизиты и контакты ИП      | `src/shared/constants/company.ts`                                                                  | `LegalRequisites`, юр. тексты, JSON-LD                                                                                                                                                                                      |
 | Соцсети                      | `SITE_SOCIAL` в `company.ts`                                                                       | `SocialIcons`                                                                                                                                                                                                               |
 | Multi-site VPS               | Репозиторий **`lendings-vps-infra`**                                                               | [`multisite-vps-deploy-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md), [`guides/deploy-ssh-github-actions-ru.md`](guides/deploy-ssh-github-actions-ru.md) |

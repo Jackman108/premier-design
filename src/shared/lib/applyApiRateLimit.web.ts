@@ -1,5 +1,5 @@
 import type { RateLimitOptions } from '@shared/lib/rateLimit';
-import { checkRateLimit } from '@shared/lib/rateLimit';
+import { checkRateLimitDistributed } from '@shared/lib/upstashRateLimit';
 
 const normalizeForwardedIp = (xff: string): string => {
 	const first = xff.split(',')[0]?.trim();
@@ -27,13 +27,13 @@ export const getClientIpFromWebRequest = (request: Request): string => {
 	return 'unknown';
 };
 
-export const applyApiRateLimitWeb = (
+export const applyApiRateLimitWeb = async (
 	request: Request,
 	scope: string,
 	options: RateLimitOptions,
-): { allowed: boolean; limitHeaders: Record<string, string> } => {
+): Promise<{ allowed: boolean; limitHeaders: Record<string, string> }> => {
 	const clientIp = getClientIpFromWebRequest(request);
-	const result = checkRateLimit(`${scope}:${clientIp}`, options);
+	const result = await checkRateLimitDistributed(`${scope}:${clientIp}`, options);
 
 	const limitHeaders: Record<string, string> = {
 		'X-RateLimit-Limit': String(result.limit ?? options.maxRequests),

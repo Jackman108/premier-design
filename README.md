@@ -37,7 +37,7 @@
 
 ## Документация репозитория
 
-**Карта всех разделов** — [`docs/README.md`](./docs/README.md). Кратко: плейбук [`docs/development-playbook-ru.md`](./docs/development-playbook-ru.md), скрипты и гейты [`docs/guides/scripts-and-quality-gates-ru.md`](./docs/guides/scripts-and-quality-gates-ru.md), деплой [`docs/audit/deploy-readiness-ru.md`](./docs/audit/deploy-readiness-ru.md), Feb Code [`docs/audit/cross-repo-alignment-ru.md`](./docs/audit/cross-repo-alignment-ru.md). Правила агента: [`project-overview.mdc`](./.cursor/rules/project-overview.mdc), нормы MemPalace — [`docs/mempalace/README.md`](./docs/mempalace/README.md).
+Индекс разделов и таблица «Портфель» (febcode, VPS, сводный аудит) — **[`docs/README.md`](./docs/README.md)**. Правила агента: [`.cursor/rules/project-overview.mdc`](./.cursor/rules/project-overview.mdc); MemPalace — [`docs/mempalace/README.md`](./docs/mempalace/README.md).
 
 ## Архитектура UI
 

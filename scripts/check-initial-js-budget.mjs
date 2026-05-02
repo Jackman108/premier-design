@@ -13,6 +13,8 @@ const HOME_ROUTE = '/';
 // Дефолт под текущий бандл; сужать через INITIAL_JS_BUDGET_KB в CI при оптимизациях.
 const DEFAULT_BUDGET_KB = 750;
 const budgetKb = Number(process.env.INITIAL_JS_BUDGET_KB ?? DEFAULT_BUDGET_KB);
+/** Per-chunk ceiling (BP-02). `0` или пусто — не проверять. */
+const maxChunkKb = Number(process.env.INITIAL_JS_MAX_CHUNK_KB ?? 0);
 
 const toKb = (bytes) => Number((bytes / 1024).toFixed(2));
 
@@ -46,14 +48,18 @@ if (jsChunks.length === 0) {
 	process.exit(1);
 }
 
-const totalBytes = jsChunks.reduce((acc, relPath) => {
+let totalBytes = 0;
+const chunkSizes = [];
+for (const relPath of jsChunks) {
 	const absolutePath = path.join(NEXT_DIR, relPath);
 	if (!fs.existsSync(absolutePath)) {
 		console.error(`::error::Нет файла чанка: ${relPath}`);
 		process.exit(1);
 	}
-	return acc + fs.statSync(absolutePath).size;
-}, 0);
+	const bytes = fs.statSync(absolutePath).size;
+	totalBytes += bytes;
+	chunkSizes.push({ relPath, kb: toKb(bytes) });
+}
 
 const totalKb = toKb(totalBytes);
 if (totalKb > budgetKb) {
@@ -61,9 +67,23 @@ if (totalKb > budgetKb) {
 	process.exit(1);
 }
 
+if (maxChunkKb > 0) {
+	for (const { relPath, kb } of chunkSizes) {
+		if (kb > maxChunkKb) {
+			console.error(
+				`::error::Чанк ${relPath}: ${kb} KB > per-chunk лимит ${maxChunkKb} KB (INITIAL_JS_MAX_CHUNK_KB)`,
+			);
+			process.exit(1);
+		}
+	}
+}
+
 console.log('');
 console.log('=== Initial JS ===');
 console.log(`  Режим: ${mode === 'app-shell' ? 'App Router (polyfills + root main)' : `Pages Router (${HOME_ROUTE})`}`);
 console.log(`  Сумма .js чанков: ${totalKb} KB (лимит ≤ ${budgetKb} KB)`);
 console.log(`  Число чанков: ${jsChunks.length}`);
+if (maxChunkKb > 0) {
+	console.log(`  Per-chunk лимит: ≤ ${maxChunkKb} KB`);
+}
 console.log('');

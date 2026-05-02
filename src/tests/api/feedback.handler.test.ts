@@ -11,6 +11,15 @@ jest.mock('../../shared/lib/rateLimit', () => ({
 	checkRateLimit: jest.fn(),
 }));
 
+jest.mock('../../shared/lib/upstashRateLimit', () => ({
+	checkRateLimitDistributed: jest.fn(async (key: string, options: { windowMs: number; maxRequests: number }) => {
+		const mod = jest.requireMock<{ checkRateLimit: (k: string, o: typeof options) => unknown }>(
+			'../../shared/lib/rateLimit',
+		);
+		return mod.checkRateLimit(key, options);
+	}),
+}));
+
 jest.mock('../../shared/lib/feedbackSlo', () => ({
 	getFeedbackApiTimeoutMs: jest.fn(() => 20_000),
 	recordFeedbackSloSample: jest.fn(),

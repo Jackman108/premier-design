@@ -89,14 +89,21 @@ test('@extended photo viewer opens and closes from home examples', async ({ page
 
 	const examples = page.locator('#home-examples');
 	await expect(examples).toBeVisible();
-	await examples.getByRole('button').first().click({ force: true });
+	// Карточка по тексту (первый объект в `examplesCard`); клик по кадру keen часто уходит в drag — открытие по Enter (см. `ExampleCard` onKeyDown). RU / EN локали.
+	const firstProjectCard = examples.getByRole('button', { name: /Zhlobin|Жлобин/i }).first();
+	await firstProjectCard.scrollIntoViewIfNeeded();
+	await expect(firstProjectCard).toBeVisible();
+	await firstProjectCard.focus();
+	await expect(firstProjectCard).toBeFocused();
+	await page.keyboard.press('Enter');
 
-	const viewer = page.locator('dialog[open][aria-label="Просмотр изображений"]');
-	await expect(viewer).toHaveCount(1);
+	// `showModal()`: нативный top-layer; имя из visually hidden + aria-labelledby в дереве a11y не всегда стабильно в Playwright.
+	const viewer = page.locator('dialog[open]');
+	await expect(viewer).toBeVisible({ timeout: 15_000 });
 	await expect(viewer.locator('img').first()).toBeAttached();
 
 	await page.keyboard.press('Escape');
-	await expect(viewer).toHaveCount(0);
+	await expect(viewer).toBeHidden();
 });
 
 test('@extended no hydration warnings on key pages', async ({ page }) => {

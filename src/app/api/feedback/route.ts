@@ -64,7 +64,7 @@ export async function POST(request: Request) {
 		);
 	}
 
-	const rate = applyApiRateLimitWeb(request, 'feedback', { windowMs: 60_000, maxRequests: 5 });
+	const rate = await applyApiRateLimitWeb(request, 'feedback', { windowMs: 60_000, maxRequests: 5 });
 	if (!rate.allowed) {
 		finish(429, { status: 'error' });
 		return NextResponse.json(
