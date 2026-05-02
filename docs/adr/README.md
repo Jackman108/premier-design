@@ -5,25 +5,26 @@
 ## Шаблон ADR
 
 Рекомендуемая структура каждого ADR:
+
 - `Статус`
 - `Контекст`
 - `Решение`
 - `Последствия`
 - `Проверка готовности`
 
-| № | Файл | Тема | Статус |
-|---|--------|------|--------|
-| 0001 | [0001-ui-stack-and-design-tokens.md](0001-ui-stack-and-design-tokens.md) | UI-стек, токены, Storybook, путь к опциональной библиотеке компонентов | Принято |
-| 0002 | [0002-no-tailwind-panda-css.md](0002-no-tailwind-panda-css.md) | Отказ от Tailwind, выбор Panda CSS как utility/recipe-альтернативы | Принято |
-| 0003 | [0003-modal-standard-and-adapters.md](0003-modal-standard-and-adapters.md) | Единый стандарт модалок (UiDialog + legacy-adapter для `<dialog>`) | Принято |
-| 0004 | [0004-csp-tightening-and-trusted-svg.md](0004-csp-tightening-and-trusted-svg.md) | Ужесточение CSP (`img-src`, `connect-src`), контракт по SVG для `next/image` | Принято |
-| 0005 | [0005-rate-limiting-storage-and-client-ip.md](0005-rate-limiting-storage-and-client-ip.md) | In-memory rate limit, мульти-инстанс, доверие к `x-forwarded-for` | Принято |
-| 0006 | [0006-next-api-cors-same-origin.md](0006-next-api-cors-same-origin.md) | API routes same-origin, политика CORS при появлении внешних клиентов | Принято |
-| 0007 | [0007-next-pages-and-app-router-split.md](0007-next-pages-and-app-router-split.md) | Гибрид `pages/` + `app/`: зоны ответственности и правила новых маршрутов | Принято |
-| 0008 | [0008-react-chatbot-kit-dependency.md](0008-react-chatbot-kit-dependency.md) | Риск и изоляция `react-chatbot-kit` в бандле | Принято |
-| 0009 | [0009-web-analytics-deferred.md](0009-web-analytics-deferred.md) | Аналитика (YM/GA4/GTM) — отложено до env, CSP и карты событий | Принято |
-| 0010 | [0010-formatting-policy-no-prettier.md](0010-formatting-policy-no-prettier.md) | Исторически: без Prettier; по форматированию см. **0013** | Принято (частично замещён) |
-| 0011 | [0011-proprietary-license.md](0011-proprietary-license.md) | Проприетарная лицензия (LICENSE / LICENSE_RU) и правила внутреннего использования | Принято |
-| 0012 | [0012-root-services-folder-vs-shared-api.md](0012-root-services-folder-vs-shared-api.md) | Роль каталога `services/` vs `shared/lib`; без массового переименования в `shared/api` | Принято |
-| 0013 | [0013-shared-lib-react-query-prettier.md](0013-shared-lib-react-query-prettier.md) | Единый `shared/lib` (бывший `lib/`), React Query, Prettier + eslint-config-prettier | Принято |
-| 0014 | [0014-fsd-entities-slice-and-public-api.md](0014-fsd-entities-slice-and-public-api.md) | Срез `entities/`, публичный API barrel; дополняет 0012/0013 | Принято |
+| №    | Файл                                                                                       | Тема                                                                                   | Статус                     |
+| ---- | ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------- | -------------------------- |
+| 0001 | [0001-ui-stack-and-design-tokens.md](0001-ui-stack-and-design-tokens.md)                   | UI-стек, токены, Storybook, путь к опциональной библиотеке компонентов                 | Принято                    |
+| 0002 | [0002-no-tailwind-panda-css.md](0002-no-tailwind-panda-css.md)                             | Отказ от Tailwind, выбор Panda CSS как utility/recipe-альтернативы                     | Принято                    |
+| 0003 | [0003-modal-standard-and-adapters.md](0003-modal-standard-and-adapters.md)                 | Единый стандарт модалок (UiDialog + legacy-adapter для `<dialog>`)                     | Принято                    |
+| 0004 | [0004-csp-tightening-and-trusted-svg.md](0004-csp-tightening-and-trusted-svg.md)           | Ужесточение CSP (`img-src`, `connect-src`), контракт по SVG для `next/image`           | Принято                    |
+| 0005 | [0005-rate-limiting-storage-and-client-ip.md](0005-rate-limiting-storage-and-client-ip.md) | In-memory rate limit, мульти-инстанс, доверие к `x-forwarded-for`                      | Принято                    |
+| 0006 | [0006-next-api-cors-same-origin.md](0006-next-api-cors-same-origin.md)                     | API routes same-origin, политика CORS при появлении внешних клиентов                   | Принято                    |
+| 0007 | [0007-next-pages-and-app-router-split.md](0007-next-pages-and-app-router-split.md)         | Архив: гибрид `pages/` + `app/` → **единый App Router** в `src/app/`                   | Заменено                   |
+| 0008 | [0008-react-chatbot-kit-dependency.md](0008-react-chatbot-kit-dependency.md)               | Риск и изоляция `react-chatbot-kit` в бандле                                           | Принято                    |
+| 0009 | [0009-web-analytics-deferred.md](0009-web-analytics-deferred.md)                           | Аналитика (YM/GA4/GTM) — отложено до env, CSP и карты событий                          | Принято                    |
+| 0010 | [0010-formatting-policy-no-prettier.md](0010-formatting-policy-no-prettier.md)             | Исторически: без Prettier; по форматированию см. **0013**                              | Принято (частично замещён) |
+| 0011 | [0011-proprietary-license.md](0011-proprietary-license.md)                                 | Проприетарная лицензия (LICENSE / LICENSE_RU) и правила внутреннего использования      | Принято                    |
+| 0012 | [0012-root-services-folder-vs-shared-api.md](0012-root-services-folder-vs-shared-api.md)   | Роль каталога `services/` vs `shared/lib`; без массового переименования в `shared/api` | Принято                    |
+| 0013 | [0013-shared-lib-react-query-prettier.md](0013-shared-lib-react-query-prettier.md)         | Единый `shared/lib` (бывший `lib/`), React Query, Prettier + eslint-config-prettier    | Принято                    |
+| 0014 | [0014-fsd-entities-slice-and-public-api.md](0014-fsd-entities-slice-and-public-api.md)     | Срез `entities/`, публичный API barrel; дополняет 0012/0013                            | Принято                    |

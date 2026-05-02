@@ -1,6 +1,6 @@
 ---
 description: Smoke / unit / e2e / perf — MemPalace 07 и локальные скрипты
-globs: premier-design/**/*.{ts,tsx,spec.ts}
+globs: src/**/*.{ts,tsx,spec.ts}
 alwaysApply: false
 ---
 

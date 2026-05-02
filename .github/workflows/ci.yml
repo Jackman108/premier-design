@@ -14,9 +14,6 @@ env:
 jobs:
   quality:
     runs-on: ubuntu-22.04
-    defaults:
-      run:
-        working-directory: premier-design
 
     steps:
       - name: Checkout
@@ -25,9 +22,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version-file: premier-design/.nvmrc
+          node-version-file: .nvmrc
           cache: yarn
-          cache-dependency-path: premier-design/yarn.lock
+          cache-dependency-path: yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-scripts
@@ -69,7 +66,7 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: coverage-report
-          path: premier-design/coverage
+          path: coverage
 
       - name: Build
         run: yarn build
@@ -98,14 +95,10 @@ jobs:
         run: yarn check:slo:feedback
 
       - name: Audit dependencies (Yarn)
-        working-directory: premier-design
         run: yarn audit --level critical
 
   storybook:
     runs-on: ubuntu-22.04
-    defaults:
-      run:
-        working-directory: premier-design
 
     steps:
       - name: Checkout
@@ -114,9 +107,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version-file: premier-design/.nvmrc
+          node-version-file: .nvmrc
           cache: yarn
-          cache-dependency-path: premier-design/yarn.lock
+          cache-dependency-path: yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-scripts
@@ -128,13 +121,10 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: storybook-static
-          path: premier-design/storybook-static
+          path: storybook-static
 
   e2e-smoke:
     runs-on: ubuntu-22.04
-    defaults:
-      run:
-        working-directory: premier-design
 
     steps:
       - name: Checkout
@@ -143,9 +133,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version-file: premier-design/.nvmrc
+          node-version-file: .nvmrc
           cache: yarn
-          cache-dependency-path: premier-design/yarn.lock
+          cache-dependency-path: yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-scripts

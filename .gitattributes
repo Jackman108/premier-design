@@ -1,1 +1,6 @@
+# §10.2 BP-36/37 — единообразные переводы строк в git; точечные исключения при необходимости.
+* text=auto eol=lf
+
 premier-design/next-env.d.ts text eol=lf
+
+*.{png,jpg,jpeg,gif,webp,ico,pdf,woff,woff2,ttf,eot} binary

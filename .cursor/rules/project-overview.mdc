@@ -10,11 +10,12 @@ alwaysApply: true
 
 ## Структура (важное)
 ```
-premier-design/          # корень git
+premier-design/          # корень git (этот репозиторий)
 ├── docs/                # гайды, аудит, ADR, MemPalace rules
-├── premier-design/      # приложение Next.js (App Router)
-│   ├── app/ widgets/ features/ entities/ shared/ pages-layer/ …
-│   └── package.json
+├── src/                 # приложение Next.js (App Router): app/, widgets/, features/, …
+├── public/              # статика Next
+├── scripts/             # гейты и отчёты (check-*, report-*)
+├── package.json         # зависимости и yarn scripts (как febcode — корень репо)
 ├── .cursor/rules/       # правила агента (этот каталог)
 └── .github/workflows/
 ```
@@ -25,4 +26,4 @@ premier-design/          # корень git
 3. **Карта доков** — `docs/README.md`.
 
 ## Стек (кратко)
-Next.js App Router, Panda CSS, Radix, Storybook — детали в `premier-design/README.md` и `docs/development-playbook-ru.md`.
+Next.js App Router, Panda CSS, Radix, Storybook — детали в `README.md` и `docs/development-playbook-ru.md`.

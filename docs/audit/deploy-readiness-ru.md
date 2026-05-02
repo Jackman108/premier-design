@@ -8,18 +8,18 @@
 
 ## 1. Критерий «можно выкатывать»
 
-| Проверка | Команда / артефакт | Ожидание |
-|----------|-------------------|----------|
-| **Сводная локально (из каталога `premier-design/`)** | `yarn check:deploy:local` | lint + typecheck + unit + build + initial JS + architecture + ui-purity + feature-structure |
-| Линтер | `yarn lint` | без ошибок |
-| Типы (TypeScript) | `yarn typecheck` | без ошибок (`tsc --noEmit`, строже чем `next build` для `*.test.ts(x)`) |
-| Юнит-тесты | `yarn test --watch=false` | все зелёные |
-| Сборка | `yarn build` | успех |
-| Бюджет initial JS главной | `node ./scripts/check-initial-js-budget.mjs` после `yarn build` | ≤ `INITIAL_JS_BUDGET_KB` (дефолт 750 KB) |
-| Quality-gate (как в CI) | `yarn check:perf:ci` | Lighthouse + initial JS (на Windows Lighthouse может быть пропущен — см. PERF-гайд) |
-| Границы слоёв / UI-чистота | `yarn check:architecture`, `yarn check:ui-purity` | без новых нарушений |
-| E2E smoke | `yarn test:e2e` (нужен `yarn dev` или `yarn start` + `baseURL` из Playwright) | ключевые сценарии в `e2e/smoke.spec.ts` |
-| E2E visual smoke | `yarn test:e2e:visual` | базовая проверка консистентности карточек и dark-overlay контраста (`e2e/visual-regression.spec.ts`) |
+| Проверка                                  | Команда / артефакт                                                            | Ожидание                                                                                             |
+| ----------------------------------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| **Сводная локально (корень репозитория)** | **`yarn ci:quality`**                                                         | lint + typecheck + unit + build + initial JS + architecture + ui-purity + feature-structure          |
+| Линтер                                    | `yarn lint`                                                                   | без ошибок                                                                                           |
+| Типы (TypeScript)                         | `yarn typecheck`                                                              | без ошибок (`tsc --noEmit`, строже чем `next build` для `*.test.ts(x)`)                              |
+| Юнит-тесты                                | `yarn test --watch=false`                                                     | все зелёные                                                                                          |
+| Сборка                                    | `yarn build`                                                                  | успех                                                                                                |
+| Бюджет initial JS главной                 | `node ./scripts/check-initial-js-budget.mjs` после `yarn build`               | ≤ `INITIAL_JS_BUDGET_KB` (дефолт 750 KB)                                                             |
+| Quality-gate (как в CI)                   | `yarn check:perf:ci`                                                          | Lighthouse + initial JS (на Windows Lighthouse может быть пропущен — см. PERF-гайд)                  |
+| Границы слоёв / UI-чистота                | `yarn check:architecture`, `yarn check:ui-purity`                             | без новых нарушений                                                                                  |
+| E2E smoke                                 | `yarn test:e2e` (нужен `yarn dev` или `yarn start` + `baseURL` из Playwright) | ключевые сценарии в `e2e/smoke.spec.ts`                                                              |
+| E2E visual smoke                          | `yarn test:e2e:visual`                                                        | базовая проверка консистентности карточек и dark-overlay контраста (`e2e/visual-regression.spec.ts`) |
 
 ---
 
@@ -83,8 +83,8 @@
 ## 8. Оставшийся техдолг (не блокирует первый деплой)
 
 - Замена или изоляция `react-chatbot-kit` при появлении рисков по CVE — ADR [0008](../adr/0008-react-chatbot-kit-dependency.md).
-- Multi-site VPS: проверить TLS-сертификаты, healthcheck и rollback по [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md) — для совмещённого хостинга `premium-design.pro` + `febcode.pro`.
+- Multi-site VPS: проверить TLS-сертификаты, healthcheck и rollback по [`multisite-vps-deploy-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md) — для совмещённого хостинга `premium-design.pro` + `febcode.pro`.
 
 ---
 
-*Версия документа: апрель 2026. При изменении процесса релиза обновляйте этот файл и ссылку из [docs/README.md](../README.md).*
+_Версия документа: апрель 2026. При изменении процесса релиза обновляйте этот файл и ссылку из [docs/README.md](../README.md)._

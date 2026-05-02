@@ -1,6 +1,6 @@
 ---
 description: API Routes, Zod, rate-limit — MemPalace 05–06, 11
-globs: premier-design/**/app/api/**/*.{ts,tsx}
+globs: src/**/app/api/**/*.{ts,tsx}
 alwaysApply: false
 ---
 
@@ -15,6 +15,6 @@ alwaysApply: false
 Валидация тела запроса **Zod**; rate-limit на публичных endpoint’ах по политике репозитория.
 
 ## Единый JSON (портфель / febcode эталон)
-- **Ошибка:** `{ success: false, errorCode, error, correlationId, … }` — см. `createApiErrorPayload` в [`premier-design/shared/lib/api/apiRequestRuntime.ts`](../premier-design/shared/lib/api/apiRequestRuntime.ts).
+- **Ошибка:** `{ success: false, errorCode, error, correlationId, … }` — см. `createApiErrorPayload` в [`apiRequestRuntime.ts`](../src/shared/lib/api/apiRequestRuntime.ts).
 - **Успех (формы / feedback):** `{ success: true, correlationId, message? }` — `POST /api/feedback`.
-- Клиент формы: [`postFeedbackClient.ts`](../premier-design/shared/lib/postFeedbackClient.ts) читает `error`, иначе legacy `message`.
+- Клиент формы: [`postFeedbackClient.ts`](../src/shared/lib/postFeedbackClient.ts) читает `error`, иначе legacy `message`.

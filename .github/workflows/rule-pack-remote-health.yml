@@ -1,0 +1,31 @@
+# §10.3 BP-29: cron-проверка, что три копии `cross-repo-rule-pack-ru.md` доступны на default branch.
+# Полное тождество трёх файлов не требуется: §6 локальный; infra отличается §1.
+# §1–§5 premier/febcode — дословно; дисциплина — шапка `cross-repo-rule-pack-ru.md` + PR checklist.
+
+name: Rule pack remote presence (§10.3)
+
+on:
+  schedule:
+    - cron: "0 6 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fetch:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Verify raw copies (HTTP 200)
+        run: |
+          set -euo pipefail
+          urls=(
+            "https://raw.githubusercontent.com/Jackman108/premier-design/master/docs/guides/cross-repo-rule-pack-ru.md"
+            "https://raw.githubusercontent.com/Jackman108/febcode/master/docs/guides/cross-repo-rule-pack-ru.md"
+            "https://raw.githubusercontent.com/Jackman108/lendings-vps-infra/master/docs/guides/cross-repo-rule-pack-ru.md"
+          )
+          for url in "${urls[@]}"; do
+            echo "-- $url"
+            sz=$(curl -fsSL --retry 3 "$url" | wc -c)
+            test "$sz" -ge 800
+          done

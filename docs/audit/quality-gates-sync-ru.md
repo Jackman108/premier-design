@@ -4,14 +4,14 @@
 
 ## Когда обязательна синхронизация
 
-- Изменение или добавление скриптов `check:*` / `test:*` / `lint` / `typecheck` в `premier-design/package.json`, а также поля **`engines`** или файла **`premier-design/.nvmrc`**.
-- Правка workflow: `ci.yml`, `ci-trends.yml`, `e2e-extended.yml`, `security-high-weekly.yml`, `deploy.yml`, `ghcr-premium-design.yml`, `codeql.yml`, **`docs-markdown-links.yml`**; корень **`.github/dependabot.yml`**; **`.markdown-link-check.json`**. **Web Vitals (BP-03):** `app/api/vitals/route.ts`, `shared/ui/web-vitals/WebVitalsReporter.tsx`, `shared/lib/web-vitals-ingest.ts`, `next.config.js` (CSP `connect-src`), `.env.example` (`WEB_VITALS_LOG`).
+- Изменение или добавление скриптов `check:*` / `test:*` / `lint` / `typecheck` в корневом `package.json`, а также поля **`engines`** или файла **`.nvmrc`**.
+- Правка workflow: `ci.yml`, `ci-trends.yml`, `e2e-extended.yml`, `security-high-weekly.yml`, `deploy.yml`, `ghcr-premium-design.yml`, `codeql.yml`, **`docs-markdown-links.yml`**, **`rule-pack-remote-health.yml`** (§10.3); корень **`.github/dependabot.yml`**; **`.markdown-link-check.json`**; корневой **`SECURITY.md`**, **`CODEOWNERS`**, **`pull_request_template.md`**, **`.editorconfig`**, **`.gitattributes`**. **Web Vitals (BP-03):** `app/api/vitals/route.ts`, `shared/ui/web-vitals/WebVitalsReporter.tsx`, `shared/lib/web-vitals-ingest.ts`, `next.config.js` (CSP `connect-src`), `.env.example` (`WEB_VITALS_LOG`).
 - Справочник [`docs/guides/scripts-and-quality-gates-ru.md`](../guides/scripts-and-quality-gates-ru.md) — обновить **в той же задаче**, что и `package.json`.
 - Изменение **реестра рисков** (новый гейт, снятие/добавление риска).
 - Смена порогов: Lighthouse, SLA CI (`.ci-trends-14d.json` / `check-ci-sla.mjs`), SLO feedback, architecture allowlist, бюджет initial JS.
 - Изменение `lint-staged` или `.husky/*` (pre‑commit / pre‑push).
 - Правка инфраструктуры в репозитории **`lendings-vps-infra`** (compose, nginx, certbot) — обязательно обновить `docs/audit/quality-gates-sync-infra-ru.md` там и ссылки в этом репозитории (`docs/guides/deploy-vercel-and-vps-ru.md`, `lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`).
-  [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md)
+  [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md)
   и [`changelog.md`](../changelog.md).
 - Правка `LICENSE` / `LICENSE_RU.md` / `package.json.license` — обновить ADR
   [`docs/adr/0011-proprietary-license.md`](../adr/0011-proprietary-license.md).
@@ -31,7 +31,7 @@
 
 ## Самопроверка локально
 
-- `cd premier-design && yarn check:risk:local` (или согласно регламенту pre‑push в проекте).
-- При значимых изменениях скриптов/гейтов: `yarn check:precommit:full` для полного прохода.
+- из корня репозитория: `yarn check:risk:local` (или согласно регламенту pre‑push в проекте).
+- При значимых изменениях скриптов/гейтов: **`yarn ci:quality`** для полного прохода (кросс‑репо канон).
 
 Документ служит runbook‑напоминанием: при смене гейтов **не** полагаться на память — пройти чеклист.

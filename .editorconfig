@@ -1,0 +1,18 @@
+# §10.2 BP-35 — общие настройки редактора (LF, финальный перевод строки).
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{js,jsx,ts,tsx,mjs,cjs,json,yml,yaml}]
+indent_style = tab
+
+[*.md]
+indent_style = space
+indent_size = 2
+
+[*.{cmd,bat}]
+end_of_line = crlf

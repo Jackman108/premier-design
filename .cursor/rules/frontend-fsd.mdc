@@ -1,6 +1,6 @@
 ---
 description: FSD-границы, алиасы, публичный API срезов (Premium Design)
-globs: premier-design/**/*.{ts,tsx}
+globs: src/**/*.{ts,tsx}
 alwaysApply: false
 ---
 
@@ -14,7 +14,7 @@ alwaysApply: false
 Экспорт фичи/сущности только через **`index.ts`** среза; запрет «прорыва» внутренних путей — см. arch-lint и [`docs/guides/layer-imports-and-public-api-cross-repo-ru.md`](../docs/guides/layer-imports-and-public-api-cross-repo-ru.md). Политика слоя **`entities/`** — **ADR 0014** ([`docs/adr/0014-fsd-entities-slice-and-public-api.md`](../docs/adr/0014-fsd-entities-slice-and-public-api.md)); граница **`services/`** vs **`shared/lib`** — **ADR 0012**.
 
 ## Алиасы
-Канон в [`premier-design/tsconfig.paths.json`](../premier-design/tsconfig.paths.json) и [`docs/guides/code-structure-and-naming-ru.md`](../docs/guides/code-structure-and-naming-ru.md). Не использовать **`@/`** там, где политика репозитория запрещает.
+Канон в [`tsconfig.paths.json`](../tsconfig.paths.json) и [`docs/guides/code-structure-and-naming-ru.md`](../docs/guides/code-structure-and-naming-ru.md). Не использовать **`@/`** там, где политика репозитория запрещает.
 
 ## Сверка с Feb Code
 Общая терминология слоёв — репозиторий **febcode** (`docs/guides/architecture-ru.md`; отдельный git).

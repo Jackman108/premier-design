@@ -11,9 +11,6 @@ env:
 jobs:
   e2e-extended:
     runs-on: ubuntu-22.04
-    defaults:
-      run:
-        working-directory: premier-design
 
     steps:
       - name: Checkout
@@ -22,9 +19,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version-file: premier-design/.nvmrc
+          node-version-file: .nvmrc
           cache: yarn
-          cache-dependency-path: premier-design/yarn.lock
+          cache-dependency-path: yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-scripts

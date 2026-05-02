@@ -1,6 +1,6 @@
 ---
 description: Use-case, порты, чистый view — канон MemPalace 08
-globs: premier-design/**/*.{ts,tsx}
+globs: src/**/*.{ts,tsx}
 alwaysApply: false
 ---
 

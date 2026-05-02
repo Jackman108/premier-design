@@ -1,16 +1,72 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# local env files
+# Dependencies
+/node_modules
+package-lock.json
+/.pnp
+.pnp.js
+
+# Testing & E2E artifacts (любая директория `coverage/`, в т.ч. ошибочный вывод под `src/coverage/`)
+coverage/
+/test-results/
+/playwright-report/
+/blob-report/
+
+# Storybook build output
+storybook-static
+
+# Lighthouse CLI (local perf check)
+.lighthouse-tmp/
+.lighthouse-chrome-profile/
+.audit/
+
+# Next.js
+/.next/
+/out/
+# Ошибочный запуск `next` из `src/` — не коммитить
+/src/.next/
+
+# Vercel CLI (`vercel link`)
+.vercel
+
+# Production / misc
+/build
+/certificates
+/stories
+
+# Machine translation cache (legacy path under src)
+/src/data/locales/en/_translation-cache.json
+
+# Misc
+.DS_Store
+dist
+dist-ssr
+*.local
+
+# Debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local env files
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
 .env
+formData.json
 
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
 .idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.tsbuildinfo
+*storybook.log
 
 /nginx/certificates
-# Next.js: весь build output (RISK-07, шум в git/PR; ранее — только dev/cache)
-/premier-design/.next/
-/premier-design/.lighthouse-tmp/
-/premier-design/.lighthouse-chrome-profile/
-/premier-design/.audit/

@@ -10,7 +10,7 @@
 
 ## Базовый рабочий цикл
 
-1. `cd premier-design`
+1. Клонируйте репозиторий и перейдите в его **корень** (где `package.json`).
 2. `yarn install`
 3. `yarn check:static`
 4. При изменении границ/архитектуры/конфигов: `yarn check:risk:local`

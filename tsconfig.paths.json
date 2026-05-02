@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"paths": {
+			"@app": ["./src/app"],
+			"@app/*": ["./src/app/*"],
+			"@widgets/*": ["./src/widgets/*"],
+			"@pages": ["./src/pages-layer"],
+			"@pages/*": ["./src/pages-layer/*"],
+			"@pages-layer/*": ["./src/pages-layer/*"],
+			"@features/*": ["./src/features/*"],
+			"@shared/*": ["./src/shared/*"],
+			"@app-types/*": ["./src/types/*"],
+			"@entities": ["./src/entities/index.ts"],
+			"@entities/*": ["./src/entities/*"]
+		}
+	}
+}

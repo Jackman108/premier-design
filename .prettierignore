@@ -1,0 +1,14 @@
+.next
+src/.next
+.audit
+next-env.d.ts
+node_modules
+coverage
+src/coverage
+storybook-static
+.vercel
+styled-system
+pnpm-lock.yaml
+yarn.lock
+*.min.js
+public/

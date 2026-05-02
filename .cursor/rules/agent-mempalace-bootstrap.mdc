@@ -36,7 +36,7 @@ alwaysApply: true
 - **Процесс, гейты, DoD, RISK-08** — `.cursor/rules/agent-quality-process.mdc`.
 - **Плейбук разработчика** — `docs/development-playbook-ru.md`.
 - **Реквизиты, ФИО ИП, УНП, контакты, адрес, режим работы** — единственный источник правды
-  `premier-design/shared/constants/company.ts` (`SITE_OPERATOR`); потребители (`LegalRequisites`,
+  `src/shared/constants/company.ts` (`SITE_OPERATOR`); потребители (`LegalRequisites`,
   `Phone`, `WorkHours`, `Address`, `generateStructuredData`, юр.тексты в
   `features/documents-content/*`) **обязаны** брать значения отсюда.
 - **VPS-инфраструктура (Docker + nginx + Let's Encrypt)** — отдельный репозиторий **`lendings-vps-infra`**; в этом репо — [`docs/guides/deploy-vercel-and-vps-ru.md`](../../docs/guides/deploy-vercel-and-vps-ru.md)
@@ -57,7 +57,7 @@ alwaysApply: true
 
 ## Комментарии в коде (русский)
 
-Для новых и существенно изменённых файлов — короткие комментарии **«почему»**, не «что» (включая `premier-design/scripts/*.mjs`). В модулях `hooks/` / `utils/`, вынесенных из `ui/`, в начале — зона ответственности и контракт (вход/выход).
+Для новых и существенно изменённых файлов — короткие комментарии **«почему»**, не «что» (включая `scripts/*.mjs` в корне репо). В модулях `hooks/` / `utils/`, вынесенных из `ui/`, в начале — зона ответственности и контракт (вход/выход).
 
 ## Зависимости
 

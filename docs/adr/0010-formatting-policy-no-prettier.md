@@ -22,9 +22,9 @@
 
 ## Кросс-репозиторий Feb Code
 
-Репозиторий **Feb Code** использует **Prettier** (отдельный git; см. их `package.json` и документацию). Это не отменяет решение для **Premier Design**: у каждого репозитория своя политика. При работе с обоими кодовыми базами форматировать и проверять код нужно **инструментами того репозитория**, в который вносится изменение. Навигатор без дублирования норм — [`guides/prettier-and-formatting-cross-repo-ru.md`](../guides/prettier-and-formatting-cross-repo-ru.md).
+Репозиторий **Feb Code** использует **Prettier** (отдельный git; см. их `package.json` и документацию). Это не отменяет решение для **Premier Design**: у каждого репозитория своя политика. При работе с обоими кодовыми базами форматировать и проверять код нужно **инструментами того репозитория**, в который вносится изменение. Сводка — [`guides/scripts-and-quality-gates-ru.md`](../guides/scripts-and-quality-gates-ru.md) (блок «Политика форматирования»).
 
 ## Проверка готовности
 
 - `package.json` не содержит `format`/`format:check`.
-- `scripts-and-quality-gates-ru.md` и при необходимости `guides/prettier-and-formatting-cross-repo-ru.md` синхронизированы с принятым решением и кросс-репо контекстом.
+- `scripts-and-quality-gates-ru.md` синхронизирован с принятым решением и кросс-репо контекстом.

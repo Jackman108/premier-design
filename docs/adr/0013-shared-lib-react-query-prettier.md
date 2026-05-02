@@ -21,7 +21,7 @@
 
 - [**ADR 0010**](./0010-formatting-policy-no-prettier.md) помечен как **частично замещённый** по пункту Prettier; актуальная политика форматирования — этот ADR + скрипты в `package.json`.
 - Скрипт **`check-architecture-boundaries.mjs`**: импорты **`@features/*`** из **`shared/lib/`** разрешены (исключение из общего запрета для остального `shared/`); запрет **`@shared/lib/find*`** из feature-слайсов сохранён.
-- **`check:static`** и **`check:precommit:full`** включают **`format:check`**.
+- **`check:static`** и **`ci:quality`** включают **`format:check`**.
 
 ## Проверка готовности
 

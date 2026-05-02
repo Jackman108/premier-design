@@ -1,8 +1,8 @@
 # Открытый план аудита и улучшений (compliance с новой документацией)
 
-**Обновлено**: 01.05.2026
+**Обновлено**: 30.04.2026
 
-Связанные документы: [`project-audit-ru.md`](project-audit-ru.md) · [`deploy-readiness-ru.md`](deploy-readiness-ru.md) · [`quality-gates-sync-ru.md`](quality-gates-sync-ru.md) · [`project-risk-register-2026-04-ru.md`](project-risk-register-2026-04-ru.md) · [`cross-repo-alignment-ru.md`](cross-repo-alignment-ru.md) · [`changelog.md`](../changelog.md) · сводный портфельный аудит — [`cross-repo-portfolio-audit-2026-04-ru.md`](../../../lendings-vps-infra/docs/audit/cross-repo-portfolio-audit-2026-04-ru.md) (`lendings-vps-infra`).
+Связанные документы: [`project-audit-ru.md`](project-audit-ru.md) · [`deploy-readiness-ru.md`](deploy-readiness-ru.md) · [`quality-gates-sync-ru.md`](quality-gates-sync-ru.md) · [`project-risk-register-2026-04-ru.md`](project-risk-register-2026-04-ru.md) · [`cross-repo-alignment-ru.md`](cross-repo-alignment-ru.md) · [`changelog.md`](../changelog.md) · сводный портфельный аудит — [`cross-repo-portfolio-audit-2026-04-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/audit/cross-repo-portfolio-audit-2026-04-ru.md) (`lendings-vps-infra`).
 
 > Документ — **исполняемый бэклог**: только открытые пункты. После закрытия — запись в [`changelog.md`](../changelog.md), перенос в «Закрытые направления» в `project-audit-ru.md` или вычеркивание здесь. Исторические выполненные пункты в этот файл не возвращаются.
 
@@ -11,7 +11,7 @@
 Задача считается закрытой только если выполнены **все** условия:
 
 1. Есть реальное изменение в коде или CI‑процессе (не только текстовая пометка).
-2. Пройдены минимально требуемые гейты: для кода — `yarn check:static` минимум; для границ — `yarn check:risk:local`; для сборки/perf — `yarn check:precommit:full`.
+2. Пройдены минимально требуемые гейты: для кода — **`yarn check:static`** минимум; для границ — **`yarn check:risk:local`**; для сборки/perf — **`yarn ci:quality`**.
 3. Обновлены релевантные документы (`project-audit-ru.md`, `deploy-readiness-ru.md`, `mempalace/rules/*`, ADR — по таблице синхронизации в `quality-gates-sync-ru.md`).
 4. Есть запись в [`changelog.md`](../changelog.md) (`[Unreleased]`).
 5. Для нетривиального решения — короткий комментарий «почему» в коде или ADR.
@@ -43,13 +43,13 @@
 
 ## Открытые задачи
 
-Таблицы **§1.1 / §1.2** сводного аудита портфеля не дублируются целиком — канон в [`cross-repo-portfolio-audit-2026-04-ru.md`](../../../lendings-vps-infra/docs/audit/cross-repo-portfolio-audit-2026-04-ru.md). Ниже — **живой перенос** строк со статусом **PART** по колонке **premier-design** (§9 этап 3.1).
+Таблицы **§1.1 / §1.2** сводного аудита портфеля не дублируются целиком — канон в [`cross-repo-portfolio-audit-2026-04-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/audit/cross-repo-portfolio-audit-2026-04-ru.md). **Сводная очередь портфеля** (все три репо) — **§9.2** того же документа; ниже остаётся только перенос **PART** по колонке **premier-design**.
 
-| ID | Спринт | Приоритет | Источник | Задача | Артефакт закрытия | Статус |
-|----|--------|-----------|----------|--------|-------------------|--------|
-| ARCH-PREM-01 | Backlog | P2 | cross-repo §1.1 п.4; §1.2.4 | Двойная вложенность `premier-design/premier-design/` — снизить трение путей CI / DX | README, CI, `docs/` | Open |
-| DATA-PREM-01 | S5 | P3 | cross-repo §1.1 п.3; BP-21 §7.3 | Редакционный EN для **`data.json`** (не клон оформления); UI-строки — **`data/locales/*/ui.json`** + **`@shared/i18n`**; префикс **`/en`** не используется; ~~cookie~~, ~~переключатель~~, ~~`<html lang>`~~, ~~канон/hreflang/OpenGraph locale по пути~~ — см. [`changelog`](../changelog.md) | Вычитка EN **`data.json`** | Open |
-| REF-PREM-01 | Backlog | P2 | cross-repo §1.1 п.5; §1.2.5 | Порог декомпозиции LOC + отчёт по allowlist (паритет с febcode) | `scripts/`, `development.mdc` | Open |
+| ID           | Спринт  | Приоритет | Источник                        | Задача                                                                                                                                                                                                                                                                                         | Артефакт закрытия                     | Статус |
+| ------------ | ------- | --------- | ------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- | ------ |
+| ARCH-PREM-01 | —       | P2        | cross-repo §1.1 п.4; §1.2.4     | Плоская структура: корень репо = `package.json` + **`src/`** (как febcode); CI / GHCR / Husky без вложенного каталога приложения                                                                                                                                                               | README, CI, `docs/`, `.cursor/rules/` | Done   |
+| DATA-PREM-01 | S5      | P3        | cross-repo §1.1 п.3; BP-21 §7.3 | Редакционный EN для **`data.json`** (не клон оформления); UI-строки — **`data/locales/*/ui.json`** + **`@shared/i18n`**; префикс **`/en`** не используется; ~~cookie~~, ~~переключатель~~, ~~`<html lang>`~~, ~~канон/hreflang/OpenGraph locale по пути~~ — см. [`changelog`](../changelog.md) | Вычитка EN **`data.json`**            | Open   |
+| REF-PREM-01  | Backlog | P2        | cross-repo §1.1 п.5; §1.2.5     | Порог декомпозиции LOC + отчёт по allowlist (паритет с febcode)                                                                                                                                                                                                                                | `scripts/`, `development.mdc`         | Open   |
 
 ## Как добавлять новую задачу
 

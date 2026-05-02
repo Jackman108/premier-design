@@ -17,21 +17,21 @@
 ## Предлагаемый план
 
 1. **Стабилизировать интерфейс runtime-адаптера**
-   - единый контракт: `open/close/sendMessage/reset`;
-   - внешний UI работает через контракт, не через API конкретной библиотеки.
+    - единый контракт: `open/close/sendMessage/reset`;
+    - внешний UI работает через контракт, не через API конкретной библиотеки.
 2. **Ограничить поверхность импорта**
-   - `react-chatbot-kit` импортируется только в runtime-адаптере;
-   - все вызовы идут через `dynamic(..., { ssr: false })`.
+    - `react-chatbot-kit` импортируется только в runtime-адаптере;
+    - все вызовы идут через `dynamic(..., { ssr: false })`.
 3. **Подготовить fallback-реализацию**
-   - минимальный headless runtime на текущем наборе сообщений/кнопок;
-   - без включения в prod до прохождения гейтов.
+    - минимальный headless runtime на текущем наборе сообщений/кнопок;
+    - без включения в prod до прохождения гейтов.
 4. **Критерии переключения**
-   - есть high/critical CVE без доступного patch;
-   - или деградация budget (`check:perf:ci`) после изменения чат-сценария.
+    - есть high/critical CVE без доступного patch;
+    - или деградация budget (`check:perf:ci`) после изменения чат-сценария.
 5. **Критерии принятия миграции**
-   - зелёные `check:static`, `check:risk:local`, `check:perf:ci`;
-   - зелёный smoke по lead funnel;
-   - bundle delta не хуже целевого baseline.
+    - зелёные `check:static`, `check:risk:local`, `check:perf:ci`;
+    - зелёный smoke по lead funnel;
+    - bundle delta не хуже целевого baseline.
 
 ## Out of scope
 

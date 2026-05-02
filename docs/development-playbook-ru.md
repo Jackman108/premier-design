@@ -6,16 +6,16 @@
 
 ## 1. Карта источников
 
-| Слой | Назначение | Где смотреть |
-|------|------------|--------------|
-| Обязательные правила агента (IDE) | Нормы из MemPalace + процесс/гейты | [`.cursor/rules/agent-mempalace-bootstrap.mdc`](../.cursor/rules/agent-mempalace-bootstrap.mdc), [`.cursor/rules/agent-quality-process.mdc`](../.cursor/rules/agent-quality-process.mdc) (корень репозитория) |
-| Короткие нормы по темам (для людей и RAG) | Один файл — одна тема (01–12) | [`mempalace/rules/`](mempalace/rules/) |
-| Архитектурные решения | «Почему так», версии, последствия | [`adr/README.md`](adr/README.md) |
-| Операционные чеклисты | Деплой, риски, синхронизация гейтов, observability | [`audit/`](audit/) |
-| Скрипты и CI | Полный справочник `yarn` команд и соответствие CI | [`guides/scripts-and-quality-gates-ru.md`](guides/scripts-and-quality-gates-ru.md) |
-| Структура и нейминг | Слои, модули, роль `lib/` и `shared/` | [`guides/code-structure-and-naming-ru.md`](guides/code-structure-and-naming-ru.md) |
-| Выравнивание с Feb Code | Матрица C1–C4 и ссылки на гайды | [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md) |
-| Производительность / SEO | Чеклист и пороги бюджетов | [`guides/perf-and-seo-checklist-ru.md`](guides/perf-and-seo-checklist-ru.md) |
+| Слой                                      | Назначение                                         | Где смотреть                                                                                                                                                                                                  |
+| ----------------------------------------- | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Обязательные правила агента (IDE)         | Нормы из MemPalace + процесс/гейты                 | [`.cursor/rules/agent-mempalace-bootstrap.mdc`](../.cursor/rules/agent-mempalace-bootstrap.mdc), [`.cursor/rules/agent-quality-process.mdc`](../.cursor/rules/agent-quality-process.mdc) (корень репозитория) |
+| Короткие нормы по темам (для людей и RAG) | Один файл — одна тема (01–12)                      | [`mempalace/rules/`](mempalace/rules/)                                                                                                                                                                        |
+| Архитектурные решения                     | «Почему так», версии, последствия                  | [`adr/README.md`](adr/README.md)                                                                                                                                                                              |
+| Операционные чеклисты                     | Деплой, риски, синхронизация гейтов, observability | [`audit/`](audit/)                                                                                                                                                                                            |
+| Скрипты и CI                              | Полный справочник `yarn` команд и соответствие CI  | [`guides/scripts-and-quality-gates-ru.md`](guides/scripts-and-quality-gates-ru.md)                                                                                                                            |
+| Структура и нейминг                       | Слои, модули, роль `lib/` и `shared/`              | [`guides/code-structure-and-naming-ru.md`](guides/code-structure-and-naming-ru.md)                                                                                                                            |
+| Выравнивание с Feb Code                   | Матрица C1–C4 и ссылки на гайды                    | [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md)                                                                                                                                        |
+| Производительность / SEO                  | Чеклист и пороги бюджетов                          | [`guides/perf-and-seo-checklist-ru.md`](guides/perf-and-seo-checklist-ru.md)                                                                                                                                  |
 
 **Принцип DRY для документов:** бизнес‑правила и use‑case живут в **коде** (`features/*/useCases/`, `shared/lib/`, валидаторы); документы фиксируют **границы, процесс и необратимые решения** (ADR), а не пересказывают код.
 
@@ -58,7 +58,7 @@
 1. **Понять задачу и слой.** Где живёт изменение: UI / use‑case / адаптер / инфраструктура? Если непонятно — сверяйтесь с картой выше.
 2. **Минимальный diff.** Не «прибирайте» несвязные файлы в том же PR (см. [`mempalace/rules/12_*`](mempalace/rules/12-refactoring-and-technical-debt-ru.md)).
 3. **Быстрый фидбек:** `yarn check:static` (lint + typecheck + unit).
-4. **Перед PR:** `yarn check:risk:local` (все project‑gates) или сразу `yarn check:precommit:full` (как в pre‑commit).
+4. **Перед PR:** `yarn check:risk:local` (все project‑gates) или сразу **`yarn ci:quality`**.
 5. **E2E:** `yarn test:e2e` (smoke `@core`); расширенный — `yarn test:e2e:extended` или nightly workflow.
 6. **Перфоманс и бюджеты:** `yarn check:perf:ci` локально по необходимости (на Windows Lighthouse может пропускаться, см. [`PERF_AND_SEO_CHECKLIST_RU`](guides/perf-and-seo-checklist-ru.md)).
 7. **Доки и changelog** — синхронизируем по таблице в [`agent-quality-process.mdc`](../.cursor/rules/agent-quality-process.mdc) и [`audit/quality-gates-sync-ru.md`](audit/quality-gates-sync-ru.md).
@@ -85,5 +85,5 @@
 
 ## 7. Дополнительно
 
-- Полный индекс: [`README.md`](README.md). Runbook кода: `premier-design/README.md`.
+- Полный индекс: [`README.md`](README.md). Runbook кода: [`README.md`](../README.md) в корне репозитория.
 - Бэклог (если есть открытые строки): [`audit/audit-and-improvement-plan-ru.md`](audit/audit-and-improvement-plan-ru.md); иначе — [`changelog.md`](changelog.md).

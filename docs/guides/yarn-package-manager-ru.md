@@ -2,8 +2,8 @@
 
 ## Правило
 
-- **Единственный lock-файл в git:** `premier-design/yarn.lock`.
-- **`package-lock.json` не коммитим** (игнор в `premier-design/.gitignore`). Если npm создал файл локально — удалите или не добавляйте в коммит.
+- **Единственный lock-файл в git:** корневой `yarn.lock` (рядом с `package.json`).
+- **`package-lock.json` не коммитим** (игнор в корневом `.gitignore`). Если npm создал файл локально — удалите или не добавляйте в коммит.
 - Установка и CI: **`yarn install`**, **`yarn install --frozen-lockfile`** в пайплайнах.
 
 ## Аудит уязвимостей

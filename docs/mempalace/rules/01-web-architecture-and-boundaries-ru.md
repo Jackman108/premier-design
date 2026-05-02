@@ -54,5 +54,5 @@
 4. **Циклические импорты** запрещены; при риске — вынос в `shared/` или узкий util.
 5. **Типизация на границах** и **ввод** — см. [`11-typing-and-validation-ru.md`](11-typing-and-validation-ru.md); публичные API — явные сигнатуры TS; `any` без обоснования и плана замены — не допускается.
 6. **Безопасность** — см. [`05-web-security-and-data-ru.md`](05-web-security-and-data-ru.md).
-7. **Только Yarn.** Lock — `premier-design/yarn.lock`; `package-lock.json` в git не ведём. См. [`../../guides/yarn-package-manager-ru.md`](../../guides/yarn-package-manager-ru.md).
+7. **Только Yarn.** Lock — корневой `yarn.lock`; `package-lock.json` в git не ведём. См. [`../../guides/yarn-package-manager-ru.md`](../../guides/yarn-package-manager-ru.md).
 8. **Структура фичи** — обязательны каталоги `ui/` и `interface/` (или `types/`), публичный баррель `features/<slice>/index.ts`, импорт снаружи через `@features/<slice>`. Контроль: `yarn check:feature-structure`. Нейминг и слои: [`../../guides/code-structure-and-naming-ru.md`](../../guides/code-structure-and-naming-ru.md).

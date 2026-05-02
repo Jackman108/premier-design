@@ -39,12 +39,11 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version-file: premier-design/.nvmrc
+          node-version-file: .nvmrc
           cache: yarn
-          cache-dependency-path: premier-design/yarn.lock
+          cache-dependency-path: yarn.lock
 
       - name: Install dependencies & build
-        working-directory: premier-design
         run: |
           yarn install --frozen-lockfile --ignore-scripts
           yarn build

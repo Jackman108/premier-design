@@ -1,19 +1,20 @@
 {
-  "timeout": "25s",
-  "retryOn429": true,
-  "retryCount": 3,
-  "fallbackRetryDelay": "4s",
-  "ignorePatterns": [
-    { "pattern": "^#" },
-    { "pattern": "^http://127\\.0\\.0\\.1" },
-    { "pattern": "^http://localhost" },
-    { "pattern": "://[^/\\s]*premium-design\\.pro" },
+	"timeout": "25s",
+	"retryOn429": true,
+	"retryCount": 3,
+	"fallbackRetryDelay": "4s",
+	"ignorePatterns": [
+		{ "pattern": "^#" },
+		{ "pattern": "^http://127\\.0\\.0\\.1" },
+		{ "pattern": "^http://localhost" },
+		{ "pattern": "://[^/\\s]*premium-design\\.pro" },
 		{ "pattern": "://[^/\\s]*febcode\\.pro" },
 		{ "pattern": "://[^/\\s]*febcode\\.by" },
-    { "pattern": "https://github\\.com/Jackman108/febcode/" },
-    { "pattern": "https://github\\.com/Jackman108/premier-design/" },
-    { "pattern": "^mailto:" },
-    { "pattern": "https://www\\.npmjs\\.com/advisories/" },
-    { "pattern": "lendings-vps-infra" }
-  ]
+		{ "pattern": "https://github\\.com/Jackman108/febcode/" },
+		{ "pattern": "https://github\\.com/Jackman108/premier-design/" },
+		{ "pattern": "https://github\\.com/Jackman108/lendings-vps-infra/" },
+		{ "pattern": "^mailto:" },
+		{ "pattern": "https://www\\.npmjs\\.com/advisories/" },
+		{ "pattern": "lendings-vps-infra" }
+	]
 }

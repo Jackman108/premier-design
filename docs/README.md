@@ -2,7 +2,7 @@
 
 **Обновлено**: 29.04.2026
 
-Каталог **`docs/`** — материалы вне кода приложения (`premier-design/` — Next.js). **Канон норм по темам:** `mempalace/rules/` и `guides/`. **Feb Code** (отдельный git): только через [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md). **VPS / multi-site:** [`guides/deploy-vercel-and-vps-ru.md`](guides/deploy-vercel-and-vps-ru.md), [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md). **История изменений приложения:** [`changelog.md`](changelog.md) (не в корне `premier-design/`). Краткий контекст для агента без обхода `docs/` — корневой [`AGENTS.md`](../AGENTS.md).
+Каталог **`docs/`** — материалы вне кода приложения; Next.js и исходники — в **`src/`**, зависимости и скрипты — в корневом **`package.json`**. **Канон норм по темам:** `mempalace/rules/` и `guides/`. **Feb Code** (отдельный git): только через [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md). **VPS / multi-site:** [`guides/deploy-vercel-and-vps-ru.md`](guides/deploy-vercel-and-vps-ru.md), [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md). **История изменений приложения:** [`changelog.md`](changelog.md) (не в корне репозитория — только в `docs/`). Краткий контекст для агента без обхода `docs/` — корневой [`AGENTS.md`](../AGENTS.md).
 
 ## С чего начать
 
@@ -25,20 +25,20 @@
 
 ### Гайды — [`guides/`](guides/)
 
-| Документ                                                                                   | Назначение                                                                                                        |
-| ------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| [`guides/scripts-and-quality-gates-ru.md`](guides/scripts-and-quality-gates-ru.md)         | Скрипты `yarn`, CI, lint-staged, Node/`engines`                                                                   |
-| [`guides/code-structure-and-naming-ru.md`](guides/code-structure-and-naming-ru.md)         | Слои, нейминг, `lib/` и `shared/`                                                                                 |
-| [`guides/feature-structure-roadmap-ru.md`](guides/feature-structure-roadmap-ru.md)         | Шаблон `features/*`, гейт структуры                                                                               |
-| [`guides/api-and-storybook-ru.md`](guides/api-and-storybook-ru.md)                         | API, валидация, Storybook                                                                                         |
-| [`guides/perf-and-seo-checklist-ru.md`](guides/perf-and-seo-checklist-ru.md)               | Perf, SEO, Lighthouse, бюджеты                                                                                    |
-| [`guides/yarn-package-manager-ru.md`](guides/yarn-package-manager-ru.md)                   | Yarn, lockfile, audit                                                                                             |
-| [`guides/deploy-ssh-github-actions-ru.md`](guides/deploy-ssh-github-actions-ru.md)         | GitHub Actions, SSH, секреты                                                                                      |
-| [`guides/deploy-vercel-and-vps-ru.md`](guides/deploy-vercel-and-vps-ru.md)                 | Vercel vs GHCR vs VPS                                                                                             |
-| [`guides/cross-repo-rule-pack-ru.md`](guides/cross-repo-rule-pack-ru.md)                   | Лестница гейтов A–D, границы унификации, канонические источники трёх репозиториев (именование, changelog, деплой) |
-| [`guides/marketing-analytics-dashboard-ru.md`](guides/marketing-analytics-dashboard-ru.md) | Аналитика, KPI воронки                                                                                            |
+| Документ                                                                                   | Назначение                                                    |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| [`guides/scripts-and-quality-gates-ru.md`](guides/scripts-and-quality-gates-ru.md)         | Скрипты `yarn`, CI, lint-staged, Node/`engines`               |
+| [`guides/code-structure-and-naming-ru.md`](guides/code-structure-and-naming-ru.md)         | Слои, нейминг, `lib/` и `shared/`                             |
+| [`guides/feature-structure-roadmap-ru.md`](guides/feature-structure-roadmap-ru.md)         | Шаблон `features/*`, гейт структуры                           |
+| [`guides/api-and-storybook-ru.md`](guides/api-and-storybook-ru.md)                         | API, валидация, Storybook                                     |
+| [`guides/perf-and-seo-checklist-ru.md`](guides/perf-and-seo-checklist-ru.md)               | Perf, SEO, Lighthouse, бюджеты                                |
+| [`guides/yarn-package-manager-ru.md`](guides/yarn-package-manager-ru.md)                   | Yarn, lockfile, audit                                         |
+| [`guides/deploy-ssh-github-actions-ru.md`](guides/deploy-ssh-github-actions-ru.md)         | GitHub Actions, SSH, секреты                                  |
+| [`guides/deploy-vercel-and-vps-ru.md`](guides/deploy-vercel-and-vps-ru.md)                 | Vercel vs GHCR vs VPS                                         |
+| [`guides/cross-repo-rule-pack-ru.md`](guides/cross-repo-rule-pack-ru.md)                   | §1–§5 с **febcode** (дословно); §6 — канон **premier-design** |
+| [`guides/marketing-analytics-dashboard-ru.md`](guides/marketing-analytics-dashboard-ru.md) | Аналитика, KPI воронки                                        |
 
-**Feb Code (отдельный репозиторий)** — один вход: [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md). Оттуда — ссылки на `guides/testing-standards-cross-repo-ru.md`, `prettier-and-formatting-cross-repo-ru.md`, `layer-imports-and-public-api-cross-repo-ru.md`, `feb-code-post-release-sync-checklist-ru.md` (канон норм Feb Code не копировать).
+**Feb Code (отдельный репозиторий)** — один вход: [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md); скрипты и C3 — [`guides/scripts-and-quality-gates-ru.md`](guides/scripts-and-quality-gates-ru.md); слои — [`guides/layer-imports-and-public-api-cross-repo-ru.md`](guides/layer-imports-and-public-api-cross-repo-ru.md); пост-релиз — [`guides/feb-code-post-release-sync-checklist-ru.md`](guides/feb-code-post-release-sync-checklist-ru.md).
 
 ### Аудит, риски и релиз — [`audit/`](audit/)
 
@@ -65,9 +65,9 @@
 
 ### Операции и инфраструктура
 
-| Документ                                                                                                                               | Назначение                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md) | Multi-site VPS: nginx, compose, TLS, rollback |
+| Документ                                                                                                                                                                   | Назначение                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md) | Multi-site VPS: nginx, compose, TLS, rollback |
 
 ### Нормы MemPalace — [`mempalace/rules/`](mempalace/rules/)
 
@@ -99,26 +99,26 @@
 
 ## Принцип «один источник правды»
 
-| Тема                         | Канон                                                                                              | Ссылки без копирования                                                                                                                                                                  |
-| ---------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Скрипты, `engines`, `.nvmrc` | `premier-design/package.json`, `.nvmrc`                                                            | [`guides/scripts-and-quality-gates-ru.md`](guides/scripts-and-quality-gates-ru.md), [`audit/quality-gates-sync-ru.md`](audit/quality-gates-sync-ru.md), `premier-design/README.md`      |
-| Feb Code                     | [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md)                             | `guides/*cross-repo*.md`, репозиторий **febcode**                                                                                                                                       |
-| Реквизиты и контакты ИП      | `premier-design/shared/constants/company.ts`                                                       | `LegalRequisites`, юр. тексты, JSON-LD                                                                                                                                                  |
-| Соцсети                      | `SITE_SOCIAL` в `company.ts`                                                                       | `SocialIcons`                                                                                                                                                                           |
-| Multi-site VPS               | Репозиторий **`lendings-vps-infra`**                                                               | [`multisite-vps-deploy-ru.md`](../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md), [`guides/deploy-ssh-github-actions-ru.md`](guides/deploy-ssh-github-actions-ru.md) |
-| Лицензия                     | `LICENSE`, `LICENSE_RU.md`, ADR 0011                                                               | этот файл, `premier-design/README.md`                                                                                                                                                   |
-| Слои / use-case / SOLID      | `mempalace/rules/01`, `08`, `09`                                                                   | плейбук, [`guides/code-structure-and-naming-ru.md`](guides/code-structure-and-naming-ru.md)                                                                                             |
-| Perf                         | `mempalace/rules/04`, [`guides/perf-and-seo-checklist-ru.md`](guides/perf-and-seo-checklist-ru.md) | [`audit/deploy-readiness-ru.md`](audit/deploy-readiness-ru.md)                                                                                                                          |
-| UI / токены                  | `mempalace/rules/02`, ADR 0001–0003                                                                | [`audit/project-audit-ru.md`](audit/project-audit-ru.md)                                                                                                                                |
-| Тесты                        | `mempalace/rules/07`                                                                               | [`guides/api-and-storybook-ru.md`](guides/api-and-storybook-ru.md)                                                                                                                      |
-| Бэклог                       | [`audit/audit-and-improvement-plan-ru.md`](audit/audit-and-improvement-plan-ru.md)                 | —                                                                                                                                                                                       |
-| История                      | [`changelog.md`](changelog.md)                                                                     | —                                                                                                                                                                                       |
+| Тема                         | Канон                                                                                              | Ссылки без копирования                                                                                                                                                                                                      |
+| ---------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Скрипты, `engines`, `.nvmrc` | Корневой `package.json`, `.nvmrc`                                                                  | [`guides/scripts-and-quality-gates-ru.md`](guides/scripts-and-quality-gates-ru.md), [`audit/quality-gates-sync-ru.md`](audit/quality-gates-sync-ru.md), [`README.md`](../README.md)                                         |
+| Feb Code                     | [`audit/cross-repo-alignment-ru.md`](audit/cross-repo-alignment-ru.md)                             | `guides/*cross-repo*.md`, репозиторий **febcode**                                                                                                                                                                           |
+| Реквизиты и контакты ИП      | `src/shared/constants/company.ts`                                                                  | `LegalRequisites`, юр. тексты, JSON-LD                                                                                                                                                                                      |
+| Соцсети                      | `SITE_SOCIAL` в `company.ts`                                                                       | `SocialIcons`                                                                                                                                                                                                               |
+| Multi-site VPS               | Репозиторий **`lendings-vps-infra`**                                                               | [`multisite-vps-deploy-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md), [`guides/deploy-ssh-github-actions-ru.md`](guides/deploy-ssh-github-actions-ru.md) |
+| Лицензия                     | `LICENSE`, `LICENSE_RU.md`, ADR 0011                                                               | этот файл, [`README.md`](../README.md)                                                                                                                                                                                      |
+| Слои / use-case / SOLID      | `mempalace/rules/01`, `08`, `09`                                                                   | плейбук, [`guides/code-structure-and-naming-ru.md`](guides/code-structure-and-naming-ru.md)                                                                                                                                 |
+| Perf                         | `mempalace/rules/04`, [`guides/perf-and-seo-checklist-ru.md`](guides/perf-and-seo-checklist-ru.md) | [`audit/deploy-readiness-ru.md`](audit/deploy-readiness-ru.md)                                                                                                                                                              |
+| UI / токены                  | `mempalace/rules/02`, ADR 0001–0003                                                                | [`audit/project-audit-ru.md`](audit/project-audit-ru.md)                                                                                                                                                                    |
+| Тесты                        | `mempalace/rules/07`                                                                               | [`guides/api-and-storybook-ru.md`](guides/api-and-storybook-ru.md)                                                                                                                                                          |
+| Бэклог                       | [`audit/audit-and-improvement-plan-ru.md`](audit/audit-and-improvement-plan-ru.md)                 | —                                                                                                                                                                                                                           |
+| История                      | [`changelog.md`](changelog.md)                                                                     | —                                                                                                                                                                                                                           |
 
 ---
 
 ## Внутри приложения
 
-- Runbook: `premier-design/README.md`
+- Runbook: [`README.md`](../README.md) (корень репозитория)
 - Версии: [`changelog.md`](changelog.md)
 
 ## Лицензия

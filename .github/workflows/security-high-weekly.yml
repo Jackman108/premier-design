@@ -14,9 +14,6 @@ jobs:
     permissions:
       contents: read
       issues: write
-    defaults:
-      run:
-        working-directory: premier-design
 
     steps:
       - name: Checkout
@@ -25,9 +22,9 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version-file: premier-design/.nvmrc
+          node-version-file: .nvmrc
           cache: yarn
-          cache-dependency-path: premier-design/yarn.lock
+          cache-dependency-path: yarn.lock
 
       - name: Install dependencies
         run: yarn install --frozen-lockfile --ignore-scripts
@@ -40,8 +37,8 @@ jobs:
         with:
           name: security-high-weekly
           path: |
-            premier-design/.audit/audit-high-summary.json
-            premier-design/.audit/audit-high-summary.md
+            .audit/audit-high-summary.json
+            .audit/audit-high-summary.md
 
       - name: Publish summary
         run: cat .audit/audit-high-summary.md >> $GITHUB_STEP_SUMMARY
@@ -56,7 +53,7 @@ jobs:
         with:
           script: |
             const fs = require('node:fs');
-            const summary = JSON.parse(fs.readFileSync('premier-design/.audit/audit-high-summary.json', 'utf8'));
+            const summary = JSON.parse(fs.readFileSync('.audit/audit-high-summary.json', 'utf8'));
             const high = Number(summary.high || 0);
             const critical = Number(summary.critical || 0);
             if (high + critical === 0) {

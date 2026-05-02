@@ -4,18 +4,18 @@
 
 ## 1) События и источники
 
-| Событие | Где отправляется | Назначение в дашборде |
-|---------|------------------|------------------------|
-| `cta_open_order_modal` | `shared/ui/order/ui/OrderButton/OrderButton.tsx` | CTR CTA в Hero/Quiz/других entry-point |
-| `lead_quiz_start` | `features/marketing/lead-quiz/hooks/useLeadQuizTracking.ts` | Старт воронки квиза |
-| `lead_quiz_step_view` | `features/marketing/lead-quiz/hooks/useLeadQuizTracking.ts` | Переходы по шагам квиза |
-| `lead_quiz_answer_select` | `features/marketing/lead-quiz/hooks/useLeadQuizTracking.ts` | Вовлеченность на каждом шаге |
-| `lead_quiz_dropoff` | `features/marketing/lead-quiz/hooks/useLeadQuizTracking.ts` | Точки оттока по шагам |
-| `trust_signals_view` | `features/marketing/trust-signals/hooks/useTrustSignalsTracking.ts` | Видимость блока trust-сигналов |
-| `trust_metric_click` | `features/marketing/trust-signals/hooks/useTrustSignalsTracking.ts` | Клики по метрикам доверия |
-| `trust_benefit_click` | `features/marketing/trust-signals/hooks/useTrustSignalsTracking.ts` | Клики по преимуществам |
-| `feedback_form_submit_success` | `shared/ui/order/hooks/useFeedback.ts` | Конверсия в целевую заявку |
-| `feedback_form_submit_error` | `shared/ui/order/hooks/useFeedback.ts` | Контроль сбоев формы |
+| Событие                        | Где отправляется                                                    | Назначение в дашборде                  |
+| ------------------------------ | ------------------------------------------------------------------- | -------------------------------------- |
+| `cta_open_order_modal`         | `shared/ui/order/ui/OrderButton/OrderButton.tsx`                    | CTR CTA в Hero/Quiz/других entry-point |
+| `lead_quiz_start`              | `features/marketing/lead-quiz/hooks/useLeadQuizTracking.ts`         | Старт воронки квиза                    |
+| `lead_quiz_step_view`          | `features/marketing/lead-quiz/hooks/useLeadQuizTracking.ts`         | Переходы по шагам квиза                |
+| `lead_quiz_answer_select`      | `features/marketing/lead-quiz/hooks/useLeadQuizTracking.ts`         | Вовлеченность на каждом шаге           |
+| `lead_quiz_dropoff`            | `features/marketing/lead-quiz/hooks/useLeadQuizTracking.ts`         | Точки оттока по шагам                  |
+| `trust_signals_view`           | `features/marketing/trust-signals/hooks/useTrustSignalsTracking.ts` | Видимость блока trust-сигналов         |
+| `trust_metric_click`           | `features/marketing/trust-signals/hooks/useTrustSignalsTracking.ts` | Клики по метрикам доверия              |
+| `trust_benefit_click`          | `features/marketing/trust-signals/hooks/useTrustSignalsTracking.ts` | Клики по преимуществам                 |
+| `feedback_form_submit_success` | `shared/ui/order/hooks/useFeedback.ts`                              | Конверсия в целевую заявку             |
+| `feedback_form_submit_error`   | `shared/ui/order/hooks/useFeedback.ts`                              | Контроль сбоев формы                   |
 
 ## 2) Funnel-метрики (формулы)
 
@@ -40,15 +40,15 @@
 
 Baseline фиксирован для первого релизного среза v3.1 (после включения полной телеметрии):
 
-| KPI | Baseline | Цель |
-|-----|----------|------|
-| `quiz_step_1_to_2_cr` | 0.64 | >= 0.72 |
-| `quiz_step_2_to_3_cr` | 0.71 | >= 0.80 |
-| `quiz_to_modal_cr` | 0.26 | >= 0.34 |
-| `modal_to_submit_cr` | 0.41 | >= 0.52 |
-| `quiz_total_cr` | 0.11 | >= 0.18 |
-| `trust_block_ctr` (`trust_metric_click + trust_benefit_click`) / `trust_signals_view` | 0.09 | >= 0.14 |
-| `feedback_error_rate` = `feedback_form_submit_error` / (`success + error`) | 0.07 | <= 0.03 |
+| KPI                                                                                   | Baseline | Цель    |
+| ------------------------------------------------------------------------------------- | -------- | ------- |
+| `quiz_step_1_to_2_cr`                                                                 | 0.64     | >= 0.72 |
+| `quiz_step_2_to_3_cr`                                                                 | 0.71     | >= 0.80 |
+| `quiz_to_modal_cr`                                                                    | 0.26     | >= 0.34 |
+| `modal_to_submit_cr`                                                                  | 0.41     | >= 0.52 |
+| `quiz_total_cr`                                                                       | 0.11     | >= 0.18 |
+| `trust_block_ctr` (`trust_metric_click + trust_benefit_click`) / `trust_signals_view` | 0.09     | >= 0.14 |
+| `feedback_error_rate` = `feedback_form_submit_error` / (`success + error`)            | 0.07     | <= 0.03 |
 
 ## 4) Видимый дашборд (минимальный контракт)
 

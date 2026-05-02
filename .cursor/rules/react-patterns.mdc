@@ -1,6 +1,6 @@
 ---
 description: React/компоненты, контент не в коде UI — см. MemPalace 02–03
-globs: premier-design/**/*.{ts,tsx}
+globs: src/**/*.{ts,tsx}
 alwaysApply: false
 ---
 
@@ -12,7 +12,7 @@ alwaysApply: false
 
 ## Инварианты
 - Контент пользователю — из данных/i18n/`site-content`, не строками в JSX без необходимости.
-- Реквизиты ИП — единый источник `premier-design/shared/constants/company.ts` (см. `agent-quality-process.mdc`).
+- Реквизиты ИП — единый источник `src/shared/constants/company.ts` (см. `agent-quality-process.mdc`).
 
 ## Эталон cross-repo
 Feb Code — `.cursor/rules/react-patterns.mdc` в репозитории **febcode**.

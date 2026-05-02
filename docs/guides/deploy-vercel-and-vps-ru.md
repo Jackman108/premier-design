@@ -9,7 +9,7 @@
 1. В репозитории приложения: успешный workflow сборки → образ в **GHCR** (`ghcr.io/<owner>/…`).
 2. На сервере: только дерево **`lendings-vps-infra`**; переменные `PREMIUM_DESIGN_IMAGE` / `FEBCODE_IMAGE` в корневом `.env` указывают на нужные теги.
 3. Обновление: `docker compose pull <сервис>` → `docker compose up -d` (на VPS без сборки Next из исходников).
-4. Проверка: см. гайд infra ([`multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md)) — healthcheck, TLS, точечный smoke.
+4. Проверка: см. гайд infra ([`multisite-vps-deploy-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md)) — healthcheck, TLS, точечный smoke.
 5. Откат: откат тега образа в `.env` + снова `pull`/`up`; см. тот же гайд.
 
 Общий словарь и правило ведения changelog по трём репозиториям — [`cross-repo-rule-pack-ru.md`](cross-repo-rule-pack-ru.md).
@@ -17,8 +17,8 @@
 ## 1. Vercel (текущий частый прод)
 
 - Подключение репозитория в [Vercel](https://vercel.com) → **Import** → тот же GitHub-репозиторий.
-- **Root Directory** в настройках проекта: `premier-design` (каталог Next.js с `package.json`).
-- Команда сборки и выходная директория — **по умолчанию** для Next.js; при необходимости: Install `yarn install`, Build `yarn build`, как в `premier-design/package.json`.
+- **Root Directory** в настройках проекта: **`.`** (корень репозитория — там же `package.json` и `yarn.lock`, как в **febcode**).
+- Команда сборки и выходная директория — **по умолчанию** для Next.js; при необходимости: Install `yarn install`, Build `yarn build`, как в корневом `package.json`.
 - Секреты (env) задаются в панели Vercel; `VERCEL=1` проставляется [автоматически](https://vercel.com/docs/projects/environment-variables/system-environment-variables).
 - **GitHub Actions** из этого репозитория **не** деплоят на Vercel, если не добавить отдельный job с [Vercel CLI / официальным action](https://vercel.com/docs/deployments/git) — обычно **не требуется** при включённой Git-интеграции Vercel.
 
@@ -28,7 +28,7 @@
 
 Workflow: [`.github/workflows/ghcr-premium-design.yml`](../../.github/workflows/ghcr-premium-design.yml).
 
-- Запуск: **push в `master`** (если менялся `premier-design/`) или вручную **Actions → Build & push premium-design image (GHCR) → Run workflow**).
+- Запуск: **push в `master`** (если менялись `src/**`, `public/`, корневые конфиги/Docker — см. `paths` в workflow) или вручную **Actions → Build & push premium-design image (GHCR) → Run workflow**).
 - Публикует, например: `ghcr.io/<owner-in-lower>/premium-design:latest` и тег **SHA** коммита.
 - Пакет: **GitHub** → **Packages** → убедитесь, что образ **public** или на VPS настроен `docker login` для **private** пакета (см. [GHCR](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry)).
 
@@ -40,7 +40,7 @@ PREMIUM_DESIGN_IMAGE=ghcr.io/<owner-lower>/premium-design:latest
 
 ## 3. VPS: два сайта (Docker) без Vercel
 
-- Инфраструктура: отдельный репозиторий **`lendings-vps-infra`** (compose и nginx в **корне** клона). Этот файл — входная точка по деплою из репозитория приложения; **пошагово на сервере** — [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md).
+- Инфраструктура: отдельный репозиторий **`lendings-vps-infra`** (compose и nginx в **корне** клона). Этот файл — входная точка по деплою из репозитория приложения; **пошагово на сервере** — [`multisite-vps-deploy-ru.md`](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md).
 - На сервере: только клон **`lendings-vps-infra`** и `docker compose pull` готовых образов — **без** `build` исходников сайта внутри compose.
 - Второй сайт (`febcode`) — **другой** репозиторий и свой образ; на одном nginx два `server_name`.
 

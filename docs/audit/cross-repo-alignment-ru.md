@@ -12,7 +12,7 @@
 
 Детальные нормы Feb Code не дублируются: **канон** — `febcode/docs/guides/architecture-ru.md`, `febcode/docs/guides/testing-standards-ru.md`, `febcode/docs/guides/cross-repo-alignment-plan-ru.md`.
 
-**Гайды в этом репозитории:** [`testing-standards-cross-repo-ru.md`](../guides/testing-standards-cross-repo-ru.md) (C3), [`prettier-and-formatting-cross-repo-ru.md`](../guides/prettier-and-formatting-cross-repo-ru.md), [`layer-imports-and-public-api-cross-repo-ru.md`](../guides/layer-imports-and-public-api-cross-repo-ru.md) (C1/C2), [`feb-code-post-release-sync-checklist-ru.md`](../guides/feb-code-post-release-sync-checklist-ru.md) (чеклист после релизов Feb Code).
+**Гайды в этом репозитории:** [`scripts-and-quality-gates-ru.md`](../guides/scripts-and-quality-gates-ru.md) (скрипты, форматирование vs Feb Code, таблица тестов C3), [`layer-imports-and-public-api-cross-repo-ru.md`](../guides/layer-imports-and-public-api-cross-repo-ru.md) (C1/C2), [`feb-code-post-release-sync-checklist-ru.md`](../guides/feb-code-post-release-sync-checklist-ru.md) (чеклист после релизов Feb Code).
 
 ---
 
@@ -30,17 +30,17 @@
 
 ## Эталоны Premier Design (применять при задачах в Feb Code)
 
-| Тема                                                          | Где у нас                                                                                                                                                                                                               |
-| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Карта документации, один источник правды                      | [README.md](../README.md)                                                                                                                                                                                               |
-| Плейбук, скрипты, гейты, деплой SSH / Vercel / VPS, multisite | `development-playbook-ru.md`, [`guides/deploy-vercel-and-vps-ru.md`](../guides/deploy-vercel-and-vps-ru.md), [lendings-vps-infra docs](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md)          |
-| MemPalace 08 / 09 / 11                                        | `docs/mempalace/rules/`                                                                                                                                                                                                 |
-| ESLint + lint-staged + архитектурные скрипты                  | `premier-design/package.json`, `eslint.config.mjs`                                                                                                                                                                      |
-| CI: архитектура, UI purity, perf, audit, Storybook            | `.github/workflows/ci.yml`                                                                                                                                                                                              |
-| Docker prod: non-root, telemetry off, healthcheck Node        | `premier-design/Dockerfile.prod`                                                                                                                                                                                        |
-| VPS: nginx + compose (multisite)                              | Репозиторий **`lendings-vps-infra`** — см. [multisite-vps-deploy-ru.md](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md), [`deploy-vercel-and-vps-ru.md`](../guides/deploy-vercel-and-vps-ru.md) |
-| CSP / HSTS, rewrites                                          | `premier-design/next.config.js`, `docs/adr/`                                                                                                                                                                            |
-| Синхронизация релиза и гейтов                                 | [quality-gates-sync-ru.md](quality-gates-sync-ru.md)                                                                                                                                                                    |
+| Тема                                                          | Где у нас                                                                                                                                                                                                                                                |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Карта документации, один источник правды                      | [README.md](../README.md)                                                                                                                                                                                                                                |
+| Плейбук, скрипты, гейты, деплой SSH / Vercel / VPS, multisite | `development-playbook-ru.md`, [`guides/deploy-vercel-and-vps-ru.md`](../guides/deploy-vercel-and-vps-ru.md), [multisite-vps-deploy-ru.md](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md)       |
+| MemPalace 08 / 09 / 11                                        | `docs/mempalace/rules/`                                                                                                                                                                                                                                  |
+| ESLint + lint-staged + архитектурные скрипты                  | корневой `package.json`, `eslint.config.mjs`                                                                                                                                                                                                             |
+| CI: архитектура, UI purity, perf, audit, Storybook            | `.github/workflows/ci.yml`                                                                                                                                                                                                                               |
+| Docker prod: non-root, telemetry off, healthcheck Node        | `Dockerfile.prod`                                                                                                                                                                                                                                        |
+| VPS: nginx + compose (multisite)                              | Репозиторий **`lendings-vps-infra`** — см. [multisite-vps-deploy-ru.md](https://github.com/Jackman108/lendings-vps-infra/blob/master/docs/operations/multisite-vps-deploy-ru.md), [`deploy-vercel-and-vps-ru.md`](../guides/deploy-vercel-and-vps-ru.md) |
+| CSP / HSTS, rewrites                                          | `next.config.js`, `docs/adr/`                                                                                                                                                                                                                            |
+| Синхронизация релиза и гейтов                                 | [quality-gates-sync-ru.md](quality-gates-sync-ru.md)                                                                                                                                                                                                     |
 
 ---
 
@@ -48,16 +48,16 @@
 
 Подробные строки и статус задач — в **`febcode/docs/guides/cross-repo-alignment-plan-ru.md`** (матрица «Инструменты», «Архитектура», «Next/Docker/CI», «Документация»). Здесь — кратко:
 
-| Направление           | Действие                                                                                                                                                         |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Линтинг               | Feb Code: ESLint + arch-lint **или** явное решение «только arch-lint + Prettier»                                                                                 |
-| Форматирование        | **Согласовано:** Premier — ESLint; Feb Code — Prettier + lint (детали — список гайдов в начале этого файла)                                                      |
-| Тесты / CI            | Общий минимум: typecheck, unit, e2e smoke, build; расширения из нашего `ci.yml` — поэтапно в Feb Code                                                            |
-| `.nvmrc`              | В Feb Code для паритета с нашим `premier-design/.nvmrc`                                                                                                          |
-| FSD / порты / контент | Таблица слоёв — Feb Code `architecture.md`; use-case/адаптеры — `mempalace/rules/08_*`; единый источник реквизитов — паттерн как у `shared/constants/company.ts` |
-| Заголовки / CSP       | Чеклист «Vercel vs nginx» — наши гайды и ADR                                                                                                                     |
-| Docker                | Feb Code приближать к `Dockerfile.prod` (telemetry, позже non-root)                                                                                              |
-| Документы             | Feb Code: раздел «Синхронизация гейтов и changelog» в `cross-repo-alignment-plan.md`, расширенный `deploy-checklist.md`                                          |
+| Направление           | Действие                                                                                                                                                                       |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Линтинг               | Feb Code: ESLint + arch-lint **или** явное решение «только arch-lint + Prettier»                                                                                               |
+| Форматирование        | **Согласовано:** Prettier + ESLint в каждом репо; имена и минимум — [`scripts-and-quality-gates-ru.md`](../guides/scripts-and-quality-gates-ru.md) § «Политика форматирования» |
+| Тесты / CI            | Общий минимум: typecheck, unit, e2e smoke, build; расширения из нашего `ci.yml` — поэтапно в Feb Code                                                                          |
+| `.nvmrc`              | В Feb Code для паритета с нашим корневым `.nvmrc`                                                                                                                              |
+| FSD / порты / контент | Таблица слоёв — Feb Code `architecture.md`; use-case/адаптеры — `mempalace/rules/08_*`; единый источник реквизитов — паттерн как у `shared/constants/company.ts`               |
+| Заголовки / CSP       | Чеклист «Vercel vs nginx» — наши гайды и ADR                                                                                                                                   |
+| Docker                | Feb Code приближать к `Dockerfile.prod` (telemetry, позже non-root)                                                                                                            |
+| Документы             | Feb Code: раздел «Синхронизация гейтов и changelog» в `cross-repo-alignment-plan.md`, расширенный `deploy-checklist.md`                                                        |
 
 ---
 
@@ -70,15 +70,15 @@
 | C3  | Тесты                         | Имена сценариев и smoke «лид» — ориентир `febcode/docs/guides/testing-standards-ru.md`        |
 | C4  | Next config                   | Security headers / origins / standalone при апдейтах Next — сверка с `febcode/next.config.ts` |
 
-**Статус (выравнивание по Feb Code):** конфиг и процесс зафиксированы в коде (`premier-design/next.config.js`, `package.json`) и в гайдах выше; канон Feb Code не копируется в этом файле повторно.
+**Статус (выравнивание по Feb Code):** конфиг и процесс зафиксированы в коде (`next.config.js`, `package.json`) и в гайдах выше; канон Feb Code не копируется в этом файле повторно.
 Принцип: Premier Design остаётся источником зрелых норм и гейтов; Feb Code берёт только минимально полезные проверки, а infra-репозиторий держит production-контракт.
 
 ---
 
 ## Пути в документации и CI
 
-- Корень **этого** репозитория — каталог с `.git`. Приложение Next.js — **`premier-design/`** относительно корня (пути в `.github/workflows/*`, `docker build -f premier-design/Dockerfile.prod`).
-- Ссылки из `docs/audit/*.md` на код вида **`../../premier-design/...`** — внутри репозитория, не зависят от имени родительской папки (`lendings` и т.д.).
+- Корень **этого** репозитория — каталог с `.git`. Конфигурация и зависимости — в корне (`package.json`, `.github/workflows/*`, `docker build -f Dockerfile.prod`); исходники Next.js — в **`src/`**.
+- Ссылки из `docs/audit/*.md` на код вида **`../../src/...`** — внутри репозитория, не зависят от имени родительской папки (`lendings` и т.д.).
 - Абсолютные пути разработчика в git не коммитить.
 
 ---

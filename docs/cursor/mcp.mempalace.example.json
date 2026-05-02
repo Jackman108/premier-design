@@ -1,13 +1,8 @@
 {
-  "mcpServers": {
-    "mempalace": {
-      "command": "python",
-      "args": [
-        "-m",
-        "mempalace.mcp_server",
-        "--palace",
-        "C:/Users/USER/Documents/mempalace"
-      ]
-    }
-  }
+	"mcpServers": {
+		"mempalace": {
+			"command": "python",
+			"args": ["-m", "mempalace.mcp_server", "--palace", "C:/Users/USER/Documents/mempalace"]
+		}
+	}
 }
