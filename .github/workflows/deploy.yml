@@ -73,7 +73,7 @@ jobs:
           echo "OK: VPS_DEPLOY_PATH задан (значение не печатаем)."
 
       - name: Удалённо — pull образа и перезапуск
-        uses: appleboy/ssh-action@v1.2.0
+        uses: appleboy/ssh-action@v1.2.5
         env:
           VPS_DEPLOY_PATH: ${{ secrets.VPS_DEPLOY_PATH }}
           GHCR_PULL_TOKEN: ${{ secrets.GHCR_PULL_TOKEN }}
