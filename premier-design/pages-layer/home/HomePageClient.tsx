@@ -1,6 +1,6 @@
 'use client';
 
-import type { HeroBannerProps } from '@features/banner/hero/interface/HeroBannerProps';
+import type { HeroBannerProps } from '@features/banner';
 import { usePageData } from '@shared/hooks/usePageData';
 import { useScrollReveal } from '@shared/hooks/useScrollReveal';
 import { getTitleData } from '@shared/utils/findItemByTitle';

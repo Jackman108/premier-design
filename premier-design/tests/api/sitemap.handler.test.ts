@@ -1,14 +1,15 @@
 /** @jest-environment node */
 
 import { SITE_PUBLIC_ORIGIN } from '@shared/constants/company';
+import { loadSiteData } from '@shared/site-data';
 import { GET } from '../../app/api/sitemap/route';
-import { getData } from '@shared/lib/getStaticData';
 
-jest.mock('@shared/lib/getStaticData', () => ({
-	getData: jest.fn(),
+jest.mock('@shared/site-data', () => ({
+	DEFAULT_SITE_LOCALE: 'ru',
+	loadSiteData: jest.fn(),
 }));
 
-const mockedGetData = jest.mocked(getData);
+const mockedLoadSiteData = jest.mocked(loadSiteData);
 
 describe('/api/sitemap Route Handler', () => {
 	beforeEach(() => {
@@ -22,7 +23,7 @@ describe('/api/sitemap Route Handler', () => {
 	});
 
 	it('returns xml sitemap with static and dynamic urls', async () => {
-		mockedGetData.mockResolvedValue({
+		mockedLoadSiteData.mockReturnValue({
 			prices: {
 				repairs: [
 					{
@@ -53,10 +54,9 @@ describe('/api/sitemap Route Handler', () => {
 
 	it('returns 500 when data structure is invalid', async () => {
 		const errorSpy = jest.spyOn(console, 'error').mockImplementation(() => undefined);
-		mockedGetData.mockResolvedValue({
-			prices: { repairs: 'invalid' },
-			relatedServices: [],
-		} as never);
+		mockedLoadSiteData.mockImplementation(() => {
+			throw new Error('schema');
+		});
 
 		const req = new Request('http://localhost/api/sitemap', { method: 'GET' });
 		const res = await GET(req);

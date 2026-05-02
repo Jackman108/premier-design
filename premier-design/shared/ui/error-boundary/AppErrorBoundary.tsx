@@ -2,6 +2,8 @@
 
 import { Component, type ErrorInfo, type ReactNode } from 'react';
 
+import { UI, useLocale } from '@shared/i18n';
+
 import styles from './AppErrorBoundary.module.css';
 
 type Props = {
@@ -11,6 +13,16 @@ type Props = {
 type State = {
 	hasError: boolean;
 };
+
+function ErrorFallback(): ReactNode {
+	const { t } = useLocale();
+	return (
+		<section className={styles.fallback}>
+			<h2>{t(UI.errorBoundaryTitle)}</h2>
+			<p>{t(UI.errorBoundaryDescription)}</p>
+		</section>
+	);
+}
 
 export class AppErrorBoundary extends Component<Props, State> {
 	public state: State = { hasError: false };
@@ -25,12 +37,7 @@ export class AppErrorBoundary extends Component<Props, State> {
 
 	public render(): ReactNode {
 		if (this.state.hasError) {
-			return (
-				<section className={styles.fallback}>
-					<h2>Произошла ошибка интерфейса</h2>
-					<p>Пожалуйста, перезагрузите страницу.</p>
-				</section>
-			);
+			return <ErrorFallback />;
 		}
 
 		return this.props.children;

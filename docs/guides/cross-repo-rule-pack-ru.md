@@ -14,12 +14,12 @@
 
 Одинаковая **семантика уровней** для приложений (premier-design, febcode); для **lendings-vps-infra** см. примечания в таблице канона.
 
-| Уровень | Назначение | Содержание (цель) |
-|---------|------------|-------------------|
-| **A — Pre-commit** | Быстрая обратная связь перед коммитом | Форматирование там, где принято; **ESLint**; **быстрые boundary-checks** (архитектура / запреты импорта на затронутых файлах по политике репозитория), без полной замены PR CI |
-| **B — Local quality** | Полная локальная проверка перед push или релизом | **Lint** (включая архитектурные скрипты по канону репо), **typecheck**, **unit / smoke**, **production build** |
-| **C — PR CI** | Обязательный контур merge | Полный **quality gate** репозитория, **e2e core** (критический контур воронки / смоук), **audit зависимостей** |
-| **D — Nightly / deploy** | Регулярно или по выкладке | **Perf-бюджеты**, при наличии — **SLO**/обратная связь API; **расширенный e2e**; **smoke после деплоя** |
+| Уровень                  | Назначение                                       | Содержание (цель)                                                                                                                                                              |
+| ------------------------ | ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **A — Pre-commit**       | Быстрая обратная связь перед коммитом            | Форматирование там, где принято; **ESLint**; **быстрые boundary-checks** (архитектура / запреты импорта на затронутых файлах по политике репозитория), без полной замены PR CI |
+| **B — Local quality**    | Полная локальная проверка перед push или релизом | **Lint** (включая архитектурные скрипты по канону репо), **typecheck**, **unit / smoke**, **production build**                                                                 |
+| **C — PR CI**            | Обязательный контур merge                        | Полный **quality gate** репозитория, **e2e core** (критический контур воронки / смоук), **audit зависимостей**                                                                 |
+| **D — Nightly / deploy** | Регулярно или по выкладке                        | **Perf-бюджеты**, при наличии — **SLO**/обратная связь API; **расширенный e2e**; **smoke после деплоя**                                                                        |
 
 **Premier Design (факт):** в [`.husky/pre-commit`](../../.husky/pre-commit) после **`lint-staged`** выполняется **`yarn typecheck`** (уровень A); **`yarn check:precommit:full`** (format, unit, risk, build, perf) — вручную или в **PR CI** ([`ci.yml`](../../.github/workflows/ci.yml)). **Dev:** по умолчанию **`yarn dev`** (Turbopack), **`yarn dev:webpack`** — Webpack. Подробности — [`guides/scripts-and-quality-gates-ru.md`](scripts-and-quality-gates-ru.md).
 
@@ -45,24 +45,24 @@
 
 ## Словарь деплоя (GHCR / VPS)
 
-| Термин | Значение |
-|--------|----------|
-| **GHCR** | GitHub Container Registry; **premium-design** — [`.github/workflows/ghcr-premium-design.yml`](../../.github/workflows/ghcr-premium-design.yml) (**Trivy** + **SBOM** до push). |
-| **Тег образа** | Например `:latest` и тег по SHA коммита; на VPS в `.env` infra задаются `PREMIUM_DESIGN_IMAGE`, `FEBCODE_IMAGE` и т.д. |
-| **lendings-vps-infra** | Канон Docker Compose + nginx на VPS; на сервере без сборки исходников Next.js — только `pull` готовых образов. |
-| **VPS_DEPLOY_PATH** | Абсолютный путь к корню клона infra на сервере (секрет workflow деплоя). |
-| **Контур обновления** | см. раздел «Контракт деплоя» в [`deploy-vercel-and-vps-ru.md`](deploy-vercel-and-vps-ru.md); откат — [`multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md). |
+| Термин                 | Значение                                                                                                                                                                                                     |
+| ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **GHCR**               | GitHub Container Registry; **premium-design** — [`.github/workflows/ghcr-premium-design.yml`](../../.github/workflows/ghcr-premium-design.yml) (**Trivy** + **SBOM** до push).                               |
+| **Тег образа**         | Например `:latest` и тег по SHA коммита; на VPS в `.env` infra задаются `PREMIUM_DESIGN_IMAGE`, `FEBCODE_IMAGE` и т.д.                                                                                       |
+| **lendings-vps-infra** | Канон Docker Compose + nginx на VPS; на сервере без сборки исходников Next.js — только `pull` готовых образов.                                                                                               |
+| **VPS_DEPLOY_PATH**    | Абсолютный путь к корню клона infra на сервере (секрет workflow деплоя).                                                                                                                                     |
+| **Контур обновления**  | см. раздел «Контракт деплоя» в [`deploy-vercel-and-vps-ru.md`](deploy-vercel-and-vps-ru.md); откат — [`multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md). |
 
 ## Канонические источники (этот репозиторий — Premier Design)
 
-| Уровень лестницы | Где зафиксировано |
-|------------------|-------------------|
-| A — Pre-commit | [`.husky/pre-commit`](../../.husky/pre-commit), [`lint-staged`](../../premier-design/package.json) в [`premier-design/package.json`](../../premier-design/package.json) |
-| B — Local | [`guides/scripts-and-quality-gates-ru.md`](scripts-and-quality-gates-ru.md): `check:static`, `check:risk:local`, `check:precommit:full` и др. |
-| C — PR CI | [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml) |
+| Уровень лестницы     | Где зафиксировано                                                                                                                                                                                                                             |
+| -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| A — Pre-commit       | [`.husky/pre-commit`](../../.husky/pre-commit), [`lint-staged`](../../premier-design/package.json) в [`premier-design/package.json`](../../premier-design/package.json)                                                                       |
+| B — Local            | [`guides/scripts-and-quality-gates-ru.md`](scripts-and-quality-gates-ru.md): `check:static`, `check:risk:local`, `check:precommit:full` и др.                                                                                                 |
+| C — PR CI            | [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)                                                                                                                                                                                  |
 | D — Nightly / deploy | perf/SLO в основном CI; [`ci-trends.yml`](../../.github/workflows/ci-trends.yml); [`e2e-extended.yml`](../../.github/workflows/e2e-extended.yml); деплой и smoke — [`guides/deploy-vercel-and-vps-ru.md`](deploy-vercel-and-vps-ru.md), infra |
-| Нормы кода | [`docs/mempalace/rules/`](../mempalace/rules/) |
+| Нормы кода           | [`docs/mempalace/rules/`](../mempalace/rules/)                                                                                                                                                                                                |
 
 ## Связанные документы
 
-- Этот репозиторий: [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md), [`deploy/README.md`](../../deploy/README.md).
+- Этот репозиторий: [`audit/cross-repo-alignment-ru.md`](../audit/cross-repo-alignment-ru.md), [`deploy-vercel-and-vps-ru.md`](deploy-vercel-and-vps-ru.md).

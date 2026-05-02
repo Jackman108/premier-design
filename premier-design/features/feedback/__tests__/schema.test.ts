@@ -1,4 +1,25 @@
+import { feedbackSchema as feedbackSchemaFromShared } from '@shared/validates/feedbackSchema';
+
 import { feedbackSchema } from '../schema';
+
+/** BP-15 / §9 этап 6.3: один объект Zod в `@shared/validates` и реэкспорт фичи. */
+describe('feedbackSchema shared ↔ feature contract', () => {
+	it('reuses the same schema object as @shared/validates/feedbackSchema', () => {
+		expect(feedbackSchema).toBe(feedbackSchemaFromShared);
+	});
+
+	it('parses the same fixture as the API route would accept', () => {
+		const payload = {
+			name: 'Иван Иванов',
+			phone: '+375 (29) 123-45-67',
+			email: 'test@example.com',
+			message: 'Нужен расчет сметы и дизайн-проект.',
+			consent: true,
+		};
+		expect(feedbackSchema.safeParse(payload).success).toBe(true);
+		expect(feedbackSchemaFromShared.safeParse(payload).success).toBe(true);
+	});
+});
 
 describe('feedbackSchema', () => {
 	it('accepts valid payload', () => {

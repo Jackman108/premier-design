@@ -1,10 +1,13 @@
 'use client';
 import React, { Children, FC, memo, ReactElement } from 'react';
+
+import { UI, useLocale } from '@shared/i18n';
 import { SliderProps } from '@shared/ui/slider/interface/Slider.props';
 import Arrow from '@shared/ui/slider/ui/Arrow';
 import { useSliderState } from '@shared/ui/slider/hooks/useSliderState';
 
 const Slider: FC<SliderProps> = memo(({ children, slidesPerView, isMobile }): ReactElement => {
+	const { t } = useLocale();
 	const { currentSlide, loaded, slideCount, sliderRef, dots, goPrev, goNext, moveTo } = useSliderState({
 		isMobile,
 		slidesPerView,
@@ -48,7 +51,7 @@ const Slider: FC<SliderProps> = memo(({ children, slidesPerView, isMobile }): Re
 									moveTo(idx);
 								}}
 								className={'dot' + (currentSlide === idx ? ' active' : '')}
-								aria-label="Открыть слайд"
+								aria-label={t(UI.sliderOpenSlideAria)}
 							>
 								{}
 							</button>

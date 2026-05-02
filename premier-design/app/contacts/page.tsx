@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
 
 import { buildContactsHeadProps } from '@shared/lib/app-router/seo/marketingPagesHead';
-import { getCachedData } from '@shared/lib/getStaticData';
 import HeroBanner from '@features/banner/hero/ui/HeroBanner';
 import type { HeroBannerProps } from '@features/banner/hero/interface/HeroBannerProps';
 import { ContactsMicroUspAside } from '@features/contacts';
 import { selectAppealSectionData, selectPageData } from '@shared/hooks/usePageData';
 import { customHeadPropsToMetadata } from '@shared/lib/seo/customHeadPropsToMetadata';
 import { Address, Appeal } from '@shared/lib/dynamicSectionImports';
+import { getCachedData, getCachedSiteBundle } from '@shared/lib/getStaticData';
 import { buildLayoutProps } from '@widgets/layout/lib/buildLayoutProps';
 import { StructuredDataScript } from '@widgets/layout/seo/StructuredDataScript';
 import Layout from '@widgets/layout/ui/layout/Layout';
@@ -20,7 +20,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ContactsPage() {
-	const data = await getCachedData();
+	const { data } = await getCachedSiteBundle();
 	const head = buildContactsHeadProps(data);
 	const {
 		titleItem: titleData,

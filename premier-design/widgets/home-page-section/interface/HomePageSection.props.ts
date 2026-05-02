@@ -8,6 +8,8 @@ export type HomePageSectionLayout = 'hero' | 'features' | 'content';
 
 export interface HomePageSectionProps {
 	id?: string;
+	/** Стабильный id слота (`home.*`) — аналитика, AB, паритет febcode `landing-page-slots` / BP-24. */
+	dataSlotId?: string;
 	'aria-label'?: string;
 	layout: HomePageSectionLayout;
 	/** `data-density` — только для `content`. */

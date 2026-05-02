@@ -48,7 +48,7 @@
 | ID | Спринт | Приоритет | Источник | Задача | Артефакт закрытия | Статус |
 |----|--------|-----------|----------|--------|-------------------|--------|
 | ARCH-PREM-01 | Backlog | P2 | cross-repo §1.1 п.4; §1.2.4 | Двойная вложенность `premier-design/premier-design/` — снизить трение путей CI / DX | README, CI, `docs/` | Open |
-| DATA-PREM-01 | S5 | P3 | cross-repo §1.1 п.3; BP-21 §7.3 | Мультиязычность контента и UI (не только RU) | ADR, `data/`, i18n | Open |
+| DATA-PREM-01 | S5 | P3 | cross-repo §1.1 п.3; BP-21 §7.3 | Редакционный EN для **`data.json`** (не клон оформления); UI-строки — **`data/locales/*/ui.json`** + **`@shared/i18n`**; префикс **`/en`** не используется; ~~cookie~~, ~~переключатель~~, ~~`<html lang>`~~, ~~канон/hreflang/OpenGraph locale по пути~~ — см. [`changelog`](../changelog.md) | Вычитка EN **`data.json`** | Open |
 | REF-PREM-01 | Backlog | P2 | cross-repo §1.1 п.5; §1.2.5 | Порог декомпозиции LOC + отчёт по allowlist (паритет с febcode) | `scripts/`, `development.mdc` | Open |
 
 ## Как добавлять новую задачу

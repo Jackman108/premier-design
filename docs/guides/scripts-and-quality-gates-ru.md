@@ -19,6 +19,8 @@
 
 **Prettier + ESLint** (`yarn format` / `yarn format:check`, **`eslint-config-prettier`**) — [**ADR 0013**](../adr/0013-shared-lib-react-query-prettier.md); исторический контекст — [**ADR 0010**](../adr/0010-formatting-policy-no-prettier.md). Кросс-репо — [`prettier-and-formatting-cross-repo-ru.md`](prettier-and-formatting-cross-repo-ru.md). Сводки в **`premier-design/.audit/`** не проходят через Prettier — каталог в **`.prettierignore`** (генерируется скриптами аудита локально/в CI).
 
+**Публичный API фич из `pages-layer` и `widgets` (BP-48 / §9 этап 6 + §9 этап 9):** в [`eslint.config.mjs`](../../premier-design/eslint.config.mjs) для **`pages-layer/**/*`** и **`widgets/**/*`** действует **`no-restricted-imports`** с шаблоном **`@features/*/**`** — импортировать только **`@features/<slice>`** (без внутренних сегментов `ui/`, `interface/` и т.д.), паритет с febcode **`scripts/lint-architecture.mjs`**.
+
 ## Быстрые маршруты
 
 | Ситуация | Команда |

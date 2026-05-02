@@ -12,4 +12,9 @@ describe('load-site-data', () => {
 		const data = loadSiteData();
 		expect(data.menu.some((m) => m.id === 1)).toBe(true);
 	});
+
+	it('loads en bundle and matches schema', () => {
+		const data = loadSiteData('en');
+		expect(data.menu.length).toBeGreaterThan(0);
+	});
 });

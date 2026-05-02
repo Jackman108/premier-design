@@ -2,7 +2,7 @@
  * GET /api/sitemap (rewrite с `/sitemap.xml`): machine-readable sitemap.
  */
 import type { DataProps } from '@shared/validates/dataPropsSchema';
-import { getData } from '@shared/lib/getStaticData';
+import { DEFAULT_SITE_LOCALE, loadSiteData } from '@shared/site-data';
 import { applyApiRateLimitWeb } from '@shared/lib/applyApiRateLimit.web';
 import { createApiErrorPayload } from '@shared/lib/api/apiRequestRuntime';
 import { createCorrelationId } from '@shared/lib/correlationId';
@@ -31,7 +31,7 @@ const priorityForPath = (path: string): number =>
 	STATIC_SITEMAP_PATHS.includes(path) ? STATIC_PRIORITY : DYNAMIC_PRIORITY;
 
 const generateSitemap = async (): Promise<string> => {
-	const data: DataProps = await getData();
+	const data: DataProps = loadSiteData(DEFAULT_SITE_LOCALE);
 	const pathnames = collectSitePathnames(data);
 	const allPages = pathnames.map((path) => generateUrl(path, priorityForPath(path)));
 

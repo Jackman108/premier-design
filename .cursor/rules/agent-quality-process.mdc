@@ -34,7 +34,7 @@
 | Архитектурное решение (новое/смена) | новый ADR в `docs/adr/`, индекс `docs/adr/README.md` |
 | Поведение/поведение env приложения | `premier-design/README.md`, `premier-design/.env.example`, `docs/changelog.md` |
 | Реквизиты ИП / `SITE_OPERATOR` (`shared/constants/company.ts`) | `LegalRequisites`/`Phone`/`WorkHours`/`Address`/`generateStructuredData`, юр.тексты в `features/documents-content/*`, `docs/changelog.md` |
-| Инфраструктура VPS (compose, nginx, certbot) в **`lendings-vps-infra`** | `lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`, `deploy/README.md`, `docs/audit/quality-gates-sync-ru.md`, `docs/changelog.md` |
+| Инфраструктура VPS (compose, nginx, certbot) в **`lendings-vps-infra`** | `lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`, `docs/guides/deploy-vercel-and-vps-ru.md`, `docs/audit/quality-gates-sync-ru.md`, `docs/changelog.md` |
 | Лицензия (`LICENSE`, `LICENSE_RU.md`) или `package.json.license`/`author` | `docs/adr/0011-proprietary-license.md`, `docs/README.md`, `docs/changelog.md` |
 | Открытие нового пункта улучшения | `docs/audit/audit-and-improvement-plan-ru.md` (с ID, приоритетом, артефактом закрытия) |
 | Закрытие пункта улучшения | `docs/changelog.md` (Unreleased), пункт уходит из Open backlog |

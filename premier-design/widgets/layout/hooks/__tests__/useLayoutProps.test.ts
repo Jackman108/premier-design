@@ -17,7 +17,10 @@ describe('useLayoutProps', () => {
 		const data = emptyLayoutData();
 		const { result } = renderHook(() => useLayoutProps(data));
 
-		expect(result.current.headerProps).toEqual({ menu: data.menu, shares: data.shares });
+		expect(result.current.headerProps).toEqual({
+			menu: data.menu,
+			shares: data.shares,
+		});
 		expect(result.current.footerProps).toEqual({
 			papers: data.papers,
 			news: data.news,
@@ -32,7 +35,9 @@ describe('useLayoutProps', () => {
 
 	it('memoizes by data reference', () => {
 		const data = emptyLayoutData();
-		const { result, rerender } = renderHook((d) => useLayoutProps(d), { initialProps: data });
+		const { result, rerender } = renderHook((d) => useLayoutProps(d), {
+			initialProps: data,
+		});
 		const first = result.current;
 		rerender(data);
 		expect(result.current).toBe(first);

@@ -1,6 +1,8 @@
 import { ChangeEvent, SyntheticEvent, useState } from 'react';
 
-import { feedbackSchema, PHONE_BY_RU_OPERATOR_ERROR, PHONE_FORMAT_ERROR } from '@shared/validates/feedbackSchema';
+import { UI, type UiMessageKey } from '@shared/i18n/ui-message-keys';
+import { getUiMessage } from '@shared/i18n/ui-messages';
+import type { SiteLocale } from '@shared/site-data/site-locale';
 import { FeedbackFormErrors, FeedbackPhoneCountry } from '@shared/ui/order/interface/FeedbackForm.types';
 import { FeedbackFormProps, FeedbackItem } from '@shared/ui/order/interface/FeedbackModal.props';
 import {
@@ -9,33 +11,31 @@ import {
 	stripPhoneCountryCode,
 	toPhoneWithCountryCode,
 } from '@shared/ui/order/utils/phoneFormatting';
+import { feedbackSchema, PHONE_BY_RU_OPERATOR_ERROR, PHONE_FORMAT_ERROR } from '@shared/validates/feedbackSchema';
 import { z } from 'zod';
 
-const mapUiError = (field: keyof FeedbackFormErrors, message?: string): string => {
-	if (!message) {
-		return '';
-	}
-
+const mapZodFieldError = (locale: SiteLocale, field: keyof FeedbackFormErrors, zodMsg?: string): string => {
+	const m = (key: UiMessageKey) => getUiMessage(locale, key);
 	switch (field) {
 		case 'name':
-			return 'Введите ваше имя';
+			return m(UI.feedbackValidationNameRequired);
 		case 'phone': {
-			if (message === PHONE_BY_RU_OPERATOR_ERROR) {
-				return 'Мобильный +375: код 25, 29, 33 или 44. Мобильный +7: допустимый префикс 9XX (РФ).';
+			if (zodMsg === PHONE_BY_RU_OPERATOR_ERROR) {
+				return m(UI.feedbackValidationPhoneOperatorRules);
 			}
-			if (message === PHONE_FORMAT_ERROR) {
-				return 'Введите ваш номер телефона';
+			if (zodMsg === PHONE_FORMAT_ERROR) {
+				return m(UI.feedbackValidationPhoneRequired);
 			}
-			return 'Введите ваш номер телефона';
+			return m(UI.feedbackValidationPhoneRequired);
 		}
 		case 'message':
-			return 'Введите сообщение';
+			return m(UI.feedbackValidationMessageRequired);
 		case 'consent':
-			return 'Необходимо согласие с пользовательским соглашением';
+			return m(UI.feedbackValidationConsentRequired);
 		case 'email':
-			return message.includes('Email has invalid format') ? 'Неверный формат email.' : message;
+			return zodMsg ? m(UI.feedbackValidationEmailInvalid) : '';
 		default:
-			return message;
+			return zodMsg ?? '';
 	}
 };
 
@@ -69,7 +69,9 @@ const getTreeErrorMessage = (
 	return fieldNode?.errors?.[0];
 };
 
-export const useFeedbackForm = ({ onSubmit, initialMessage }: FeedbackFormProps) => {
+export type UseFeedbackFormArgs = FeedbackFormProps & { locale: SiteLocale };
+
+export const useFeedbackForm = ({ onSubmit, initialMessage, locale }: UseFeedbackFormArgs) => {
 	const [formDataState, setFormDataState] = useState<FeedbackItem>({
 		...INITIAL_FORM_DATA,
 		message: initialMessage ?? '',
@@ -107,17 +109,16 @@ export const useFeedbackForm = ({ onSubmit, initialMessage }: FeedbackFormProps)
 		if (!validationResult.success) {
 			const treeErrors = z.treeifyError(validationResult.error);
 			const nextErrors: FeedbackFormErrors = {
-				name: mapUiError('name', getTreeErrorMessage(treeErrors, 'name')),
-				phone: mapUiError('phone', getTreeErrorMessage(treeErrors, 'phone')),
-				email: mapUiError('email', getTreeErrorMessage(treeErrors, 'email')),
-				message: mapUiError('message', getTreeErrorMessage(treeErrors, 'message')),
-				consent: mapUiError('consent', getTreeErrorMessage(treeErrors, 'consent')),
+				name: mapZodFieldError(locale, 'name', getTreeErrorMessage(treeErrors, 'name')),
+				phone: mapZodFieldError(locale, 'phone', getTreeErrorMessage(treeErrors, 'phone')),
+				email: mapZodFieldError(locale, 'email', getTreeErrorMessage(treeErrors, 'email')),
+				message: mapZodFieldError(locale, 'message', getTreeErrorMessage(treeErrors, 'message')),
+				consent: mapZodFieldError(locale, 'consent', getTreeErrorMessage(treeErrors, 'consent')),
 			};
 			setErrors(nextErrors);
 			return;
 		}
 
-		// Защита от двойного submit: пока запрос в полёте, повторный клик игнорируется.
 		setIsSubmitting(true);
 		try {
 			await onSubmit({

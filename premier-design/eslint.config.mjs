@@ -53,9 +53,26 @@ const eslintConfig = [
 		},
 	},
 	{
-		files: ['app/**/*.{ts,tsx,js,jsx}', 'pages-layer/**/*.{ts,tsx,js,jsx}'],
+		files: ['app/**/*.{ts,tsx,js,jsx}'],
 		rules: {
 			'no-restricted-imports': 'off',
+		},
+	},
+	{
+		files: ['pages-layer/**/*.{ts,tsx,js,jsx}', 'widgets/**/*.{ts,tsx,js,jsx}'],
+		rules: {
+			'no-restricted-imports': [
+				'error',
+				{
+					patterns: [
+						{
+							group: ['@features/*/**'],
+							message:
+								'Импортируйте из публичного API `@features/<slice>` без внутренних сегментов (BP-48 / паритет febcode `lint-architecture`).',
+						},
+					],
+				},
+			],
 		},
 	},
 	{

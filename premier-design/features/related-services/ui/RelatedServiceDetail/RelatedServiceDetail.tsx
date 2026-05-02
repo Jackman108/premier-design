@@ -6,6 +6,7 @@ import Layout from '@widgets/layout/ui/layout/Layout';
 import Image from 'next/image';
 import BackButton from '@shared/ui/back-button/BackButton';
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
+import { UI, useLocale } from '@shared/i18n';
 import { findItemByTitle } from '@shared/utils/findItemByTitle';
 import type { ButtonProps } from '@entities/button';
 import { RelatedServiceDetailProps } from '@features/related-services/interface/RelatedService.props';
@@ -25,6 +26,7 @@ const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
 	sharesData,
 	appealSection,
 }) => {
+	const { t } = useLocale();
 	const fallbackContent = useFallback(!!relatedService);
 	const buttonHeader = findItemByTitle(buttonData, 'leave_request') || ({} as ButtonProps);
 	const layoutProps = useLayoutProps(
@@ -75,14 +77,14 @@ const RelatedServiceDetail: FC<RelatedServiceDetailProps> = ({
 									<div className={pageShell.colAside}>
 										<p className={pageShell.lead}>{relatedService.description}</p>
 										<div className={`${pageShell.prose} ${styles.infoPanel}`}>
-											<h2 className={pageShell.subheading}>Преимущества</h2>
+											<h2 className={pageShell.subheading}>{t(UI.relatedAdvantagesHeading)}</h2>
 											<ul className={styles.list}>
 												{relatedService.benefits.map((benefit, index) => (
 													<li key={index}>{benefit}</li>
 												))}
 											</ul>
 											<p className={styles.textBlock}>{relatedService.text}</p>
-											<h2 className={pageShell.subheading}>Зачем это нужно вам?</h2>
+											<h2 className={pageShell.subheading}>{t(UI.relatedWhyYouNeedHeading)}</h2>
 											<ul className={styles.list}>
 												{relatedService.triggers.map((trigger, index) => (
 													<li key={index}>{trigger}</li>

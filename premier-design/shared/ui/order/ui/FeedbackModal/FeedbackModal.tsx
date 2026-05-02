@@ -1,6 +1,8 @@
 'use client';
+
 import type { FC, KeyboardEvent, MouseEvent } from 'react';
 
+import { UI, useLocale } from '@shared/i18n';
 import { BodyPortal } from '@shared/ui/portal/BodyPortal';
 import FeedbackForm from '@shared/ui/order/ui/FeedbackForm/FeedbackForm';
 import { FeedbackModalProps } from '@shared/ui/order/interface/FeedbackModal.props';
@@ -8,13 +10,14 @@ import { FeedbackModalProps } from '@shared/ui/order/interface/FeedbackModal.pro
 import styles from './FeedbackModal.module.css';
 
 const FeedbackModal: FC<FeedbackModalProps> = ({ onClose, onSubmit, initialMessage }) => {
+	const { t } = useLocale();
+
 	const handleOverlayClick = (event: MouseEvent<HTMLDialogElement>) => {
 		if (event.target === event.currentTarget) {
 			onClose();
 		}
 	};
 	const handleEscapeClose = (event: KeyboardEvent<HTMLDialogElement>) => {
-		// Для `<dialog open>` (без showModal) явно дублируем ESC-закрытие для стабильной keyboard-навигации.
 		if (event.key === 'Escape') {
 			event.preventDefault();
 			onClose();
@@ -35,14 +38,14 @@ const FeedbackModal: FC<FeedbackModalProps> = ({ onClose, onSubmit, initialMessa
 				<div className={styles.modal}>
 					<div className={styles.header}>
 						<div className={styles.headingBlock}>
-							<h3 id="feedback-modal-heading">Оставьте заявку</h3>
-							<p id="feedback-modal-description">Мы свяжемся в ближайшее время</p>
+							<h3 id="feedback-modal-heading">{t(UI.feedbackModalTitle)}</h3>
+							<p id="feedback-modal-description">{t(UI.feedbackModalDescription)}</p>
 						</div>
 						<button
 							className={styles.closeButton}
 							type="button"
 							onClick={onClose}
-							aria-label="Закрыть форму"
+							aria-label={t(UI.feedbackCloseModalAria)}
 						>
 							&times;
 						</button>

@@ -2,7 +2,7 @@
 
 import { CSSProperties, useRef } from 'react';
 
-import { useShareBanner } from '@features/banner/share/hooks/useShareBanner';
+import { useShareBanner } from '@features/banner';
 import { useShareBannerHeight } from '@shared/hooks/useShareBannerHeight';
 import type { HeaderProps } from '@widgets/layout/interface/Header.props';
 import { useHeaderPlaceholderHeight } from '@widgets/layout/hooks/useHeaderPlaceholderHeight';
@@ -11,7 +11,7 @@ import { useStickyHeader } from '@widgets/layout/hooks/useStickyHeader';
 import useThemeToggle from '@widgets/layout/hooks/useThemeToggle';
 
 /** Состояние хедера, плейсхолдера и меню — вынесено из `ui/header` по правилу слоя представления. */
-export const useHeaderLayout = ({ menu, shares }: HeaderProps) => {
+export const useHeaderLayout = ({ menu, shares }: Pick<HeaderProps, 'menu' | 'shares'>) => {
 	const headerRef = useRef<HTMLElement>(null);
 	const { currentTheme, toggleTheme } = useThemeToggle();
 	const { isMobileMenuOpen, toggleMobileMenu } = useMobileMenu(false);

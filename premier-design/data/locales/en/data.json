@@ -1,0 +1,1973 @@
+{
+	"menu": [
+		{
+			"id": 1,
+			"title": "Home",
+			"ruTitle": "Home"
+		},
+		{
+			"id": 8,
+			"title": "Services",
+			"ruTitle": "Services"
+		},
+		{
+			"id": 2,
+			"title": "Repairs",
+			"ruTitle": "Repairs"
+		},
+		{
+			"id": 3,
+			"title": "Design",
+			"ruTitle": "Design"
+		},
+		{
+			"id": 4,
+			"title": "Portfolio",
+			"ruTitle": "Portfolio"
+		},
+		{
+			"id": 6,
+			"title": "About",
+			"ruTitle": "About the company"
+		},
+		{
+			"id": 7,
+			"title": "Contacts",
+			"ruTitle": "Contacts"
+		}
+	],
+	"button": [
+		{
+			"id": 1,
+			"buttonHeader": "Get a quote",
+			"shortTitle": "leave_request"
+		},
+		{
+			"id": 2,
+			"buttonHeader": "Order a project",
+			"shortTitle": "order_project"
+		},
+		{
+			"id": 3,
+			"buttonHeader": "Get a consultation",
+			"shortTitle": "get_counseling"
+		}
+	],
+	"panel": [
+		{
+			"id": "phoneButton",
+			"icon": "/panel/phone.svg",
+			"altText": "Telephone",
+			"text": "Get a consultation",
+			"position": {
+				"bottom": ""
+			}
+		},
+		{
+			"id": "estimateButton",
+			"icon": "/panel/estimate.svg",
+			"altText": "Estimate",
+			"text": "Calculate cost",
+			"position": {
+				"bottom": ""
+			}
+		},
+		{
+			"id": "chatButton",
+			"icon": "/panel/chat.svg",
+			"altText": "Chat",
+			"text": "Ask in chat",
+			"position": {
+				"bottom": ""
+			}
+		}
+	],
+	"trustSignals": {
+		"metrics": [
+			{
+				"label": "Projects completed",
+				"value": "150+"
+			},
+			{
+				"label": "Rating based on reviews on the website",
+				"value": "5.0 (4 reviews)"
+			},
+			{
+				"label": "Work guarantee",
+				"value": "24 months"
+			}
+		],
+		"structuredDataRating": {
+			"ratingValue": "5",
+			"reviewCount": 4,
+			"bestRating": "5"
+		}
+	},
+	"homeHeroHighlights": [
+		"Turnkey finishing and renovation: Zhlobin, Gomel region and travel throughout Belarus",
+		"Executive level of finishing, fixed estimate and deadlines",
+		"Design, supply and supervision in one loop"
+	],
+	"homeVideoSpotlight": {
+		"title": "On-site work format",
+		"description": "When a branded video appears, specify its `youtubeId` in the data - the section will be connected automatically.",
+		"youtubeId": ""
+	},
+	"homePage": {
+		"sectionAriaLabels": {
+			"features": "Advantages",
+			"offer": "Special offer",
+			"services": "Services",
+			"approach": "Our approach",
+			"steps": "Stages of work",
+			"examples": "Examples of work",
+			"trust": "Why do they trust us?",
+			"costing": "Cost calculation",
+			"related": "Related services",
+			"faq": "Frequently asked questions",
+			"reviews": "Customer Reviews",
+			"quiz": "Quiz",
+			"appeal": "Get a quote"
+		}
+	},
+	"faqContent": {
+		"home": [
+			{
+				"id": "h1",
+				"question": "Do you work only in Zhlobin?",
+				"answer": "We are based in Zhlobin and Gomel region; We carry out complex projects throughout Belarus - we coordinate the surveyor’s visit and estimates individually."
+			},
+			{
+				"id": "h2",
+				"question": "What is included in the turnkey package?",
+				"answer": "Design or working documentation, estimate, purchase of materials according to specifications, execution of work, cleaning and delivery of the facility with a 24-month guarantee."
+			},
+			{
+				"id": "h3",
+				"question": "What price level?",
+				"answer": "The reference point is the executive segment: transparent estimates, branded materials and quality control at every stage without hidden surcharges."
+			},
+			{
+				"id": "h4",
+				"question": "How to start a project?",
+				"answer": "Get a quote or call - we will coordinate an engineer’s visit, measurements and a commercial proposal with a work schedule."
+			},
+			{
+				"id": "h5",
+				"question": "Is it possible to fix the budget before the start of work?",
+				"answer": "Yes, after measurements and approval of the technical specifications, we prepare a detailed estimate with stage-by-stage costs. This allows you to see your budget in advance and make decisions without unexpected additional payments."
+			},
+			{
+				"id": "h6",
+				"question": "How long does a turnkey project take?",
+				"answer": "The period depends on the area and complexity, but we always fix the schedule by stages: design, supplies, construction and finishing works, final delivery and quality control."
+			},
+			{
+				"id": "h7",
+				"question": "Do you help with the selection and purchase of materials?",
+				"answer": "Yes, we create specifications, select items to suit your budget and style, check delivery times and synchronize purchases with the team’s schedule so as not to slow down the project."
+			},
+			{
+				"id": "h8",
+				"question": "What do I get after completing the project?",
+				"answer": "You receive a ready-made space that can be used immediately: work completed under the contract, a clean object after cleaning, a package of closing documents and a 24-month warranty."
+			}
+		],
+		"design": [
+			{
+				"id": "d1",
+				"question": "How long does a design project take?",
+				"answer": "Depends on the area and package (from concept to full taxiway); A typical deadline is discussed in the brief and recorded in the calendar plan."
+			},
+			{
+				"id": "d2",
+				"question": "Is it possible to order only visualization?",
+				"answer": "Yes - we will select the volume: from moodboard and 3D to a full set of drawings and specifications for builders."
+			},
+			{
+				"id": "d3",
+				"question": "How to coordinate style and budget?",
+				"answer": "At the start, we fix priorities and the budget corridor; We select materials and furniture within the approved budget."
+			},
+			{
+				"id": "d4",
+				"question": "Do you provide designer supervision?",
+				"answer": "Yes - control of compliance of implementation with the project at the site, stage reports and consultations with contractors."
+			}
+		],
+		"repairs": [
+			{
+				"id": "r1",
+				"question": "Do you do renovations without a designer?",
+				"answer": "Yes, according to the customer’s working documentation or our standard methodology, we will estimate the volume and offer a schedule and estimate."
+			},
+			{
+				"id": "r2",
+				"question": "How do you guarantee deadlines?",
+				"answer": "We prescribe the stages in the contract, assign a responsible foreman and photo reports; deviations will be agreed upon in advance."
+			},
+			{
+				"id": "r3",
+				"question": "Do you purchase materials?",
+				"answer": "We can take over the supply according to the specifications - volumes and payments are transparently reflected in the estimate."
+			},
+			{
+				"id": "r4",
+				"question": "Do you work with legal entities?",
+				"answer": "Yes - contract, closing documents; for tenders we provide permits and insurance upon request."
+			}
+		]
+	},
+	"companyAbout": {
+		"intro": "Premium Design is a design and production team in Zhlobin. We implement residential and commercial interiors of the premium segment in Belarus: from concept to turnkey delivery.",
+		"milestonesTitle": "Milestones",
+		"milestones": [
+			{
+				"year": "2015",
+				"text": "Launch of complex projects in the region: apartments and local retail."
+			},
+			{
+				"year": "2019",
+				"text": "Expansion to fit-out and representative objects with a single outline of the estimate."
+			},
+			{
+				"year": "2024",
+				"text": "A single ecosystem: design, supply, repair, supervision and 24 month warranty."
+			}
+		],
+		"teamTitle": "Team",
+		"team": [
+			{
+				"name": "Project office",
+				"role": "Design and Engineering",
+				"note": "Concept, visualizations, working drawings and specifications before the start of construction."
+			},
+			{
+				"name": "Production block",
+				"role": "Masters and foremen",
+				"note": "Work schedule, quality control, budget discipline and delivery of the object to the customer."
+			}
+		],
+		"licensesNote": "We work under a contract. Approvals, insurance and tender documentation are available upon request for corporate customers."
+	},
+	"contactsPage": {
+		"uspAside": {
+			"ariaLabel": "Why do they trust us?",
+			"items": [
+				"We fix the estimate and deadlines before the start - no hidden extras during the process.",
+				"Executive level of finishing and materials, 24 month warranty on work.",
+				"Zhlobin and Gomel region; travel and support of projects in Belarus."
+			]
+		}
+	},
+	"news": [
+		{
+			"id": 1,
+			"image": "/news/news01.webp",
+			"imagePng": "/news/news01.png",
+			"title": "Summer discounts on renovations and interior design - limited offer!",
+			"text": "Hurry up to take advantage of our summer promotion and get a discount of up to 20% on the renovation and design of your interior. Create comfort and style in your home at an affordable price. Fill out the application form right now!",
+			"date": "01.04.2025 - 30.06.2025"
+		},
+		{
+			"id": 2,
+			"image": "/news/news02.webp",
+			"imagePng": "/news/news02.png",
+			"title": "Turnkey interior design at a discount - limited offer!",
+			"text": "Do you want to completely update your interior? Order a turnkey design from us and get a 15% discount. We will develop a unique design, carry out renovations and select furniture - everything you need to create the ideal space.",
+			"date": "01.05.2025 - 30.11.2025"
+		},
+		{
+			"id": 3,
+			"image": "/news/news03.webp",
+			"imagePng": "/news/news03.png",
+			"title": "Free delivery of materials when ordering repairs and interior design!",
+			"text": "Remodeling and interior design not only transform your home, but also cost money. We will help you save on material delivery - it will be free when you order a comprehensive service. Applying on the website will only take a few minutes!",
+			"date": "01.09.2025 - 31.12.2025"
+		},
+		{
+			"id": 4,
+			"image": "/news/news04.webp",
+			"imagePng": "/news/news04.png",
+			"title": "Paint your home - discount on wall painting!",
+			"text": "Want to refresh your interior? Order wall painting from us and get a 10% discount. We use only high-quality materials and offer a wide range of colors. Call us or Get a quote on the website!",
+			"date": "15.01.2026 - 28.02.2026"
+		},
+		{
+			"id": 5,
+			"image": "/news/news05.webp",
+			"imagePng": "/news/news05.png",
+			"title": "A cozy nest for your child - a children's room at a discount!",
+			"text": "Do you want to create a magical atmosphere in your child's room? Order the design and renovation of a children's room from us and receive a 10% discount. We will make the room functional, safe and inspiring for your little one.",
+			"date": "01.03.2026 - 30.04.2026"
+		},
+		{
+			"id": 6,
+			"image": "/news/news06.webp",
+			"imagePng": "/news/news06.png",
+			"title": "Turn your kitchen into a culinary movie - discount on kitchen design and renovation!",
+			"text": "The kitchen is the place where masterpieces are born. Make your kitchen stylish and functional with our services. Order kitchen design and renovation from us and get a 15% discount. Let your culinary imagination run wild!",
+			"date": "01.05.2026 - 31.07.2026"
+		}
+	],
+	"features": [
+		{
+			"id": 1,
+			"title": "Optimal timing",
+			"iconPng": "/features/clock.png",
+			"icon": "/features/clock.webp"
+		},
+		{
+			"id": 2,
+			"title": "Reasonable prices",
+			"iconPng": "/features/economy.png",
+			"icon": "/features/economy.webp"
+		},
+		{
+			"id": 3,
+			"title": "Responsible masters",
+			"iconPng": "/features/leader.png",
+			"icon": "/features/leader.webp"
+		},
+		{
+			"id": 4,
+			"title": "2 year warranty",
+			"iconPng": "/features/shield.png",
+			"icon": "/features/shield.webp"
+		}
+	],
+	"title": [
+		{
+			"id": 1,
+			"title": "Repair and Interior Design in Belarus",
+			"shortTitle": "repair-and-design",
+			"description": "Unique author's and individual designs, we design and carry out turnkey repairs."
+		},
+		{
+			"id": 2,
+			"title": "Transforming your space - from idea to implementation",
+			"shortTitle": "services",
+			"description": "Trust the professionals - we guarantee results that will exceed your expectations."
+		},
+		{
+			"id": 3,
+			"title": "Our approach",
+			"shortTitle": "our-approach",
+			"description": "We adhere to an individual approach to all our clients. We help in resolving any difficulties and difficulties that arise."
+		},
+		{
+			"id": 4,
+			"title": "Examples of our work",
+			"shortTitle": "our-works",
+			"description": "We offer not just design, but the opportunity to turn your wildest ideas into reality. Whether it’s stylish modernity or timeless classics, we will help you create an interior that will highlight your individuality and taste. Our works are not only space, but also a reflection of your personality."
+		},
+		{
+			"id": 5,
+			"title": "Preliminary cost calculation on a turnkey basis",
+			"shortTitle": "price-calculation",
+			"description": "Get an accurate estimate of the cost of your project by choosing the right service. Specify the area and type of premises, and we will calculate the cost based on your wishes. This is a quick and convenient way to find out the price of our solutions for your home or business."
+		},
+		{
+			"id": 6,
+			"title": "Create a better place to live",
+			"shortTitle": "create-best-place",
+			"description": "Get a quote today and your housewarming will be one step closer."
+		},
+		{
+			"id": 7,
+			"title": "Dreams of comfort will come true",
+			"shortTitle": "comfort-dreams",
+			"description": "Developing a design project is the first step towards creating a stylish, functional, modern room."
+		},
+		{
+			"id": 8,
+			"title": "Premium Design | Repair and interior design in Belarus",
+			"shortTitle": "premium-design",
+			"description": "Unique author's and individual designs, we design and carry out turnkey repairs."
+		},
+		{
+			"id": 9,
+			"title": "Renovating can be fun",
+			"shortTitle": "pleasant-repair",
+			"description": "We solve the most complex problems, design and carry out turnkey repairs."
+		},
+		{
+			"id": 10,
+			"title": "Find out more about our values!",
+			"shortTitle": "our-values",
+			"description": "A company with many years of experience and a professional team of specialists."
+		},
+		{
+			"id": 11,
+			"title": "We are always happy to help you!",
+			"shortTitle": "we-are-here-to-help",
+			"description": "Contact us to discuss your ideas and make your space cozy and modern."
+		},
+		{
+			"id": 12,
+			"title": "Get discounts on building materials!",
+			"shortTitle": "our-partners",
+			"description": "We partner with leading companies offering high-quality products and services to meet all your needs. This will allow you to save money while maintaining high quality work."
+		},
+		{
+			"id": 13,
+			"title": "Stages of consideration of applications",
+			"shortTitle": "application-process",
+			"description": "The process that will lead you to success: from start to finish."
+		},
+		{
+			"id": 14,
+			"title": "Current services and prices",
+			"shortTitle": "repair-categories",
+			"description": "Select the service you are interested in and contact us."
+		},
+		{
+			"id": 15,
+			"title": "Reviews from our clients",
+			"shortTitle": "customer_reviews",
+			"description": "We are proud of the trust of our customers and always strive for excellence. This is what those who have already used our services say about us.."
+		},
+		{
+			"id": 16,
+			"title": "Everything for your convenience and peace of mind",
+			"shortTitle": "related-services",
+			"description": "We know that to create the perfect space, not only renovation work is important, but also additional details. We offer unique solutions that make your life easier: from smart home to energy-efficient technologies."
+		},
+		{
+			"id": 17,
+			"title": "Repair and interior design for business",
+			"shortTitle": "business-services",
+			"description": "We know how important it is to create a space that works for your business. From the first impression to the small details, we make sure your customers come back and your employees feel comfortable."
+		},
+		{
+			"id": 18,
+			"title": "News and Promotions",
+			"shortTitle": "news-shares",
+			"description": "Don't miss the opportunity to save! Limited offers: discounts up to 20%, free shipping and unique solutions for your interior."
+		},
+		{
+			"id": 19,
+			"title": "Frequently asked questions",
+			"shortTitle": "faq-section",
+			"description": "Briefly about geography, turnkey, budget and start of the project."
+		}
+	],
+	"titlesPage": [
+		{
+			"id": 1,
+			"title": "Executive renovation and turnkey finishing - Zhlobin and all of Belarus",
+			"shortTitle": "home",
+			"description": "Premium segment: design, estimate, materials and implementation without surprises. We work in Zhlobin, Gomel region and travel around the country.",
+			"metaTitle": "Premium Design | Premium turnkey finishing in Zhlobin and Belarus",
+			"metaDescription": "Repair and interior design of executive level: Zhlobin, Gomel region and travel throughout Belarus. Transparent estimate, terms and 24 month guarantee.",
+			"canonical": "/"
+		},
+		{
+			"id": 2,
+			"title": "Renovating can be fun",
+			"shortTitle": "repairs",
+			"description": "We solve the most complex problems, design and carry out turnkey repairs.",
+			"metaTitle": "Premium Design | Interior renovation with quality guarantee in Belarus",
+			"metaDescription": "High-quality interior repairs with a guarantee. We carry out renovation work of any complexity and create stylish and functional spaces.",
+			"canonical": "/repairs"
+		},
+		{
+			"id": 3,
+			"title": "Dreams of comfort will come true",
+			"shortTitle": "design",
+			"description": "Developing a design project is the first step towards creating a stylish, functional, modern room.",
+			"metaTitle": "Premium Design | Turnkey interior design in Belarus",
+			"metaDescription": "Professional interior design in Belarus. Premium Design offers unique designs for your home or office with a personal touch.",
+			"canonical": "/design"
+		},
+		{
+			"id": 4,
+			"title": "Find out more about our values!",
+			"shortTitle": "about",
+			"description": "A company with many years of experience and a professional team of specialists.",
+			"metaTitle": "Premium Design | About the company and our services for renovation and interior design",
+			"metaDescription": "Learn more about Premium Design and our renovation and interior design services. High quality solutions for your home and office.",
+			"canonical": "/about"
+		},
+		{
+			"id": 5,
+			"title": "We are always happy to help you!",
+			"shortTitle": "contacts",
+			"description": "Contact us to discuss your ideas and make your space cozy and modern.",
+			"metaTitle": "Premium Design | Contacts – contact us for renovation and design consultations",
+			"metaDescription": "Contact us for consultations on renovation and interior design in Belarus. We are always happy to help you create the perfect space!",
+			"canonical": "/contacts"
+		},
+		{
+			"id": 6,
+			"title": "User Agreement",
+			"shortTitle": "user-agreement",
+			"description": "User Agreement | Premium Design | Interior renovation with quality guarantee in Belarus",
+			"metaTitle": "Premium Design | User Agreement",
+			"metaDescription": "User Agreement | Premium Design | Interior renovation with quality guarantee in Belarus",
+			"canonical": "/documents/user-agreement"
+		},
+		{
+			"id": 7,
+			"title": "Privacy Policy",
+			"shortTitle": "privacy-policy",
+			"description": "Privacy Policy | Premium Design | Interior renovation with quality guarantee in Belarus",
+			"metaTitle": "Premium Design | Privacy Policy",
+			"metaDescription": "Privacy Policy | Premium Design | Interior renovation with quality guarantee in Belarus",
+			"canonical": "/documents/privacy-policy"
+		},
+		{
+			"id": 8,
+			"title": "Public offer",
+			"shortTitle": "public-offer",
+			"description": "Public offer | Premium Design | Interior renovation with quality guarantee in Belarus",
+			"metaTitle": "Premium Design | Public offer",
+			"metaDescription": "Public offer | Premium Design | Interior renovation with quality guarantee in Belarus",
+			"canonical": "/documents/public-offer"
+		},
+		{
+			"id": 9,
+			"title": "Portfolio of completed projects",
+			"shortTitle": "portfolio",
+			"description": "Implemented interiors: styles, areas, terms and visual solutions. A selection of Premium Design cases.",
+			"metaTitle": "Premium Design | Portfolio of renovation and interior design",
+			"metaDescription": "Examples of our work: renovation and interior design of the premium segment in Zhlobin, Gomel region and throughout Belarus.",
+			"canonical": "/portfolio"
+		},
+		{
+			"id": 11,
+			"title": "Catalog of services and prices",
+			"shortTitle": "services",
+			"description": "All categories of repair and finishing work: select a direction and go to the price list.",
+			"metaTitle": "Premium Design | Services and prices by category",
+			"metaDescription": "Catalog of Premium Design services: dismantling, construction, finishing, etc. Zhlobin, Gomel region and travel throughout Belarus.",
+			"canonical": "/services"
+		},
+		{
+			"id": 12,
+			"title": "Site map",
+			"shortTitle": "sitemap",
+			"description": "Complete list of site pages for navigation.",
+			"metaTitle": "Premium Design | Site map",
+			"metaDescription": "All sections and pages of the Premium Design website: services, documents, main sections.",
+			"canonical": "/sitemap"
+		}
+	],
+	"bannersImages": [
+		{
+			"id": 1,
+			"src": "/banners/banner-home.webp",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 90,
+			"width": 1935,
+			"height": 684,
+			"shortTitle": "home_banner"
+		},
+		{
+			"id": 2,
+			"src": "/banners/banner-repair.webp",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 90,
+			"width": 1935,
+			"height": 684,
+			"shortTitle": "repair_banner"
+		},
+		{
+			"id": 3,
+			"src": "/banners/banner-design.webp",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 90,
+			"width": 1935,
+			"height": 684,
+			"shortTitle": "design_banner"
+		},
+		{
+			"id": 4,
+			"src": "/banners/banner-about.webp",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 90,
+			"width": 1935,
+			"height": 684,
+			"shortTitle": "about_banner"
+		},
+		{
+			"id": 5,
+			"src": "/banners/banner-contacts.webp",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 90,
+			"width": 1935,
+			"height": 684,
+			"shortTitle": "contacts_banner"
+		},
+		{
+			"id": 6,
+			"src": "/banners/appeal.webp",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 90,
+			"width": 1935,
+			"height": 684,
+			"shortTitle": "appeal_banner"
+		}
+	],
+	"shares": [
+		{
+			"shortTitle": "share_electric",
+			"link": "/about#news-2",
+			"imageDesc": {
+				"id": 1,
+				"src": "/shares/share-el-d.webp",
+				"alt": "Premium Design - electrician promotion",
+				"quality": 95,
+				"width": 1920,
+				"height": 78,
+				"shortTitle": "shares_banner"
+			},
+			"imageMob": {
+				"id": 1,
+				"src": "/shares/share-el-m.webp",
+				"alt": "Premium Design - electrician promotion",
+				"quality": 95,
+				"width": 768,
+				"height": 84,
+				"shortTitle": "shares_banner"
+			}
+		}
+	],
+	"partners": [
+		{
+			"id": 1,
+			"src": "/partners/marketBuild.webp",
+			"srcPng": "/partners/marketBuild.png",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 95,
+			"width": 320,
+			"height": 140,
+			"discounts": "Discount up to 8%"
+		},
+		{
+			"id": 2,
+			"src": "/partners/shopOMA.webp",
+			"srcPng": "/partners/shopOMA.png",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 95,
+			"width": 320,
+			"height": 140,
+			"discounts": "Discount up to 7%"
+		},
+		{
+			"id": 3,
+			"src": "/partners/MarketKSK.webp",
+			"srcPng": "/partners/MarketKSK.png",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 95,
+			"width": 320,
+			"height": 140,
+			"discounts": "Discount up to 7%"
+		},
+		{
+			"id": 4,
+			"src": "/partners/electricsVolt.webp",
+			"srcPng": "/partners/electricsVolt.png",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 95,
+			"width": 320,
+			"height": 140,
+			"discounts": "Discount up to 7%"
+		},
+		{
+			"id": 5,
+			"src": "/partners/parquetTarkett.webp",
+			"srcPng": "/partners/parquetTarkett.png",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 95,
+			"width": 320,
+			"height": 140,
+			"discounts": "Discount up to 7%"
+		},
+		{
+			"id": 6,
+			"src": "/partners/doorsJurkas.webp",
+			"srcPng": "/partners/doorsJurkas.png",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 95,
+			"width": 320,
+			"height": 140,
+			"discounts": "Discount up to 7%"
+		},
+		{
+			"id": 7,
+			"src": "/partners/plumbingAquarius.webp",
+			"srcPng": "/partners/plumbingAquarius.png",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 95,
+			"width": 320,
+			"height": 140,
+			"discounts": "Discount up to 10%"
+		},
+		{
+			"id": 8,
+			"src": "/partners/fsHome.webp",
+			"srcPng": "/partners/fsHome.png",
+			"alt": "Premium Design - Repair and interior design in Belarus",
+			"quality": 95,
+			"width": 320,
+			"height": 140,
+			"discounts": "Discount up to 8%"
+		}
+	],
+	"approachCard": [
+		{
+			"id": 1,
+			"image": "/approach/approach01.svg",
+			"title": "Appraiser visit",
+			"description": "Any consultations and cost estimates are FREE"
+		},
+		{
+			"id": 2,
+			"image": "/approach/approach02.svg",
+			"title": "Help with materials",
+			"description": "Help in choosing and purchasing finishing materials – FREE!"
+		},
+		{
+			"id": 3,
+			"image": "/approach/approach03.svg",
+			"title": "Design project",
+			"description": "A basic design project saves you up to 25% of the cost - FREE."
+		},
+		{
+			"id": 4,
+			"image": "/approach/approach04.svg",
+			"title": "Minimizing costs",
+			"description": "High-quality repairs are cheaper than you think!"
+		}
+	],
+	"costingCard": [
+		{
+			"id": 1,
+			"title": "Apartment renovation",
+			"image": "/costing/costing01.webp"
+		},
+		{
+			"id": 2,
+			"title": "Home renovation",
+			"image": "/costing/costing02.webp"
+		},
+		{
+			"id": 3,
+			"title": "Store renovation",
+			"image": "/costing/costing03.webp"
+		},
+		{
+			"id": 4,
+			"title": "Restaurant renovation",
+			"image": "/costing/costing04.webp"
+		},
+		{
+			"id": 5,
+			"title": "Office renovation",
+			"image": "/costing/costing05.webp"
+		}
+	],
+	"examplesCard": [
+		{
+			"id": 1,
+			"background": "/examples/example01.webp",
+			"address": "Apartment renovation. Zhlobin",
+			"deadlines": "Completion period: 5.5 months.",
+			"budgetRange": "Executive segment",
+			"onTimeNote": "Delivery on time according to contract",
+			"bathroomIcon": "/examples/bathroomIcon.svg",
+			"bathroomOption": 1,
+			"areaIcon": "/examples/areaIcon.svg",
+			"areaOption": 49,
+			"areaSquare": "m2",
+			"images": [
+				"/viewer/apartment/01.webp",
+				"/viewer/apartment/02.webp",
+				"/viewer/apartment/03.webp",
+				"/viewer/apartment/04.webp",
+				"/viewer/apartment/05.webp"
+			]
+		},
+		{
+			"id": 2,
+			"background": "/examples/example02.webp",
+			"address": "Home renovation. Malye Rogi village",
+			"deadlines": "Completion period 1 month.",
+			"budgetRange": "Average+",
+			"onTimeNote": "Completed 5 days ahead of schedule",
+			"bathroomIcon": "/examples/bathroomIcon.svg",
+			"bathroomOption": 1,
+			"areaIcon": "/examples/areaIcon.svg",
+			"areaOption": 80,
+			"areaSquare": "m2",
+			"images": [
+				"/viewer/cottage/01.webp",
+				"/viewer/cottage/02.webp",
+				"/viewer/cottage/03.webp",
+				"/viewer/cottage/04.webp",
+				"/viewer/cottage/05.webp"
+			]
+		},
+		{
+			"id": 3,
+			"background": "/examples/example03.webp",
+			"address": "Home renovation. p.Seybit",
+			"deadlines": "Completion period: 4 months.",
+			"budgetRange": "Premium",
+			"onTimeNote": "On time according to the calendar plan",
+			"bathroomIcon": "/examples/bathroomIcon.svg",
+			"bathroomOption": 1,
+			"areaIcon": "/examples/areaIcon.svg",
+			"areaOption": 42,
+			"areaSquare": "m2",
+			"images": ["/viewer/home/01.webp", "/viewer/home/02.webp", "/viewer/home/03.webp", "/viewer/home/04.webp"]
+		},
+		{
+			"id": 4,
+			"background": "/examples/example04.webp",
+			"address": "IMPERIAL store renovation",
+			"deadlines": "Completion period: 2 months.",
+			"budgetRange": "Commercial fit-out",
+			"onTimeNote": "Opening to the stated window",
+			"bathroomIcon": "/examples/bathroomIcon.svg",
+			"bathroomOption": 0,
+			"areaIcon": "/examples/areaIcon.svg",
+			"areaOption": 108,
+			"areaSquare": "m2",
+			"images": ["/viewer/imperial/01.webp", "/viewer/imperial/02.webp", "/viewer/imperial/03.webp"]
+		},
+		{
+			"id": 5,
+			"background": "/examples/example05.webp",
+			"address": "Repair of the IQOS pavilion",
+			"deadlines": "Completion period 1.5 months.",
+			"budgetRange": "Turnkey retail",
+			"onTimeNote": "Delivery on time to launch sales",
+			"bathroomIcon": "/examples/bathroomIcon.svg",
+			"bathroomOption": 1,
+			"areaIcon": "/examples/areaIcon.svg",
+			"areaOption": 70,
+			"areaSquare": "m2",
+			"images": [
+				"/viewer/iqos/01.webp",
+				"/viewer/iqos/02.webp",
+				"/viewer/iqos/03.webp",
+				"/viewer/iqos/04.webp",
+				"/viewer/iqos/05.webp"
+			]
+		},
+		{
+			"id": 6,
+			"background": "/examples/example06.webp",
+			"address": "Renovation of the Sausage Shop restaurant",
+			"deadlines": "Completion period: 2 months.",
+			"bathroomIcon": "/examples/bathroomIcon.svg",
+			"bathroomOption": 2,
+			"areaIcon": "/examples/areaIcon.svg",
+			"areaOption": 150,
+			"areaSquare": "m2",
+			"images": [
+				"/viewer/workshop/01.webp",
+				"/viewer/workshop/02.webp",
+				"/viewer/workshop/03.webp",
+				"/viewer/workshop/04.webp",
+				"/viewer/workshop/05.webp"
+			]
+		}
+	],
+	"servicesCard": [
+		{
+			"id": 1,
+			"text": "Interior design",
+			"image": "/services/service01.webp",
+			"href": "/design"
+		},
+		{
+			"id": 2,
+			"text": "Interior renovation",
+			"image": "/services/service02.webp",
+			"href": "/repairs"
+		},
+		{
+			"id": 3,
+			"text": "Related services",
+			"image": "/services/service03.webp",
+			"href": "/#related-services"
+		},
+		{
+			"id": 4,
+			"text": "Stock",
+			"image": "/services/service05.webp",
+			"href": "/about#news-1"
+		},
+		{
+			"id": 5,
+			"text": "Repair for business",
+			"image": "/services/service04.webp",
+			"href": "/repairs#repair-for-business"
+		}
+	],
+	"businessServiceCard": [
+		{
+			"category": "Stores",
+			"image": "/services/business/stores.webp",
+			"details": [
+				"Creating a unique design that highlights your brand and attracts customers.",
+				"Development of ergonomic solutions to increase customer flows.",
+				"Optimizing space for goods for maximum customer convenience.",
+				"Use of strong and durable materials for intensive use.",
+				"Implementation of shop windows that attract attention at first sight."
+			]
+		},
+		{
+			"category": "Restaurants",
+			"image": "/services/business/restaurants.webp",
+			"details": [
+				"Developing an atmosphere that whets your appetite and keeps you coming back for more.",
+				"Optimizing space for maximum seating without sacrificing comfort.",
+				"Aesthetic and functional zoning: open kitchens, lounge areas, bars.",
+				"Integration of modern lighting and sound insulation systems for comfort.",
+				"Selection of design solutions that highlight the uniqueness of your kitchen and concept."
+			]
+		},
+		{
+			"category": "Offices",
+			"image": "/services/business/offices.webp",
+			"details": [
+				"Creating an ergonomic workspace that increases employee productivity.",
+				"Integration of recreation areas and meeting rooms for convenience and work.",
+				"Optimize lighting to reduce eye fatigue.",
+				"Innovative solutions for sound insulation so that nothing distracts you from your work.",
+				"Aesthetics that reflect the corporate style and build trust among partners."
+			]
+		},
+		{
+			"category": "Beauty salons",
+			"image": "/services/business/beauty_salons.webp",
+			"details": [
+				"Interior design that creates a cozy and relaxing atmosphere.",
+				"Development of functional areas for craftsmen and clients.",
+				"Use of antiseptic and easy to clean materials.",
+				"Installation of modern lighting solutions for optimal performance.",
+				"Creation of rooms for private procedures and relaxation."
+			]
+		},
+		{
+			"category": "Hotels",
+			"image": "/services/business/hotels_and_inns.webp",
+			"details": [
+				"Lobby and reception design to create a first impression.",
+				"Room design taking into account functionality and aesthetics.",
+				"Soundproofing for maximum guest comfort.",
+				"Optimizing space for additional services: spa, fitness areas.",
+				"Durable solutions for intensive use."
+			]
+		},
+		{
+			"category": "Educational centers and children's institutions",
+			"image": "/services/business/training_centers.webp",
+			"details": [
+				"Development of fun and functional design for children's areas.",
+				"Installation of shockproof coatings that are resistant to wear.",
+				"Optimizing classrooms for group and individual work.",
+				"Space zoning: classrooms, recreation areas, gyms.",
+				"Implementation of modern ventilation and lighting systems."
+			]
+		},
+		{
+			"category": "Sports clubs and fitness centers",
+			"image": "/services/business/sports_clubs.webp",
+			"details": [
+				"Design of halls for group classes and training areas.",
+				"Creation of showers and changing rooms with an emphasis on hygiene and comfort.",
+				"Development of a unique design for reception and lounge areas.",
+				"Use of materials that are resistant to moisture and wear.",
+				"Soundproofing to reduce noise between zones."
+			]
+		},
+		{
+			"category": "Medical centers and clinics",
+			"image": "/services/business/medical_centers.webp",
+			"details": [
+				"Repair of offices taking into account sanitary standards.",
+				"Installation of antibacterial coatings and materials.",
+				"Organization of comfortable waiting areas.",
+				"Lighting that reduces stress levels in patients.",
+				"A design that emphasizes professionalism and reliability."
+			]
+		},
+		{
+			"category": "Production facilities and warehouses",
+			"image": "/services/business/production_facilities.webp",
+			"details": [
+				"Optimization of logistics routes within the warehouse.",
+				"Installation of coatings that are resistant to stress and wear.",
+				"Organization of areas for staff: rest rooms, offices, kitchens.",
+				"Creation of ventilation and air conditioning systems.",
+				"Facade design to match corporate style."
+			]
+		},
+		{
+			"category": "Entertainment centers and play areas",
+			"image": "/services/business/entertainment_centers.webp",
+			"details": [
+				"Design of play areas for children and adults.",
+				"Organization of virtual reality zones, cinemas, bowling alleys.",
+				"Installation of impact-resistant coatings.",
+				"Using lighting effects to create atmosphere.",
+				"Soundproofing to separate activity areas."
+			]
+		}
+	],
+	"offerBanner": {
+		"homeType": {
+			"id": 1,
+			"image": "/design/offerList.webp",
+			"title": "We make dreams come true: the interior of your dreams - without compromise!",
+			"description": "Welcome to the company where your ideas are turned into stylish and functional spaces! We combine design, renovation and innovation to create a home you'll love coming back to every day.",
+			"questions": [
+				"What makes your home welcoming and reflective of your personality?",
+				"Why does a professional approach save time and money?",
+				"What details make a renovation or design project truly stand out?",
+				"How do we guarantee 100% results and meeting deadlines?",
+				"Why do friends and partners recommend us?"
+			],
+			"tips": "Turn your dream into reality! Check out our projects and start transforming your space today. Success starts with the first step - take it right now!",
+			"shortTitle": "design_offer"
+		},
+		"designType": {
+			"id": 1,
+			"image": "/repair/offerList.webp",
+			"title": "Welcome to the world of renovation and design, where your dreams of an ideal interior become a reality!",
+			"description": "We offer comprehensive solutions for creating stylish and cozy interiors. Our specialists work with attention to detail to ensure that your ideas are implemented as accurately and efficiently as possible.",
+			"questions": [
+				"Why should you entrust repairs and design to professionals?",
+				"What stages does our approach to creating an ideal interior include?",
+				"How do we help save time and budget?",
+				"What makes our projects unique and modern?",
+				"Where can I see finished projects?"
+			],
+			"tips": "Visit our catalog of projects, learn more about our services and contact us to take the first step towards your ideal interior!",
+			"shortTitle": "design_offer"
+		},
+		"repairType": {
+			"id": 2,
+			"image": "/repair/offerList.webp",
+			"title": "High-quality turnkey repairs - comfort without unnecessary hassle!",
+			"description": "Our comprehensive renovation is a full cycle of work, from assessing the premises to arranging furniture. With us you will get the perfect result on time and at a fixed cost.",
+			"questions": [
+				"What work needs to be done to update the interior?",
+				"How to choose materials to ensure durability and style?",
+				"What technologies will speed up repairs and save you money?",
+				"How to meet deadlines and budget?",
+				"Why do we guarantee quality and reliability?"
+			],
+			"tips": "Check out our work to see the quality! Choose the option that suits you, and we will implement it with maximum precision.",
+			"shortTitle": "repairs_offer"
+		},
+		"portfolioType": {
+			"id": 4,
+			"image": "/design/offerList.webp",
+			"title": "Premium Design Portfolio: real projects with measurable results",
+			"description": "The portfolio contains residential and commercial properties, where we were responsible for design, renovation and quality control. These are not renderings, but completed work with a clear logic of decisions and materials.",
+			"questions": [
+				"Which style and level of finish do you prefer?",
+				"What layouts and life scenarios are implemented in similar properties?",
+				"How do we address storage, light and ergonomics without overwhelming the space?",
+				"Which materials have proven to perform better in operation?",
+				"How to repeat strong solutions in your project, taking into account the budget?"
+			],
+			"tips": "Select 2-3 projects that resonate with you and Get a quote: we will prepare a personal concept and implementation roadmap specifically for your project.",
+			"shortTitle": "portfolio_offer"
+		},
+		"estimateType": {
+			"id": 5,
+			"image": "/repair/offerList.webp",
+			"title": "Cost guide: a quick look at your budget without unnecessary bureaucracy",
+			"description": "A preliminary calculation helps to estimate the range of repair and finishing costs at an early stage. You see a clear starting point to plan your budget, milestones and priorities without uncertainty.",
+			"questions": [
+				"What project format do you need: basic, comfort or premium?",
+				"How does the estimate change with different areas and scope of work?",
+				"What affects cost the most: materials, engineering or timing?",
+				"How to distribute the budget between mandatory and desirable decisions?",
+				"How to move from a preliminary calculation to an accurate estimate for an object?"
+			],
+			"tips": "Make a preliminary calculation in the form of an estimate and send a request: we will clarify the parameters of the object and prepare a detailed estimate with payment stages and deadlines.",
+			"shortTitle": "estimate_offer"
+		},
+		"aboutType": {
+			"id": 3,
+			"image": "/about/offerList.webp",
+			"title": "Why do clients choose us? Find out about our advantages!",
+			"description": "Key advantages of our company:\nWe are a team of professionals with many years of experience in renovation and interior design. We offer:\n\nIndividual approach to each project.\nUse of modern technologies and materials.\nA portfolio of successful projects and rave reviews from clients.\nOur work is a combination of aesthetics, comfort and functionality. We create spaces that inspire.",
+			"questions": [
+				"How does our company differ from competitors?",
+				"How do we guarantee 100% quality and meeting deadlines?",
+				"What benefits do our clients receive?",
+				"Why do hundreds of customers trust us?",
+				"Where can I see examples of our completed projects?"
+			],
+			"tips": "Take a look at our portfolio and get inspired by ideas for your interior. We are ready to create the space of your dreams!",
+			"shortTitle": "about_offer"
+		}
+	},
+	"offerProject": {
+		"designType": [
+			{
+				"id": 1,
+				"image": "/design/designType1.webp",
+				"title": "Standard",
+				"price": "from 55 BYR for 1 sq. m.",
+				"pros": "You get:",
+				"prosDescription": [
+					"Visit of a specialist to measure the premises",
+					"Photo recording of premises",
+					"Measurement plan with exact dimensions",
+					"Furniture and equipment arrangement plan (unlimited quantity)",
+					"Plan of dismantled partitions",
+					"Plan for the construction of new partitions",
+					"Plumbing fixtures layout plan",
+					"Plan of underfloor heating and thermostats",
+					"Floor plan indicating level and type of flooring",
+					"Layout of ceilings and ceiling cornices",
+					"Layout plan for lamps, light groups and switches",
+					"Electrical outlet layout",
+					"Layout plan for doors, door and window openings",
+					"Estimate for upcoming finishing work",
+					"Creating an A3 album",
+					"Electronic version of the design project"
+				],
+				"cons": "The cost of work does not include:",
+				"consDescription": [
+					"Art collages of each room (unlimited number)",
+					"Photorealistic 3D visualization (interior sketches)",
+					"Bathroom layouts with tile layout",
+					"Scanning of all rooms along the walls",
+					"Selection of finishing materials",
+					"Selection of furniture indicating the article number and manufacturer",
+					"Selection of lighting fixtures and chandeliers",
+					"Selection and specification of doors",
+					"Selection of household appliances and equipment",
+					"Drawings of decorative custom products",
+					"Author's supervision of the project implementation (1 site visit per month)",
+					"Interior decoration (3 trips)",
+					"Author's supervision (once a week, making edits, monitoring the implementation of the project, trips with the customer to materials and furniture stores) throughout the entire repair period"
+				]
+			},
+			{
+				"id": 2,
+				"image": "/design/designType2.webp",
+				"title": "Optimal",
+				"price": "from 76 BYN for 1 sq. m.",
+				"pros": "You get:",
+				"prosDescription": [
+					"Visit of a specialist to measure the premises",
+					"Photo recording of premises",
+					"Measurement plan with exact dimensions",
+					"Furniture and equipment arrangement plan (unlimited quantity)",
+					"Plan of dismantled partitions",
+					"Plan for the construction of new partitions",
+					"Plumbing fixtures layout plan",
+					"Plan of underfloor heating and thermostats",
+					"Floor plan indicating level and type of flooring",
+					"Layout of ceilings and ceiling cornices",
+					"Layout plan for lamps, light groups and switches",
+					"Electrical outlet layout",
+					"Layout plan for doors, door and window openings",
+					"Estimate for upcoming finishing work",
+					"Creating an A3 album",
+					"Electronic version of the design project",
+					"Art collages of each room (unlimited number)",
+					"Photorealistic 3D visualization (interior sketches)",
+					"Bathroom layouts with tile layout",
+					"Scanning of all rooms along the walls",
+					"Selection of finishing materials",
+					"Selection of furniture indicating the article number and manufacturer",
+					"Selection of lighting fixtures and chandeliers",
+					"Selection and specification of doors"
+				],
+				"cons": "The cost of work does not include:",
+				"consDescription": [
+					"Selection of household appliances and equipment",
+					"Drawings of decorative custom products",
+					"Author's supervision of the project implementation (1 site visit per month)",
+					"Interior decoration (3 trips)",
+					"Author's supervision (once a week, making edits, monitoring the implementation of the project, trips with the customer to materials and furniture stores) throughout the entire repair period"
+				]
+			},
+			{
+				"id": 3,
+				"image": "/design/designType3.webp",
+				"title": "Premium",
+				"price": "from 140 BYR for 1 sq. m.",
+				"pros": "You get:",
+				"prosDescription": [
+					"Visit of a specialist to measure the premises",
+					"Photo recording of premises",
+					"Measurement plan with exact dimensions",
+					"Furniture and equipment arrangement plan (unlimited quantity)",
+					"Plan of dismantled partitions",
+					"Plan for the construction of new partitions",
+					"Plumbing fixtures layout plan",
+					"Plan of underfloor heating and thermostats",
+					"Floor plan indicating level and type of flooring",
+					"Layout of ceilings and ceiling cornices",
+					"Layout plan for lamps, light groups and switches",
+					"Layout plan for lamps, light groups and switches",
+					"Electrical outlet layout",
+					"Layout plan for doors, door and window openings",
+					"Estimate for upcoming finishing work",
+					"Creating an A3 album",
+					"Electronic version of the design project",
+					"Art collages of each room (unlimited number)",
+					"Photorealistic 3D visualization (interior sketches)",
+					"Bathroom layouts with tile layout",
+					"Scanning of all rooms along the walls",
+					"Selection of finishing materials",
+					"Selection of furniture indicating the article number and manufacturer",
+					"Selection of lighting fixtures and chandeliers",
+					"Selection and specification of doors",
+					"Selection of household appliances and equipment",
+					"Drawings of decorative custom products",
+					"Author's supervision of the project implementation (1 site visit per month)",
+					"Interior decoration (3 trips)",
+					"Author's supervision (once a week, making edits, monitoring the implementation of the project, trips with the customer to materials and furniture stores) throughout the entire repair period"
+				],
+				"cons": "",
+				"consDescription": []
+			}
+		],
+		"repairType": [
+			{
+				"id": 1,
+				"image": "/repair/repairType1.webp",
+				"title": "Standard",
+				"price": "from 259 BYN for 1 sq. m.",
+				"pros": "The list of works includes:",
+				"prosDescription": [
+					"Dismantling of old structures and finishing elements",
+					"Floor leveling, floor covering installation",
+					"Minor redevelopment without erecting internal partitions",
+					"Installation of electrical wiring, water supply, sewerage, plumbing",
+					"Tile work",
+					"Aligning walls with beacons",
+					"Putty, surface primer",
+					"Installation of laminate, linoleum, carpet",
+					"Wallpapering, painting walls",
+					"Installation of suspended ceilings",
+					"Installation of heating, smart engineering systems, climate control equipment, plumbing"
+				],
+				"cons": "The cost of work does not include:",
+				"consDescription": [
+					"Project design",
+					"Replacement of doors and windows",
+					"Installation of ventilation, heating and complex engineering networks",
+					"Use of economical building materials and finishing elements",
+					"We carry out standard finishing of improved quality, using economical building materials and finishing elements",
+					"Complex interior decors",
+					"Creation of hydro-, noise- and thermal insulation",
+					"We use only high-quality finishing materials and affordable technologies"
+				]
+			},
+			{
+				"id": 2,
+				"image": "/repair/repairType2.webp",
+				"title": "Comfort",
+				"price": "from 369 BYN for 1 sq. m.",
+				"pros": "The list of works includes:",
+				"prosDescription": [
+					"Dismantling of old structures and finishing elements",
+					"Installation of electrical networks, water supply, sewerage",
+					"Installation of heating, smart engineering systems, climate control equipment, plumbing",
+					"Leveling walls, floors, ceilings, plaster, putty, primer",
+					"Creation of hydro-, sound- and thermal insulation",
+					"Painting, wallpapering, tiling work",
+					"Redevelopment of premises",
+					"Installation of floor coverings",
+					"Installation of plasterboard structures, suspended ceilings, windows, doors, partitions",
+					"Decorative finishing of any complexity"
+				],
+				"cons": "Differences from premium and elite class:",
+				"consDescription": [
+					"Development of an individual design project",
+					"Reasonable savings on decor and finishing materials",
+					"Less complex technical solutions",
+					"Unlimited choice of stylistic solutions",
+					"Natural and synthetic materials of impeccable quality"
+				]
+			},
+			{
+				"id": 3,
+				"image": "/repair/repairType3.webp",
+				"title": "Business",
+				"price": "from 554 BYN for 1 sq. m.",
+				"pros": "The list of works includes:",
+				"prosDescription": [
+					"Author's design project",
+					"Any style to choose from",
+					"Progressive technologies",
+					"Installation of floor coverings",
+					"All types of fashionable decor",
+					"Redevelopment of premises",
+					"Dismantling of old structures and finishing elements",
+					"Installation of electrical networks, water supply, sewerage",
+					"Installation of heating, smart engineering systems, climate control equipment, plumbing",
+					"Leveling walls, floors, ceilings, plaster, putty, primer",
+					"Creation of hydro-, sound- and thermal insulation",
+					"Painting, wallpapering, tiling work",
+					"Only natural and environmentally friendly materials",
+					"Installation of plasterboard structures, suspended ceilings, windows, doors, partitions",
+					"Premium finishing materials",
+					"Decorative finishing of any complexity"
+				],
+				"cons": "",
+				"consDescription": []
+			}
+		]
+	},
+	"stepsWork": [
+		{
+			"id": 1,
+			"title": "You Get a quote",
+			"description": "A specialist will call you back within 15 minutes. You discuss your future renovation and ask questions.",
+			"icon": "/stages/stage1.png"
+		},
+		{
+			"id": 2,
+			"title": "An estimate engineer comes to you",
+			"description": "It takes a measurement within 30 minutes. After 12 hours, you receive an accurate estimate indicating the timing and cost of the work.",
+			"icon": "/stages/stage2.png"
+		},
+		{
+			"id": 3,
+			"title": "We conclude a contract",
+			"description": "The contract specifies the cost and terms. For each day of delay, a fine is prescribed.",
+			"icon": "/stages/stage3.png"
+		},
+		{
+			"id": 4,
+			"title": "We purchase materials",
+			"description": "We work directly with suppliers. Therefore, we provide you with a discount from 5 to 30%.",
+			"icon": "/stages/stage4.png"
+		},
+		{
+			"id": 5,
+			"title": "Let's get started",
+			"description": "Within 48 hours after signing the contract, work at the site will begin to begin.",
+			"icon": "/stages/stage5.png"
+		},
+		{
+			"id": 6,
+			"title": "We bring order and cleanliness",
+			"description": "The apartment is washed to a shine. You can immediately move into the renovated apartment.",
+			"icon": "/stages/stage6.png"
+		}
+	],
+	"papers": [
+		{
+			"id": 1,
+			"title": "User Agreement",
+			"shortTitle": "user-agreement"
+		},
+		{
+			"id": 2,
+			"title": "Privacy Policy",
+			"shortTitle": "privacy-policy"
+		},
+		{
+			"id": 3,
+			"title": "Public offer",
+			"shortTitle": "public-offer"
+		}
+	],
+	"prices": {
+		"repairs": [
+			{
+				"id": "dismantling-works",
+				"title": "Dismantling works",
+				"description": "Work on the destruction of old structures, removal of unnecessary materials. Includes both partial and complete dismantling of buildings, as well as preparing the premises for further repair work.",
+				"image": {
+					"src": "/categories/dismantling-works.webp",
+					"alt": "Image of dismantling work",
+					"quality": 100,
+					"width": 1440,
+					"height": 810
+				},
+				"priceList": [
+					{
+						"service": "Dismantling brick walls up to 40 cm",
+						"unit": "m²",
+						"price": "from 32 rub.",
+						"canonical": "/services/dismantling-works/dismantling-brick-walls"
+					},
+					{
+						"service": "Removing tiles",
+						"unit": "m²",
+						"price": "from 16 rub.",
+						"canonical": "/services/dismantling-works/dismantling-tiles"
+					},
+					{
+						"service": "Removing plaster",
+						"unit": "m²",
+						"price": "from 16 rub.",
+						"canonical": "/services/dismantling-works/plaster-removal"
+					},
+					{
+						"service": "Dismantling the screed",
+						"unit": "m²",
+						"price": "from 16 rub.",
+						"canonical": "/services/dismantling-works/dismantling-screed"
+					},
+					{
+						"service": "Removing a wooden floor",
+						"unit": "m²",
+						"price": "from 16 rub.",
+						"canonical": "/services/dismantling-works/dismantling-wooden-floor"
+					},
+					{
+						"service": "Removing whitewash and old paint",
+						"unit": "m²",
+						"price": "from 15 rub.",
+						"canonical": "/services/dismantling-works/removal-whitewash_old-paint"
+					},
+					{
+						"service": "Dismantling window and door units (without saving)",
+						"unit": "m²",
+						"price": "from 15 rub.",
+						"canonical": "/services/dismantling-works/dismantling-window-and-door-units-without-preservation"
+					},
+					{
+						"service": "Dismantling of window and door blocks (with preservation)",
+						"unit": "m²",
+						"price": "from 35 rub.",
+						"canonical": "/services/dismantling-works/dismantling-window-and-door-units-with-preservation"
+					},
+					{
+						"service": "Dismantling of gypsum plasterboard partitions",
+						"unit": "m²",
+						"price": "from 20 rub.",
+						"canonical": "/services/dismantling-works/dismantling-GKL-partitions"
+					},
+					{
+						"service": "Dismantling brick partitions",
+						"unit": "m²",
+						"price": "from 40 rub.",
+						"canonical": "/services/dismantling-works/dismantling-brick-partitions"
+					},
+					{
+						"service": "Dismantling of ASG partitions",
+						"unit": "m²",
+						"price": "from 20 rub.",
+						"canonical": "/services/dismantling-works/dismantling-CBC-partitions"
+					},
+					{
+						"service": "Dismantling concrete partitions",
+						"unit": "m²",
+						"price": "from 150 rub.",
+						"canonical": "/services/dismantling-works/dismantling-concrete-partitions"
+					}
+				]
+			},
+			{
+				"id": "construction-works",
+				"title": "Civil works",
+				"description": "Work on the construction of buildings and structures, including pouring the foundation, erecting walls, installing facades, roofing work, erecting fences, etc.",
+				"image": {
+					"src": "/categories/construction-works.webp",
+					"alt": "Image of civil works",
+					"quality": 100,
+					"width": 1440,
+					"height": 810
+				},
+				"priceList": [
+					{
+						"service": "Pouring the foundation",
+						"unit": "m³",
+						"price": "from 175 rub.",
+						"canonical": "/services/construction-works/foundation-pouring"
+					},
+					{
+						"service": "Construction of brick walls",
+						"unit": "m²",
+						"price": "from 120 rub.",
+						"canonical": "/services/construction-works/brick-wall-construction"
+					},
+					{
+						"service": "Construction of the walls of the ASG",
+						"unit": "m²",
+						"price": "from 70 rub.",
+						"canonical": "/services/construction-works/CBC-wall-construction"
+					},
+					{
+						"service": "Facade installation",
+						"unit": "m²",
+						"price": "from 28 rub.",
+						"canonical": "/services/construction-works/facade-installation"
+					},
+					{
+						"service": "Roofing device",
+						"unit": "m²",
+						"price": "from 52 rub.",
+						"canonical": "/services/construction-works/roofing"
+					},
+					{
+						"service": "Construction of fences",
+						"unit": "m.p.",
+						"price": "from 20 rub.",
+						"canonical": "/services/construction-works/fence-construction"
+					}
+				]
+			},
+			{
+				"id": "installation-works",
+				"title": "Installation work",
+				"description": "Installation of plasterboard structures, frame panels, soundproofing structures, equipment, etc.",
+				"image": {
+					"src": "/categories/installation-works.webp",
+					"alt": "Image of installation work",
+					"quality": 100,
+					"width": 1440,
+					"height": 810
+				},
+				"priceList": [
+					{
+						"service": "Installation of plasterboard structures",
+						"unit": "m²",
+						"price": "from 25 rub.",
+						"canonical": "/services/installation-works/gypboard-installation"
+					},
+					{
+						"service": "Ventilation installation",
+						"unit": "pcs.",
+						"price": "from 50 rub.",
+						"canonical": "/services/installation-works/ventilation-installation"
+					}
+				]
+			},
+			{
+				"id": "finishing-works",
+				"title": "Finishing work",
+				"description": "Premises finishing work, including plastering, putty, tiling and other finishing materials.",
+				"image": {
+					"src": "/categories/finishing-works.webp",
+					"alt": "Image of finishing works",
+					"quality": 100,
+					"width": 1440,
+					"height": 810
+				},
+				"priceList": [
+					{
+						"service": "Plastering walls",
+						"unit": "m²",
+						"price": "from 32 rub.",
+						"canonical": "/services/finishing-works/plastering-walls"
+					},
+					{
+						"service": "Wall putty",
+						"unit": "m²",
+						"price": "from 16 rub.",
+						"canonical": "/services/finishing-works/wall-puttying"
+					},
+					{
+						"service": "Laying tiles",
+						"unit": "m²",
+						"price": "from 48 rub.",
+						"canonical": "/services/finishing-works/tile-laying"
+					},
+					{
+						"service": "Laying porcelain tiles",
+						"unit": "m²",
+						"price": "from 60 rub.",
+						"canonical": "/services/finishing-works/stoneware-laying"
+					},
+					{
+						"service": "Laying laminate",
+						"unit": "m²",
+						"price": "from 20 rub.",
+						"canonical": "/services/finishing-works/laminate-flooring"
+					},
+					{
+						"service": "Wallpapering walls",
+						"unit": "m²",
+						"price": "from 12 rub.",
+						"canonical": "/services/finishing-works/wallpapering"
+					},
+					{
+						"service": "Base primer",
+						"unit": "m²",
+						"price": "from 4 rub.",
+						"canonical": "/services/finishing-works/base-priming"
+					}
+				]
+			},
+			{
+				"id": "painting-works",
+				"title": "Painting works",
+				"description": "Painting work on various surfaces, including walls, ceilings, facades, as well as the use of decorative compositions.",
+				"image": {
+					"src": "/categories/painting-works.webp",
+					"alt": "Picture of painting work",
+					"quality": 100,
+					"width": 1440,
+					"height": 810
+				},
+				"priceList": [
+					{
+						"service": "Painting walls and ceilings",
+						"unit": "m²",
+						"price": "from 12 rub.",
+						"canonical": "/services/painting-works/painting-walls-ceilings"
+					},
+					{
+						"service": "Facade painting",
+						"unit": "m²",
+						"price": "from 10 rub.",
+						"canonical": "/services/painting-works/facade-painting"
+					},
+					{
+						"service": "Decorative finishing",
+						"unit": "m²",
+						"price": "from 35 rub.",
+						"canonical": "/services/painting-works/decorative-finishing"
+					}
+				]
+			},
+			{
+				"id": "plumbing-works",
+				"title": "Plumbing work",
+				"description": "Installation and repair of plumbing equipment: water supply, sewerage, heating.",
+				"image": {
+					"src": "/categories/plumbing-works.webp",
+					"alt": "Picture of plumbing work",
+					"quality": 100,
+					"width": 1440,
+					"height": 810
+				},
+				"priceList": [
+					{
+						"service": "Installation of pipes (polypropylene, metal-plastic, metal)",
+						"unit": "m.p.",
+						"price": "from 10 rub.",
+						"canonical": "/services/plumbing-works/water-pipe-installation"
+					},
+					{
+						"service": "Mixer installation",
+						"unit": "pcs.",
+						"price": "from 70 rub.",
+						"canonical": "/services/plumbing-works/faucet-installation"
+					},
+					{
+						"service": "Washbasin installation",
+						"unit": "pcs.",
+						"price": "from 140 rub.",
+						"canonical": "/services/plumbing-works/mounting-washbasin"
+					},
+					{
+						"service": "Toilet installation",
+						"unit": "pcs.",
+						"price": "from 140 rub.",
+						"canonical": "/services/plumbing-works/toilet-installation"
+					},
+					{
+						"service": "Installation of a shower cabin",
+						"unit": "pcs.",
+						"price": "from 175 rub.",
+						"canonical": "/services/plumbing-works/shower-cabin-installation"
+					},
+					{
+						"service": "Supply of water or sewerage point",
+						"unit": "pcs.",
+						"price": "from 50 rub.",
+						"canonical": "/services/plumbing-works/water-or-sewage-connection"
+					},
+					{
+						"service": "Radiator installation",
+						"unit": "pcs.",
+						"price": "from 105 rub.",
+						"canonical": "/services/plumbing-works/radiator-installation"
+					},
+					{
+						"service": "Replacing the riser",
+						"unit": "pcs.",
+						"price": "from 200 rub.",
+						"canonical": "/services/plumbing-works/riser-replacement"
+					},
+					{
+						"service": "Replacing the meter",
+						"unit": "pcs.",
+						"price": "from 200 rub.",
+						"canonical": "/services/plumbing-works/meter-replacement"
+					}
+				]
+			},
+			{
+				"id": "electrical-works",
+				"title": "Electrical installation work",
+				"description": "Work on the installation of electrical networks, panels, installation of sockets, switches, lighting fixtures.",
+				"image": {
+					"src": "/categories/electrical-works.webp",
+					"alt": "Picture of electrical work",
+					"quality": 100,
+					"width": 1440,
+					"height": 810
+				},
+				"priceList": [
+					{
+						"service": "Electrical wiring installation",
+						"unit": "m.p.",
+						"price": "from 4 rub.",
+						"canonical": "/services/electrical-works/wiring-installation"
+					},
+					{
+						"service": "Installation of sockets",
+						"unit": "pcs.",
+						"price": "from 20 rub.",
+						"canonical": "/services/electrical-works/socket-installation"
+					},
+					{
+						"service": "Installation of a socket box",
+						"unit": "pcs.",
+						"price": "from 20 rub.",
+						"canonical": "/services/electrical-works/socket-outlet-installation"
+					},
+					{
+						"service": "Shield installation",
+						"unit": "pcs.",
+						"price": "from 70 rub.",
+						"canonical": "/services/electrical-works/panel-installation"
+					},
+					{
+						"service": "Installation of the machine",
+						"unit": "pcs.",
+						"price": "from 48 rub.",
+						"canonical": "/services/electrical-works/dispenser-installation"
+					},
+					{
+						"service": "Strobe for electrical cable",
+						"unit": "m.p.",
+						"price": "from 12 rub.",
+						"canonical": "/services/electrical-works/rutting-electrical-cables"
+					},
+					{
+						"service": "Cable corrugation",
+						"unit": "m.p.",
+						"price": "from 12 rub.",
+						"canonical": "/services/electrical-works/cable-corrugation"
+					},
+					{
+						"service": "Lighting installation",
+						"unit": "pcs.",
+						"price": "from 1000 rub.",
+						"canonical": "/services/electrical-works/lighting-installation"
+					}
+				]
+			},
+			{
+				"id": "carpentry-works",
+				"title": "Carpentry work",
+				"description": "Installation work on wooden and plastic structures, doors, windows, furniture.",
+				"image": {
+					"src": "/categories/carpentry-works.webp",
+					"alt": "Picture of carpentry work",
+					"quality": 100,
+					"width": 1440,
+					"height": 810
+				},
+				"priceList": [
+					{
+						"service": "Door installation",
+						"unit": "pcs.",
+						"price": "from 160 rub.",
+						"canonical": "/services/carpentry-works/door-installation"
+					},
+					{
+						"service": "Window installation",
+						"unit": "pcs.",
+						"price": "from 160 rub.",
+						"canonical": "/services/carpentry-works/window-installation"
+					}
+				]
+			}
+		],
+		"design": [
+			{
+				"id": "interior-works",
+				"title": "Interior design",
+				"description": "Interior design, selection of materials, layout and decoration of premises.",
+				"image": {
+					"src": "/categories/interior-works.webp",
+					"alt": "Image of design works",
+					"quality": 100,
+					"width": 1440,
+					"height": 810
+				},
+				"priceList": [
+					{
+						"service": "Room design development",
+						"unit": "m2",
+						"price": "from 5000 rub.",
+						"canonical": "/design/interior-design/razrabotka-dizayna-komnaty"
+					},
+					{
+						"service": "Selection of finishing materials",
+						"unit": "m2",
+						"price": "from 1000 rub.",
+						"canonical": "/design/interior-design/podbor-otdelochny-materialov"
+					}
+				]
+			}
+		]
+	},
+	"reviews": [
+		{
+			"id": 1,
+			"name": "Ivan",
+			"city": "Zhlobin",
+			"text": "The repair went through without a single delay, everything turned out perfect. Thank you!",
+			"photoUrl": "/reviews/review_1.jpg"
+		},
+		{
+			"id": 2,
+			"name": "Maria",
+			"city": "Rogachev",
+			"text": "I am very pleased with the work of the company. Everything is done at the highest level.",
+			"photoUrl": "/reviews/review_2.jpg"
+		},
+		{
+			"id": 3,
+			"name": "Xenia",
+			"city": "Zhlobin",
+			"text": "The renovation was completed ahead of schedule and with excellent quality. I recommend!",
+			"photoUrl": "/reviews/review_3.jpg"
+		},
+		{
+			"id": 4,
+			"name": "Dmitry",
+			"city": "Gomel",
+			"text": "The guys surprised us with both quality and approach to business. I was satisfied!",
+			"photoUrl": "/reviews/review_4.jpg"
+		}
+	],
+	"relatedServices": [
+		{
+			"id": "expertise",
+			"title": "Construction expertise",
+			"subTitle": "We will conduct an examination of the condition of your home and suggest improvements to increase its value and safety.",
+			"description": "Increase the value of your home and ensure security with our services. We will examine the condition of your home and offer solutions to increase its value and safety. Our experts can help you identify potential problems that could affect your home in the future and offer actionable recommendations to improve its condition.",
+			"image": "/services/related/expertise.webp",
+			"canonical": "/services/expertise",
+			"benefits": [
+				"Increasing the value of your home",
+				"Keeping your family safe",
+				"Obtaining a professional assessment"
+			],
+			"text": "Feel confident in your home. A real estate examination is a step towards improving its condition, and therefore its value. Our experts will offer you practical solutions to improve the durability and safety of your home. Get an expert opinion that will not only improve your family's safety, but also add value to your property.",
+			"triggers": [
+				"Confidence in your property: We provide you with accurate information about the condition of your home.",
+				"Family Safety and Security: We care about your home and your safety.",
+				"Guaranteed increase in value: Increase the value of your home based on recommendations from professionals."
+			]
+		},
+		{
+			"id": "smart-home",
+			"title": "Smart home and automation",
+			"subTitle": "We will install smart home systems: lighting, climate control, security and control from your phone.",
+			"description": "Transform your home with future technology. Installing smart home systems will provide convenience, comfort and full control via a smartphone. You can control the lighting, climate control and security of your home with the touch of a button.",
+			"image": "/services/related/smart-home.webp",
+			"canonical": "/services/smart-home",
+			"benefits": ["Convenience and comfort", "Energy Saving", "Full control via smartphone"],
+			"text": "Bring the future into your home. Smart home systems give you maximum convenience: from lighting control to security control, with just one device. Forget about inconvenience and make your home more comfortable, economical and safe.",
+			"triggers": [
+				"Modern technology for convenience: Improve your home with the latest solutions.",
+				"Saving resources and safety: A smart home will save your resources and make your home safer.",
+				"Remote control: Anywhere - complete control of your home."
+			]
+		},
+		{
+			"id": "energy-saving",
+			"title": "Energy saving and ecology",
+			"subTitle": "We design and install energy saving solutions, including solar panels, heating and ventilation systems at minimal cost.",
+			"description": "Make your home greener and more efficient with our energy saving solutions. We will help you reduce your energy costs by implementing solutions for installing solar panels and heating and ventilation systems. This will not only save you money, but will also contribute to protecting the environment.",
+			"image": "/services/related/energy-saving.webp",
+			"canonical": "/services/energy-saving",
+			"benefits": [
+				"Reduced energy costs",
+				"Contribution to environmental protection",
+				"Long-term financial benefits"
+			],
+			"text": "Make your home not only comfortable, but also environmentally friendly! The introduction of energy-saving technologies is an important step towards conserving natural resources and reducing energy costs. We offer you the best solutions for your home that will provide you with long-term savings and a positive impact on the environment.",
+			"triggers": [
+				"Going Green: Take a step towards a cleaner, greener world.",
+				"Energy efficiency and savings: Energy saving solutions will reduce your costs.",
+				"Investing in the future: Invest in technologies that will pay dividends in the long term."
+			]
+		},
+		{
+			"id": "technical-documentation",
+			"title": "Technical documentation",
+			"subTitle": "We will develop detailed documentation for the installation of electrical networks, water supply, heating and lighting.",
+			"description": "Ensure safety and compliance with all standards with our technical documentation. We develop detailed documentation for all aspects of construction: from electrical networks to water supply. This will allow you to minimize risks during construction and be sure that all work complies with current standards.",
+			"image": "/services/related/technical-documentation.webp",
+			"canonical": "/services/technical-documentation",
+			"benefits": [
+				"Complete documentation for your project",
+				"Reducing risks during construction",
+				"Compliance with all building codes"
+			],
+			"text": "Get complete documentation for your project. We will ensure accuracy and compliance with all construction standards, which will minimize risks and ensure the successful implementation of your project. Professional specialists will help you avoid mistakes and implement the project without problems.",
+			"triggers": [
+				"Professionalism and Accuracy: We guarantee that the documentation will be of the highest level.",
+				"Reduce Construction Risks: Accurate documentation is your path to a successful project.",
+				"Compliance with Laws: All documentation will comply with laws."
+			]
+		},
+		{
+			"id": "materials",
+			"title": "Selection and ordering of materials",
+			"subTitle": "We will select and deliver finishing and rough materials for renovation, as well as furniture, plumbing and lighting.",
+			"description": "A full range of materials for your renovation: from construction to finishing. We will help you select and deliver all the necessary materials for your project, including furniture, plumbing and lighting.",
+			"image": "/services/related/materials.webp",
+			"canonical": "/services/materials",
+			"benefits": [
+				"Unified specification and order to suppliers",
+				"Control of delivery times according to the work schedule",
+				"Saving customer time on procurement"
+			],
+			"text": "We will take care of all materials for your renovation - from construction to finishing. Our company provides a full range of services, including delivery and selection of quality materials, to ensure that your project is successful and completed on time.",
+			"triggers": [
+				"Quality guarantee: We offer only high-quality and proven materials.",
+				"Convenience and speed: All materials will be delivered as quickly as possible.",
+				"Availability of the best materials: You will have access to the best materials for your renovation."
+			]
+		},
+		{
+			"id": "cleaning",
+			"title": "Construction waste removal and cleaning",
+			"subTitle": "We will remove construction waste and do wet cleaning. You will receive a clean property ready to move.",
+			"description": "After renovation - clean! We'll take care of the trash removal and cleaning of your property so it's ready to move in or use. Don't waste time and effort on cleaning - we will do everything for you!",
+			"image": "/services/related/cleaning.webp",
+			"canonical": "/services/cleaning",
+			"benefits": ["Effortless cleanliness", "Quick release of garbage", "Readiness of the premises for use"],
+			"text": "Have your home ready to move in or use as soon as your renovation is complete. We will rid you of construction debris and provide thorough cleaning so that you can enjoy cleanliness and comfort without unnecessary hassle.",
+			"triggers": [
+				"Clean and tidy: We ensure that your home is ready for use.",
+				"Ready to use: Clear your space of clutter and make it livable.",
+				"Minimize Effort: Let us take care of the dirty work and leave you happy with the results."
+			]
+		}
+	],
+	"businessServices": {
+		"services": {},
+		"callToAction": {
+			"headline": "Why choose us?",
+			"reasons": [
+				"We have more than 10 years of experience in working with business spaces.",
+				"We create projects that increase sales and attract customers.",
+				"Full cycle of work: from development to implementation.",
+				"Use of modern materials and technologies for durability and comfort.",
+				"Individual approach to each client."
+			]
+		}
+	}
+}

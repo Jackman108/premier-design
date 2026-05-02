@@ -8,6 +8,7 @@ const join = (...parts: Array<string | false | undefined>): string => parts.filt
 /** Оболочка `<section>` для главной: единая сетка, `data-reveal` и `data-*` в одном месте. */
 const HomePageSection: FC<HomePageSectionProps> = ({
 	id,
+	dataSlotId,
 	'aria-label': ariaLabel,
 	layout,
 	density,
@@ -33,6 +34,7 @@ const HomePageSection: FC<HomePageSectionProps> = ({
 	return (
 		<section
 			id={id}
+			data-slot-id={dataSlotId}
 			aria-label={ariaLabel}
 			className={className}
 			data-reveal={isHero ? undefined : 'true'}

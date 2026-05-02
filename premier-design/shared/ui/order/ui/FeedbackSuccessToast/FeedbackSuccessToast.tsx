@@ -2,6 +2,7 @@
 
 import type { FC } from 'react';
 
+import { UI, useLocale } from '@shared/i18n';
 import { FEEDBACK_SUCCESS_TOAST_MS } from '@shared/ui/order/constants';
 import { BodyPortal } from '@shared/ui/portal/BodyPortal';
 
@@ -9,17 +10,15 @@ import styles from './FeedbackSuccessToast.module.css';
 
 export type FeedbackSuccessToastProps = {
 	open: boolean;
-	/** Длительность анимации прогресса (= таймер скрытия в `useFeedback`). */
 	durationMs?: number;
 };
 
-/**
- * Отдельное от модалки формы уведомление об успешной отправке: портал, семантические токены, ~5s до скрытия снаружи.
- */
 export const FeedbackSuccessToast: FC<FeedbackSuccessToastProps> = ({
 	open,
 	durationMs = FEEDBACK_SUCCESS_TOAST_MS,
 }) => {
+	const { t } = useLocale();
+
 	if (!open) {
 		return null;
 	}
@@ -39,8 +38,8 @@ export const FeedbackSuccessToast: FC<FeedbackSuccessToastProps> = ({
 							✓
 						</div>
 						<div className={styles.textBlock}>
-							<p className={styles.title}>Заявка отправлена</p>
-							<p className={styles.subtitle}>Мы свяжемся с вами в ближайшее время.</p>
+							<p className={styles.title}>{t(UI.feedbackSuccessTitle)}</p>
+							<p className={styles.subtitle}>{t(UI.feedbackSuccessSubtitle)}</p>
 						</div>
 					</div>
 					<div className={styles.progress} style={{ animationDuration: `${durationMs}ms` }} aria-hidden />

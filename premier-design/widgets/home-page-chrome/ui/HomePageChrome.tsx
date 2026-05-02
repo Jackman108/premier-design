@@ -2,11 +2,30 @@
 
 import type { FC } from 'react';
 
+import { UI, useLocale, type UiMessageKey } from '@shared/i18n';
 import { HOME_SECTION_NAV_LINKS } from '@shared/lib/homeSectionNavConfig';
+
 import { useHomePageChrome } from '../hooks/useHomePageChrome';
 import styles from './HomePageChrome.module.css';
 
+/** Порядок = `HOME_SECTION_NAV_LINKS` в `homeSectionNavConfig`. */
+const HOME_NAV_LABEL_KEYS: readonly UiMessageKey[] = [
+	UI.homeChromeNavOffer,
+	UI.homeChromeNavServices,
+	UI.homeChromeNavApproach,
+	UI.homeChromeNavSteps,
+	UI.homeChromeNavExamples,
+	UI.homeChromeNavTrust,
+	UI.homeChromeNavCosting,
+	UI.homeChromeNavRelated,
+	UI.homeChromeNavFaq,
+	UI.homeChromeNavReviews,
+	UI.homeChromeNavQuiz,
+	UI.homeChromeNavAppeal,
+];
+
 const HomePageChrome: FC = () => {
+	const { t } = useLocale();
 	const { activeId, progress, isHeroOutOfView } = useHomePageChrome();
 
 	const scrollToTop = () => {
@@ -21,20 +40,19 @@ const HomePageChrome: FC = () => {
 				style={{ transform: `scaleX(${progress})` }}
 			/>
 			<nav
-				aria-label="По разделам главной страницы"
-				/* .sectionNav.visible: opacity 1 (десктоп) — isHeroOutOfView применялся только к scrollProgress, панель оставалась прозрачной */
+				aria-label={t(UI.homeChromeSectionNavAria)}
 				className={`${styles.sectionNav} ${isHeroOutOfView ? styles.visible : ''}`}
 			>
 				<button
 					type="button"
 					className={styles.toTopButton}
 					onClick={scrollToTop}
-					aria-label="Прокрутить страницу наверх"
+					aria-label={t(UI.homeChromeScrollTopAria)}
 				>
-					Наверх
+					{t(UI.homeChromeScrollTopLabel)}
 				</button>
 				<ol className={styles.sectionNavList}>
-					{HOME_SECTION_NAV_LINKS.map((item) => {
+					{HOME_SECTION_NAV_LINKS.map((item, index) => {
 						const isActive = activeId === item.id;
 						return (
 							<li key={item.id}>
@@ -43,7 +61,7 @@ const HomePageChrome: FC = () => {
 									className={`${styles.sectionNavLink} ${isActive ? styles.sectionNavLinkActive : ''}`}
 									href={`#${item.id}`}
 								>
-									{item.label}
+									{t(HOME_NAV_LABEL_KEYS[index])}
 								</a>
 							</li>
 						);

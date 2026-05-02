@@ -1,9 +1,7 @@
 import type { NextPage } from 'next';
 import type { ReactElement } from 'react';
-import { RelatedServiceDetail } from '@features/related-services';
-import ServiceCategoryPage from '@features/services/ui/ServiceCategoryPage/ServiceCategoryPage';
-import type { ServiceCategoryPageProps } from '@features/services/ui/ServiceCategoryPage/ServiceCategoryPage';
-import type { RelatedServiceDetailProps } from '@features/related-services/interface/RelatedService.props';
+import { RelatedServiceDetail, type RelatedServiceDetailProps } from '@features/related-services';
+import { ServiceCategoryPage, type ServiceCategoryPageProps } from '@features/services';
 
 /** Композиция маршрута `pages/services/[categoryId]`: категория прайса или карточка `relatedServices`. В `widgets/`, чтобы не тянуть cross-feature внутри `features/services`. */
 export type ServicesTierPageProps =

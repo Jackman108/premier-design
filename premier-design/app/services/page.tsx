@@ -9,6 +9,7 @@ import { Appeal, BusinessServices, RelatedServices } from '@shared/lib/dynamicSe
 import { selectAppealSectionData, selectPageData } from '@shared/hooks/usePageData';
 import { customHeadPropsToMetadata } from '@shared/lib/seo/customHeadPropsToMetadata';
 import { getTitleData } from '@shared/utils/findItemByTitle';
+import { getCachedSiteBundle } from '@shared/lib/getStaticData';
 import { buildLayoutProps } from '@widgets/layout/lib/buildLayoutProps';
 import { StructuredDataScript } from '@widgets/layout/seo/StructuredDataScript';
 import Layout from '@widgets/layout/ui/layout/Layout';
@@ -21,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function ServicesIndexPage() {
-	const data = await getCachedData();
+	const { data } = await getCachedSiteBundle();
 	const head = buildServicesIndexHeadProps(data);
 	const {
 		titleItem: titleData,

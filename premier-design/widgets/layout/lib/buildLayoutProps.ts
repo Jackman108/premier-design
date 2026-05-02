@@ -7,12 +7,12 @@ export type BuildLayoutPropsOptions = {
 
 export const buildLayoutProps = (
 	data: LayoutData,
-	options?: BuildLayoutPropsOptions,
+	options: BuildLayoutPropsOptions = {},
 ): Omit<LayoutProps, 'children'> => ({
 	headerProps: {
 		menu: data.menu,
 		shares: data.shares,
-		...(options?.headerVariant && { variant: options.headerVariant }),
+		...(options.headerVariant && { variant: options.headerVariant }),
 	},
 	footerProps: {
 		papers: data.papers,

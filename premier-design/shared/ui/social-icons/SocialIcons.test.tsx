@@ -17,7 +17,7 @@ describe('SocialIcons', () => {
 	it('renders social links', () => {
 		render(<SocialIcons />);
 		expect(screen.getByRole('link', { name: 'Мы в телеграм' })).toHaveAttribute('href', SITE_SOCIAL.telegram);
-		expect(screen.getByRole('link', { name: 'Мы в вконтакте' })).toHaveAttribute('href', SITE_SOCIAL.vk);
-		expect(screen.getByRole('link', { name: 'Мы в инстаграм' })).toHaveAttribute('href', SITE_SOCIAL.instagram);
+		expect(screen.getByRole('link', { name: 'Мы в ВКонтакте' })).toHaveAttribute('href', SITE_SOCIAL.vk);
+		expect(screen.getByRole('link', { name: 'Мы в Instagram' })).toHaveAttribute('href', SITE_SOCIAL.instagram);
 	});
 });

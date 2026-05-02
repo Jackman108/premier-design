@@ -1,0 +1,73 @@
+.root {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.2rem;
+	font-size: 0.8125rem;
+	font-weight: 600;
+	line-height: 1;
+	color: color-mix(in srgb, var(--brown-dark) 85%, var(--white));
+}
+
+.rootSolidDark {
+	color: var(--white);
+}
+
+.sep {
+	opacity: 0.55;
+	user-select: none;
+}
+
+.choice {
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: var(--radius-sm);
+	padding: 0.35rem 0.45rem;
+	margin: 0;
+	min-width: 2.25rem;
+	min-height: 44px;
+	box-sizing: border-box;
+	font: inherit;
+	font-weight: inherit;
+	color: inherit;
+	cursor: pointer;
+	transition:
+		color var(--transition-fast),
+		border-color var(--transition-fast),
+		opacity var(--transition-fast);
+}
+
+.choice:disabled {
+	opacity: 0.55;
+	cursor: wait;
+}
+
+.choiceActive {
+	border-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+
+@media (hover: hover) {
+	.choice:hover:not(:disabled) {
+		color: var(--gold-light);
+		border-color: color-mix(in srgb, var(--gold-light) 55%, transparent);
+	}
+}
+
+.choice:focus-visible {
+	outline: none;
+	box-shadow: var(--focus-ring);
+}
+
+.rootSolidDark .choice:focus-visible {
+	color: var(--gold-light);
+}
+
+@media (max-width: 425px) {
+	.root {
+		font-size: 0.75rem;
+	}
+
+	.choice {
+		min-height: 40px;
+		padding: 0.25rem 0.35rem;
+	}
+}

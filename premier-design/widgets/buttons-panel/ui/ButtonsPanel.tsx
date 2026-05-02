@@ -1,18 +1,24 @@
+'use client';
+
 import dynamic from 'next/dynamic';
 import React, { FC } from 'react';
-import { findItemByTitle } from '@shared/utils/findItemByTitle';
-import { findPanelById } from '../utils/findPanelById';
-import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
-import { EstimateButton } from '@features/buttons-panel';
-import styles from './ButtonsPanel.module.css';
-import { ButtonsPanelProps } from '../interface/ButtonsPanel.props';
 
-const ChatBotSidebar = dynamic(() => import('@features/buttons-panel/ui/ChatBotSidebar/ChatBotSidebar'), {
+import { UI, useLocale } from '@shared/i18n';
+import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
+import { findItemByTitle } from '@shared/utils/findItemByTitle';
+import { EstimateButton } from '@features/buttons-panel';
+
+import { ButtonsPanelProps } from '../interface/ButtonsPanel.props';
+import { findPanelById } from '../utils/findPanelById';
+import styles from './ButtonsPanel.module.css';
+
+const ChatBotSidebar = dynamic(() => import('@features/buttons-panel').then((m) => ({ default: m.ChatBotSidebar })), {
 	ssr: false,
 	loading: () => null,
 });
 
 const ButtonsPanel: FC<ButtonsPanelProps> = ({ additionalData }) => {
+	const { t } = useLocale();
 	const { costingCards, buttonData, panelData } = additionalData;
 
 	const buttonHeader = findItemByTitle(buttonData, 'get_counseling');
@@ -21,7 +27,7 @@ const ButtonsPanel: FC<ButtonsPanelProps> = ({ additionalData }) => {
 	const chatButton = findPanelById(panelData, 'chatButton');
 
 	return (
-		<aside className={styles.buttonsContainer} aria-label="Быстрые действия">
+		<aside className={styles.buttonsContainer} aria-label={t(UI.panelQuickActionsAria)}>
 			<div className={styles.buttonsDock}>
 				{buttonHeader && (
 					<OrderButton

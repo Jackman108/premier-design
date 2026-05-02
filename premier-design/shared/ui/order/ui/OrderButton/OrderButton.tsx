@@ -2,6 +2,7 @@
 
 import React, { FC } from 'react';
 
+import { UI, useLocale } from '@shared/i18n';
 import PanelButton from '@shared/ui/panel-button/PanelButton';
 import { useFeedback } from '@shared/ui/order/hooks/useFeedback';
 import { useOrderButtonOpenHandler } from '@shared/ui/order/hooks/useOrderButtonOpenHandler';
@@ -19,6 +20,7 @@ const OrderButton: FC<OrderButtonProps> = ({
 	trackingContext,
 	...buttonDomProps
 }: OrderButtonProps) => {
+	const { t } = useLocale();
 	const { isOpen, openModalWithMessage, closeModal, handleSubmit, initialMessage, error, isSuccess, successToastMs } =
 		useFeedback();
 	const buttonClass = styles[buttonStyle];
@@ -40,9 +42,8 @@ const OrderButton: FC<OrderButtonProps> = ({
 						{...buttonDomProps}
 						className={`${styles['button-base']} ${buttonClass}`}
 						type="button"
-						// `onClick` надёжнее для e2e/доступности: событие одинаково работает мышью, тачем и с клавиатуры.
 						onClick={handleOpenModal}
-						aria-label="Сделать заказ"
+						aria-label={t(UI.orderPlaceOrderAria)}
 					>
 						{buttonData}
 					</button>

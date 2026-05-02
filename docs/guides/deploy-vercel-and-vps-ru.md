@@ -40,7 +40,7 @@ PREMIUM_DESIGN_IMAGE=ghcr.io/<owner-lower>/premium-design:latest
 
 ## 3. VPS: два сайта (Docker) без Vercel
 
-- Инфраструктура: отдельный репозиторий **`lendings-vps-infra`** (compose и nginx в **корне** клона). Указатель из этого репо: [`deploy/README.md`](../../deploy/README.md); **пошагово** — [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md).
+- Инфраструктура: отдельный репозиторий **`lendings-vps-infra`** (compose и nginx в **корне** клона). Этот файл — входная точка по деплою из репозитория приложения; **пошагово на сервере** — [`lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md`](../../../lendings-vps-infra/docs/operations/multisite-vps-deploy-ru.md).
 - На сервере: только клон **`lendings-vps-infra`** и `docker compose pull` готовых образов — **без** `build` исходников сайта внутри compose.
 - Второй сайт (`febcode`) — **другой** репозиторий и свой образ; на одном nginx два `server_name`.
 

@@ -1,6 +1,5 @@
 /**
- * Реестр стабильных id секций главной (аналитика, AB, паритет с febcode `landing-page-slots`). PD-R-02.
- * Порядок = порядок рендера в `HomePageSections`.
+ * Стабильные id слотов главной (BP-24 / §9 этап 9.2). Порядок = порядок в [`HOME_PAGE_REGISTERED_SLOTS`](./home-page-slot-registry.tsx).
  */
 
 export const HOME_PAGE_SECTION_IDS = [

@@ -11,6 +11,7 @@ describe('validateForm', () => {
 				consent: false,
 			},
 			false,
+			'ru',
 		);
 
 		expect(errors.name).toBe('Введите ваше имя');
@@ -29,6 +30,7 @@ describe('validateForm', () => {
 				consent: true,
 			},
 			true,
+			'ru',
 		);
 
 		expect(errors.phone).toBe('Неверный формат номера телефона!');
@@ -45,6 +47,7 @@ describe('validateForm', () => {
 				consent: true,
 			},
 			true,
+			'ru',
 		);
 
 		expect(errors).toEqual({

@@ -3,10 +3,12 @@ import Link from 'next/link';
 
 import { buildSitemapHeadProps } from '@shared/lib/app-router/seo/marketingPagesHead';
 import { collectSitePathnames } from '@shared/lib/collectSitePathnames';
-import { getCachedData } from '@shared/lib/getStaticData';
 import { selectPageData } from '@shared/hooks/usePageData';
 import { customHeadPropsToMetadata } from '@shared/lib/seo/customHeadPropsToMetadata';
 import { getFullCanonicalUrl } from '@shared/utils/getFullCanonicalUrl';
+import { UI } from '@shared/i18n/ui-message-keys';
+import { getUiMessage } from '@shared/i18n/ui-messages';
+import { getCachedData, getCachedSiteBundle } from '@shared/lib/getStaticData';
 import { buildLayoutProps } from '@widgets/layout/lib/buildLayoutProps';
 import { StructuredDataScript } from '@widgets/layout/seo/StructuredDataScript';
 import Layout from '@widgets/layout/ui/layout/Layout';
@@ -21,7 +23,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function SitemapHtmlPage() {
-	const data = await getCachedData();
+	const { data, siteLocale } = await getCachedSiteBundle();
 	const head = buildSitemapHeadProps(data);
 	const { titleItem: titleData } = selectPageData(
 		data.titlesPage,
@@ -45,16 +47,16 @@ export default async function SitemapHtmlPage() {
 							<p className={styles.lead}>{titleData.description}</p>
 						</header>
 						<p className={styles.note}>
-							Также доступна машиночитаемая карта:{' '}
+							{getUiMessage(siteLocale, UI.sitemapMachineReadableLead)}{' '}
 							<a className={styles.xmlLink} href="/sitemap.xml">
 								sitemap.xml
 							</a>
-							.
+							{getUiMessage(siteLocale, UI.sitemapNoteAfterLink)}
 						</p>
 						<ul className={styles.list}>
 							{paths.map((path) => {
 								const href = path === '' ? '/' : path;
-								const label = path === '' ? 'Главная' : path;
+								const label = path === '' ? getUiMessage(siteLocale, UI.sitemapHomeCrumbLabel) : path;
 								return (
 									<li key={path || 'root'} className={styles.item}>
 										<Link className={styles.link} href={href}>

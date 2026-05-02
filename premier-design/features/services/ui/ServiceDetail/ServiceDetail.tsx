@@ -7,6 +7,7 @@ import Layout from '@widgets/layout/ui/layout/Layout';
 import Image from 'next/image';
 import BackButton from '@shared/ui/back-button/BackButton';
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
+import { UI, useLocale } from '@shared/i18n';
 import { findItemByTitle } from '@shared/utils/findItemByTitle';
 import type { ButtonProps } from '@entities/button';
 import { useFallback } from '@shared/hooks/useFallback';
@@ -28,6 +29,7 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
 	sharesData,
 	appealSection,
 }) => {
+	const { t } = useLocale();
 	const fallbackContent = useFallback(!!service && !!categoryProps);
 	const buttonHeader = findItemByTitle(buttonData, 'leave_request') || ({} as ButtonProps);
 	const layoutProps = useLayoutProps(
@@ -73,11 +75,17 @@ const ServiceDetail: FC<ServiceDetailProps> = ({
 										<p className={pageShell.lead}>{categoryProps.description}</p>
 										<div className={`${pageShell.prose} ${styles.infoPanel}`}>
 											<div className={pageShell.metaGrid}>
-												<span className={pageShell.metaLabel}>Услуга</span>
+												<span className={pageShell.metaLabel}>
+													{t(UI.servicesMetaLabelService)}
+												</span>
 												<span className={pageShell.metaValue}>{service.service}</span>
-												<span className={pageShell.metaLabel}>Единица измерения</span>
+												<span className={pageShell.metaLabel}>
+													{t(UI.servicesMetaLabelUnit)}
+												</span>
 												<span className={pageShell.metaValue}>{service.unit}</span>
-												<span className={pageShell.metaLabel}>Цена</span>
+												<span className={pageShell.metaLabel}>
+													{t(UI.servicesMetaLabelPrice)}
+												</span>
 												<span className={pageShell.metaValue}>{service.price}</span>
 											</div>
 										</div>

@@ -32,6 +32,9 @@ storybook-static
 /certificates
 /stories
 
+# machine translation cache for scripts/generate-en-locale-data.mjs
+/data/locales/en/_translation-cache.json
+
 # misc
 .DS_Store
 dist

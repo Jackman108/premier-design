@@ -17,20 +17,20 @@ export const HOME_SECTION_SCROLL_SPY_ORDER = [
 	'home-appeal',
 ] as const;
 
-/** Якоря боковой навигации главной — подмножество `HOME_SECTION_SCROLL_SPY_ORDER` (без «Преимущества»). */
+/** Якоря боковой навигации главной — подмножество `HOME_SECTION_SCROLL_SPY_ORDER` (без «Преимущества»). Подписи в `data/locales/<locale>/ui.json`, ключи `homeChrome.nav.*`. */
 export const HOME_SECTION_NAV_LINKS = [
-	{ id: 'home-offer', label: 'Предложение' },
-	{ id: 'home-services', label: 'Услуги' },
-	{ id: 'home-approach', label: 'Подход' },
-	{ id: 'home-steps', label: 'Этапы' },
-	{ id: 'home-examples', label: 'Работы' },
-	{ id: 'home-trust', label: 'Доверие' },
-	{ id: 'home-costing', label: 'Смета' },
-	{ id: 'home-related', label: 'Ещё услуги' },
-	{ id: 'home-faq', label: 'Вопросы' },
-	{ id: 'home-reviews', label: 'Отзывы' },
-	{ id: 'lead-quiz', label: 'Квиз' },
-	{ id: 'home-appeal', label: 'Заявка' },
+	{ id: 'home-offer' },
+	{ id: 'home-services' },
+	{ id: 'home-approach' },
+	{ id: 'home-steps' },
+	{ id: 'home-examples' },
+	{ id: 'home-trust' },
+	{ id: 'home-costing' },
+	{ id: 'home-related' },
+	{ id: 'home-faq' },
+	{ id: 'home-reviews' },
+	{ id: 'lead-quiz' },
+	{ id: 'home-appeal' },
 ] as const;
 
 export type HomeSectionNavLink = (typeof HOME_SECTION_NAV_LINKS)[number];

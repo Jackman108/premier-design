@@ -16,6 +16,7 @@ import type { MenuItem } from '@shared/ui/menu/interface/Menu.props';
 import OrderButton from '@shared/ui/order/ui/OrderButton/OrderButton';
 import pageShell from '@shared/ui/page-detail-shell/pageDetailShell.module.css';
 import pricingStyles from '@shared/ui/pricing-table/pricingTable.module.css';
+import { UI, useLocale } from '@shared/i18n';
 import { findItemByTitle } from '@shared/utils/findItemByTitle';
 import { useLayoutProps } from '@widgets/layout/hooks/useLayoutProps';
 import Layout from '@widgets/layout/ui/layout/Layout';
@@ -50,6 +51,7 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 	sharesData,
 	appealSection,
 }) => {
+	const { t, tf } = useLocale();
 	const fallbackContent = useFallback(!!category);
 	const buttonHeader = findItemByTitle(buttonData, 'leave_request') || ({} as ButtonProps);
 	const layoutProps = useLayoutProps(
@@ -95,7 +97,7 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 										<p className={pageShell.lead}>{category.description}</p>
 										<div className={`${pageShell.prose} ${styles.tableIntro}`}>
 											<p className={styles.tableIntroText}>
-												Перечень работ и ориентировочные цены по категории:
+												{t(UI.servicesCategoryPricingIntro)}
 											</p>
 										</div>
 									</div>
@@ -104,12 +106,12 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 									<table className={pricingStyles.table}>
 										<thead>
 											<tr className={pricingStyles.tr}>
-												<th className={pricingStyles.th}>Услуга</th>
+												<th className={pricingStyles.th}>{t(UI.servicesTableHeaderService)}</th>
 												<th className={`${pricingStyles.th} ${pricingStyles.unitColumn}`}>
-													Ед. изм.
+													{t(UI.servicesTableHeaderUnit)}
 												</th>
 												<th className={`${pricingStyles.th} ${pricingStyles.priceColumn}`}>
-													Цена
+													{t(UI.servicesTableHeaderPrice)}
 												</th>
 											</tr>
 										</thead>
@@ -120,7 +122,9 @@ const ServiceCategoryPage: FC<ServiceCategoryPageProps> = ({
 														<Link
 															href={item.canonical}
 															className={pricingStyles.link}
-															aria-label={`Перейти к разделу ${item.service}`}
+															aria-label={tf(UI.servicesPriceRowAriaLabel, {
+																service: item.service,
+															})}
 														>
 															{item.service}
 														</Link>

@@ -64,7 +64,7 @@ describe('CookiesBanner', () => {
 		const privacyPolicy = { id: 1, title: 'Политика конфиденциальности', shortTitle: 'privacy-policy' };
 		render(<CookiesBanner papers={[privacyPolicy]} />);
 
-		const privacyLink = screen.getByRole('link', { name: 'Открыть Политику конфиденциальности' });
+		const privacyLink = screen.getByRole('link', { name: 'Открыть политику конфиденциальности' });
 		expect(privacyLink).toHaveAttribute('href', '/documents/privacy-policy');
 
 		fireEvent.click(screen.getByRole('button', { name: 'Принять все куки' }));

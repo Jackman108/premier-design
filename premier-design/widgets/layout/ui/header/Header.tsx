@@ -10,6 +10,7 @@ import { useHeaderLayout } from '@widgets/layout/hooks/useHeaderLayout';
 
 import type { HeaderProps } from '../../interface/Header.props';
 import MenuButton from '../menu-button/MenuButton';
+import SiteLocaleSwitcher from '../site-locale-switcher/SiteLocaleSwitcher';
 import ThemeButton from '../theme-button/ThemeButton';
 import styles from './Header.module.css';
 
@@ -42,6 +43,7 @@ const Header: FC<HeaderProps> = ({ menu, shares, variant = 'default' }): ReactEl
 						<SocialIcons />
 					</div>
 					<div className={styles.buttons__container}>
+						<SiteLocaleSwitcher variant={isSolidDark ? 'solidDark' : 'default'} />
 						<ThemeButton currentTheme={currentTheme} toggleTheme={toggleTheme} />
 						<MenuButton isMobileMenuOpen={isMobileMenuOpen} toggleMobileMenu={toggleMobileMenu} />
 					</div>

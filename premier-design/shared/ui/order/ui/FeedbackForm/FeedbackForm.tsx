@@ -1,16 +1,21 @@
 'use client';
+
 import { FC, memo } from 'react';
-import styles from './FeedbackForm.module.css';
+import { PatternFormat } from 'react-number-format';
+
+import { UI, useLocale } from '@shared/i18n';
+import { useFeedbackForm } from '@shared/ui/order/hooks/useFeedbackForm';
+import { FeedbackPhoneCountry } from '@shared/ui/order/interface/FeedbackForm.types';
 import { FeedbackFormProps } from '@shared/ui/order/interface/FeedbackModal.props';
 import { UiButton } from '@shared/ui/primitives/UiButton';
 import { UiCheckbox } from '@shared/ui/primitives/UiCheckbox';
 import { UiInput } from '@shared/ui/primitives/UiInput';
 import { UiTextarea } from '@shared/ui/primitives/UiTextarea';
-import { PatternFormat } from 'react-number-format';
-import { useFeedbackForm } from '@shared/ui/order/hooks/useFeedbackForm';
-import { FeedbackPhoneCountry } from '@shared/ui/order/interface/FeedbackForm.types';
+
+import styles from './FeedbackForm.module.css';
 
 const FeedbackForm: FC<FeedbackFormProps> = memo(({ onSubmit, initialMessage }) => {
+	const { locale, t } = useLocale();
 	const {
 		country,
 		errors,
@@ -24,7 +29,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({ onSubmit, initialMessage }) 
 		handlePhoneChange,
 		handleConsentChange,
 		handleSubmit,
-	} = useFeedbackForm({ onSubmit, initialMessage });
+	} = useFeedbackForm({ onSubmit, initialMessage, locale });
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit} noValidate>
@@ -32,12 +37,12 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({ onSubmit, initialMessage }) 
 				<div className={styles.form__nameEmail}>
 					<div className={styles.input__group}>
 						<UiInput
-							label="Имя"
+							label={t(UI.feedbackFormNameLabel)}
 							id="name"
 							name="name"
 							type="text"
 							autoComplete="name"
-							placeholder="Ваше имя"
+							placeholder={t(UI.feedbackFormNamePlaceholder)}
 							value={formDataState.name}
 							onChange={handleInputChange}
 							className={errors.name ? styles.inputError : ''}
@@ -52,7 +57,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({ onSubmit, initialMessage }) 
 					</div>
 					<div className={styles.input__group}>
 						<UiInput
-							label="Email (необязательно)"
+							label={t(UI.feedbackFormEmailLabel)}
 							id="email"
 							name="email"
 							type="email"
@@ -75,14 +80,14 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({ onSubmit, initialMessage }) 
 					<div className={styles.inlineRow}>
 						<div className={styles.inlineField}>
 							<label htmlFor="feedback-country" className={styles.fieldLabel}>
-								Код страны
+								{t(UI.feedbackFormCountryCodeLabel)}
 							</label>
 							<select
 								id="feedback-country"
 								onChange={(e) => setCountry(e.target.value as FeedbackPhoneCountry)}
 								value={country}
 								className={`${styles.tokenControl} ${styles.tokenControlSelect} ${errors.phone ? styles.inputError : ''}`.trim()}
-								aria-label="Код страны для номера телефона"
+								aria-label={t(UI.feedbackFormCountryCodeAria)}
 							>
 								<option value="ru">🇷🇺</option>
 								<option value="by">🇧🇾</option>
@@ -90,7 +95,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({ onSubmit, initialMessage }) 
 						</div>
 						<div className={styles.inlineFieldGrow}>
 							<label htmlFor="phone" className={styles.fieldLabel}>
-								Телефон
+								{t(UI.feedbackFormPhoneLabel)}
 							</label>
 							<PatternFormat
 								format={phoneMask}
@@ -100,7 +105,7 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({ onSubmit, initialMessage }) 
 								name="phone"
 								inputMode="tel"
 								autoComplete="tel"
-								placeholder="Введите ваш номер телефона"
+								placeholder={t(UI.feedbackFormPhonePlaceholder)}
 								value={displayedPhone}
 								onValueChange={handlePhoneChange}
 								className={`${styles.tokenControl} ${errors.phone ? styles.inputError : ''}`.trim()}
@@ -117,11 +122,11 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({ onSubmit, initialMessage }) 
 				</div>
 				<div className={styles.input__group}>
 					<UiTextarea
-						label="Сообщение"
+						label={t(UI.feedbackFormMessageLabel)}
 						id="message"
 						name="message"
 						autoComplete="off"
-						placeholder="Коротко опишите запрос"
+						placeholder={t(UI.feedbackFormMessagePlaceholder)}
 						value={formDataState.message}
 						onChange={handleInputChange}
 						className={`${styles.textareaTight} ${errors.message ? styles.inputError : ''}`.trim()}
@@ -147,15 +152,15 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({ onSubmit, initialMessage }) 
 						aria-errormessage={errors.consent ? 'feedback-consent-error' : undefined}
 						label={
 							<>
-								Нажимая на кнопку, вы соглашаетесь с{' '}
+								{t(UI.feedbackFormConsentPrefix)}{' '}
 								<a href="/documents/user-agreement" target="_blank" rel="noopener noreferrer">
-									пользовательским соглашением
+									{t(UI.feedbackFormUserAgreementLink)}
 								</a>{' '}
-								и{' '}
+								{t(UI.feedbackFormConsentAnd)}{' '}
 								<a href="/documents/privacy-policy" target="_blank" rel="noopener noreferrer">
-									политикой конфиденциальности
+									{t(UI.feedbackFormPrivacyLink)}
 								</a>
-								.
+								{t(UI.feedbackFormConsentEnd)}
 							</>
 						}
 					/>
@@ -169,10 +174,10 @@ const FeedbackForm: FC<FeedbackFormProps> = memo(({ onSubmit, initialMessage }) 
 					<UiButton
 						type="submit"
 						className={styles.submitButton}
-						aria-label="Отправить заявку"
+						aria-label={t(UI.feedbackFormSubmitAria)}
 						disabled={isSubmitting}
 					>
-						{isSubmitting ? 'Отправка…' : 'Отправить'}
+						{isSubmitting ? t(UI.feedbackFormSubmitSending) : t(UI.feedbackFormSubmitIdle)}
 					</UiButton>
 				</div>
 			</div>

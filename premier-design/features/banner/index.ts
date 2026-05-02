@@ -1,4 +1,5 @@
 export { AppealBanner, HeroBanner, OfferBanner, ShareBanner } from './ui';
+export { useShareBanner } from './share/hooks/useShareBanner';
 export type {
 	AppealBannerProps,
 	HeroBannerProps,

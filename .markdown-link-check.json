@@ -11,6 +11,9 @@
 		{ "pattern": "://[^/\\s]*febcode\\.pro" },
 		{ "pattern": "://[^/\\s]*febcode\\.by" },
     { "pattern": "https://github\\.com/Jackman108/febcode/" },
-    { "pattern": "https://github\\.com/Jackman108/premier-design/" }
+    { "pattern": "https://github\\.com/Jackman108/premier-design/" },
+    { "pattern": "^mailto:" },
+    { "pattern": "https://www\\.npmjs\\.com/advisories/" },
+    { "pattern": "lendings-vps-infra" }
   ]
 }
