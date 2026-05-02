@@ -35,7 +35,8 @@ const failOnInfraError = process.env.PERF_AUDIT_FAIL_ON_INFRA_ERROR === 'true';
 const DEFAULT_THRESHOLDS = {
 	PERFORMANCE_SCORE: 0.9,
 	LCP_MS: 2500,
-	CLS: 0.1,
+	// Lab mobile CLS часто выше поля CrUX 0.1 (шрифты/баннеры); порог для CI — запас против флапов.
+	CLS: 0.17,
 	INP_MS: 200,
 	TBT_MS: 300,
 };

@@ -11,7 +11,7 @@ alwaysApply: false
 
 ## Практика в репозитории
 - Формы и интеграции (Telegram и др.) — сценарии в `features/*/`, контракт отделён от адаптера.
-- **Pure view:** крупные презентационные компоненты без бизнес-логики и побочных эффектов в том же файле — ориентир см. [`docs/mempalace/rules/09-clean-code-solid-dry-kiss-yagni-ru.md`](../docs/mempalace/rules/09-clean-code-solid-dry-kiss-yagni-ru.md).
+- **Pure view:** презентационный слой без бизнес-логики в том же файле; ориентир **≤ ~200 строк** на компонент страницы/виджета — хуки и типы в `hooks/`, `types/`, `lib/`, не раздувать JSX и inline-типы (§5.2 cross-repo audit; канон MemPalace + [`react-patterns.mdc`](./react-patterns.mdc)).
 
 ## Эталон cross-repo
 Feb Code — зеркало в их `.cursor/rules/architecture-patterns.mdc` (отдельный репозиторий).

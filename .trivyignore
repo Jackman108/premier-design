@@ -1,0 +1,3 @@
+# npm CLI в официальном образе node:24-alpine (usr/local/.../tinyglobby/picomatch).
+# Рантайм Next standalone этим кодом не пользуется; обновление только с апстримом образа Node.
+CVE-2026-33671

@@ -1,6 +1,6 @@
 # Общий rule pack (три репозитория)
 
-**Обновлено**: 30.04.2026
+**Обновлено**: 02.05.2026
 
 Общая терминология для **premier-design**, **febcode**, **lendings-vps-infra**. Длинные сценарии не копируем — у каждого репо свой `README` и операционные гайды.
 
@@ -44,7 +44,7 @@
 
 | Уровень              | Где                                                                                                                                                                                             |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| A                    | [`.husky/pre-commit`](../../.husky/pre-commit), [`lint-staged`](../../package.json) (корень репо)                                                                                               |
+| A                    | [`.husky/pre-commit`](../../.husky/pre-commit): `lint-staged` + **`yarn typecheck`** (корень репо; паритет febcode §5.4)                                                                        |
 | B                    | **`yarn ci:quality`**, **`yarn check:static`**, **`yarn check:risk:local`** — [`scripts-and-quality-gates-ru.md`](scripts-and-quality-gates-ru.md)                                              |
 | C                    | [`.github/workflows/ci.yml`](../../.github/workflows/ci.yml)                                                                                                                                    |
 | D                    | [`ci-trends.yml`](../../.github/workflows/ci-trends.yml), [`e2e-extended.yml`](../../.github/workflows/e2e-extended.yml); деплой — [`deploy-vercel-and-vps-ru.md`](deploy-vercel-and-vps-ru.md) |

@@ -1,6 +1,7 @@
 .next
 src/.next
 .audit
+.perf
 next-env.d.ts
 node_modules
 coverage

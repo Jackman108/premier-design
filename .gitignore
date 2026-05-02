@@ -15,9 +15,10 @@ coverage/
 # Storybook build output
 storybook-static
 
-# Lighthouse CLI (local perf check)
+# Lighthouse CLI (local perf check / `yarn perf:local` → `.perf/`)
 .lighthouse-tmp/
 .lighthouse-chrome-profile/
+.perf/
 .audit/
 
 # Next.js

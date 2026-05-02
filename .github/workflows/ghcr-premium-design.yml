@@ -20,6 +20,7 @@ on:
       - "panda.config.ts"
       - "Dockerfile.prod"
       - ".dockerignore"
+      - ".trivyignore"
       - ".github/workflows/ghcr-premium-design.yml"
 
 env:
@@ -77,6 +78,7 @@ jobs:
           ignore-unfixed: true
           exit-code: "1"
           format: table
+          trivyignores: ".trivyignore"
 
       - name: SBOM (CycloneDX) — BP-09
         uses: aquasecurity/trivy-action@v0.36.0

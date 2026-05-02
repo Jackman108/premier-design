@@ -21,8 +21,8 @@ jobs:
     name: Analyze (JavaScript / TypeScript)
     runs-on: ubuntu-22.04
     timeout-minutes: 90
+    # SARIF без включённого Code scanning в репозитории даёт ошибку upload; см. febcode codeql.yml.
     permissions:
-      security-events: write
       contents: read
       actions: read
 
@@ -52,3 +52,4 @@ jobs:
         uses: github/codeql-action/analyze@v3
         with:
           category: "/language:javascript-typescript"
+          upload: false

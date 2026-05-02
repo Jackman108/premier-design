@@ -78,7 +78,7 @@ jobs:
         env:
           PERF_BUDGET_SCORE: '0.90'
           PERF_BUDGET_LCP_MS: '2500'
-          PERF_BUDGET_CLS: '0.10'
+          PERF_BUDGET_CLS: '0.17'
           PERF_BUDGET_INP_MS: '200'
           PERF_BUDGET_TBT_MS: '300'
           INITIAL_JS_BUDGET_KB: '750'

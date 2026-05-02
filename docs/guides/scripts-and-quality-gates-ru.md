@@ -85,6 +85,10 @@
 | `check:perf:initial-js`       | Бюджет initial JS после `yarn build` (`build-manifest.json`): при **App Router** Next 15+ — сумма `.js` из **`polyfillFiles` + `rootMainFiles`** (оболочка первой загрузки); при Pages Router — чанки маршрута `/`, если они есть в манифесте. |
 | `check:perf:lighthouse`       | Бюджет Lighthouse (`PERF_BUDGET_*`).                                                                                                                                                                                                           |
 | `check:perf:ci`               | Lighthouse + initial JS (как в CI).                                                                                                                                                                                                            |
+| `perf:local`                  | Сборка **`yarn build`** → `.next/standalone` → Lighthouse на **`http://127.0.0.1:${PERF_LOCAL_PORT:-3001}/`** (паритет **febcode**). Дочерний **`next start`** получает **`SKIP_STARTUP_ENV_VALIDATION=1`**, если не задано **`PERF_LOCAL_STRICT_ENV=1`** (иначе нужны **`TELEGRAM_*`** как в проде). |
+| `perf:prod`                   | Lighthouse против **`PERF_URL`** (по умолчанию прод-домен сайта); отчёт в **`.perf/lh-prod.json`**.                                                                                                                                            |
+| `perf:prod:ci`                | То же с порогом **`PERF_MIN_SCORE=90`** и **`--ci`** (несколько прогонов).                                                                                                                                                                     |
+| `kpi:post-release`            | Markdown KPI из JSON (`--input` / `--output`); шаблон — **`yarn kpi:post-release:template`** (паритет **febcode**).                                                                                                                            |
 
 ## 4. Составные quality‑gates
 
